@@ -1,18 +1,22 @@
 package com.netbuilder.entities;
 
+import java.util.Date;
+
 public class Customer {
 	
 	// Customer attributes
 	private int idCustomer;
+	private Date dob;
 	private float credit;
 	private String phoneNumber;
 	
 	// Class Constructor
-	public Customer(float credit, String phoneNumber)
+	public Customer(float credit, String phoneNumber, Date dob)
 	{
 		// Initialise attributes
 		this.credit = credit;
 		this.phoneNumber = phoneNumber;
+		this.dob = dob;
 	}
 	
 	// ID customer accessors
@@ -21,6 +25,18 @@ public class Customer {
 		return this.idCustomer;
 	}
 	
+	public Date getDob() {
+		return dob;
+	}
+
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
 	// Credit accessor
 	public float getCredit()
 	{
@@ -41,10 +57,5 @@ public class Customer {
 	// Credit mutator
 	public void setCredit(float credit) {
 		this.credit = credit;
-	}
-
-	// Phone number mutator
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
 	}
 }
