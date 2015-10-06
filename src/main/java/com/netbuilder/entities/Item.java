@@ -1,3 +1,11 @@
+///////////////////////////////
+//							 //
+//	Project SpringWater		 //
+//	Chris J W Walker		 //
+//	Item details			 //
+//							 //
+///////////////////////////////
+
 package com.netbuilder.entities;
 
 public class Item {
@@ -28,6 +36,10 @@ public class Item {
 	}
 
     //Getters
+	public int idItem() {
+		return idItem;
+	}
+	
     public String getItemName() {
 		return itemName;
 	}
