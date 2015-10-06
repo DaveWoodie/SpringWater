@@ -1,7 +1,7 @@
 package com.netbuilder.entities;
 
 public class Item {
-	
+
 	//Item attributes
 	private int idItem;
 	private String itemName;
@@ -15,7 +15,7 @@ public class Item {
 	private Supplier idSupplier;
 	
 	//Constructor
-	public Item(String iName, float p, int s, String iLoc, boolean dc, int sr, int psr, boolean ip, int ids) {
+	public Item(String iName, float p, int s, String iLoc, boolean dc, int sr, int psr, boolean ip, Supplier ids) {
 		itemName = iName;
 		price = p;
 		stock = s;
