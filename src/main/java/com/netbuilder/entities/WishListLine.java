@@ -1,5 +1,11 @@
 package com.netbuilder.entities;
 
+/**
+ * 
+ * @author ccooper
+ *
+ */
+
 public class WishListLine {
 	
 	// Wish list line attributes

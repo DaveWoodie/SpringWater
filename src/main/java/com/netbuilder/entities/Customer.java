@@ -2,6 +2,12 @@ package com.netbuilder.entities;
 
 import java.util.Date;
 
+/**
+ * 
+ * @author ccooper
+ *
+ */
+
 public class Customer {
 	
 	// Customer attributes
