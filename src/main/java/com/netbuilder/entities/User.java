@@ -19,6 +19,5 @@ public class User {
 	}
 	
 	public void setPwd(String p) {
-		
 	}
 }
