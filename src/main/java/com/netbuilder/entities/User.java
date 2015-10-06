@@ -1,3 +1,8 @@
+/** 
+ * @author dwoodward
+ * @date 06/10/2015
+ */
+
 package com.netbuilder.entities;
 
 public class User {
