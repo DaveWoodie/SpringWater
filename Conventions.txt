@@ -1,0 +1,34 @@
+For each java class
+
+/**
+  *@author "author name"
+  *@date "date created"
+  */
+
+For each class constructor
+
+/**
+  *"Description of what the constructor will do"
+  *@param "name of arguement" : "concise description of arguement" - for each arguement passed through the constructor
+  */
+
+For each method
+
+/**
+  *"short description of what the method will do"
+  *@param "name of arguement" : "concise description of arguement" -  for each arguement passed through the method
+
+	or
+
+  *@return "concise description of the type of data that is being returned"
+  */
+
+When updating another authors work
+
+	add below existing java doc on the work modified
+
+/**
+  *"Last modified"
+  *@author "author who modified"
+  *@date "date modified"
+  */
