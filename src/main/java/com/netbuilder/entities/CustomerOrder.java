@@ -20,7 +20,6 @@ public class CustomerOrder
 	 */
 	public CustomerOrder(Date datePlaced, Customer customer, CustomerOrderStatus orderStatus, Employee employee)
 	{
-		
 		this.datePlaced = datePlaced;
 		this.customer = customer;
 		this.orderStatus = orderStatus;
