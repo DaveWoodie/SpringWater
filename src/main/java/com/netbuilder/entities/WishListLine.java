@@ -1,5 +1,7 @@
 package com.netbuilder.entities;
 
+import org.springframework.data.annotation.Id;
+
 /**
  * 
  * @author ccooper
@@ -11,6 +13,7 @@ public class WishListLine {
 	
 	// Wish list line attributes
 	private int idItem;
+	@Id
 	private int idCustomer;
 	
 	/**

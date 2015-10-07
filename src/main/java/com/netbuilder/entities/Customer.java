@@ -2,6 +2,10 @@ package com.netbuilder.entities;
 
 import java.util.Date;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * 
  * @author ccooper
@@ -12,6 +16,8 @@ import java.util.Date;
 public class Customer {
 
 	// Customer attributes
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idCustomer;
 	private Date dob;
 	private float credit;
