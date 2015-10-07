@@ -10,9 +10,9 @@ import java.util.Date;
 public class CustomerOrder 
 {
 	private int customerOrderID;
-	private final Date datePlaced;
+	private Date datePlaced;
 	private Date dateShipped;
-	private final Customer customer;
+	private Customer customer;
 	private CustomerOrderStatus customerOrderStatus;
 	private Employee employee;
 	
@@ -33,6 +33,17 @@ public class CustomerOrder
 		this.employee = employee;
 	}
 	
+	/**
+	 * Default constructor to build an instance of Customer Order (Testing purposes only)
+	 * @author abutcher
+	 * date 07/10/2015
+	 */
+	@Deprecated
+	public CustomerOrder() 
+	{
+		
+	}
+
 	/**
 	 * Method to get the Customer Order ID.	
 	 * @return Returns an Int data type.
