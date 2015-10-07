@@ -15,4 +15,14 @@ public interface SupplierManager {
 	public void persistSupplier(Supplier s);
 	public void persistSuppliers(List<Supplier> supplierList);
 	
+	//READ
+	public Supplier findByID(int supplierID);
+	public Supplier findByName(String supplier);
+	public List<Supplier> getSupplierList();
+	
+	//UPDATE
+	public void updateSupplier(Supplier s);
+	
+	//DELETE
+	public void removeSupplier(Supplier s);
 }
