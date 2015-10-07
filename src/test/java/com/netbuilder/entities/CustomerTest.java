@@ -17,7 +17,7 @@ import org.junit.Test;
  */
 
 public class CustomerTest {
-	
+
 	/**
 	 * Customer test attributes
 	 */
@@ -54,9 +54,8 @@ public class CustomerTest {
 	}
 	
 	/**
-	 * @Test Run a test to make sure that the
-	 * get ID customer returns the correct value of
-	 * the customers ID from the User test.
+	 * @Test Run a test to make sure that the get ID customer returns the
+	 *       correct value of the customers ID from the User test.
 	 */
 	@Test
 	public void testGetIdCustomer() {
@@ -64,7 +63,7 @@ public class CustomerTest {
 		Customer customer = new Customer(credit, phoneNumber, dob);
 		assertEquals("The objects are not the same!!", 0, customer.getIdCustomer());
 	}
-	
+
 	/**
 	 * @Test Run a test to make sure that the
 	 * customers date of birth returns the correct 
@@ -78,11 +77,10 @@ public class CustomerTest {
 		Customer customer = new Customer(credit, phoneNumber, dob);
 		assertNotNull("The object is not NULL", customer.getDob());
 	}
-	
+
 	/**
-	 * @Test Run a test to make sure that the
-	 * get customers phone number returns 
-	 * the correct value.
+	 * @Test Run a test to make sure that the get customers phone number returns
+	 *       the correct value.
 	 */
 	@Test
 	public void testGetPhoneNumber() {
@@ -90,7 +88,7 @@ public class CustomerTest {
 		Customer customer = new Customer(credit, phoneNumber, dob);
 		assertTrue(customer.getPhoneNumber().equals("0791633254"));
 	}
-	
+
 	/**
 	 * @Test Run a test to check whether the getCredit
 	 * method returns the correct value.
@@ -130,7 +128,7 @@ public class CustomerTest {
 		customer.setDob(d);
 		assertEquals("The object is NULL", d, customer.getDob());
 	}
-	
+
 	/**
 	 * @Test Run a test to check whether the customers 
 	 * set phone number method returns the correct value.
@@ -144,7 +142,7 @@ public class CustomerTest {
 		customer.setPhoneNumber("07555555555");
 		assertTrue(customer.getPhoneNumber().equals("07555555555"));
 	}
-	
+
 	/**
 	 * @Test Run a test to check whether the get credit returns
 	 * the correct value.

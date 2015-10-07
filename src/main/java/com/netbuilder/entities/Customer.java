@@ -16,6 +16,7 @@ public class Customer {
 	private Date dob;
 	private float credit;
 	private String phoneNumber;
+	private int blackListStrikes;
 
 	/**
 	 * @Class constructor initialises the customer attributes
@@ -76,7 +77,33 @@ public class Customer {
 	 * Method is an accessor for the customers phone number.
 	 */
 	public String getPhoneNumber() {
-		return phoneNumber;
+		return this.phoneNumber;
+	}
+	
+	/**
+	 * Method is an accessor for the customers amount of
+	 * black list strikes.
+	 */
+	public int getBlacklistStrikes() {
+		return this.blackListStrikes;
+	}
+	
+	/**
+	 * Method is a mutator for blacklist strike
+	 * @param blackListStrikes
+	 */
+	public void setBlacklistStrikes(int blackListStrikes) {
+		this.blackListStrikes = blackListStrikes;
+	}
+
+	/**
+	 * Method is a mutator for the customers unique ID number.
+	 * 
+	 * @param idCustomer
+	 *            : is the integer number for the custoemrs unique ID number.
+	 */
+	public void setIdCustomer(int idCustomer) {
+		this.idCustomer = idCustomer;
 	}
 	//Should never be able to set the customers ID indiviudally therefore I have commented this out. 
 //	/**
