@@ -17,6 +17,8 @@ For each class constructor
   *"Description of what the constructor will do"
   *@param "name of argument" : "concise description of argument" - for each argument passed through the constructor
   */
+Paramaters for each constructor should be the same as the field names within the class. The constructor method should then copy these parameters as, for example:
+	this.supplierID = supplierID;
 
 For each method
 
