@@ -45,8 +45,9 @@ public class Address {
 	}
 	
 	/**
-	 * Blank constructor for a new address entity
+	 * Blank constructor for a new address entity. For testing only
 	 */
+	@Deprecated
 	public Address() {
 		
 	}
@@ -103,7 +104,7 @@ public class Address {
 	 * Method to return the first line of the address (House Number)
 	 * @return String of the first line of the address
 	 */
-	public String getaddressLineOne() {
+	public String getAddressLineOne() {
 		return this.addressLineOne;
 	}
 	
