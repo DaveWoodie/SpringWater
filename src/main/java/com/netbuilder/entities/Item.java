@@ -1,11 +1,3 @@
-///////////////////////////////
-//							 //
-//	Project SpringWater		 //
-//	Chris J W Walker		 //
-//	Item details			 //
-//							 //
-///////////////////////////////
-
 /**
  * @author chrisjwwalker
  * @date 06/10/2015
@@ -18,7 +10,7 @@ public class Item {
 	//Item attributes
 	private int idItem;
 	private String itemName;
-	private float price;
+	private double price;
 	private int stock;
 	private String imageLocation;
 	private boolean discontinued;
@@ -41,7 +33,7 @@ public class Item {
 	 * @param ip: boolean; can said item have porousware applied to it?
 	 * @param ids: Supplier: relates to the supplier information that this item can be purchased from
 	 */
-	public Item(String iName, float p, int s, String iLoc, boolean dc, int sr, int psr, boolean ip, Supplier ids) {
+	public Item(String iName, double p, int s, String iLoc, boolean dc, int sr, int psr, boolean ip, Supplier ids) {
 		itemName = iName;
 		price = p;
 		stock = s;
@@ -73,9 +65,9 @@ public class Item {
     
     /**
      * Method to get the price of the item
-     * @return Returns float data type
+     * @return Returns double data type
      */
-    public float getPrice() {
+    public double getPrice() {
 		return price;
 	}
     
@@ -149,7 +141,7 @@ public class Item {
      * Method to set the items price
      * @param price: Int of items price
      */
-	public void setPrice(float price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	
