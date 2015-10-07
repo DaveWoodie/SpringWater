@@ -30,7 +30,7 @@ public interface UserManager {
 	 * @param i : ID number to search for.
 	 * @return Returns data type User.
 	 */
-	public User findByID(Integer i);
+	public User findByID(int i);
 	/**
 	 * Method to find a User by their first name.
 	 * @param s : String of the User's first name.

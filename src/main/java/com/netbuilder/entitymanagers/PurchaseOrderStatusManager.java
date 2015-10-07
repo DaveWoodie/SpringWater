@@ -24,7 +24,7 @@ public interface PurchaseOrderStatusManager {
 		 * @param i : the ID of the status.
 		 * @return Returns data type PurchaseOrderStatus.
 		 */
-		public PurchaseOrderStatus findByID (Integer i);
+		public PurchaseOrderStatus findByID (int i);
 		/**
 		 * Method to return a status by it's name number.
 		 * @param s : the name of the status.

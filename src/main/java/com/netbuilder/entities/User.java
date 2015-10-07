@@ -16,7 +16,7 @@ public class User {
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private Integer iDnum;
+	private int iDnum;
 	
 	private String pWd;
 	private String forName;
@@ -86,7 +86,7 @@ public class User {
 	 * Method to get the User's ID Number.
 	 * @return Returns int data type.
 	 */
-	public Integer getUserID() {
+	public int getUserID() {
 		return iDnum;
 	}
 	
