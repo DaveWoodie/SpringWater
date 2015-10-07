@@ -1,3 +1,8 @@
+/**
+ * @author abutcher
+ * @date 06/10/2015
+ */
+
 package com.netbuilder.entities;
 
 import static org.junit.Assert.*;
@@ -24,43 +29,58 @@ public class CustomerOrderTest {
 		CustomerOrder co = new CustomerOrder(); 
 		assertEquals("should return 0", 0, co.getCustomerOrderID());
 	}
-	
+	/**
+	 * @author dwoodward
+	 * @date 07/10/2015
+	 * Changed the test to create a new instance to test and then check that for the JUnit
+	 */
 	@Test
 	public void testGetSetEmployee() {
 		CustomerOrder co = new CustomerOrder(); 
-		co.setEmployee(e);
-		assertEquals("should be the same employee",e,co.getEmployee());
+		Employee ee = new Employee(3, r);
+		co.setEmployee(ee);
+		assertEquals("should be the same employee", ee, co.getEmployee());
 	}
-	
+	/**
+	 * @author dwoodward
+	 * @date 07/10/2015
+	 * Changed the test to create a new instance to test and then check that for the JUnit
+	 */
 	@Test
 	public void testGetSetDateShipped()	{
 		CustomerOrder co = new CustomerOrder(); 
-		co.setDateShipped(dp);
-		assertEquals("should be the same date shipped",dp,co.getDateShipped());
+		Date d = new Date();
+		co.setDateShipped(d);
+		assertEquals("should be the same date shipped", d, co.getDateShipped());
 	}
-	
+	/**
+	 * @author dwoodward
+	 * @date 07/10/2015
+	 * Changed the test to create a new instance to test and then check that for the JUnit
+	 */
 	@Test
 	public void testGetSetOrderStatus() {
 		CustomerOrder co = new CustomerOrder(); 
-		co.setOrderStatus(os);
-		assertEquals("should be the same order status",os,co.getCustomerOrderStatus());
+		CustomerOrderStatus c = new CustomerOrderStatus();
+		co.setOrderStatus(c);
+		assertEquals("should be the same order status", c, co.getCustomerOrderStatus());
 	}
 	
 	@Test
 	public void testGetDatePlaced() {
 		CustomerOrder co = new CustomerOrder(dp,c,os,e);
-		assertEquals("should be the same date placed",dp,co.getDatePlaced());
+		assertEquals("should be the same date placed", dp, co.getDatePlaced());
 	}
 	
 	@Test
 	public void testGetCustomer() {
 		CustomerOrder co = new CustomerOrder(dp,c,os,e);
-		assertEquals("should be the same customer",c,co.getCustomer());
+		assertEquals("should be the same customer", c, co.getCustomer());
 	}
 	
 	@Test
 	public void testGet() {
 		CustomerOrder co = new CustomerOrder(dp,c,os,e);
-		assertEquals("should be the same date placed",dp,co.getDatePlaced());
+		assertEquals("should be the same date placed", dp, co.getDatePlaced());
 	}
 }
