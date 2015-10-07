@@ -1,3 +1,8 @@
+/**
+ * @author dwoodward
+ * @date 07/10/2015
+ */
+
 package com.netbuilder.entities;
 
 import static org.junit.Assert.*;
