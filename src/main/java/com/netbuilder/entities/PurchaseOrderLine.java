@@ -4,7 +4,7 @@ package com.netbuilder.entities;
  * Class representing a line in a product order
  * 
  * @author cboucher
- *
+ * @date 06/10/2015
  */
 public class PurchaseOrderLine {
 
@@ -17,8 +17,11 @@ public class PurchaseOrderLine {
 	 * Class constructor
 	 * 
 	 * @param quantity
+	 *            : The quantity of the item
 	 * @param idItem
+	 *            : The ID of the item
 	 * @param idPurchaseOrder
+	 *            : The ID of the purchase order
 	 */
 	public PurchaseOrderLine(int quantity, int idItem, int idPurchaseOrder) {
 		this.quantity = quantity;
@@ -29,7 +32,7 @@ public class PurchaseOrderLine {
 	/**
 	 * Method to get the quantity
 	 * 
-	 * @return quantity
+	 * @return The quantity of the item
 	 */
 	public int getQuantity() {
 		return quantity;
@@ -39,6 +42,7 @@ public class PurchaseOrderLine {
 	 * Method to set the quantity
 	 * 
 	 * @param quantity
+	 *            : The quantity of the item
 	 */
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
@@ -47,7 +51,7 @@ public class PurchaseOrderLine {
 	/**
 	 * Method to get the item ID
 	 * 
-	 * @return idItem
+	 * @return The ID of the item
 	 */
 	public int getIdItem() {
 		return idItem;
@@ -57,6 +61,7 @@ public class PurchaseOrderLine {
 	 * Method to set the item ID
 	 * 
 	 * @param idItem
+	 *            : The ID of the item
 	 */
 	public void setIdItem(int idItem) {
 		this.idItem = idItem;
@@ -65,7 +70,7 @@ public class PurchaseOrderLine {
 	/**
 	 * Method to get the purchase order ID
 	 * 
-	 * @return idPurchaseOrder
+	 * @return The ID of the purchase order
 	 */
 	public int getIdPurchaseOrder() {
 		return idPurchaseOrder;
@@ -75,6 +80,7 @@ public class PurchaseOrderLine {
 	 * Method to set the purchase order ID
 	 * 
 	 * @param idPurchaseOrder
+	 *            : The ID of the purchase order
 	 */
 	public void setIdPurchaseOrder(int idPurchaseOrder) {
 		this.idPurchaseOrder = idPurchaseOrder;
