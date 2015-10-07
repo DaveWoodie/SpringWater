@@ -100,7 +100,7 @@ public class Customer {
 	 * Method is a mutator for the customers unique ID number.
 	 * 
 	 * @param idCustomer
-	 *            : is the integer number for the custoemrs unique ID number.
+	 *            : is the integer number for the customers unique ID number.
 	 */
 	public void setIdCustomer(int idCustomer) {
 		this.idCustomer = idCustomer;

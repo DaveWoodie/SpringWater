@@ -19,6 +19,7 @@ public interface ItemManager {
 	public void persistItem(ArrayList<Item> item);
 	
 	// READ
+	public Item findByID(int ID);
 	public Item findByName(String name);
 	public ArrayList<Item> getNames();
 	
