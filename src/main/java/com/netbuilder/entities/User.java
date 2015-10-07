@@ -5,9 +5,19 @@
 
 package com.netbuilder.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class User {
 	
+	
+	@Id
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int iDnum;
+	
 	private String pWd;
 	private String forName;
 	private String surName;
@@ -32,7 +42,7 @@ public class User {
 		email = ema;
 		isEmp = emp;		
 	}
-	
+
 	/**
 	 * Default Constructor for testing purposes only.
 	 */
