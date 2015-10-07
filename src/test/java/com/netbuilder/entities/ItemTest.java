@@ -72,12 +72,12 @@ public class ItemTest {
 	@Test
 	public void testIsDiscontinued() {
 		Item i = new Item(iName, p, s, iLoc, dc, sr, psr, ip, ids);
-		assertFalse(dc);
+		assertFalse(i.isDiscontinued());
 	}
 
 	@Test
 	public void testIsPorousware() {
 		Item i = new Item(iName, p, s, iLoc, dc, sr, psr, ip, ids);
-		assertFalse(ip);
+		assertFalse(i.isPorousware());
 	}
 }
