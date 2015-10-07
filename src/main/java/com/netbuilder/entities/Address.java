@@ -1,11 +1,17 @@
 package com.netbuilder.entities;
 
+import org.springframework.data.annotation.Id;
+
+
+
 /**
  * Class to hold all of the details for an address. Used for both customer addresses, supplier addresses and payment addresses
  * @author tstacey
  * @date 06/10/2015
  */
 public class Address {
+	
+	@Id
 	private int addressID;
 	private String addressLineOne;
 	private String addressLineTwo;

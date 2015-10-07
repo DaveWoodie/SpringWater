@@ -1,17 +1,33 @@
 /**
  * @author jforster
- * @date 6/10/2015
+ * @date 6/10/15
  */
 package com.netbuilder.entities;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+
+@Entity
 public class PurchaseOrder {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPurchaseOrder;
 	private Date datePlaced;
 	private Date dateExpected;
+	@ManyToOne
+	@PrimaryKeyJoinColumn(name = "idEmployee")
 	private Employee employee;
+	@ManyToOne
+	@PrimaryKeyJoinColumn(name = "idPurchaseOrderStatus")
 	private PurchaseOrderStatus purchaseOrderStatus;
+	@ManyToOne
+	@PrimaryKeyJoinColumn(name = "idSupplier")
 	private Supplier supplier;
 	
 	/**
