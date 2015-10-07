@@ -18,7 +18,6 @@ import com.netbuilder.entities.CustomerOrder;
  */
 public interface WishListLineRepository extends MongoRepository<WishListLine, Integer>{
 	
-	public WishListLine findByItemID(int id);
-	public List<CustomerOrder> findByCustomerID(Customer c);
+	public List<WishListLine> findByCustomerID(int c);
 
 }
