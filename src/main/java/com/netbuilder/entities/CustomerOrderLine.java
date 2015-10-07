@@ -16,9 +16,12 @@ public class CustomerOrderLine {
 	/**
 	 * Class constructor
 	 * 
-	 * @param quantity : Quantity of the item
-	 * @param idItem : ID of the item
-	 * @param idCustomerOrder : ID of the customer order
+	 * @param quantity
+	 *            : Quantity of the item
+	 * @param idItem
+	 *            : ID of the item
+	 * @param idCustomerOrder
+	 *            : ID of the customer order
 	 */
 	public CustomerOrderLine(int quantity, int idItem, int idCustomerOrder) {
 		this.quantity = quantity;
@@ -29,7 +32,7 @@ public class CustomerOrderLine {
 	/**
 	 * Method to get the quantity
 	 * 
-	 * @return quantity
+	 * @return The quantity of the item in the line
 	 */
 	public int getQuantity() {
 		return quantity;
@@ -39,6 +42,7 @@ public class CustomerOrderLine {
 	 * Method to set the quantity
 	 * 
 	 * @param quantity
+	 *            : Quantity of the item
 	 */
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
@@ -47,7 +51,7 @@ public class CustomerOrderLine {
 	/**
 	 * Method to get the item ID
 	 * 
-	 * @return idItem
+	 * @return The ID of the item
 	 */
 	public int getIdItem() {
 		return idItem;
@@ -57,6 +61,7 @@ public class CustomerOrderLine {
 	 * Method to set the item ID
 	 * 
 	 * @param idItem
+	 *            : The ID of the item
 	 */
 	public void setIdItem(int idItem) {
 		this.idItem = idItem;
@@ -65,7 +70,7 @@ public class CustomerOrderLine {
 	/**
 	 * Method to get the customer order ID
 	 * 
-	 * @return idCustomerOrder
+	 * @return The ID of the customer order
 	 */
 	public int getIdCustomerOrder() {
 		return idCustomerOrder;
@@ -74,7 +79,8 @@ public class CustomerOrderLine {
 	/**
 	 * Method to set the customer order ID
 	 * 
-	 * @param idCustomerOrder
+	 * @param The
+	 *            ID of the customer order
 	 */
 	public void setIdCustomerOrder(int idCustomerOrder) {
 		this.idCustomerOrder = idCustomerOrder;
