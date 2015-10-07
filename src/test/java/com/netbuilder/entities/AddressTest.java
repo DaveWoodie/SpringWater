@@ -4,6 +4,11 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/**
+ * Test class for Address entity
+ * @author tstacey
+ * @date 07/10/2015
+ */
 public class AddressTest {
 
 	@Test
