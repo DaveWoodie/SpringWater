@@ -10,7 +10,7 @@ public class Item {
 	//Item attributes
 	private int idItem;
 	private String itemName;
-	private double price;
+	private float price;
 	private int stock;
 	private String imageLocation;
 	private boolean discontinued;
@@ -33,7 +33,7 @@ public class Item {
 	 * @param ip: boolean; can said item have porousware applied to it?
 	 * @param ids: Supplier: relates to the supplier information that this item can be purchased from
 	 */
-	public Item(String iName, double p, int s, String iLoc, boolean dc, int sr, int psr, boolean ip, Supplier ids) {
+	public Item(String iName, float p, int s, String iLoc, boolean dc, int sr, int psr, boolean ip, Supplier ids) {
 		itemName = iName;
 		price = p;
 		stock = s;
@@ -141,7 +141,7 @@ public class Item {
      * Method to set the items price
      * @param price: Int of items price
      */
-	public void setPrice(double price) {
+	public void setPrice(float price) {
 		this.price = price;
 	}
 	
