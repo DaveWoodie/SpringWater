@@ -50,6 +50,11 @@ public class Item {
 		this.isPorousware = isPorousware;
 		this.idSupplier = idSupplier;
 	}
+	
+	@Deprecated
+	public Item() {
+		
+	}
 
     //Getters
 	
