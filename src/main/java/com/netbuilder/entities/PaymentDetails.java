@@ -1,11 +1,3 @@
-///////////////////////////////
-//							 //
-//	Project SpringWater		 //
-//	Chris J W Walker		 //
-//	Payment details			 //
-//							 //
-///////////////////////////////
-
 /**
  * @author chrisjwwalker
  * @date 06/10/2015
@@ -13,14 +5,28 @@
 
 package com.netbuilder.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+
+@Entity
 public class PaymentDetails {
 	
 	//Attributes
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPaymentDetails;
 	private String cardType;
 	private String cardNumber;
 	private String name;
 	private String expiryDate;
+	
+	@ManyToOne
+	@PrimaryKeyJoinColumn(name="idCustomer")
 	private Customer idCustomer;
 	private Address idAddress;
 	
