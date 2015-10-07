@@ -1,5 +1,8 @@
 package com.netbuilder.entities;
 
+import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+
 /**
  * Class representing a line in a customer order
  * 
@@ -8,31 +11,35 @@ package com.netbuilder.entities;
  */
 public class CustomerOrderLine {
 
-	// Global variables
 	private int quantity;
-	private int idItem;
-	private int idCustomerOrder;
+	@ManyToOne
+	@PrimaryKeyJoinColumn(name = "idItem")
+	private Item item;
+	@ManyToOne
+	@PrimaryKeyJoinColumn(name = "idCustomerOrder")
+	private CustomerOrder customerOrder;
 
 	/**
 	 * Class constructor
 	 * 
 	 * @param quantity
-	 *            : Quantity of the item
-	 * @param idItem
-	 *            : ID of the item
-	 * @param idCustomerOrder
-	 *            : ID of the customer order
+	 *            : The quantity of the item
+	 * @param item
+	 *            : The item
+	 * @param customerOrder
+	 *            : The customer order
 	 */
-	public CustomerOrderLine(int quantity, int idItem, int idCustomerOrder) {
+	public CustomerOrderLine(int quantity, Item item,
+			CustomerOrder customerOrder) {
 		this.quantity = quantity;
-		this.idItem = idItem;
-		this.idCustomerOrder = idCustomerOrder;
+		this.item = item;
+		this.customerOrder = customerOrder;
 	}
 
 	/**
 	 * Method to get the quantity
 	 * 
-	 * @return The quantity of the item in the line
+	 * @return The quantity of the item
 	 */
 	public int getQuantity() {
 		return quantity;
@@ -42,48 +49,28 @@ public class CustomerOrderLine {
 	 * Method to set the quantity
 	 * 
 	 * @param quantity
-	 *            : Quantity of the item
+	 *            : The new quantity
 	 */
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
 	/**
-	 * Method to get the item ID
+	 * Method to get the item
 	 * 
-	 * @return The ID of the item
+	 * @return The item
 	 */
-	public int getIdItem() {
-		return idItem;
+	public Item getItem() {
+		return item;
 	}
 
 	/**
-	 * Method to set the item ID
+	 * Method to get the customer order
 	 * 
-	 * @param idItem
-	 *            : The ID of the item
+	 * @return The customer order
 	 */
-	public void setIdItem(int idItem) {
-		this.idItem = idItem;
-	}
-
-	/**
-	 * Method to get the customer order ID
-	 * 
-	 * @return The ID of the customer order
-	 */
-	public int getIdCustomerOrder() {
-		return idCustomerOrder;
-	}
-
-	/**
-	 * Method to set the customer order ID
-	 * 
-	 * @param The
-	 *            ID of the customer order
-	 */
-	public void setIdCustomerOrder(int idCustomerOrder) {
-		this.idCustomerOrder = idCustomerOrder;
+	public CustomerOrder getCustomerOrder() {
+		return customerOrder;
 	}
 
 }
