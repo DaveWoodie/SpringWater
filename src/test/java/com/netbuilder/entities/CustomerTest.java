@@ -6,6 +6,13 @@ import java.util.Date;
 
 import org.junit.Test;
 
+/**
+ * 
+ * @author ccooper
+ * @date 07/10/2015
+ *
+ */
+
 public class CustomerTest {
 	
 	/**
