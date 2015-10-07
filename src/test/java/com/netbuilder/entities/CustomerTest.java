@@ -2,6 +2,9 @@ package com.netbuilder.entities;
 
 import static org.junit.Assert.*;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.junit.Test;
@@ -20,7 +23,35 @@ public class CustomerTest {
 	 */
 	private float credit = 10.0f;
 	private String phoneNumber = "0791633254";
-	private Date dob = new Date();
+	private String dateString = "11-01-1990";
+	private SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy");
+	private Date dob;
+	
+	
+	/**
+	 * Used to set the dob Date field before running each test.
+	 * @author tstacey
+	 * @date 07/10/2015
+	 */
+	private void setDate() {
+		try {
+			dob = dFormat.parse(dateString);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Testing the Constructor for the DoB field
+	 * @author tstacey
+	 * @date 07/10/2015
+	 */
+	@Test
+	public void testConstructor() {
+		setDate();
+		Customer c = new Customer(credit, phoneNumber, dob);
+		assertEquals("Date not initiated properly", c.getDob(), dob);
+	}
 	
 	/**
 	 * @Test Run a test to make sure that the
@@ -29,6 +60,7 @@ public class CustomerTest {
 	 */
 	@Test
 	public void testGetIdCustomer() {
+		setDate();
 		Customer customer = new Customer(credit, phoneNumber, dob);
 		assertEquals("The objects are not the same!!", 0, customer.getIdCustomer());
 	}
@@ -42,6 +74,7 @@ public class CustomerTest {
 	 */
 	@Test
 	public void testGetDob() {
+		setDate();
 		Customer customer = new Customer(credit, phoneNumber, dob);
 		assertNotNull("The object is not NULL", customer.getDob());
 	}
@@ -53,6 +86,7 @@ public class CustomerTest {
 	 */
 	@Test
 	public void testGetPhoneNumber() {
+		setDate();
 		Customer customer = new Customer(credit, phoneNumber, dob);
 		assertTrue(customer.getPhoneNumber().equals("0791633254"));
 	}
@@ -66,6 +100,7 @@ public class CustomerTest {
 	 */
 	@Test
 	public void testGetCredit() {
+		setDate();
 		Customer customer = new Customer(credit, phoneNumber, dob);
 		assertEquals(customer.getCredit(), 10.0f, 0.01);
 	}
@@ -89,6 +124,7 @@ public class CustomerTest {
 	 */
 	@Test
 	public void testSetDob() {
+		setDate();
 		Customer customer = new Customer(credit, phoneNumber, dob);
 		Date d = new Date();
 		customer.setDob(d);
@@ -103,6 +139,7 @@ public class CustomerTest {
 	 */
 	@Test
 	public void testSetPhoneNumber() {
+		setDate();
 		Customer customer = new Customer(credit, phoneNumber, dob);
 		customer.setPhoneNumber("07555555555");
 		assertTrue(customer.getPhoneNumber().equals("07555555555"));
@@ -116,6 +153,7 @@ public class CustomerTest {
 	 */
 	@Test
 	public void testSetCredit() {
+		setDate();
 		Customer customer = new Customer(credit, phoneNumber, dob);
 		customer.setCredit(12.0f);
 		assertEquals(customer.getCredit(), 12.0f, 0.01);
