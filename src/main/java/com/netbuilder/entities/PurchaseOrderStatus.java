@@ -24,7 +24,7 @@ public class PurchaseOrderStatus {
 	 * Method to get the Purchase Order Status.
 	 * @return Returns data type string.
 	 */
-	public String getCustOrderStatus() {
+	public String getPurchOrderStatus() {
 		return status;
 	}
 	
