@@ -26,7 +26,7 @@ public class CustomerOrder
 	 * @param employee
 	 */
 	public CustomerOrder(Date datePlaced, Customer customer, CustomerOrderStatus orderStatus, Employee employee)
-	{	
+	{
 		this.datePlaced = datePlaced;
 		this.customer = customer;
 		this.customerOrderStatus = orderStatus;

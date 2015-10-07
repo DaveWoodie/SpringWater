@@ -19,9 +19,9 @@ public class User {
 	 * @author dwoodward
 	 * @date 06/10/2015
 	 * @param pwd : String of the password of the user.
-	 * @param fore : String of the users forename.
-	 * @param surn : String of the users surname.
-	 * @param ema : String of the Users email.
+	 * @param fore : String of the user's forename.
+	 * @param surn : String of the user's surname.
+	 * @param ema : String of the User's email.
 	 * @param emp : boolean 
 	 */
 	public User(String pwd, String fore, String surn, String ema, boolean emp) {
@@ -34,7 +34,7 @@ public class User {
 	}
 	
 	/**
-	 * Method to set the value of the Users password.
+	 * Method to set the value of the User's password.
 	 * @param p : String of the password.
 	 */
 	public void setPwd(String p) {
@@ -42,7 +42,7 @@ public class User {
 	}
 	
 	/**
-	 * Method to set the value of the Users forename.
+	 * Method to set the value of the User's forename.
 	 * @param f : String of the forename.
 	 */
 	public void setForeName(String f) {
@@ -50,7 +50,7 @@ public class User {
 	}
 	
 	/**
-	 * Method to set the value of the Users surname.
+	 * Method to set the value of the User's surname.
 	 * @param s : String of the Users surname.
 	 */
 	public void setSurnName(String s) {
@@ -58,7 +58,7 @@ public class User {
 	}
 	
 	/**
-	 * Method to set the value of the Users email.
+	 * Method to set the value of the User's email.
 	 * @param em : String of the Users email.
 	 */
 	public void setEmail(String em) { 
@@ -66,7 +66,7 @@ public class User {
 	}
 	
 	/**
-	 * Method to get the Users ID Number.
+	 * Method to get the User's ID Number.
 	 * @return Returns int data type.
 	 */
 	public int getUserID() {
@@ -74,7 +74,7 @@ public class User {
 	}
 	
 	/**
-	 * Method to get the Users password.
+	 * Method to get the User's password.
 	 * @return Returns String data type.
 	 */
 	public String getUserPwd() {
@@ -82,7 +82,7 @@ public class User {
 	}
 	
 	/**
-	 * Method to get the Users forename.
+	 * Method to get the User's forename.
 	 * @return Returns String data type.
 	 */
 	public String getUserFore() {
@@ -90,7 +90,7 @@ public class User {
 	}
 	
 	/**
-	 * Method to get the Users surname.
+	 * Method to get the User's surname.
 	 * @return Returns String data type.
 	 */
 	public String getUserSurn() {
@@ -98,7 +98,7 @@ public class User {
 	}
 	
 	/**
-	 * Method to get the Users email.
+	 * Method to get the User's email.
 	 * @return Returns String data type.
 	 */
 	public String getUserEmail() { 
