@@ -8,11 +8,11 @@ import java.util.Date;
 
 public class PurchaseOrder {
 	private int idPurchaseOrder;
-	private final Date datePlaced;
+	private Date datePlaced;
 	private Date dateExpected;
 	private Employee employee;
 	private PurchaseOrderStatus purchaseOrderStatus;
-	private final Supplier supplier;
+	private Supplier supplier;
 	
 	/**
 	 * Constructor to build an instance of PurchaseOrder, not null variables are date placed, employee owning, the order status and the supplier
@@ -30,6 +30,13 @@ public class PurchaseOrder {
 		supplier = s;
 	}
 	
+	/**
+	 * Blank constructor for testing purchase only
+	 */
+	@Deprecated
+	public PurchaseOrder() {
+		
+	}
 	/**
 	 * Method to get the purchase order's ID number
 	 * @return returns int data type
