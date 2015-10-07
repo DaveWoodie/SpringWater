@@ -17,7 +17,6 @@ import com.netbuilder.entities.Customer;
  *Entity manager containing CRUD methods for the Customer entity
  */
 public interface CustomerManager {
-
 	//////////// CREATE //////////////////	
 	public void persistCustomer(Customer customer);
 	public void persistCustomers(List<Customer> customers);

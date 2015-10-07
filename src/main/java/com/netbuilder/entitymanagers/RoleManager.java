@@ -26,5 +26,4 @@ public interface RoleManager {
 	
 	// DELETE
 	public void removeRole(Role r);
-
 }
