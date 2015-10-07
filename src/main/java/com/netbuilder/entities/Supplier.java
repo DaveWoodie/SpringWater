@@ -1,12 +1,23 @@
 package com.netbuilder.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * Class to hold all of the details for one Supplier
  * @author tstacey
  * @date 06/10/2015
  */
+
+@Entity
 public class Supplier {
+	
+	@Id
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int supplierID;
+	
 	private String supplierName;
 	private String telephone;
 	private String email;
