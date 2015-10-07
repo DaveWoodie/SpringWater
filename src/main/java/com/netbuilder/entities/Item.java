@@ -29,26 +29,26 @@ public class Item {
 	 * Constructor to build an instance of Item, not null variables are itemName, price, stock, imageLocation, discontinued and isPorouswares
 	 * 
 	 * @author chrisjwwalker
-	 * @param iName : String; name of the item
-	 * @param p : float; price of the item
-	 * @param s: int; how many of said item are in stock
-	 * @param iLoc: String; path to the image
-	 * @param dc: boolean; is the item discontinued? Don't order more if true
-	 * @param sr: int; how many of said item has been sold in this sales period
-	 * @param psr: int; how many of said item have been sold in the last sales period
-	 * @param ip: boolean; can said item have porousware applied to it?
-	 * @param ids: Supplier: relates to the supplier information that this item can be purchased from
+	 * @param itemName : String; name of the item
+	 * @param price : float; price of the item
+	 * @param stock: int; how many of said item are in stock
+	 * @param imageLocation: String; path to the image
+	 * @param discontinued: boolean; is the item discontinued? Don't order more if true
+	 * @param salesRate: int; how many of said item has been sold in this sales period
+	 * @param pSalesRate: int; how many of said item have been sold in the last sales period
+	 * @param isPorousware: boolean; can said item have porousware applied to it?
+	 * @param idSupplier: Supplier: relates to the supplier information that this item can be purchased from
 	 */
-	public Item(String iName, float p, int s, String iLoc, boolean dc, int sr, int psr, boolean ip, Supplier ids) {
-		itemName = iName;
-		price = p;
-		stock = s;
-		imageLocation = iLoc;
-		discontinued = dc;
-		salesRate = sr;
-		pSalesRate = psr;
-		isPorousware = ip;
-		idSupplier = ids;
+	public Item(String itemName, float price, int stock, String imageLocation, boolean discontinued, int salesRate, int pSalesRate, boolean isPorousware, Supplier idSupplier) {
+		this.itemName = itemName;
+		this.price = price;
+		this.stock = stock;
+		this.imageLocation = imageLocation;
+		this.discontinued = discontinued;
+		this.salesRate = salesRate;
+		this.pSalesRate = pSalesRate;
+		this.isPorousware = isPorousware;
+		this.idSupplier = idSupplier;
 	}
 
     //Getters
