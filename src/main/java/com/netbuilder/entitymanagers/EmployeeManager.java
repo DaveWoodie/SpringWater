@@ -9,6 +9,9 @@ import java.util.ArrayList;
 
 import com.netbuilder.entities.Employee;
 
+/**
+ * Entity manager containing CRUD methods for the Employee entity.
+ */
 public interface EmployeeManager {
 	// CREATE
 	public void persistEmployee(Employee e);
