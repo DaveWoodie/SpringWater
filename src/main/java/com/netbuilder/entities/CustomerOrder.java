@@ -102,6 +102,6 @@ public class CustomerOrder
 	 * @param orderStatus : new order status.
 	 */
 	public void setOrderStatus(CustomerOrderStatus orderStatus) {
-		this.customerOrderStatus = customerOrderStatus;
+		this.customerOrderStatus = orderStatus;
 	}
 }
