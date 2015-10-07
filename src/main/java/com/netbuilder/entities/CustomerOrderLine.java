@@ -4,7 +4,7 @@ package com.netbuilder.entities;
  * Class representing a line in a customer order
  * 
  * @author cboucher
- *
+ * @date 06/10/2015
  */
 public class CustomerOrderLine {
 
@@ -16,9 +16,9 @@ public class CustomerOrderLine {
 	/**
 	 * Class constructor
 	 * 
-	 * @param quantity
-	 * @param idItem
-	 * @param idCustomerOrder
+	 * @param quantity : Quantity of the item
+	 * @param idItem : ID of the item
+	 * @param idCustomerOrder : ID of the customer order
 	 */
 	public CustomerOrderLine(int quantity, int idItem, int idCustomerOrder) {
 		this.quantity = quantity;

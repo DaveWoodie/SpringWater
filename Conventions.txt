@@ -1,3 +1,9 @@
+Code formatting
+
+	ctrl + shift + f
+	
+	to auto format code
+
 For each java class
 
 /**
@@ -9,14 +15,14 @@ For each class constructor
 
 /**
   *"Description of what the constructor will do"
-  *@param "name of arguement" : "concise description of arguement" - for each arguement passed through the constructor
+  *@param "name of argument" : "concise description of argument" - for each argument passed through the constructor
   */
 
 For each method
 
 /**
   *"short description of what the method will do"
-  *@param "name of arguement" : "concise description of arguement" -  for each arguement passed through the method
+  *@param "name of argument" : "concise description of argument" -  for each argument passed through the method
 
 	or
 
