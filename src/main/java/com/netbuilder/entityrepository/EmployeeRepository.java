@@ -1,7 +1,22 @@
+/**
+ * @author Freshwater
+ * @date 07/10/2015
+ */
+
 package com.netbuilder.entityrepository;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.ArrayList;
 
-public interface EmployeeRepository {
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.netbuilder.entities.Employee;
+import com.netbuilder.entities.Role;
+
+@Repository
+public interface EmployeeRepository extends CrudRepository<Employee, Integer> {
 	
+	public Employee findByID(int ID);
+	
+	public ArrayList<Employee> findByRole(Role role);
 }

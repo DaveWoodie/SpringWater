@@ -16,4 +16,21 @@
   		<property name="password" value="${jdbc.password}"/>
 	</bean>
 	<context:property-placeholder location="jdbc.properties"/>
+	
+	<bean id="mongoTemplate" class="org.springframework.data.document.mongodb.MongoTemplate">
+  		<constructor-arg name="mongo" ref="mongo"/>
+  		<constructor-arg name="databaseName" value="${mongodb.dbname}"/>
+  		<constructor-arg name="userCredentials" ref="mCredentials"/>
+	</bean>
+	<bean id="mCredentials" class="org.springframework.data.authentication.UserCredentials">
+  		<property name="username" value="#{mongoURI.name}" />
+  		<property name="password" value="#{new java.lang.String(mongoURI.password)}" />
+	</bean>
+	<bean class="com.mongodb.MongoURI" id="mongoURI">
+  	    <constructor-arg value="${mongodb.url}"  />
+	</bean>
+	<bean class="com.mongodb.Mongo" id="mongo">
+   	    <constructor-arg ref="mongoURI" />
+	</bean>
+	
 </beans>
