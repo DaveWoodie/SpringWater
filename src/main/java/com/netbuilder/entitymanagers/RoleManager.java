@@ -9,6 +9,9 @@ import java.util.ArrayList;
 
 import com.netbuilder.entities.Role;
 
+/**
+ * Entity manager containing CRUD methods for the Role entity.
+ */
 public interface RoleManager {
 	// CREATE
 	public void persistRole(Role r);
