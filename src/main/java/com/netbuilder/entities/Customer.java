@@ -35,7 +35,7 @@ public class Customer {
 	 * @Method is an accessor for the unique customer ID
 	 */
 	public int getIdCustomer() {
-		return this.idCustomer;
+		return idCustomer;
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class Customer {
 	 * account.
 	 */
 	public float getCredit() {
-		return this.credit;
+		return credit;
 	}
 
 	/**
@@ -85,7 +85,15 @@ public class Customer {
 	 * black list strikes.
 	 */
 	public int getBlacklistStrikes() {
-		
+		return this.blackListStrikes;
+	}
+	
+	/**
+	 * Method is a mutator for blacklist strike
+	 * @param blackListStrikes
+	 */
+	public void setBlacklistStrikes(int blackListStrikes) {
+		this.blackListStrikes = blackListStrikes;
 	}
 
 	/**
@@ -97,6 +105,16 @@ public class Customer {
 	public void setIdCustomer(int idCustomer) {
 		this.idCustomer = idCustomer;
 	}
+	//Should never be able to set the customers ID indiviudally therefore I have commented this out. 
+//	/**
+//	 * Method is a mutator for the customers unique ID number.
+//	 * 
+//	 * @param idCustomer
+//	 *            : is the integer number for the custoemrs unique ID number.
+//	 */
+//	public void setIdCustomer(int idCustomer) {
+//		this.idCustomer = idCustomer;
+//	}
 
 	/**
 	 * Method is a mutator for the customers credit value assigned to their

@@ -16,7 +16,7 @@ public class ItemTest {
 	private int s = 274;
 	private String iLoc = "C:/Users/chrisjwwalker/redGnome.png";
 	private boolean dc = false;
-	private int sr = 46;
+	private int sr = 2;
 	private int psr = 78;
 	private boolean ip = false;
 	private Supplier ids = new Supplier(null, null);
@@ -31,42 +31,50 @@ public class ItemTest {
 	public void testGetItemName() {
 		Item i = new Item(iName, p, s, iLoc, dc, sr, psr, ip, ids);
 		i.setItemName("Green Gnome");
-		assertNotEquals("Name shouldn't match iName", iName, i.getItemName());
+		assertEquals("Name shouldn't match iName", "Green Gnome", i.getItemName());
 	}
 
 	@Test
 	public void testGetPrice() {
 		Item i = new Item(iName, p, s, iLoc, dc, sr, psr, ip, ids);
 		i.setPrice(5.23f);
-		assertNotEquals(p, i.getPrice(), 0);
+		assertEquals(5.23f, i.getPrice(), 0);
 	}
 
 	@Test
 	public void testGetStock() {
 		Item i = new Item(iName, p, s, iLoc, dc, sr, psr, ip, ids);
 		i.setStock(100);
-		assertNotEquals(s, i.getStock(), 0);
+		assertEquals(100, i.getStock(), 0);
 	}
 
 	@Test
 	public void testGetImageLocation() {
 		Item i = new Item(iName, p, s, iLoc, dc, sr, psr, ip, ids);
 		i.setImageLocation("https://image.co.uk/gnome.jpg");
-		assertNotEquals("Name shouldn't match iLoc", iLoc, i.getImageLocation());
+		assertEquals("https://image.co.uk/gnome.jpg", i.getImageLocation());
 	}
 
 	@Test
 	public void testGetSalesRate() {
 		Item i = new Item(iName, p, s, iLoc, dc, sr, psr, ip, ids);
 		i.setSalesRate(3);
-		assertNotEquals(sr, i.getSalesRate(), 0);
+		assertEquals("Get sales Rate", 3, i.getSalesRate());
 	}
 
+	//Float test
+//	@Test
+//	public void testGetSalesRate() {
+//		Item i = new Item(iName, p, s, iLoc, dc, sr, psr, ip, ids);
+//		i.setSalesRate(3.0f);
+//		assertTrue(i.getSalesRate().equals(3.0f));
+//	}
+	
 	@Test
 	public void testGetpSalesRate() {
 		Item i = new Item(iName, p, s, iLoc, dc, sr, psr, ip, ids);
 		i.setpSalesRate(45);
-		assertNotEquals(psr, i.getpSalesRate(), 0);
+		assertEquals("Get past sales rate", 45, i.getpSalesRate());
 	}
 
 	@Test
