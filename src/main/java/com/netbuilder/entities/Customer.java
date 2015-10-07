@@ -16,6 +16,7 @@ public class Customer {
 	private Date dob;
 	private float credit;
 	private String phoneNumber;
+	private int blackListStrikes;
 
 	/**
 	 * @Class constructor initialises the customer attributes
@@ -77,6 +78,14 @@ public class Customer {
 	 */
 	public String getPhoneNumber() {
 		return this.phoneNumber;
+	}
+	
+	/**
+	 * Method is an accessor for the customers amount of
+	 * black list strikes.
+	 */
+	public int getBlacklistStrikes() {
+		
 	}
 
 	/**
