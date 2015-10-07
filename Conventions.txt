@@ -38,3 +38,7 @@ When updating another authors work
   *@author "author who modified"
   *@date "date modified"
   */
+  
+ 
+*****Entity Manager CLasses*****
+All entity manager class methods that receive/return more than one entity should receive/return those entities as a List<entity> object from Java.util.List

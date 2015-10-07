@@ -5,9 +5,12 @@
 
 package com.netbuilder.entities;
 
+import org.springframework.data.annotation.Id;
+
 public class Item {
 
 	//Item attributes
+	@Id
 	private int idItem;
 	private String itemName;
 	private float price;
@@ -18,6 +21,8 @@ public class Item {
 	private int salesRate;
 	private int pSalesRate;
 	private boolean isPorousware;
+	
+	
 	private Supplier idSupplier;
 	
 	/**
