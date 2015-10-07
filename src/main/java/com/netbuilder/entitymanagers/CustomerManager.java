@@ -25,6 +25,9 @@ public interface CustomerManager {
 	//////////// READ //////////////////
 	public Customer findByName(String name);
 	public List<Customer> getCustomers();
+	public List<Customer> getDob();
+	public List<Customer> getPhoneNumber();
+	public List<Customer> getBlackListStrikes();
 	
 	//////////// UPDATE //////////////////
 	public void updateCustomer(Customer customer);
