@@ -10,5 +10,4 @@ public class WishListLineTest {
 	public void test() {
 		fail("Not yet implemented");
 	}
-
 }

@@ -1,11 +1,3 @@
-///////////////////////////////
-//							 //
-//	Project SpringWater		 //
-//	Chris J W Walker		 //
-//	Item details			 //
-//							 //
-///////////////////////////////
-
 /**
  * @author chrisjwwalker
  * @date 06/10/2015
@@ -73,9 +65,9 @@ public class Item {
     
     /**
      * Method to get the price of the item
-     * @return Returns float data type
+     * @return Returns double data type
      */
-    public float getPrice() {
+    public double getPrice() {
 		return price;
 	}
     
