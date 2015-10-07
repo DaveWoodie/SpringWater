@@ -5,7 +5,7 @@
 
 package com.netbuilder.entitymanagers;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.netbuilder.entities.Item;
 
@@ -16,12 +16,12 @@ public interface ItemManager {
 	
 	// CREATE
 	public void persistItem(Item item);
-	public void persistItem(ArrayList<Item> item);
+	public void persistItem(List<Item> item);
 	
 	// READ
 	public Item findByID(int ID);
 	public Item findByName(String name);
-	public ArrayList<Item> getNames();
+	public List<Item> getNames();
 	
 	// UPDATE
 	public void updateItem(Item item);
