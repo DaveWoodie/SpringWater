@@ -1,6 +1,5 @@
 package com.netbuilder.entitymanagers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.netbuilder.entities.Customer;

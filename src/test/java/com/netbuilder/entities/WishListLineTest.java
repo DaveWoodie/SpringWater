@@ -24,6 +24,7 @@ public class WishListLineTest {
 	 * the get Id item returns a correct
 	 * value.
 	 */
+	@Test
 	public void testGetIdItem() {
 		WishListLine wishListLine = new WishListLine(idItem, idCustomer);
 		assertSame("The objects are not the same!!", idItem, wishListLine.getIdItem());
@@ -34,6 +35,7 @@ public class WishListLineTest {
 	 * the get Id item method returns
 	 * the correct value.
 	 */
+	@Test
 	public void testGetIdCustomer() {
 		WishListLine wishListLine = new WishListLine(idItem, idCustomer);
 		assertSame("The objects are not the same!!", idCustomer, wishListLine.getIdCustomer());
@@ -44,6 +46,7 @@ public class WishListLineTest {
 	 * the set Id method mutates the data
 	 * in the correct way.
 	 */
+	@Test
 	public void testSetIdItem() {
 		WishListLine wishListLine = new WishListLine(idItem, idCustomer);
 		wishListLine.setIdItem(idItem);
@@ -55,6 +58,7 @@ public class WishListLineTest {
 	 * the set Id customer method mutates
 	 * the data in the correct way.
 	 */
+	@Test
 	public void testSetIdCustomer() {
 		WishListLine wishListLine = new WishListLine(idItem, idCustomer);
 		wishListLine.setIdCustomer(idCustomer);

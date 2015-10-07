@@ -6,7 +6,6 @@ import org.junit.Test;
 
 public class PaymentDetailsTest {
 	
-	private int idPaymentDetails;
 	private String cardType = "Visa Debit";
 	private String cardNumber = "6387 8879 3512 5634";
 	private String name = "A FOWLER";
