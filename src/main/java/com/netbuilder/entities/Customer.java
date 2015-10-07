@@ -30,6 +30,10 @@ public class Customer {
 		this.phoneNumber = phoneNumber;
 		this.dob = dob;
 	}
+	
+	@Deprecated
+	public Customer() {
+	}
 
 	/**
 	 * @Method is an accessor for the unique customer ID
