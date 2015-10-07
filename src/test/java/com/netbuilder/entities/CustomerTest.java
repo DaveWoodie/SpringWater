@@ -18,7 +18,6 @@ public class CustomerTest {
 	/**
 	 * Customer test attributes
 	 */
-	private int idCustomer = 10;
 	private float credit = 10.0f;
 	private String phoneNumber = "0791633254";
 	private Date dob = new Date();
@@ -28,19 +27,23 @@ public class CustomerTest {
 	 * get ID customer returns the correct value of
 	 * the customers ID from the User test.
 	 */
+	@Test
 	public void testGetIdCustomer() {
 		Customer customer = new Customer(credit, phoneNumber, dob);
-		assertSame("The objects are not the same!!", idCustomer, customer.getIdCustomer());
+		assertEquals("The objects are not the same!!", 0, customer.getIdCustomer());
 	}
 	
 	/**
 	 * @Test Run a test to make sure that the
 	 * customers date of birth returns the correct 
 	 * value.
+	 * @author dwoodward
+	 * @date 07/10/2015
 	 */
+	@Test
 	public void testGetDob() {
 		Customer customer = new Customer(credit, phoneNumber, dob);
-		assertNotNull("The object is NULL", dob);
+		assertNotNull("The object is not NULL", customer.getDob());
 	}
 	
 	/**
@@ -48,6 +51,7 @@ public class CustomerTest {
 	 * get customers phone number returns 
 	 * the correct value.
 	 */
+	@Test
 	public void testGetPhoneNumber() {
 		Customer customer = new Customer(credit, phoneNumber, dob);
 		assertTrue(customer.getPhoneNumber().equals("0791633254"));
@@ -56,49 +60,64 @@ public class CustomerTest {
 	/**
 	 * @Test Run a test to check whether the getCredit
 	 * method returns the correct value.
+	 * @author dwoodward
+	 * @date 07/10/2015
+	 * Changed the way the check was made to include a tolerance. This is the only way to check floats.
 	 */
+	@Test
 	public void testGetCredit() {
 		Customer customer = new Customer(credit, phoneNumber, dob);
-		assertSame("The objects are not the same!!", credit, customer.getCredit());
+		assertEquals(customer.getCredit(), 10.0f, 0.01);
 	}
-	
-	/**
-	 * @Test Run a test to check whether the customer ID
-	 *  mutator is working correctly.
-	 */
-	public void testsetIdCustomer() {
-		Customer customer = new Customer(credit, phoneNumber, dob);
-		customer.setIdCustomer(idCustomer);
-		assertSame("The objects are not the same!!", idCustomer, customer.getIdCustomer());
-	}
+	//Removed this as you should never be able to change the customers ID
+//	/**
+//	 * @Test Run a test to check whether the customer ID
+//	 *  mutator is working correctly.
+//	 */
+//	@Test
+//	public void testsetIdCustomer() {
+//		Customer customer = new Customer(credit, phoneNumber, dob);
+//		customer.setIdCustomer(idCustomer);
+//		assertSame("The objects are not the same!!", idCustomer, customer.getIdCustomer());
+//	}
 	
 	/**
 	 * @Test Run a test to check whether the customers
 	 * Date of Birth returns the correct value.
+	 * @author dwoodward
+	 * @date 07/10/2015
 	 */
+	@Test
 	public void testSetDob() {
 		Customer customer = new Customer(credit, phoneNumber, dob);
-		customer.setDob(dob);
-		assertNotNull("The object is NULL", dob);
+		Date d = new Date();
+		customer.setDob(d);
+		assertEquals("The object is NULL", d, customer.getDob());
 	}
 	
 	/**
 	 * @Test Run a test to check whether the customers 
 	 * set phone number method returns the correct value.
+	 * @author dwoodward
+	 * @test 07/10/2015
 	 */
+	@Test
 	public void testSetPhoneNumber() {
 		Customer customer = new Customer(credit, phoneNumber, dob);
-		customer.setPhoneNumber(phoneNumber);
-		assertTrue(customer.getPhoneNumber().equals("0791633254"));
+		customer.setPhoneNumber("07555555555");
+		assertTrue(customer.getPhoneNumber().equals("07555555555"));
 	}
 	
 	/**
 	 * @Test Run a test to check whether the get credit returns
 	 * the correct value.
+	 * @author dwoodward
+	 * @date 07/10/2015
 	 */
+	@Test
 	public void testSetCredit() {
 		Customer customer = new Customer(credit, phoneNumber, dob);
-		customer.setCredit(credit);
-		assertSame("The objects are not the same!!", credit, customer.getCredit());
+		customer.setCredit(12.0f);
+		assertEquals(customer.getCredit(), 12.0f, 0.01);
 	}
 }
