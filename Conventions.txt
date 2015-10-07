@@ -1,3 +1,9 @@
+Code formatting
+
+	ctrl + shift + f
+	
+	to auto format code
+
 For each java class
 
 /**
