@@ -1,5 +1,10 @@
 package com.netbuilder.entities;
 
+/**
+ * Class to hold all of the details for an address. Used for both customer addresses, supplier addresses and payment addresses
+ * @author tstacey
+ * @date 06/10/2015
+ */
 public class Address {
 	private int addressID;
 	private String addressLineOne;
@@ -11,8 +16,6 @@ public class Address {
 
 	/**
 	 * Constructor for a new address with full details completed
-	 * @author tstacey
-	 * @date 06/10/2015
 	 * @param addressLineOne : String of the first line of the address (House number)
 	 * @param addressLineTwo : String of the second line of the address (Building/development)
 	 * @param city : String of the city name
@@ -29,8 +32,6 @@ public class Address {
 	
 	/**
 	 * Constructor for a new address without addressLineTwo completed
-	 * @author tstacey
-	 * @date 06/10/2015
 	 * @param addressLineOne : String of the first line of the address (House number)
 	 * @param city : String of the city name
 	 * @param county : String of the county of the address 
