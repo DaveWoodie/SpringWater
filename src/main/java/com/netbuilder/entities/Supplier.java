@@ -1,5 +1,10 @@
 package com.netbuilder.entities;
 
+/**
+ * Class to hold all of the details for one Supplier
+ * @author tstacey
+ * @date 06/10/2015
+ */
 public class Supplier {
 	private int supplierID;
 	private String supplierName;
@@ -10,8 +15,6 @@ public class Supplier {
 	/**
 	 * Constructor for a supplier with not null values of supplier name and address object
 	 * telephone and email fields are nullable and must be entered using setTelephone(String) and setEmail(String) Methods
-	 * @author tstacey
-	 * @date 06/10/2015
 	 * @param supplierName
 	 * @param address
 	 */

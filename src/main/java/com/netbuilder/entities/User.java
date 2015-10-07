@@ -34,6 +34,13 @@ public class User {
 	}
 	
 	/**
+	 * Default Constructor for testing purposes only.
+	 */
+	@Deprecated
+	public User() {
+	}
+	
+	/**
 	 * Method to set the value of the User's password.
 	 * @param p : String of the password.
 	 */
