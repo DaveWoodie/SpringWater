@@ -1,6 +1,7 @@
 package com.netbuilder.entitymanagers;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.netbuilder.entities.Customer;
 
@@ -19,11 +20,11 @@ public interface CustomerManager {
 
 	//////////// CREATE //////////////////	
 	public void persistCustomer(Customer customer);
-	public void persistCustomers(ArrayList<Customer> customers);
+	public void persistCustomers(List<Customer> customers);
 	
 	//////////// READ //////////////////
 	public Customer findByName(String name);
-	public ArrayList<Customer> getCustomers();
+	public List<Customer> getCustomers();
 	
 	//////////// UPDATE //////////////////
 	public void updateCustomer(Customer customer);
