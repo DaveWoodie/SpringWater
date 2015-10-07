@@ -15,7 +15,7 @@ public class PurchaseOrderStatusTest {
 	@Test
 	public void testStatus() {
 		PurchaseOrderStatus p = new PurchaseOrderStatus();
-		assertNull(p.getCustOrderStatus());
+		assertNull(p.getPurchOrderStatus());
 	}
 
 }
