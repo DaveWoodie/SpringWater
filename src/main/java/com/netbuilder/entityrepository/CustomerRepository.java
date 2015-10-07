@@ -7,9 +7,7 @@ package com.netbuilder.entityrepository;
 
 import java.util.Date;
 import java.util.List;
-
 import org.springframework.data.repository.CrudRepository;
-
 import com.netbuilder.entities.Customer;
 
 /**
@@ -19,8 +17,8 @@ import com.netbuilder.entities.Customer;
  */
 public interface CustomerRepository extends CrudRepository<Customer, Integer> {
 
-	public Customer findByName(String name);
-	public List<Customer> findByCustomers(Customer c);
+	public List<Customer> findByName(String name);
+	public Customer findByIDCustomer(int customerID);
 	public List<Customer> findByDob(Date dob);
 	public List<Customer> findByPhoneNumber(String phoneNumber);
 }
