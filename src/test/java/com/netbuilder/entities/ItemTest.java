@@ -16,7 +16,7 @@ public class ItemTest {
 	private int s = 274;
 	private String iLoc = "C:/Users/chrisjwwalker/redGnome.png";
 	private boolean dc = false;
-	private int sr = 46;
+	private int sr = 2;
 	private int psr = 78;
 	private boolean ip = false;
 	private Supplier ids = new Supplier(null, null);
@@ -59,9 +59,17 @@ public class ItemTest {
 	public void testGetSalesRate() {
 		Item i = new Item(iName, p, s, iLoc, dc, sr, psr, ip, ids);
 		i.setSalesRate(3);
-		assertNotEquals(sr, i.getSalesRate(), 0);
+		assertEquals("Get sales Rate", 3, i.getSalesRate());
 	}
 
+	//Float test
+//	@Test
+//	public void testGetSalesRate() {
+//		Item i = new Item(iName, p, s, iLoc, dc, sr, psr, ip, ids);
+//		i.setSalesRate(3.0f);
+//		assertTrue(i.getSalesRate().equals(3.0f));
+//	}
+	
 	@Test
 	public void testGetpSalesRate() {
 		Item i = new Item(iName, p, s, iLoc, dc, sr, psr, ip, ids);

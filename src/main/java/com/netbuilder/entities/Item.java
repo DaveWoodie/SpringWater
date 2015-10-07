@@ -14,6 +14,7 @@ public class Item {
 	private int stock;
 	private String imageLocation;
 	private boolean discontinued;
+	//Might need these rates to be float
 	private int salesRate;
 	private int pSalesRate;
 	private boolean isPorousware;
