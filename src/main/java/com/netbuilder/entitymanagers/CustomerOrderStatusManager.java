@@ -24,7 +24,7 @@ public interface CustomerOrderStatusManager {
 	 * @param i : the ID of the status.
 	 * @return Returns data type CustomerOrderStatus.
 	 */
-	public CustomerOrderStatus findByID (int i);
+	public CustomerOrderStatus findByID (Integer i);
 	/**
 	 * Method to return a status by it's name number.
 	 * @param s : the name of the status.

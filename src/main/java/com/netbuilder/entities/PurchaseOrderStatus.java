@@ -15,7 +15,7 @@ public class PurchaseOrderStatus {
 
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private int statusID;
+	private Integer statusID;
 	private String status;
 	
 	/**
@@ -24,7 +24,7 @@ public class PurchaseOrderStatus {
 	public PurchaseOrderStatus () {
 	}
 	
-	public int getStatusID() {
+	public Integer getStatusID() {
 		return statusID;
 	}
 	
