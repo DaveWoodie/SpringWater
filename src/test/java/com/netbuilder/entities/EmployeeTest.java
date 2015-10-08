@@ -21,30 +21,13 @@ public class EmployeeTest {
 		roleNotNull = new Role(0, "test");
 	}
 	
-	@Test
-	public void testGetEmployeeID(){
-		
-		Employee e = new Employee(0, roleNotNull);
-		
-		assertEquals("Employee ID should be 0", 0, e.getID());
-	}
 	
 	@Test
-	public void testSetEmployeeID(){
+	public void testSetRoleConstructor(){
 		
-		Employee e = new Employee(0, roleNotNull);
-		
-		e.setID(1);
-		assertEquals("Employee ID should return 1", 1, e.getID());
-	}
-	
-	@Test
-	public void testToCheckNotNullValueInEmployee(){
-		
-		Employee e = new Employee(0, roleNotNull);
+		Employee e = new Employee(roleNotNull);
 		
 		//Testing if employee values are not null
-		assertNotNull(roleNotNull);
-		assertNotNull(e.getID());
+		assertSame("Employee role should be same as constructor rolw", roleNotNull, e.getRole());
 	}
 }

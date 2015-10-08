@@ -19,9 +19,9 @@ public class Role {
 	private String Role;
 
 	/**
-	 * Constructor to create an instance of an employees role.
+	 * Constructor to create an instance of an employee's role.
 	 * 
-	 * @param ID : int of the roles ID.
+	 * @param ID : int of the role's ID.
 	 * @param Role : String of the role.
 	 */
 	public Role(int ID, String Role) {
