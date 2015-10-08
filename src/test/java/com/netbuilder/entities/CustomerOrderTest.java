@@ -14,7 +14,8 @@ import org.junit.Test;
 @SuppressWarnings("deprecation")
 public class CustomerOrderTest {
 	Date dp = new Date();
-	Customer c = new Customer(10,"01234", dp);
+	private User uCust = new User("password","India","Violet-Gumtree","IndiaVGums@hotmail.com", false);
+	Customer c = new Customer(uCust, 10,"01234", dp);
 	CustomerOrderStatus os = new CustomerOrderStatus();
 	Role r = new Role("Manager");
 	User u = new User("password","Al","Stock","Al.Stock@NBGardens.com", true);

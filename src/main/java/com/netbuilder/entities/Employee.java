@@ -16,10 +16,11 @@ import javax.persistence.PrimaryKeyJoinColumn;
 public class Employee {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@OneToOne
+	@PrimaryKeyJoinColumn(name = "idUser")
 	private User user;
 	@OneToOne
-	@PrimaryKeyJoinColumn(name = "idRole")
+	@PrimaryKeyJoinColumn(name = "idEmployeeRole")
 	private Role role;
 
 	/**
