@@ -11,7 +11,7 @@ import org.junit.Test;
  *
  */
 
-public class WishListLineTest {
+public class WishListTest {
 	
 	/**
 	 * WishListLine test attributes

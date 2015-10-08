@@ -26,7 +26,7 @@ public class DummyData {
 	private ArrayList<Role> roles = new ArrayList<Role>();
 	private ArrayList<Supplier> suppliers = new ArrayList<Supplier>();
 	private ArrayList<User> users = new ArrayList<User>();
-	private ArrayList<WishListLine> wishListLines = new ArrayList<WishListLine>();
+	private ArrayList<WishList> wishListLines = new ArrayList<WishList>();
 	
 	private SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy");
 	

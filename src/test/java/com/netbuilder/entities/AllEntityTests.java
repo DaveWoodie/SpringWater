@@ -10,7 +10,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		CustomerTest.class, EmployeeTest.class, ItemTest.class,
 		PaymentDetailsTest.class, PurchaseOrderLineTest.class,
 		PurchaseOrderStatusTest.class, PurchaseOrderTest.class, RoleTest.class,
-		SupplierTest.class, UserTest.class, WishListLineTest.class })
+		SupplierTest.class, UserTest.class, WishListTest.class })
 public class AllEntityTests {
 
 }

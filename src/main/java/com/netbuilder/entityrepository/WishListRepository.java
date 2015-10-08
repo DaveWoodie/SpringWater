@@ -5,13 +5,13 @@
 package com.netbuilder.entityrepository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
-import com.netbuilder.entities.WishListLine;
+import com.netbuilder.entities.WishList;
 
 /**
  * 
  * Interface to hold the find the wish list lines
  */
-public interface WishListLineRepository extends MongoRepository<WishListLine, Integer>{
+public interface WishListRepository extends MongoRepository<WishList, Integer>{
 	
-	public WishListLine findByCustomerID(int customerID);
+	public WishList findByCustomerID(int customerID);
 }

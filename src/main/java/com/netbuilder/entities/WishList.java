@@ -14,7 +14,7 @@ import org.springframework.data.annotation.Id;
  *
  */
 
-public class WishListLine {
+public class WishList {
 	
 	// Wish list line attributes
 	private ArrayList<Item> items;
@@ -26,7 +26,7 @@ public class WishListLine {
 	 * @param item : The list of items to be added to the WishList
 	 * @param customer : The customer that owns the WishList
 	 */
-	public WishListLine(Customer customer, ArrayList<Item> items) {
+	public WishList(Customer customer, ArrayList<Item> items) {
 		// Initialise attributes
 		this.customer = customer;
 		this.items = new ArrayList<Item>();
@@ -41,7 +41,7 @@ public class WishListLine {
 	 * @MethodAuthor tstacey
 	 * @date 08/10/2015
 	 */
-	public WishListLine(Customer customer) {
+	public WishList(Customer customer) {
 		this.customer = customer;
 		this.items = new ArrayList<Item>();
 	}
