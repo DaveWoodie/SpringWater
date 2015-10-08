@@ -50,6 +50,10 @@ public class WishList {
 		return items;
 	}
 	
+	public int getNumberOfItems() {
+		return items.size();
+	}
+	
 	public Customer getCustomer() {
 		return customer;
 	}
@@ -81,21 +85,19 @@ public class WishList {
 	 * Throws IOException if item doesn't exist in WishList
 	 * @MethodAuthor tstacey
 	 * @param itemID
+	 * @return the removed item
 	 * @throws IOException
 	 * @date 08/10/2015
 	 */
-	public void removeItem(int itemID) throws IOException {
-		boolean foundItem = false;
-		for(int i = 0; i < items.size() && !foundItem; i++) {
+	public Item removeItem(int itemID) throws IOException {
+		for(int i = 0; i < items.size(); i++) {
 			if(items.get(i).getIdItem() == itemID) {
-				items.remove(i);
-				foundItem = true;
+				return items.remove(i);
+				
 			}
 		}
 		
-		if(!foundItem) {
-			throw new IOException("Couldn't locate Item with ID "+itemID+"in WishList");
-		}
+		throw new IOException("Couldn't locate Item with ID "+itemID+"in WishList");
 	}
 	
 	/**
@@ -104,7 +106,8 @@ public class WishList {
 	 * @date 08/10/2015
 	 */
 	public void removeAllItems() {
-		for(int i = 0; i < items.size(); i++) {
+		int arraySize = items.size();
+		for(int i = 0; i < arraySize; i++) {
 			items.remove(0);
 		}
 	}
