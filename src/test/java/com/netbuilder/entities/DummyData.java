@@ -52,6 +52,8 @@ public class DummyData {
 
 		addCustomers();
 		addCustomerOrderStatuses();
+		addRoles();
+		addUsers();
 		
 		
 	}
@@ -83,6 +85,25 @@ public class DummyData {
 		custOrderStatuses.add(new CustomerOrderStatus("Awaiting Dispatch"));
 		custOrderStatuses.add(new CustomerOrderStatus("Out for delivery"));
 		custOrderStatuses.add(new CustomerOrderStatus("Cancelled"));
+	}
+	
+	private void addRoles() {
+		roles.add(new Role("COFT Operative"));
+		roles.add(new Role("COFT Manager"));
+		roles.add(new Role("Warehouse Operative"));
+		roles.add(new Role("Inventory Manager"));
+		roles.add(new Role("Sales Operative"));
+		roles.add(new Role("Sales Manager"));
+	}
+	
+	private void addUsers() {
+		users.add(new User("password","Al","Stock","Al.Stock@NBGardens.com", true));
+		users.add(new User("password","Georgina","Posslethwaite","Georgina.Posslethwaite@NBGardens.com", true));
+		users.add(new User("password","Fred","Crumbuchet","Fred.Crumbuchet@NBGardens.com", true));
+		users.add(new User("password","Jude","Law","JudeyBoy@hotmail.com", false));
+		users.add(new User("password","Jeremy","Cornstaller","JCStallz@gmail.com", false));
+		users.add(new User("password","Hannah","Applebaggsby","HannahTheSpanner@hotmail.com", false));
+		users.add(new User("password","India","Violet-Gumtree","IndiaVGums@hotmail.com", false));
 	}
 	
 	// TODO - finish once component entities have been created
