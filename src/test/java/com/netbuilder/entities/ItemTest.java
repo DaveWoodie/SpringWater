@@ -24,7 +24,7 @@ public class ItemTest {
 	@Test
 	public void testIdItem() {
 		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier);
-		assertEquals("Item ID should be null", 0, i.idItem());
+		assertEquals("Item ID should be null", 0, i.getIdItem());
 	}
 
 	@Test
@@ -67,7 +67,7 @@ public class ItemTest {
 //	public void testGetSalesRate() {
 //		Item i = new Item(iName, p, s, iLoc, dc, sr, psr, ip, ids);
 //		i.setSalesRate(3.0f);
-//		assertTrue(i.getSalesRate().equals(3.0f));
+//		assertEquals(i.getSalesRate(), 3.0f, 0.01f);
 //	}
 	
 	@Test

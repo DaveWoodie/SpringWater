@@ -19,13 +19,12 @@ public class Role {
 	private String Role;
 
 	/**
-	 * Constructor to create an instance of an employees role.
+	 * Constructor to create an instance of an employee's role.
 	 * 
-	 * @param ID : int of the roles ID.
+	 * @param ID : int of the role's ID.
 	 * @param Role : String of the role.
 	 */
-	public Role(int ID, String Role) {
-		this.ID = ID;
+	public Role(String Role) {
 		this.Role = Role;
 	}
 
@@ -33,9 +32,6 @@ public class Role {
 		return ID;
 	}
 
-	public void setID(int ID) {
-		this.ID = ID;
-	}
 
 	public String getRole() {
 		return Role;

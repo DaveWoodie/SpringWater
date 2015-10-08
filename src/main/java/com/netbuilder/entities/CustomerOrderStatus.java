@@ -18,9 +18,19 @@ public class CustomerOrderStatus {
 	private int statusID;
 	private String status;
 	
+	
 	/**
-	 * Empty constructor to create an instance of the Customer Order Status Class.
+	 * Customer Order Status constructor with parameter to set the status
+	 * @param status
 	 */
+	public CustomerOrderStatus (String status) {
+		this.status = status;
+	}
+	
+	/**
+	 * Empty constructor to create an instance of the Customer Order Status Class. Used in testing
+	 */
+	@Deprecated
 	public CustomerOrderStatus () {
 	}
 	

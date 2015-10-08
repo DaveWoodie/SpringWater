@@ -1,0 +1,120 @@
+package com.netbuilder.entities;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+
+import org.springframework.data.annotation.Id;
+
+/**
+ * 
+ * @author ccooper
+ * @date 06/10/2015
+ *
+ */
+
+public class WishList {
+	
+	// Wish list line attributes
+	private ArrayList<Item> items;
+	@Id
+	private Customer customer;
+	
+	/**
+	 * @Class constructor initialises Wish List Line attributes
+	 * @param item : The list of items to be added to the WishList
+	 * @param customer : The customer that owns the WishList
+	 */
+	public WishList(Customer customer, ArrayList<Item> items) {
+		// Initialise attributes
+		this.customer = customer;
+		this.items = new ArrayList<Item>();
+		for(int i = 0; i < items.size(); i++) {
+			this.items.add(items.get(i));
+		}
+	}
+	
+	/**
+	 * constructor to initialise WishList with a blank ArrayList of Items
+	 * @param customer
+	 * @MethodAuthor tstacey
+	 * @date 08/10/2015
+	 */
+	public WishList(Customer customer) {
+		this.customer = customer;
+		this.items = new ArrayList<Item>();
+	}
+	
+	public List<Item> getItems() {
+		return items;
+	}
+	
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void addItem(Item i) {
+		items.add(i);
+	}
+	
+	/**
+	 * searches for an item in the Customer's WishList by item ID and returns that Item.
+	 * Throws IOException if item doesn't exist in WishList
+	 * @MethodAuthor tstacey
+	 * @param itemID
+	 * @return Item
+	 * @throws IOException
+	 * @date 08/10/2015
+	 */
+	public Item getItemByID(int itemID) throws IOException {
+		for(Item i : items) {
+			if(i.getIdItem() == itemID) {
+				return i;
+			}
+		}
+		throw new IOException("Couldn't locate Item with ID "+itemID+"in WishList");
+	}
+	
+	/**
+	 * searches for an item in the Customer's WishList by item ID and removes that Item.
+	 * Throws IOException if item doesn't exist in WishList
+	 * @MethodAuthor tstacey
+	 * @param itemID
+	 * @throws IOException
+	 * @date 08/10/2015
+	 */
+	public void removeItem(int itemID) throws IOException {
+		boolean foundItem = false;
+		for(int i = 0; i < items.size() && !foundItem; i++) {
+			if(items.get(i).getIdItem() == itemID) {
+				items.remove(i);
+				foundItem = true;
+			}
+		}
+		
+		if(!foundItem) {
+			throw new IOException("Couldn't locate Item with ID "+itemID+"in WishList");
+		}
+	}
+	
+	/**
+	 * Removes all items from the Customer's WishList
+	 * @MethodAuthor tstacey
+	 * @date 08/10/2015
+	 */
+	public void removeAllItems() {
+		for(int i = 0; i < items.size(); i++) {
+			items.remove(0);
+		}
+	}
+	
+	/**
+	 * 
+	 * @Method is a mutator customer ID.
+	 */
+	public void setCustomer(Customer c) {
+		this.customer = c;
+	}
+	
+}

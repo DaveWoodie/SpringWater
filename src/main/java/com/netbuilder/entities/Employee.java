@@ -28,8 +28,7 @@ public class Employee {
 	 * @param ID : int of the employee's ID.
 	 * @param Role : Role of the employee's role.
 	 */
-	public Employee(int ID, Role Role) {
-		this.ID = ID;
+	public Employee(Role Role) {
 		this.Role = Role;
 	}
 
@@ -37,9 +36,6 @@ public class Employee {
 		return ID;
 	}
 
-	public void setID(int ID) {
-		this.ID = ID;
-	}
 
 	public Role getRole() {
 		return Role;
