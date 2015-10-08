@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
@@ -19,7 +20,7 @@ public class Employee {
 	@OneToOne
 	@PrimaryKeyJoinColumn(name = "idUser")
 	private User user;
-	@OneToOne
+	@ManyToOne
 	@PrimaryKeyJoinColumn(name = "idEmployeeRole")
 	private Role role;
 
