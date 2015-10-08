@@ -45,12 +45,14 @@ public class WishListLineTest {
 	 * @Test run a test to check whether
 	 * the set Id method mutates the data
 	 * in the correct way.
+	 * 
+	 * Just changed this and the following method to not set to the same value it was initialised as. 
 	 */
 	@Test
 	public void testSetIdItem() {
 		WishListLine wishListLine = new WishListLine(idItem, idCustomer);
-		wishListLine.setIdItem(idItem);
-		assertSame("The objects are not the same!!", idItem, wishListLine.getIdItem());
+		wishListLine.setIdItem(3);
+		assertSame("The objects are not the same!!", 3, wishListLine.getIdItem());
 	}
 	
 	/**
@@ -61,8 +63,8 @@ public class WishListLineTest {
 	@Test
 	public void testSetIdCustomer() {
 		WishListLine wishListLine = new WishListLine(idItem, idCustomer);
-		wishListLine.setIdCustomer(idCustomer);
-		assertSame("The objects are not the same!!", idCustomer, wishListLine.getIdCustomer());
+		wishListLine.setIdCustomer(2);
+		assertSame("The objects are not the same!!", 2, wishListLine.getIdCustomer());
 	}
 	
 }
