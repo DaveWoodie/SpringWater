@@ -15,8 +15,8 @@ import org.junit.Test;
 public class PurchaseOrderTest {
 	
 	Date dP = new Date();
-	Role r = new Role(1, "Employee");
-	Employee e = new Employee(1, r);
+	Role r = new Role("Employee");
+	Employee e = new Employee(r);
 	PurchaseOrderStatus pOS = new PurchaseOrderStatus();
 	Address a = new Address();
 	Supplier s = new Supplier("NBSupplier", a);
@@ -69,8 +69,8 @@ public class PurchaseOrderTest {
 	@Test
 	public void setEmployeeTest() {
 		PurchaseOrder pO = new PurchaseOrder();
-		Role r = new Role(1, "Employee");
-		Employee e = new Employee(1, r);
+		Role r = new Role("Employee");
+		Employee e = new Employee(r);
 		pO.setEmployee(e);
 		assertEquals("The two employees should be identical", e, pO.getEmployee());
 	}

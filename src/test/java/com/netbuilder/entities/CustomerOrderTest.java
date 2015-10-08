@@ -16,8 +16,8 @@ public class CustomerOrderTest {
 	Date dp = new Date();
 	Customer c = new Customer(10,"01234", dp);
 	CustomerOrderStatus os = new CustomerOrderStatus();
-	Role r = new Role(1, "Manager");
-	Employee e = new Employee(2, r);
+	Role r = new Role("Manager");
+	Employee e = new Employee(r);
 		
 	@Test
 	public void testIsCustomer() {
@@ -38,7 +38,7 @@ public class CustomerOrderTest {
 	@Test
 	public void testGetSetEmployee() {
 		CustomerOrder co = new CustomerOrder(); 
-		Employee ee = new Employee(3, r);
+		Employee ee = new Employee(r);
 		co.setEmployee(ee);
 		assertEquals("should be the same employee", ee, co.getEmployee());
 	}
@@ -64,7 +64,7 @@ public class CustomerOrderTest {
 		CustomerOrder co = new CustomerOrder(); 
 		CustomerOrderStatus c = new CustomerOrderStatus();
 		co.setOrderStatus(c);
-		assertEquals("should be the same order status", c, co.getCustomerOrderStatus());
+		assertSame("should be the same order status", c, co.getCustomerOrderStatus());
 	}
 	
 	@Test

@@ -21,7 +21,7 @@ public class Application implements CommandLineRunner{
 	@Override
 	public void run(String... arg0) throws Exception {
 		repo.deleteAll();
-		repo.save(new Role(0, "Warehouse Manager"));
+		repo.save(new Role("Warehouse Manager"));
 		
 		for(Role r : repo.findAll()){
 			System.out.println(r);
