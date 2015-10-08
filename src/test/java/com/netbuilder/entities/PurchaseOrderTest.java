@@ -16,7 +16,8 @@ public class PurchaseOrderTest {
 	
 	Date dP = new Date();
 	Role r = new Role("Employee");
-	Employee e = new Employee(r);
+	private User u = new User("password","Al","Stock","Al.Stock@NBGardens.com", true);
+	Employee e = new Employee(u, r);
 	PurchaseOrderStatus pOS = new PurchaseOrderStatus();
 	Address a = new Address();
 	Supplier s = new Supplier("NBSupplier", a);
@@ -70,7 +71,7 @@ public class PurchaseOrderTest {
 	public void setEmployeeTest() {
 		PurchaseOrder pO = new PurchaseOrder();
 		Role r = new Role("Employee");
-		Employee e = new Employee(r);
+		Employee e = new Employee(u, r);
 		pO.setEmployee(e);
 		assertEquals("The two employees should be identical", e, pO.getEmployee());
 	}

@@ -12,20 +12,23 @@ import java.util.Date;
  */
 public class DummyData {
 	
+	// Base entities (no other entities within them)
 	private ArrayList<Address> addresses = new ArrayList<Address>();
 	private ArrayList<Customer> customers = new ArrayList<Customer>();
+	private ArrayList<CustomerOrderStatus> custOrderStatuses = new ArrayList<CustomerOrderStatus>();
+	private ArrayList<PurchaseOrderStatus> purchaseOrderStatuses = new ArrayList<PurchaseOrderStatus>();
+	private ArrayList<User> users = new ArrayList<User>();
+	private ArrayList<Role> roles = new ArrayList<Role>();
+
+	private ArrayList<Supplier> suppliers = new ArrayList<Supplier>();
+	private ArrayList<Item> items = new ArrayList<Item>();
+	private ArrayList<Employee> employees = new ArrayList<Employee>();
+	
 	private ArrayList<CustomerOrder> custOrders = new ArrayList<CustomerOrder>();
 	private ArrayList<CustomerOrderLine> custOrderLines = new ArrayList<CustomerOrderLine>();
-	private ArrayList<CustomerOrderStatus> custOrderStatuses = new ArrayList<CustomerOrderStatus>();
-	private ArrayList<Employee> employees = new ArrayList<Employee>();
-	private ArrayList<Item> items = new ArrayList<Item>();
 	private ArrayList<PaymentDetails> payments = new ArrayList<PaymentDetails>();
 	private ArrayList<PurchaseOrder> purchaseOrders = new ArrayList<PurchaseOrder>();
 	private ArrayList<PurchaseOrderLine> purchaseOrderLines = new ArrayList<PurchaseOrderLine>();
-	private ArrayList<PurchaseOrderStatus> purchaseOrderStatuses = new ArrayList<PurchaseOrderStatus>();
-	private ArrayList<Role> roles = new ArrayList<Role>();
-	private ArrayList<Supplier> suppliers = new ArrayList<Supplier>();
-	private ArrayList<User> users = new ArrayList<User>();
 	private ArrayList<WishList> wishListLines = new ArrayList<WishList>();
 	
 	private SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -39,19 +42,18 @@ public class DummyData {
 				
 		setUpBaseEntities();
 
-		// CUSTOMER ORDER
 		addCustomerOrders();
+		addSuppliers();
+		addItems();
 	}
 
 	
 	private void setUpBaseEntities() {
-		// ADDRESSES
-		addresses.add(new Address("NETbuilder LTD", "5th Floor, Anchorage 1", "Manchester", "Lancs", "M50 3YJ"));
-		addresses.add(new Address("16 Maple View", "Lovelyside", "Upper Slaughter", "Gloucestershire", "GL54 2JB"));
 		
-
+		addAddresses();
 		addCustomers();
 		addCustomerOrderStatuses();
+		addPurchaseOrderStatuses();
 		addRoles();
 		addUsers();
 		
@@ -65,6 +67,13 @@ public class DummyData {
 		} catch (ParseException e) {
 			throw new Error(e);
 		}
+	}
+	
+	private void addAddresses() {
+		addresses.add(new Address("NETbuilder LTD", "5th Floor, Anchorage 1", "Manchester", "Lancs", "M50 3YJ"));
+		addresses.add(new Address("16 Maple View", "Lovelyside", "Upper Slaughter", "Gloucestershire", "GL54 2JB"));
+		addresses.add(new Address("Garden Bulk Supplies LTD", "Unit 4, Rose Trading Estate", "Weston Super-Mare", "North Somerset", "BS23 1TT"));
+		addresses.add(new Address("Happening Gardens", "Telford Trading Estate", "Telford", "Shropshire", "TF7 1QG"));
 	}
 	
 	private void addCustomers() {
@@ -83,8 +92,16 @@ public class DummyData {
 		custOrderStatuses.add(new CustomerOrderStatus("Picked"));
 		custOrderStatuses.add(new CustomerOrderStatus("Packed"));
 		custOrderStatuses.add(new CustomerOrderStatus("Awaiting Dispatch"));
-		custOrderStatuses.add(new CustomerOrderStatus("Out for delivery"));
+		custOrderStatuses.add(new CustomerOrderStatus("Out for Delivery"));
 		custOrderStatuses.add(new CustomerOrderStatus("Cancelled"));
+	}
+	
+	private void addPurchaseOrderStatuses() {
+		purchaseOrderStatuses.add(new PurchaseOrderStatus("Created"));
+		purchaseOrderStatuses.add(new PurchaseOrderStatus("Sent to Supplier"));
+		purchaseOrderStatuses.add(new PurchaseOrderStatus("Received"));
+		purchaseOrderStatuses.add(new PurchaseOrderStatus("Stored"));
+		purchaseOrderStatuses.add(new PurchaseOrderStatus("Cancelled"));
 	}
 	
 	private void addRoles() {
@@ -104,6 +121,32 @@ public class DummyData {
 		users.add(new User("password","Jeremy","Cornstaller","JCStallz@gmail.com", false));
 		users.add(new User("password","Hannah","Applebaggsby","HannahTheSpanner@hotmail.com", false));
 		users.add(new User("password","India","Violet-Gumtree","IndiaVGums@hotmail.com", false));
+	}
+	
+	
+	private void addSuppliers() {
+		Supplier s = new Supplier("Garden Bulk Supplies LTD", addresses.get(2));
+		s.setTelephone("01447308593");
+		s.setEmail("bulk_info@BulkSupplies.com");
+		suppliers.add(s);
+		
+		Supplier s2 = new Supplier("Happening Gardens", addresses.get(3));
+		s2.setTelephone("01214459381");
+		s2.setEmail("contact_us@HappeningGardens.com");
+		suppliers.add(s2);
+	}
+	
+	private void addItems() {
+		items.add(new Item("Red Gnome", (float)12.99, 100, "Red_Gnome.png", false, 5, 6, false, suppliers.get(0)));
+		items.add(new Item("Blue Gnome", (float)12.99, 500, "Blue_Gnome.png", false, 10, 6, false, suppliers.get(0)));
+		items.add(new Item("Green Gnome", (float)12.99, 30, "Green_Gnome.png", false, 4, 7, false, suppliers.get(0)));
+		items.add(new Item("Sundial", (float)45.00, 95, "Sundial.png", false, 25, 10, false, suppliers.get(1)));
+		items.add(new Item("Jacuzzi", (float)399.95, 20, "Jacuzzi.png", false, 2, 2, false, suppliers.get(1)));
+		items.add(new Item("Statue", (float)75.50, 110, "Statue.png", false, 10, 12, false, suppliers.get(1)));
+	}
+	
+	private void addEmployees() {
+		employees.add(new Employee(users.get(0), roles.get(0)));
 	}
 	
 	// TODO - finish once component entities have been created

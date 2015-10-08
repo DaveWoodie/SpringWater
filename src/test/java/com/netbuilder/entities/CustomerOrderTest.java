@@ -17,7 +17,8 @@ public class CustomerOrderTest {
 	Customer c = new Customer(10,"01234", dp);
 	CustomerOrderStatus os = new CustomerOrderStatus();
 	Role r = new Role("Manager");
-	Employee e = new Employee(r);
+	User u = new User("password","Al","Stock","Al.Stock@NBGardens.com", true);
+	Employee e = new Employee(u, r);
 		
 	@Test
 	public void testIsCustomer() {
@@ -38,7 +39,7 @@ public class CustomerOrderTest {
 	@Test
 	public void testGetSetEmployee() {
 		CustomerOrder co = new CustomerOrder(); 
-		Employee ee = new Employee(r);
+		Employee ee = new Employee(u, r);
 		co.setEmployee(ee);
 		assertEquals("should be the same employee", ee, co.getEmployee());
 	}

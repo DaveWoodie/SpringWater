@@ -17,10 +17,10 @@ public class Employee {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int ID;
+	private User user;
 	@OneToOne
 	@PrimaryKeyJoinColumn(name = "idRole")
-	private Role Role;
+	private Role role;
 
 	/**
 	 * Constructor to create an instance of employee.
@@ -28,20 +28,21 @@ public class Employee {
 	 * @param ID : int of the employee's ID.
 	 * @param Role : Role of the employee's role.
 	 */
-	public Employee(Role Role) {
-		this.Role = Role;
+	public Employee(User user, Role Role) {
+		this.user = user;
+		this.role = Role;
 	}
 
-	public int getID() {
-		return ID;
+	public User getUser() {
+		return user;
 	}
 
 
 	public Role getRole() {
-		return Role;
+		return role;
 	}
 
 	public void setRole(Role Role) {
-		this.Role = Role;
+		this.role = Role;
 	}
 }

@@ -12,22 +12,27 @@ import org.junit.Test;
 
 public class EmployeeTest {
 	
-	static Role roleNotNull;
-	
-	@BeforeClass
-	public static void setUpRoleBeforeClass(){
-		
-		//Set up not null Role to test Employee class
-		roleNotNull = new Role("test");
-	}
+	private Role roleNotNull = new Role("test");
+	private User u = new User("password","Al","Stock","Al.Stock@NBGardens.com", true);
 	
 	
 	@Test
-	public void testSetRoleConstructor(){
+	public void testRoleInConstructor(){
 		
-		Employee e = new Employee(roleNotNull);
+		Employee e = new Employee(u, roleNotNull);
 		
 		//Testing if employee values are not null
-		assertSame("Employee role should be same as constructor rolw", roleNotNull, e.getRole());
+		assertSame("Employee role should be same as constructor role", roleNotNull, e.getRole());
+	}
+	
+
+	
+	@Test
+	public void testUserInConstructor(){
+		
+		Employee e = new Employee(u, roleNotNull);
+		
+		//Testing if employee values are not null
+		assertSame("Employee user should be same as constructor user", u, e.getUser());
 	}
 }
