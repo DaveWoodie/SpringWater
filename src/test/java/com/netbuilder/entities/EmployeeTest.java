@@ -18,7 +18,7 @@ public class EmployeeTest {
 	public static void setUpRoleBeforeClass(){
 		
 		//Set up not null Role to test Employee class
-		roleNotNull = new Role(0, "test");
+		roleNotNull = new Role("test");
 	}
 	
 	

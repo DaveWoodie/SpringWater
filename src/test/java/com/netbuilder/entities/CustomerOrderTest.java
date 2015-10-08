@@ -16,7 +16,7 @@ public class CustomerOrderTest {
 	Date dp = new Date();
 	Customer c = new Customer(10,"01234", dp);
 	CustomerOrderStatus os = new CustomerOrderStatus();
-	Role r = new Role(1, "Manager");
+	Role r = new Role("Manager");
 	Employee e = new Employee(r);
 		
 	@Test
