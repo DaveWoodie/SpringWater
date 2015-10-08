@@ -11,6 +11,7 @@ import java.util.Date;
 
 import org.junit.Test;
 
+@SuppressWarnings("deprecation")
 public class CustomerOrderTest {
 	Date dp = new Date();
 	Customer c = new Customer(10,"01234", dp);

@@ -9,12 +9,14 @@ import org.junit.Test;
  * @author tstacey
  * @date 07/10/2015
  */
+
+@SuppressWarnings("deprecation")
 public class AddressTest {
 
 	@Test
 	public void testEmptyConstructor() {
 		Address a = new Address();
-		assertNotNull("new Address entity should not be null",a);
+		assertNotNull("new Address entity should not be null", a);
 	}
 
 	@Test

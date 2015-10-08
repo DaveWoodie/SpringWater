@@ -67,7 +67,7 @@ public class ItemTest {
 //	public void testGetSalesRate() {
 //		Item i = new Item(iName, p, s, iLoc, dc, sr, psr, ip, ids);
 //		i.setSalesRate(3.0f);
-//		assertTrue(i.getSalesRate().equals(3.0f));
+//		assertEquals(i.getSalesRate(), 3.0f, 0.01f);
 //	}
 	
 	@Test

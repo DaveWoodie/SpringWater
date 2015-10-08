@@ -11,6 +11,8 @@ import org.junit.Test;
  * @author cboucher
  * @date 07/10/2015
  */
+
+@SuppressWarnings("deprecation")
 public class CustomerOrderLineTest {
 
 	private int quantity = 1;

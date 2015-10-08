@@ -11,6 +11,7 @@ import java.util.Date;
 
 import org.junit.Test;
 
+@SuppressWarnings("deprecation")
 public class PurchaseOrderTest {
 	
 	Date dP = new Date();
@@ -58,7 +59,6 @@ public class PurchaseOrderTest {
 	
 	@Test
 	public void setDateExpectedTest() {
-		
 		PurchaseOrder pO = new PurchaseOrder();
 		Date dE = new Date();
 		pO.setDateExpected(dE);
@@ -68,7 +68,6 @@ public class PurchaseOrderTest {
 	
 	@Test
 	public void setEmployeeTest() {
-		
 		PurchaseOrder pO = new PurchaseOrder();
 		Role r = new Role(1, "Employee");
 		Employee e = new Employee(1, r);
