@@ -24,7 +24,7 @@ public class ItemTest {
 	@Test
 	public void testIdItem() {
 		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier);
-		assertEquals("Item ID should be null", 0, i.idItem());
+		assertEquals("Item ID should be null", 0, i.getIdItem());
 	}
 
 	@Test
