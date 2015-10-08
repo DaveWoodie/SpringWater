@@ -5,8 +5,16 @@
 
 package com.netbuilder.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class PurchaseOrderStatus {
 
+	@Id
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int statusID;
 	private String status;
 	
@@ -24,7 +32,7 @@ public class PurchaseOrderStatus {
 	 * Method to get the Purchase Order Status.
 	 * @return Returns data type string.
 	 */
-	public String getCustOrderStatus() {
+	public String getPurchOrderStatus() {
 		return status;
 	}
 	

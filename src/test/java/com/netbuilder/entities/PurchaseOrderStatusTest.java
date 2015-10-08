@@ -1,3 +1,8 @@
+/**
+ * @author dwoodward
+ * @date 07/10/2015
+ */
+
 package com.netbuilder.entities;
 
 import static org.junit.Assert.*;
@@ -15,7 +20,7 @@ public class PurchaseOrderStatusTest {
 	@Test
 	public void testStatus() {
 		PurchaseOrderStatus p = new PurchaseOrderStatus();
-		assertNull(p.getCustOrderStatus());
+		assertNull(p.getPurchOrderStatus());
 	}
 
 }

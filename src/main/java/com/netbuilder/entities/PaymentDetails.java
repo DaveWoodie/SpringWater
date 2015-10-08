@@ -1,11 +1,3 @@
-///////////////////////////////
-//							 //
-//	Project SpringWater		 //
-//	Chris J W Walker		 //
-//	Payment details			 //
-//							 //
-///////////////////////////////
-
 /**
  * @author chrisjwwalker
  * @date 06/10/2015
@@ -13,35 +5,49 @@
 
 package com.netbuilder.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+
+@Entity
 public class PaymentDetails {
 	
 	//Attributes
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPaymentDetails;
 	private String cardType;
 	private String cardNumber;
 	private String name;
 	private String expiryDate;
+	
+	@ManyToOne
+	@PrimaryKeyJoinColumn(name="idCustomer")
 	private Customer idCustomer;
 	private Address idAddress;
 	
 	/**
 	 * Constructor to build instance of PaymentDetails, not null variables are cardType, cardNumber, name, expiryDate
 	 * 
-	 * @param cT : String; Type of card
-	 * @param cN : String; Number of on the card
-	 * @param n : String; Name on the card
-	 * @param eD : String; Expiry date on the card
-	 * @param idc : Customer; Customer associcated with the payment details
-	 * @param ida : Address; The billing address
+	 * @param cardType : String; Type of card
+	 * @param cardNumber : String; Number of on the card
+	 * @param name : String; Name on the card
+	 * @param expiryDate : String; Expiry date on the card
+	 * @param idCustomer : Customer; Customer associcated with the payment details
+	 * @param idAddress : Address; The billing address
 	 */
 	
-	public PaymentDetails(String cT, String cN, String n, String eD, Customer idc, Address ida) {
-		cardType = cT;
-		cardNumber = cN;
-		name = n;
-		expiryDate = eD;
-		idCustomer = idc;
-		idAddress = ida;
+	public PaymentDetails(String cardType, String cardName, String name, String expiryDate, Customer idCustomer, Address idAddress) {
+		this.cardType = cardType;
+		this.cardNumber = cardName;
+		this.name = name;
+		this.expiryDate = expiryDate;
+		this.idCustomer = idCustomer;
+		this.idAddress = idAddress;
 	}
 	
 	//Getters

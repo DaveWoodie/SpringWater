@@ -1,9 +1,15 @@
+/**
+ * @author dwoodward
+ * @date 07/10/2015
+ */
+
 package com.netbuilder.entities;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+@SuppressWarnings("deprecation")
 public class UserTest {
 
 //	private int i = 1;
@@ -12,6 +18,12 @@ public class UserTest {
 	private String sur = "s";
 	private String em = "e";
 	private boolean b = true;
+	
+	@Test
+	public void testConstructor() {
+		User u = new User();
+		assertNotNull(u);
+	}
 	
 	@Test
 	public void testGetEmployee() {

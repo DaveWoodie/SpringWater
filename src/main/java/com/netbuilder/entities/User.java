@@ -5,32 +5,49 @@
 
 package com.netbuilder.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class User {
 	
+	
+	@Id
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int iDnum;
+	
 	private String pWd;
 	private String forName;
 	private String surName;
 	private String email;
-	private boolean isEmp;
+	private boolean isEmployee;
 	
 	/**
 	 * Constructor to build an instance of User, not null variables are password, forename, surname, email address and if the User is an Employee.
 	 * @author dwoodward
 	 * @date 06/10/2015
 	 * @param pwd : String of the password of the user.
-	 * @param fore : String of the user's forename.
-	 * @param surn : String of the user's surname.
-	 * @param ema : String of the User's email.
-	 * @param emp : boolean 
+	 * @param foreName : String of the user's forename.
+	 * @param surName : String of the user's surname.
+	 * @param email : String of the User's email.
+	 * @param emp : Boolean to determine if the User is an Employee or not.
 	 */
-	public User(String pwd, String fore, String surn, String ema, boolean emp) {
+	public User(String pwd, String foreName, String surName, String email, boolean emp) {
 		
-		pWd = pwd;
-		forName = fore;
-		surName = surn;
-		email = ema;
-		isEmp = emp;		
+		this.pWd = pwd;
+		this.forName = foreName;
+		this.surName = surName;
+		this.email = email;
+		this.isEmployee = emp;		
+	}
+
+	/**
+	 * Default Constructor for testing purposes only.
+	 */
+	@Deprecated
+	public User() {
 	}
 	
 	/**
@@ -110,6 +127,6 @@ public class User {
 	 * @return Returns boolean data type.
 	 */
 	public boolean getIsEmployee() {
-		return isEmp;
+		return isEmployee;
 	}
 }
