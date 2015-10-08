@@ -42,10 +42,11 @@ public class DummyData {
 				
 		setUpBaseEntities();
 
-		addCustomers();
-		addCustomerOrders();
 		addSuppliers();
 		addItems();
+		addEmployees();
+		addCustomers();
+		addCustomerOrders();
 	}
 
 	
@@ -136,7 +137,9 @@ public class DummyData {
 	}
 	
 	private void addEmployees() {
-		employees.add(new Employee(users.get(0), roles.get(0)));
+		employees.add(new Employee(users.get(0), roles.get(3)));
+		employees.add(new Employee(users.get(1), roles.get(2)));
+		employees.add(new Employee(users.get(2), roles.get(4)));
 	}
 
 	
@@ -152,7 +155,7 @@ public class DummyData {
 	
 	// TODO - finish once component entities have been created
 	private void addCustomerOrders() {
-		Date datePlaced = makeDate("01/10/2015");
+		Date datePlaced = makeDate("01-10-2015");
 	}
 }
 
