@@ -20,7 +20,7 @@ public class CustomerOrderTest {
 		
 	@Test
 	public void testIsCustomer() {
-		CustomerOrder co = new CustomerOrder(dp,c,os,e);
+		CustomerOrder co = new CustomerOrder(dp,c,os,e,false);
 		assertNotNull(co);
 	}
 	
@@ -68,19 +68,19 @@ public class CustomerOrderTest {
 	
 	@Test
 	public void testGetDatePlaced() {
-		CustomerOrder co = new CustomerOrder(dp,c,os,e);
+		CustomerOrder co = new CustomerOrder(dp,c,os,e,false);
 		assertEquals("should be the same date placed", dp, co.getDatePlaced());
 	}
 	
 	@Test
 	public void testGetCustomer() {
-		CustomerOrder co = new CustomerOrder(dp,c,os,e);
+		CustomerOrder co = new CustomerOrder(dp,c,os,e,false);
 		assertEquals("should be the same customer", c, co.getCustomer());
 	}
 	
 	@Test
 	public void testGet() {
-		CustomerOrder co = new CustomerOrder(dp,c,os,e);
+		CustomerOrder co = new CustomerOrder(dp,c,os,e,false);
 		assertEquals("should be the same date placed", dp, co.getDatePlaced());
 	}
 }

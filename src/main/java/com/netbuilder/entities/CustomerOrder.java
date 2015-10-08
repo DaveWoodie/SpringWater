@@ -31,6 +31,7 @@ public class CustomerOrder
 	@ManyToOne
 	@PrimaryKeyJoinColumn (name="idEmployee")
 	private Employee employee;
+	private boolean isPaid;
 	
 	/**
 	 * Constructor to build an instance of Customer Order
@@ -41,11 +42,12 @@ public class CustomerOrder
 	 * @param orderStatus
 	 * @param employee
 	 */
-	public CustomerOrder(Date datePlaced, Customer customer, CustomerOrderStatus orderStatus, Employee employee) {
+	public CustomerOrder(Date datePlaced, Customer customer, CustomerOrderStatus orderStatus, Employee employee, boolean isPaid) {
 		this.datePlaced = datePlaced;
 		this.customer = customer;
 		this.customerOrderStatus = orderStatus;
 		this.employee = employee;
+		this.isPaid = isPaid;
 	}
 	
 	/**
@@ -82,6 +84,10 @@ public class CustomerOrder
 		return customerOrderStatus;
 	}
 	
+	public boolean hasBeenPaid() {
+		return isPaid;
+	}
+	
 	public void setDateShipped(Date dateShipped) {
 		this.dateShipped = dateShipped;
 	}
@@ -92,5 +98,9 @@ public class CustomerOrder
 	
 	public void setOrderStatus(CustomerOrderStatus orderStatus) {
 		this.customerOrderStatus = orderStatus;
+	}
+	
+	public void setPaid(boolean isPaid) {
+		this.isPaid = isPaid;
 	}
 }
