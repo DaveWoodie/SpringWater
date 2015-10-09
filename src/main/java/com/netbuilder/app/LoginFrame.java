@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -38,7 +39,7 @@ public class LoginFrame extends JFrame{
 		setLocationRelativeTo(null);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(300, 300);
+		getContentPane().setSize(350, 300);
 	}
 	
 	public void createUI() 
@@ -47,10 +48,13 @@ public class LoginFrame extends JFrame{
 		
 		//background panel
 		panelBackground = new JPanel();
+		panelBackground.setLayout(null);
 		panelBackground.setBackground(Color.white);
 		
 		//UserName panel
-		JPanel panelUsername = new JPanel();
+		JPanel panelUsername = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		panelUsername.setBorder(BorderFactory.createLineBorder(Color.black));
+		panelUsername.setBounds(panelLogo.getBounds().x, panelLogo.getBounds().y + panelLogo.getHeight(), 200, 50);
 		panelUsername.setBackground(Color.white);
 		labelUsername = new JLabel("Username : ");
 		textUsername = new JTextField(15);
@@ -58,7 +62,9 @@ public class LoginFrame extends JFrame{
 		panelUsername.add(textUsername);
 		
 		//Password panel
-		JPanel panelPassword = new JPanel();
+		JPanel panelPassword = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		panelPassword.setBorder(BorderFactory.createLineBorder(Color.black));
+		panelPassword.setBounds(panelUsername.getBounds().x, panelUsername.getBounds().y + panelUsername.getHeight(), 200, 50);
 		panelPassword.setBackground(Color.white);
 		labelPassword = new JLabel("Password : ");
 		textPassword = new JPasswordField(15);
@@ -66,7 +72,9 @@ public class LoginFrame extends JFrame{
 		panelPassword.add(textPassword);
 		
 		//Login button panel
-		JPanel panelLogin = new JPanel();
+		JPanel panelLogin = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		panelLogin.setBorder(BorderFactory.createLineBorder(Color.black));
+		panelLogin.setBounds(panelPassword.getBounds().x, panelPassword.getBounds().y + panelPassword.getHeight(), 200, 50);
 		panelLogin.setBackground(Color.white);
 		buttonLogin = new JButton("Login");
 		panelLogin.add(buttonLogin);
@@ -85,14 +93,17 @@ public class LoginFrame extends JFrame{
 		setSize(300, 300);
 	}
 	
+
 	public void panelLogo()
 	{
-		panelLogo = new JPanel();
-		panelLogo.setSize(300, 300);
+		panelLogo = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		panelLogo.setBorder(BorderFactory.createLineBorder(Color.black));
+		panelLogo.setBounds(10, 10, 110, 50);
+		panelLogo.setSize(205, 110);
 		panelLogo.setBackground(Color.white);
 		
 		try{
-			BufferedImage Logo = ImageIO.read(new File("src/main/Resources/logoExample.png"));
+			BufferedImage Logo = ImageIO.read(new File("src/main/Resources/logoPlaceholder.png"));
 			JLabel labelLogo = new JLabel(new ImageIcon(Logo));
 			panelLogo.add(labelLogo);
 		}

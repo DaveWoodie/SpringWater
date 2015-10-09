@@ -24,7 +24,6 @@ public class MainFrame extends JFrame{
 	}
 	
 	public void initUI() {
-		
 		base.setLayout(new BoxLayout(base, BoxLayout.Y_AXIS));
 		
 		//test labels for panel generation
