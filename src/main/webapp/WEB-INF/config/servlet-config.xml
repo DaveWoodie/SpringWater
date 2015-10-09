@@ -2,11 +2,14 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
  	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  	   xmlns:context="http://www.springframework.org/schema/context"
+ 	   xmlns:p="http://www.springframework.org/schema/p"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans
  						   http://www.springframework.org/schema/beans/spring-beans.xsd
   	 					   http://www.springframework.org/schema/context
  						   http://www.springframework.org/schema/context/spring-context.xsd">
-	<context:component-scan base-package="org.netbuilder"/>
+	
+	<context:component-scan base-package="com.netbuilder"/>
+	
 	<bean id="dataSource" 
 	      class="org.apache.commons.dbcp.BasicDataSource"
 	      destroy-method="close">
@@ -22,23 +25,24 @@
   		<constructor-arg name="databaseName" value="${mongodb.dbname}"/>
   		<constructor-arg name="userCredentials" ref="mCredentials"/>
 	</bean>
+	
 	<bean id="mCredentials" class="org.springframework.data.authentication.UserCredentials">
   		<property name="username" value="#{mongoURI.name}" />
   		<property name="password" value="#{new java.lang.String(mongoURI.password)}" />
 	</bean>
+	
 	<bean class="com.mongodb.MongoURI" id="mongoURI">
   	    <constructor-arg value="${mongodb.url}"  />
 	</bean>
+	
 	<bean class="com.mongodb.Mongo" id="mongo">
    	    <constructor-arg ref="mongoURI" />
 	</bean>
+	
     <bean id="viewResolver"
-    	  class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
-    	  <property name="prefix">
-    	  	<value>/WEB-INF/pages/</value>
-    	  </property>
-    	  <property name="suffix">
-    	  	<value>.jsp</value>
-    	  </property>
+    	  class="org.springframework.web.servlet.view.InternalResourceViewResolver" 
+    	  p:prefix="/WEB-INF/jsp/"
+    	  p:suffix=".jsp"
+    	  p:order="2">
     </bean>
 </beans>
