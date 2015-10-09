@@ -3,6 +3,7 @@ package com.netbuilder.entities;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -14,7 +15,6 @@ public class DummyData {
 	
 	// Base entities (no other entities within them)
 	private ArrayList<Address> addresses = new ArrayList<Address>();
-	private ArrayList<Customer> customers = new ArrayList<Customer>();
 	private ArrayList<CustomerOrderStatus> custOrderStatuses = new ArrayList<CustomerOrderStatus>();
 	private ArrayList<PurchaseOrderStatus> purchaseOrderStatuses = new ArrayList<PurchaseOrderStatus>();
 	private ArrayList<User> users = new ArrayList<User>();
@@ -23,6 +23,7 @@ public class DummyData {
 	private ArrayList<Supplier> suppliers = new ArrayList<Supplier>();
 	private ArrayList<Item> items = new ArrayList<Item>();
 	private ArrayList<Employee> employees = new ArrayList<Employee>();
+	private ArrayList<Customer> customers = new ArrayList<Customer>();
 	
 	private ArrayList<CustomerOrder> custOrders = new ArrayList<CustomerOrder>();
 	private ArrayList<CustomerOrderLine> custOrderLines = new ArrayList<CustomerOrderLine>();
@@ -46,13 +47,13 @@ public class DummyData {
 		addItems();
 		addEmployees();
 		addCustomers();
+		addAddresses();
 		addCustomerOrders();
 	}
 
 	
 	private void setUpBaseEntities() {
 		
-		addAddresses();
 		addCustomerOrderStatuses();
 		addPurchaseOrderStatuses();
 		addRoles();
@@ -70,12 +71,6 @@ public class DummyData {
 		}
 	}
 	
-	private void addAddresses() {
-		addresses.add(new Address("NETbuilder LTD", "5th Floor, Anchorage 1", "Manchester", "Lancs", "M50 3YJ"));
-		addresses.add(new Address("16 Maple View", "Lovelyside", "Upper Slaughter", "Gloucestershire", "GL54 2JB"));
-		addresses.add(new Address("Garden Bulk Supplies LTD", "Unit 4, Rose Trading Estate", "Weston Super-Mare", "North Somerset", "BS23 1TT"));
-		addresses.add(new Address("Happening Gardens", "Telford Trading Estate", "Telford", "Shropshire", "TF7 1QG"));
-	}
 	
 	
 	private void addCustomerOrderStatuses() {
@@ -115,6 +110,7 @@ public class DummyData {
 		users.add(new User("password","India","Violet-Gumtree","IndiaVGums@hotmail.com", false));
 	}
 	
+	
 	private void addSuppliers() {
 		Supplier s = new Supplier("Garden Bulk Supplies LTD", addresses.get(2));
 		s.setTelephone("01447308593");
@@ -150,7 +146,22 @@ public class DummyData {
 		
 		dob = makeDate("15-06-1965");
 		customers.add(new Customer(users.get(3), 5000, "01612248935", dob));
+
+		dob = makeDate("24-04-1989");
+		customers.add(new Customer(users.get(6), 5000, "01527498653", dob));
 		
+	}
+	
+
+
+	private void addAddresses() {
+		// add customer addresses
+		addresses.add(new Address(customers.get(0), new ArrayList<String>(Arrays.asList("NETbuilder LTD", "5th Floor, Anchorage 1")), "Manchester", "Lancs", "M50 3YJ"));
+		addresses.add(new Address(customers.get(2), new ArrayList<String>(Arrays.asList("16 Maple View", "Lovelyside")), "Upper Slaughter", "Gloucestershire", "GL54 2JB"));
+		
+		// add supplier addresses
+		addresses.add(new Address(new ArrayList<String>(Arrays.asList("Garden Bulk Supplies LTD", "Unit 4, Rose Trading Estate")), "Weston Super-Mare", "North Somerset", "BS23 1TT"));
+		addresses.add(new Address(new ArrayList<String>(Arrays.asList("Happening Gardens", "Telford Trading Estate")), "Telford", "Shropshire", "TF7 1QG"));
 	}
 	
 	// TODO - finish once component entities have been created
