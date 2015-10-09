@@ -18,7 +18,7 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer{
 	public void onStartup(ServletContext container) throws ServletException {
 		ServletRegistration.Dynamic registration = container.addServlet("dispatcher", new DispatcherServlet());
 		registration.setLoadOnStartup(1);
-		registration.addMapping("/WebApp/*"); //servlet name in web.xml
+		registration.addMapping("/servlet-config/*");
 	}
 	
 	
