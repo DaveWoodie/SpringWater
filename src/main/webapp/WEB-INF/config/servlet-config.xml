@@ -75,18 +75,9 @@
 	<bean class="com.mongodb.Mongo" id="mongo">
    	    <constructor-arg ref="mongoURI" />
 	</bean>
-	
-<<<<<<< HEAD:src/main/Resources/servlet-config.xml
-=======
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-	p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" p:order="1">
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		  p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" p:order="1">
 	</bean>
 
-    <bean id="viewResolver"
-    	  class="org.springframework.web.servlet.view.InternalResourceViewResolver" 
-    	  p:prefix="WEB-INF/jsp/"
-    	  p:suffix=".jsp"
-    	  p:order="1">
-    </bean>
->>>>>>> e8af4794ce295d20ef8de60957770598eb289a84:src/main/webapp/WEB-INF/config/servlet-config.xml
 </beans>
