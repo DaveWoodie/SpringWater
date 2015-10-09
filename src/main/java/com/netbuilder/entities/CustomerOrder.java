@@ -96,7 +96,7 @@ public class CustomerOrder
 	}
 	
 	public void setDateShipped(Date dateShipped) {
-		this.dateShipped = dateShipped;
+		this.dateShipped = new Date(dateShipped.getTime());
 	}
 
 	public void setEmployee(Employee employee) {

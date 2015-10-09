@@ -1,5 +1,6 @@
 package com.netbuilder.entities;
 
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
@@ -12,9 +13,10 @@ import javax.persistence.PrimaryKeyJoinColumn;
 public class CustomerOrderLine {
 
 	private int quantity;
-	@ManyToOne
-	@PrimaryKeyJoinColumn(name = "idItem")
+	@Id
 	private Item item;
+	
+	@Id
 	@ManyToOne
 	@PrimaryKeyJoinColumn(name = "idCustomerOrder")
 	private CustomerOrder customerOrder;
