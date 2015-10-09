@@ -16,10 +16,9 @@ import org.springframework.data.annotation.Id;
 
 public class WishList {
 	
-	// Wish list line attributes
-	private ArrayList<Item> items;
 	@Id
 	private Customer customer;
+	private ArrayList<Item> items;
 	
 	/**
 	 * @Class constructor initialises Wish List Line attributes

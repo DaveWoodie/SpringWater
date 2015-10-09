@@ -4,7 +4,8 @@ public class RunGUI {
 	
 	public static void main(String[] args)
 	{
-		 MainFrame f = new MainFrame();
+		//Login testing
+		 LoginFrame f = new LoginFrame();
 	}
 
 }
