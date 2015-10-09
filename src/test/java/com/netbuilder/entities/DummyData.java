@@ -14,7 +14,6 @@ import java.util.Date;
 public class DummyData {
 	
 	// Base entities (no other entities within them)
-	private ArrayList<Address> addresses = new ArrayList<Address>();
 	private ArrayList<CustomerOrderStatus> custOrderStatuses = new ArrayList<CustomerOrderStatus>();
 	private ArrayList<PurchaseOrderStatus> purchaseOrderStatuses = new ArrayList<PurchaseOrderStatus>();
 	private ArrayList<User> users = new ArrayList<User>();
@@ -24,13 +23,13 @@ public class DummyData {
 	private ArrayList<Item> items = new ArrayList<Item>();
 	private ArrayList<Employee> employees = new ArrayList<Employee>();
 	private ArrayList<Customer> customers = new ArrayList<Customer>();
-	
+	private ArrayList<Address> addresses = new ArrayList<Address>();
 	private ArrayList<CustomerOrder> custOrders = new ArrayList<CustomerOrder>();
 	private ArrayList<CustomerOrderLine> custOrderLines = new ArrayList<CustomerOrderLine>();
-	private ArrayList<PaymentDetails> payments = new ArrayList<PaymentDetails>();
 	private ArrayList<PurchaseOrder> purchaseOrders = new ArrayList<PurchaseOrder>();
 	private ArrayList<PurchaseOrderLine> purchaseOrderLines = new ArrayList<PurchaseOrderLine>();
-	private ArrayList<WishList> wishListLines = new ArrayList<WishList>();
+	private ArrayList<WishList> wishLists = new ArrayList<WishList>();
+	
 	
 	private SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy");
 	
@@ -43,12 +42,16 @@ public class DummyData {
 				
 		setUpBaseEntities();
 
+		addCustomers();
+		addAddresses();
 		addSuppliers();
 		addItems();
 		addEmployees();
-		addCustomers();
-		addAddresses();
 		addCustomerOrders();
+		addCustomerOrderLines();
+		addPurchaseOrders();
+		addPurchaseOrderLines();
+		addWishLists();
 	}
 
 	
@@ -109,7 +112,31 @@ public class DummyData {
 		users.add(new User("password","Hannah","Applebaggsby","HannahTheSpanner@hotmail.com", false));
 		users.add(new User("password","India","Violet-Gumtree","IndiaVGums@hotmail.com", false));
 	}
+
+	private void addCustomers() {
+
+		Date dob = makeDate("11-01-1990");
+		customers.add(new Customer(users.get(4), 5000, "07958046028", dob));
+		
+		dob = makeDate("15-06-1965");
+		customers.add(new Customer(users.get(3), 5000, "01612248935", dob));
+
+		dob = makeDate("24-04-1989");
+		customers.add(new Customer(users.get(6), 5000, "01527498653", dob));
+		
+	}
 	
+
+
+	private void addAddresses() {
+		// add customer addresses
+		addresses.add(new Address(customers.get(0), new ArrayList<String>(Arrays.asList("NETbuilder LTD", "5th Floor, Anchorage 1")), "Manchester", "Lancs", "M50 3YJ"));
+		addresses.add(new Address(customers.get(2), new ArrayList<String>(Arrays.asList("16 Maple View", "Lovelyside")), "Upper Slaughter", "Gloucestershire", "GL54 2JB"));
+		
+		// add supplier addresses
+		addresses.add(new Address(new ArrayList<String>(Arrays.asList("Garden Bulk Supplies LTD", "Unit 4, Rose Trading Estate")), "Weston Super-Mare", "North Somerset", "BS23 1TT"));
+		addresses.add(new Address(new ArrayList<String>(Arrays.asList("Happening Gardens", "Telford Trading Estate")), "Telford", "Shropshire", "TF7 1QG"));
+	}
 	
 	private void addSuppliers() {
 		Supplier s = new Supplier("Garden Bulk Supplies LTD", addresses.get(2));
@@ -139,35 +166,62 @@ public class DummyData {
 	}
 
 	
-	private void addCustomers() {
-
-		Date dob = makeDate("11-01-1990");
-		customers.add(new Customer(users.get(4), 5000, "07958046028", dob));
-		
-		dob = makeDate("15-06-1965");
-		customers.add(new Customer(users.get(3), 5000, "01612248935", dob));
-
-		dob = makeDate("24-04-1989");
-		customers.add(new Customer(users.get(6), 5000, "01527498653", dob));
-		
-	}
 	
-
-
-	private void addAddresses() {
-		// add customer addresses
-		addresses.add(new Address(customers.get(0), new ArrayList<String>(Arrays.asList("NETbuilder LTD", "5th Floor, Anchorage 1")), "Manchester", "Lancs", "M50 3YJ"));
-		addresses.add(new Address(customers.get(2), new ArrayList<String>(Arrays.asList("16 Maple View", "Lovelyside")), "Upper Slaughter", "Gloucestershire", "GL54 2JB"));
-		
-		// add supplier addresses
-		addresses.add(new Address(new ArrayList<String>(Arrays.asList("Garden Bulk Supplies LTD", "Unit 4, Rose Trading Estate")), "Weston Super-Mare", "North Somerset", "BS23 1TT"));
-		addresses.add(new Address(new ArrayList<String>(Arrays.asList("Happening Gardens", "Telford Trading Estate")), "Telford", "Shropshire", "TF7 1QG"));
-	}
-	
-	// TODO - finish once component entities have been created
 	private void addCustomerOrders() {
 		Date datePlaced = makeDate("01-10-2015");
+		custOrders.add(new CustomerOrder(datePlaced, customers.get(1), custOrderStatuses.get(0), employees.get(2), false, addresses.get(0)));
+		datePlaced = makeDate("05-10-2015");
+		custOrders.add(new CustomerOrder(datePlaced, customers.get(0), custOrderStatuses.get(1), employees.get(1), false, addresses.get(1)));
+		
 	}
+	
+	private void addCustomerOrderLines() {
+		custOrderLines.add(new CustomerOrderLine(5, items.get(0), custOrders.get(0)));
+		custOrderLines.add(new CustomerOrderLine(1, items.get(2), custOrders.get(0)));
+		custOrderLines.add(new CustomerOrderLine(5, items.get(1), custOrders.get(0)));
+		custOrderLines.add(new CustomerOrderLine(3, items.get(5), custOrders.get(0)));
+		custOrderLines.add(new CustomerOrderLine(1, items.get(4), custOrders.get(0)));
+
+		custOrderLines.add(new CustomerOrderLine(1, items.get(3), custOrders.get(1)));
+		custOrderLines.add(new CustomerOrderLine(10, items.get(1), custOrders.get(1)));
+		custOrderLines.add(new CustomerOrderLine(3, items.get(2), custOrders.get(1)));
+		custOrderLines.add(new CustomerOrderLine(1, items.get(5), custOrders.get(1)));
+		
+	}
+	
+	private void addPurchaseOrders() {
+		Date d = makeDate("28-09-2015");
+		purchaseOrders.add(new PurchaseOrder(d, employees.get(0), purchaseOrderStatuses.get(1), suppliers.get(0)));
+		
+		d = makeDate("08-10-2015");
+		purchaseOrders.add(new PurchaseOrder(d, employees.get(0), purchaseOrderStatuses.get(0), suppliers.get(1)));
+	}
+	
+	private void addPurchaseOrderLines() {
+		purchaseOrderLines.add(new PurchaseOrderLine(200, items.get(0), purchaseOrders.get(0)));
+		purchaseOrderLines.add(new PurchaseOrderLine(250, items.get(1), purchaseOrders.get(0)));
+		purchaseOrderLines.add(new PurchaseOrderLine(180, items.get(2), purchaseOrders.get(0)));
+		
+
+		purchaseOrderLines.add(new PurchaseOrderLine(50, items.get(3), purchaseOrders.get(1)));
+		purchaseOrderLines.add(new PurchaseOrderLine(15, items.get(4), purchaseOrders.get(1)));
+		purchaseOrderLines.add(new PurchaseOrderLine(100, items.get(5), purchaseOrders.get(1)));
+		
+	}
+	
+	private void addWishLists() {
+		ArrayList<Item> listItems = new ArrayList<Item>(Arrays.asList(items.get(0), items.get(1), items.get(4)));
+		wishLists.add(new WishList(customers.get(0), listItems));
+		
+		wishLists.add(new WishList(customers.get(1)));
+		
+
+		listItems = new ArrayList<Item>(Arrays.asList(items.get(2), items.get(4), items.get(5)));
+		wishLists.add(new WishList(customers.get(2), listItems));
+		
+		
+	}
+	
 }
 
 

@@ -2,8 +2,6 @@ package com.netbuilder.entities;
 
 import java.util.Date;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -39,7 +37,7 @@ public class Customer {
 		this.user = user;
 		this.credit = credit;
 		this.phoneNumber = phoneNumber;
-		this.dob = dob;
+		this.dob = new Date(dob.getTime());
 	}
 	
 	@Deprecated

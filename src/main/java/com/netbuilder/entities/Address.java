@@ -8,7 +8,7 @@ import org.springframework.data.annotation.Id;
 
 
 /**
- * Class to hold all of the details for an address. Used for both customer addresses, supplier addresses and payment addresses
+ * Class to hold all of the details for an address. Used for both customer addresses and supplier addresses
  * @author tstacey
  * @date 06/10/2015
  */
