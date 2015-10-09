@@ -2,14 +2,12 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
  	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  	   xmlns:context="http://www.springframework.org/schema/context"
- 	   xmlns:p="http://www.springframework.org/schema/p"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans
  						   http://www.springframework.org/schema/beans/spring-beans.xsd
   	 					   http://www.springframework.org/schema/context
  						   http://www.springframework.org/schema/context/spring-context.xsd">
 	
 	<context:component-scan base-package="com.netbuilder"/>
-	
 	<bean id="dataSource" 
 	      class="org.apache.commons.dbcp.BasicDataSource"
 	      destroy-method="close">
@@ -39,10 +37,17 @@
    	    <constructor-arg ref="mongoURI" />
 	</bean>
 	
+<<<<<<< HEAD:src/main/Resources/servlet-config.xml
+=======
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+	p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" p:order="1">
+	</bean>
+
     <bean id="viewResolver"
     	  class="org.springframework.web.servlet.view.InternalResourceViewResolver" 
     	  p:prefix="/WEB-INF/jsp/"
     	  p:suffix=".jsp"
     	  p:order="2">
     </bean>
+>>>>>>> e8af4794ce295d20ef8de60957770598eb289a84:src/main/webapp/WEB-INF/config/servlet-config.xml
 </beans>
