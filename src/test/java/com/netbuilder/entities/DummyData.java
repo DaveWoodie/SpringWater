@@ -42,16 +42,17 @@ public class DummyData {
 				
 		setUpBaseEntities();
 
-		addCustomerOrders();
 		addSuppliers();
 		addItems();
+		addEmployees();
+		addCustomers();
+		addCustomerOrders();
 	}
 
 	
 	private void setUpBaseEntities() {
 		
 		addAddresses();
-		addCustomers();
 		addCustomerOrderStatuses();
 		addPurchaseOrderStatuses();
 		addRoles();
@@ -76,15 +77,6 @@ public class DummyData {
 		addresses.add(new Address("Happening Gardens", "Telford Trading Estate", "Telford", "Shropshire", "TF7 1QG"));
 	}
 	
-	private void addCustomers() {
-
-		Date dob = makeDate("11-01-1990");
-		customers.add(new Customer(5000, "07958046028", dob));
-		
-		dob = makeDate("15-06-1965");
-		customers.add(new Customer(5000, "01612248935", dob));
-		
-	}
 	
 	private void addCustomerOrderStatuses() {
 		custOrderStatuses.add(new CustomerOrderStatus("Placed"));
@@ -123,7 +115,6 @@ public class DummyData {
 		users.add(new User("password","India","Violet-Gumtree","IndiaVGums@hotmail.com", false));
 	}
 	
-	
 	private void addSuppliers() {
 		Supplier s = new Supplier("Garden Bulk Supplies LTD", addresses.get(2));
 		s.setTelephone("01447308593");
@@ -146,12 +137,25 @@ public class DummyData {
 	}
 	
 	private void addEmployees() {
-		employees.add(new Employee(users.get(0), roles.get(0)));
+		employees.add(new Employee(users.get(0), roles.get(3)));
+		employees.add(new Employee(users.get(1), roles.get(2)));
+		employees.add(new Employee(users.get(2), roles.get(4)));
+	}
+
+	
+	private void addCustomers() {
+
+		Date dob = makeDate("11-01-1990");
+		customers.add(new Customer(users.get(4), 5000, "07958046028", dob));
+		
+		dob = makeDate("15-06-1965");
+		customers.add(new Customer(users.get(3), 5000, "01612248935", dob));
+		
 	}
 	
 	// TODO - finish once component entities have been created
 	private void addCustomerOrders() {
-		Date datePlaced = makeDate("01/10/2015");
+		Date datePlaced = makeDate("01-10-2015");
 	}
 }
 

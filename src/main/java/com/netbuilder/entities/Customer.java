@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 /**
  * 
@@ -17,8 +19,10 @@ public class Customer {
 
 	// Customer attributes
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idCustomer;
+	@OneToOne
+	@PrimaryKeyJoinColumn(name = "idUser")
+	private User user;
+	
 	private Date dob;
 	private float credit;
 	private String phoneNumber;
@@ -30,8 +34,9 @@ public class Customer {
 	 * @param phoneNumber
 	 * @param dob
 	 */
-	public Customer(float credit, String phoneNumber, Date dob) {
+	public Customer(User user, float credit, String phoneNumber, Date dob) {
 		// Initialise attributes
+		this.user = user;
 		this.credit = credit;
 		this.phoneNumber = phoneNumber;
 		this.dob = dob;
@@ -42,10 +47,10 @@ public class Customer {
 	}
 
 	/**
-	 * @Method is an accessor for the unique customer ID
+	 * @Method is an accessor for the User associated with the Customer
 	 */
-	public int getIdCustomer() {
-		return idCustomer;
+	public User getUser() {
+		return user;
 	}
 
 	/**
@@ -112,8 +117,8 @@ public class Customer {
 	 * @param idCustomer
 	 *            : is the integer number for the customers unique ID number.
 	 */
-	public void setIdCustomer(int idCustomer) {
-		this.idCustomer = idCustomer;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	//Should never be able to set the customers ID indiviudally therefore I have commented this out. 
 //	/**
