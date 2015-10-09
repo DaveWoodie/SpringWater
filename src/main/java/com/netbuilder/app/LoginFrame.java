@@ -26,10 +26,6 @@ public class LoginFrame extends JFrame{
 	private JPasswordField textPassword;
 	private JButton buttonLogin;
 	
-	private Color blue = new Color(37, 172, 227);
-	
-	private static JFrame j;
-	
 	public LoginFrame()
 	{
 		initUI();
@@ -43,12 +39,8 @@ public class LoginFrame extends JFrame{
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(300, 300);
-		
 	}
 	
-	/**
-	 * 
-	 */
 	public void createUI() 
 	{
 		panelLogo();
@@ -61,7 +53,6 @@ public class LoginFrame extends JFrame{
 		JPanel panelUsername = new JPanel();
 		panelUsername.setBackground(Color.white);
 		labelUsername = new JLabel("Username : ");
-		labelUsername.setForeground(blue);
 		textUsername = new JTextField(15);
 		panelUsername.add(labelUsername);
 		panelUsername.add(textUsername);
@@ -70,7 +61,6 @@ public class LoginFrame extends JFrame{
 		JPanel panelPassword = new JPanel();
 		panelPassword.setBackground(Color.white);
 		labelPassword = new JLabel("Password : ");
-		labelPassword.setForeground(blue);
 		textPassword = new JPasswordField(15);
 		panelPassword.add(labelPassword);
 		panelPassword.add(textPassword);
