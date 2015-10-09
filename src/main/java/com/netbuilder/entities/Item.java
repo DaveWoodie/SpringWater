@@ -55,6 +55,17 @@ public class Item {
 	public Item() {
 		
 	}
+	
+	/**
+	 * Constructor that sets the Item's ID and name. Used in testing WishList's findItemByID() Method
+	 * @param itemID
+	 * @param itemName
+	 */
+	@Deprecated
+	public Item(int itemID, String itemName) {
+		this.idItem = itemID;
+		this.itemName = itemName;
+	}
 
     //Getters
 	
@@ -62,7 +73,7 @@ public class Item {
 	 * Method to get the items ID
 	 * @return Returns int data type
 	 */
-	public int idItem() {
+	public int getIdItem() {
 		return idItem;
 	}
 	

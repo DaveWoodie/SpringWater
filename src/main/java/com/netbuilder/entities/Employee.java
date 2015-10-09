@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
@@ -16,11 +17,12 @@ import javax.persistence.PrimaryKeyJoinColumn;
 public class Employee {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int ID;
 	@OneToOne
-	@PrimaryKeyJoinColumn(name = "idRole")
-	private Role Role;
+	@PrimaryKeyJoinColumn(name = "idUser")
+	private User user;
+	@ManyToOne
+	@PrimaryKeyJoinColumn(name = "idEmployeeRole")
+	private Role role;
 
 	/**
 	 * Constructor to create an instance of employee.
@@ -28,24 +30,21 @@ public class Employee {
 	 * @param ID : int of the employee's ID.
 	 * @param Role : Role of the employee's role.
 	 */
-	public Employee(int ID, Role Role) {
-		this.ID = ID;
-		this.Role = Role;
+	public Employee(User user, Role Role) {
+		this.user = user;
+		this.role = Role;
 	}
 
-	public int getID() {
-		return ID;
+	public User getUser() {
+		return user;
 	}
 
-	public void setID(int ID) {
-		this.ID = ID;
-	}
 
 	public Role getRole() {
-		return Role;
+		return role;
 	}
 
 	public void setRole(Role Role) {
-		this.Role = Role;
+		this.role = Role;
 	}
 }

@@ -12,39 +12,27 @@ import org.junit.Test;
 
 public class EmployeeTest {
 	
-	static Role roleNotNull;
+	private Role roleNotNull = new Role("test");
+	private User u = new User("password","Al","Stock","Al.Stock@NBGardens.com", true);
 	
-	@BeforeClass
-	public static void setUpRoleBeforeClass(){
-		
-		//Set up not null Role to test Employee class
-		roleNotNull = new Role(0, "test");
-	}
 	
 	@Test
-	public void testGetEmployeeID(){
+	public void testRoleInConstructor(){
 		
-		Employee e = new Employee(0, roleNotNull);
-		
-		assertEquals("Employee ID should be 0", 0, e.getID());
-	}
-	
-	@Test
-	public void testSetEmployeeID(){
-		
-		Employee e = new Employee(0, roleNotNull);
-		
-		e.setID(1);
-		assertEquals("Employee ID should return 1", 1, e.getID());
-	}
-	
-	@Test
-	public void testToCheckNotNullValueInEmployee(){
-		
-		Employee e = new Employee(0, roleNotNull);
+		Employee e = new Employee(u, roleNotNull);
 		
 		//Testing if employee values are not null
-		assertNotNull(roleNotNull);
-		assertNotNull(e.getID());
+		assertSame("Employee role should be same as constructor role", roleNotNull, e.getRole());
+	}
+	
+
+	
+	@Test
+	public void testUserInConstructor(){
+		
+		Employee e = new Employee(u, roleNotNull);
+		
+		//Testing if employee values are not null
+		assertSame("Employee user should be same as constructor user", u, e.getUser());
 	}
 }

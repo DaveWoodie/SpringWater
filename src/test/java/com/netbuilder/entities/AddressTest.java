@@ -2,6 +2,9 @@ package com.netbuilder.entities;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.junit.Test;
 
 /**
@@ -9,79 +12,58 @@ import org.junit.Test;
  * @author tstacey
  * @date 07/10/2015
  */
+
+@SuppressWarnings("deprecation")
 public class AddressTest {
 
+	ArrayList<String> addressLines = new ArrayList<String>(Arrays.asList("NETbuilder LTD", "5th Floor", "Anchorage 1"));
+	Address fullAddress = new Address(new Customer(), addressLines, "Manchester", "Lancs", "M50 3YJ");
+	Address partialAddress = new Address(new Customer(), addressLines, "Manchester", "M50 3YJ");
+	
 	@Test
 	public void testEmptyConstructor() {
 		Address a = new Address();
-		assertNotNull("new Address entity should not be null",a);
+		assertNotNull("new Address entity should not be null", a);
 	}
 
 	@Test
-	public void testFullConstructorAddressOne() {
-		Address a = new Address("NETbuilder LTD", "5th Floor, Anchorage 1", "Manchester", "Lancs", "M50 3YJ");
-		assertEquals("Address Line one should be 'NETbuilder LTD'", a.getAddressLineOne(), "NETbuilder LTD");
-	}
-
-	@Test
-	public void testFullConstructorAddressTwo() {
-		Address a = new Address("NETbuilder LTD", "5th Floor, Anchorage 1", "Manchester", "Lancs", "M50 3YJ");
-		assertEquals("Address line two should be '5th Floor, Anchorage 1'", a.getAddressLineTwo(), "5th Floor, Anchorage 1");
+	public void testFullConstructorAddressLines() {
+		assertEquals("2nd line of full address should be '5th Floor'", fullAddress.getAddressLines().get(1), "5th Floor");
 	}
 
 	@Test
 	public void testFullConstructorCity() {
-		Address a = new Address("NETbuilder LTD", "5th Floor, Anchorage 1", "Manchester", "Lancs", "M50 3YJ");
-		assertEquals("City should be 'Manchester'", a.getCity(), "Manchester");
+		assertEquals("City should be 'Manchester'", fullAddress.getCity(), "Manchester");
 	}
 
 	@Test
 	public void testFullConstructorCounty() {
-		Address a = new Address("NETbuilder LTD", "5th Floor, Anchorage 1", "Manchester", "Lancs", "M50 3YJ");
-		assertEquals("County one should be 'Lancs'", a.getCounty(), "Lancs");
+		assertEquals("County one should be 'Lancs'", fullAddress.getCounty(), "Lancs");
 	}
 
 	@Test
 	public void testFullConstructorPostCode() {
-		Address a = new Address("NETbuilder LTD", "5th Floor, Anchorage 1", "Manchester", "Lancs", "M50 3YJ");
-		assertEquals("Post code should be 'M50 3YJ'", a.getPostCode(), "M50 3YJ");
+		assertEquals("Post code should be 'M50 3YJ'", fullAddress.getPostCode(), "M50 3YJ");
 	}
 	
 	@Test
-	public void testPartialConstructorAddressOne() {
-		Address a = new Address("NETbuilder LTD", "Manchester", "Lancs", "M50 3YJ");
-		assertEquals("Address Line one should be 'NETbuilder LTD'", a.getAddressLineOne(), "NETbuilder LTD");
+	public void testPartialConstructorAddressLines() {
+		assertEquals("Address Line one should be 'NETbuilder LTD'", partialAddress.getAddressLines().get(0), "NETbuilder LTD");
 	}
 
 	@Test
 	public void testPartialConstructorCity() {
-		Address a = new Address("NETbuilder LTD", "Manchester", "Lancs", "M50 3YJ");
-		assertEquals("City should be 'Manchester'", a.getCity(), "Manchester");
+		assertEquals("City should be 'Manchester'", partialAddress.getCity(), "Manchester");
 	}
 
 	@Test
 	public void testPartialConstructorCounty() {
-		Address a = new Address("NETbuilder LTD", "Manchester", "Lancs", "M50 3YJ");
-		assertEquals("County one should be 'Lancs'", a.getCounty(), "Lancs");
+		assertNull("County should be null", partialAddress.getCounty());
 	}
 
 	@Test
 	public void testPartialConstructorPostCode() {
-		Address a = new Address("NETbuilder LTD", "Manchester", "Lancs", "M50 3YJ");
-		assertEquals("Post code should be 'M50 3YJ'", a.getPostCode(), "M50 3YJ");
+		assertEquals("Post code should be 'M50 3YJ'", partialAddress.getPostCode(), "M50 3YJ");
 	}
-	
-	@Test
-	public void testPartialConstructorAddressTwo() {
-		Address a = new Address("NETbuilder LTD", "Manchester", "Lancs", "M50 3YJ");
-		assertNull("On partial constructor instantiation, Address line two should be NULL", a.getAddressLineTwo());
-	}
-	
-
-	@Test
-	public void testPartialConstructorAddressTwoAfterSetting() {
-		Address a = new Address("NETbuilder LTD", "Manchester", "Lancs", "M50 3YJ");
-		a.setAddressLineTwo("5th Floor, Anchorage 1");
-		assertEquals("After partial constructor instantiation and setAddressLineTwo('5th Floor, Anchorage 1'), Address line two should be '5th Floor, Anchorage 1'", a.getAddressLineTwo(), "5th Floor, Anchorage 1");
-	}
+		
 }

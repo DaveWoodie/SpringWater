@@ -24,6 +24,16 @@ public class PurchaseOrderStatus {
 	public PurchaseOrderStatus () {
 	}
 	
+	/**
+	 * Constructor with a new status String
+	 * @param status
+	 * @MethodAuthor tstacey
+	 * @date 08/10/2015
+	 */
+	public PurchaseOrderStatus(String status) {
+		this.status = status;
+	}
+	
 	public int getStatusID() {
 		return statusID;
 	}

@@ -11,11 +11,13 @@ import java.util.Date;
 
 import org.junit.Test;
 
+@SuppressWarnings("deprecation")
 public class PurchaseOrderTest {
 	
 	Date dP = new Date();
-	Role r = new Role(1, "Employee");
-	Employee e = new Employee(1, r);
+	Role r = new Role("Employee");
+	private User u = new User("password","Al","Stock","Al.Stock@NBGardens.com", true);
+	Employee e = new Employee(u, r);
 	PurchaseOrderStatus pOS = new PurchaseOrderStatus();
 	Address a = new Address();
 	Supplier s = new Supplier("NBSupplier", a);
@@ -58,7 +60,6 @@ public class PurchaseOrderTest {
 	
 	@Test
 	public void setDateExpectedTest() {
-		
 		PurchaseOrder pO = new PurchaseOrder();
 		Date dE = new Date();
 		pO.setDateExpected(dE);
@@ -68,10 +69,9 @@ public class PurchaseOrderTest {
 	
 	@Test
 	public void setEmployeeTest() {
-		
 		PurchaseOrder pO = new PurchaseOrder();
-		Role r = new Role(1, "Employee");
-		Employee e = new Employee(1, r);
+		Role r = new Role("Employee");
+		Employee e = new Employee(u, r);
 		pO.setEmployee(e);
 		assertEquals("The two employees should be identical", e, pO.getEmployee());
 	}

@@ -24,6 +24,7 @@ public class CustomerTest {
 	private String phoneNumber = "0791633254";
 	private String dateString = "11-01-1990";
 	private SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy");
+	private User u = new User("password","India","Violet-Gumtree","IndiaVGums@hotmail.com", false);
 	private Date dob;
 	
 	
@@ -48,7 +49,7 @@ public class CustomerTest {
 	@Test
 	public void testConstructor() {
 		setDate();
-		Customer c = new Customer(credit, phoneNumber, dob);
+		Customer c = new Customer(u, credit, phoneNumber, dob);
 		assertEquals("Date not initiated properly", c.getDob(), dob);
 	}
 	
@@ -57,10 +58,10 @@ public class CustomerTest {
 	 *       correct value of the customers ID from the User test.
 	 */
 	@Test
-	public void testGetIdCustomer() {
+	public void testGetUser() {
 		setDate();
-		Customer customer = new Customer(credit, phoneNumber, dob);
-		assertEquals("The objects are not the same!!", 0, customer.getIdCustomer());
+		Customer customer = new Customer(u, credit, phoneNumber, dob);
+		assertSame("The objects are not the same!!", u, customer.getUser());
 	}
 
 	/**
@@ -73,7 +74,7 @@ public class CustomerTest {
 	@Test
 	public void testGetDob() {
 		setDate();
-		Customer customer = new Customer(credit, phoneNumber, dob);
+		Customer customer = new Customer(u, credit, phoneNumber, dob);
 		assertNotNull("The object is not NULL", customer.getDob());
 	}
 
@@ -84,7 +85,7 @@ public class CustomerTest {
 	@Test
 	public void testGetPhoneNumber() {
 		setDate();
-		Customer customer = new Customer(credit, phoneNumber, dob);
+		Customer customer = new Customer(u, credit, phoneNumber, dob);
 		assertTrue(customer.getPhoneNumber().equals("0791633254"));
 	}
 
@@ -98,7 +99,7 @@ public class CustomerTest {
 	@Test
 	public void testGetCredit() {
 		setDate();
-		Customer customer = new Customer(credit, phoneNumber, dob);
+		Customer customer = new Customer(u, credit, phoneNumber, dob);
 		assertEquals(customer.getCredit(), 10.0f, 0.01);
 	}
 	//Removed this as you should never be able to change the customers ID
@@ -122,7 +123,7 @@ public class CustomerTest {
 	@Test
 	public void testSetDob() {
 		setDate();
-		Customer customer = new Customer(credit, phoneNumber, dob);
+		Customer customer = new Customer(u, credit, phoneNumber, dob);
 		Date d = new Date();
 		customer.setDob(d);
 		assertEquals("The object is NULL", d, customer.getDob());
@@ -137,7 +138,7 @@ public class CustomerTest {
 	@Test
 	public void testSetPhoneNumber() {
 		setDate();
-		Customer customer = new Customer(credit, phoneNumber, dob);
+		Customer customer = new Customer(u, credit, phoneNumber, dob);
 		customer.setPhoneNumber("07555555555");
 		assertTrue(customer.getPhoneNumber().equals("07555555555"));
 	}
@@ -151,7 +152,7 @@ public class CustomerTest {
 	@Test
 	public void testSetCredit() {
 		setDate();
-		Customer customer = new Customer(credit, phoneNumber, dob);
+		Customer customer = new Customer(u, credit, phoneNumber, dob);
 		customer.setCredit(12.0f);
 		assertEquals(customer.getCredit(), 12.0f, 0.01);
 	}
