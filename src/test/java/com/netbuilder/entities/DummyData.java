@@ -30,7 +30,6 @@ public class DummyData {
 	private ArrayList<PurchaseOrderLine> purchaseOrderLines = new ArrayList<PurchaseOrderLine>();
 	private ArrayList<WishList> wishLists = new ArrayList<WishList>();
 	
-	private ArrayList<PaymentDetails> payments = new ArrayList<PaymentDetails>();
 	
 	private SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy");
 	
