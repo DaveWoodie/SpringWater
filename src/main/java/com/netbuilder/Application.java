@@ -27,5 +27,4 @@ public class Application implements CommandLineRunner{
 			System.out.println(r);
 		}
 	}
-
 }
