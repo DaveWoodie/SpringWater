@@ -39,7 +39,7 @@ public class Customer {
 		this.user = user;
 		this.credit = credit;
 		this.phoneNumber = phoneNumber;
-		this.dob = dob;
+		this.dob = new Date(dob.getTime());
 	}
 	
 	@Deprecated
