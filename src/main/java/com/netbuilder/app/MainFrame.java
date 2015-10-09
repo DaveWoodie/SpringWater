@@ -22,7 +22,6 @@ public class MainFrame extends JFrame{
 	}
 	
 	public void initUI() {
-		
 		base.setLayout(new BoxLayout(base, BoxLayout.Y_AXIS));
 		
 		JTabbedPane pane = new JTabbedPane();
