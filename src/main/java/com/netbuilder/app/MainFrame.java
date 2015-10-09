@@ -27,7 +27,11 @@ public class MainFrame extends JFrame{
 		setSize(600, 800);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-	}
-	
-	
+        
+        //delete before push
+        
+       setVisible(true);
+       
+       LoginFrame l = new LoginFrame(); 
+    }	
 }
