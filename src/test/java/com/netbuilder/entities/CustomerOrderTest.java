@@ -86,7 +86,9 @@ public class CustomerOrderTest {
 	@Test
 	public void testGetDateShipped() {
 		CustomerOrder co = new CustomerOrder(dp,c,os,e,false,a);
-		assertEquals("should be the same date placed", dp, co.getDateShipped());
+		Date d = new Date();
+		co.setDateShipped(d);
+		assertEquals("should be the same date placed", d, co.getDateShipped());
 	}
 	
 	@Test
