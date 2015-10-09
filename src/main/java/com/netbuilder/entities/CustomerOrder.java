@@ -44,7 +44,8 @@ public class CustomerOrder
 	 * @param employee : the employee who last checked out the order.
 	 */
 	public CustomerOrder(Date datePlaced, Customer customer, CustomerOrderStatus orderStatus, Employee employee, boolean isPaid, Address address) {
-		this.datePlaced = datePlaced;
+		
+		this.datePlaced = new Date(datePlaced.getTime());
 		this.customer = customer;
 		this.customerOrderStatus = orderStatus;
 		this.employee = employee;

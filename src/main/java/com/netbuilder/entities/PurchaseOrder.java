@@ -40,7 +40,7 @@ public class PurchaseOrder {
 	 * @param s : Supplier who fufills the order 
 	 */
 	public PurchaseOrder (Date dP, Employee e, PurchaseOrderStatus pOS, Supplier s) {
-		datePlaced = dP;
+		datePlaced = new Date(dP.getTime());
 		employee = e;
 		purchaseOrderStatus = pOS;
 		supplier = s;
