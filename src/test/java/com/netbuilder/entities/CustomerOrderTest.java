@@ -20,10 +20,12 @@ public class CustomerOrderTest {
 	Role r = new Role("Manager");
 	User u = new User("password","Al","Stock","Al.Stock@NBGardens.com", true);
 	Employee e = new Employee(u, r);
+	Address a = new Address();
+	
 		
 	@Test
 	public void testIsCustomer() {
-		CustomerOrder co = new CustomerOrder(dp,c,os,e,false);
+		CustomerOrder co = new CustomerOrder(dp,c,os,e,false, a);
 		assertNotNull(co);
 	}
 	
@@ -71,19 +73,25 @@ public class CustomerOrderTest {
 	
 	@Test
 	public void testGetDatePlaced() {
-		CustomerOrder co = new CustomerOrder(dp,c,os,e,false);
+		CustomerOrder co = new CustomerOrder(dp,c,os,e,false, a);
 		assertEquals("should be the same date placed", dp, co.getDatePlaced());
 	}
 	
 	@Test
 	public void testGetCustomer() {
-		CustomerOrder co = new CustomerOrder(dp,c,os,e,false);
+		CustomerOrder co = new CustomerOrder(dp,c,os,e,false, a);
 		assertEquals("should be the same customer", c, co.getCustomer());
 	}
 	
 	@Test
-	public void testGet() {
-		CustomerOrder co = new CustomerOrder(dp,c,os,e,false);
-		assertEquals("should be the same date placed", dp, co.getDatePlaced());
+	public void testGetDateShipped() {
+		CustomerOrder co = new CustomerOrder(dp,c,os,e,false,a);
+		assertEquals("should be the same date placed", dp, co.getDateShipped());
+	}
+	
+	@Test
+	public void testGetDeliveryAddress() {
+		CustomerOrder co = new CustomerOrder(dp,c,os,e,false,a);
+		assertEquals("should be the same date placed", a, co.getDeliveryAddress());
 	}
 }
