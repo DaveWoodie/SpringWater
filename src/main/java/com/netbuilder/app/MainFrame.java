@@ -68,7 +68,8 @@ public class MainFrame extends JFrame{
 		pane.addTab("Purchase Orders", null, panel3, "Purchase Orders");
 		
 		panel4 = new JPanel();
-		panel4.add(test4);
+		SuppliersFrame sF = new SuppliersFrame();
+		panel4.add(sF.initUI());
 		pane.addTab("Suppliers", null, panel4, "Suppliers");
 		
 		//create bottom panel
