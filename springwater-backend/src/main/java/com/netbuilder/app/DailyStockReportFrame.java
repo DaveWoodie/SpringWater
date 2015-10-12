@@ -7,9 +7,9 @@ package com.netbuilder.app;
 
 import java.awt.Color;
 import java.awt.Component;
-
 import java.awt.GridLayout;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -26,7 +26,7 @@ public class DailyStockReportFrame {
 
 	public JPanel getStockReportPanel() {
 		int numRows = 30 ;
-		String[] colHeadings = {"Item ID","Item Name", "Current Stock", "Sales Rate"};
+		String[] colHeadings = {"Item ID","Item Name", "Stock Level", "Sales Rate"};
 		final JLabel fastSellingLabel = new JLabel("Fast Selling Items");
 		final JLabel LowStockLabel = new JLabel("Low stock Items");
 		JPanel pane = new JPanel();
@@ -56,7 +56,8 @@ public class DailyStockReportFrame {
 		lowStockPanel.setBackground(Color.WHITE);
 		fastSellingTable.getTableHeader().setBackground(Color.WHITE);
 		lowStockTable.getTableHeader().setBackground(Color.WHITE);
-		
+		fastSellingPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+		lowStockPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		//Add components to low stock panel
 		lowStockTable.setPreferredScrollableViewportSize(lowStockTable.getPreferredSize());
