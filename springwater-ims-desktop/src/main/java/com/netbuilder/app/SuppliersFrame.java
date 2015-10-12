@@ -9,14 +9,11 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -79,10 +76,10 @@ public class SuppliersFrame extends JPanel{
 				int selectedRow = suppliers.getSelectedRow();
 				try {
 					selectedOrder = Integer.parseInt(suppliers.getValueAt(selectedRow, 0).toString());
-					System.out.println("Supplier ID: " + selectedOrder + " selected!");
+					//System.out.println("Supplier ID: " + selectedOrder + " selected!");
 				}
 				catch (NullPointerException npe) {
-					System.out.println("Not a valid supplier!");
+					//System.out.println("Not a valid supplier!");
 				}
 			}
 			
@@ -109,6 +106,7 @@ public class SuppliersFrame extends JPanel{
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Take selected supplier from list and load into supplier frame
+				@SuppressWarnings("unused")
 				SupplierFrame sF = new SupplierFrame();
 			}
 			
