@@ -86,7 +86,6 @@ public class SupplierFrame extends JFrame{
 		exit = new JButton("Exit");
 		exit.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
