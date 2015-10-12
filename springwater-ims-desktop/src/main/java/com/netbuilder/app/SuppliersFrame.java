@@ -30,7 +30,7 @@ public class SuppliersFrame extends JPanel{
 	JScrollPane pane, pane2;
 	JTextArea searchTerm;
 	JComboBox<String> categories;
-	JButton filter, select, reset;
+	JButton filter, select, reset, add;
 	JLabel searchLabel, filterLabel;
 	
 	
@@ -44,7 +44,7 @@ public class SuppliersFrame extends JPanel{
 		search = new JPanel();
 		search.setLayout(new BoxLayout(search, BoxLayout.X_AXIS));
 		controller = new JPanel();
-		controller.setLayout(new GridLayout(1, 3));
+		controller.setLayout(new GridLayout(1, 4));
 		
 		//create components
 		categories = new JComboBox<String>(supplierCategories);
@@ -54,6 +54,7 @@ public class SuppliersFrame extends JPanel{
 		filterLabel = new JLabel("Filter By:");
 		pane = new JScrollPane();
 		pane.setViewportView(suppliers);
+		pane.setPreferredSize(new Dimension(1600, 1000));
 		pane2 = new JScrollPane();
 		pane2.setViewportView(searchTerm);
 		
@@ -87,8 +88,18 @@ public class SuppliersFrame extends JPanel{
 			
 		});
 		
+		add = new JButton("New Supplier");
+		add.addActionListener(new ActionListener(){
+			
+			public void actionPerformed(ActionEvent e) {
+				//TODO add new supplier details
+			}
+			
+		});
+		
 		//construct panels
 		table.add(pane);
+		table.setPreferredSize(new Dimension(1600,1200));
 		
 		search.add(filterLabel);
 		search.add(Box.createRigidArea(new Dimension(10,0)));
@@ -101,6 +112,7 @@ public class SuppliersFrame extends JPanel{
 		controller.add(select);
 		controller.add(filter);
 		controller.add(reset);
+		controller.add(add);
 		
 		add(table);
 		add(search);
