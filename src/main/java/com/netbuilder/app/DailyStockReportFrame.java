@@ -7,8 +7,7 @@ package com.netbuilder.app;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
+
 import java.awt.GridLayout;
 
 import javax.swing.BoxLayout;
@@ -19,7 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class DailyStockReportFrame extends JFrame {
+public class DailyStockReportFrame {
 
 	public DailyStockReportFrame() {
 
