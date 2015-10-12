@@ -31,6 +31,7 @@ public class MainFrame extends JFrame{
 	JButton logout, quit;
 	DailyStockReportFrame dSRF;
 	SuppliersFrame sF;
+	PurchaseOrders pO;
 	
 	/**
 	 * 
@@ -72,7 +73,8 @@ public class MainFrame extends JFrame{
 		
 		panel3 = new JPanel();
 		panel3.setLayout(new BorderLayout());
-		panel3.add(test3);
+		pO = new PurchaseOrders();
+		panel3.add(pO.initUI());
 		pane.addTab("Purchase Orders", null, panel3, "Purchase Orders");
 		
 		panel4 = new JPanel();
@@ -127,6 +129,7 @@ public class MainFrame extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setMinimumSize(new Dimension(600, 800));
+
 
 	}
 

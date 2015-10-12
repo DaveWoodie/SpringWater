@@ -28,9 +28,6 @@ public class InventoryItem extends JPanel {
 	private JPanel imagePanel;
 	private ImageIcon itemIcon;
 	
-	
-	
-	
 	public InventoryItem(InventoryGUI src, int width, int productID, String productName, int quantity, String location, String imageLocation) {
 		this.productID = productID;
 		this.productName = productName;
