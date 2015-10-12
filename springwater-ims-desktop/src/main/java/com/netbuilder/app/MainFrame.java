@@ -59,19 +59,23 @@ public class MainFrame extends JFrame {
 		pane = new JTabbedPane();
 		
 		panel1 = new JPanel();
+		panel1.setLayout(new BorderLayout());
 		DailyStockReportFrame dSRF = new DailyStockReportFrame();
 		panel1.add(dSRF.getStockReportPanel());
 		pane.addTab("Daily Report", null, panel1, "Daily Report");
 		
 		panel2 = new JPanel();
+		panel2.setLayout(new BorderLayout());
 		panel2.add(test2);
 		pane.addTab("Inventory", null, panel2, "Inventory");
 		
 		panel3 = new JPanel();
+		panel3.setLayout(new BorderLayout());
 		panel3.add(test3);
 		pane.addTab("Purchase Orders", null, panel3, "Purchase Orders");
 		
 		panel4 = new JPanel();
+		panel4.setLayout(new BorderLayout());
 		SuppliersFrame sF = new SuppliersFrame();
 		panel4.add(sF.initUI());
 		pane.addTab("Suppliers", null, panel4, "Suppliers");
@@ -86,7 +90,6 @@ public class MainFrame extends JFrame {
 		logout = new JButton("Logout");
 		logout.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Logout method to return to login screen
 			}
@@ -97,7 +100,6 @@ public class MainFrame extends JFrame {
 		quit = new JButton("Quit");
 		quit.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}

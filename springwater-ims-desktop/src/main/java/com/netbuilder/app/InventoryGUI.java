@@ -1,7 +1,9 @@
 package com.netbuilder.app;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Event;
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -120,15 +122,10 @@ public class InventoryGUI extends JPanel implements ActionListener {
 	private void filterResults(String searchText) {
 		// TODO: fill out filter method to refine inventory display based on search field
 	}
-
-	@Override
+	
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(searchButton)) {
 			filterResults(searchField.getText());
-		}
-		
+		}	
 	}
-	
-
-
 }
