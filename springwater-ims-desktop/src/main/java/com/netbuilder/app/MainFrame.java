@@ -8,8 +8,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -25,7 +23,7 @@ import javax.swing.JTabbedPane;
  *
  */
 @SuppressWarnings("serial")
-public class MainFrame extends JFrame implements ComponentListener {
+public class MainFrame extends JFrame{
 	
 	JPanel base, panel1, panel2, panel3, panel4, bottom;
 	JTabbedPane pane;
@@ -128,27 +126,8 @@ public class MainFrame extends JFrame implements ComponentListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setMinimumSize(new Dimension(600, 800));
-        
-        this.addComponentListener(this);
 
 	}
 
-	public void componentResized(ComponentEvent e) {
-		
-	}
 
-	public void componentMoved(ComponentEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void componentShown(ComponentEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void componentHidden(ComponentEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 }
