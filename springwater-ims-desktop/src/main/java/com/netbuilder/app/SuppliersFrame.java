@@ -22,6 +22,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -60,8 +63,23 @@ public class SuppliersFrame extends JPanel{
 		
 		//create components
 		categories = new JComboBox<String>(supplierCategories);
+		
 		supplierListModel = new DefaultTableModel(columns, 20);
 		suppliers = new JTable(supplierListModel);
+		suppliers.setCellSelectionEnabled(true);
+	    ListSelectionModel cellSelectionModel = suppliers.getSelectionModel();
+	    cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		cellSelectionModel.addListSelectionListener(new ListSelectionListener(){
+
+			public void valueChanged(ListSelectionEvent e) {
+				// TODO select ID of selected row
+				int selectedRow = suppliers.getSelectedRow();
+				int selectedColumn = suppliers.getSelectedColumn();
+				System.out.println(selectedRow + " " + selectedColumn);
+			}
+			
+		});
+		
 		searchLabel = new JLabel("Filter Term:");
 		filterLabel = new JLabel("Filter By:");
 		searchTerm = new JTextArea();
@@ -131,4 +149,6 @@ public class SuppliersFrame extends JPanel{
 		
 		return this;
 	}
+
+
 }
