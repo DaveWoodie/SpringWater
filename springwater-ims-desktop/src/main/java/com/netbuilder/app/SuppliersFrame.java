@@ -60,7 +60,6 @@ public class SuppliersFrame extends JPanel{
 		filter = new JButton("Filter Results");
 		filter.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO set filter of table results
 				
@@ -71,7 +70,6 @@ public class SuppliersFrame extends JPanel{
 		select = new JButton("Select Supplier");
 		select.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Take selected supplier from list and load into supplier frame
 				
@@ -82,7 +80,6 @@ public class SuppliersFrame extends JPanel{
 		reset = new JButton("Reset Filters");
 		reset.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Reset search filters and reload full list of results
 				
