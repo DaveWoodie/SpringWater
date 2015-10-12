@@ -94,8 +94,7 @@ public class MainFrame extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Quit out from java application
-				
+				System.exit(0);
 			}
 			
 		});
