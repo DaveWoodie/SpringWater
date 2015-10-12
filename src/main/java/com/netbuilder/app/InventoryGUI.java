@@ -2,7 +2,10 @@ package com.netbuilder.app;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -17,7 +20,7 @@ import javax.swing.JTextField;
  * @author tstacey
  * @date 09/10/2015
  */
-public class InventoryGUI extends JPanel {
+public class InventoryGUI extends JPanel implements ActionListener {
 	
 	private int WIDTH = 600;
 	private int HEIGHT = 800;
@@ -64,18 +67,15 @@ public class InventoryGUI extends JPanel {
 		searchPanel.setLayout(new BoxLayout(searchPanel, BoxLayout.X_AXIS));
 		
 		searchFieldPanel = new JPanel();
-		setAbsoluteSize(searchFieldPanel, WIDTH*3/4, HEIGHT/12);
-		setBorder(searchFieldPanel, new Color(100,50,240));
-		searchFieldPanel.setLayout(new GridBagLayout());
+		addSearchFieldPanel();
 		
-		searchField = new JTextField(10);
-		TextPrompt tp = new TextPrompt("Search for Item...", searchField); 
-		searchFieldPanel.add(searchField);
+		searchButtonPanel = new JPanel();
+		addSearchButtonPanel();
 		
-		
-		
-		searchPanel.add(searchFieldPanel);
 		this.add(searchPanel);
+		
+		
+		
 	}
 	
 	private void setBorder(JPanel panel ,Color c) {
@@ -87,5 +87,48 @@ public class InventoryGUI extends JPanel {
 		panel.setMaximumSize(new Dimension(width, height));
 		panel.setMinimumSize(new Dimension(width, height));
 	}
+	
+	private void addSearchFieldPanel() {
+		setAbsoluteSize(searchFieldPanel, WIDTH*11/16, HEIGHT/12);
+		setBorder(searchFieldPanel, new Color(100,50,240));
+		searchFieldPanel.setLayout(new GridBagLayout());
+		addSearchField();
+		searchPanel.add(searchFieldPanel);
+	}
+	
+	private void addSearchField() {
+		searchField = new JTextField(15);
+        Font searchFont = searchField.getFont().deriveFont(Font.PLAIN, 30f);
+        searchField.setFont(searchFont);
+        TextPrompt tP = new TextPrompt("Search for item...", searchField);
+		searchFieldPanel.add(searchField);
+		
+	}
+	
+	private void addSearchButtonPanel() {
+		setAbsoluteSize(searchButtonPanel, WIDTH*1/4, HEIGHT/12);
+		setBorder(searchButtonPanel, new Color(100,240,100));
+		searchButtonPanel.setLayout(new GridBagLayout());
+		
+		searchButton = new JButton("Search");
+		searchButton.addActionListener(this);
+		searchButtonPanel.add(searchButton);
+		
+		searchPanel.add(searchButtonPanel);
+	}
+	
+	private void filterResults(String searchText) {
+		// TODO: fill out filter method to refine inventory display based on search field
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource().equals(searchButton)) {
+			filterResults(searchField.getText());
+		}
+		
+	}
+	
+
 
 }
