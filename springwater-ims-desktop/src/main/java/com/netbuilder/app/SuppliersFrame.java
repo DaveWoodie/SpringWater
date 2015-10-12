@@ -41,6 +41,7 @@ public class SuppliersFrame extends JPanel{
 	JComboBox<String> categories;
 	JButton filter, select, reset, add;
 	JLabel searchLabel, filterLabel;
+	private int selectedOrder;
 	
 	/**
 	 * Method to create GUI panel for the list of suppliers
@@ -66,16 +67,23 @@ public class SuppliersFrame extends JPanel{
 		
 		supplierListModel = new DefaultTableModel(columns, 20);
 		suppliers = new JTable(supplierListModel);
-		suppliers.setCellSelectionEnabled(true);
+		suppliers.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	    ListSelectionModel cellSelectionModel = suppliers.getSelectionModel();
 	    cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	    
+	    //add selection listener to the list
 		cellSelectionModel.addListSelectionListener(new ListSelectionListener(){
-
+			
 			public void valueChanged(ListSelectionEvent e) {
 				// TODO select ID of selected row
 				int selectedRow = suppliers.getSelectedRow();
-				int selectedColumn = suppliers.getSelectedColumn();
-				System.out.println(selectedRow + " " + selectedColumn);
+				try {
+					selectedOrder = Integer.parseInt(suppliers.getValueAt(selectedRow, 0).toString());
+					System.out.println("Supplier ID: " + selectedOrder + " selected!");
+				}
+				catch (NullPointerException npe) {
+					System.out.println("Not a valid supplier!");
+				}
 			}
 			
 		});
