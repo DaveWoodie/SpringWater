@@ -1,14 +1,19 @@
 package com.netbuilder.app;
 
-public class RunGUI {
-	
-	public static void main(String[] args)
+import javax.swing.JFrame;
+
+public class RunGUI extends JFrame
+{	
+	public RunGUI()
 	{
-
-		//GUI testing
-		 LoginFrame lf = new LoginFrame();
-		 MainFrame mf = new MainFrame();
-
+		//setLocationRelativeTo(null);
+		setLocation(350, 250);
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		ItemGUI i = new ItemGUI();
+		add(i.getPanel());
+		
+		setSize(600, 800);
 	}
-
 }
