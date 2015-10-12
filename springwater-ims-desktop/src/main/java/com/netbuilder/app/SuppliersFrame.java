@@ -1,3 +1,7 @@
+/**
+ * @author jforster
+ * @date 12/10/1015
+ */
 package com.netbuilder.app;
 
 import java.awt.BorderLayout;
@@ -35,6 +39,10 @@ public class SuppliersFrame extends JPanel{
 	JButton filter, select, reset, add;
 	JLabel searchLabel, filterLabel;
 	
+	/**
+	 * Method to create GUI panel for the list of suppliers
+	 * @return JPanel to be loaded into main Frame
+	 */
 	public JPanel initUI() {
 		
 		//set layout of main panel
@@ -57,7 +65,6 @@ public class SuppliersFrame extends JPanel{
 		searchLabel = new JLabel("Filter Term:");
 		filterLabel = new JLabel("Filter By:");
 		pane = new JScrollPane(suppliers);
-		//pane.setPreferredSize(new Dimension(1400, 1000));
 		pane2 = new JScrollPane(searchTerm);
 		
 		filter = new JButton("Filter Results");
@@ -101,8 +108,6 @@ public class SuppliersFrame extends JPanel{
 		
 		//construct panels
 		table.add(pane);
-		//table.add(suppliers);
-		//table.setPreferredSize(new Dimension(1600,1200));
 		
 		search.add(filterLabel);
 		search.add(Box.createRigidArea(new Dimension(10,0)));
