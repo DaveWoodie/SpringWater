@@ -67,7 +67,8 @@ public class MainFrame extends JFrame{
 		
 		panel2 = new JPanel();
 		panel2.setLayout(new BorderLayout());
-		panel2.add(test2);
+		InventoryGUI iGUI = new InventoryGUI();
+		panel2.add(iGUI);
 		pane.addTab("Inventory", null, panel2, "Inventory");
 		
 		panel3 = new JPanel();
@@ -128,6 +129,7 @@ public class MainFrame extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setMinimumSize(new Dimension(600, 800));
+
 
 	}
 
