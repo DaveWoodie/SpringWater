@@ -23,9 +23,18 @@
 }
 
 .jumbotron {
- 
+    margin-bottom: 0px;
 }
 
+.ratings {
+    color: #FFDB00;
+    font-size: 25px;
+    text-align: center;
+}
+
+.reviewRatings {
+    text-align: center;
+}
 
 /* Chris Boucher */
 
