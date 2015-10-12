@@ -13,20 +13,84 @@
     <!-- Page Content -->    
     <div class="jumbotron content">
         <div class="container">
-	<div class="row">
+	       <div class="row">
+               
+            <!-- Left Column -->   
   			<div class="col-md-3" id="leftCol">
               	
+                <!-- Filter Section -->
 				<div class="well"> 
               	<ul class="nav nav-stacked" id="sidebar">
-                  <li><a href="#sec1">kill me</a></li>
-                  <li><a href="#sec2">please</a></li>
-                  <li><a href="#sec3">Section 3</a></li>
-                  <li><a href="#sec4">Section 4</a></li>
+                    
+                    <!-- Search field -->
+                    <li>
+                        <div class="input-group panel">
+                            <input type="text" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go</button>
+                            </span>
+                        </div>
+                    </li>
+                    
+                    <!-- Sort box -->
+                    <li>
+                        <div class="list-group panel">
+                            <a href="#Sort" class="list-group-item strong" data-toggle="collapse" data-parent="#SortMenu">Sort results<i class="fa fa-caret-down"></i></a>
+                            <div class="collapse" id="Sort">
+                                <a href="#PriceMenu" class="list-group-item strong" data-toggle="collapse" data-parent="#PriceMenu">Price<i class="fa fa-caret-down"></i></a>
+                                <div class="collapse list-group-submenu" id="PriceMenu">
+                                    <a href="#" class="list-group-item" data-parent="#PriceMenu">Low - High</a>
+                                    <a href="#" class="list-group-item" data-parent="#PriceMenu">High - Low</a>
+                                </div>
+                                <a href="#NameMenu" class="list-group-item strong" data-toggle="collapse" data-parent="#NameMenu">Name<i class="fa fa-caret-down"></i></a>
+                                <div class="collapse list-group-submenu" id="NameMenu">
+                                    <a href="#" class="list-group-item" data-parent="#NameMenu">A - Z</a>
+                                    <a href="#" class="list-group-item" data-parent="#NameMenu">Z - A</a>
+                                </div>
+                                <a href="#RatingMenu" class="list-group-item strong" data-toggle="collapse" data-parent="#RatingMenu">Rating<i class="fa fa-caret-down"></i></a>
+                                <div class="collapse list-group-submenu" id="RatingMenu">
+                                    <a href="#" class="list-group-item" data-parent="#RatingMenu">High - Low</a>
+                                    <a href="#" class="list-group-item" data-parent="#RatingMenu">Low - High</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <!-- Filter Box -->
+                    <li>
+                        <div class="list-group panel">
+                            <a href="#Filter" class="list-group-item strong" data-toggle="collapse" data-parent="#FilterMenu">Filter results<i class="fa fa-caret-down"></i></a>
+                            <div class="collapse" id="Filter">
+                                <a href="#ColourMenu" class="list-group-item strong" data-toggle="collapse" data-parent="#ColourMenu">Colour<i class="fa fa-caret-down"></i></a>
+                                <div class="collapse list-group-submenu" id="ColourMenu">
+                                    <a href="#" class="list-group-item" data-parent="#ColourMenu">
+                                        <button class="btn btn-primary" type="button" id="BlueButton"></button>
+                                        <button class="btn btn-success" type="button" id="GreenButton"></button>
+                                        <button class="btn btn-warning" type="button" id="YellowButton"></button>
+                                        <button class="btn btn-danger" type="button" id="RedButton"></button>
+                                        <button class="btn" style="background:gray" type="button" id="GreyButton"></button>
+                                        <button class="btn btn-default btn-outline" type="button" id="WhiteButton"></button>
+
+                                    </a>
+                                </div>
+                                <a href="#CategoryMenu" class="list-group-item strong" data-toggle="collapse" data-parent="#CategoryMenu">Category<i class="fa fa-caret-down"></i></a>
+                                <div class="collapse list-group-submenu" id="CategoryMenu">
+                                    <a href="#" class="list-group-item" data-parent="#CategoryMenu">Gnomes</a>
+                                    <a href="#" class="list-group-item" data-parent="#CategoryMenu">Furniture</a>
+                                    <a href="#" class="list-group-item" data-parent="#CategoryMenu">Tools</a>
+                                    <a href="#" class="list-group-item" data-parent="#CategoryMenu">Pottery</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
               	</ul>
   				</div>
 
       		</div>  
-      		<div class="col-md-9">
+        
+            <!-- Right Column -->
+      		<div class="col-md-9" id="rightCol">
+                <!-- Item Grid -->
                 <!-- Header -->
                 <div class="col-lg-12">
                     <h2 class="page-header" style="text-align:center">Category / Search Results</h2>
@@ -38,10 +102,131 @@
                     <img class="img-responsive" src="http://placehold.it/300x300" alt="">
                     </a>
                     <h4 style="text-align:center">Product Name</h4>
+                    <h4 style="text-align:center">£0.00</h4>
+                    <p style="text-align:center">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    </p>
+                </div>
+                
+                <!-- Item -->
+                <div class="col-lg-3 col-md-3 col-xs-4 thumb">
+                    <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="http://placehold.it/300x300" alt="">
+                    </a>
+                    <h4 style="text-align:center">Product Name</h4>
+                    <h4 style="text-align:center">£0.00</h4>
+                    <p style="text-align:center">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    </p>
+                </div>
+                
+                <!-- Item -->
+                <div class="col-lg-3 col-md-3 col-xs-4 thumb">
+                    <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="http://placehold.it/300x300" alt="">
+                    </a>
+                    <h4 style="text-align:center">Product Name</h4>
+                    <h4 style="text-align:center">£0.00</h4>
+                    <p style="text-align:center">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    </p>
+                </div>
+                
+                <!-- Item -->
+                <div class="col-lg-3 col-md-3 col-xs-4 thumb">
+                    <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="http://placehold.it/300x300" alt="">
+                    </a>
+                    <h4 style="text-align:center">Product Name</h4>
+                    <h4 style="text-align:center">£0.00</h4>
+                    <p style="text-align:center">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    </p>
+                </div>
+                
+                <!-- Item -->
+                <div class="col-lg-3 col-md-3 col-xs-4 thumb">
+                    <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="http://placehold.it/300x300" alt="">
+                    </a>
+                    <h4 style="text-align:center">Product Name</h4>
+                    <h4 style="text-align:center">£0.00</h4>
+                    <p style="text-align:center">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    </p>
+                </div>
+                
+                <!-- Item -->
+                <div class="col-lg-3 col-md-3 col-xs-4 thumb">
+                    <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="http://placehold.it/300x300" alt="">
+                    </a>
+                    <h4 style="text-align:center">Product Name</h4>
+                    <h4 style="text-align:center">£0.00</h4>
+                    <p style="text-align:center">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    </p>
+                </div>
+                
+                <!-- Item -->
+                <div class="col-lg-3 col-md-3 col-xs-4 thumb">
+                    <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="http://placehold.it/300x300" alt="">
+                    </a>
+                    <h4 style="text-align:center">Product Name</h4>
+                    <h4 style="text-align:center">£0.00</h4>
+                    <p style="text-align:center">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    </p>
+                </div>
+                
+                <!-- Item -->
+                <div class="col-lg-3 col-md-3 col-xs-4 thumb">
+                    <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="http://placehold.it/300x300" alt="">
+                    </a>
+                    <h4 style="text-align:center">Product Name</h4>
+                    <h4 style="text-align:center">£0.00</h4>
+                    <p style="text-align:center">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    </p>
                 </div>
                 
             </div>
-            </div>
+        
+        </div>
         </div>
     </div>
     
@@ -70,6 +255,7 @@
             </div>
         </div>
     </div>
+    
 </body>
     
     <!-- JQuery script -->
