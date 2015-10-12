@@ -25,7 +25,7 @@ import javax.swing.JTextField;
  */
 public class InventoryGUI extends JPanel implements ActionListener {
 	
-	private int WIDTH = 600;
+	private int WIDTH = 580;
 	private int HEIGHT = 800;
 
 	private static final long serialVersionUID = 1L;
@@ -60,6 +60,7 @@ public class InventoryGUI extends JPanel implements ActionListener {
 	
 	private void initialSetup() {
 		setAbsoluteSize(this, WIDTH, HEIGHT);
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
 		addSearchPanel();
 		
