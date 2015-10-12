@@ -49,13 +49,7 @@ public class MainFrame extends JFrame{
 		
 		base = new JPanel();
 		base.setLayout(new BorderLayout());
-		
-		//test labels for panel generation
-		JLabel test = new JLabel("TEST");
-		JLabel test2 = new JLabel("TEST2");
-		JLabel test3 = new JLabel("TEST3");
-		JLabel test4 = new JLabel("TEST4");
-		
+
 		//create tabbed pane and tabs
 		pane = new JTabbedPane();
 		
