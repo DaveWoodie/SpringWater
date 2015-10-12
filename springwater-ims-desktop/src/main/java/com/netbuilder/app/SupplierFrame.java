@@ -8,7 +8,6 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
@@ -40,7 +39,11 @@ public class SupplierFrame extends JFrame{
 	JTable productList;
 	JScrollPane bottomPane;
 	JButton exit;
-
+	
+	public SupplierFrame() {
+		initUI();
+		setVisible(true);
+	}
 	/**
 	 * Method to construct the GUI JFrame for display
 	 */
@@ -59,7 +62,7 @@ public class SupplierFrame extends JFrame{
 		left = new JPanel();
 		left.setLayout(new BoxLayout(left, BoxLayout.Y_AXIS));
 		try{
-			BufferedImage Logo = ImageIO.read(new File("src/main/Resources/logoExample.png"));
+			BufferedImage Logo = ImageIO.read(new File("src/test/Resources/logoExample.png"));
 			leftTest = new JLabel(new ImageIcon(Logo));
 		}
 		catch(IOException ex){

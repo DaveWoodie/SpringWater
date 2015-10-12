@@ -28,9 +28,6 @@ public class InventoryItem extends JPanel {
 	private JPanel imagePanel;
 	private ImageIcon itemIcon;
 	
-	
-	
-	
 	public InventoryItem(InventoryGUI src, int width, int productID, String productName, int quantity, String location, String imageLocation) {
 		this.productID = productID;
 		this.productName = productName;
@@ -68,6 +65,8 @@ public class InventoryItem extends JPanel {
 		makeOpaque(imagePanel);
 		if(this.imageLocation != null) {
 			itemIcon = iconLoader.createImageIcon("./Images/"+this.imageLocation, this.width*1/6, this.width*1/6);
+		} else {
+			itemIcon = loadDefaultImage();
 		}
 		
 		JLabel lbl = new JLabel(itemIcon);
@@ -90,7 +89,10 @@ public class InventoryItem extends JPanel {
 		panel.setBackground(new Color(0,0,0,0));
 	}
 
-
+	private ImageIcon loadDefaultImage() {
+		ImageIcon icon = iconLoader.createImageIcon("src/test/Resources/trial_gnome.png", this.width*1/6, this.width*1/6);
+		return icon;
+	}
 
 
 }

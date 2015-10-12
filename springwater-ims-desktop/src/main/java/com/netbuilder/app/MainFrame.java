@@ -8,8 +8,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -25,12 +23,15 @@ import javax.swing.JTabbedPane;
  *
  */
 @SuppressWarnings("serial")
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame{
 	
 	JPanel base, panel1, panel2, panel3, panel4, bottom;
 	JTabbedPane pane;
 	JLabel loginDetails;
 	JButton logout, quit;
+	DailyStockReportFrame dSRF;
+	SuppliersFrame sF;
+	PurchaseOrders pO;
 	
 	/**
 	 * 
@@ -48,35 +49,31 @@ public class MainFrame extends JFrame {
 		
 		base = new JPanel();
 		base.setLayout(new BorderLayout());
-		
-		//test labels for panel generation
-		JLabel test = new JLabel("TEST");
-		JLabel test2 = new JLabel("TEST2");
-		JLabel test3 = new JLabel("TEST3");
-		JLabel test4 = new JLabel("TEST4");
-		
+
 		//create tabbed pane and tabs
 		pane = new JTabbedPane();
 		
 		panel1 = new JPanel();
 		panel1.setLayout(new BorderLayout());
-		DailyStockReportFrame dSRF = new DailyStockReportFrame();
+		dSRF = new DailyStockReportFrame();
 		panel1.add(dSRF.getStockReportPanel());
 		pane.addTab("Daily Report", null, panel1, "Daily Report");
 		
 		panel2 = new JPanel();
 		panel2.setLayout(new BorderLayout());
-		panel2.add(test2);
+		InventoryGUI iGUI = new InventoryGUI();
+		panel2.add(iGUI);
 		pane.addTab("Inventory", null, panel2, "Inventory");
 		
 		panel3 = new JPanel();
 		panel3.setLayout(new BorderLayout());
-		panel3.add(test3);
+		pO = new PurchaseOrders();
+		panel3.add(pO.initUI());
 		pane.addTab("Purchase Orders", null, panel3, "Purchase Orders");
 		
 		panel4 = new JPanel();
 		panel4.setLayout(new BorderLayout());
-		SuppliersFrame sF = new SuppliersFrame();
+		sF = new SuppliersFrame();
 		panel4.add(sF.initUI());
 		pane.addTab("Suppliers", null, panel4, "Suppliers");
 		
@@ -126,5 +123,9 @@ public class MainFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setMinimumSize(new Dimension(600, 800));
+
+
 	}
+
+
 }
