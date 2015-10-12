@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -106,8 +108,6 @@ public class SuppliersFrame extends JPanel{
 		add(table);
 		add(search);
 		add(controller);
-		
-		setSize(600, 800);
 		
 		return this;
 	}
