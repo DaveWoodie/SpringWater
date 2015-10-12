@@ -73,6 +73,7 @@ public class InventoryGUI extends JPanel {
 		searchFieldPanel.add(searchField);
 		
 		
+		
 		searchPanel.add(searchFieldPanel);
 		this.add(searchPanel);
 	}
