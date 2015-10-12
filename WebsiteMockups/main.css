@@ -4,6 +4,14 @@
     background-color: #329932;
 }
 
+#featuredHeader {
+    background-color: #329932;
+    border:2px solid black;
+    padding:10px;
+	color: white;
+}
+
+
 .whiteText {
     color: #ffffff;
     text-align: center;
@@ -25,7 +33,6 @@
 .jumbotron {
  
 }
-
 
 /* Chris Boucher */
 
