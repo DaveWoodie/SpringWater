@@ -64,6 +64,7 @@ public class SuppliersFrame extends JPanel{
 		suppliers = new JTable(supplierListModel);
 		searchLabel = new JLabel("Filter Term:");
 		filterLabel = new JLabel("Filter By:");
+		searchTerm = new JTextArea();
 		pane = new JScrollPane(suppliers);
 		pane2 = new JScrollPane(searchTerm);
 		
@@ -82,7 +83,7 @@ public class SuppliersFrame extends JPanel{
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Take selected supplier from list and load into supplier frame
-				
+				SupplierFrame sF = new SupplierFrame();
 			}
 			
 		});
