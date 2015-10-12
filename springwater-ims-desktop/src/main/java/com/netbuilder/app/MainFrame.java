@@ -8,8 +8,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -25,12 +23,14 @@ import javax.swing.JTabbedPane;
  *
  */
 @SuppressWarnings("serial")
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame{
 	
 	JPanel base, panel1, panel2, panel3, panel4, bottom;
 	JTabbedPane pane;
 	JLabel loginDetails;
 	JButton logout, quit;
+	DailyStockReportFrame dSRF;
+	SuppliersFrame sF;
 	
 	/**
 	 * 
@@ -60,7 +60,7 @@ public class MainFrame extends JFrame {
 		
 		panel1 = new JPanel();
 		panel1.setLayout(new BorderLayout());
-		DailyStockReportFrame dSRF = new DailyStockReportFrame();
+		dSRF = new DailyStockReportFrame();
 		panel1.add(dSRF.getStockReportPanel());
 		pane.addTab("Daily Report", null, panel1, "Daily Report");
 		
@@ -76,7 +76,7 @@ public class MainFrame extends JFrame {
 		
 		panel4 = new JPanel();
 		panel4.setLayout(new BorderLayout());
-		SuppliersFrame sF = new SuppliersFrame();
+		sF = new SuppliersFrame();
 		panel4.add(sF.initUI());
 		pane.addTab("Suppliers", null, panel4, "Suppliers");
 		
@@ -126,5 +126,8 @@ public class MainFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setMinimumSize(new Dimension(600, 800));
+
 	}
+
+
 }
