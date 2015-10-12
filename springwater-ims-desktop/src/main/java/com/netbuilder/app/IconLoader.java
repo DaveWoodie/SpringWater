@@ -3,7 +3,9 @@ package com.netbuilder.app;
 
 import javax.swing.*;
 import javax.imageio.*;
+
 import java.awt.*;
+import java.io.File;
 
 /**
  * class with only one public method. Used to load images from file as icons, in order to insert them into JPanels
@@ -14,10 +16,11 @@ import java.awt.*;
 public class IconLoader {
 
 	/**
-	 * returns an image icon from the passed file path, scaled to the passed size
+	 * returns an image icon from the passed file path, scaled to the passed width and height
 	 * @param path
-	 * @param imageSize
-	 * @return
+	 * @param imageWidth
+	 * @param imageHeight
+	 * @return resized ImageIcon
 	 */
 	public ImageIcon createImageIcon(String path, int imageWidth, int imageHeight) {
 		Image img = loadImage(path, imageWidth, imageHeight);
@@ -27,11 +30,9 @@ public class IconLoader {
 	}
 	
 	private Image loadImage(String path, int imageWidth, int imageHeight) {
-		ClassLoader cL = this.getClass().getClassLoader();
-		java.net.URL imgURL = cL.getResource(path);
     	Image img;
     	try {
-    		img = ImageIO.read(imgURL);
+    		img = ImageIO.read(new File(path));
     	} catch (Exception e) {
     		System.out.println("***ERROR: Couldn't load image at: '"+path+"' in IconLoader class");
     		throw new Error(e);

@@ -68,6 +68,8 @@ public class InventoryItem extends JPanel {
 		makeOpaque(imagePanel);
 		if(this.imageLocation != null) {
 			itemIcon = iconLoader.createImageIcon("./Images/"+this.imageLocation, this.width*1/6, this.width*1/6);
+		} else {
+			itemIcon = loadDefaultImage();
 		}
 		
 		JLabel lbl = new JLabel(itemIcon);
@@ -90,7 +92,10 @@ public class InventoryItem extends JPanel {
 		panel.setBackground(new Color(0,0,0,0));
 	}
 
-
+	private ImageIcon loadDefaultImage() {
+		ImageIcon icon = iconLoader.createImageIcon("src/test/Resources/trial_gnome.png", this.width*1/6, this.width*1/6);
+		return icon;
+	}
 
 
 }

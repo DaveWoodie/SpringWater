@@ -1,5 +1,10 @@
+/**
+ * @author jforster
+ * @date 12/10/1015
+ */
 package com.netbuilder.app;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -11,11 +16,15 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -25,37 +34,57 @@ public class SuppliersFrame extends JPanel{
 	private String [] columns = {"Supplier ID", "Supplier Name"};
 	private String [] supplierCategories = {"Supplier ID", "Supplier Name", "Product ID"};
 	TableModel supplierListModel;
-	JPanel table, search, controller;
+	JPanel table, south, search, controller;
 	JTable suppliers;
 	JScrollPane pane, pane2;
 	JTextArea searchTerm;
 	JComboBox<String> categories;
-	JButton filter, select, reset;
+	JButton filter, select, reset, add;
 	JLabel searchLabel, filterLabel;
 	
-	
+	/**
+	 * Method to create GUI panel for the list of suppliers
+	 * @return JPanel to be loaded into main Frame
+	 */
 	public JPanel initUI() {
 		
 		//set layout of main panel
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		setLayout(new BorderLayout());
 		
 		//set layouts of other panels
 		table = new JPanel();
+		table.setLayout(new BorderLayout());
+		south = new JPanel();
+		south.setLayout(new BoxLayout(south, BoxLayout.Y_AXIS));
 		search = new JPanel();
 		search.setLayout(new BoxLayout(search, BoxLayout.X_AXIS));
 		controller = new JPanel();
-		controller.setLayout(new GridLayout(1, 3));
+		controller.setLayout(new GridLayout(1, 4));
 		
 		//create components
 		categories = new JComboBox<String>(supplierCategories);
+		
 		supplierListModel = new DefaultTableModel(columns, 20);
 		suppliers = new JTable(supplierListModel);
+		suppliers.setCellSelectionEnabled(true);
+	    ListSelectionModel cellSelectionModel = suppliers.getSelectionModel();
+	    cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		cellSelectionModel.addListSelectionListener(new ListSelectionListener(){
+
+			public void valueChanged(ListSelectionEvent e) {
+				// TODO select ID of selected row
+				int selectedRow = suppliers.getSelectedRow();
+				int selectedColumn = suppliers.getSelectedColumn();
+				System.out.println(selectedRow + " " + selectedColumn);
+			}
+			
+		});
+		
 		searchLabel = new JLabel("Filter Term:");
 		filterLabel = new JLabel("Filter By:");
-		pane = new JScrollPane();
-		pane.setViewportView(suppliers);
-		pane2 = new JScrollPane();
-		pane2.setViewportView(searchTerm);
+		searchTerm = new JTextArea();
+		pane = new JScrollPane(suppliers);
+		pane2 = new JScrollPane(searchTerm);
 		
 		filter = new JButton("Filter Results");
 		filter.addActionListener(new ActionListener(){
@@ -72,7 +101,7 @@ public class SuppliersFrame extends JPanel{
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Take selected supplier from list and load into supplier frame
-				
+				SupplierFrame sF = new SupplierFrame();
 			}
 			
 		});
@@ -83,6 +112,15 @@ public class SuppliersFrame extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Reset search filters and reload full list of results
 				
+			}
+			
+		});
+		
+		add = new JButton("New Supplier");
+		add.addActionListener(new ActionListener(){
+			
+			public void actionPerformed(ActionEvent e) {
+				//TODO add new supplier details
 			}
 			
 		});
@@ -101,11 +139,16 @@ public class SuppliersFrame extends JPanel{
 		controller.add(select);
 		controller.add(filter);
 		controller.add(reset);
+		controller.add(add);
 		
-		add(table);
-		add(search);
-		add(controller);
+		south.add(search);
+		south.add(controller);
+		
+		add(table, BorderLayout.CENTER);
+		add(south, BorderLayout.SOUTH);
 		
 		return this;
 	}
+
+
 }

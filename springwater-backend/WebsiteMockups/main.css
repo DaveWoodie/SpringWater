@@ -43,8 +43,19 @@
 .reviewRatings {
     text-align: center;
 }
-/* Chris Boucher */
 
+#aboutHeadings {
+    font-size: 30px;
+}
+
+#placeHolderTeam {
+    font-size: 200px;
+    text-align: center;
+}
+/* Chris Boucher */
+#panelLeft {
+    background-color: #f6f6f6; 
+}
 
 
 

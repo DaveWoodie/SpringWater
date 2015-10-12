@@ -13,6 +13,7 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -24,12 +25,13 @@ import javax.swing.JTextField;
  */
 public class InventoryGUI extends JPanel implements ActionListener {
 	
-	private int WIDTH = 600;
+	private int WIDTH = 580;
 	private int HEIGHT = 800;
 
 	private static final long serialVersionUID = 1L;
 
 	private JScrollPane scrollPane;
+	private JPanel scrollPanel;
 	
 	private JPanel searchPanel;
 	private JPanel searchFieldPanel;
@@ -58,8 +60,11 @@ public class InventoryGUI extends JPanel implements ActionListener {
 	
 	private void initialSetup() {
 		setAbsoluteSize(this, WIDTH, HEIGHT);
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
 		addSearchPanel();
+		
+		addInventoryList();
 	}
 	
 	private void addSearchPanel() {
@@ -118,6 +123,30 @@ public class InventoryGUI extends JPanel implements ActionListener {
 		
 		searchPanel.add(searchButtonPanel);
 	}
+	
+	private void addInventoryList() {
+		scrollPanel = new JPanel();
+		this.scrollPane = new JScrollPane(scrollPanel);
+		
+		scrollPane.setPreferredSize(new Dimension(WIDTH, HEIGHT*10/12));
+		scrollPane.setMaximumSize(new Dimension(WIDTH, HEIGHT*10/12));
+		scrollPane.setMinimumSize(new Dimension(WIDTH, HEIGHT*10/12));
+		
+		scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));
+		
+		for(int i = 0; i < 10; i++) {
+			scrollPanel.add(new InventoryItem(this, WIDTH*10/12, i, "Test", 50, "2B", null));
+		}
+		
+		this.add(scrollPane);
+		scrollPanel.setVisible(true);
+		scrollPanel.repaint();
+		scrollPanel.revalidate();
+	}
+	
+	// InventoryGUI src, int width, int productID, String productName, int quantity, String location, String imageLocation
+	
+	
 	
 	private void filterResults(String searchText) {
 		// TODO: fill out filter method to refine inventory display based on search field

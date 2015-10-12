@@ -7,7 +7,7 @@ public class RunGUI {
 
 		//GUI testing
 		 LoginFrame lf = new LoginFrame();
-		 //MainFrame mf = new MainFrame();
+		 MainFrame mf = new MainFrame();
 
 	}
 
