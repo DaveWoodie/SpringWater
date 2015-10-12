@@ -40,7 +40,7 @@ public class SupplierFrame extends JFrame{
 	JTable productList;
 	JScrollPane bottomPane;
 	JButton exit;
-	
+
 	/**
 	 * Method to construct the GUI JFrame for display
 	 */
