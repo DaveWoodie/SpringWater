@@ -56,7 +56,8 @@ public class MainFrame extends JFrame{
 		pane = new JTabbedPane();
 		
 		panel1 = new JPanel();
-		panel1.add(test);
+		DailyStockReportFrame dSRF = new DailyStockReportFrame();
+		panel1.add(dSRF.getStockReportPanel());
 		pane.addTab("Daily Report", null, panel1, "Daily Report");
 		
 		panel2 = new JPanel();
