@@ -86,7 +86,6 @@ public class MainFrame extends JFrame {
 		logout = new JButton("Logout");
 		logout.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Logout method to return to login screen
 			}
@@ -97,7 +96,6 @@ public class MainFrame extends JFrame {
 		quit = new JButton("Quit");
 		quit.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
