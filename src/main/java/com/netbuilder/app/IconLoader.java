@@ -13,9 +13,6 @@ import java.awt.*;
 
 public class IconLoader {
 
-
-
-
 	/**
 	 * returns an image icon from the passed file path, scaled to the passed size
 	 * @param path

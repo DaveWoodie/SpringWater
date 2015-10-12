@@ -4,9 +4,12 @@
  */
 package com.netbuilder.app;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -22,7 +25,7 @@ import javax.swing.JTabbedPane;
  *
  */
 @SuppressWarnings("serial")
-public class MainFrame extends JFrame{
+public class MainFrame extends JFrame {
 	
 	JPanel base, panel1, panel2, panel3, panel4, bottom;
 	JTabbedPane pane;
@@ -44,7 +47,7 @@ public class MainFrame extends JFrame{
 	public void initUI() {
 		
 		base = new JPanel();
-		base.setLayout(new BoxLayout(base, BoxLayout.Y_AXIS));
+		base.setLayout(new BorderLayout());
 		
 		//test labels for panel generation
 		JLabel test = new JLabel("TEST");
@@ -111,8 +114,8 @@ public class MainFrame extends JFrame{
 		bottom.add(Box.createRigidArea(new Dimension(10,0)));
 		
 		//construct base panel
-		base.add(pane);
-		base.add(bottom);
+		base.add(pane, BorderLayout.CENTER);
+		base.add(bottom, BorderLayout.SOUTH);
 		add(base);
 		
 		//configure JFrame
