@@ -14,7 +14,9 @@ public class InventoryItem extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private static int HEIGHT = 70;
-	private int width;
+	private int WIDTH;
+	
+	private int IMAGE_SIZE = 50;
 	
 	private int productID;
 	private String productName;
@@ -37,13 +39,13 @@ public class InventoryItem extends JPanel {
 		this.quantity = quantity;
 		this.location = location;
 		this.imageLocation = imageLocation;
-		this.width = width;
+		this.WIDTH = width;
 		
 		this.iconLoader = new IconLoader();
 		
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-		this.setFinalSize(this, this.width, HEIGHT);
+		this.setFinalSize(this, this.WIDTH, HEIGHT);
 		this.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, new Color(0,0,0)));
 		this.setBackground(new Color (197,208,199));
 		
@@ -52,7 +54,7 @@ public class InventoryItem extends JPanel {
 		infoPanel = new JPanel();
 		infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
 		makeOpaque(infoPanel);
-		setFinalSize(infoPanel, this.width*4/6, HEIGHT);
+		setFinalSize(infoPanel, this.WIDTH*4/6, HEIGHT);
 		
 		infoPanel.add(new JLabel("Name: "+this.productName));
 		infoPanel.add(new JLabel("ID: "+this.productID));
@@ -63,11 +65,11 @@ public class InventoryItem extends JPanel {
 		this.add(infoPanel);
 		
 		imagePanel = new JPanel();
-		setFinalSize(imagePanel, this.width*2/6, HEIGHT);
+		setFinalSize(imagePanel, this.WIDTH*2/6, HEIGHT);
 		imagePanel.setLayout(new GridBagLayout());
 		makeOpaque(imagePanel);
 		if(this.imageLocation != null) {
-			itemIcon = iconLoader.createImageIcon("./Images/"+this.imageLocation, this.width*1/6, this.width*1/6);
+			itemIcon = iconLoader.createImageIcon("./Images/"+this.imageLocation, IMAGE_SIZE, IMAGE_SIZE);
 		} else {
 			itemIcon = loadDefaultImage();
 		}
@@ -93,8 +95,18 @@ public class InventoryItem extends JPanel {
 	}
 
 	private ImageIcon loadDefaultImage() {
-		ImageIcon icon = iconLoader.createImageIcon("src/test/Resources/trial_gnome.png", this.width*1/6, this.width*1/6);
+		ImageIcon icon = iconLoader.createImageIcon("src/test/Resources/trial_gnome.png", IMAGE_SIZE, IMAGE_SIZE);
 		return icon;
+	}
+	
+	public void resizeEverything(int newWidth) {
+		this.WIDTH = newWidth;
+		setFinalSize(this, WIDTH, HEIGHT);
+		setFinalSize(infoPanel, this.WIDTH*4/6, HEIGHT);
+		setFinalSize(imagePanel, this.WIDTH*2/6, HEIGHT);
+		
+		this.repaint();
+		this.revalidate();
 	}
 
 
