@@ -65,7 +65,7 @@
     
     <!-- Page Content -->    
     <div class="jumbotron content">
-        <div class="container">
+        <div class="container-fluid">
             
             <!-- Padding -->
             <div class="panel" style="background:none;height:40px"></div>
@@ -73,7 +73,7 @@
             <div class="row">
                
             <!-- Left Column -->   
-  			<div class="col-md-3" id="leftCol">
+  			<div class="col-md-2" id="leftCol">
               	
                 <!-- Filter Section -->
 				<div class="well"> 

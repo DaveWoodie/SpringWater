@@ -69,11 +69,11 @@
     </nav>
 
     <!-- Page Content -->
-    <div class="jumbotron">
+    <div class="jumbotron content">
     
         <!-- ******************************* Carousel Gnome Featured ************************************* -->
-        <div class="container">
-            <div class="rows">
+        <div class="container-fluid">
+            <div class="row">
                     
                 <!-- Left Panel -->
                 <div class="col-lg-4">
@@ -88,32 +88,36 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Right Panel -->
                 <!-- Gnome Featured Carousel -->
                 <div class="col-lg-8">
+                    <h1>Featured Items</h1>
+
                     <div id="carousel-featured" class="carousel slide" data-ride="carousel">
 
-                    <!-- ******************************** Create panel between carousel ************ -->
-                        <h2 id="featuredHeader" style="text-align:center">Featured</h2>
                         <ol class="carousel-indicators">
                             <li data-target="#carousel-featured" data-slide-to="0" class="active"></li>
                             <li data-target="#carousel-featured" data-slide-to="1"></li>
                             <li data-target="#carousel-featured" data-slide-to="2"></li>
                         </ol>
+
                         <div class="carousel-inner" role="listbox">
+                            <!-- Gnome Carousel Images -->
+                            <div class="item active">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <a class="thumbnail" href="#"><img class="img-responsive" src="img/gnome.jpg" alt=""></a> 
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <a class="thumbnail" href="#"><img class="img-responsive" src="img/gnome02.jpg" alt=""></a>
+                                        </div>
+                                    </div>
 
-                            <!-- Gnome Carousel Image -->
-                            <!-- <img data-src="holder.js/1140x500/auto/#777:#555/text:Garden Gnome" alt="First slide"> -->
-                            <div class="item active"><a href="#"><center><img src="img/gnome.jpg"><p>Gnome</p></img></center></a></div>
-                        
-                            <!-- Gnome Carousel Image -->
-                            <div class="item"><a href="#"><center><img src="img/gnome02.jpg" ahref="#"><p>Mushroom Gnome</p></img></center></a></div>
-                            
-                            <!-- Gnome Carousel Image -->
-                            <div class="item"><a href="#"><center><img src="img/gnome03.jpg" ahref="#"><p>Traveller Gnome</p></img></center></a></div>
+                                </div>
+                            </div>
                         </div>
-
                         <!-- Carousel Control Buttons -->
                         <a class="left carousel-control" href="#carousel-featured" role="button" data-slide="prev">
                             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -123,93 +127,99 @@
                             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>
-
                     </div>
                 </div>
-    
+                    
             </div>
         <!-- /container -->
         </div>
 
-
-    <!-- **************************************************************************** -->
-
-        <!-- ******************************* Carousel Gnome Most Featured ************************************* -->
-        <div class="container">
-            <div id="carousel-Most-Featured" class="carousel slide" data-ride="carousel">
-
-                <!-- ******************************** Create panel between carousel ************ -->
-                <h2 id="featuredHeader" class="page-header" style="text-align:center">Most Featured</h2>
-                <ol class="carousel-indicators">
-                    <li data-target="#carousel-Most-Featured" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-Most-Featured" data-slide-to="1"></li>
-                    <li data-target="#carousel-Most-Featured" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner" role="listbox">
-                    <!-- Gnome Carousel Image -->
-                    <!-- <img data-src="holder.js/1140x500/auto/#777:#555/text:Garden Gnome" alt="First slide"> -->
-                    <div class="item active"><a href="#"><center><img src="img/gnome04.jpg" ahref="#"><p>Chelsea Flower Show Gnome</p></img></center></a></div>
+        
+        <div class="container-fluid">
+            <div class="rows">
                 
-                    <!-- Gnome Carousel Image -->
-                    <div class="item"><a href="#"><center><img src="img/gnome05.jpg" ahref="#"><p>En Libre Gnome</p></img></center></a>
+                <!-- Most Popular Carousel -->
+                <div class="col-lg-6">
+                    <h2>Most Popular Items</h2>
+
+                    <div id="carousel-featured" class="carousel slide" data-ride="carousel">
+
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-featured" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-featured" data-slide-to="1"></li>
+                            <li data-target="#carousel-featured" data-slide-to="2"></li>
+                        </ol>
+
+                        <div class="carousel-inner" role="listbox">
+                            <!-- Gnome Carousel Images -->
+                            <div class="item active">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <a class="thumbnail" href="#"><img class="img-responsive" src="img/gnome.jpg" alt=""></a> 
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <a class="thumbnail" href="#"><img class="img-responsive" src="img/gnome02.jpg" alt=""></a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Carousel Control Buttons -->
+                        <a class="left carousel-control" href="#carousel-featured" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-featured" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
                 
-                    <!-- Gnome Carousel Image -->
-                    </div><div class="item"><a href="#"><center><img src="img/gnome06.jpg" ahref="#"><p>Scarface Gnome</p></img></center></a></div>   
-                </div>
+                <!-- Your Wishlist Carousel -->
+                <div class="col-lg-6">
+                    <h2>Items On Your Wishlist</h2>
 
-                <!-- Carousel Control Buttons -->
-                <a class="left carousel-control" href="#carousel-Most-Featured" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#carousel-Most-Featured" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+                    <div id="carousel-featured" class="carousel slide" data-ride="carousel">
+
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-featured" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-featured" data-slide-to="1"></li>
+                            <li data-target="#carousel-featured" data-slide-to="2"></li>
+                        </ol>
+
+                        <div class="carousel-inner" role="listbox">
+                            <!-- Gnome Carousel Images -->
+                            <div class="item active">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <a class="thumbnail" href="#"><img class="img-responsive" src="img/gnome.jpg" alt=""></a> 
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <a class="thumbnail" href="#"><img class="img-responsive" src="img/gnome02.jpg" alt=""></a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Carousel Control Buttons -->
+                        <a class="left carousel-control" href="#carousel-featured" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-featured" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>   
+                </div>
             </div>
         <!-- /container -->
         </div>
-
-
-    <!-- **************************************************************************** -->
-
-        <!-- ******************************* Carousel Gnome Suggestions/Categories/ Wish List ************************************* -->
-        <div class="container">
-            <div id="carousel-suggestions" class="carousel slide" data-ride="carousel">
-
-                <!-- ******************************** Create panel between caroyusel ************ -->
-                <h2 id="featuredHeader" class="page-header" style="text-align:center">You've recently viewed...</h2>
-                <ol class="carousel-indicators">
-                    <li data-target="#carousel-suggestions" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-suggestions" data-slide-to="1"></li>
-                    <li data-target="#carousel-suggestions" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner" role="listbox">
-                    
-                    <!-- Gnome Carousel Image -->
-                    <!-- <img data-src="holder.js/1140x500/auto/#777:#555/text:Garden Gnome" alt="First slide"> -->
-                    <div class="item active"><a href="#"><center><img src="img/gnome.jpg" ahref="#"><p>Gnome</p></img></center></a></div>
-                    
-                    <!-- Gnome Carousel Image -->
-                    <div class="item"><a href="#"><center><img src="img/gnome02.jpg" ahref="#"><p>Mushroom Gnome</p></img></center></a></div>
-                    
-                    <!-- Gnome Carousel Image -->
-                    <div class="item"><a href="#"><center><img src="img/gnome03.jpg" ahref="#"><p>Traveller Gnome</p></img></center></a></div>
-                </div>
-
-                <!-- Carousel Control Buttons -->
-                <a class="left carousel-control" href="#carousel-suggestions" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#carousel-suggestions" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-        <!-- /container -->
-        </div>
-
 
 </div>
 
