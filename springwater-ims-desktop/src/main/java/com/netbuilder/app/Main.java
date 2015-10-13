@@ -6,6 +6,6 @@ public class Main {
 	{
 		//RunGUI r = new RunGUI();
 		//MainFrame m = new MainFrame();
-		ItemGUI i = new ItemGUI();
+		ItemGUI i = new ItemGUI(1);
 	}
 }
