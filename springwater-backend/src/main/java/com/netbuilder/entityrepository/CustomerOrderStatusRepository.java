@@ -9,8 +9,6 @@ import org.springframework.data.repository.CrudRepository;
 import com.netbuilder.entities.CustomerOrderStatus;
 
 public interface CustomerOrderStatusRepository extends CrudRepository<CustomerOrderStatus, Integer> {
-
 	public CustomerOrderStatus findByID (int i);
 	public CustomerOrderStatus findByStatus (String s);
-	
 }

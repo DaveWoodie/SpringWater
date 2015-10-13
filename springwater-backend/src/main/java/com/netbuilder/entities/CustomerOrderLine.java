@@ -11,7 +11,6 @@ import javax.persistence.PrimaryKeyJoinColumn;
  * @date 06/10/2015
  */
 public class CustomerOrderLine {
-
 	private int quantity;
 	@Id
 	private Item item;
@@ -74,5 +73,4 @@ public class CustomerOrderLine {
 	public CustomerOrder getCustomerOrder() {
 		return customerOrder;
 	}
-
 }

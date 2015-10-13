@@ -14,9 +14,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 public class PaymentDetails {
-	
 	//Attributes
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPaymentDetails;
@@ -40,7 +38,6 @@ public class PaymentDetails {
 	 * @param idCustomer : Customer; Customer associcated with the payment details
 	 * @param idAddress : Address; The billing address
 	 */
-	
 	public PaymentDetails(String cardType, String cardName, String name, String expiryDate, Customer idCustomer, Address idAddress) {
 		this.cardType = cardType;
 		this.cardNumber = cardName;
@@ -51,7 +48,6 @@ public class PaymentDetails {
 	}
 	
 	//Getters
-	
 	/**
 	 * Method to get the payment ID
 	 * @return Returns int data type
@@ -109,7 +105,6 @@ public class PaymentDetails {
 	}
 
 	//Setters
-	
 	/**
 	 * Method to set the cards type
 	 * @param cardType: String of card type
