@@ -11,12 +11,9 @@ import javax.persistence.PrimaryKeyJoinColumn;
  * @date 06/10/2015
  */
 public class PurchaseOrderLine {
-
 	private int quantity;
-	
 	@Id
 	private Item item;
-	
 	@Id
 	@ManyToOne
 	@PrimaryKeyJoinColumn(name = "idPurchaseOrder")
@@ -75,5 +72,4 @@ public class PurchaseOrderLine {
 	public PurchaseOrder getPurchaseOrder() {
 		return purchaseOrder;
 	}
-
 }

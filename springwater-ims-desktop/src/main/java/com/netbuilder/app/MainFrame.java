@@ -124,7 +124,8 @@ public class MainFrame extends JFrame{
         setLocationRelativeTo(null);
         setMinimumSize(new Dimension(600, 800));
 
-
+        //delete before push
+        setVisible(true);
 	}
 
 

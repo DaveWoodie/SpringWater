@@ -50,52 +50,41 @@ public class PurchaseOrder {
 	 * Blank constructor for testing purposes only
 	 */
 	@Deprecated
-	public PurchaseOrder() {
-		
-	}
+	public PurchaseOrder() { }
 
 	public int getIDPurchaseOrder() {
 		return idPurchaseOrder;
 	}
-	
 
 	public Date getDatePlaced() {
 		return datePlaced;
 	}
-	
 
 	public Date getDateExpected() {
 		return dateExpected;
 	}
-	
 
 	public Employee getEmployee() {
 		return employee;
 	}
-	
 
 	public PurchaseOrderStatus getPurchaseOrderStatus() {
 		return purchaseOrderStatus;
 	}
-	
 
 	public Supplier getSupplier() {
 		return supplier;
 	}
 	
-	
 	public void setDateExpected(Date dE) {
 		dateExpected = dE;
 	}
-	
 
 	public void setEmployee(Employee e) {
 		employee = e;
 	}
-	
 
 	public void setPurchaseOrderStatus(PurchaseOrderStatus pOS) {
 		purchaseOrderStatus = pOS;
 	}
-	
 }
