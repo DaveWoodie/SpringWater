@@ -10,10 +10,11 @@ public class RunGUI extends JFrame
 		setLocation(350, 250);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		ItemGUI i = new ItemGUI();
-		add(i.getPanel());
-		
 		setSize(600, 800);
+		
+		//ItemGUI i = new ItemGUI();
+		//add(i.getPanel());
+		
+		
 	}
 }
