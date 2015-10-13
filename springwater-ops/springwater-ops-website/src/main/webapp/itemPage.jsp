@@ -37,7 +37,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">NBGardens</a>
+                <a class="navbar-brand" href="index.jsp">NBGardens</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -67,10 +67,10 @@
                 </form>
 
                 <form class="navbar-form navbar-right" role="search">
-                    <button class="btn btn-danger"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Wish List <span class="badge">0</span></button>
-                    <button class="btn btn-info"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Basket <span class="badge">0</span></button>
-                    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login</button>
-                    <button class="btn btn-primary"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Register</button>
+                    <a class="btn btn-danger" href="wishlist.jsp"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Wish List <span class="badge">0</span></a>
+                    <a class="btn btn-info" href="basket.jsp"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Basket <span class="badge">0</span></a>
+                    <a class="btn btn-success" href="loginRegister.jsp"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login</a>
+                    <a class="btn btn-primary" href="loginRegister.jsp"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Register</a>
                 </form>
             </div>
             <!-- /.navbar-collapse -->
@@ -101,9 +101,9 @@
 
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-                    <button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Add to Wish List</button>
-                    <button type="button" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Reviews</button>
-                    <button type="button" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add to Basket</button>
+                    <a class="btn btn-danger btn-lg" href=""><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Add to Wish List</a>
+                    <a class="btn btn-warning btn-lg" href="#reviews"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Reviews</a>
+                    <a class="btn btn-info btn-lg" href=""><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add to Basket</a>
                 </div>
             </div>
 
@@ -266,27 +266,34 @@
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-2 whiteText">
-                    <p><span class="glyphicon glyphicon-book" aria-hidden="true"></span> About</p>
+                    <a href="aboutus.jsp">
+                        <p class="whiteText"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> About</p>
+                    </a>
                 </div>
                 <div class="col-md-2 whiteText">
-                    <p><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Contact</p>
+                    <a href="contact.jsp">
+                        <p class="whiteText"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Contact</p>
+                    </a>
                 </div>
                 <div class="col-md-2 whiteText">
-                    <p><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> FAQ</p>
+                    <a href="faq.jsp">
+                        <p class="whiteText"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> FAQ</p>
+                    </a>
                 </div>
                 <div class="col-md-3"></div>
             </div>
             <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6 whiteText">
-                    <div id="paymentDiv">
-                        <p><span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span> We only accept <img src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom-white.svg" style="width:25%;height:auto"> as a payment option</p>
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6 whiteText">
+                        <div id="paymentDiv">
+                            <p><span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span> We only accept <img src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom-white.svg" style="width:25%;height:auto"> as a payment option</p>
+                        </div>
                     </div>
+                    <div class="col-md-3"></div>
                 </div>
-                <div class="col-md-3"></div>
             </div>
         </div>
-    </div>
 </body>
 
 <!-- Modals -->
