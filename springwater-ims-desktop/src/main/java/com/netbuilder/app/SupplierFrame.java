@@ -106,7 +106,7 @@ public class SupplierFrame extends JFrame{
 		//configure frame
 		setTitle("Inventory Management System");
 		setSize(600, 800);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setMinimumSize(new Dimension(600, 800));
 	}

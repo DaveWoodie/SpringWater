@@ -137,7 +137,7 @@
 
                     <div class="col-md-3">
                         <h3 class="panel-title">Total</h3>
-                        <p class="panel-title">&#163;11.96</p>
+                        <p class="panel-title">&#163;8.97</p>
                     </div>
 
                     <div class="col-md-3">
@@ -167,10 +167,18 @@
                         <br>
                         <br>
                         <br>
-                        <br>
-                        <br>
-                        <p>Garden Gome</p>
+                        <a href="#">Garden Gome</a>
+                        <p>Quantity: 3</p>
+                        <p>£2.99</p>
+                        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span> Buy it Again</button>
                     </div>
+                    
+                    <!-- Button List -->
+                    <div class="col-mid-3">
+                    	<button class="btn btn-primary"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Leave Buyer Feedback</button>
+                    	<button class="btn btn-primary"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Close Panel</button>
+                    </div>
+                    
                 </div>
             </div>
         </div>
