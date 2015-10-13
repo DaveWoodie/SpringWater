@@ -92,6 +92,10 @@ public class Item {
 		return itemName;
 	}
     
+    public String getDescription() {
+    	return itemDescription;
+    }
+    
     /**
      * Method to get the price of the item
      * @return Returns double data type
@@ -172,6 +176,10 @@ public class Item {
     public void setItemName(String itemName) {
 		this.itemName = itemName;
 	}
+    
+    public void setDescription(String newDescription) {
+    	this.itemDescription = newDescription;
+    }
 
     /**
      * Method to set the items price
