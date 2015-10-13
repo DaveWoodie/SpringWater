@@ -4,11 +4,11 @@
 <head>
     <title>NB Gardens</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script src="BootStrap/js/bootstrap.js" type="text/javascript"></script>
-    <link href="BootStrap/css/bootstrap.css" rel="stylesheet">
-    <link href="http://getbootstrap.com/3.2.0/assets/css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="main.css" rel="stylesheet">
-    <link href="collapse.css" rel="stylesheet">
+    <script src="resources/Bootstrap/js/bootstrap.js" type="text/javascript"></script>
+    <link href="resources/Bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="resources/Bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="resources/main.css" rel="stylesheet">
+    <link href="resources/collapse.css" rel="stylesheet">
 </head>
 
 <body>
@@ -70,7 +70,7 @@
             <!-- left column -->
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="text-center">
-                    <img src="img/placeholder.png" class="avatar img-circle img-thumbnail" alt="avatar">
+                    <img src="resources/img/placeholder.png" class="avatar img-circle img-thumbnail" alt="avatar">
                     <h6>Upload a different photo...</h6>
                     <input type="file" class="text-center center-block well well-sm">
                 </div>
@@ -103,13 +103,13 @@
             </div>
             <!-- /.col-sm-4 -->
 
-      <!-- Menu for profile, addresses and order nav bar-->
-      <div class="masthead">
-        <nav>
-          <ul class="nav nav-justified">
-            <li class="active"><a href="#">Profile</a></li>
-            <li><a href="addAddresses.html">Addresses</a></li>
-            <li><a href="ordersPage.html">Orders</a></li>
+            <!-- Menu for profile, addresses and order nav bar-->
+            <div class="masthead">
+                <nav>
+                    <ul class="nav nav-justified">
+                        <li class="active"><a href="#">Profile</a></li>
+                        <li><a href="addAddresses.html">Addresses</a></li>
+                        <li><a href="ordersPage.html">Orders</a></li>
 
                         <!-- Profile stuff -->
                         <div class="col-sm-8">

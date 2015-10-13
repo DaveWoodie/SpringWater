@@ -2,16 +2,17 @@
 <html>
 
 <head>
-    <title>NB Gardens - Basket</title>
-    <link href="http://getbootstrap.com/3.2.0/assets/css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="BootStrap/css/bootstrap.css" rel="stylesheet">
-    <link href="Bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="main.css" rel="stylesheet">
-    <link href="collapse.css" rel="stylesheet">
+    <title>NB Gardens</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="resources/Bootstrap/js/bootstrap.js" type="text/javascript"></script>
+    <link href="resources/Bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="resources/Bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="resources/main.css" rel="stylesheet">
+    <link href="resources/collapse.css" rel="stylesheet">
 </head>
 
 <body>
-    
+
     <!-- NavBar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -46,7 +47,8 @@
                 <form class="navbar-form navbar-left" role="search">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button></span>
+                        <span class="input-group-btn"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
+                        </span>
                     </div>
                     <!-- /input-group -->
                 </form>
@@ -62,46 +64,46 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-    
-    <!-- Page Content -->    
+
+    <!-- Page Content -->
     <div class="jumbotron content">
         <div class="container">
-            
+
             <!-- Padding -->
             <div class="panel" style="background:none;height:40px"></div>
-            
+
             <div class="row">
-               
-                <!-- Left Column -->   
+
+                <!-- Left Column -->
                 <div class="col-lg-8" id="leftCol">
                     <div class="container">
                         <h2 id="productTitle">Your Basket</h2>
-                        
+
                         <!-- Item Area -->
                         <div class="well">
                             <div class="panel panel-default">
 
                                 <!-- Table -->
                                 <table class="table table-striped">
-                                    
+
                                     <!-- Table Headings -->
                                     <thead>
                                         <tr>
                                             <th id="supersubtitle">Item Name</th>
-                                            <th id="supersubtitle">Item Price</th> 
+                                            <th id="supersubtitle">Item Price</th>
                                             <th id="supersubtitle">Quantity</th>
                                             <th id="supersubtitle">Subtotal</th>
                                             <th id="supersubtitle">Add / Remove</th>
-                                        </tr>    
+                                        </tr>
                                     </thead>
-                                    
+
                                     <!-- Items -->
                                     <tbody>
-                                        
+
                                         <!-- Item Row -->
                                         <tr>
                                             <td>[ITEM NAME]</td>
-                                            <td>£0.00</td> 
+                                            <td>£0.00</td>
                                             <td>1</td>
                                             <td>£0.00</td>
                                             <td>
@@ -110,11 +112,11 @@
                                                 <button class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
                                             </td>
                                         </tr>
-                                        
+
                                         <!-- Item Row -->
                                         <tr>
                                             <td>[ITEM NAME]</td>
-                                            <td>£0.00</td> 
+                                            <td>£0.00</td>
                                             <td>1</td>
                                             <td>£0.00</td>
                                             <td>
@@ -123,11 +125,11 @@
                                                 <button class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
                                             </td>
                                         </tr>
-                                        
+
                                         <!-- Item Row -->
                                         <tr>
                                             <td>[ITEM NAME]</td>
-                                            <td>£0.00</td> 
+                                            <td>£0.00</td>
                                             <td>1</td>
                                             <td>£0.00</td>
                                             <td>
@@ -136,11 +138,11 @@
                                                 <button class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
                                             </td>
                                         </tr>
-                                        
+
                                         <!-- Item Row -->
                                         <tr>
                                             <td>[ITEM NAME]</td>
-                                            <td>£0.00</td> 
+                                            <td>£0.00</td>
                                             <td>1</td>
                                             <td>£0.00</td>
                                             <td>
@@ -151,22 +153,23 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                
+
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
-              	        
+
                 <!-- Right Column -->
-      		    <div class="col-lg-4" id="rightCol">
+                <div class="col-lg-4" id="rightCol">
                     <div class="container">
-                
+
                         <div class="well">
-                            
+
                             <!-- Total panel -->
                             <div class="panel panel-success">
-                                <div class="panel-heading"><h3 class="panel-title">Order Details</h3></div>
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Order Details</h3></div>
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-sm-6 panel-body" id="panelLeft">Subtotal:</div>
@@ -186,41 +189,41 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- Address Section -->
                             <!-- Address Panel -->
                             <div class="nav nav-stacked panel panel-success" id="sidebar">
                                 <div class="panel-heading">Address Options</div>
 
-                                <!-- Dropdown -->   
+                                <!-- Dropdown -->
                                 <div class="list-group panel">
-                                        <a href="#AddressMenu" class="list-group-item strong" data-toggle="collapse" data-parent="#AddressMenu" id="selectAddress">Select Address<i class="fa fa-caret-down"></i></a>
-                                        <div class="collapse" id="AddressMenu">
-                                            <a href="#" class="list-group-item" data-parent="#AddressMenu" id="option">STREET NAME 1</a>
-                                            <a href="#" class="list-group-item" data-parent="#AddressMenu" id="option">STREET NAME 2</a>
-                                        </div>               
+                                    <a href="#AddressMenu" class="list-group-item strong" data-toggle="collapse" data-parent="#AddressMenu" id="selectAddress">Select Address<i class="fa fa-caret-down"></i></a>
+                                    <div class="collapse" id="AddressMenu">
+                                        <a href="#" class="list-group-item" data-parent="#AddressMenu" id="option">STREET NAME 1</a>
+                                        <a href="#" class="list-group-item" data-parent="#AddressMenu" id="option">STREET NAME 2</a>
+                                    </div>
                                 </div>
-                            </div>                                
-                                
+                            </div>
+
                             <!-- Address Options -->
                             <div class="panel" style="background:none">
                                 <button class="btn btn-block btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Address</button>
                                 <button class="btn btn-block btn-info"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit Address</button>
                             </div>
-                                                
+
                             <!-- Accept Button -->
                             <div class="panel" style="background:none" id="paymentDiv">
                                 <button class="btn btn-block btn-primary"><img src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom-white.svg" style="width:40%;height:auto"></button>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
-    
+
     <!-- Footer -->
     <div class="jumbotron" id="searchBar">
         <div class="container">
@@ -240,22 +243,24 @@
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6 whiteText">
-                    <div id="paymentDiv"><p><span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span> We only accept <img src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom-white.svg" style="width:25%;height:auto"> as a payment option</p></div>
+                    <div id="paymentDiv">
+                        <p><span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span> We only accept <img src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom-white.svg" style="width:25%;height:auto"> as a payment option</p>
+                    </div>
                 </div>
                 <div class="col-md-3"></div>
             </div>
         </div>
     </div>
-    
-</body>
-    
-    <!-- JQuery script -->
-    <script src="Bootstrap/js/jquery.js"></script>
-    
-    <!-- Bootstrap script -->
-    <script src="BootStrap/js/bootstrap.js" type="text/javascript"></script>
 
-    <!-- Custom script -->
-    <script src="basket.js"></script>
+</body>
+
+<!-- JQuery script -->
+<script src="Bootstrap/js/jquery.js"></script>
+
+<!-- Bootstrap script -->
+<script src="BootStrap/js/bootstrap.js" type="text/javascript"></script>
+
+<!-- Custom script -->
+<script src="basket.js"></script>
 
 </html>
