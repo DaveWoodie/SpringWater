@@ -23,7 +23,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.jsp">NBGardens</a>
+                <a class="navbar-brand" href="index.jsp"><img src="resources/img/logo2.png" style="width:auto;height:25px"></a>
             </div>
 
             <!-- Navbar items that collaspe into toggle menu -->
@@ -111,7 +111,34 @@
                                             <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome02.jpg" alt=""></a>
                                         </div>
                                     </div>
-
+                                </div>
+                            </div>
+                            
+                            <!-- Gnome Carousel Images -->
+                            <div class="item">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome03.jpg" alt=""></a> 
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome04.jpg" alt=""></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Gnome Carousel Images -->
+                            <div class="item">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome05.jpg" alt=""></a> 
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome06.jpg" alt=""></a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -139,12 +166,12 @@
                 <div class="col-lg-6">
                     <h2>Most Popular Items</h2>
 
-                    <div id="carousel-featured" class="carousel slide" data-ride="carousel">
+                    <div id="carousel-popular" class="carousel slide" data-ride="carousel">
 
                         <ol class="carousel-indicators">
-                            <li data-target="#carousel-featured" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-featured" data-slide-to="1"></li>
-                            <li data-target="#carousel-featured" data-slide-to="2"></li>
+                            <li data-target="#carousel-popular" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-popular" data-slide-to="1"></li>
+                            <li data-target="#carousel-popular" data-slide-to="2"></li>
                         </ol>
 
                         <div class="carousel-inner" role="listbox">
@@ -159,16 +186,43 @@
                                             <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome02.jpg" alt=""></a>
                                         </div>
                                     </div>
-
+                                </div>
+                            </div>
+                            
+                            <!-- Gnome Carousel Images -->
+                            <div class="item">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome03.jpg" alt=""></a> 
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome04.jpg" alt=""></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Gnome Carousel Images -->
+                            <div class="item">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome05.jpg" alt=""></a> 
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome06.jpg" alt=""></a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <!-- Carousel Control Buttons -->
-                        <a class="left carousel-control" href="#carousel-featured" role="button" data-slide="prev">
+                        <a class="left carousel-control" href="#carousel-popular" role="button" data-slide="prev">
                             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
                         </a>
-                        <a class="right carousel-control" href="#carousel-featured" role="button" data-slide="next">
+                        <a class="right carousel-control" href="#carousel-popular" role="button" data-slide="next">
                             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>
@@ -179,12 +233,12 @@
                 <div class="col-lg-6">
                     <h2>Items On Your Wishlist</h2>
 
-                    <div id="carousel-featured" class="carousel slide" data-ride="carousel">
+                    <div id="carousel-wishlist" class="carousel slide" data-ride="carousel">
 
                         <ol class="carousel-indicators">
-                            <li data-target="#carousel-featured" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-featured" data-slide-to="1"></li>
-                            <li data-target="#carousel-featured" data-slide-to="2"></li>
+                            <li data-target="#carousel-wishlist" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-wishlist" data-slide-to="1"></li>
+                            <li data-target="#carousel-wishlist" data-slide-to="2"></li>
                         </ol>
 
                         <div class="carousel-inner" role="listbox">
@@ -199,16 +253,43 @@
                                             <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome02.jpg" alt=""></a>
                                         </div>
                                     </div>
-
+                                </div>
+                            </div>
+                            
+                            <!-- Gnome Carousel Images -->
+                            <div class="item">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome03.jpg" alt=""></a> 
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome04.jpg" alt=""></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Gnome Carousel Images -->
+                            <div class="item">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome05.jpg" alt=""></a> 
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome06.jpg" alt=""></a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <!-- Carousel Control Buttons -->
-                        <a class="left carousel-control" href="#carousel-featured" role="button" data-slide="prev">
+                        <a class="left carousel-control" href="#carousel-wishlist" role="button" data-slide="prev">
                             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
                         </a>
-                        <a class="right carousel-control" href="#carousel-featured" role="button" data-slide="next">
+                        <a class="right carousel-control" href="#carousel-wishlist" role="button" data-slide="next">
                             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>

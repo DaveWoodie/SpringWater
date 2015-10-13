@@ -96,4 +96,9 @@ textarea {
     resize: none;
 }
 
+#itemThumb img {
+    max-height: 300px;
+    max-width: 300px;
+}
+
 /* Callum Cooper */

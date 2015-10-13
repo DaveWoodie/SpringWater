@@ -69,9 +69,6 @@
     <div class="jumbotron content">
         <div class="container">
 
-            <!-- Padding -->
-            <div class="panel" style="background:none;height:40px"></div>
-
             <div class="row">
 
                 <!-- Left Column -->
@@ -207,13 +204,13 @@
 
                             <!-- Address Options -->
                             <div class="panel" style="background:none">
-                                <button class="btn btn-block btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Address</button>
-                                <button class="btn btn-block btn-info"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit Address</button>
+                                <a href="addAddresses.jsp" class="btn btn-block btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Address</a>
+                                <a href="addAddresses.jsp" class="btn btn-block btn-info"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit Address</a>
                             </div>
 
                             <!-- Accept Button -->
                             <div class="panel" style="background:none" id="paymentDiv">
-                                <button class="btn btn-block btn-primary"><img src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom-white.svg" style="width:40%;height:auto"></button>
+                                <a href="http://www.paypal.com" class="btn btn-block btn-primary"><img src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom-white.svg" style="width:40%;height:auto"></a>
                             </div>
 
                         </div>
