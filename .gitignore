@@ -1,5 +1,24 @@
-/bin/
-
+/bin
 .classpath
 
+
+.DS_Store
+
 /target/
+
+springwater-backend/bin/
+
+springwater-backend/.classpath
+
+
+springwater-backend/.DS_Store
+
+springwater-backend/target/
+
+springwater-ims-desktop/bin/
+
+springwater-ims-desktop/.classpath
+
+springwater-ims-desktop/.DS_Store
+
+springwater-ims-desktop/target/
