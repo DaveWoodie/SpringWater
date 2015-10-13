@@ -20,6 +20,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -36,6 +39,8 @@ public class PurchaseOrders extends JPanel {
 	JComboBox<String> filterPurchaseOrder;
 	JButton filter, select, reset, add;
 	JLabel searchFieldLabel, filterFieldLabel;
+	
+	int currentlySelectedOrder = 0;
 	
 	public JPanel initUI() {
 		
@@ -75,7 +80,10 @@ public class PurchaseOrders extends JPanel {
 		search.add(Box.createRigidArea(new Dimension(10,0)));
 		search.add(searchFieldLabel);
 		search.add(Box.createRigidArea(new Dimension(10,0)));
-		search.add(paneBeta);
+		//
+		//search.add(paneBeta);
+		//
+		search.add(searchField);
 		
 		controller.add(select);
 		controller.add(filter);
@@ -97,11 +105,32 @@ public class PurchaseOrders extends JPanel {
 		
 		purchaseListTable = new DefaultTableModel(columns, 0);
 		purchaseOrderTable = new JTable(purchaseListTable);
+		purchaseOrderTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	    ListSelectionModel cellSelectionModel = purchaseOrderTable.getSelectionModel();
+	    cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	    
+	    //add selection listener to the list
+		cellSelectionModel.addListSelectionListener(new ListSelectionListener(){
+			
+			public void valueChanged(ListSelectionEvent e) {
+				// TODO select ID of selected row
+				int selectedRow = purchaseOrderTable.getSelectedRow();
+				try {
+					currentlySelectedOrder = Integer.parseInt(purchaseOrderTable.getValueAt(selectedRow, 0).toString());
+					System.out.println("Supplier ID: " + currentlySelectedOrder + " selected!");
+				}
+				catch (NullPointerException npe) {
+					System.out.println("Null Purchase Order!");
+				}
+			}
+			
+		});
+		
 		searchFieldLabel = new JLabel("Filter:");
 		filterFieldLabel = new JLabel("Filter By:");
 		paneAlph = new JScrollPane(purchaseOrderTable);
 		searchField = new JTextField();
-		paneBeta = new JScrollPane(searchField);
+//		paneBeta = new JScrollPane(searchField);
 		
 		filter = new JButton("Filter Results");
 		filter.addActionListener(new ActionListener(){
