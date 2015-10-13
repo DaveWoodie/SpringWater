@@ -36,6 +36,11 @@
     color: #777;
 }
 
+#orderImage {
+    width: 200px;
+    height: 200px;
+}
+
 #desc {
     font-size: 30px;
 }

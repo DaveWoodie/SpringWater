@@ -18,16 +18,12 @@
 
 <head>
     <title>NB Gardens</title>
-
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script src="BootStrap/js/bootstrap.js" type="text/javascript"></script>
-
-    <link href="BootStrap/css/bootstrap.css" rel="stylesheet">
-    <link href="Bootstrap/css/bootstrap-theme.css" rel="stylesheet">
-    <link href="main.css" rel="stylesheet">
-    <link href="collapse.css" rel="stylesheet">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="resources/Bootstrap/js/bootstrap.js" type="text/javascript"></script>
+    <link href="resources/Bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="resources/Bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="resources/main.css" rel="stylesheet">
+    <link href="resources/collapse.css" rel="stylesheet">
 </head>
 
 <body>
