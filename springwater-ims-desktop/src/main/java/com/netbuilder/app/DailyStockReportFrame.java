@@ -8,6 +8,8 @@ package com.netbuilder.app;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -29,17 +31,11 @@ public class DailyStockReportFrame {
 
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
 	public JPanel getStockReportPanel() {
 		int numRows = 30;
 		String[] colHeadings = { "Item ID", "Item Name", "Stock Level","Sales Rate" };
 		final JLabel fastSellingLabel = new JLabel("Fast Selling Items");
 		final JLabel LowStockLabel = new JLabel("Low stock Items");
-		JButton lowStockSelect = new JButton("Select");
-		JButton fastSellingSelect = new JButton("Select");
 		JPanel pane = new JPanel();
 		JPanel lowStockPanel = new JPanel();
 		JPanel fastSellingPanel = new JPanel();
@@ -82,6 +78,26 @@ public class DailyStockReportFrame {
 					}
 				});
 
+		JButton lowStockSelect = new JButton("Select");
+		lowStockSelect.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Take selected item from list and load into item frame
+				@SuppressWarnings("unused")
+				ItemGUI IG = new ItemGUI();
+			}		
+		});
+		
+		JButton fastSellingSelect = new JButton("Select");
+		fastSellingSelect.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Take selected item from list and load into item frame
+				@SuppressWarnings("unused")
+				ItemGUI IG = new ItemGUI();
+			}		
+		});
+		
 		// Set up box layouts
 		BoxLayout lowStockBoxLayout = new BoxLayout(lowStockPanel,BoxLayout.Y_AXIS);
 		lowStockPanel.setLayout(lowStockBoxLayout);
