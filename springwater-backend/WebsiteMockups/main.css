@@ -23,7 +23,7 @@
 
 #productTitle {
     font-size: 40px;
-    color: #777
+    color: #777;
 }
 
 #desc {
@@ -67,6 +67,18 @@
     max-height:100%;
     margin:auto;
     display:inline-flex;
+}
+
+#subtitle {
+    color: #777;
+}
+
+#supersubtitle {
+    color: #777;
+}
+
+textarea {
+    resize: none;
 }
 
 /* Callum Cooper */
