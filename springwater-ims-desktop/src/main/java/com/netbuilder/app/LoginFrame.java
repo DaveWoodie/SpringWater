@@ -7,6 +7,8 @@ package com.netbuilder.app;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +28,7 @@ import javax.swing.JTextField;
 /**
  * Create a login JFrame
  */
-public class LoginFrame extends JFrame{
+public class LoginFrame extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -37,22 +39,33 @@ public class LoginFrame extends JFrame{
 	private JButton buttonLogin;
 	private Color colour;
 	
+	private GUIStart src;
+	
 	public LoginFrame()
 	{
-		initUI();
+	//	initUI();
+		createUI();
+	}
+	
+
+	public LoginFrame(GUIStart src)
+	{
+		this.src = src;
+	//	initUI();
 		createUI();
 	}
 	
 	/**
 	 * Initialize Login Frame location and size
 	 */
+	@Deprecated
 	public void initUI()
 	{
-		setLocationRelativeTo(null);
-		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setResizable(false);
-		getContentPane().setPreferredSize(new Dimension(350, 300));
+//		setLocationRelativeTo(null);
+//		setVisible(true);
+//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		setResizable(false);
+//		getContentPane().setPreferredSize(new Dimension(350, 300));
 	}
 	
 	public void createUI() 
@@ -60,10 +73,12 @@ public class LoginFrame extends JFrame{
 		//background panel
 		panelBackground = new JPanel(new BoxLayout(panelBackground, BoxLayout.Y_AXIS));
 		panelBackground.setLayout(null);
+		panelBackground.setPreferredSize(new Dimension(350, 300));
 		//panelBackground.setSize(300, 300);
 		//panelBackground.setPreferredSize(new Dimension(400, 300));
 		panelBackground.setBorder(BorderFactory.createLineBorder(Color.black));
 		panelBackground.setBackground(Color.white);
+		this.add(panelBackground);
 		
 		//Logo Panel
 		panelLogo = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -74,7 +89,7 @@ public class LoginFrame extends JFrame{
 		
 		try
 		{
-			BufferedImage Logo = ImageIO.read(new File("src/main/Resources/logoPlaceholder.png"));
+			BufferedImage Logo = ImageIO.read(new File("src/test/Resources/logoPlaceholder.png"));
 			JLabel labelLogo = new JLabel(new ImageIcon(Logo));
 			panelLogo.add(labelLogo);
 		}
@@ -111,6 +126,7 @@ public class LoginFrame extends JFrame{
 		panelLogin.setBounds(panelPassword.getBounds().x, panelPassword.getBounds().y + panelPassword.getHeight() + 10, 250, 50);
 		panelLogin.setBackground(Color.white);
 		buttonLogin = new JButton("Login");
+		buttonLogin.addActionListener(src);
 		panelLogin.add(buttonLogin);
 		
 		//add components to container panel
@@ -121,8 +137,5 @@ public class LoginFrame extends JFrame{
 		
 		//add background panel to login frame
 		add(panelBackground);	
-		
-		//resize screen
-		setSize(getPreferredSize());
 	}
 }

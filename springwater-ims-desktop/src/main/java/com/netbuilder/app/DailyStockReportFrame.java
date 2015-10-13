@@ -97,7 +97,7 @@ public class DailyStockReportFrame {
 				{
 				@SuppressWarnings("unused")
 				ItemGUI IG = new ItemGUI(lowSelectedID);
-				System.out.println("Item ID: " + lowSelectedID+ " selected!");
+				//System.out.println("Item ID: " + lowSelectedID+ " selected!");
 				}
 			}		
 		});
@@ -115,7 +115,7 @@ public class DailyStockReportFrame {
 				{
 					@SuppressWarnings("unused")
 					ItemGUI IG = new ItemGUI(fastSelectedID);
-					System.out.println("Item ID: " + fastSelectedID+ " selected!");
+					//System.out.println("Item ID: " + fastSelectedID+ " selected!");
 				}
 			}		
 		});
