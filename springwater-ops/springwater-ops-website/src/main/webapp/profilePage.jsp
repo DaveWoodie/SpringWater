@@ -22,7 +22,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">NB GARDENS</a>
+                <a class="navbar-brand" href="index.jsp">NB GARDENS</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -108,8 +108,8 @@
                 <nav>
                     <ul class="nav nav-justified">
                         <li class="active"><a href="#">Profile</a></li>
-                        <li><a href="addAddresses.html">Addresses</a></li>
-                        <li><a href="ordersPage.html">Orders</a></li>
+                        <li><a href="addAddresses.jsp">Addresses</a></li>
+                        <li><a href="ordersPage.jsp">Orders</a></li>
 
                         <!-- Profile stuff -->
                         <div class="col-sm-8">
