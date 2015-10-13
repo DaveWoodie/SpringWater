@@ -12,9 +12,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
  * @date 06/10/2015
  *
  */
-
 public class Customer {
-
 	// Customer attributes
 	@Id
 	@OneToOne
@@ -41,8 +39,7 @@ public class Customer {
 	}
 	
 	@Deprecated
-	public Customer() {
-	}
+	public Customer() { }
 
 	/**
 	 * @Method is an accessor for the User associated with the Customer
@@ -118,16 +115,6 @@ public class Customer {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	//Should never be able to set the customers ID indiviudally therefore I have commented this out. 
-//	/**
-//	 * Method is a mutator for the customers unique ID number.
-//	 * 
-//	 * @param idCustomer
-//	 *            : is the integer number for the custoemrs unique ID number.
-//	 */
-//	public void setIdCustomer(int idCustomer) {
-//		this.idCustomer = idCustomer;
-//	}
 
 	/**
 	 * Method is a mutator for the customers credit value assigned to their
@@ -140,4 +127,15 @@ public class Customer {
 	public void setCredit(float credit) {
 		this.credit = credit;
 	}
+	
+	/*Should never be able to set the customers ID indiviudally therefore I have commented this out. 
+//	/**
+//	 * Method is a mutator for the customers unique ID number.
+//	 * 
+//	 * @param idCustomer
+//	 *            : is the integer number for the custoemrs unique ID number.
+//	 
+//	public void setIdCustomer(int idCustomer) {
+//		this.idCustomer = idCustomer;
+	}*/
 }

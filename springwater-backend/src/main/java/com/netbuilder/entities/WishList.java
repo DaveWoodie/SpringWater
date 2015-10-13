@@ -13,7 +13,6 @@ import org.springframework.data.annotation.Id;
  * @date 06/10/2015
  *
  */
-
 public class WishList {
 	
 	@Id
@@ -118,5 +117,4 @@ public class WishList {
 	public void setCustomer(Customer c) {
 		this.customer = c;
 	}
-	
 }

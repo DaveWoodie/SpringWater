@@ -7,6 +7,12 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+/**
+ * Custom annotation example
+ * 
+ * @author jthompson
+ *
+ */
 @Target ({ METHOD, CONSTRUCTOR })
 @Retention (RUNTIME)
 @Documented
