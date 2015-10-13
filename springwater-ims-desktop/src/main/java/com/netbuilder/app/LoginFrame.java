@@ -28,7 +28,7 @@ import javax.swing.JTextField;
 /**
  * Create a login JFrame
  */
-public class LoginFrame extends JPanel{
+public class LoginFrame extends JPanel implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -126,7 +126,7 @@ public class LoginFrame extends JPanel{
 		panelLogin.setBounds(panelPassword.getBounds().x, panelPassword.getBounds().y + panelPassword.getHeight() + 10, 250, 50);
 		panelLogin.setBackground(Color.white);
 		buttonLogin = new JButton("Login");
-		buttonLogin.addActionListener(src);
+		buttonLogin.addActionListener(this);
 		panelLogin.add(buttonLogin);
 		
 		//add components to container panel
@@ -137,5 +137,13 @@ public class LoginFrame extends JPanel{
 		
 		//add background panel to login frame
 		add(panelBackground);	
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource().equals(buttonLogin)) {
+			src.revertToMain();
+		}
 	}
 }
