@@ -52,7 +52,7 @@ public class ItemGUI extends JPanel
 		
 		//Product name panel - top left
 		JPanel panelName = new JPanel();
-		panelName.setMaximumSize(new Dimension(999, 200));
+		panelName.setMaximumSize(new Dimension(999, 50));
 		panelName.setBorder(BorderFactory.createLineBorder(Color.gray));
 		JLabel labelName = new JLabel("Product Name : ");
 		JTextField textName = new JTextField(15);
