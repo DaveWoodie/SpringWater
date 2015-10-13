@@ -191,7 +191,7 @@ public class ItemGUI extends JFrame
 	 */
 	public void setUpTableModel()
 	{
-		tableModel.addColumn("Delivery ID");
+		tableModel.addColumn("Purchase Order ID");
 		tableModel.addColumn("Date");
 		tableModel.addColumn("Stock In");
 		tableModel.addColumn("Amount Damaged");
