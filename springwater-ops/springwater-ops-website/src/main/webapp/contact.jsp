@@ -26,9 +26,10 @@
 </head>
 
 <body>
+    
+    <!-- Navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
@@ -36,22 +37,25 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.jsp">NBGardens</a>
+                <a class="navbar-brand" href="index.jsp"><img src="resources/img/logo2.png" style="width:auto;height:25px"></a>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
+            <!-- Navbar items that collaspe into toggle menu -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Categories<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
+                            <li><a href="items.jsp">Gnomes</a></li>
+                            <li><a href="items.jsp">Furniture</a></li>
+                            <li><a href="items.jsp">Tools</a></li>
+                            <li><a href="items.jsp">Pottery</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
+                            <li><a href="items.jsp">Featured</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>
+                            <li><a href="items.jsp">Most Popular</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="items.jsp">Wishlist Items</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -62,19 +66,17 @@
                         <span class="input-group-btn"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
                         </span>
                     </div>
-                    <!-- /input-group -->
                 </form>
 
                 <form class="navbar-form navbar-right" role="search">
-                    <a class="btn btn-danger" href="wishlist.jsp"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Wish List <span class="badge">0</span></a>
-                    <a class="btn btn-info" href="basket.jsp"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Basket <span class="badge">0</span></a>
-                    <a class="btn btn-success" href="loginRegister.jsp"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login</a>
-                    <a class="btn btn-primary" href="loginRegister.jsp"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Register</a>
+                    <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Wish List <span class="badge">0</span></a>
+                    <a href="basket.jsp" class="btn btn-info"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Basket <span class="badge">0</span></a>
+                    <a href="loginRegister.jsp" type="submit" class="btn btn-success"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login</a>
+                    <a href="loginRegister.jsp" class="btn btn-primary"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Register</a>
                 </form>
             </div>
-            <!-- /.navbar-collapse -->
+            <!-- END OF COLLASPE AREA -->
         </div>
-        <!-- /.container-fluid -->
     </nav>
 
     <div class="jumbotron content">

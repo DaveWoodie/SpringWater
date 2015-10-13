@@ -23,7 +23,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.jsp">NBGardens</a>
+                <a class="navbar-brand" href="index.jsp"><img src="resources/img/logo2.png" style="width:auto;height:25px"></a>
             </div>
 
             <!-- Navbar items that collaspe into toggle menu -->
