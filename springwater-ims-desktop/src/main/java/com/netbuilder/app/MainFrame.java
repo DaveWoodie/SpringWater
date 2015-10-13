@@ -167,9 +167,7 @@ public class MainFrame extends JPanel implements ComponentListener , ActionListe
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		if (e.getSource().equals(logout))
-		{
+		if (e.getSource().equals(logout)) {
 			src.revertToLogin();
 		}
 	}
