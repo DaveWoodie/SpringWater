@@ -37,7 +37,6 @@ public class Employee {
 		return user;
 	}
 
-
 	public Role getRole() {
 		return role;
 	}

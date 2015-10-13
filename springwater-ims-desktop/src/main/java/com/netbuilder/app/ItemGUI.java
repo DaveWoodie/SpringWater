@@ -30,10 +30,26 @@ import javax.swing.table.DefaultTableModel;
 @SuppressWarnings("serial")
 public class ItemGUI extends JFrame
 {	
+	private int itemID = 0;
 	private BufferedImage productImage;
 	private JTabbedPane tabbedPane;
 	private DefaultTableModel tableModel =  new DefaultTableModel();
+
+	/**
+	 * Constructor that creates an instance of an item GUI for the item ID that is passed
+	 * @param itemID : 
+	 */
+	public ItemGUI(int itemID)
+	{
+		this.itemID = itemID;
+		
+		initGUI();
+		createUI();
+	}
 	
+	/**
+	 * Blank constructor to create an instance of an item GUI that doesn't include ItemID
+	 */
 	public ItemGUI()
 	{
 		initGUI();

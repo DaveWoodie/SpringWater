@@ -12,8 +12,6 @@ import javax.persistence.Id;
 
 @Entity
 public class User {
-	
-	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int iDnum;
@@ -35,7 +33,6 @@ public class User {
 	 * @param emp : Boolean to determine if the User is an Employee or not.
 	 */
 	public User(String pwd, String foreName, String surName, String email, boolean emp) {
-		
 		this.pWd = pwd;
 		this.forName = foreName;
 		this.surName = surName;
@@ -47,8 +44,7 @@ public class User {
 	 * Default Constructor for testing purposes only.
 	 */
 	@Deprecated
-	public User() {
-	}
+	public User() { }
 	
 	/**
 	 * Method to set the value of the User's password.

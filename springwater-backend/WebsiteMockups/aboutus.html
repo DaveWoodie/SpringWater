@@ -1,20 +1,39 @@
 <!DOCTYPE HTML>
-<html>
+<!--------------------------------------------------------
+
+    Chris J W Walker 
+    
+    aboutus.html
+
+    13/10/2015
+
+    Page explaining NBGardens and profiles for
+    the team
+
+    Last Modified by: chrisjwwalker
+
+--------------------------------------------------------->
+
+<html lang="en">
 
 <head>
     <title>NB Gardens</title>
+    
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="BootStrap/js/bootstrap.js" type="text/javascript"></script>
+    
     <link href="BootStrap/css/bootstrap.css" rel="stylesheet">
-    <link href="http://getbootstrap.com/3.2.0/assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="Bootstrap/css/bootstrap-theme.css" rel="stylesheet">
     <link href="main.css" rel="stylesheet">
     <link href="collapse.css" rel="stylesheet">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
+    <!-- Start of navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
@@ -25,7 +44,7 @@
                 <a class="navbar-brand" href="#">NBGardens</a>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
+            <!-- Nav bar that collaspes into toggle menu -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
@@ -48,7 +67,6 @@
                         <span class="input-group-btn"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
                         </span>
                     </div>
-                    <!-- /input-group -->
                 </form>
 
                 <form class="navbar-form navbar-right" role="search">
@@ -58,11 +76,12 @@
                     <button class="btn btn-primary"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Register</button>
                 </form>
             </div>
-            <!-- /.navbar-collapse -->
+            <!-- END OF COLLASPE AREA -->
         </div>
-        <!-- /.container-fluid -->
     </nav>
+    <!-- END OF NAVBAR -->
 
+    <!-- Page Header Jumbotron -->
     <div class="jumbotron content">
         <div class="container">
             <div class="row">
@@ -70,13 +89,12 @@
                     <div class="page-header">
                         <h1 id="productTitle">About NBGardens</h1>
                     </div>
-
                     <p>Find out about our company and meet the team!</p>
                 </div>
             </div>
         </div>
     </div>
-
+    <!-- END OF PAGE HEADER -->
 
     <div class="jumbotron" id="searchBar">
         <div class="container">
@@ -167,6 +185,7 @@
         </div>
     </div>
 
+    <!-- Footer -->
     <div class="jumbotron" id="searchBar">
         <div class="container">
             <div class="row">
@@ -193,6 +212,7 @@
             </div>
         </div>
     </div>
+    <!-- END OF FOOTER -->
 </body>
 
 </html>

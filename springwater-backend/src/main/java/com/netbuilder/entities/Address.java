@@ -5,15 +5,12 @@ import java.util.ArrayList;
 
 import org.springframework.data.annotation.Id;
 
-
-
 /**
  * Class to hold all of the details for an address. Used for both customer addresses and supplier addresses
  * @author tstacey
  * @date 06/10/2015
  */
 public class Address {
-	
 	@Id
 	private int addressID;
 	
@@ -23,7 +20,6 @@ public class Address {
 	private String county;
 	private String postCode;
 	
-
 	/**
 	 * Constructor for a new address with full details completed
 	 * @param addressLines : ArrayList<String> of the lines of the address (House number, name, street, city etc.)
@@ -32,7 +28,6 @@ public class Address {
 	 * @param postCode : String of the address post code
 	 */
 	public Address(Customer customer, ArrayList<String> addressLines, String city, String county, String postCode) {
-
 		this.customer = customer;
 		copyAddressLines(addressLines);
 		this.city = city;
@@ -40,7 +35,6 @@ public class Address {
 		this.postCode = postCode;
 	}
 	
-
 	/**
 	 * Constructor for a new address without County completed
 	 * @param addressLineOne : String of the first line of the address (House number)
@@ -49,7 +43,6 @@ public class Address {
 	 * @param postCode : String of the address post code
 	 */
 	public Address(Customer customer, ArrayList<String> addressLines, String city, String postCode) {
-
 		this.customer = customer;
 		copyAddressLines(addressLines);
 		this.city = city;
@@ -64,7 +57,6 @@ public class Address {
 	 * @param postCode
 	 */
 	public Address(ArrayList<String> addressLines, String city, String county, String postCode) {
-
 		copyAddressLines(addressLines);
 		this.city = city;
 		this.county = county;
@@ -78,7 +70,6 @@ public class Address {
 	 * @param postCode
 	 */
 	public Address(ArrayList<String> addressLines, String city, String postCode) {
-
 		copyAddressLines(addressLines);
 		this.city = city;
 		this.postCode = postCode;
@@ -88,9 +79,7 @@ public class Address {
 	 * Blank constructor for a new address entity. For testing only
 	 */
 	@Deprecated
-	public Address() {
-		
-	}
+	public Address() { }
 	
 	
 	/**
@@ -157,8 +146,4 @@ public class Address {
 	public String getPostCode() {
 		return this.postCode;
 	}
-	
-	
 }
-
-	

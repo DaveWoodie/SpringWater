@@ -10,7 +10,6 @@ import java.util.HashMap;
 import org.springframework.data.annotation.Id;
 
 public class Item {
-
 	//Item attributes
 	@Id
 	private int idItem;
@@ -26,7 +25,6 @@ public class Item {
 	private boolean isPorousware;
 	
 	private HashMap<String, String> attributes;
-	
 	
 	private Supplier idSupplier;
 	
@@ -59,9 +57,7 @@ public class Item {
 	}
 	
 	@Deprecated
-	public Item() {
-		
-	}
+	public Item() { }
 	
 	/**
 	 * Constructor that sets the Item's ID and name. Used in testing WishList's findItemByID() Method
