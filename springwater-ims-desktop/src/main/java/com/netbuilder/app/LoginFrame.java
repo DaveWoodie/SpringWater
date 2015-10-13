@@ -76,12 +76,12 @@ public class LoginFrame extends JPanel{
 		panelBackground.setPreferredSize(new Dimension(350, 300));
 		//panelBackground.setSize(300, 300);
 		//panelBackground.setPreferredSize(new Dimension(400, 300));
-		panelBackground.setBorder(BorderFactory.createLineBorder(Color.black));
+		panelBackground.setBorder(BorderFactory.createLineBorder(Color.gray));
 		panelBackground.setBackground(Color.white);
 		this.add(panelBackground);
 		
-		//Logo Panel
-		panelLogo = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		//logo Panel
+		panelLogo = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		//panelLogo.setBorder(BorderFactory.createLineBorder(Color.black));
 		panelLogo.setPreferredSize(new Dimension(210, 115));
 		panelLogo.setBounds(getPreferredSize().width / 2 - panelLogo.getPreferredSize().width / 2, 10, panelLogo.getPreferredSize().width, panelLogo.getPreferredSize().height);
@@ -89,7 +89,7 @@ public class LoginFrame extends JPanel{
 		
 		try
 		{
-			BufferedImage Logo = ImageIO.read(new File("src/test/Resources/logoPlaceholder.png"));
+			BufferedImage Logo = ImageIO.read(new File("src/main/Resources/logo.png"));
 			JLabel labelLogo = new JLabel(new ImageIcon(Logo));
 			panelLogo.add(labelLogo);
 		}
