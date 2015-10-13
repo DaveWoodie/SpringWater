@@ -37,7 +37,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">NBGardens</a>
+                <a class="navbar-brand" href="index.jsp">NBGardens</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -67,10 +67,10 @@
                 </form>
 
                 <form class="navbar-form navbar-right" role="search">
-                    <button class="btn btn-danger"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Wish List <span class="badge">0</span></button>
-                    <button class="btn btn-info"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Basket <span class="badge">0</span></button>
-                    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login</button>
-                    <button class="btn btn-primary"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Register</button>
+                    <a class="btn btn-danger" href="wishlist.jsp"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Wish List <span class="badge">0</span></a>
+                    <a class="btn btn-info" href="basket.jsp"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Basket <span class="badge">0</span></a>
+                    <a class="btn btn-success" href="loginRegister.jsp"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login</a>
+                    <a class="btn btn-primary" href="loginRegister.jsp"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Register</a>
                 </form>
             </div>
             <!-- /.navbar-collapse -->
@@ -189,13 +189,13 @@
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-2 whiteText">
-                    <p><span class="glyphicon glyphicon-book" aria-hidden="true"></span> About</p>
+                    <a href="aboutus.jsp"><p class="whiteText"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> About</p></a>
                 </div>
                 <div class="col-md-2 whiteText">
-                    <p><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Contact</p>
+                   <a href="contact.jsp"> <p class="whiteText"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Contact</p></a>
                 </div>
                 <div class="col-md-2 whiteText">
-                    <p><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> FAQ</p>
+                    <a href="faq.jsp"><p class="whiteText"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> FAQ</p></a>
                 </div>
                 <div class="col-md-3"></div>
             </div>
