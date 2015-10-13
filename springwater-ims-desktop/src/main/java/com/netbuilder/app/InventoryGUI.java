@@ -28,14 +28,12 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 	private int WIDTH = 580;
 	private int HEIGHT = 800;
 	private int SEARCH_PANEL_HEIGHT = 66;
-	private int BOTTOM_PADDING = 15;
 	private int SIDE_PADDING = 20;
 
 	private static final long serialVersionUID = 1L;
 
 	private JScrollPane scrollPane;
 	private JPanel scrollPanel;
-	private JPanel inventoryPanel;
 	
 	private JPanel searchPanel;
 	private JPanel searchFieldPanel;
@@ -89,7 +87,7 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		//setAbsoluteSize(scrollPane, WIDTH, HEIGHT - BOTTOM_PADDING);
 		
 		for(InventoryItem i : items) {
-			i.resizeEverything(WIDTH*10/12);
+			i.resizeEverything(WIDTH*19/20);
 		}
 		
 	}
@@ -126,7 +124,6 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 	
 	private void addSearchFieldPanel() {
 		setAbsoluteSize(searchFieldPanel, WIDTH*11/16, SEARCH_PANEL_HEIGHT);
-		setBorder(searchFieldPanel, new Color(100,50,240));
 		searchFieldPanel.setLayout(new GridBagLayout());
 		addSearchField();
 		searchPanel.add(searchFieldPanel);
@@ -143,7 +140,6 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 	
 	private void addSearchButtonPanel() {
 		setAbsoluteSize(searchButtonPanel, WIDTH*1/4, SEARCH_PANEL_HEIGHT);
-		setBorder(searchButtonPanel, new Color(100,240,100));
 		searchButtonPanel.setLayout(new GridBagLayout());
 		
 		searchButton = new JButton("Search");
@@ -162,7 +158,7 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));
 		
 		for(int i = 0; i < 10; i++) {
-			InventoryItem invItem = new InventoryItem(this, WIDTH*10/12, i, "Test", 50, "2B", null);
+			InventoryItem invItem = new InventoryItem(this, WIDTH*19/20, i, "Test", 50, "2B", null);
 			items.add(invItem);
 			scrollPanel.add(invItem);
 		}

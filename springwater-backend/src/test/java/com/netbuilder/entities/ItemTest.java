@@ -7,6 +7,8 @@ package com.netbuilder.entities;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
+
 import org.junit.Test;
 
 public class ItemTest {
@@ -20,44 +22,51 @@ public class ItemTest {
 	private int pSalesRate = 78;
 	private boolean isPorousware = false;
 	private Supplier idSupplier = new Supplier(null, null);
+	private HashMap<String, String> attributesMap;
 
 	@Test
 	public void testIdItem() {
-		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier);
+		setupAttributesMap();
+		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier, attributesMap);
 		assertEquals("Item ID should be null", 0, i.getIdItem());
 	}
 
 	@Test
 	public void testGetItemName() {
-		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier);
+		setupAttributesMap();
+		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier, attributesMap);
 		i.setItemName("Green Gnome");
 		assertEquals("Name shouldn't match iName", "Green Gnome", i.getItemName());
 	}
 
 	@Test
 	public void testGetPrice() {
-		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier);
+		setupAttributesMap();
+		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier, attributesMap);
 		i.setPrice(5.23f);
 		assertEquals(5.23f, i.getPrice(), 0);
 	}
 
 	@Test
 	public void testGetStock() {
-		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier);
+		setupAttributesMap();
+		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier, attributesMap);
 		i.setStock(100);
 		assertEquals(100, i.getStock(), 0);
 	}
 
 	@Test
 	public void testGetImageLocation() {
-		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier);
+		setupAttributesMap();
+		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier, attributesMap);
 		i.setImageLocation("https://image.co.uk/gnome.jpg");
 		assertEquals("https://image.co.uk/gnome.jpg", i.getImageLocation());
 	}
 
 	@Test
 	public void testGetSalesRate() {
-		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier);
+		setupAttributesMap();
+		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier, attributesMap);
 		i.setSalesRate(3);
 		assertEquals("Get sales Rate", 3, i.getSalesRate());
 	}
@@ -72,20 +81,37 @@ public class ItemTest {
 	
 	@Test
 	public void testGetpSalesRate() {
-		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier);
+		setupAttributesMap();
+		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier, attributesMap);
 		i.setpSalesRate(45);
 		assertEquals("Get past sales rate", 45, i.getpSalesRate());
 	}
 
 	@Test
 	public void testIsDiscontinued() {
-		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier);
+		setupAttributesMap();
+		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier, attributesMap);
 		assertFalse(i.isDiscontinued());
 	}
 
 	@Test
 	public void testIsPorousware() {
-		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier);
+		setupAttributesMap();
+		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier, attributesMap);
 		assertFalse(i.isPorousware());
+	}
+	
+	@Test
+	public void testGetAttributes() {
+		
+	}
+	
+	private void setupAttributesMap() {
+		attributesMap = new HashMap<String, String>();
+		attributesMap.put("Hat Colour", "Red");
+		attributesMap.put("Height", "28cm");
+		attributesMap.put("Width", "7cm");
+		attributesMap.put("Depth", "7cm");
+		attributesMap.put("Accessory", "Fishing Rod");
 	}
 }
