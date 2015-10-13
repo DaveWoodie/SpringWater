@@ -12,12 +12,10 @@ import javax.persistence.Id;
 
 @Entity
 public class CustomerOrderStatus {
-
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int statusID;
 	private String status;
-	
 	
 	/**
 	 * Customer Order Status constructor with parameter to set the status
@@ -31,8 +29,7 @@ public class CustomerOrderStatus {
 	 * Empty constructor to create an instance of the Customer Order Status Class. Used in testing
 	 */
 	@Deprecated
-	public CustomerOrderStatus () {
-	}
+	public CustomerOrderStatus () { }
 	
 	public int getStatusID() {
 		return statusID;
@@ -45,5 +42,4 @@ public class CustomerOrderStatus {
 	public String getCustOrderStatus() {
 		return status;
 	}
-	
 }

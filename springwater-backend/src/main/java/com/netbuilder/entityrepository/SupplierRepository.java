@@ -10,8 +10,6 @@ import com.netbuilder.entities.Supplier;
  * @author tstacey
  * @date 07/10/2015
  */
-public interface SupplierRepository extends CrudRepository<Supplier, Integer>{
-	
+public interface SupplierRepository extends CrudRepository<Supplier, Integer> {
 	public Supplier findOneByName(String supplierName);
-	
 }

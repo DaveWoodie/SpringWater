@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.BoxLayout;
 import javax.swing.JTabbedPane;
+import javax.swing.border.EmptyBorder;
 
 /**
  * 
@@ -34,9 +35,7 @@ public class MainFrame extends JFrame{
 	PurchaseOrders pO;
 	
 	/**
-	 * 
-	 * Constructor to call GUI initialisation
-	 *
+	 * Method to call GUI initialisation
 	 */
 	public MainFrame() {
 		initUI();
@@ -48,6 +47,7 @@ public class MainFrame extends JFrame{
 	public void initUI() {
 		
 		base = new JPanel();
+		base.setBorder(new EmptyBorder(5, 5, 5, 5));
 		base.setLayout(new BorderLayout());
 
 		//create tabbed pane and tabs
@@ -81,6 +81,7 @@ public class MainFrame extends JFrame{
 		bottom = new JPanel();
 		bottom.setLayout(new BoxLayout(bottom, BoxLayout.X_AXIS));
 		
+		//PlaceHolder for actual Login details.
 		loginDetails = new JLabel("<html>Employee ID: 1<br>Employee Name: Al Stock");
 		
 		//create logout button
@@ -124,7 +125,8 @@ public class MainFrame extends JFrame{
         setLocationRelativeTo(null);
         setMinimumSize(new Dimension(600, 800));
 
-
+        //delete before push
+        setVisible(true);
 	}
 
 
