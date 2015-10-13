@@ -24,17 +24,19 @@ public class GUIStart extends JFrame implements ActionListener {
 	{	
 		setTitle("Inventory Management System");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setResizable(false);
 		loginSetup();
-		pack();
-		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 	
 	private void loginSetup()
 	{
+		this.getContentPane().removeAll();
 		lFrame = new LoginFrame(this);
+		setResizable(false);
 		this.getContentPane().add(lFrame);
+		setMinimumSize(null);
+		pack();
+		setLocationRelativeTo(null);	
 	}
 	
 	private void mainFrameSetup() 
@@ -51,7 +53,10 @@ public class GUIStart extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		mainFrameSetup();
-		
+	}
+
+	public void revertToLogin() {
+		loginSetup();
 	}
 
 }
