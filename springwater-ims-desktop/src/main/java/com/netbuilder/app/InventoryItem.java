@@ -3,6 +3,8 @@ package com.netbuilder.app;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -10,7 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class InventoryItem extends JPanel {
+public class InventoryItem extends JPanel implements MouseListener {
 
 	private static final long serialVersionUID = 1L;
 	private static int HEIGHT = 70;
@@ -30,6 +32,9 @@ public class InventoryItem extends JPanel {
 	private JPanel imagePanel;
 	private ImageIcon itemIcon;
 	
+	private Color backgroundColor = new Color(197,208,199);
+	private Color hoverBackgroundColor = new Color(157,166,159);
+	
 	public InventoryItem(InventoryGUI src, int width, int productID, String productName, int quantity, String location, String imageLocation) {
 		this.productID = productID;
 		this.productName = productName;
@@ -44,9 +49,9 @@ public class InventoryItem extends JPanel {
 		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		this.setFinalSize(this, this.WIDTH, HEIGHT);
 		this.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, new Color(0,0,0)));
-		this.setBackground(new Color (197,208,199));
+		this.setBackground(backgroundColor);
 		
-
+		this.addMouseListener(this);
 		
 		infoPanel = new JPanel();
 		infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
@@ -104,6 +109,40 @@ public class InventoryItem extends JPanel {
 		
 		this.repaint();
 		this.revalidate();
+	}
+
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		
+	}
+
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		setBackground(hoverBackgroundColor);
+		
+	}
+
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		setBackground(backgroundColor);
+		
 	}
 
 
