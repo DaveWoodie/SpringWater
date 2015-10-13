@@ -16,7 +16,8 @@
 <!DOCTYPE HTML>
 <html lang="en">
 
-<hea <title>NB Gardens</title>
+<head>
+    <title>NB Gardens</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="resources/Bootstrap/js/bootstrap.js" type="text/javascript"></script>
     <link href="resources/Bootstrap/css/bootstrap.css" rel="stylesheet">
