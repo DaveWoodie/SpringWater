@@ -1,3 +1,7 @@
+/**
+ * @author Freshwater
+ * @date 13/10/2015
+ */
 package com.netbuilder.app;
 
 import java.awt.BorderLayout;
@@ -62,7 +66,7 @@ public class ItemGUI extends JFrame
 	public void initGUI()
 	{
 		//configure JFrame
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setVisible(true);
 		
 		setUpTableModel();
@@ -82,6 +86,7 @@ public class ItemGUI extends JFrame
 		predictedSalesPanel();
 		
 		//configure size
+		//setLayout();
 		setSize(new Dimension(650, 600));
 		setMinimumSize(new Dimension(650, 600));
 		setPreferredSize(new Dimension(650, 600));
@@ -102,44 +107,34 @@ public class ItemGUI extends JFrame
 		panelItem.setBorder(BorderFactory.createLineBorder(Color.gray));
 		
 		//Item split
-		JPanel panelSplit = new JPanel(new GridLayout(7, 0));
-		panelSplit.setBorder(BorderFactory.createLineBorder(Color.gray));
-		
-		
-		//Item name
-		JPanel panelName = new JPanel();
-		panelName.setLayout(new GridLayout(7, 0));
-		panelName.setBorder(BorderFactory.createLineBorder(Color.gray));
+		JPanel panelSplit = new JPanel(new GridLayout(10, 0));
+		panelSplit.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, Color.gray));
 		
 			//ID
 			JPanel panelID = new JPanel(new FlowLayout(FlowLayout.LEFT));
-			//panelID.setBorder(BorderFactory.createLineBorder(Color.gray));
 			JLabel labelID = new JLabel("ID : ");
-			JTextField textID = new JTextField(4);
-			textID.setText(Integer.toString(itemID));
+			JLabel textID = new JLabel("");
 			panelID.add(labelID);
 			panelID.add(textID);
 			
 			//Name
 			JPanel panelMainName = new JPanel(new FlowLayout(FlowLayout.LEFT));
-			//panelMainName.setBorder(BorderFactory.createLineBorder(Color.gray));
 			JLabel labelName = new JLabel("Item : ");
-			JTextField textName = new JTextField(10);
+			JLabel textName = new JLabel("");
 			panelMainName.add(labelName);
 			panelMainName.add(textName);
 			
 			//Price
 			JPanel panelPrice = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			JLabel labelPrice = new JLabel("Price : ");
-			JTextField textPrice = new JTextField(10);
+			JLabel textPrice = new JLabel("");
 			panelPrice.add(labelPrice);
 			panelPrice.add(textPrice);
 			
 			//Stock
 			JPanel panelStock = new JPanel(new FlowLayout(FlowLayout.LEFT));
-			//panelStock.setBorder(BorderFactory.createLineBorder(Color.gray));
 			JLabel labelStock = new JLabel("Stock Level : ");
-			JTextField textStock = new JTextField(5);
+			JLabel textStock = new JLabel("");
 			panelStock.add(labelStock);
 			panelStock.add(textStock);
 			
@@ -153,7 +148,6 @@ public class ItemGUI extends JFrame
 		
 		//Item Image
 		JPanel panelImage = new JPanel(new BorderLayout());
-		panelImage.setBorder(BorderFactory.createLineBorder(Color.gray));
 		JLabel Image = new JLabel(new ImageIcon(productImage));
 		panelImage.add(Image);
 		
@@ -164,7 +158,6 @@ public class ItemGUI extends JFrame
 		
 		//Item Table
 		JPanel panelTable = new JPanel(new BorderLayout());
-		//panelTable.setBorder(BorderFactory.createLineBorder(Color.gray));
 		
 		JTable tableItem = new JTable(tableModel);
 		tableItem.setFillsViewportHeight(true);
@@ -172,8 +165,11 @@ public class ItemGUI extends JFrame
 		scrollTable.setMinimumSize(new Dimension(getWidth(), getHeight()));
 		scrollTable.setViewportView(tableItem);
 		
+		JButton buttonDelivery = new JButton("View Delivery");
+		
 			//add components to scroll pane
-			panelTable.add(scrollTable);
+			panelTable.add(scrollTable, BorderLayout.CENTER);
+			panelTable.add(buttonDelivery, BorderLayout.SOUTH);
 		
 		//adding components to item panel
 		panelMain.add(panelItem);
@@ -190,6 +186,9 @@ public class ItemGUI extends JFrame
 		tabbedPane.add("Predicted Sales", panelPredictedSales);
 	}
 	
+	/**
+	 * Method to set up the table model for display
+	 */
 	public void setUpTableModel()
 	{
 		tableModel.addColumn("Delivery ID");
