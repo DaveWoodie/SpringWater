@@ -83,6 +83,7 @@ public class ItemGUI extends JFrame
 		add(tabbedPane);
 		
 		viewItemPanel();
+		itemSalesPanel();
 		predictedSalesPanel();
 		
 		//configure size
@@ -177,6 +178,20 @@ public class ItemGUI extends JFrame
 	}
 	
 	/**
+	 * Creates the previous sales panel  
+	 */
+	public void itemSalesPanel()
+	{
+		//previous sales panel
+		JPanel panelSales = new JPanel();
+		tabbedPane.add("Sales", panelSales);
+		
+		
+		//http://mathbits.com/MathBits/Java/Graphics/linegraphonly.htm
+		
+	}
+	
+	/**
 	 * Creates the predicted sales panel
 	 */
 	public void predictedSalesPanel()
@@ -212,5 +227,10 @@ public class ItemGUI extends JFrame
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	public static void main(String[] args)
+	{
+		ItemGUI i = new ItemGUI();
 	}
 }
