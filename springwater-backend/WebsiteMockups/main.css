@@ -1,5 +1,15 @@
-/* Chris Walker */
+/*
 
+    main.css
+
+    chrisjwwalker, callum cooper, chris boucher
+
+    CSS for styling specific bootstrap items
+
+*/
+
+
+/* Chris Walker */
 #searchBar {
     background-color: #329932;
     margin-bottom: 0px;
@@ -11,7 +21,6 @@
     padding:10px;
 	color: white;
 }
-
 
 .whiteText {
     color: #ffffff;

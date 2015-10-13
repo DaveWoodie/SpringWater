@@ -1,8 +1,24 @@
+/*
+    
+    Chris J W Walker
+
+    collaspe.css
+
+    13/10/2015
+
+    Set a custom point for the navbar to collaspe
+    into mobile view
+
+    Last Modified: chrisjwwalker
+
+*/
+
+
 body {
 	padding-top:70px;
 }
 
-
+/* Change max width value to change the nav bar collaspe point */
 @media (max-width: 1040px) {
     .navbar-header {
         float: none;
