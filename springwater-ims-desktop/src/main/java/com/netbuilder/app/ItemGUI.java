@@ -12,17 +12,22 @@ import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.ComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
@@ -38,6 +43,7 @@ public class ItemGUI extends JFrame
 	private BufferedImage productImage;
 	private JTabbedPane tabbedPane;
 	private DefaultTableModel tableModel =  new DefaultTableModel();
+	private String[] dayArray, monthArray, yearArray, durationArray;
 
 	/**
 	 * Constructor that creates an instance of an item GUI for the item ID that is passed
@@ -70,6 +76,7 @@ public class ItemGUI extends JFrame
 		setVisible(true);
 		
 		setUpTableModel();
+		setSalesArrays();
 		getProductImage("logoPlaceholder.png");
 	}
 	
@@ -83,6 +90,7 @@ public class ItemGUI extends JFrame
 		add(tabbedPane);
 		
 		viewItemPanel();
+		itemSalesPanel();
 		predictedSalesPanel();
 		
 		//configure size
@@ -177,6 +185,47 @@ public class ItemGUI extends JFrame
 	}
 	
 	/**
+	 * Creates the previous sales panel  
+	 */
+	public void itemSalesPanel()
+	{
+		//previous sales panel
+		JPanel panelSales = new JPanel(new BorderLayout());
+		tabbedPane.add("Sales", panelSales);
+		
+		//graph panel
+		JPanel panelGraph = new JPanel();
+		panelGraph.setBorder(BorderFactory.createLineBorder(Color.gray));
+		JTextArea j = new JTextArea(100, 100);
+		panelGraph.add(j);
+		
+		//Options
+		JPanel panelOptions = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		panelOptions.setBorder(BorderFactory.createLineBorder(Color.gray));
+		JLabel labelDate = new JLabel("Start Date");
+		JComboBox<String> comboDay = new JComboBox<String>(dayArray);
+		JComboBox<String> comboMonth = new JComboBox<String>(monthArray);
+		JComboBox<String> comboYear = new JComboBox<String>(yearArray);
+		JComboBox<String> comboDuration = new JComboBox<String>(durationArray);
+		
+		
+			//add components to options panel
+			panelOptions.add(labelDate);
+			panelOptions.add(comboDay);
+			panelOptions.add(comboMonth);
+			panelOptions.add(comboYear);
+			panelOptions.add(Box.createRigidArea(new Dimension(20, 0)));
+			panelOptions.add(comboDuration);
+		
+		//add components to sales panel
+		panelSales.add(panelGraph, BorderLayout.CENTER);
+		panelSales.add(panelOptions, BorderLayout.NORTH);
+		
+		//http://mathbits.com/MathBits/Java/Graphics/linegraphonly.htm
+		
+	}
+	
+	/**
 	 * Creates the predicted sales panel
 	 */
 	public void predictedSalesPanel()
@@ -212,5 +261,36 @@ public class ItemGUI extends JFrame
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	public void setSalesArrays()
+	{
+		dayArray = new String[31];
+		monthArray = new String[12];
+		yearArray = new String[10];
+				
+		for(int i = 0; i < dayArray.length; i++)
+		{
+			dayArray[i] = Integer.toString(i + 1);
+		}
+		
+		for(int i = 0; i < monthArray.length; i++)
+		{
+			monthArray[i] = Integer.toString(i + 1);
+		}
+		
+		for(int i = 0; i < yearArray.length; i++)
+		{
+			yearArray[i] = Integer.toString(i + 2006);
+		}
+		
+		durationArray = new String[]{"Days", "Weeks", "Months"};
+		
+		
+	}
+	
+	public static void main(String[] args)
+	{
+		ItemGUI i = new ItemGUI();
 	}
 }
