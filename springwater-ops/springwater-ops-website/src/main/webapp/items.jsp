@@ -2,12 +2,13 @@
 <html>
 
 <head>
-    <title>NB Gardens - Items</title>
-    <link href="http://getbootstrap.com/3.2.0/assets/css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="BootStrap/css/bootstrap.css" rel="stylesheet">
-    <link href="Bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="main.css" rel="stylesheet">
-    <link href="collapse.css" rel="stylesheet">
+    <title>NB Gardens</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="resources/Bootstrap/js/bootstrap.js" type="text/javascript"></script>
+    <link href="resources/Bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="resources/Bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="resources/main.css" rel="stylesheet">
+    <link href="resources/collapse.css" rel="stylesheet">
 </head>
 
 <body>

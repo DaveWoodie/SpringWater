@@ -2,16 +2,17 @@
 <html>
 
 <head>
-    <title>NB Gardens - FAQ</title>
-    <link href="http://getbootstrap.com/3.2.0/assets/css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="BootStrap/css/bootstrap.css" rel="stylesheet">
-    <link href="Bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="main.css" rel="stylesheet">
-    <link href="collapse.css" rel="stylesheet">
+    <title>NB Gardens</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="resources/Bootstrap/js/bootstrap.js" type="text/javascript"></script>
+    <link href="resources/Bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="resources/Bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="resources/main.css" rel="stylesheet">
+    <link href="resources/collapse.css" rel="stylesheet">
 </head>
 
 <body>
-    
+
     <!-- NavBar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -46,7 +47,8 @@
                 <form class="navbar-form navbar-left" role="search">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button></span>
+                        <span class="input-group-btn"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
+                        </span>
                     </div>
                     <!-- /input-group -->
                 </form>
@@ -62,95 +64,105 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-    
-    <!-- Page Content -->    
+
+    <!-- Page Content -->
     <div class="jumbotron content">
         <div class="container">
-            
+
             <!-- Padding -->
             <div class="panel" style="background:none;height:40px"></div>
-            
+
             <!-- FAQ Panel -->
             <div class="col-lg-8">
-                
+
                 <!-- Title -->
                 <h2 id="productTitle">Frequently Asked Questions</h2>
-                
+
                 <!-- FAQ Well -->
                 <div class="well">
-                    
+
                     <!-- FAQ Question -->
                     <div class="panel panel-default">
-                        <div class="panel-heading"><h2 id="subtitle">Q: Insert a question here </h2></div>
+                        <div class="panel-heading">
+                            <h2 id="subtitle">Q: Insert a question here </h2></div>
                         <div class="panel-body">A: And here is where the detailed answer goes</div>
                     </div>
-                    
+
                     <!-- FAQ Question -->
                     <div class="panel panel-default">
-                        <div class="panel-heading"><h2 id="subtitle">Q: Insert a question here </h2></div>
+                        <div class="panel-heading">
+                            <h2 id="subtitle">Q: Insert a question here </h2></div>
                         <div class="panel-body">A: And here is where the detailed answer goes</div>
                     </div>
-                    
+
                     <!-- FAQ Question -->
                     <div class="panel panel-default">
-                        <div class="panel-heading"><h2 id="subtitle">Q: Insert a question here </h2></div>
+                        <div class="panel-heading">
+                            <h2 id="subtitle">Q: Insert a question here </h2></div>
                         <div class="panel-body">A: And here is where the detailed answer goes</div>
                     </div>
-                    
+
                     <!-- FAQ Question -->
                     <div class="panel panel-default">
-                        <div class="panel-heading"><h2 id="subtitle">Q: Insert a question here </h2></div>
+                        <div class="panel-heading">
+                            <h2 id="subtitle">Q: Insert a question here </h2></div>
                         <div class="panel-body">A: And here is where the detailed answer goes</div>
                     </div>
-                    
+
                     <!-- FAQ Question -->
                     <div class="panel panel-default">
-                        <div class="panel-heading"><h2 id="subtitle">Q: Insert a question here </h2></div>
+                        <div class="panel-heading">
+                            <h2 id="subtitle">Q: Insert a question here </h2></div>
                         <div class="panel-body">A: And here is where the detailed answer goes</div>
                     </div>
-                    
+
                     <!-- FAQ Question -->
                     <div class="panel panel-default">
-                        <div class="panel-heading"><h2 id="subtitle">Q: Insert a question here </h2></div>
+                        <div class="panel-heading">
+                            <h2 id="subtitle">Q: Insert a question here </h2></div>
                         <div class="panel-body">A: And here is where the detailed answer goes</div>
                     </div>
-                    
+
                     <!-- FAQ Question -->
                     <div class="panel panel-default">
-                        <div class="panel-heading"><h2 id="subtitle">Q: Insert a question here </h2></div>
+                        <div class="panel-heading">
+                            <h2 id="subtitle">Q: Insert a question here </h2></div>
                         <div class="panel-body">A: And here is where the detailed answer goes</div>
                     </div>
-                    
+
                     <!-- FAQ Question -->
                     <div class="panel panel-default">
-                        <div class="panel-heading"><h2 id="subtitle">Q: Insert a question here </h2></div>
+                        <div class="panel-heading">
+                            <h2 id="subtitle">Q: Insert a question here </h2></div>
                         <div class="panel-body">A: And here is where the detailed answer goes</div>
                     </div>
-                    
+
                     <!-- FAQ Question -->
                     <div class="panel panel-default">
-                        <div class="panel-heading"><h2 id="subtitle">Q: Insert a question here </h2></div>
+                        <div class="panel-heading">
+                            <h2 id="subtitle">Q: Insert a question here </h2></div>
                         <div class="panel-body">A: And here is where the detailed answer goes</div>
                     </div>
-                    
-                    
+
+
                 </div>
             </div>
-            
+
             <!-- Section Panel -->
             <div class="col-lg-4">
                 <div class="well">
-                    
+
                     <!-- Search Field -->
                     <div class="input-group panel">
-                            <input type="text" class="form-control" placeholder="Search for a question...">
-                            <span class="input-group-btn">
+                        <input type="text" class="form-control" placeholder="Search for a question...">
+                        <span class="input-group-btn">
                             <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                            </span>
+                        </span>
                     </div>
-                    
+
                     <!-- FAQ Question -->
-                    <div class="panel-heading"><h4 id="supersubtitle">Have a question?</h4></div>
+                    <div class="panel-heading">
+                        <h4 id="supersubtitle">Have a question?</h4></div>
                     <div></div>
                     <div class="panel panel-default">
                         <input type="text" class="form-control" placeholder="Topic...">
@@ -164,12 +176,12 @@
                     <div>
                         <button class="btn btn-block btn-primary"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Submit</button>
                     </div>
-        
+
                 </div>
             </div>
         </div>
     </div>
-    
+
     <!-- Footer -->
     <div class="jumbotron" id="searchBar">
         <div class="container">
@@ -189,22 +201,24 @@
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6 whiteText">
-                    <div id="paymentDiv"><p><span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span> We only accept <img src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom-white.svg" style="width:25%;height:auto"> as a payment option</p></div>
+                    <div id="paymentDiv">
+                        <p><span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span> We only accept <img src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom-white.svg" style="width:25%;height:auto"> as a payment option</p>
+                    </div>
                 </div>
                 <div class="col-md-3"></div>
             </div>
         </div>
     </div>
-    
-</body>
-    
-    <!-- JQuery script -->
-    <script src="Bootstrap/js/jquery.js"></script>
-    
-    <!-- Bootstrap script -->
-    <script src="BootStrap/js/bootstrap.js" type="text/javascript"></script>
 
-    <!-- Custom script -->
-    <script src="basket.js"></script>
+</body>
+
+<!-- JQuery script -->
+<script src="Bootstrap/js/jquery.js"></script>
+
+<!-- Bootstrap script -->
+<script src="BootStrap/js/bootstrap.js" type="text/javascript"></script>
+
+<!-- Custom script -->
+<script src="basket.js"></script>
 
 </html>

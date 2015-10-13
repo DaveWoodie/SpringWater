@@ -4,12 +4,11 @@
 <head>
     <title>NB Gardens</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script src="BootStrap/js/bootstrap.js" type="text/javascript"></script>
-    <link href="BootStrap/css/bootstrap.css" rel="stylesheet">
-    <link href="Bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="http://getbootstrap.com/3.2.0/assets/css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="main.css" rel="stylesheet">
-    <link href="collapse.css" rel="stylesheet">
+    <script src="resources/Bootstrap/js/bootstrap.js" type="text/javascript"></script>
+    <link href="resources/Bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="resources/Bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="resources/main.css" rel="stylesheet">
+    <link href="resources/collapse.css" rel="stylesheet">
 </head>
 
 <body>
@@ -79,7 +78,7 @@
                 <div class="col-lg-4">
                     <div class="well">
                         <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="img/logo.png" alt="">
+                    <img class="img-responsive" src="resources/img/logo.png" alt="">
                     </a>
                         <div class="panel panel-default">
                             <div class="panel-body">
@@ -108,10 +107,10 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" href="#"><img class="img-responsive" src="img/gnome.jpg" alt=""></a> 
+                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome.jpg" alt=""></a> 
                                         </div>
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" href="#"><img class="img-responsive" src="img/gnome02.jpg" alt=""></a>
+                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome02.jpg" alt=""></a>
                                         </div>
                                     </div>
 
@@ -156,10 +155,10 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" href="#"><img class="img-responsive" src="img/gnome.jpg" alt=""></a> 
+                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome.jpg" alt=""></a> 
                                         </div>
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" href="#"><img class="img-responsive" src="img/gnome02.jpg" alt=""></a>
+                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome02.jpg" alt=""></a>
                                         </div>
                                     </div>
 
@@ -196,10 +195,10 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" href="#"><img class="img-responsive" src="img/gnome.jpg" alt=""></a> 
+                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome.jpg" alt=""></a> 
                                         </div>
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" href="#"><img class="img-responsive" src="img/gnome02.jpg" alt=""></a>
+                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome02.jpg" alt=""></a>
                                         </div>
                                     </div>
 
