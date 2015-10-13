@@ -10,8 +10,6 @@ import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -26,7 +24,9 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 public class DailyStockReportFrame {
-
+	int lowSelectedID;
+	int fastSelectedID;
+	
 	public DailyStockReportFrame() {
 
 	}
@@ -34,6 +34,7 @@ public class DailyStockReportFrame {
 	public JPanel getStockReportPanel() {
 		int numRows = 30;
 		String[] colHeadings = { "Item ID", "Item Name", "Stock Level","Sales Rate" };
+//		String[] rowContents = { , "Test", "5", "10"};
 		final JLabel fastSellingLabel = new JLabel("Fast Selling Items");
 		final JLabel LowStockLabel = new JLabel("Low stock Items");
 		JPanel pane = new JPanel();
@@ -41,23 +42,28 @@ public class DailyStockReportFrame {
 		JPanel fastSellingPanel = new JPanel();
 		GridLayout stockReportLayout = new GridLayout(1, 2);
 
-		// Create Table Models + Tables
+		// Create Table Models
 		DefaultTableModel lowStockModel = new DefaultTableModel(numRows,colHeadings.length);
 		lowStockModel.setColumnIdentifiers(colHeadings);
 		DefaultTableModel fastSellingkModel = new DefaultTableModel(numRows,colHeadings.length);
 		fastSellingkModel.setColumnIdentifiers(colHeadings);
+
+		// Fill tables with test data
+		lowStockModel = fillTable(numRows, lowStockModel);
+		fastSellingkModel = fillTable(numRows, fastSellingkModel);
+		
+		//Create Tables
 		final JTable lowStockTable = new JTable(lowStockModel);
 		final JTable fastSellingTable = new JTable(fastSellingkModel);
-
-		// actionListener for tables
+		
+		// ActionListener for tables
 		ListSelectionModel lowStockcellSelectionModel = lowStockTable.getSelectionModel();
 		lowStockcellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		lowStockcellSelectionModel.addListSelectionListener(new ListSelectionListener() {
 					public void valueChanged(ListSelectionEvent arg0) {
 						int lowSelectedRow = lowStockTable.getSelectedRow();
 						try {
-							lowSelectedRow = Integer.parseInt(lowStockTable.getValueAt(lowSelectedRow, 0).toString());
-							System.out.println("Item ID: " + lowSelectedRow+ " selected!");
+							lowSelectedID = Integer.parseInt(lowStockTable.getValueAt(lowSelectedRow, 0).toString());
 						} catch (NullPointerException npe) {
 							System.out.println("Not a valid Item!");
 						}
@@ -70,31 +76,40 @@ public class DailyStockReportFrame {
 					public void valueChanged(ListSelectionEvent arg0) {
 						int fastSelectedRow = fastSellingTable.getSelectedRow();
 						try {
-							fastSelectedRow = Integer.parseInt(fastSellingTable.getValueAt(fastSelectedRow, 0).toString());
-							System.out.println("Item ID: " + fastSelectedRow+ " selected!");
+							fastSelectedID = Integer.parseInt(fastSellingTable.getValueAt(fastSelectedRow, 0).toString());
 						} catch (NullPointerException npe) {
 							System.out.println("Not a valid Item!");
 						}
 					}
 				});
-
-		JButton lowStockSelect = new JButton("Select");
+		
+		// Select buttons
+		JButton lowStockSelect = new JButton("Select Item");
 		lowStockSelect.addActionListener(new ActionListener(){
-
 			public void actionPerformed(ActionEvent e) {
-				// TODO Take selected item from list and load into item frame
+				//TODO send item ID to item frame
+				//lowSelectedID
 				@SuppressWarnings("unused")
 				ItemGUI IG = new ItemGUI();
+				System.out.println("Item ID: " + lowSelectedID+ " selected!");
 			}		
 		});
 		
-		JButton fastSellingSelect = new JButton("Select");
+		JButton fastSellingSelect = new JButton("Select Item");
 		fastSellingSelect.addActionListener(new ActionListener(){
-
 			public void actionPerformed(ActionEvent e) {
-				// TODO Take selected item from list and load into item frame
-				@SuppressWarnings("unused")
-				ItemGUI IG = new ItemGUI();
+				//TODO send item ID to item frame
+				//fastSelectedID
+				if(fastSelectedID ==0)
+				{
+					System.out.println("No item selected!");
+				}
+				else
+				{
+					@SuppressWarnings("unused")
+					ItemGUI IG = new ItemGUI();
+					System.out.println("Item ID: " + fastSelectedID+ " selected!");
+				}
 			}		
 		});
 		
@@ -111,8 +126,8 @@ public class DailyStockReportFrame {
 		lowStockPanel.setBackground(Color.WHITE);
 		fastSellingTable.getTableHeader().setBackground(Color.WHITE);
 		lowStockTable.getTableHeader().setBackground(Color.WHITE);
-		fastSellingPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-		lowStockPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+		fastSellingPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		lowStockPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
 		// Add components to low stock panel
 		lowStockTable.setPreferredScrollableViewportSize(lowStockTable.getPreferredSize());
@@ -136,5 +151,18 @@ public class DailyStockReportFrame {
 		pane.add(fastSellingPanel);
 		return pane;
 	}
-
+	
+	//fills the table with test data
+	private DefaultTableModel fillTable(int numRows, DefaultTableModel dtm)
+	{
+		for (int i = 0;i<numRows; i++)
+		{
+			dtm.setValueAt(i+1, i, 0);
+			dtm.setValueAt("Test", i, 1);
+			dtm.setValueAt("5", i, 2);
+			dtm.setValueAt("10", i, 3);
+		}
+		return dtm;
+	}
+	
 }

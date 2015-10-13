@@ -10,27 +10,21 @@ import javax.persistence.Id;
  * @author tstacey
  * @date 06/10/2015
  */
-
 @Entity
 public class Supplier {
-	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int supplierID;
-	
 	private String supplierName;
 	private String telephone;
 	private String email;
 	private Address address;
 	
-	
 	/**
 	 * Blank constructor to create an empty Supplier object. USed in testing only
 	 */
 	@Deprecated
-	public Supplier() {
-		
-	}
+	public Supplier() { }
 	
 	/**
 	 * Constructor for a supplier with not null values of supplier name and address object

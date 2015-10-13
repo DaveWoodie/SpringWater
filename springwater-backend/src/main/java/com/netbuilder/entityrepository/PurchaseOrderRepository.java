@@ -1,7 +1,3 @@
-/**
- * @author jforster
- * @date 07/10/2015
- */
 package com.netbuilder.entityrepository;
 
 import java.util.Date;

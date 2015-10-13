@@ -20,6 +20,4 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer{
 		registration.setLoadOnStartup(1);
 		registration.addMapping("/servlet-config/*");
 	}
-	
-	
 }

@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  * @date 08/10/2015
@@ -30,7 +31,6 @@ public class DummyData {
 	private ArrayList<PurchaseOrderLine> purchaseOrderLines = new ArrayList<PurchaseOrderLine>();
 	private ArrayList<WishList> wishLists = new ArrayList<WishList>();
 	
-	private ArrayList<PaymentDetails> payments = new ArrayList<PaymentDetails>();
 
 	private SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy");
 
@@ -152,12 +152,58 @@ public class DummyData {
 	}
 
 	private void addItems() {
-		items.add(new Item("Red Gnome", (float)12.99, 100, "Red_Gnome.png", false, 5, 6, false, suppliers.get(0)));
-		items.add(new Item("Blue Gnome", (float)12.99, 500, "Blue_Gnome.png", false, 10, 6, false, suppliers.get(0)));
-		items.add(new Item("Green Gnome", (float)12.99, 30, "Green_Gnome.png", false, 4, 7, false, suppliers.get(0)));
-		items.add(new Item("Sundial", (float)45.00, 95, "Sundial.png", false, 25, 10, false, suppliers.get(1)));
-		items.add(new Item("Jacuzzi", (float)399.95, 20, "Jacuzzi.png", false, 2, 2, false, suppliers.get(1)));
-		items.add(new Item("Statue", (float)75.50, 110, "Statue.png", false, 10, 12, false, suppliers.get(1)));
+		HashMap<String, String> attributes = new HashMap<String, String>();
+		attributes.put("Hat Colour", "Red");
+		attributes.put("Height", "28cm");
+		attributes.put("Width", "7cm");
+		attributes.put("Depth", "7cm");
+		attributes.put("Accessory", "Fishing Rod");
+		String desc = "It's a red gnome";
+		items.add(new Item("Red Gnome", desc, (float)12.99, 100, "Red_Gnome.png", false, 5, 6, false, suppliers.get(0), attributes));
+		
+		attributes = new HashMap<String, String>();
+		attributes.put("Hat Colour", "Blue");
+		attributes.put("Height", "28cm");
+		attributes.put("Width", "7cm");
+		attributes.put("Depth", "7cm");
+		attributes.put("Accessory", "Mushroom");
+		desc = "It's a blue gnome";
+		items.add(new Item("Blue Gnome", desc, (float)12.99, 500, "Blue_Gnome.png", false, 10, 6, false, suppliers.get(0), attributes));
+
+		attributes = new HashMap<String, String>();
+		attributes.put("Hat Colour", "Green");
+		attributes.put("Height", "28cm");
+		attributes.put("Width", "7cm");
+		attributes.put("Depth", "7cm");
+		attributes.put("Accessory", "Sacrificial Dagger of Akroth");
+		desc = "Fear him for he is the eater of souls";
+		items.add(new Item("Green Gnome", desc, (float)12.99, 30, "Green_Gnome.png", false, 4, 7, false, suppliers.get(0), attributes));
+		
+		attributes = new HashMap<String, String>();
+		attributes.put("Dial Stone", "Marble");
+		attributes.put("Height", "1.3m");
+		attributes.put("Width", "0.5m");
+		attributes.put("Depth", "0.5m");
+		desc = "Tell the time but only when it's sunny and you're outside";
+		items.add(new Item("Sundial", desc, (float)45.00, 95, "Sundial.png", false, 25, 10, false, suppliers.get(1), attributes));
+		
+		attributes = new HashMap<String, String>();
+		attributes.put("Colour", "White");
+		attributes.put("Height", "1.3m");
+		attributes.put("Width", "2.5m");
+		attributes.put("Depth", "2.5m");
+		attributes.put("Number of people", "4");
+		desc = "Useful for when you want a jacuzzi";
+		items.add(new Item("Jacuzzi", desc, (float)399.95, 20, "Jacuzzi.png", false, 2, 2, false, suppliers.get(1), attributes));
+		
+		attributes = new HashMap<String, String>();
+		attributes.put("Colour", "White");
+		attributes.put("Height", "1.9m");
+		attributes.put("Width", "0.5m");
+		attributes.put("Depth", "0.5m");
+		attributes.put("Material", "Granite");
+		desc = "Imitation Venus de Milo with sculpted base and intricate detail seems like an exact replica of the original";
+		items.add(new Item("Statue", desc, (float)75.50, 110, "Statue.png", false, 10, 12, false, suppliers.get(1), attributes));
 	}
 
 	private void addEmployees() {
