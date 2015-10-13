@@ -8,6 +8,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -24,7 +26,7 @@ import javax.swing.border.EmptyBorder;
  *
  */
 @SuppressWarnings("serial")
-public class MainFrame extends JFrame{
+public class MainFrame extends JPanel implements ComponentListener{
 	
 	JPanel base, panel1, panel2, panel3, panel4, bottom;
 	JTabbedPane pane;
@@ -34,10 +36,18 @@ public class MainFrame extends JFrame{
 	SuppliersFrame sF;
 	PurchaseOrders pO;
 	
+	private GUIStart src;
+	
 	/**
 	 * Method to call GUI initialisation
 	 */
 	public MainFrame() {
+		initUI();
+	}
+	
+	public MainFrame(GUIStart src) {
+		this.src = src;
+		this.src.addComponentListener(this);
 		initUI();
 	}
 	
@@ -117,16 +127,48 @@ public class MainFrame extends JFrame{
 		base.add(pane, BorderLayout.CENTER);
 		base.add(bottom, BorderLayout.SOUTH);
 		add(base);
-		
+	
 		//configure JFrame
-		setTitle("Inventory Management System");
-		setSize(600, 800);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setMinimumSize(new Dimension(600, 800));
-
+//		setTitle("Inventory Management System");
+//		base.setSize(650, 850);
+//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        setLocationRelativeTo(null);
+//		base.setMinimumSize(new Dimension(650, 850));
         //delete before push
         setVisible(true);
+	}
+
+	@Override
+	public void componentResized(ComponentEvent e) {
+		// TODO Auto-generated method stub
+		resizeEverything();
+	}
+
+	private void resizeEverything() {
+		Dimension d = new Dimension(src.getWidth()-16, src.getHeight()-38);
+		base.setPreferredSize(d);
+		base.setMaximumSize(d);
+		base.setMinimumSize(d);
+		this.repaint();
+		this.revalidate();
+	}
+
+	@Override
+	public void componentMoved(ComponentEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void componentShown(ComponentEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void componentHidden(ComponentEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

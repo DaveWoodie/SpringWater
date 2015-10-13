@@ -73,8 +73,8 @@
                     <div class="col-lg-6">
             <!-- Navigation links for user sub-directories -->
             <p>
-                <a href="profilePage.html">Your Account</a>
-                &#62 Your Orders
+                <a href="profilePage.html">Account</a>
+                &#62 Orders
             </p>
                     </div>
                     <div class="col-lg-6 col-md-6 col-md-6">
@@ -108,21 +108,65 @@
                     <!-- New horizontal line -->
                     <hr>
                 </div>
-
                     <!-- Everything in the page -->
                     <div class="col-lg-12">
                             <!-- Form select control -->
                             <div class="col-lg-2">
                                 <select class="form-control">
-                                <option value="Date-Range">Date Range</option>
-                                <option value="oneWeek">One Week</option>
-                                <option value="twoWeeks">Two Weeks</option>
-                                <option value="threeWeeks">Three Weeks</option>
-                                <option value="oneMonth">One Month</option>
+                                        <option value="Date-Range">Date Range</option>
+                                        <option value="oneWeek">One Week</option>
+                                        <option value="twoWeeks">Two Weeks</option>
+                                        <option value="threeWeeks">Three Weeks</option>
+                                        <option value="oneMonth">One Month</option>
                                 </select>
                             </div>
                     </div>
             </div>
+    </div>
+
+    <!-- Order container -->
+    <div class="container">
+
+        <!-- Order panel -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="row">
+                <div class="col-md-3">
+                    <h3 class="panel-title">Orders Placed</h3>
+                    <p class="panel-title">11th October 2015</p>
+                </div>
+
+                <div class="col-md-3">
+                    <h3 class="panel-title">Total</h3>
+                    <p class="panel-title">&#163;11.96</p>
+                </div>
+
+                 <div class="col-md-3">
+                    <h3 class="panel-title">Dispatch To</h3>
+                    <p class="panel-title">Joe Bloggs</p>
+                </div>
+
+                <div class="col-md-3">
+                    <h3 class="panel-title">ORDER # 202-7084221-9000355</h3>
+                </div>
+            </div>
+          </div>
+                  <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h3>Arriving Sat, 15 Aug - Wed, 19 Aug</h3>
+                                <p><b>Dispatched</b></p>
+                                <img id="orderImage" src="img/gnome.jpg"></img>
+                            </div>
+
+                            <div class="col-md-3">
+                                <br><br><br><br><br><br><br><br><br><br>
+                                <p>Garden Gome</p>
+                            </div>
+                        </div>
+                  </div>
+        </div>
+
     </div>
 
     <!-- Footer -->

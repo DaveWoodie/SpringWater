@@ -1,39 +1,34 @@
-<!DOCTYPE html>
 <!--------------------------------------------------------
 
     Chris J W Walker 
     
-    template.html
+    contact.html
 
     13/10/2015
 
-    Template for all subsequent HTML files. Includes
-    navbar and jumbotron footer.
+    Page providing contact information for NBGardens
 
     Last Modified by: chrisjwwalker
 
 --------------------------------------------------------->
 
+<!DOCTYPE HTML>
 <html lang="en">
 
 <head>
     <title>NB Gardens</title>
-
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script src="BootStrap/js/bootstrap.js" type="text/javascript"></script>
-
-    <link href="BootStrap/css/bootstrap.css" rel="stylesheet">
-    <link href="Bootstrap/css/bootstrap-theme.css" rel="stylesheet">
-    <link href="main.css" rel="stylesheet">
-    <link href="collapse.css" rel="stylesheet">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="resources/Bootstrap/js/bootstrap.js" type="text/javascript"></script>
+    <link href="resources/Bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="resources/Bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="resources/main.css" rel="stylesheet">
+    <link href="resources/collapse.css" rel="stylesheet">
 </head>
 
 <body>
-    <!-- Navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
@@ -44,7 +39,7 @@
                 <a class="navbar-brand" href="#">NBGardens</a>
             </div>
 
-            <!-- Navbar items that collaspe into toggle menu -->
+            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
@@ -67,6 +62,7 @@
                         <span class="input-group-btn"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
                         </span>
                     </div>
+                    <!-- /input-group -->
                 </form>
 
                 <form class="navbar-form navbar-right" role="search">
@@ -76,17 +72,35 @@
                     <button class="btn btn-primary"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Register</button>
                 </form>
             </div>
-            <!-- END OF COLLASPE AREA -->
+            <!-- /.navbar-collapse -->
         </div>
+        <!-- /.container-fluid -->
     </nav>
-    <!-- END OF NAVBAR -->
 
-    <!-- Content Area -->
     <div class="jumbotron content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="page-header">
+                        <h1 id="productTitle">Contact us!</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <p><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Stockport, United Kingdom</p>
+                    <p><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> enquires@nbgardens.co.uk</p>
+                    <p><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> 0161 987 3652</p>
+                </div>
+
+                <div class="col-md-8">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38045.55352152961!2d-2.1840812375372036!3d53.417560682172784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487a3515ca33c427%3A0xf418f67b823efe48!2sStockport!5e0!3m2!1sen!2suk!4v1444664424719" width="100%" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- END OF CONTENT -->
-    
-    <!-- Footer -->
+
     <div class="jumbotron" id="searchBar">
         <div class="container">
             <div class="row">
@@ -113,7 +127,6 @@
             </div>
         </div>
     </div>
-    <!-- END OF FOOTER -->
 </body>
 
 </html>

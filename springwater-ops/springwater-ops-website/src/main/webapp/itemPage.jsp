@@ -18,16 +18,12 @@
 
 <head>
     <title>NB Gardens</title>
-    
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script src="BootStrap/js/bootstrap.js" type="text/javascript"></script>
-    
-    <link href="BootStrap/css/bootstrap.css" rel="stylesheet">
-    <link href="Bootstrap/css/bootstrap-theme.css" rel="stylesheet">
-    <link href="main.css" rel="stylesheet">
-    <link href="collapse.css" rel="stylesheet">
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="resources/Bootstrap/js/bootstrap.js" type="text/javascript"></script>
+    <link href="resources/Bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="resources/Bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="resources/main.css" rel="stylesheet">
+    <link href="resources/collapse.css" rel="stylesheet">
 </head>
 
 <body>
@@ -95,7 +91,7 @@
             <div class="row">
                 <div class="col-md-5">
                     <a href="#" class="thumbnail" data-toggle="modal" data-target="#enlargedImage">
-                        <img src="img/placeholder2.png" alt="..." width="60%" height="60%">
+                        <img src="resources/img/placeholder2.png" alt="..." width="60%" height="60%">
                     </a>
                 </div>
                 <div class="col-md-7">
@@ -122,7 +118,7 @@
             <div class="row">
                 <div class="col-sm-6 col-md-3">
                     <div class="thumbnail">
-                        <img src="img/placeholder2.png" alt="...">
+                        <img src="resources/img/placeholder2.png" alt="...">
                         <div class="caption">
                             <h3>Recommended Item 1</h3>
                             <p>£X.XX</p>
@@ -143,7 +139,7 @@
 
                 <div class="col-sm-6 col-md-3">
                     <div class="thumbnail">
-                        <img src="img/placeholder2.png" alt="...">
+                        <img src="resources/img/placeholder2.png" alt="...">
                         <div class="caption">
                             <h3>Recommended Item 2</h3>
                             <p>£X.XX</p>
@@ -164,7 +160,7 @@
 
                 <div class="col-sm-6 col-md-3">
                     <div class="thumbnail">
-                        <img src="img/placeholder2.png" alt="...">
+                        <img src="resources/img/placeholder2.png" alt="...">
                         <div class="caption">
                             <h3>Recommended Item 3</h3>
                             <p>£X.XX</p>
@@ -185,7 +181,7 @@
 
                 <div class="col-sm-6 col-md-3">
                     <div class="thumbnail">
-                        <img src="img/placeholder2.png" alt="...">
+                        <img src="resources/img/placeholder2.png" alt="...">
                         <div class="caption">
                             <h3>Recommended Item 4</h3>
                             <p>£X.XX</p>
@@ -302,7 +298,7 @@
                 <h4 class="modal-title" id="myModalLabel">Product Name</h4>
             </div>
             <div class="modal-body">
-                <img src="img/placeholder2.png" alt="..." width="100%" height="100%">
+                <img src="resources/img/placeholder2.png" alt="..." width="100%" height="100%">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Close</button>
@@ -310,5 +306,5 @@
         </div>
     </div>
 </div>
-    
+
 </html>

@@ -1,36 +1,18 @@
-<!--------------------------------------------------------
-
-    Chris J W Walker 
-    
-    contact.html
-
-    13/10/2015
-
-    Page providing contact information for NBGardens
-
-    Last Modified by: chrisjwwalker
-
---------------------------------------------------------->
-
 <!DOCTYPE HTML>
-<html lang="en">
+<html>
 
 <head>
     <title>NB Gardens</title>
-    
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script src="BootStrap/js/bootstrap.js" type="text/javascript"></script>
-    
-    <link href="BootStrap/css/bootstrap.css" rel="stylesheet">
-    <link href="Bootstrap/css/bootstrap-theme.css" rel="stylesheet">
-    <link href="main.css" rel="stylesheet">
-    <link href="collapse.css" rel="stylesheet">
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="resources/Bootstrap/js/bootstrap.js" type="text/javascript"></script>
+    <link href="resources/Bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="resources/Bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="resources/main.css" rel="stylesheet">
+    <link href="resources/collapse.css" rel="stylesheet">
 </head>
 
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -40,7 +22,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">NBGardens</a>
+                <a class="navbar-brand" href="index.html">NB GARDENS</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -81,30 +63,78 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <div class="jumbotron content">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="page-header">
-                        <h1 id="productTitle">Contact us!</h1>
-                    </div>
+    <!-- PROFILE PAGE -->
+    <div class="container" style="padding-top: 30px;">
+        <h1 class="page-header">Summary</h1>
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="text-center">
+                    <img src="resources/img/placeholder.png" class="avatar img-circle img-thumbnail" alt="avatar">
+                    <h6>Upload a different photo...</h6>
+                    <input type="file" class="text-center center-block well well-sm">
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-4">
-                    <p><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Stockport, United Kingdom</p>
-                    <p><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> enquires@nbgardens.co.uk</p>
-                    <p><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> 0161 987 3652</p>
+            <!-- User details -->
+            <h3>Details</h3>
+            <div class="col-sm-4">
+                <div class="list-group">
+                    <li class="list-group-item active">
+                        First Name: </li>
+                    <br>
+                    <li class="list-group-item active">
+                        Last Name: </li>
                 </div>
 
-                <div class="col-md-8">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38045.55352152961!2d-2.1840812375372036!3d53.417560682172784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487a3515ca33c427%3A0xf418f67b823efe48!2sStockport!5e0!3m2!1sen!2suk!4v1444664424719" width="100%" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
-                </div>
+                <hr>
             </div>
+            <!-- /.col-sm-4 -->
+
+            <div class="col-sm-4">
+                <div class="list-group">
+                    <li class="list-group-item">
+                        Joe</li>
+                    <br>
+                    <li class="list-group-item">
+                        Bloggs</li>
+                </div>
+                <hr>
+            </div>
+            <!-- /.col-sm-4 -->
+
+            <!-- Menu for profile, addresses and order nav bar-->
+            <div class="masthead">
+                <nav>
+                    <ul class="nav nav-justified">
+                        <li class="active"><a href="#">Profile</a></li>
+                        <li><a href="addAddresses.html">Addresses</a></li>
+                        <li><a href="ordersPage.html">Orders</a></li>
+
+                        <!-- Profile stuff -->
+                        <div class="col-sm-8">
+                            <div class="well">
+                                <p>CustomerID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp001</p>
+                                <p>Username: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspgnomefan23</p>
+                                <p>Email: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspgardenfanatic@gmail.com</p>
+                                <p>Date of Birth: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp08/10/90</p>
+                                <p>Phone Number: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp07523476525</p>
+                                <p>Current Credit: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp0.00 GBP</p>
+                            </div>
+                        </div>
+                    </ul>
+                </nav>
+            </div>
+            <hr>
         </div>
     </div>
+    </div>
 
+    <!-- Content Area -->
+    <div class="jumbotron content">
+    </div>
+
+    <!-- Footer -->
     <div class="jumbotron" id="searchBar">
         <div class="container">
             <div class="row">
