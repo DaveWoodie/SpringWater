@@ -89,9 +89,16 @@ public class DailyStockReportFrame {
 			public void actionPerformed(ActionEvent e) {
 				//TODO send item ID to item frame
 				//lowSelectedID
+				if(lowSelectedID ==0)
+				{
+					System.out.println("No item selected!");
+				}
+				else
+				{
 				@SuppressWarnings("unused")
-				ItemGUI IG = new ItemGUI();
+				ItemGUI IG = new ItemGUI(lowSelectedID);
 				System.out.println("Item ID: " + lowSelectedID+ " selected!");
+				}
 			}		
 		});
 		
@@ -107,7 +114,7 @@ public class DailyStockReportFrame {
 				else
 				{
 					@SuppressWarnings("unused")
-					ItemGUI IG = new ItemGUI();
+					ItemGUI IG = new ItemGUI(fastSelectedID);
 					System.out.println("Item ID: " + fastSelectedID+ " selected!");
 				}
 			}		
