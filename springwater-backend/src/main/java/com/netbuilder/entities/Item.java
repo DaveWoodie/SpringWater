@@ -5,6 +5,8 @@
 
 package com.netbuilder.entities;
 
+import java.util.HashMap;
+
 import org.springframework.data.annotation.Id;
 
 public class Item {
@@ -22,6 +24,8 @@ public class Item {
 	private int pSalesRate;
 	private boolean isPorousware;
 	
+	private HashMap<String, String> attributes;
+	
 	
 	private Supplier idSupplier;
 	
@@ -38,8 +42,9 @@ public class Item {
 	 * @param pSalesRate: int; how many of said item have been sold in the last sales period
 	 * @param isPorousware: boolean; can said item have porousware applied to it?
 	 * @param idSupplier: Supplier: relates to the supplier information that this item can be purchased from
+	 * @param attributes: HashMap of Srting to String detailing all of the procuct attributes
 	 */
-	public Item(String itemName, float price, int stock, String imageLocation, boolean discontinued, int salesRate, int pSalesRate, boolean isPorousware, Supplier idSupplier) {
+	public Item(String itemName, float price, int stock, String imageLocation, boolean discontinued, int salesRate, int pSalesRate, boolean isPorousware, Supplier idSupplier, HashMap<String, String> attributes) {
 		this.itemName = itemName;
 		this.price = price;
 		this.stock = stock;
@@ -149,6 +154,13 @@ public class Item {
 		return isPorousware;
 	}
 
+	public HashMap<String, String> getAttributes() {
+		return attributes;
+	}
+	
+	public String getAttribute(String attributeName) {
+		return attributes.get(attributeName);
+	}
     //Setters
     
     /**
@@ -213,5 +225,44 @@ public class Item {
 	 */
 	public void setpSalesRate(int pSalesRate) {
 		this.pSalesRate = pSalesRate;
+	}
+	
+	public void setAllAttributes(HashMap<String, String> newAttributes) {
+		this.attributes = new HashMap<String, String>();
+		attributes.putAll(newAttributes);
+	}
+	
+	/**
+	 * adds a new name and value pair to the item's attributes
+	 * Throws exception if the attribute already exists within the item
+	 * @param attributeName
+	 * @param attributeVal
+	 * @throws Exception
+	 */
+	public void addAttribute(String attributeName, String attributeVal) throws Exception {
+		if(attributes.containsKey(attributeName)) {
+			throw new Exception();
+		} else {
+			attributes.put(attributeName, attributeVal);
+		}
+	}
+	
+	/**
+	 * updates the value associated with one of the Item's attributes.
+	 * Throws exception if the attribute doesn't already exist within the item
+	 * @param attributeName
+	 * @param newAttributeVal
+	 * @throws Exception
+	 */
+	public void updateAttributeValue(String attributeName, String newAttributeVal) throws Exception {
+		if(!attributes.containsKey(attributeName)) {
+			throw new Exception();
+		} else {
+			attributes.put(attributeName, newAttributeVal);
+		}
+	}
+	
+	public void removeAttribute(String attributeName) {
+		attributes.remove(attributeName);
 	}
 }
