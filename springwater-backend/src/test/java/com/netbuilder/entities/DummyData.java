@@ -158,7 +158,8 @@ public class DummyData {
 		attributes.put("Width", "7cm");
 		attributes.put("Depth", "7cm");
 		attributes.put("Accessory", "Fishing Rod");
-		items.add(new Item("Red Gnome", (float)12.99, 100, "Red_Gnome.png", false, 5, 6, false, suppliers.get(0), attributes));
+		String desc = "It's a red gnome";
+		items.add(new Item("Red Gnome", desc, (float)12.99, 100, "Red_Gnome.png", false, 5, 6, false, suppliers.get(0), attributes));
 		
 		attributes = new HashMap<String, String>();
 		attributes.put("Hat Colour", "Blue");
@@ -166,7 +167,8 @@ public class DummyData {
 		attributes.put("Width", "7cm");
 		attributes.put("Depth", "7cm");
 		attributes.put("Accessory", "Mushroom");
-		items.add(new Item("Blue Gnome", (float)12.99, 500, "Blue_Gnome.png", false, 10, 6, false, suppliers.get(0), attributes));
+		desc = "It's a blue gnome";
+		items.add(new Item("Blue Gnome", desc, (float)12.99, 500, "Blue_Gnome.png", false, 10, 6, false, suppliers.get(0), attributes));
 
 		attributes = new HashMap<String, String>();
 		attributes.put("Hat Colour", "Green");
@@ -174,14 +176,16 @@ public class DummyData {
 		attributes.put("Width", "7cm");
 		attributes.put("Depth", "7cm");
 		attributes.put("Accessory", "Sacrificial Dagger of Akroth");
-		items.add(new Item("Green Gnome", (float)12.99, 30, "Green_Gnome.png", false, 4, 7, false, suppliers.get(0), attributes));
+		desc = "Fear him for he is the eater of souls";
+		items.add(new Item("Green Gnome", desc, (float)12.99, 30, "Green_Gnome.png", false, 4, 7, false, suppliers.get(0), attributes));
 		
 		attributes = new HashMap<String, String>();
 		attributes.put("Dial Stone", "Marble");
 		attributes.put("Height", "1.3m");
 		attributes.put("Width", "0.5m");
 		attributes.put("Depth", "0.5m");
-		items.add(new Item("Sundial", (float)45.00, 95, "Sundial.png", false, 25, 10, false, suppliers.get(1), attributes));
+		desc = "Tell the time but only when it's sunny and you're outside";
+		items.add(new Item("Sundial", desc, (float)45.00, 95, "Sundial.png", false, 25, 10, false, suppliers.get(1), attributes));
 		
 		attributes = new HashMap<String, String>();
 		attributes.put("Colour", "White");
@@ -189,16 +193,17 @@ public class DummyData {
 		attributes.put("Width", "2.5m");
 		attributes.put("Depth", "2.5m");
 		attributes.put("Number of people", "4");
-		items.add(new Item("Jacuzzi", (float)399.95, 20, "Jacuzzi.png", false, 2, 2, false, suppliers.get(1), attributes));
+		desc = "Useful for when you want a jacuzzi";
+		items.add(new Item("Jacuzzi", desc, (float)399.95, 20, "Jacuzzi.png", false, 2, 2, false, suppliers.get(1), attributes));
 		
 		attributes = new HashMap<String, String>();
 		attributes.put("Colour", "White");
 		attributes.put("Height", "1.9m");
 		attributes.put("Width", "0.5m");
 		attributes.put("Depth", "0.5m");
-		attributes.put("MAterial", "Granite");
-		attributes.put("Shows Junk?", "Yes");
-		items.add(new Item("Statue", (float)75.50, 110, "Statue.png", false, 10, 12, false, suppliers.get(1), attributes));
+		attributes.put("Material", "Granite");
+		desc = "Imitation Venus de Milo with sculpted base and intricate detail seems like an exact replica of the original";
+		items.add(new Item("Statue", desc, (float)75.50, 110, "Statue.png", false, 10, 12, false, suppliers.get(1), attributes));
 	}
 
 	private void addEmployees() {

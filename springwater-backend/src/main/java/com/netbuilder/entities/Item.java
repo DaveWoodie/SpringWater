@@ -15,6 +15,7 @@ public class Item {
 	@Id
 	private int idItem;
 	private String itemName;
+	private String itemDescription;
 	private float price;
 	private int stock;
 	private String imageLocation;
@@ -44,8 +45,9 @@ public class Item {
 	 * @param idSupplier: Supplier: relates to the supplier information that this item can be purchased from
 	 * @param attributes: HashMap of Srting to String detailing all of the procuct attributes
 	 */
-	public Item(String itemName, float price, int stock, String imageLocation, boolean discontinued, int salesRate, int pSalesRate, boolean isPorousware, Supplier idSupplier, HashMap<String, String> attributes) {
+	public Item(String itemName, String itemDescription, float price, int stock, String imageLocation, boolean discontinued, int salesRate, int pSalesRate, boolean isPorousware, Supplier idSupplier, HashMap<String, String> attributes) {
 		this.itemName = itemName;
+		this.itemDescription = itemDescription;
 		this.price = price;
 		this.stock = stock;
 		this.imageLocation = imageLocation;

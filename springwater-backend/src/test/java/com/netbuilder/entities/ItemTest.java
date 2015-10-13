@@ -14,6 +14,7 @@ import org.junit.Test;
 public class ItemTest {
 
 	private String itemName = "Red Gnome";
+	private String desc = "It's a gnome";
 	private float price = 9.99f;
 	private int stock = 274;
 	private String imageLocation = "C:/Users/chrisjwwalker/redGnome.png";
@@ -27,14 +28,14 @@ public class ItemTest {
 	@Test
 	public void testIdItem() {
 		setupAttributesMap();
-		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier, attributesMap);
+		Item i = new Item(itemName, desc, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier, attributesMap);
 		assertEquals("Item ID should be null", 0, i.getIdItem());
 	}
 
 	@Test
 	public void testGetItemName() {
 		setupAttributesMap();
-		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier, attributesMap);
+		Item i = new Item(itemName, desc, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier, attributesMap);
 		i.setItemName("Green Gnome");
 		assertEquals("Name shouldn't match iName", "Green Gnome", i.getItemName());
 	}
@@ -42,7 +43,7 @@ public class ItemTest {
 	@Test
 	public void testGetPrice() {
 		setupAttributesMap();
-		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier, attributesMap);
+		Item i = new Item(itemName, desc, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier, attributesMap);
 		i.setPrice(5.23f);
 		assertEquals(5.23f, i.getPrice(), 0);
 	}
@@ -50,7 +51,7 @@ public class ItemTest {
 	@Test
 	public void testGetStock() {
 		setupAttributesMap();
-		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier, attributesMap);
+		Item i = new Item(itemName, desc, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier, attributesMap);
 		i.setStock(100);
 		assertEquals(100, i.getStock(), 0);
 	}
@@ -58,7 +59,7 @@ public class ItemTest {
 	@Test
 	public void testGetImageLocation() {
 		setupAttributesMap();
-		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier, attributesMap);
+		Item i = new Item(itemName, desc, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier, attributesMap);
 		i.setImageLocation("https://image.co.uk/gnome.jpg");
 		assertEquals("https://image.co.uk/gnome.jpg", i.getImageLocation());
 	}
@@ -66,7 +67,7 @@ public class ItemTest {
 	@Test
 	public void testGetSalesRate() {
 		setupAttributesMap();
-		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier, attributesMap);
+		Item i = new Item(itemName, desc, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier, attributesMap);
 		i.setSalesRate(3);
 		assertEquals("Get sales Rate", 3, i.getSalesRate());
 	}
@@ -82,7 +83,7 @@ public class ItemTest {
 	@Test
 	public void testGetpSalesRate() {
 		setupAttributesMap();
-		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier, attributesMap);
+		Item i = new Item(itemName, desc, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier, attributesMap);
 		i.setpSalesRate(45);
 		assertEquals("Get past sales rate", 45, i.getpSalesRate());
 	}
@@ -90,14 +91,14 @@ public class ItemTest {
 	@Test
 	public void testIsDiscontinued() {
 		setupAttributesMap();
-		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier, attributesMap);
+		Item i = new Item(itemName, desc, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier, attributesMap);
 		assertFalse(i.isDiscontinued());
 	}
 
 	@Test
 	public void testIsPorousware() {
 		setupAttributesMap();
-		Item i = new Item(itemName, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier, attributesMap);
+		Item i = new Item(itemName, desc, price, stock, imageLocation, discontinued, salesRate, pSalesRate, isPorousware, idSupplier, attributesMap);
 		assertFalse(i.isPorousware());
 	}
 	
