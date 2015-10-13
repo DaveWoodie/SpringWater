@@ -160,7 +160,6 @@
                             <h3>Andrew Herbinson<br>Warehouse Manager</h3> Andrews main focus is managing thw warehouse process and procedures so your order can get to you!
                             <br>
                             <br>
-                            <br>
                         </div>
                     </div>
                 </div>
