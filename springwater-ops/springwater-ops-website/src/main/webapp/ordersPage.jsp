@@ -65,24 +65,64 @@
         <!-- /.container-fluid -->
     </nav>
 
-        <!-- Everything in the page -->
-        <div class="col-lg-12">
-            <div class="well well-lg">
-
-                <!-- Form select control -->
-                <div class="col-lg-3">
-                    <select class="form-control">
-                    <option value="Date-Range">Date Range</option>
-                    <option value="oneWeek">Two</option>
-                    <option value="three">Three</option>
-                    <option value="four">Four</option>
-                    <option value="five">Five</option>
-                    </select>
-                </div>
-        </div>
-
     <!-- Content Area -->
     <div class="jumbotron content">
+
+        <div class="container">
+                <div class="rows">
+                    <div class="col-lg-6">
+            <!-- Navigation links for user sub-directories -->
+            <p>
+                <a href="profilePage.html">Your Account</a>
+                &#62 Your Orders
+            </p>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-md-6">
+            <!-- Search for -->
+                <form class="navbar-form navbar-right" role="search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search all orders">
+                                    <span class="input-group-btn"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search Orders</button>
+                                    </span>
+                                </div>
+                </form>
+            </div>
+            </div>
+            </div>
+
+        <div class="container">
+            <!-- Header for orders-->
+            <h2>Your Orders</h2>
+
+                <!-- list of orders-->
+                <div class="col-lg-6">
+                    <nav>
+                          <ul class="nav nav-justified">
+                            <li class="active"><a href="#">Orders</a></li>
+                            <li><a href="addAddresses.html">Open Orders</a></li>
+                            <li><a href="ordersPage.html">Cancelled Orders</a></li>
+                    </nav>
+                </div>
+
+                <div class="col-lg-12">
+                    <!-- New horizontal line -->
+                    <hr>
+                </div>
+
+                    <!-- Everything in the page -->
+                    <div class="col-lg-12">
+                            <!-- Form select control -->
+                            <div class="col-lg-2">
+                                <select class="form-control">
+                                <option value="Date-Range">Date Range</option>
+                                <option value="oneWeek">One Week</option>
+                                <option value="twoWeeks">Two Weeks</option>
+                                <option value="threeWeeks">Three Weeks</option>
+                                <option value="oneMonth">One Month</option>
+                                </select>
+                            </div>
+                    </div>
+            </div>
     </div>
 
     <!-- Footer -->

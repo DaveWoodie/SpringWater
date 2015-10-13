@@ -1,3 +1,7 @@
+/**
+ * @author Freshwater
+ * @date 13/10/2015
+ */
 package com.netbuilder.app;
 
 import java.awt.BorderLayout;
@@ -30,7 +34,7 @@ import javax.swing.table.DefaultTableModel;
 @SuppressWarnings("serial")
 public class ItemGUI extends JFrame
 {	
-	private int itemID = 0;
+	private int itemID;
 	private BufferedImage productImage;
 	private JTabbedPane tabbedPane;
 	private DefaultTableModel tableModel =  new DefaultTableModel();
@@ -62,7 +66,7 @@ public class ItemGUI extends JFrame
 	public void initGUI()
 	{
 		//configure JFrame
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setVisible(true);
 		
 		setUpTableModel();
@@ -82,9 +86,10 @@ public class ItemGUI extends JFrame
 		predictedSalesPanel();
 		
 		//configure size
-		setSize(new Dimension(600, 600));
-		setMinimumSize(new Dimension(600, 600));
-		setPreferredSize(new Dimension(600, 800));
+		//setLayout();
+		setSize(new Dimension(650, 600));
+		setMinimumSize(new Dimension(650, 600));
+		setPreferredSize(new Dimension(650, 600));
 		setLocationRelativeTo(null);
 	}
 	
@@ -94,65 +99,65 @@ public class ItemGUI extends JFrame
 	public void viewItemPanel()
 	{
 		//Item panel
-		JPanel panelItem = new JPanel(new GridLayout(2, 0));
-		tabbedPane.add("View Item", panelItem);
+		JPanel panelMain = new JPanel(new GridLayout(2, 0));
+		tabbedPane.add("View Item", panelMain);
 		
 		//Item info
-		JPanel panelInfo = new JPanel(new GridLayout(0, 3));
-		panelInfo.setBorder(BorderFactory.createLineBorder(Color.gray));
+		JPanel panelItem = new JPanel(new GridLayout(0, 2));
+		panelItem.setBorder(BorderFactory.createLineBorder(Color.gray));
 		
-		//Item name
-		JPanel panelName = new JPanel();
-		panelName.setLayout(new GridLayout(7, 0));
-		panelName.setBorder(BorderFactory.createLineBorder(Color.gray));
+		//Item split
+		JPanel panelSplit = new JPanel(new GridLayout(10, 0));
+		panelSplit.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, Color.gray));
 		
-		//ID
-		JPanel panelID = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		//panelID.setBorder(BorderFactory.createLineBorder(Color.gray));
-		JLabel labelID = new JLabel("ID : ");
-		JTextField textID = new JTextField(4);
-		panelID.add(labelID);
-		panelID.add(textID);
+			//ID
+			JPanel panelID = new JPanel(new FlowLayout(FlowLayout.LEFT));
+			JLabel labelID = new JLabel("ID : ");
+			JLabel textID = new JLabel("");
+			panelID.add(labelID);
+			panelID.add(textID);
+			
+			//Name
+			JPanel panelMainName = new JPanel(new FlowLayout(FlowLayout.LEFT));
+			JLabel labelName = new JLabel("Item : ");
+			JLabel textName = new JLabel("");
+			panelMainName.add(labelName);
+			panelMainName.add(textName);
+			
+			//Price
+			JPanel panelPrice = new JPanel(new FlowLayout(FlowLayout.LEFT));
+			JLabel labelPrice = new JLabel("Price : ");
+			JLabel textPrice = new JLabel("");
+			panelPrice.add(labelPrice);
+			panelPrice.add(textPrice);
+			
+			//Stock
+			JPanel panelStock = new JPanel(new FlowLayout(FlowLayout.LEFT));
+			JLabel labelStock = new JLabel("Stock Level : ");
+			JLabel textStock = new JLabel("");
+			panelStock.add(labelStock);
+			panelStock.add(textStock);
+			
+				//add components to item name panel
+				panelSplit.add(panelID);
+				panelSplit.add(panelMainName);
+				panelSplit.add(panelPrice);
+				panelSplit.add(new JPanel());
+				panelSplit.add(panelStock);
 		
-		//Name
-		JPanel panelItemName = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		//panelItemName.setBorder(BorderFactory.createLineBorder(Color.gray));
-		JLabel labelName = new JLabel("Item : ");
-		JTextField textName = new JTextField(10);
-		panelItemName.add(labelName);
-		panelItemName.add(textName);
-		
-		//Price
-		JPanel panelPrice = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel labelPrice = new JLabel("Price : ");
-		JTextField textPrice = new JTextField(10);
-		panelPrice.add(labelPrice);
-		panelPrice.add(textPrice);
-		
-			//add components to item name panel
-			panelName.add(panelID);
-			panelName.add(panelItemName);
-			panelName.add(panelPrice);
-		
-		//Item Stock
-		JPanel panelOptions = new JPanel();
-		panelOptions.setBorder(BorderFactory.createLineBorder(Color.gray));
 		
 		//Item Image
 		JPanel panelImage = new JPanel(new BorderLayout());
-		panelImage.setBorder(BorderFactory.createLineBorder(Color.gray));
 		JLabel Image = new JLabel(new ImageIcon(productImage));
 		panelImage.add(Image);
 		
 			//add components to top panel
-			panelInfo.add(panelName);
-			panelInfo.add(panelOptions);
-			panelInfo.add(panelImage);
+			panelItem.add(panelSplit);
+			panelItem.add(panelImage);
 		
 		
 		//Item Table
 		JPanel panelTable = new JPanel(new BorderLayout());
-		panelTable.setBorder(BorderFactory.createLineBorder(Color.gray));
 		
 		JTable tableItem = new JTable(tableModel);
 		tableItem.setFillsViewportHeight(true);
@@ -160,12 +165,15 @@ public class ItemGUI extends JFrame
 		scrollTable.setMinimumSize(new Dimension(getWidth(), getHeight()));
 		scrollTable.setViewportView(tableItem);
 		
+		JButton buttonDelivery = new JButton("View Delivery");
+		
 			//add components to scroll pane
-			panelTable.add(scrollTable);
+			panelTable.add(scrollTable, BorderLayout.CENTER);
+			panelTable.add(buttonDelivery, BorderLayout.SOUTH);
 		
 		//adding components to item panel
-		panelItem.add(panelInfo);
-		panelItem.add(panelTable);
+		panelMain.add(panelItem);
+		panelMain.add(panelTable);
 	}
 	
 	/**
@@ -178,9 +186,12 @@ public class ItemGUI extends JFrame
 		tabbedPane.add("Predicted Sales", panelPredictedSales);
 	}
 	
+	/**
+	 * Method to set up the table model for display
+	 */
 	public void setUpTableModel()
 	{
-		tableModel.addColumn("Delivery ID");
+		tableModel.addColumn("Purchase Order ID");
 		tableModel.addColumn("Date");
 		tableModel.addColumn("Stock In");
 		tableModel.addColumn("Amount Damaged");

@@ -81,6 +81,8 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		
 		setAbsoluteSize(this, WIDTH, HEIGHT);
 		setAbsoluteSize(searchPanel, WIDTH, SEARCH_PANEL_HEIGHT);
+		searchPanel.repaint();
+		searchPanel.revalidate();
 		setAbsoluteSize(searchFieldPanel, WIDTH*11/16, SEARCH_PANEL_HEIGHT);
 		setAbsoluteSize(searchButtonPanel, WIDTH*1/4, SEARCH_PANEL_HEIGHT);
 
@@ -130,7 +132,7 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 	}
 	
 	private void addSearchField() {
-		searchField = new JTextField(15);
+		searchField = new JTextField(13);
         Font searchFont = searchField.getFont().deriveFont(Font.PLAIN, 30f);
         searchField.setFont(searchFont);
         TextPrompt tP = new TextPrompt("Search for item...", searchField);
