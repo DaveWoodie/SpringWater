@@ -26,7 +26,7 @@ import javax.swing.border.EmptyBorder;
  *
  */
 @SuppressWarnings("serial")
-public class MainFrame extends JPanel implements ComponentListener{
+public class MainFrame extends JPanel implements ComponentListener , ActionListener{
 	
 	JPanel base, panel1, panel2, panel3, panel4, bottom;
 	JTabbedPane pane;
@@ -96,13 +96,7 @@ public class MainFrame extends JPanel implements ComponentListener{
 		
 		//create logout button
 		logout = new JButton("Logout");
-		logout.addActionListener(new ActionListener(){
-
-			public void actionPerformed(ActionEvent e) {
-				// TODO Logout method to return to login screen
-			}
-			
-		});
+		logout.addActionListener(this);
 		
 		//create quit button
 		quit = new JButton("Quit");
@@ -169,6 +163,15 @@ public class MainFrame extends JPanel implements ComponentListener{
 	public void componentHidden(ComponentEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getSource().equals(logout))
+		{
+			src.revertToLogin();
+		}
 	}
 
 
