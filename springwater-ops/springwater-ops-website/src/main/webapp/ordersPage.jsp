@@ -73,7 +73,7 @@
                 <div class="col-lg-6">
                     <!-- Navigation links for user sub-directories -->
                     <p>
-                        <a href="profilePage.html">Account</a> &#62 Orders
+                        <a href="profilePage.jsp">Account</a> &#62 Orders
                     </p>
                 </div>
                 <div class="col-lg-6 col-md-6 col-md-6">
@@ -98,8 +98,8 @@
                 <nav>
                     <ul class="nav nav-justified">
                         <li class="active"><a href="#">Orders</a></li>
-                        <li><a href="addAddresses.html">Open Orders</a></li>
-                        <li><a href="ordersPage.html">Cancelled Orders</a></li>
+                        <li><a href="addAddresses.jsp">Open Orders</a></li>
+                        <li><a href="ordersPage.jsp">Cancelled Orders</a></li>
                 </nav>
             </div>
 
