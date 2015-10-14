@@ -173,7 +173,6 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		scrollPanel.revalidate();
 	}
 	
-	// InventoryGUI src, int width, int productID, String productName, int quantity, String location, String imageLocation
 	
 	
 	private void filterResults(String searchText) {
