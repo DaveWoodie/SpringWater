@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <!--------------------------------------------------------
 
-    Chris J W Walker 
+    Callum Cooper 
     
-    template.html
+    openOrdersPage.jps
 
-    13/10/2015
+    14/10/2015
 
-    Template for all subsequent HTML files. Includes
-    navbar and jumbotron footer.
+    Template for the cancelled orders page
 
-    Last Modified by: chrisjwwalker
+    Last Modified by: Callum Cooper
 
 --------------------------------------------------------->
 
@@ -37,9 +36,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                
                 <a class="navbar-brand" href="index.jsp"><img src="resources/img/logo2.png" style="width:auto;height:25px"></a>
-                
             </div>
 
             <!-- Navbar items that collaspe into toggle menu -->
@@ -71,7 +68,7 @@
                 </form>
 
                 <form class="navbar-form navbar-right" role="search">
-                    <a href="wishlist.jsp" class="btn btn-danger"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Wish List <span class="badge">0</span></a>
+                    <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Wish List <span class="badge">0</span></a>
                     <a href="basket.jsp" class="btn btn-info"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Basket <span class="badge">0</span></a>
                     <a href="loginRegister.jsp" type="submit" class="btn btn-success"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login</a>
                     <a href="loginRegister.jsp" class="btn btn-primary"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Register</a>
@@ -84,6 +81,56 @@
 
     <!-- Content Area -->
     <div class="jumbotron content">
+    
+    	<div class="container">
+            <div class="rows">
+                <div class="col-lg-6">
+                    <!-- Navigation links for user sub-directories -->
+                    <p>
+                        <a href="ordersPage.jsp">Orders</a> &#62 Cancelled Orders
+                    </p>
+                </div>
+                <div class="col-lg-6 col-md-6 col-md-6">
+                    <!-- Search for -->
+                    <form class="navbar-form navbar-right" role="search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search all orders">
+                            <span class="input-group-btn"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search Orders</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+         <div class="container">
+            <!-- Header for orders-->
+            <h2>Your Orders</h2>
+
+            <!-- list of orders-->
+            <div class="col-lg-6">
+                <nav>
+                    <ul class="nav nav-justified">
+                        <li class="active"><a href="ordersPage.jsp">Orders</a></li>
+                        <li><a href="openOrdersPage.jsp">Open Orders</a></li>
+                        <li><a href="#">Cancelled Orders</a></li>
+                </nav>
+            </div>
+            
+              <div class="col-lg-12">
+                <!-- New horizontal line -->
+                <hr>
+            </div>
+            
+           <div class="rows">
+           	<div class="col-md-3"></div>
+           	<div class="col-md-6">
+           <div id="paymentDiv">
+           <center><p>We can't find any cancelled orders (in the last 6 months). <a href="ordersPage.jsp">View all orders</a></p></center>
+           </div>
+           </div>
+           </div>
+    
     </div>
     <!-- END OF CONTENT -->
     

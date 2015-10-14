@@ -112,6 +112,23 @@ textarea {
     box-shadow: none;
 }
 
+#wishThumb {
+    max-height: 100px;
+    max-width: 100px;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+#wishLine {
+    padding: 30px;
+    max-width: 500px;
+}
+
+#textLine {
+    max-width: 300px;
+}
+
 #logo {
     width:auto;
     height:25px

@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -16,43 +18,46 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 
 @SuppressWarnings("serial")
 public class IndividualPurchaseOrderView extends JFrame {
 
-	private String [] columns = {"Item ID", "Quantity", "Number Damaged", "Total Price"};
+	private String [] columns = {"Item ID", "Item Name", "Quantity", "Number Damaged", "Total Price"};
 	private JPanel contentPane, bottom, top;
 	private JTable itemTable;
+	private JButton select;
 	private JButton quit;
-	private JLabel loginDetails, orderID, supplier, datePlaced;
+	private JLabel loginDetails, orderID, supplier, datePlaced, orderStatus;
 	private DefaultTableModel defaultItemTable;
+	private int selectedID;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					IndividualPurchaseOrderView frame = new IndividualPurchaseOrderView(0);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					IndividualPurchaseOrderView frame = new IndividualPurchaseOrderView(0);
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
 	 */
-	public IndividualPurchaseOrderView( int id) {
+	public IndividualPurchaseOrderView( int id, String supplierName, String date, String status) {
 		
 		setTitle("Purchase Order");
         setLocationRelativeTo(null);
-        setMinimumSize(new Dimension(1000, 700));
+        setMinimumSize(new Dimension(600, 800));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(50, 50, 1050, 750);
+//		setBounds(50, 50, 1050, 750);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 //		setContentPane(contentPane);
@@ -61,8 +66,22 @@ public class IndividualPurchaseOrderView extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		contentPane.add(scrollPane);
 		
-		defaultItemTable = new DefaultTableModel(columns, 0);
+		LoadData lD =  new LoadData();
+		defaultItemTable = new DefaultTableModel(lD.fetchIndividualPurchaseOrder(), columns);
 		itemTable = new JTable(defaultItemTable);
+		ListSelectionModel prListSelectionModel =itemTable.getSelectionModel();
+		prListSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		prListSelectionModel.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				int selectedRow = itemTable.getSelectedRow();
+				try {
+					selectedID = Integer.parseInt(itemTable.getValueAt(selectedRow, 0).toString());
+				} catch (NullPointerException npe) {
+					System.out.println("Not a valid Item!");
+				}
+			}
+		});
+		
 //		itemTable = new JTable();
 		scrollPane.setViewportView(itemTable);
 		
@@ -70,9 +89,10 @@ public class IndividualPurchaseOrderView extends JFrame {
 		top.setLayout(new BoxLayout(top, BoxLayout.X_AXIS));
 		
 		//These are place holders for the Supplied things
-		orderID = new JLabel("Order ID placeholder");
-		supplier = new JLabel("Supplier placeholder");
-		datePlaced = new JLabel("Date Placed placeholder");
+		orderID = new JLabel("Order ID: " + id);
+		supplier = new JLabel("Supplier: " + supplierName);
+		datePlaced = new JLabel("Date Placed: " + date);
+		orderStatus = new JLabel("Order Status: " + status);
 		
 		top.add(Box.createRigidArea(new Dimension(10,0)));
 		top.add(orderID);
@@ -80,6 +100,8 @@ public class IndividualPurchaseOrderView extends JFrame {
 		top.add(supplier);
 		top.add(Box.createRigidArea(new Dimension(10,0)));
 		top.add(datePlaced);
+		top.add(Box.createRigidArea(new Dimension(10,0)));
+		top.add(orderStatus);
 		top.add(Box.createRigidArea(new Dimension(10,0)));
 		
 		bottom = new JPanel();
@@ -94,7 +116,21 @@ public class IndividualPurchaseOrderView extends JFrame {
 //				// TODO Logout method to return to login screen
 //			}
 //		});
-				
+		
+		//create select Item button
+		select = new JButton("Select Item");
+		select.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(selectedID ==0) {
+					System.out.println("No item selected!");
+				}
+				else {
+				@SuppressWarnings("unused")
+				ItemGUI IG = new ItemGUI(selectedID);
+				}			
+			}
+		});
+		
 		//create quit button
 		quit = new JButton("Quit");
 		quit.addActionListener(new ActionListener(){
@@ -110,6 +146,8 @@ public class IndividualPurchaseOrderView extends JFrame {
 //		bottom.add(Box.createRigidArea(new Dimension(10,0)));
 //		bottom.add(logout);
 		bottom.add(Box.createRigidArea(new Dimension(10,0)));
+		bottom.add(select);
+		bottom.add(Box.createRigidArea(new Dimension(10,0)));
 		bottom.add(quit);
 		bottom.add(Box.createRigidArea(new Dimension(10,0)));
 				
@@ -118,7 +156,8 @@ public class IndividualPurchaseOrderView extends JFrame {
 		contentPane.add(bottom, BorderLayout.SOUTH);
 		contentPane.add(top, BorderLayout.NORTH);
 		add(contentPane);
-		
+//		pack();
+		setLocationRelativeTo(null);
 	}
 
 }

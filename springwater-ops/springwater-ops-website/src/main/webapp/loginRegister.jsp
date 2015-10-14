@@ -99,7 +99,7 @@
                             <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
                         </div>
                         <br>
-                        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Login</button>
+                        <a href="profilePage.jsp" type="submit" class="btn btn-success"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Login</a>
                     </form>
                     <br>
                     <div class="panel panel-danger">
@@ -153,7 +153,7 @@
                             <input type="text" class="form-control" placeholder="Telephone Number (Landline or mobile)" aria-describedby="basic-addon1">
                         </div>
                         <br>
-                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Register</button>
+                        <a href="profilePage.jsp" type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Register</a>
                     </form>
                     <br>
                     <div class="panel panel-info">

@@ -11,7 +11,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -30,8 +29,12 @@ public class DailyStockReportFrame {
 	public DailyStockReportFrame() {
 	}
 
+	/**
+	 * method to get the daily stock report pain
+	 * @return a JPanel containing the stock report
+	 */
 	public JPanel getStockReportPanel() {
-		int numRows = 30;
+//		int numRows = 30;
 		String[] colHeadings = { "Item ID", "Item Name", "Stock Level","Sales Rate" };
 		final JLabel fastSellingLabel = new JLabel("Fast Selling Items");
 		final JLabel LowStockLabel = new JLabel("Low stock Items");
@@ -122,20 +125,20 @@ public class DailyStockReportFrame {
 //		lowStockPanel.setBackground(Color.WHITE);
 //		fastSellingTable.getTableHeader().setBackground(Color.WHITE);
 //		lowStockTable.getTableHeader().setBackground(Color.WHITE);
-		fastSellingPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-		lowStockPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+//		fastSellingPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+//		lowStockPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
 		// Add components to low stock panel
-		lowStockTable.setPreferredScrollableViewportSize(lowStockTable.getPreferredSize());
-		lowStockTable.setFillsViewportHeight(true);
+//		lowStockTable.setPreferredScrollableViewportSize(lowStockTable.getPreferredSize());
+//		lowStockTable.setFillsViewportHeight(true);
 		LowStockLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		lowStockPanel.add(LowStockLabel);
 		lowStockPanel.add(new JScrollPane(lowStockTable));
 		lowStockPanel.add(lowStockSelect);
 
 		// Add components to fast selling panel
-		fastSellingTable.setPreferredScrollableViewportSize(fastSellingTable.getPreferredSize());
-		fastSellingTable.setFillsViewportHeight(true);
+//		fastSellingTable.setPreferredScrollableViewportSize(fastSellingTable.getPreferredSize());
+//		fastSellingTable.setFillsViewportHeight(true);
 		fastSellingLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		fastSellingPanel.add(fastSellingLabel);
 		fastSellingPanel.add(new JScrollPane(fastSellingTable));
@@ -149,6 +152,8 @@ public class DailyStockReportFrame {
 	}
 	
 	//fills the table with test data
+	@Deprecated
+	@SuppressWarnings("unused")
 	private DefaultTableModel fillTable(int numRows, DefaultTableModel dtm) {
 		for (int i = 0;i<numRows; i++) {
 			dtm.setValueAt(i+1, i, 0);

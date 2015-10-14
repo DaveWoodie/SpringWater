@@ -34,7 +34,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="items.jsp">Gnomes</a></li>
                             <li><a href="items.jsp">Furniture</a></li>
-                            <li><a href="items.jsp">Tools</a></li>
+                            <li><a href="items.jsp">Tools</a></li> 
                             <li><a href="items.jsp">Pottery</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="items.jsp">Featured</a></li>
@@ -98,8 +98,8 @@
                 <nav>
                     <ul class="nav nav-justified">
                         <li class="active"><a href="#">Orders</a></li>
-                        <li><a href="addAddresses.jsp">Open Orders</a></li>
-                        <li><a href="ordersPage.jsp">Cancelled Orders</a></li>
+                        <li><a href="openOrdersPage.jsp">Open Orders</a></li>
+                        <li><a href="cancelledOrdersPage.jsp">Cancelled Orders</a></li>
                 </nav>
             </div>
 

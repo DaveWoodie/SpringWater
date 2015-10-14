@@ -26,7 +26,7 @@ import javax.swing.JTextField;
 public class InventoryGUI extends JPanel implements ActionListener, ComponentListener {
 	
 	private int WIDTH = 580;
-	private int HEIGHT = 800;
+	private int HEIGHT = 734;
 	private int SEARCH_PANEL_HEIGHT = 66;
 	private int SIDE_PADDING = 20;
 
@@ -45,6 +45,10 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 	private ArrayList<InventoryItem> items = new ArrayList<InventoryItem>();
 	
 	private ArrayList<InventoryItem> filteredItems = new ArrayList<InventoryItem>();
+	
+	
+	// Placeholder Data
+	private LoadData placeHolders = new LoadData();
 	
 	public static void main(String[] args) {
 		
@@ -88,7 +92,7 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		setAbsoluteSize(searchFieldPanel, WIDTH*11/16, SEARCH_PANEL_HEIGHT);
 		setAbsoluteSize(searchButtonPanel, WIDTH*1/4, SEARCH_PANEL_HEIGHT);
 
-		//setAbsoluteSize(scrollPane, WIDTH, HEIGHT - BOTTOM_PADDING);
+		setAbsoluteSize(scrollPane, WIDTH, HEIGHT);
 		
 		for(InventoryItem i : items) {
 			i.resizeEverything(WIDTH*19/20);
@@ -125,6 +129,12 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		panel.setMinimumSize(new Dimension(width, height));
 	}
 
+
+	private void setAbsoluteSize(JScrollPane pane, int width, int height) {
+		pane.setPreferredSize(new Dimension(width, height));
+		pane.setMaximumSize(new Dimension(width, height));
+		pane.setMinimumSize(new Dimension(width, height));
+	}
 	
 	private void addSearchFieldPanel() {
 		setAbsoluteSize(searchFieldPanel, WIDTH*11/16, SEARCH_PANEL_HEIGHT);
@@ -137,6 +147,7 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		searchField = new JTextField(13);
         Font searchFont = searchField.getFont().deriveFont(Font.PLAIN, 30f);
         searchField.setFont(searchFont);
+        searchField.addActionListener(this);
         TextPrompt tP = new TextPrompt("Search for item...", searchField);
 		searchFieldPanel.add(searchField);
 		
@@ -161,26 +172,40 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		
 		scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));
 		
-		for(int i = 0; i < 10; i++) {
-			InventoryItem invItem = new InventoryItem(this, WIDTH*19/20, i, "Test", 50, "2B", null);
-			items.add(invItem);
-			scrollPanel.add(invItem);
-		}
-		
+		addPlaceholderItems();
+
+		setAbsoluteSize(scrollPane, WIDTH, HEIGHT);
 		this.add(scrollPane);
 		scrollPanel.setVisible(true);
 		scrollPanel.repaint();
 		scrollPanel.revalidate();
 	}
 	
-	// InventoryGUI src, int width, int productID, String productName, int quantity, String location, String imageLocation
+	private void addPlaceholderItems() {
+		Object[][] itemArray = placeHolders.fetchInventoryList();
+		
+		String imageFolderLocation = "src/main/resources/images/";
+		
+		for(int i = 0; i < itemArray.length; i++) {
+			int itemID = (int) itemArray[i][0];
+			String name = (String) itemArray[i][1];
+			int quantity = (int) itemArray[i][2];
+			String loc = (String) itemArray[i][3];
+			String imageLoc = imageFolderLocation.concat((String) itemArray[i][4]);
+			
+			InventoryItem invItem = new InventoryItem(this, WIDTH*19/20, itemID, name, quantity, loc, imageLoc);
+			items.add(invItem);
+			scrollPanel.add(invItem);
+		}
+	}
 	
+	//InventoryItem(InventoryGUI src, int width, int productID, String productName, int quantity, String location, String imageLocation)
 	
 	private void filterResults(String searchText) {
 		// TODO: fill out filter method to refine inventory display based on search field
 		filteredItems = new ArrayList<InventoryItem>();
 		for(InventoryItem i : items) {
-			if(i.getID() == Integer.parseInt(searchText)) {
+			if(i.getName().toUpperCase().contains(searchText.toUpperCase())) {
 				filteredItems.add(i);
 			}
 		}
@@ -203,7 +228,7 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource().equals(searchButton)) {
+		if(e.getSource().equals(searchButton) || e.getSource().equals(searchField)) {
 			if(!searchField.getText().equals("")) {
 				filterResults(searchField.getText());
 			} else {
