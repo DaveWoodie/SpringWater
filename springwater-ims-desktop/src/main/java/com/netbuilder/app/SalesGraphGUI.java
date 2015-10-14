@@ -1,10 +1,17 @@
 package com.netbuilder.app;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.CategoryLabelPositions;
+import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 
@@ -16,6 +23,9 @@ public class SalesGraphGUI extends JPanel
 
 	public SalesGraphGUI() {
 		makeDataset();
+		drawChart();
+		repaint();
+		revalidate();
 	}
 	/*
 	private void doDrawing(Graphics g)
@@ -36,6 +46,7 @@ public class SalesGraphGUI extends JPanel
 	}
 	
 	*/
+	
 	private void makeDataset() {
 		dataset = new DefaultCategoryDataset();
 		dataset.addValue(20.0, "sales","05/07/2015");
@@ -54,5 +65,24 @@ public class SalesGraphGUI extends JPanel
 		dataset.addValue(39.0, "sales","04/10/2015");
 		dataset.addValue(38.0, "sales","11/11/2015");
 	}
+	
+	private void drawChart() {
+
+	      JFreeChart lineChart = ChartFactory.createLineChart(
+	         "Sales",
+	         "Week","Number of Items sold",
+	         dataset,
+	         PlotOrientation.VERTICAL,
+	         true,true,false);
+	      
+	      CategoryAxis axis = lineChart.getCategoryPlot().getDomainAxis();
+	      axis.setCategoryLabelPositions(CategoryLabelPositions.UP_45);
+
+	      ChartPanel chartPanel = new ChartPanel( lineChart );
+	      chartPanel.setPreferredSize( new Dimension( 600, 400 ) );
+	      this.add(chartPanel);
+	
+	}
+	
 	
 }
