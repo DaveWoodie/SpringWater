@@ -1,12 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   
+
   <groupId>com.netbuilder</groupId>
   <artifactId>springwater-ops</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
+
   
-  <parent>
+  	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.2.6.RELEASE</version>
@@ -122,6 +124,23 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			
+			<plugin>
+	            <groupId>com.spotify</groupId>
+	            <artifactId>docker-maven-plugin</artifactId>
+	            <version>0.2.3</version>
+	            <configuration>
+	                <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+	                <dockerDirectory>src/main/docker</dockerDirectory>
+	                <resources>
+	                    <resource>
+	                        <targetPath>/</targetPath>
+	                        <directory>${project.build.directory}</directory>
+	                        <include>${project.build.finalName}.jar</include>
+	                    </resource>
+	                </resources>
+	            </configuration>
+	        </plugin>
 		</plugins>
 	</build>
 
@@ -131,6 +150,7 @@
 			<name>Spring Releases</name>
 			<url>https://repo.spring.io/libs-release</url>
 		</repository>
+		
 		<repository>
 			<id>org.jboss.repository.releases</id>
 			<name>JBoss Maven Release Repository</name>
@@ -145,6 +165,7 @@
 			<url>https://repo.spring.io/libs-release</url>
 		</pluginRepository>
 	</pluginRepositories>
+	
 	<modules>
 		<module>springwater-ops-backend</module>
 		<module>springwater-ops-website</module>
