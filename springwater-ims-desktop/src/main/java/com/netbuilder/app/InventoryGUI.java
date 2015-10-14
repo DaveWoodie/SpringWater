@@ -1,6 +1,7 @@
 package com.netbuilder.app;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagLayout;
@@ -117,6 +118,7 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 			for(int i = 0; i < newColumns; i++) {
 				JPanel panel = new JPanel();
 				panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS) );
+				panel.setAlignmentY(Component.TOP_ALIGNMENT);
 				scrollPanel.add(panel);
 				int limit = currentlyDisplayedItems.size()/newColumns;
 				if(i < remainder) {
@@ -219,15 +221,17 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		
 		String imageFolderLocation = "src/main/resources/images/";
 		
-		for(int i = 0; i < itemArray.length; i++) {
-			int itemID = (int) itemArray[i][0];
-			String name = (String) itemArray[i][1];
-			int quantity = (int) itemArray[i][2];
-			String loc = (String) itemArray[i][3];
-			String imageLoc = imageFolderLocation.concat((String) itemArray[i][4]);
-			
-			InventoryItemFrame invItem = new InventoryItemFrame(this, WIDTH/2, itemID, name, quantity, loc, imageLoc);
-			items.add(invItem);
+		for(int j = 0; j < 3; j++) {
+			for(int i = 0; i < itemArray.length; i++) {
+				int itemID = (int) itemArray[i][0];
+				String name = (String) itemArray[i][1];
+				int quantity = (int) itemArray[i][2];
+				String loc = (String) itemArray[i][3];
+				String imageLoc = imageFolderLocation.concat((String) itemArray[i][4]);
+				
+				InventoryItemFrame invItem = new InventoryItemFrame(this, WIDTH/2, itemID, name, quantity, loc, imageLoc);
+				items.add(invItem);
+			}
 		}
 		
 		fillContentPanelsBasedOnSize();
