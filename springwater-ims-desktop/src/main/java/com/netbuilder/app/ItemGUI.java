@@ -73,7 +73,6 @@ public class ItemGUI extends JFrame
 	{
 		//configure JFrame
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setVisible(true);
 		
 		setUpTableModel();
 		setSalesArrays();
@@ -99,6 +98,7 @@ public class ItemGUI extends JFrame
 		setMinimumSize(new Dimension(650, 600));
 		setPreferredSize(new Dimension(650, 600));
 		setLocationRelativeTo(null);
+		setVisible(true);
 	}
 	
 	/**
