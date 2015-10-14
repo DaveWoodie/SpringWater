@@ -104,6 +104,9 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		
 	}
 	
+	/**
+	 * Splits the InventoryItems scrollpane based on the width of the container and adds the inventory item objects in columns to match
+	 */
 	private void fillContentPanelsBasedOnSize() {
 		int totalWidth = this.WIDTH;
 		if(totalWidth/ITEM_WIDTH != currentColumns) {
