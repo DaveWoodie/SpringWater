@@ -67,7 +67,124 @@
 
     <!-- Content Area -->
     <div class="jumbotron content">
-        hello
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2 id="productTitle">Your Wish List</h2>
+                </div>
+                <div class="col-lg-3"></div>
+                <div class="col-lg-3">
+                    <div class="panel panel-default">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="well">
+                <div class="panel panel-default">
+                    <!-- Table -->
+                    <table class="table">
+
+                        <!-- Wish List -->
+                        <tbody>
+
+                            <!-- Wish List Row -->
+                            <tr>
+                                <td><a class="thumbnail" id="wishThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/pot03.jpg"></a></td>
+                                <td id="textLine">
+                                    <h2>Brown Plant Pot</h2>
+                                    <h5>A lovely little pot we found in Central America. We traded three buttons and a chocolate bar wrapper for the recipe.</h5>
+                                </td>
+                                <td id="wishLine"><span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span></td>
+                                <td><h2>&pound;0.00</h2></td>
+                                <td id="wishLine">
+                                    <button class="btn btn-block btn-warning"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Remove From Wish List</button>
+                                </td>
+                            </tr>
+                            
+                            <!-- Wish List Row -->
+                            <tr>
+                                <td><a class="thumbnail" id="wishThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome.jpg"></a></td>
+                                <td id="textLine">
+                                    <h2>Cheeky Gnome</h2>
+                                    <h5>This little gnome has a really cheeky face, you can tell he's been up to no good. Which is why we found him outside Guantanamo Bay.</h5>
+                                </td>
+                                <td id="wishLine"><span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span></td>
+                                <td><h2>&pound;0.00</h2></td>
+                                <td id="wishLine">
+                                    <button class="btn btn-block btn-warning"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Remove From Wish List</button>
+                                </td>
+                            </tr>
+                            
+                            <!-- Wish List Row -->
+                            <tr>
+                                <td><a class="thumbnail" id="wishThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome05.jpg"></a></td>
+                                <td id="textLine">
+                                    <h2>Three Wise Gnomes</h2>
+                                    <h5>A set of three wise gnomes, based on the three wise monkeys: gold, frankincense and myrrh.</h5>
+                                </td>
+                                <td id="wishLine"><span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span></td>
+                                <td><h2>&pound;0.00</h2></td>
+                                <td id="wishLine">
+                                    <button class="btn btn-block btn-warning"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Remove From Wish List</button>
+                                </td>
+                            </tr>
+                            
+                            <!-- Wish List Row -->
+                            <tr>
+                                <td><a class="thumbnail" id="wishThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/jacuzzi03.jpg"></a></td>
+                                <td id="textLine">
+                                    <h2>Product Name</h2>
+                                    <h5>A lovely little pot we found in Central America. We traded three buttons and a chocolate bar wrapper for the recipe.</h5>
+                                </td>
+                                <td id="wishLine"><span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span></td>
+                                <td><h2>&pound;0.00</h2></td>
+                                <td id="wishLine">
+                                    <button class="btn btn-block btn-warning"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Remove From Wish List</button>
+                                </td>
+                            </tr>
+                            
+                            <!-- Wish List Row -->
+                            <tr>
+                                <td><a class="thumbnail" id="wishThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/hoe01.jpg"></a></td>
+                                <td id="textLine">
+                                    <h2>Product Name</h2>
+                                    <h5>A lovely little pot we found in Central America. We traded three buttons and a chocolate bar wrapper for the recipe.</h5>
+                                </td>
+                                <td id="wishLine"><span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span></td>
+                                <td><h2>&pound;0.00</h2></td>
+                                <td id="wishLine">
+                                    <button class="btn btn-block btn-warning"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Remove From Wish List</button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- END OF CONTENT -->
     
