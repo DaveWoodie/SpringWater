@@ -187,7 +187,7 @@ public class ItemGUI extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				IndividualPurchaseOrderView ipo = new IndividualPurchaseOrderView(1, "Supplier", "12/07/2015", "Order Placed", "£100");
+				IndividualPurchaseOrderViewFrame ipo = new IndividualPurchaseOrderViewFrame(1, "Supplier", "12/07/2015", "Order Placed", "£100");
 				ipo.setVisible(true);
 			}
 		});
