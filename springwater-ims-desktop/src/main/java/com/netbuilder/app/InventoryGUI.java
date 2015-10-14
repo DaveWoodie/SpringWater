@@ -26,7 +26,8 @@ import javax.swing.JTextField;
 public class InventoryGUI extends JPanel implements ActionListener, ComponentListener {
 	
 	private int WIDTH = 580;
-	private int HEIGHT = 734;
+	private int HEIGHT = 800;
+	private int ITEM_WIDTH = WIDTH/2;
 	private int SEARCH_PANEL_HEIGHT = 66;
 	private int SIDE_PADDING = 20;
 
@@ -45,6 +46,10 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 	private ArrayList<InventoryItem> items = new ArrayList<InventoryItem>();
 	
 	private ArrayList<InventoryItem> filteredItems = new ArrayList<InventoryItem>();
+	
+	private ArrayList<InventoryItem> currentlyDisplayedItems = items;
+	
+	private int currentColumns = 1;
 	
 	
 	// Placeholder Data
@@ -92,12 +97,39 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		setAbsoluteSize(searchFieldPanel, WIDTH*11/16, SEARCH_PANEL_HEIGHT);
 		setAbsoluteSize(searchButtonPanel, WIDTH*1/4, SEARCH_PANEL_HEIGHT);
 
-		setAbsoluteSize(scrollPane, WIDTH, HEIGHT);
+		setAbsoluteSize(scrollPane, WIDTH, HEIGHT-SEARCH_PANEL_HEIGHT);
 		
-		for(InventoryItem i : items) {
-			i.resizeEverything(WIDTH*19/20);
+		fillContentPanelsBasedOnSize();
+		
+		
+	}
+	
+	private void fillContentPanelsBasedOnSize() {
+		int totalWidth = scrollPane.getWidth();
+		if(totalWidth/ITEM_WIDTH != currentColumns) {
+			int newColumns = totalWidth/ITEM_WIDTH;
+			int remainder = 0;
+			if(newColumns != 0) {
+				remainder = currentlyDisplayedItems.size()%newColumns;
+			}
+			scrollPanel.removeAll();
+			int total = 0;
+			for(int i = 0; i < newColumns; i++) {
+				JPanel panel = new JPanel();
+				panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS) );
+				scrollPanel.add(panel);
+				int limit = currentlyDisplayedItems.size()/newColumns;
+				if(i < remainder) {
+					limit++;
+				}
+				for(int j = 0; j < limit && total < currentlyDisplayedItems.size(); j++) {
+					panel.add(currentlyDisplayedItems.get(total) );
+					total++;
+				}
+			}
 		}
-		
+		scrollPanel.repaint();
+		scrollPanel.revalidate();
 	}
 	
 	
@@ -170,11 +202,12 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		
 		scrollPane = new JScrollPane(scrollPanel);
 		
-		scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));
+		scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.X_AXIS));
 		
 		addPlaceholderItems();
 
-		setAbsoluteSize(scrollPane, WIDTH, HEIGHT);
+		setAbsoluteSize(scrollPane, WIDTH, HEIGHT-SEARCH_PANEL_HEIGHT);
+		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 		this.add(scrollPane);
 		scrollPanel.setVisible(true);
 		scrollPanel.repaint();
@@ -193,10 +226,12 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 			String loc = (String) itemArray[i][3];
 			String imageLoc = imageFolderLocation.concat((String) itemArray[i][4]);
 			
-			InventoryItem invItem = new InventoryItem(this, WIDTH*19/20, itemID, name, quantity, loc, imageLoc);
+			InventoryItem invItem = new InventoryItem(this, WIDTH/2, itemID, name, quantity, loc, imageLoc);
 			items.add(invItem);
-			scrollPanel.add(invItem);
 		}
+		
+		fillContentPanelsBasedOnSize();
+		
 	}
 	
 	//InventoryItem(InventoryGUI src, int width, int productID, String productName, int quantity, String location, String imageLocation)
@@ -211,28 +246,25 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		}
 		
 		if(filteredItems.isEmpty()) {
-			showItems(items);
+			currentlyDisplayedItems = items;
 		} else {
-			showItems(filteredItems);
+			currentlyDisplayedItems = filteredItems;
 		}
+		System.out.println(currentlyDisplayedItems.size());
+		fillContentPanelsBasedOnSize();
+		
+		
 		
 	}
 	
-	private void showItems(ArrayList<InventoryItem> itemsToShow) {
-		scrollPanel.removeAll();
-		for(InventoryItem i : itemsToShow) {
-			scrollPanel.add(i);
-		}
-		scrollPanel.repaint();
-		scrollPanel.revalidate();
-	}
 	
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(searchButton) || e.getSource().equals(searchField)) {
 			if(!searchField.getText().equals("")) {
 				filterResults(searchField.getText());
 			} else {
-				showItems(items);
+				currentlyDisplayedItems = items;
+				fillContentPanelsBasedOnSize();
 			}
 		}
 	}
