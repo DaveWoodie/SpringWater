@@ -11,7 +11,7 @@ public class GUIStart extends JFrame {
 	public static void main(String[] args) {
 		GUIStart gStart = new GUIStart();
 	}
-
+ 
 	public GUIStart() {
 		initSetup();
 	}
@@ -39,7 +39,7 @@ public class GUIStart extends JFrame {
 		setResizable(true);
 		this.getContentPane().add(mFrame);
 		pack();
-		setMinimumSize(new Dimension(620, 860));
+		setMinimumSize(new Dimension(600, 800));
 		setLocationRelativeTo(null);
 	}
 
