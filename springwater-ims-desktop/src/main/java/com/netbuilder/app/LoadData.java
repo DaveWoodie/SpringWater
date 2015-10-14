@@ -83,4 +83,19 @@ public class LoadData {
 		return purchaseOrderLine;
 	}
 	
+	public Object[][] fetchSupplierProducts() {
+		
+		Object[][] supplierProductList = {{1, "Regular Gnome"},
+							{2, "Mushroom Gnome"},
+							{3, "Lamp Gnome"}};
+		
+		return supplierProductList;
+	}
+	
+	public Object[] fetchSupplierDetails() {
+		
+		Object [] supplierDetails = {59, "NB Road", "", "Gnome City", "Gnomes", "GN0 M3S", "placeholder.png"};
+		
+		return supplierDetails;
+	}
 }
