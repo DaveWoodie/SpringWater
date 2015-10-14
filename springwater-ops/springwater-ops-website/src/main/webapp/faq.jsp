@@ -83,36 +83,42 @@
                     <!-- FAQ Question -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h2 id="subtitle">Q: Insert a question here </h2></div>
-                        <div class="panel-body">A: And here is where the detailed answer goes</div>
+                            <h2 id="subtitle">Q: What is NBGardens.co.uk? </h2></div>
+                        <div class="panel-body">A: NBGardens.co.uk is a traditional catalogue based in the North-West of England. It sells garden
+                        products to its registered customers via phone, mail, and online. NB Gardens specialises in gnomes, gnome accessories
+                        and garden ornaments and it prides itself on the speed and quality of its services to its expanding customer base.</div>
                     </div>
 
                     <!-- FAQ Question -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h2 id="subtitle">Q: Insert a question here </h2></div>
-                        <div class="panel-body">A: And here is where the detailed answer goes</div>
+                            <h2 id="subtitle">Q: What is the returns policy? </h2></div>
+                        <div class="panel-body">A: The returns policy is a hassle free way to return anything, so you can return any item 
+                        to us within 28 days of receiving your original order, including sale items.</div>
                     </div>
 
                     <!-- FAQ Question -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h2 id="subtitle">Q: Insert a question here </h2></div>
-                        <div class="panel-body">A: And here is where the detailed answer goes</div>
+                            <h2 id="subtitle">Q: I'm having technical difficulties? </h2></div>
+                        <div class="panel-body">A: If you're having problems accessing our website, we suggest that you have the latest 
+                        version of your operating system provider e.g. Windows, OSX etc.</div>
                     </div>
 
                     <!-- FAQ Question -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h2 id="subtitle">Q: Insert a question here </h2></div>
-                        <div class="panel-body">A: And here is where the detailed answer goes</div>
+                            <h2 id="subtitle">Q: I have received an incorrect item in my order.</h2></div>
+                        <div class="panel-body">A: We want to sort out any issue with incorrect items straightaway. Please contact our Customer
+                        Care team with the order number amd the incorrect item's name and number</div>
                     </div>
 
                     <!-- FAQ Question -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h2 id="subtitle">Q: Insert a question here </h2></div>
-                        <div class="panel-body">A: And here is where the detailed answer goes</div>
+                            <h2 id="subtitle">Q: Have you received my returned items? </h2></div>
+                        <div class="panel-body">A: As soon as your return has been received and checked by our warehouse, we'll email
+                        you to let you know.</div>
                     </div>
 
                     <!-- FAQ Question -->

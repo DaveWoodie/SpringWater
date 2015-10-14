@@ -6,14 +6,14 @@ import javax.swing.JFrame;
 
 @SuppressWarnings("serial")
 public class GUIStart extends JFrame {
-	private LoginFrame lFrame;
-	private MainFrame mFrame;
+	private LoginGUI lFrame;
+	private MainGUI mFrame;
 
 	public static void main(String[] args) {
 		@SuppressWarnings("unused")
 		GUIStart gStart = new GUIStart();
 	}
-
+ 
 	public GUIStart() {
 		initSetup();
 	}
@@ -27,7 +27,7 @@ public class GUIStart extends JFrame {
 
 	private void loginSetup() {
 		this.getContentPane().removeAll();
-		lFrame = new LoginFrame(this);
+		lFrame = new LoginGUI(this);
 		setResizable(false);
 		this.getContentPane().add(lFrame);
 		setMinimumSize(null);
@@ -37,11 +37,11 @@ public class GUIStart extends JFrame {
 
 	private void mainFrameSetup() {
 		this.getContentPane().removeAll();
-		mFrame = new MainFrame(this);
+		mFrame = new MainGUI(this);
 		setResizable(true);
 		this.getContentPane().add(mFrame);
 		pack();
-		setMinimumSize(new Dimension(620, 860));
+		setMinimumSize(new Dimension(600, 800));
 		setLocationRelativeTo(null);
 	}
 

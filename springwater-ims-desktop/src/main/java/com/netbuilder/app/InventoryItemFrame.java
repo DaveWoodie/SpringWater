@@ -10,10 +10,11 @@ import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class InventoryItem extends JPanel implements MouseListener {
+public class InventoryItemFrame extends JPanel implements MouseListener {
 
 	private static final long serialVersionUID = 1L;
 	private static int HEIGHT = 70;
@@ -33,10 +34,13 @@ public class InventoryItem extends JPanel implements MouseListener {
 	private JPanel imagePanel;
 	private ImageIcon itemIcon;
 	
+	private JPanel buttonPanel;
+	private JButton viewItemButton;
+	
 	private Color backgroundColor = new Color(197,208,199);
 	private Color hoverBackgroundColor = new Color(157,166,159);
 	
-	public InventoryItem(InventoryGUI src, int width, int productID, String productName, int quantity, String location, String imageLocation) {
+	public InventoryItemFrame(InventoryGUI src, int width, int productID, String productName, int quantity, String location, String imageLocation) {
 		this.productID = productID;
 		this.productName = productName;
 		this.quantity = quantity;
@@ -60,14 +64,14 @@ public class InventoryItem extends JPanel implements MouseListener {
 		
 		
 		infoPanel = new JPanel();
-		infoPanel.setLayout(new GridLayout(2, 2));
+		infoPanel.setLayout(new GridLayout(4, 1));
 		makeOpaque(infoPanel);
 		setFinalSize(infoPanel, this.WIDTH*4/6, HEIGHT);
 		
 		infoPanel.add(new JLabel("Name: "+this.productName));
-		infoPanel.add(new JLabel("ID: "+this.productID));
+		infoPanel.add(new JLabel("Item ID: "+this.productID));
 		infoPanel.add(new JLabel("Quantity: "+this.quantity));
-		infoPanel.add(new JLabel("Location: "+this.location));
+		infoPanel.add(new JLabel("Warehouse Location: "+this.location));
 		
 
 		this.add(infoPanel);
@@ -86,6 +90,16 @@ public class InventoryItem extends JPanel implements MouseListener {
 		lbl.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, new Color(0,0,0)));
 		imagePanel.add(lbl);
 		this.add(imagePanel);
+		
+		buttonPanel = new JPanel();
+		setFinalSize(buttonPanel, WIDTH/6, HEIGHT);
+		buttonPanel.setLayout(new GridBagLayout());
+		makeOpaque(buttonPanel);
+		
+		viewItemButton = new JButton("View Details");
+		buttonPanel.add(viewItemButton);
+		
+		this.add(buttonPanel);
 	}
 	
 	private void setFinalSize(JPanel panel, int width, int height) {
@@ -109,8 +123,9 @@ public class InventoryItem extends JPanel implements MouseListener {
 	public void resizeEverything(int newWidth) {
 		this.WIDTH = newWidth;
 		setFinalSize(this, WIDTH, HEIGHT);
-		setFinalSize(infoPanel, this.WIDTH*4/6, HEIGHT);
+		setFinalSize(infoPanel, this.WIDTH*3/6, HEIGHT);
 		setFinalSize(imagePanel, this.WIDTH*2/6, HEIGHT);
+		setFinalSize(buttonPanel, WIDTH/6, HEIGHT);
 		
 		this.repaint();
 		this.revalidate();

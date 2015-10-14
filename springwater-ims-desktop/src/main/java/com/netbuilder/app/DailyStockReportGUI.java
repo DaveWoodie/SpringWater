@@ -22,11 +22,11 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
-public class DailyStockReportFrame {
+public class DailyStockReportGUI {
 	int lowSelectedID;
 	int fastSelectedID;
 	
-	public DailyStockReportFrame() {
+	public DailyStockReportGUI() {
 	}
 
 	/**
@@ -37,7 +37,7 @@ public class DailyStockReportFrame {
 //		int numRows = 30;
 		String[] colHeadings = { "Item ID", "Item Name", "Stock Level","Sales Rate" };
 		final JLabel fastSellingLabel = new JLabel("Fast Selling Items");
-		final JLabel LowStockLabel = new JLabel("Low stock Items");
+		final JLabel LowStockLabel = new JLabel("Current Stock");
 		JPanel pane = new JPanel();
 		JPanel lowStockPanel = new JPanel();
 		JPanel fastSellingPanel = new JPanel();
@@ -45,7 +45,7 @@ public class DailyStockReportFrame {
 
 		// Create Table Models
 		LoadData lD = new LoadData();
-		DefaultTableModel lowStockModel = new DefaultTableModel(lD.fetchLowStockList(), colHeadings);
+		DefaultTableModel lowStockModel = new DefaultTableModel(lD.fetchStockList(), colHeadings);
 		//lowStockModel.setColumnIdentifiers(colHeadings);
 		DefaultTableModel fastSellingkModel = new DefaultTableModel(lD.fetchHighSaleList(), colHeadings);
 		//fastSellingkModel.setColumnIdentifiers(colHeadings);

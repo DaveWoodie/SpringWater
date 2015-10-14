@@ -26,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 @SuppressWarnings("serial")
-public class SuppliersFrame extends JPanel{
+public class SuppliersGUI extends JPanel{
 	
 	private String [] columns = {"Supplier ID", "Supplier Name"};
 	private String [] supplierCategories = {"Supplier ID", "Supplier Name", "Product ID"};
