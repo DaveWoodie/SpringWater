@@ -103,7 +103,9 @@ public class PurchaseOrders extends JPanel {
 		
 		filterPurchaseOrder = new JComboBox<String>(purchaseOrderCategories);
 		
-		purchaseListTable = new DefaultTableModel(columns, 0);
+		LoadData lD = new LoadData();
+		purchaseListTable = new DefaultTableModel(lD.fetchPurchaseOrders(), columns);
+		
 		purchaseOrderTable = new JTable(purchaseListTable);
 		purchaseOrderTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	    ListSelectionModel cellSelectionModel = purchaseOrderTable.getSelectionModel();
@@ -117,7 +119,7 @@ public class PurchaseOrders extends JPanel {
 				int selectedRow = purchaseOrderTable.getSelectedRow();
 				try {
 					currentlySelectedOrder = Integer.parseInt(purchaseOrderTable.getValueAt(selectedRow, 0).toString());
-					System.out.println("Supplier ID: " + currentlySelectedOrder + " selected!");
+					//System.out.println("Supplier ID: " + currentlySelectedOrder + " selected!");
 				}
 				catch (NullPointerException npe) {
 					System.out.println("Null Purchase Order!");
@@ -143,8 +145,14 @@ public class PurchaseOrders extends JPanel {
 		select = new JButton("Select Order");
 		select.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				// TODO Take selected supplier from list and load into supplier frame
-				//This button should open a new Frame (IndividualPurchaseOrderFrame).
+				if(currentlySelectedOrder ==0) {
+					System.out.println("No Purchase Order selected!");
+				}
+				else {
+				@SuppressWarnings("unused")
+				IndividualPurchaseOrderView iPO = new IndividualPurchaseOrderView(currentlySelectedOrder);
+				iPO.setVisible(true);
+				}
 			}
 		});
 		
