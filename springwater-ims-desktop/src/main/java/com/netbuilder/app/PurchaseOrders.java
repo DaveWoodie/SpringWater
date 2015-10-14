@@ -103,7 +103,9 @@ public class PurchaseOrders extends JPanel {
 		
 		filterPurchaseOrder = new JComboBox<String>(purchaseOrderCategories);
 		
-		purchaseListTable = new DefaultTableModel(columns, 0);
+		LoadData lD = new LoadData();
+		purchaseListTable = new DefaultTableModel(lD.fetchPurchaseOrders(), columns);
+		
 		purchaseOrderTable = new JTable(purchaseListTable);
 		purchaseOrderTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	    ListSelectionModel cellSelectionModel = purchaseOrderTable.getSelectionModel();
