@@ -123,7 +123,7 @@
                         <img src="resources/img/placeholder2.png" alt="...">
                         <div class="caption">
                             <h3>Recommended Item 1</h3>
-                            <p>Â£X.XX</p>
+                            <p>£X.XX</p>
                             <p>
                                 <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                                 <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
@@ -144,7 +144,7 @@
                         <img src="resources/img/placeholder2.png" alt="...">
                         <div class="caption">
                             <h3>Recommended Item 2</h3>
-                            <p>Â£X.XX</p>
+                            <p>£X.XX</p>
                             <p>
                                 <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                                 <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
@@ -165,7 +165,7 @@
                         <img src="resources/img/placeholder2.png" alt="...">
                         <div class="caption">
                             <h3>Recommended Item 3</h3>
-                            <p>Â£X.XX</p>
+                            <p>£X.XX</p>
                             <p>
                                 <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                                 <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
@@ -186,7 +186,7 @@
                         <img src="resources/img/placeholder2.png" alt="...">
                         <div class="caption">
                             <h3>Recommended Item 4</h3>
-                            <p>Â£X.XX</p>
+                            <p>£X.XX</p>
                             <p>
                                 <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                                 <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
