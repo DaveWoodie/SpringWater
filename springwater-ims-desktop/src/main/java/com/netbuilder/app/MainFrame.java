@@ -63,12 +63,6 @@ public class MainFrame extends JPanel implements ComponentListener , ActionListe
 		//create tabbed pane and tabs
 		pane = new JTabbedPane();
 		
-		panel1 = new JPanel();
-		panel1.setLayout(new BorderLayout());
-		dSRF = new DailyStockReportFrame();
-		panel1.add(dSRF.getStockReportPanel());
-		pane.addTab("Daily Report", null, panel1, "Daily Report");
-		
 		panel2 = new JPanel();
 		panel2.setLayout(new BorderLayout());
 		InventoryGUI iGUI = new InventoryGUI();
@@ -86,6 +80,12 @@ public class MainFrame extends JPanel implements ComponentListener , ActionListe
 		sF = new SuppliersFrame();
 		panel4.add(sF.initUI());
 		pane.addTab("Suppliers", null, panel4, "Suppliers");
+		
+		panel1 = new JPanel();
+		panel1.setLayout(new BorderLayout());
+		dSRF = new DailyStockReportFrame();
+		panel1.add(dSRF.getStockReportPanel());
+		pane.addTab("Daily Report", null, panel1, "Daily Report");
 		
 		//create bottom panel
 		bottom = new JPanel();

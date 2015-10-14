@@ -62,7 +62,8 @@ public class SuppliersFrame extends JPanel{
 		//create components
 		categories = new JComboBox<String>(supplierCategories);
 		
-		supplierListModel = new DefaultTableModel(columns, 20);
+		LoadData lD = new LoadData();
+		supplierListModel = new DefaultTableModel(lD.fetchSuppliers(), columns);
 		suppliers = new JTable(supplierListModel);
 		suppliers.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	    ListSelectionModel cellSelectionModel = suppliers.getSelectionModel();

@@ -20,33 +20,33 @@ import javax.swing.JTable;
 @SuppressWarnings("serial")
 public class IndividualPurchaseOrderView extends JFrame {
 
-	private String [] columns = {"Item ID", "Quantity", "Number Damaged", "Total Price"};
+	private String [] columns = {"Item ID", "Item Name", "Quantity", "Number Damaged", "Total Price"};
 	private JPanel contentPane, bottom, top;
 	private JTable itemTable;
 	private JButton quit;
-	private JLabel loginDetails, orderID, supplier, datePlaced;
+	private JLabel loginDetails, orderID, supplier, datePlaced, orderStatus;
 	private DefaultTableModel defaultItemTable;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					IndividualPurchaseOrderView frame = new IndividualPurchaseOrderView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					IndividualPurchaseOrderView frame = new IndividualPurchaseOrderView(0);
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
 	 */
-	public IndividualPurchaseOrderView() {
+	public IndividualPurchaseOrderView( int id, String supplierName, String date, String status) {
 		
 		setTitle("Purchase Order");
         setLocationRelativeTo(null);
@@ -61,7 +61,8 @@ public class IndividualPurchaseOrderView extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		contentPane.add(scrollPane);
 		
-		defaultItemTable = new DefaultTableModel(columns, 0);
+		LoadData lD =  new LoadData();
+		defaultItemTable = new DefaultTableModel(lD.fetchIndividualPurchaseOrder(), columns);
 		itemTable = new JTable(defaultItemTable);
 //		itemTable = new JTable();
 		scrollPane.setViewportView(itemTable);
@@ -70,9 +71,10 @@ public class IndividualPurchaseOrderView extends JFrame {
 		top.setLayout(new BoxLayout(top, BoxLayout.X_AXIS));
 		
 		//These are place holders for the Supplied things
-		orderID = new JLabel("Order ID placeholder");
-		supplier = new JLabel("Supplier placeholder");
-		datePlaced = new JLabel("Date Placed placeholder");
+		orderID = new JLabel("Order ID: " + id);
+		supplier = new JLabel("Supplier: " + supplierName);
+		datePlaced = new JLabel("Date Placed: " + date);
+		orderStatus = new JLabel("Order Status: " + status);
 		
 		top.add(Box.createRigidArea(new Dimension(10,0)));
 		top.add(orderID);
@@ -80,6 +82,8 @@ public class IndividualPurchaseOrderView extends JFrame {
 		top.add(supplier);
 		top.add(Box.createRigidArea(new Dimension(10,0)));
 		top.add(datePlaced);
+		top.add(Box.createRigidArea(new Dimension(10,0)));
+		top.add(orderStatus);
 		top.add(Box.createRigidArea(new Dimension(10,0)));
 		
 		bottom = new JPanel();
