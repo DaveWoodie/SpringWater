@@ -74,4 +74,13 @@ public class LoadData {
 		return inventoryList;
 	}
 	
+	public Object[][] fetchIndividualPurchaseOrder() {
+		
+		Object[][] purchaseOrderLine = {{1, "Regular Gnome", 50, 0, "£200"},
+										{2, "Mushroom Gnome", 250, 0, "£2000"},
+										{3, "Lamp Gnome", 120, 10, "£960"}};
+		
+		return purchaseOrderLine;
+	}
+	
 }

@@ -149,9 +149,11 @@ public class PurchaseOrders extends JPanel {
 					System.out.println("No Purchase Order selected!");
 				}
 				else {
-				@SuppressWarnings("unused")
-				IndividualPurchaseOrderView iPO = new IndividualPurchaseOrderView(currentlySelectedOrder);
-				iPO.setVisible(true);
+					String suppliername = purchaseOrderTable.getValueAt(purchaseOrderTable.getSelectedRow(), 3).toString();
+					String date = purchaseOrderTable.getValueAt(purchaseOrderTable.getSelectedRow(), 1).toString();
+					String status = purchaseOrderTable.getValueAt(purchaseOrderTable.getSelectedRow(), 2).toString();
+					IndividualPurchaseOrderView iPO = new IndividualPurchaseOrderView(currentlySelectedOrder, suppliername, date, status);
+					iPO.setVisible(true);
 				}
 			}
 		});
