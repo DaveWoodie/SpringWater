@@ -52,7 +52,7 @@ public class IndividualPurchaseOrderViewFrame extends JFrame {
 	 */
 	public IndividualPurchaseOrderViewFrame( int id, String supplierName, String date, String status, String total) {
 		
-		setTitle("Purchase Order");
+		setTitle("Full Purchase Order Details");
         setLocationRelativeTo(null);
         setMinimumSize(new Dimension(600, 800));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

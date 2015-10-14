@@ -100,6 +100,7 @@ public class ItemGUI extends JFrame
 		predictedSalesPanel();
 		
 		//configure size
+		setTitle("Full Item Details");
 		setSize(new Dimension(650, 600));
 		setMinimumSize(new Dimension(650, 600));
 		setPreferredSize(new Dimension(650, 600));
