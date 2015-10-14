@@ -23,7 +23,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.jsp"><img src="resources/img/logo2.png" style="width:auto;height:25px"></a>
+                <a class="navbar-brand" href="index.jsp"><img src="resources/img/logo2.png" id="logo"></a>
             </div>
 
             <!-- Navbar items that collaspe into toggle menu -->
@@ -55,7 +55,7 @@
                 </form>
 
                 <form class="navbar-form navbar-right" role="search">
-                    <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Wish List <span class="badge">0</span></a>
+                    <a href="wishlist.jsp" class="btn btn-danger"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Wish List <span class="badge">0</span></a>
                     <a href="basket.jsp" class="btn btn-info"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Basket <span class="badge">0</span></a>
                     <a href="loginRegister.jsp" type="submit" class="btn btn-success"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login</a>
                     <a href="loginRegister.jsp" class="btn btn-primary"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Register</a>
@@ -64,33 +64,36 @@
             <!-- END OF COLLASPE AREA -->
         </div>
     </nav>
-
+    
     <!-- Page Content -->
     <div class="jumbotron content">
-    
-        <!-- ******************************* Carousel Gnome Featured ************************************* -->
+        
+        <!-- ******************************* Carousel Gnome Featured ************************************* -->        
         <div class="container-fluid">
-            <div class="row">
-                    
-                <!-- Left Panel -->
-                <div class="col-lg-4">
-                    <div class="well">
-                        <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="resources/img/logo.png" alt="">
-                    </a>
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                Enter a description here.
+                <div class="row">
+                        <!-- Left Panel -->
+                        <div class="col-lg-4">
+                            <a class="thumbnail" id="carouselThumb" href="#">
+                                <img class="img-responsive" src="resources/img/logo.png" alt="">
+                            </a>
+                            <div class="panel panel-default">
+                                <div class="panel-body" style="text-align:center">
+                                    Welcome to NB Gardens. We are a retailer of high quality garden products who pride ourselves in our high quality gnomes.
+                                </div>
                             </div>
                         </div>
-                    </div>
+                
+                        <!-- Right Panel -->
+                        <div class="col-lg-8">
+                                <img src="resources/img/header.jpg" class="img-responsive" style="width:auto;height:auto">
+                        </div>
                 </div>
-
-                <!-- Right Panel -->
-                <!-- Gnome Featured Carousel -->
-                <div class="col-lg-8">
-                    <h1>Featured Items</h1>
-
+        </div>
+            
+        <!-- Gnome Featured Carousel -->
+        <div class="container-fluid">
+                <h1>Featured Items</h1>
+                <div class="col-lg-2">
                     <div id="carousel-featured" class="carousel slide" data-ride="carousel">
 
                         <ol class="carousel-indicators">
@@ -102,46 +105,16 @@
                         <div class="carousel-inner" role="listbox">
                             <!-- Gnome Carousel Images -->
                             <div class="item active">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome.jpg" alt=""></a> 
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome02.jpg" alt=""></a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <a class="thumbnail" id="smallThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome.jpg"></a>
                             </div>
-                            
+
                             <!-- Gnome Carousel Images -->
                             <div class="item">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome03.jpg" alt=""></a> 
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome04.jpg" alt=""></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Gnome Carousel Images -->
-                            <div class="item">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome05.jpg" alt=""></a> 
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome06.jpg" alt=""></a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <a class="thumbnail" id="smallThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome.jpg"></a>
                             </div>
                         </div>
+
+
                         <!-- Carousel Control Buttons -->
                         <a class="left carousel-control" href="#carousel-featured" role="button" data-slide="prev">
                             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -153,10 +126,178 @@
                         </a>
                     </div>
                 </div>
-                    
-            </div>
-        <!-- /container -->
+            
+                <div class="col-lg-2">
+                    <div id="carousel-featured" class="carousel slide" data-ride="carousel">
+
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-featured" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-featured" data-slide-to="1"></li>
+                            <li data-target="#carousel-featured" data-slide-to="2"></li>
+                        </ol>
+
+                        <div class="carousel-inner" role="listbox">
+                            <!-- Gnome Carousel Images -->
+                            <div class="item active">
+                                <a class="thumbnail" id="smallThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome.jpg"></a>
+                            </div>
+
+                            <!-- Gnome Carousel Images -->
+                            <div class="item">
+                                <a class="thumbnail" id="smallThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome.jpg"></a>
+                            </div>
+                        </div>
+
+
+                        <!-- Carousel Control Buttons -->
+                        <a class="left carousel-control" href="#carousel-featured" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-featured" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            
+                <div class="col-lg-2">
+                    <div id="carousel-featured" class="carousel slide" data-ride="carousel">
+
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-featured" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-featured" data-slide-to="1"></li>
+                            <li data-target="#carousel-featured" data-slide-to="2"></li>
+                        </ol>
+
+                        <div class="carousel-inner" role="listbox">
+                            <!-- Gnome Carousel Images -->
+                            <div class="item active">
+                                <a class="thumbnail" id="smallThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome.jpg"></a>
+                            </div>
+
+                            <!-- Gnome Carousel Images -->
+                            <div class="item">
+                                <a class="thumbnail" id="smallThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome.jpg"></a>
+                            </div>
+                        </div>
+
+
+                        <!-- Carousel Control Buttons -->
+                        <a class="left carousel-control" href="#carousel-featured" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-featured" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            
+                <div class="col-lg-2">
+                    <div id="carousel-featured" class="carousel slide" data-ride="carousel">
+
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-featured" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-featured" data-slide-to="1"></li>
+                            <li data-target="#carousel-featured" data-slide-to="2"></li>
+                        </ol>
+
+                        <div class="carousel-inner" role="listbox">
+                            <!-- Gnome Carousel Images -->
+                            <div class="item active">
+                                <a class="thumbnail" id="smallThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome.jpg"></a>
+                            </div>
+
+                            <!-- Gnome Carousel Images -->
+                            <div class="item">
+                                <a class="thumbnail" id="smallThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome.jpg"></a>
+                            </div>
+                        </div>
+
+
+                        <!-- Carousel Control Buttons -->
+                        <a class="left carousel-control" href="#carousel-featured" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-featured" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            
+                <div class="col-lg-2">
+                    <div id="carousel-featured" class="carousel slide" data-ride="carousel">
+
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-featured" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-featured" data-slide-to="1"></li>
+                            <li data-target="#carousel-featured" data-slide-to="2"></li>
+                        </ol>
+
+                        <div class="carousel-inner" role="listbox">
+                            <!-- Gnome Carousel Images -->
+                            <div class="item active">
+                                <a class="thumbnail" id="smallThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome.jpg"></a>
+                            </div>
+
+                            <!-- Gnome Carousel Images -->
+                            <div class="item">
+                                <a class="thumbnail" id="smallThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome.jpg"></a>
+                            </div>
+                        </div>
+
+
+                        <!-- Carousel Control Buttons -->
+                        <a class="left carousel-control" href="#carousel-featured" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-featured" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            
+                <div class="col-lg-2">
+                    <div id="carousel-featured" class="carousel slide" data-ride="carousel">
+
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-featured" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-featured" data-slide-to="1"></li>
+                            <li data-target="#carousel-featured" data-slide-to="2"></li>
+                        </ol>
+
+                        <div class="carousel-inner" role="listbox">
+                            <!-- Gnome Carousel Images -->
+                            <div class="item active">
+                                <a class="thumbnail" id="smallThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome.jpg"></a>
+                            </div>
+
+                            <!-- Gnome Carousel Images -->
+                            <div class="item">
+                                <a class="thumbnail" id="smallThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome.jpg"></a>
+                            </div>
+                        </div>
+
+
+                        <!-- Carousel Control Buttons -->
+                        <a class="left carousel-control" href="#carousel-featured" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-featured" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
         </div>
+        <!-- /container -->
 
         
         <div class="container-fluid">
@@ -177,41 +318,41 @@
                         <div class="carousel-inner" role="listbox">
                             <!-- Gnome Carousel Images -->
                             <div class="item active">
-                                <div class="container">
+                                <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome.jpg" alt=""></a> 
+                                            <a class="thumbnail" id="carouselThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome.jpg"></a> 
                                         </div>
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome02.jpg" alt=""></a>
+                                            <a class="thumbnail" id="carouselThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome02.jpg"></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- Gnome Carousel Images -->
                             <div class="item">
-                                <div class="container">
+                                <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome03.jpg" alt=""></a> 
+                                            <a class="thumbnail" id="carouselThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome03.jpg"></a> 
                                         </div>
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome04.jpg" alt=""></a>
+                                            <a class="thumbnail" id="carouselThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome04.jpg"></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- Gnome Carousel Images -->
                             <div class="item">
-                                <div class="container">
+                                <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome05.jpg" alt=""></a> 
+                                            <a class="thumbnail" id="carouselThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome05.jpg"></a> 
                                         </div>
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome06.jpg" alt=""></a>
+                                            <a class="thumbnail" id="carouselThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome06.jpg"></a>
                                         </div>
                                     </div>
                                 </div>
@@ -244,41 +385,41 @@
                         <div class="carousel-inner" role="listbox">
                             <!-- Gnome Carousel Images -->
                             <div class="item active">
-                                <div class="container">
+                                <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome.jpg" alt=""></a> 
+                                            <a class="thumbnail" id="carouselThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome.jpg"></a> 
                                         </div>
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome02.jpg" alt=""></a>
+                                            <a class="thumbnail" id="carouselThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome02.jpg"></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- Gnome Carousel Images -->
                             <div class="item">
-                                <div class="container">
+                                <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome03.jpg" alt=""></a> 
+                                            <a class="thumbnail" id="carouselThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome03.jpg"></a> 
                                         </div>
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome04.jpg" alt=""></a>
+                                            <a class="thumbnail" id="carouselThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome04.jpg"></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- Gnome Carousel Images -->
                             <div class="item">
-                                <div class="container">
+                                <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome05.jpg" alt=""></a> 
+                                            <a class="thumbnail" id="carouselThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome05.jpg"></a> 
                                         </div>
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" href="#"><img class="img-responsive" src="resources/img/gnome06.jpg" alt=""></a>
+                                            <a class="thumbnail" id="carouselThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome06.jpg"></a>
                                         </div>
                                     </div>
                                 </div>
@@ -298,8 +439,7 @@
             </div>
         <!-- /container -->
         </div>
-
-</div>
+    </div>
 
     <!-- Footer -->
     <div class="jumbotron" id="searchBar">

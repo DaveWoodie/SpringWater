@@ -44,6 +44,8 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 	
 	private ArrayList<InventoryItem> items = new ArrayList<InventoryItem>();
 	
+	private ArrayList<InventoryItem> filteredItems = new ArrayList<InventoryItem>();
+	
 	public static void main(String[] args) {
 		
 		JFrame w = new JFrame();
@@ -174,15 +176,40 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 	// InventoryGUI src, int width, int productID, String productName, int quantity, String location, String imageLocation
 	
 	
-	
 	private void filterResults(String searchText) {
 		// TODO: fill out filter method to refine inventory display based on search field
+		filteredItems = new ArrayList<InventoryItem>();
+		for(InventoryItem i : items) {
+			if(i.getID() == Integer.parseInt(searchText)) {
+				filteredItems.add(i);
+			}
+		}
+		
+		if(filteredItems.isEmpty()) {
+			showItems(items);
+		} else {
+			showItems(filteredItems);
+		}
+		
+	}
+	
+	private void showItems(ArrayList<InventoryItem> itemsToShow) {
+		scrollPanel.removeAll();
+		for(InventoryItem i : itemsToShow) {
+			scrollPanel.add(i);
+		}
+		scrollPanel.repaint();
+		scrollPanel.revalidate();
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(searchButton)) {
-			filterResults(searchField.getText());
-		}	
+			if(!searchField.getText().equals("")) {
+				filterResults(searchField.getText());
+			} else {
+				showItems(items);
+			}
+		}
 	}
 
 	public void componentResized(ComponentEvent e) {
