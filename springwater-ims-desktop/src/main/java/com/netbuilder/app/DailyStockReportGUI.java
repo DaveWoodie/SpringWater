@@ -45,9 +45,22 @@ public class DailyStockReportGUI {
 
 		// Create Table Models
 		LoadData lD = new LoadData();
-		DefaultTableModel lowStockModel = new DefaultTableModel(lD.fetchStockList(), colHeadings);
+		@SuppressWarnings("serial")
+		DefaultTableModel lowStockModel = new DefaultTableModel(lD.fetchStockList(), colHeadings){
+			@Override
+		    public boolean isCellEditable(int i, int i1) {
+		        return false; //To change body of generated methods, choose Tools | Templates.
+		    }
+			
+		};
 		//lowStockModel.setColumnIdentifiers(colHeadings);
-		DefaultTableModel fastSellingkModel = new DefaultTableModel(lD.fetchHighSaleList(), colHeadings);
+		@SuppressWarnings("serial")
+		DefaultTableModel fastSellingkModel = new DefaultTableModel(lD.fetchHighSaleList(), colHeadings){
+			@Override
+		    public boolean isCellEditable(int i, int i1) {
+		        return false; //To change body of generated methods, choose Tools | Templates.
+		    }
+		};
 		//fastSellingkModel.setColumnIdentifiers(colHeadings);
 
 //		// Fill tables with test data

@@ -104,7 +104,12 @@ public class PurchaseOrdersGUI extends JPanel {
 		filterPurchaseOrder = new JComboBox<String>(purchaseOrderCategories);
 		
 		LoadData lD = new LoadData();
-		purchaseListTable = new DefaultTableModel(lD.fetchPurchaseOrders(), columns);
+		purchaseListTable = new DefaultTableModel(lD.fetchPurchaseOrders(), columns){
+			@Override
+		    public boolean isCellEditable(int i, int i1) {
+		        return false; //To change body of generated methods, choose Tools | Templates.
+		    }
+		};
 		
 		purchaseOrderTable = new JTable(purchaseListTable);
 		purchaseOrderTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

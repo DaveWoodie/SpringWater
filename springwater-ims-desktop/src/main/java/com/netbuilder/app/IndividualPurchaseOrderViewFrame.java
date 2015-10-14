@@ -2,7 +2,6 @@ package com.netbuilder.app;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -67,7 +66,12 @@ public class IndividualPurchaseOrderViewFrame extends JFrame {
 		contentPane.add(scrollPane);
 		
 		LoadData lD =  new LoadData();
-		defaultItemTable = new DefaultTableModel(lD.fetchIndividualPurchaseOrder(), columns);
+		defaultItemTable = new DefaultTableModel(lD.fetchIndividualPurchaseOrder(), columns){
+			@Override
+		    public boolean isCellEditable(int i, int i1) {
+		        return false; //To change body of generated methods, choose Tools | Templates.
+		    }
+		};
 		itemTable = new JTable(defaultItemTable);
 		ListSelectionModel prListSelectionModel =itemTable.getSelectionModel();
 		prListSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

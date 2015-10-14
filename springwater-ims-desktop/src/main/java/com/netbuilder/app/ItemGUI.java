@@ -47,7 +47,12 @@ public class ItemGUI extends JFrame
 	private BufferedImage productImage;
 	private Image img;
 	private JTabbedPane tabbedPane;
-	private DefaultTableModel tableModel =  new DefaultTableModel();
+	private DefaultTableModel tableModel =  new DefaultTableModel(){
+		@Override
+	    public boolean isCellEditable(int i, int i1) {
+	        return false; //To change body of generated methods, choose Tools | Templates.
+	    }
+	};
 	private String[] dayArray, monthArray, yearArray, durationArray;
 	private LoadData Data = new LoadData();
 	private Object[][] Inventory;
