@@ -99,7 +99,7 @@
                     <ul class="nav nav-justified">
                         <li class="active"><a href="#">Orders</a></li>
                         <li><a href="openOrdersPage.jsp">Open Orders</a></li>
-                        <li><a href="ordersPage.jsp">Cancelled Orders</a></li>
+                        <li><a href="cancelledOrdersPage.jsp">Cancelled Orders</a></li>
                 </nav>
             </div>
 
@@ -169,7 +169,7 @@
                         <br>
                         <a href="#">Garden Gome</a>
                         <p>Quantity: 3</p>
-                        <p>Â£2.99</p>
+                        <p>£2.99</p>
                         <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span> Buy it Again</button>
                     </div>
                     

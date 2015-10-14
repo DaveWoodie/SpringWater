@@ -7,7 +7,7 @@
 
     14/10/2015
 
-    Template for the open orders page
+    Template for the cancelled orders page
 
     Last Modified by: Callum Cooper
 
@@ -87,7 +87,7 @@
                 <div class="col-lg-6">
                     <!-- Navigation links for user sub-directories -->
                     <p>
-                        <a href="ordersPage.jsp">Orders</a> &#62 Open Orders
+                        <a href="ordersPage.jsp">Orders</a> &#62 Cancelled Orders
                     </p>
                 </div>
                 <div class="col-lg-6 col-md-6 col-md-6">
@@ -113,7 +113,7 @@
                     <ul class="nav nav-justified">
                         <li class="active"><a href="ordersPage.jsp">Orders</a></li>
                         <li><a href="openOrdersPage.jsp">Open Orders</a></li>
-                        <li><a href="cancelledOrdersPage.jsp">Cancelled Orders</a></li>
+                        <li><a href="#">Cancelled Orders</a></li>
                 </nav>
             </div>
             
@@ -126,7 +126,7 @@
            	<div class="col-md-3"></div>
            	<div class="col-md-6">
            <div id="paymentDiv">
-           <center><p>Looking for an order? All of your orders have been dispatched. <a href="ordersPage.jsp">View all orders</a></p></center>
+           <center><p>We can't find any cancelled orders (in the last 6 months). <a href="ordersPage.jsp">View all orders</a></p></center>
            </div>
            </div>
            </div>
