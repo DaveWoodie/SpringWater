@@ -4,11 +4,13 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+@SuppressWarnings("serial")
 public class GUIStart extends JFrame {
 	private LoginFrame lFrame;
 	private MainFrame mFrame;
 
 	public static void main(String[] args) {
+		@SuppressWarnings("unused")
 		GUIStart gStart = new GUIStart();
 	}
  

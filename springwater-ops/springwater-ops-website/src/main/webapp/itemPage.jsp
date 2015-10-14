@@ -120,10 +120,10 @@
             <div class="row">
                 <div class="col-sm-6 col-md-3">
                     <div class="thumbnail">
-                        <img src="resources/img/placeholder2.png" alt="...">
+                        <a href="itemPage.jsp"><img src="resources/img/placeholder2.png" alt="..."></a>
                         <div class="caption">
                             <h3>Recommended Item 1</h3>
-                            <p>£X.XX</p>
+                            <p>&pound;X.XX</p>
                             <p>
                                 <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                                 <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
@@ -132,7 +132,7 @@
                                 <span class="glyphicon glyphicon-star-empty ratings" aria-hidden="true"></span>
                             </p>
                             <p>
-                                <a href="#" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span> Go to Item</a>
+                                <a href="itemPage.jsp" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span> Go to Item</a>
                                 <a href="#" class="btn btn-success" data-toggle="modal" data-target="#RI1" role="button"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Quick Look</a>
                             </p>
                         </div>
@@ -141,10 +141,10 @@
 
                 <div class="col-sm-6 col-md-3">
                     <div class="thumbnail">
-                        <img src="resources/img/placeholder2.png" alt="...">
+                        <a href="itemPage.jsp"><img src="resources/img/placeholder2.png" alt="..."></a>
                         <div class="caption">
                             <h3>Recommended Item 2</h3>
-                            <p>£X.XX</p>
+                            <p>&pound;X.XX</p>
                             <p>
                                 <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                                 <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
@@ -153,7 +153,7 @@
                                 <span class="glyphicon glyphicon-star-empty ratings" aria-hidden="true"></span>
                             </p>
                             <p>
-                                <a href="#" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span> Go to Item</a>
+                                <a href="itemPage.jsp" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span> Go to Item</a>
                                 <a href="#" class="btn btn-success" data-toggle="modal" data-target="#RI2" role="button"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Quick Look</a>
                             </p>
                         </div>
@@ -162,10 +162,10 @@
 
                 <div class="col-sm-6 col-md-3">
                     <div class="thumbnail">
-                        <img src="resources/img/placeholder2.png" alt="...">
+                        <a href="itemPage.jsp"><img src="resources/img/placeholder2.png" alt="..."></a>
                         <div class="caption">
                             <h3>Recommended Item 3</h3>
-                            <p>£X.XX</p>
+                            <p>&pound;X.XX</p>
                             <p>
                                 <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                                 <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
@@ -174,7 +174,7 @@
                                 <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                             </p>
                             <p>
-                                <a href="#" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span> Go to Item</a>
+                                <a href="itemPage.jsp" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span> Go to Item</a>
                                 <a href="#" class="btn btn-success" data-toggle="modal" data-target="#RI3" role="button"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Quick Look</a>
                             </p>
                         </div>
@@ -183,10 +183,10 @@
 
                 <div class="col-sm-6 col-md-3">
                     <div class="thumbnail">
-                        <img src="resources/img/placeholder2.png" alt="...">
+                        <a href="itemPage.jsp"><img src="resources/img/placeholder2.png" alt="..."></a>
                         <div class="caption">
                             <h3>Recommended Item 4</h3>
-                            <p>£X.XX</p>
+                            <p>&pound;X.XX</p>
                             <p>
                                 <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                                 <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
@@ -195,7 +195,7 @@
                                 <span class="glyphicon glyphicon-star-empty ratings" aria-hidden="true"></span>
                             </p>
                             <p>
-                                <a href="#" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span> Go to Item</a>
+                                <a href="itemPage.jsp" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span> Go to Item</a>
                                 <a href="#" class="btn btn-success" data-toggle="modal" data-target="#RI4" role="button"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Quick Look</a>
                             </p>
                         </div>
