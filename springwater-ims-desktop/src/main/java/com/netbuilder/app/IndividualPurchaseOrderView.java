@@ -34,7 +34,7 @@ public class IndividualPurchaseOrderView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					IndividualPurchaseOrderView frame = new IndividualPurchaseOrderView();
+					IndividualPurchaseOrderView frame = new IndividualPurchaseOrderView(0);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,7 +46,7 @@ public class IndividualPurchaseOrderView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public IndividualPurchaseOrderView() {
+	public IndividualPurchaseOrderView( int id) {
 		
 		setTitle("Purchase Order");
         setLocationRelativeTo(null);

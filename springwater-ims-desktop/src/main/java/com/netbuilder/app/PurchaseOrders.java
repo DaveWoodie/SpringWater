@@ -145,8 +145,14 @@ public class PurchaseOrders extends JPanel {
 		select = new JButton("Select Order");
 		select.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				// TODO Take selected supplier from list and load into supplier frame
-				//This button should open a new Frame (IndividualPurchaseOrderFrame).
+				if(currentlySelectedOrder ==0) {
+					System.out.println("No Purchase Order selected!");
+				}
+				else {
+				@SuppressWarnings("unused")
+				IndividualPurchaseOrderView iPO = new IndividualPurchaseOrderView(currentlySelectedOrder);
+				iPO.setVisible(true);
+				}
 			}
 		});
 		
