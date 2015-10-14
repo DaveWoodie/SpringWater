@@ -8,6 +8,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -40,6 +41,7 @@ import javax.swing.table.DefaultTableModel;
 public class ItemGUI extends JFrame
 {	
 	private int itemID;
+	private Graphics g;
 	private BufferedImage productImage;
 	private JTabbedPane tabbedPane;
 	private DefaultTableModel tableModel =  new DefaultTableModel();
@@ -194,20 +196,19 @@ public class ItemGUI extends JFrame
 		tabbedPane.add("Sales", panelSales);
 		
 		//graph panel
-		JPanel panelGraph = new JPanel();
+		JPanel panelGraph = new SalesGraph();
 		panelGraph.setBorder(BorderFactory.createLineBorder(Color.gray));
-		JTextArea j = new JTextArea(100, 100);
-		panelGraph.add(j);
 		
 		//Options
 		JPanel panelOptions = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		panelOptions.setBorder(BorderFactory.createLineBorder(Color.gray));
-		JLabel labelDate = new JLabel("Start Date");
+		JLabel labelDate = new JLabel("Start Date : ");
+		JLabel labelDuration = new JLabel("Duration : ");
 		JComboBox<String> comboDay = new JComboBox<String>(dayArray);
 		JComboBox<String> comboMonth = new JComboBox<String>(monthArray);
 		JComboBox<String> comboYear = new JComboBox<String>(yearArray);
 		JComboBox<String> comboDuration = new JComboBox<String>(durationArray);
-		
+		JButton buttonUpdate = new JButton("Update");
 		
 			//add components to options panel
 			panelOptions.add(labelDate);
@@ -215,7 +216,10 @@ public class ItemGUI extends JFrame
 			panelOptions.add(comboMonth);
 			panelOptions.add(comboYear);
 			panelOptions.add(Box.createRigidArea(new Dimension(20, 0)));
+			panelOptions.add(labelDuration);
 			panelOptions.add(comboDuration);
+			panelOptions.add(Box.createRigidArea(new Dimension(20, 0)));
+			panelOptions.add(buttonUpdate);
 		
 		//add components to sales panel
 		panelSales.add(panelGraph, BorderLayout.CENTER);
