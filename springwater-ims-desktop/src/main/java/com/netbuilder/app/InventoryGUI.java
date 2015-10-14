@@ -179,7 +179,7 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 	
 	private void addSearchField() {
 		searchField = new JTextField(13);
-        Font searchFont = searchField.getFont().deriveFont(Font.PLAIN, 30f);
+        Font searchFont = searchField.getFont().deriveFont(Font.PLAIN, 20f);
         searchField.setFont(searchFont);
         searchField.addActionListener(this);
         TextPrompt tP = new TextPrompt("Search for item...", searchField);
