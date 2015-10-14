@@ -98,7 +98,7 @@
                 <nav>
                     <ul class="nav nav-justified">
                         <li class="active"><a href="#">Orders</a></li>
-                        <li><a href="addAddresses.jsp">Open Orders</a></li>
+                        <li><a href="openOrdersPage.jsp">Open Orders</a></li>
                         <li><a href="ordersPage.jsp">Cancelled Orders</a></li>
                 </nav>
             </div>

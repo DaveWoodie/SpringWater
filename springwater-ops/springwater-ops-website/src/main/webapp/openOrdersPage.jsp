@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <!--------------------------------------------------------
 
-    Chris J W Walker 
+    Callum Cooper 
     
-    template.html
+    openOrdersPage.jps
 
-    13/10/2015
+    14/10/2015
 
-    Template for all subsequent HTML files. Includes
-    navbar and jumbotron footer.
+    Template for the open orders page
 
-    Last Modified by: chrisjwwalker
+    Last Modified by: Callum Cooper
 
 --------------------------------------------------------->
 
@@ -82,6 +81,56 @@
 
     <!-- Content Area -->
     <div class="jumbotron content">
+    
+    	<div class="container">
+            <div class="rows">
+                <div class="col-lg-6">
+                    <!-- Navigation links for user sub-directories -->
+                    <p>
+                        <a href="ordersPage.jsp">Orders</a> &#62 Open Orders
+                    </p>
+                </div>
+                <div class="col-lg-6 col-md-6 col-md-6">
+                    <!-- Search for -->
+                    <form class="navbar-form navbar-right" role="search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search all orders">
+                            <span class="input-group-btn"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search Orders</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+         <div class="container">
+            <!-- Header for orders-->
+            <h2>Your Orders</h2>
+
+            <!-- list of orders-->
+            <div class="col-lg-6">
+                <nav>
+                    <ul class="nav nav-justified">
+                        <li class="active"><a href="ordersPage.jsp">Orders</a></li>
+                        <li><a href="openOrdersPage.jsp">Open Orders</a></li>
+                        <li><a href="ordersPage.jsp">Cancelled Orders</a></li>
+                </nav>
+            </div>
+            
+              <div class="col-lg-12">
+                <!-- New horizontal line -->
+                <hr>
+            </div>
+            
+           <div class="rows">
+           	<div class="col-md-3"></div>
+           	<div class="col-md-6">
+           <div id="paymentDiv">
+           <center><p>Looking for an order? All of your orders have been dispatched. View all orders</p></center>
+           </div>
+           </div>
+           </div>
+    
     </div>
     <!-- END OF CONTENT -->
     
