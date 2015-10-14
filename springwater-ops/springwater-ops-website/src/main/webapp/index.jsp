@@ -128,7 +128,7 @@
                 </div>
             
                 <div class="col-lg-2">
-                    <div id="carousel-featured" class="carousel slide" data-ride="carousel">
+                    <div id="carousel-featured1" class="carousel slide" data-ride="carousel">
 
                         <ol class="carousel-indicators">
                             <li data-target="#carousel-featured" data-slide-to="0" class="active"></li>
@@ -150,11 +150,11 @@
 
 
                         <!-- Carousel Control Buttons -->
-                        <a class="left carousel-control" href="#carousel-featured" role="button" data-slide="prev">
+                        <a class="left carousel-control" href="#carousel-featured1" role="button" data-slide="prev">
                             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
                         </a>
-                        <a class="right carousel-control" href="#carousel-featured" role="button" data-slide="next">
+                        <a class="right carousel-control" href="#carousel-featured1" role="button" data-slide="next">
                             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>
@@ -162,7 +162,7 @@
                 </div>
             
                 <div class="col-lg-2">
-                    <div id="carousel-featured" class="carousel slide" data-ride="carousel">
+                    <div id="carousel-featured2" class="carousel slide" data-ride="carousel">
 
                         <ol class="carousel-indicators">
                             <li data-target="#carousel-featured" data-slide-to="0" class="active"></li>
@@ -184,11 +184,11 @@
 
 
                         <!-- Carousel Control Buttons -->
-                        <a class="left carousel-control" href="#carousel-featured" role="button" data-slide="prev">
+                        <a class="left carousel-control" href="#carousel-featured2" role="button" data-slide="prev">
                             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
                         </a>
-                        <a class="right carousel-control" href="#carousel-featured" role="button" data-slide="next">
+                        <a class="right carousel-control" href="#carousel-featured2" role="button" data-slide="next">
                             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>
@@ -196,7 +196,7 @@
                 </div>
             
                 <div class="col-lg-2">
-                    <div id="carousel-featured" class="carousel slide" data-ride="carousel">
+                    <div id="carousel-featured3" class="carousel slide" data-ride="carousel">
 
                         <ol class="carousel-indicators">
                             <li data-target="#carousel-featured" data-slide-to="0" class="active"></li>
@@ -218,11 +218,11 @@
 
 
                         <!-- Carousel Control Buttons -->
-                        <a class="left carousel-control" href="#carousel-featured" role="button" data-slide="prev">
+                        <a class="left carousel-control" href="#carousel-featured3" role="button" data-slide="prev">
                             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
                         </a>
-                        <a class="right carousel-control" href="#carousel-featured" role="button" data-slide="next">
+                        <a class="right carousel-control" href="#carousel-featured3" role="button" data-slide="next">
                             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>
@@ -230,7 +230,7 @@
                 </div>
             
                 <div class="col-lg-2">
-                    <div id="carousel-featured" class="carousel slide" data-ride="carousel">
+                    <div id="carousel-featured4" class="carousel slide" data-ride="carousel">
 
                         <ol class="carousel-indicators">
                             <li data-target="#carousel-featured" data-slide-to="0" class="active"></li>
@@ -252,11 +252,11 @@
 
 
                         <!-- Carousel Control Buttons -->
-                        <a class="left carousel-control" href="#carousel-featured" role="button" data-slide="prev">
+                        <a class="left carousel-control" href="#carousel-featured4" role="button" data-slide="prev">
                             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
                         </a>
-                        <a class="right carousel-control" href="#carousel-featured" role="button" data-slide="next">
+                        <a class="right carousel-control" href="#carousel-featured4" role="button" data-slide="next">
                             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>
@@ -264,7 +264,7 @@
                 </div>
             
                 <div class="col-lg-2">
-                    <div id="carousel-featured" class="carousel slide" data-ride="carousel">
+                    <div id="carousel-featured5" class="carousel slide" data-ride="carousel">
 
                         <ol class="carousel-indicators">
                             <li data-target="#carousel-featured" data-slide-to="0" class="active"></li>
@@ -286,11 +286,11 @@
 
 
                         <!-- Carousel Control Buttons -->
-                        <a class="left carousel-control" href="#carousel-featured" role="button" data-slide="prev">
+                        <a class="left carousel-control" href="#carousel-featured5" role="button" data-slide="prev">
                             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
                         </a>
-                        <a class="right carousel-control" href="#carousel-featured" role="button" data-slide="next">
+                        <a class="right carousel-control" href="#carousel-featured5" role="button" data-slide="next">
                             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>
