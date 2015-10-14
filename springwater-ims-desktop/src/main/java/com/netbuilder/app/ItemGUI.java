@@ -8,7 +8,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -16,12 +15,9 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
-import javax.swing.ComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -31,10 +27,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -108,6 +100,7 @@ public class ItemGUI extends JFrame
 		predictedSalesPanel();
 		
 		//configure size
+		setTitle("Full Item Details");
 		setSize(new Dimension(650, 600));
 		setMinimumSize(new Dimension(650, 600));
 		setPreferredSize(new Dimension(650, 600));
@@ -170,6 +163,7 @@ public class ItemGUI extends JFrame
 		
 		//Item labelImage
 		JPanel panellabelImage = new JPanel(new BorderLayout());
+		panellabelImage.setBackground(Color.white);
 		getProductlabelImage((String)Inventory[itemID - 1][4]);
 		//productlabelImage.
 		Image scaledImg = img.getScaledInstance(250, 250, Image.SCALE_SMOOTH);

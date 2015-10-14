@@ -24,6 +24,7 @@ import javax.swing.JTextField;
  * @author tstacey
  * @date 09/10/2015
  */
+@SuppressWarnings("serial")
 public class InventoryGUI extends JPanel implements ActionListener, ComponentListener {
 	
 	private int WIDTH = 580;
@@ -31,8 +32,6 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 	private int ITEM_WIDTH = WIDTH/2;
 	private int SEARCH_PANEL_HEIGHT = 66;
 	private int SIDE_PADDING = 20;
-
-	private static final long serialVersionUID = 1L;
 
 	private JScrollPane scrollPane;
 	private JPanel scrollPanel;
@@ -106,7 +105,7 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 	}
 	
 	private void fillContentPanelsBasedOnSize() {
-		int totalWidth = scrollPane.getWidth();
+		int totalWidth = this.WIDTH;
 		if(totalWidth/ITEM_WIDTH != currentColumns) {
 			int newColumns = totalWidth/ITEM_WIDTH;
 			int remainder = 0;
