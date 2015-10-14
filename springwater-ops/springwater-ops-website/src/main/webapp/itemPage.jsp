@@ -154,7 +154,7 @@
                             </p>
                             <p>
                                 <a href="#" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span> Go to Item</a>
-                                <a href="#" class="btn btn-success" data-toggle="modal" data-target="#RI2" role="button"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Quick Look</a>
+                                <a class="btn btn-success" data-toggle="modal" data-target="#RI2" role="button"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Quick Look</a>
                             </p>
                         </div>
                     </div>
@@ -307,7 +307,75 @@
                 <h4 class="modal-title" id="myModalLabel">Product Name</h4>
             </div>
             <div class="modal-body">
-                <img src="resources/img/placeholder2.png" alt="..." width="100%" height="100%">
+                <img class="center-block" src="resources/img/placeholder2.png" alt="..." width="100%">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="RI1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Product Name</h4>
+            </div>
+            <div class="modal-body">
+                <img class="center-block" src="resources/img/placeholder2.png" alt="..." width="100%">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="RI2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Product Name</h4>
+            </div>
+            <div class="modal-body">
+                <img class="center-block" src="resources/img/placeholder2.png" alt="..." width="100%">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="RI3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Product Name</h4>
+            </div>
+            <div class="modal-body">
+                <img class="center-block" src="resources/img/placeholder2.png" alt="..." width="100%">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="RI4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Product Name</h4>
+            </div>
+            <div class="modal-body">
+                <img class="center-block" src="resources/img/placeholder2.png" alt="..." width="100%">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Close</button>
