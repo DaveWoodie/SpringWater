@@ -89,7 +89,12 @@ public class SupplierFrame extends JFrame{
 		
 		//create bottom panel
 		bottom = new JPanel();
-		productListModel = new DefaultTableModel(products, columns);
+		productListModel = new DefaultTableModel(products, columns){
+			@Override
+		    public boolean isCellEditable(int i, int i1) {
+		        return false; //To change body of generated methods, choose Tools | Templates.
+		    }
+		};
 		productList = new JTable(productListModel);
 		ListSelectionModel prListSelectionModel =productList.getSelectionModel();
 		prListSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

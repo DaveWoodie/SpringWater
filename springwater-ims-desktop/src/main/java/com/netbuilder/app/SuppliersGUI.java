@@ -64,7 +64,12 @@ public class SuppliersGUI extends JPanel{
 		categories = new JComboBox<String>(supplierCategories);
 		
 		LoadData lD = new LoadData();
-		supplierListModel = new DefaultTableModel(lD.fetchSuppliers(), columns);
+		supplierListModel = new DefaultTableModel(lD.fetchSuppliers(), columns){
+			@Override
+		    public boolean isCellEditable(int i, int i1) {
+		        return false; //To change body of generated methods, choose Tools | Templates.
+		    }
+		};
 		suppliers = new JTable(supplierListModel);
 		suppliers.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	    ListSelectionModel cellSelectionModel = suppliers.getSelectionModel();
