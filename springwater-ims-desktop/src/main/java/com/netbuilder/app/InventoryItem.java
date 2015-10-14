@@ -3,6 +3,7 @@ package com.netbuilder.app;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -42,7 +43,11 @@ public class InventoryItem extends JPanel implements MouseListener {
 		this.location = location;
 		this.imageLocation = imageLocation;
 		this.WIDTH = width;
+		initialSetup();
 		
+	}
+	
+	private void initialSetup() {
 		this.iconLoader = new IconLoader();
 		
 		
@@ -53,8 +58,9 @@ public class InventoryItem extends JPanel implements MouseListener {
 		
 		this.addMouseListener(this);
 		
+		
 		infoPanel = new JPanel();
-		infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
+		infoPanel.setLayout(new GridLayout(2, 2));
 		makeOpaque(infoPanel);
 		setFinalSize(infoPanel, this.WIDTH*4/6, HEIGHT);
 		
@@ -77,11 +83,10 @@ public class InventoryItem extends JPanel implements MouseListener {
 		}
 		
 		JLabel lbl = new JLabel(itemIcon);
+		lbl.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, new Color(0,0,0)));
 		imagePanel.add(lbl);
 		this.add(imagePanel);
-		
 	}
-
 	
 	private void setFinalSize(JPanel panel, int width, int height) {
 		Dimension d = new Dimension(width, height);
@@ -111,10 +116,17 @@ public class InventoryItem extends JPanel implements MouseListener {
 		this.revalidate();
 	}
 
+	public int getID() {
+		return productID;
+	}
+	
+	public String getName() {
+		return productName;
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
+		ItemGUI itemGUI = new ItemGUI(this.productID);
 	}
 
 
