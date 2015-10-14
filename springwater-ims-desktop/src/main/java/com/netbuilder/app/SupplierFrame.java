@@ -21,6 +21,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -39,6 +42,8 @@ public class SupplierFrame extends JFrame{
 	JTable productList;
 	JScrollPane bottomPane;
 	JButton exit;
+	JButton select;
+	int selectedID;
 	
 	public SupplierFrame() {
 		initUI();
@@ -80,12 +85,38 @@ public class SupplierFrame extends JFrame{
 		//create bottom panel
 		bottom = new JPanel();
 		productList = new JTable(productListModel);
+		ListSelectionModel prListSelectionModel =productList.getSelectionModel();
+		prListSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		prListSelectionModel.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				int selectedRow = productList.getSelectedRow();
+				try {
+					selectedID = Integer.parseInt(productList.getValueAt(selectedRow, 0).toString());
+				} catch (NullPointerException npe) {
+					System.out.println("Not a valid Item!");
+				}
+			}
+		});
+
 		bottom.add(productList);
 		bottomPane = new JScrollPane();
 		bottomPane.setViewportView(productList);
 		
 		//create bottomOptions panel
 		bottomOptions = new JPanel();
+		select = new JButton("Select Item");
+		select.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(selectedID ==0) {
+					System.out.println("No item selected!");
+				}
+				else {
+				@SuppressWarnings("unused")
+				ItemGUI IG = new ItemGUI(selectedID);
+				}
+				
+			}
+		});
 		exit = new JButton("Exit");
 		exit.addActionListener(new ActionListener(){
 
@@ -94,7 +125,9 @@ public class SupplierFrame extends JFrame{
 			}
 			
 		});
+		bottomOptions.add(select);
 		bottomOptions.add(exit);
+		
 		
 		//construct main and base panels
 		main.add(left);
