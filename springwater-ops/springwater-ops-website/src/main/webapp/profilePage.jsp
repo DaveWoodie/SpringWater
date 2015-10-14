@@ -9,6 +9,27 @@
     <link href="resources/Bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="resources/main.css" rel="stylesheet">
     <link href="resources/collapse.css" rel="stylesheet">
+    
+    <!-- Function to change the images -->
+<script>
+	function changeAv01() {
+	    var image = document.getElementById('myImage');
+	    image.src = "resources/img/av01.png";	
+	}
+	function changeAv02() {
+	    var image = document.getElementById('myImage');
+	    image.src = "resources/img/av02.png";	
+	}
+	function changeAv03() {
+	    var image = document.getElementById('myImage');
+	    image.src = "resources/img/av03.png";	
+	}
+	function changeAv04() {
+	    var image = document.getElementById('myImage');
+	    image.src = "resources/img/av04.png";	
+	}
+</script>
+
 </head>
 
 <body>
@@ -73,12 +94,12 @@
             <!-- left column -->
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="text-center">
-                    <img src="resources/img/placeholder.png" class="avatar img-circle img-thumbnail" alt="avatar">
+                    <img id="myImage" src="resources/img/placeholder.png" class="avatar img-circle img-thumbnail" alt="avatar">
                     <h6>Choose a profile avatar...</h6>
-                    <button type="button" class="btn btn-default"><img src="resources/img/av01.png" id="avatarPic"></button>
-                    <button type="button" class="btn btn-default"><img src="resources/img/av02.png" id="avatarPic"></button>
-                    <button type="button" class="btn btn-default"><img src="resources/img/av03.png" id="avatarPic"></button>
-					<button type="button" class="btn btn-default"><img src="resources/img/av04.png" id="avatarPic"></button>
+                    <button type="button" class="btn btn-default" onclick="changeAv01()"><img src="resources/img/av01.png" id="avatarPic"></button>
+                    <button type="button" class="btn btn-default" onclick="changeAv02()" id="av02"><img src="resources/img/av02.png" id="avatarPic"></button>
+                    <button type="button" class="btn btn-default" onclick="changeAv03()" id="av03"><img src="resources/img/av03.png" id="avatarPic"></button>
+					<button type="button" class="btn btn-default" onclick="changeAv04()" id="av04"><img src="resources/img/av04.png" id="avatarPic"></button>
                 </div>
             </div>
 
