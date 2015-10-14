@@ -22,11 +22,11 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
-public class DailyStockReportFrame {
+public class DailyStockReportGUI {
 	int lowSelectedID;
 	int fastSelectedID;
 	
-	public DailyStockReportFrame() {
+	public DailyStockReportGUI() {
 	}
 
 	/**

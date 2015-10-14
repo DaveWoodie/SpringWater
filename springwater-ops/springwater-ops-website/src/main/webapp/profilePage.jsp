@@ -74,8 +74,11 @@
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="text-center">
                     <img src="resources/img/placeholder.png" class="avatar img-circle img-thumbnail" alt="avatar">
-                    <h6>Upload a different photo...</h6>
-                    <input type="file" class="text-center center-block well well-sm">
+                    <h6>Choose a profile avatar...</h6>
+                    <button type="button" class="btn btn-default"><img src="resources/img/av01.png" id="avatarPic"></button>
+                    <button type="button" class="btn btn-default"><img src="resources/img/av02.png" id="avatarPic"></button>
+                    <button type="button" class="btn btn-default"><img src="resources/img/av03.png" id="avatarPic"></button>
+					<button type="button" class="btn btn-default"><img src="resources/img/av04.png" id="avatarPic"></button>
                 </div>
             </div>
 

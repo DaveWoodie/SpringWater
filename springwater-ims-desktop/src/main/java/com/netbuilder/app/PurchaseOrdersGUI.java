@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 @SuppressWarnings("serial")
-public class PurchaseOrders extends JPanel {
+public class PurchaseOrdersGUI extends JPanel {
 	
 	private String [] columns = {"Purchase Order ID", "Date Placed", "Status", "Supplier", "Total"};
 	private String [] purchaseOrderCategories = {"Status", "Supplier", "Date", "Order ID"};
@@ -153,7 +153,7 @@ public class PurchaseOrders extends JPanel {
 					String date = purchaseOrderTable.getValueAt(purchaseOrderTable.getSelectedRow(), 1).toString();
 					String status = purchaseOrderTable.getValueAt(purchaseOrderTable.getSelectedRow(), 2).toString();
 					String total = purchaseOrderTable.getValueAt(purchaseOrderTable.getSelectedRow(), 4).toString();
-					IndividualPurchaseOrderView iPO = new IndividualPurchaseOrderView(currentlySelectedOrder, suppliername, date, status, total);
+					IndividualPurchaseOrderViewFrame iPO = new IndividualPurchaseOrderViewFrame(currentlySelectedOrder, suppliername, date, status, total);
 					iPO.setVisible(true);
 				}
 			}

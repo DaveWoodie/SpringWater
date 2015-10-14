@@ -14,7 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class InventoryItem extends JPanel implements MouseListener {
+public class InventoryItemFrame extends JPanel implements MouseListener {
 
 	private static final long serialVersionUID = 1L;
 	private static int HEIGHT = 70;
@@ -40,7 +40,7 @@ public class InventoryItem extends JPanel implements MouseListener {
 	private Color backgroundColor = new Color(197,208,199);
 	private Color hoverBackgroundColor = new Color(157,166,159);
 	
-	public InventoryItem(InventoryGUI src, int width, int productID, String productName, int quantity, String location, String imageLocation) {
+	public InventoryItemFrame(InventoryGUI src, int width, int productID, String productName, int quantity, String location, String imageLocation) {
 		this.productID = productID;
 		this.productName = productName;
 		this.quantity = quantity;
