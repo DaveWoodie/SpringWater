@@ -1,6 +1,7 @@
 package com.netbuilder.app;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagLayout;
@@ -23,6 +24,7 @@ import javax.swing.JTextField;
  * @author tstacey
  * @date 09/10/2015
  */
+@SuppressWarnings("serial")
 public class InventoryGUI extends JPanel implements ActionListener, ComponentListener {
 	
 	private int WIDTH = 580;
@@ -30,8 +32,6 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 	private int ITEM_WIDTH = WIDTH/2;
 	private int SEARCH_PANEL_HEIGHT = 66;
 	private int SIDE_PADDING = 20;
-
-	private static final long serialVersionUID = 1L;
 
 	private JScrollPane scrollPane;
 	private JPanel scrollPanel;
@@ -43,11 +43,11 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 	private JTextField searchField;
 	private JButton searchButton;
 	
-	private ArrayList<InventoryItem> items = new ArrayList<InventoryItem>();
+	private ArrayList<InventoryItemFrame> items = new ArrayList<InventoryItemFrame>();
 	
-	private ArrayList<InventoryItem> filteredItems = new ArrayList<InventoryItem>();
+	private ArrayList<InventoryItemFrame> filteredItems = new ArrayList<InventoryItemFrame>();
 	
-	private ArrayList<InventoryItem> currentlyDisplayedItems = items;
+	private ArrayList<InventoryItemFrame> currentlyDisplayedItems = items;
 	
 	private int currentColumns = 1;
 	
@@ -105,7 +105,7 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 	}
 	
 	private void fillContentPanelsBasedOnSize() {
-		int totalWidth = scrollPane.getWidth();
+		int totalWidth = this.WIDTH;
 		if(totalWidth/ITEM_WIDTH != currentColumns) {
 			int newColumns = totalWidth/ITEM_WIDTH;
 			int remainder = 0;
@@ -117,6 +117,7 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 			for(int i = 0; i < newColumns; i++) {
 				JPanel panel = new JPanel();
 				panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS) );
+				panel.setAlignmentY(Component.TOP_ALIGNMENT);
 				scrollPanel.add(panel);
 				int limit = currentlyDisplayedItems.size()/newColumns;
 				if(i < remainder) {
@@ -177,7 +178,7 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 	
 	private void addSearchField() {
 		searchField = new JTextField(13);
-        Font searchFont = searchField.getFont().deriveFont(Font.PLAIN, 30f);
+        Font searchFont = searchField.getFont().deriveFont(Font.PLAIN, 20f);
         searchField.setFont(searchFont);
         searchField.addActionListener(this);
         TextPrompt tP = new TextPrompt("Search for item...", searchField);
@@ -219,15 +220,17 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		
 		String imageFolderLocation = "src/main/resources/images/";
 		
-		for(int i = 0; i < itemArray.length; i++) {
-			int itemID = (int) itemArray[i][0];
-			String name = (String) itemArray[i][1];
-			int quantity = (int) itemArray[i][2];
-			String loc = (String) itemArray[i][3];
-			String imageLoc = imageFolderLocation.concat((String) itemArray[i][4]);
-			
-			InventoryItem invItem = new InventoryItem(this, WIDTH/2, itemID, name, quantity, loc, imageLoc);
-			items.add(invItem);
+		for(int j = 0; j < 3; j++) {
+			for(int i = 0; i < itemArray.length; i++) {
+				int itemID = (int) itemArray[i][0];
+				String name = (String) itemArray[i][1];
+				int quantity = (int) itemArray[i][2];
+				String loc = (String) itemArray[i][3];
+				String imageLoc = imageFolderLocation.concat((String) itemArray[i][4]);
+				
+				InventoryItemFrame invItem = new InventoryItemFrame(this, WIDTH/2, itemID, name, quantity, loc, imageLoc);
+				items.add(invItem);
+			}
 		}
 		
 		fillContentPanelsBasedOnSize();
@@ -238,8 +241,8 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 	
 	private void filterResults(String searchText) {
 		// TODO: fill out filter method to refine inventory display based on search field
-		filteredItems = new ArrayList<InventoryItem>();
-		for(InventoryItem i : items) {
+		filteredItems = new ArrayList<InventoryItemFrame>();
+		for(InventoryItemFrame i : items) {
 			if(i.getName().toUpperCase().contains(searchText.toUpperCase())) {
 				filteredItems.add(i);
 			}

@@ -89,7 +89,12 @@ public class SupplierFrame extends JFrame{
 		
 		//create bottom panel
 		bottom = new JPanel();
-		productListModel = new DefaultTableModel(products, columns);
+		productListModel = new DefaultTableModel(products, columns){
+			@Override
+		    public boolean isCellEditable(int i, int i1) {
+		        return false; //To change body of generated methods, choose Tools | Templates.
+		    }
+		};
 		productList = new JTable(productListModel);
 		ListSelectionModel prListSelectionModel =productList.getSelectionModel();
 		prListSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -143,7 +148,7 @@ public class SupplierFrame extends JFrame{
 		base.add(bottomOptions);
 		
 		//configure frame
-		setTitle("Inventory Management System");
+		setTitle("Full Supplier Details");
 		setSize(600, 800);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);

@@ -2,7 +2,6 @@ package com.netbuilder.app;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,7 +20,7 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
 @SuppressWarnings("serial")
-public class IndividualPurchaseOrderView extends JFrame {
+public class IndividualPurchaseOrderViewFrame extends JFrame {
 
 	private String [] columns = {"Item ID", "Item Name", "Quantity", "Number Damaged", "Subtotal"};
 	private JPanel contentPane, bottom, top;
@@ -51,9 +50,9 @@ public class IndividualPurchaseOrderView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public IndividualPurchaseOrderView( int id, String supplierName, String date, String status, String total) {
+	public IndividualPurchaseOrderViewFrame( int id, String supplierName, String date, String status, String total) {
 		
-		setTitle("Purchase Order");
+		setTitle("Full Purchase Order Details");
         setLocationRelativeTo(null);
         setMinimumSize(new Dimension(600, 800));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -67,7 +66,12 @@ public class IndividualPurchaseOrderView extends JFrame {
 		contentPane.add(scrollPane);
 		
 		LoadData lD =  new LoadData();
-		defaultItemTable = new DefaultTableModel(lD.fetchIndividualPurchaseOrder(), columns);
+		defaultItemTable = new DefaultTableModel(lD.fetchIndividualPurchaseOrder(), columns){
+			@Override
+		    public boolean isCellEditable(int i, int i1) {
+		        return false; //To change body of generated methods, choose Tools | Templates.
+		    }
+		};
 		itemTable = new JTable(defaultItemTable);
 		ListSelectionModel prListSelectionModel =itemTable.getSelectionModel();
 		prListSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

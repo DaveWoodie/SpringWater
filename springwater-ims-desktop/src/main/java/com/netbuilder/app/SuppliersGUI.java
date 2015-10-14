@@ -26,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 @SuppressWarnings("serial")
-public class SuppliersFrame extends JPanel{
+public class SuppliersGUI extends JPanel{
 	
 	private String [] columns = {"Supplier ID", "Supplier Name"};
 	private String [] supplierCategories = {"Supplier ID", "Supplier Name", "Product ID"};
@@ -64,7 +64,12 @@ public class SuppliersFrame extends JPanel{
 		categories = new JComboBox<String>(supplierCategories);
 		
 		LoadData lD = new LoadData();
-		supplierListModel = new DefaultTableModel(lD.fetchSuppliers(), columns);
+		supplierListModel = new DefaultTableModel(lD.fetchSuppliers(), columns){
+			@Override
+		    public boolean isCellEditable(int i, int i1) {
+		        return false; //To change body of generated methods, choose Tools | Templates.
+		    }
+		};
 		suppliers = new JTable(supplierListModel);
 		suppliers.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	    ListSelectionModel cellSelectionModel = suppliers.getSelectionModel();

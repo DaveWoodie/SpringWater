@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class SalesGraph extends JPanel
+public class SalesGraphGUI extends JPanel
 {
 	private void doDrawing(Graphics g)
 	{

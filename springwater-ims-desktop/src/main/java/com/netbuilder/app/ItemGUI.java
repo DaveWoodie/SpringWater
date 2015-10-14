@@ -8,19 +8,16 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
-import javax.swing.ComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -30,10 +27,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -44,13 +37,19 @@ public class ItemGUI extends JFrame
 {	
 	private int itemID = 1;
 	private BufferedImage productImage;
+	private Image img;
 	private JTabbedPane tabbedPane;
-	private DefaultTableModel tableModel =  new DefaultTableModel();
+	private DefaultTableModel tableModel =  new DefaultTableModel(){
+		@Override
+	    public boolean isCellEditable(int i, int i1) {
+	        return false; //To change body of generated methods, choose Tools | Templates.
+	    }
+	};
 	private String[] dayArray, monthArray, yearArray, durationArray;
 	private LoadData Data = new LoadData();
 	private Object[][] Inventory;
 	private Object[][] PO;
-	private JLabel textName, textPrice, textStock;
+	private JLabel textName, textPrice, textStock, labelImage;
 
 	/**
 	 * Constructor that creates an instance of an item GUI for the item ID that is passed
@@ -85,8 +84,6 @@ public class ItemGUI extends JFrame
 		PO = Data.fetchPurchaseOrders();
 		setUpTableModel();
 		setSalesArrays();
-		
-		getProductImage("trial_gnome.png");
 	}
 	
 	/**
@@ -103,6 +100,7 @@ public class ItemGUI extends JFrame
 		predictedSalesPanel();
 		
 		//configure size
+		setTitle("Full Item Details");
 		setSize(new Dimension(650, 600));
 		setMinimumSize(new Dimension(650, 600));
 		setPreferredSize(new Dimension(650, 600));
@@ -163,14 +161,18 @@ public class ItemGUI extends JFrame
 				panelSplit.add(panelStock);
 		
 		
-		//Item Image
-		JPanel panelImage = new JPanel(new BorderLayout());
-		JLabel Image = new JLabel(new ImageIcon(productImage));
-		panelImage.add(Image);
+		//Item labelImage
+		JPanel panellabelImage = new JPanel(new BorderLayout());
+		panellabelImage.setBackground(Color.white);
+		getProductlabelImage((String)Inventory[itemID - 1][4]);
+		//productlabelImage.
+		Image scaledImg = img.getScaledInstance(250, 250, Image.SCALE_SMOOTH);
+		labelImage = new JLabel(new ImageIcon(scaledImg));
+		panellabelImage.add(labelImage);
 		
 			//add components to top panel
 			panelItem.add(panelSplit);
-			panelItem.add(panelImage);
+			panelItem.add(panellabelImage);
 		
 		
 		//Item Table
@@ -182,20 +184,20 @@ public class ItemGUI extends JFrame
 		scrollTable.setMinimumSize(new Dimension(getWidth(), getHeight()));
 		scrollTable.setViewportView(tableItem);
 		
-		JButton buttonDelivery = new JButton("View Purchase Order");
-		buttonDelivery.addActionListener(new ActionListener()
+		JButton buttonPO = new JButton("View Purchase Order");
+		buttonPO.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				
-				
+				IndividualPurchaseOrderViewFrame ipo = new IndividualPurchaseOrderViewFrame(1, "Supplier", "12/07/2015", "Order Placed", "£100");
+				ipo.setVisible(true);
 			}
 		});
 		
 			//add components to scroll pane
 			panelTable.add(scrollTable, BorderLayout.CENTER);
-			panelTable.add(buttonDelivery, BorderLayout.SOUTH);
+			panelTable.add(buttonPO, BorderLayout.SOUTH);
 		
 		//adding components to item panel
 		panelMain.add(panelItem);
@@ -203,7 +205,8 @@ public class ItemGUI extends JFrame
 		
 		searchItemArray(itemID);
 		
-		tableModel.addRow(new Object[]{PO[1][1], PO[1][1], PO[1][2], PO[1][3]});
+		tableModel.addRow(new Object[]{PO[1][0], PO[1][1], 35, 0});
+		
 	}
 	
 	/**
@@ -216,7 +219,7 @@ public class ItemGUI extends JFrame
 		tabbedPane.add("Sales", panelSales);
 		
 		//graph panel
-		JPanel panelGraph = new SalesGraph();
+		JPanel panelGraph = new SalesGraphGUI();
 		panelGraph.setBorder(BorderFactory.createLineBorder(Color.gray));
 		
 		//Options
@@ -261,11 +264,9 @@ public class ItemGUI extends JFrame
 	
 	public void searchItemArray(int itemID)
 	{
-		textName.setText((String) Inventory[itemID][1]);
-		textPrice.setText("£40");
-		textStock.setText(String.valueOf((int) Inventory[itemID][2]));
-		
-		
+		textName.setText((String) Inventory[itemID - 1][1]);
+		textPrice.setText((String) Inventory[itemID - 1][5]);
+		textStock.setText(String.valueOf((int) Inventory[itemID - 1][2]));
 	}
 	
 	/**
@@ -280,15 +281,16 @@ public class ItemGUI extends JFrame
 	}
 	
 	/**
-	 * Method that loads an image from the resources folder by passing the image files name
-	 * @param imageFileName
+	 * Method that loads an labelImage from the resources folder by passing the labelImage files name
+	 * @param labelImageFileName
 	 */
-	public void getProductImage(String imageFileName)
+	public void getProductlabelImage(String labelImageFileName)
 	{
-		//Get Product Image
+		//Get Product labelImage
 		try 
 		{
-			productImage = ImageIO.read(new File("src/test/resources/" + imageFileName));
+			productImage = ImageIO.read(new File("src/main/resources/Images/" + labelImageFileName));
+			img = ImageIO.read(new File("src/main/resources/Images/" + labelImageFileName));
 		} 
 		catch (IOException e) 
 		{
