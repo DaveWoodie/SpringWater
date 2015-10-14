@@ -41,14 +41,15 @@ public class DailyStockReportFrame {
 		GridLayout stockReportLayout = new GridLayout(1, 2);
 
 		// Create Table Models
-		DefaultTableModel lowStockModel = new DefaultTableModel(numRows,colHeadings.length);
-		lowStockModel.setColumnIdentifiers(colHeadings);
-		DefaultTableModel fastSellingkModel = new DefaultTableModel(numRows,colHeadings.length);
-		fastSellingkModel.setColumnIdentifiers(colHeadings);
+		LoadData lD = new LoadData();
+		DefaultTableModel lowStockModel = new DefaultTableModel(lD.fetchLowStockList(), colHeadings);
+		//lowStockModel.setColumnIdentifiers(colHeadings);
+		DefaultTableModel fastSellingkModel = new DefaultTableModel(lD.fetchHighSaleList(), colHeadings);
+		//fastSellingkModel.setColumnIdentifiers(colHeadings);
 
-		// Fill tables with test data
-		lowStockModel = fillTable(numRows, lowStockModel);
-		fastSellingkModel = fillTable(numRows, fastSellingkModel);
+//		// Fill tables with test data
+//		lowStockModel = fillTable(numRows, lowStockModel);
+//		fastSellingkModel = fillTable(numRows, fastSellingkModel);
 		
 		//Create Tables
 		final JTable lowStockTable = new JTable(lowStockModel);
@@ -117,24 +118,24 @@ public class DailyStockReportFrame {
 		// Formatting
 		fastSellingLabel.setForeground(Color.GREEN);
 		LowStockLabel.setForeground(Color.RED);
-		fastSellingPanel.setBackground(Color.WHITE);
-		lowStockPanel.setBackground(Color.WHITE);
-		fastSellingTable.getTableHeader().setBackground(Color.WHITE);
-		lowStockTable.getTableHeader().setBackground(Color.WHITE);
-		fastSellingPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-		lowStockPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+//		fastSellingPanel.setBackground(Color.WHITE);
+//		lowStockPanel.setBackground(Color.WHITE);
+//		fastSellingTable.getTableHeader().setBackground(Color.WHITE);
+//		lowStockTable.getTableHeader().setBackground(Color.WHITE);
+//		fastSellingPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+//		lowStockPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
 		// Add components to low stock panel
-		lowStockTable.setPreferredScrollableViewportSize(lowStockTable.getPreferredSize());
-		lowStockTable.setFillsViewportHeight(true);
+//		lowStockTable.setPreferredScrollableViewportSize(lowStockTable.getPreferredSize());
+//		lowStockTable.setFillsViewportHeight(true);
 		LowStockLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		lowStockPanel.add(LowStockLabel);
 		lowStockPanel.add(new JScrollPane(lowStockTable));
 		lowStockPanel.add(lowStockSelect);
 
 		// Add components to fast selling panel
-		fastSellingTable.setPreferredScrollableViewportSize(fastSellingTable.getPreferredSize());
-		fastSellingTable.setFillsViewportHeight(true);
+//		fastSellingTable.setPreferredScrollableViewportSize(fastSellingTable.getPreferredSize());
+//		fastSellingTable.setFillsViewportHeight(true);
 		fastSellingLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		fastSellingPanel.add(fastSellingLabel);
 		fastSellingPanel.add(new JScrollPane(fastSellingTable));

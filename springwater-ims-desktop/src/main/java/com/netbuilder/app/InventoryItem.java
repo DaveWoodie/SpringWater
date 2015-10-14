@@ -77,7 +77,7 @@ public class InventoryItem extends JPanel implements MouseListener {
 		imagePanel.setLayout(new GridBagLayout());
 		makeOpaque(imagePanel);
 		if(this.imageLocation != null) {
-			itemIcon = iconLoader.createImageIcon("./Images/"+this.imageLocation, IMAGE_SIZE, IMAGE_SIZE);
+			itemIcon = iconLoader.createImageIcon(this.imageLocation, IMAGE_SIZE, IMAGE_SIZE);
 		} else {
 			itemIcon = loadDefaultImage();
 		}
