@@ -1,19 +1,17 @@
 package com.netbuilder.app;
 
-import java.util.ArrayList;
-
 public class LoadData {
 	
 	Object[][] inventoryList;
 	
 	public Object[][] fetchPurchaseOrders() {
 		
-		Object[][] purchaseOrderList = {{1, "10/05/2015", "COMPLETED", "GnomeBuilder"},
-								{2, "17/05/2015", "DELIVERED", "GnomeBuilder"},
-								{3, "17/05/2015", "AVAILABLE", "GA Inc"},
-								{4, "17/05/2015", "AVAILABLE", "Garden World"},
-								{5, "24/05/2015", "AVAILABLE", "GnomeBuilder"},
-								{6, "24/05/2015", "AVAILABLE", "Lawn Society Suppliers"}};
+		Object[][] purchaseOrderList = {{1, "10/05/2015", "COMPLETED", "GnomeBuilder", "£3160"},
+								{2, "17/05/2015", "DELIVERED", "GnomeBuilder", "£3160"},
+								{3, "17/05/2015", "AVAILABLE", "GA Inc", "£3160"},
+								{4, "17/05/2015", "AVAILABLE", "Garden World", "£3160"},
+								{5, "24/05/2015", "AVAILABLE", "GnomeBuilder", "£3160"},
+								{6, "24/05/2015", "AVAILABLE", "Lawn Society Suppliers", "£3160"}};
 		
 		return purchaseOrderList;
 		
@@ -32,15 +30,25 @@ public class LoadData {
 		
 	}
 	
-	public Object[][] fetchLowStockList() {
+	public Object[][] fetchStockList() {
 		
-		Object[][] lowStockItemList = {{1, "Regular Gnome", 10, 40},
+		Object[][] stockItemList = {{1, "Regular Gnome", 10, 40},
+									{2, "Mushroom Gnome", 50, 20},
+									{3, "Lamp Gnome", 80, 150},
+									{4, "Wheelbarrow Gnome", 75, 40},
+									{5, "No Evil Gnomes", 50, 80},
+									{6, "Creepy Gnome", 40, 10},
 									{7, "Large Hoe", 4, 25},
+									{8, "Long Hoe", 25, 10},
+									{9, "Light Jacuzzi", 15, 5},
 									{10, "Darkwood Jacuzzi", 1, 20},
+									{11, "Blue Step Jacuzzi", 20, 25},
 									{12, "Round Jacuzzi", 0, 5},
-									{13, "Plain Pot", 20, 90}};
+									{13, "Plain Pot", 20, 90},
+									{14, "Patterned Pot", 50, 30},
+									{15, "Orange Pot", 60, 45}};
 	
-		return lowStockItemList;
+		return stockItemList;
 		
 	}
 	

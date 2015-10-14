@@ -23,12 +23,12 @@ import javax.swing.ListSelectionModel;
 @SuppressWarnings("serial")
 public class IndividualPurchaseOrderView extends JFrame {
 
-	private String [] columns = {"Item ID", "Item Name", "Quantity", "Number Damaged", "Total Price"};
+	private String [] columns = {"Item ID", "Item Name", "Quantity", "Number Damaged", "Subtotal"};
 	private JPanel contentPane, bottom, top;
 	private JTable itemTable;
 	private JButton select;
 	private JButton quit;
-	private JLabel loginDetails, orderID, supplier, datePlaced, orderStatus;
+	private JLabel loginDetails, orderID, supplier, datePlaced, orderStatus, orderTotal;
 	private DefaultTableModel defaultItemTable;
 	private int selectedID;
 
@@ -51,7 +51,7 @@ public class IndividualPurchaseOrderView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public IndividualPurchaseOrderView( int id, String supplierName, String date, String status) {
+	public IndividualPurchaseOrderView( int id, String supplierName, String date, String status, String total) {
 		
 		setTitle("Purchase Order");
         setLocationRelativeTo(null);
@@ -108,6 +108,7 @@ public class IndividualPurchaseOrderView extends JFrame {
 		bottom.setLayout(new BoxLayout(bottom, BoxLayout.X_AXIS));
 		
 		loginDetails = new JLabel("<html>Employee ID: 1<br>Employee Name: Al Stock");
+		orderTotal = new JLabel("Order Total: " + total);
 		
 		//create logout button
 //		logout = new JButton("Logout");
@@ -143,6 +144,8 @@ public class IndividualPurchaseOrderView extends JFrame {
 		//construct bottom panel
 		bottom.add(Box.createRigidArea(new Dimension(10,0)));
 		bottom.add(loginDetails);
+		bottom.add(Box.createRigidArea(new Dimension(10,0)));
+		bottom.add(orderTotal);
 //		bottom.add(Box.createRigidArea(new Dimension(10,0)));
 //		bottom.add(logout);
 		bottom.add(Box.createRigidArea(new Dimension(10,0)));
