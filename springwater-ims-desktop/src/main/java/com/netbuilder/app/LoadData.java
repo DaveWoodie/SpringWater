@@ -30,10 +30,27 @@ public class LoadData {
 		
 	}
 	
-	public Object[][] fetchStockReport() {
+	public Object[][] fetchLowStockList() {
 		
-		
-		return null;
+		Object[][] lowStockItemList = {{1, "Regular Gnome", 10, 40},
+									{7, "Large Hoe", 4, 25},
+									{10, "Darkwood Jacuzzi", 1, 20},
+									{12, "Round Jacuzzi", 0, 5},
+									{13, "Plain Pot", 20, 90}};
+	
+		return lowStockItemList;
 		
 	}
+	
+	public Object[][] fetchHighSaleList() {
+	
+		Object[][] highSalesItemList = {{2, "Mushroom Gnome", 50, 200},
+										{3, "Lamp Gnome", 80, 150},
+										{5, "No Evil Gnomes", 50, 80},
+										{11, "Blue Step Jacuzzi", 20, 25},
+										{13, "Plain Pot", 20, 90}};
+		
+		return highSalesItemList;
+	}
+	
 }
