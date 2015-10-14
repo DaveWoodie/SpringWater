@@ -28,13 +28,11 @@ public class DailyStockReportFrame {
 	int fastSelectedID;
 	
 	public DailyStockReportFrame() {
-
 	}
 
 	public JPanel getStockReportPanel() {
 		int numRows = 30;
 		String[] colHeadings = { "Item ID", "Item Name", "Stock Level","Sales Rate" };
-//		String[] rowContents = { , "Test", "5", "10"};
 		final JLabel fastSellingLabel = new JLabel("Fast Selling Items");
 		final JLabel LowStockLabel = new JLabel("Low stock Items");
 		JPanel pane = new JPanel();
@@ -84,38 +82,28 @@ public class DailyStockReportFrame {
 				});
 		
 		// Select buttons
-		JButton lowStockSelect = new JButton("Select Item");
+		JButton lowStockSelect = new JButton("Open Selected Item");
 		lowStockSelect.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				//TODO send item ID to item frame
-				//lowSelectedID
-				if(lowSelectedID ==0)
-				{
+				if(lowSelectedID ==0) {
 					System.out.println("No item selected!");
 				}
-				else
-				{
+				else {
 				@SuppressWarnings("unused")
 				ItemGUI IG = new ItemGUI(lowSelectedID);
-				//System.out.println("Item ID: " + lowSelectedID+ " selected!");
 				}
 			}		
 		});
 		
-		JButton fastSellingSelect = new JButton("Select Item");
+		JButton fastSellingSelect = new JButton("Open Selected Item");
 		fastSellingSelect.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				//TODO send item ID to item frame
-				//fastSelectedID
-				if(fastSelectedID ==0)
-				{
+				if(fastSelectedID ==0) {
 					System.out.println("No item selected!");
 				}
-				else
-				{
+				else {
 					@SuppressWarnings("unused")
 					ItemGUI IG = new ItemGUI(fastSelectedID);
-					//System.out.println("Item ID: " + fastSelectedID+ " selected!");
 				}
 			}		
 		});
@@ -160,10 +148,8 @@ public class DailyStockReportFrame {
 	}
 	
 	//fills the table with test data
-	private DefaultTableModel fillTable(int numRows, DefaultTableModel dtm)
-	{
-		for (int i = 0;i<numRows; i++)
-		{
+	private DefaultTableModel fillTable(int numRows, DefaultTableModel dtm) {
+		for (int i = 0;i<numRows; i++) {
 			dtm.setValueAt(i+1, i, 0);
 			dtm.setValueAt("Test", i, 1);
 			dtm.setValueAt("5", i, 2);
