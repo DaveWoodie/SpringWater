@@ -119,7 +119,7 @@ public class PurchaseOrders extends JPanel {
 				int selectedRow = purchaseOrderTable.getSelectedRow();
 				try {
 					currentlySelectedOrder = Integer.parseInt(purchaseOrderTable.getValueAt(selectedRow, 0).toString());
-					System.out.println("Supplier ID: " + currentlySelectedOrder + " selected!");
+					//System.out.println("Supplier ID: " + currentlySelectedOrder + " selected!");
 				}
 				catch (NullPointerException npe) {
 					System.out.println("Null Purchase Order!");
