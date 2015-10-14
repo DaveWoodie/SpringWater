@@ -34,7 +34,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="items.jsp">Gnomes</a></li>
                             <li><a href="items.jsp">Furniture</a></li>
-                            <li><a href="items.jsp">Tools</a></li>
+                            <li><a href="items.jsp">Tools</a></li> 
                             <li><a href="items.jsp">Pottery</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="items.jsp">Featured</a></li>
@@ -169,7 +169,7 @@
                         <br>
                         <a href="#">Garden Gome</a>
                         <p>Quantity: 3</p>
-                        <p>£2.99</p>
+                        <p>Â£2.99</p>
                         <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span> Buy it Again</button>
                     </div>
                     
