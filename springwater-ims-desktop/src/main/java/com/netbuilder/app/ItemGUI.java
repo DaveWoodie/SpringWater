@@ -50,7 +50,7 @@ public class ItemGUI extends JFrame
 	private LoadData Data = new LoadData();
 	private Object[][] Inventory;
 	private Object[][] PO;
-	private JLabel textName, textPrice, textStock;
+	private JLabel textName, textPrice, textStock, Image;
 
 	/**
 	 * Constructor that creates an instance of an item GUI for the item ID that is passed
@@ -85,8 +85,6 @@ public class ItemGUI extends JFrame
 		PO = Data.fetchPurchaseOrders();
 		setUpTableModel();
 		setSalesArrays();
-		
-		getProductImage("trial_gnome.png");
 	}
 	
 	/**
@@ -165,7 +163,8 @@ public class ItemGUI extends JFrame
 		
 		//Item Image
 		JPanel panelImage = new JPanel(new BorderLayout());
-		JLabel Image = new JLabel(new ImageIcon(productImage));
+		getProductImage((String)Inventory[itemID - 1][4]);
+		Image = new JLabel(new ImageIcon(productImage));
 		panelImage.add(Image);
 		
 			//add components to top panel
@@ -182,20 +181,20 @@ public class ItemGUI extends JFrame
 		scrollTable.setMinimumSize(new Dimension(getWidth(), getHeight()));
 		scrollTable.setViewportView(tableItem);
 		
-		JButton buttonDelivery = new JButton("View Purchase Order");
-		buttonDelivery.addActionListener(new ActionListener()
+		JButton buttonPO = new JButton("View Purchase Order");
+		buttonPO.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				
-				
+				IndividualPurchaseOrderViewFrame ipo = new IndividualPurchaseOrderViewFrame(1, "Supplier", "12/07/2015", "Order Placed", "£100");
+				ipo.setVisible(true);
 			}
 		});
 		
 			//add components to scroll pane
 			panelTable.add(scrollTable, BorderLayout.CENTER);
-			panelTable.add(buttonDelivery, BorderLayout.SOUTH);
+			panelTable.add(buttonPO, BorderLayout.SOUTH);
 		
 		//adding components to item panel
 		panelMain.add(panelItem);
@@ -203,7 +202,8 @@ public class ItemGUI extends JFrame
 		
 		searchItemArray(itemID);
 		
-		tableModel.addRow(new Object[]{PO[1][1], PO[1][1], PO[1][2], PO[1][3]});
+		tableModel.addRow(new Object[]{PO[1][0], PO[1][1], 35, 0});
+		
 	}
 	
 	/**
@@ -261,11 +261,9 @@ public class ItemGUI extends JFrame
 	
 	public void searchItemArray(int itemID)
 	{
-		textName.setText((String) Inventory[itemID][1]);
-		textPrice.setText("£40");
-		textStock.setText(String.valueOf((int) Inventory[itemID][2]));
-		
-		
+		textName.setText((String) Inventory[itemID - 1][1]);
+		textPrice.setText((String) Inventory[itemID - 1][5]);
+		textStock.setText(String.valueOf((int) Inventory[itemID - 1][2]));
 	}
 	
 	/**
@@ -288,7 +286,7 @@ public class ItemGUI extends JFrame
 		//Get Product Image
 		try 
 		{
-			productImage = ImageIO.read(new File("src/test/resources/" + imageFileName));
+			productImage = ImageIO.read(new File("src/main/resources/images/" + imageFileName));
 		} 
 		catch (IOException e) 
 		{

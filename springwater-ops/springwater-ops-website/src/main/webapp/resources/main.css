@@ -69,6 +69,12 @@ a:hover {
     font-size: 200px;
     text-align: center;
 }
+
+.input-group-addon {
+    min-width:150px;
+    text-align:left;
+}
+
 /* Chris Boucher */
 #panelLeft {
     background-color: #f6f6f6; 
