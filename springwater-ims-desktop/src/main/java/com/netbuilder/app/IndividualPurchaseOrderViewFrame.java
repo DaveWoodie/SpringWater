@@ -21,7 +21,7 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
 @SuppressWarnings("serial")
-public class IndividualPurchaseOrderView extends JFrame {
+public class IndividualPurchaseOrderViewFrame extends JFrame {
 
 	private String [] columns = {"Item ID", "Item Name", "Quantity", "Number Damaged", "Subtotal"};
 	private JPanel contentPane, bottom, top;
@@ -51,7 +51,7 @@ public class IndividualPurchaseOrderView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public IndividualPurchaseOrderView( int id, String supplierName, String date, String status, String total) {
+	public IndividualPurchaseOrderViewFrame( int id, String supplierName, String date, String status, String total) {
 		
 		setTitle("Purchase Order");
         setLocationRelativeTo(null);

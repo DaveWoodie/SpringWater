@@ -216,7 +216,7 @@ public class ItemGUI extends JFrame
 		tabbedPane.add("Sales", panelSales);
 		
 		//graph panel
-		JPanel panelGraph = new SalesGraph();
+		JPanel panelGraph = new SalesGraphGUI();
 		panelGraph.setBorder(BorderFactory.createLineBorder(Color.gray));
 		
 		//Options

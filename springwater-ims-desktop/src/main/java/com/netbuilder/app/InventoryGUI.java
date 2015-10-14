@@ -43,11 +43,11 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 	private JTextField searchField;
 	private JButton searchButton;
 	
-	private ArrayList<InventoryItem> items = new ArrayList<InventoryItem>();
+	private ArrayList<InventoryItemFrame> items = new ArrayList<InventoryItemFrame>();
 	
-	private ArrayList<InventoryItem> filteredItems = new ArrayList<InventoryItem>();
+	private ArrayList<InventoryItemFrame> filteredItems = new ArrayList<InventoryItemFrame>();
 	
-	private ArrayList<InventoryItem> currentlyDisplayedItems = items;
+	private ArrayList<InventoryItemFrame> currentlyDisplayedItems = items;
 	
 	private int currentColumns = 1;
 	
@@ -226,7 +226,7 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 			String loc = (String) itemArray[i][3];
 			String imageLoc = imageFolderLocation.concat((String) itemArray[i][4]);
 			
-			InventoryItem invItem = new InventoryItem(this, WIDTH/2, itemID, name, quantity, loc, imageLoc);
+			InventoryItemFrame invItem = new InventoryItemFrame(this, WIDTH/2, itemID, name, quantity, loc, imageLoc);
 			items.add(invItem);
 		}
 		
@@ -238,8 +238,8 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 	
 	private void filterResults(String searchText) {
 		// TODO: fill out filter method to refine inventory display based on search field
-		filteredItems = new ArrayList<InventoryItem>();
-		for(InventoryItem i : items) {
+		filteredItems = new ArrayList<InventoryItemFrame>();
+		for(InventoryItemFrame i : items) {
 			if(i.getName().toUpperCase().contains(searchText.toUpperCase())) {
 				filteredItems.add(i);
 			}

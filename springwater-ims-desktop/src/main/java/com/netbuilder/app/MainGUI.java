@@ -26,26 +26,26 @@ import javax.swing.border.EmptyBorder;
  *
  */
 @SuppressWarnings("serial")
-public class MainFrame extends JPanel implements ComponentListener , ActionListener{
+public class MainGUI extends JPanel implements ComponentListener , ActionListener{
 	
 	JPanel base, panel1, panel2, panel3, panel4, bottom;
 	JTabbedPane pane;
 	JLabel loginDetails;
 	JButton logout, quit;
-	DailyStockReportFrame dSRF;
-	SuppliersFrame sF;
-	PurchaseOrders pO;
+	DailyStockReportGUI dSRF;
+	SuppliersGUI sF;
+	PurchaseOrdersGUI pO;
 	
 	private GUIStart src;
 	
 	/**
 	 * Method to call GUI initialisation
 	 */
-	public MainFrame() {
+	public MainGUI() {
 		initUI();
 	}
 	
-	public MainFrame(GUIStart src) {
+	public MainGUI(GUIStart src) {
 		this.src = src;
 		this.src.addComponentListener(this);
 		initUI();
@@ -71,19 +71,19 @@ public class MainFrame extends JPanel implements ComponentListener , ActionListe
 		
 		panel3 = new JPanel();
 		panel3.setLayout(new BorderLayout());
-		pO = new PurchaseOrders();
+		pO = new PurchaseOrdersGUI();
 		panel3.add(pO.initUI());
 		pane.addTab("Purchase Orders", null, panel3, "Purchase Orders");
 		
 		panel4 = new JPanel();
 		panel4.setLayout(new BorderLayout());
-		sF = new SuppliersFrame();
+		sF = new SuppliersGUI();
 		panel4.add(sF.initUI());
 		pane.addTab("Suppliers", null, panel4, "Suppliers");
 		
 		panel1 = new JPanel();
 		panel1.setLayout(new BorderLayout());
-		dSRF = new DailyStockReportFrame();
+		dSRF = new DailyStockReportGUI();
 		panel1.add(dSRF.getStockReportPanel());
 		pane.addTab("Daily Report", null, panel1, "Daily Report");
 		

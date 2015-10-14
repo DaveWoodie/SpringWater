@@ -28,7 +28,7 @@ import javax.swing.JTextField;
 /**
  * Create a login JFrame
  */
-public class LoginFrame extends JPanel implements ActionListener{
+public class LoginGUI extends JPanel implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -41,14 +41,14 @@ public class LoginFrame extends JPanel implements ActionListener{
 	
 	private GUIStart src;
 	
-	public LoginFrame()
+	public LoginGUI()
 	{
 	//	initUI();
 		createUI();
 	}
 	
 
-	public LoginFrame(GUIStart src)
+	public LoginGUI(GUIStart src)
 	{
 		this.src = src;
 	//	initUI();

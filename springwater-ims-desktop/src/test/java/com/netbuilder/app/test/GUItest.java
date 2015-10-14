@@ -6,6 +6,6 @@ public class GUItest {
 	
 	public static void main(String[] args)
 	{
-		MainFrame m = new MainFrame();
+		MainGUI m = new MainGUI();
 	}
 }

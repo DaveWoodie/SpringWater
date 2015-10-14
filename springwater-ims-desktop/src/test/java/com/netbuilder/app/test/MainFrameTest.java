@@ -1,11 +1,11 @@
 package com.netbuilder.app.test;
 
-import com.netbuilder.app.MainFrame;
+import com.netbuilder.app.MainGUI;
 
 public class MainFrameTest {
 	
 	public static void main(String[] args){
-		MainFrame mF = new MainFrame();
+		MainGUI mF = new MainGUI();
 		mF.setVisible(true);
 	}
 }
