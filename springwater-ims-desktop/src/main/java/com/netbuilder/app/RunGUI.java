@@ -2,6 +2,7 @@ package com.netbuilder.app;
 
 import javax.swing.JFrame;
 
+@SuppressWarnings("serial")
 public class RunGUI extends JFrame
 {	
 	public RunGUI()
