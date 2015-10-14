@@ -11,10 +11,10 @@ public class SalesGraph extends JPanel
 	private void doDrawing(Graphics g)
 	{
 		g.setColor(Color.black);
-		int[] x = {75, 75, 120};
-		int[] y = {75, 450, 50};
-		g.drawLine(x[0], y[0], x[1], y[1]);
-		g.drawLine(500, 450, x[1], y[1]);
+		int[] x = {75, 75};
+		int[] y = {75, 450};
+		g.drawLine(75, 75, 75, 450);
+		g.drawLine(500, 450, 75, 450);
 		
 	}
 	

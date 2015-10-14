@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class LoadData {
 	
+	Object[][] inventoryList;
+	
 	public Object[][] fetchPurchaseOrders() {
 		
 		Object[][] purchaseOrderList = {{1, "10/05/2015", "COMPLETED", "GnomeBuilder"},
