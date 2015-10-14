@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -44,13 +45,14 @@ public class ItemGUI extends JFrame
 {	
 	private int itemID = 1;
 	private BufferedImage productImage;
+	private Image img;
 	private JTabbedPane tabbedPane;
 	private DefaultTableModel tableModel =  new DefaultTableModel();
 	private String[] dayArray, monthArray, yearArray, durationArray;
 	private LoadData Data = new LoadData();
 	private Object[][] Inventory;
 	private Object[][] PO;
-	private JLabel textName, textPrice, textStock, Image;
+	private JLabel textName, textPrice, textStock, labelImage;
 
 	/**
 	 * Constructor that creates an instance of an item GUI for the item ID that is passed
@@ -161,15 +163,17 @@ public class ItemGUI extends JFrame
 				panelSplit.add(panelStock);
 		
 		
-		//Item Image
-		JPanel panelImage = new JPanel(new BorderLayout());
-		getProductImage((String)Inventory[itemID - 1][4]);
-		Image = new JLabel(new ImageIcon(productImage));
-		panelImage.add(Image);
+		//Item labelImage
+		JPanel panellabelImage = new JPanel(new BorderLayout());
+		getProductlabelImage((String)Inventory[itemID - 1][4]);
+		//productlabelImage.
+		Image scaledImg = img.getScaledInstance(250, 250, Image.SCALE_SMOOTH);
+		labelImage = new JLabel(new ImageIcon(scaledImg));
+		panellabelImage.add(labelImage);
 		
 			//add components to top panel
 			panelItem.add(panelSplit);
-			panelItem.add(panelImage);
+			panelItem.add(panellabelImage);
 		
 		
 		//Item Table
@@ -278,15 +282,16 @@ public class ItemGUI extends JFrame
 	}
 	
 	/**
-	 * Method that loads an image from the resources folder by passing the image files name
-	 * @param imageFileName
+	 * Method that loads an labelImage from the resources folder by passing the labelImage files name
+	 * @param labelImageFileName
 	 */
-	public void getProductImage(String imageFileName)
+	public void getProductlabelImage(String labelImageFileName)
 	{
-		//Get Product Image
+		//Get Product labelImage
 		try 
 		{
-			productImage = ImageIO.read(new File("src/main/resources/images/" + imageFileName));
+			productImage = ImageIO.read(new File("src/main/resources/Images/" + labelImageFileName));
+			img = ImageIO.read(new File("src/main/resources/Images/" + labelImageFileName));
 		} 
 		catch (IOException e) 
 		{
