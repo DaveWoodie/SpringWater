@@ -104,6 +104,14 @@ textarea {
     box-shadow: none;
 }
 
+#smallThumb {
+    max-height: 300px;
+    max-width: 300px;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
 #logo {
     width:auto;
     height:25px
