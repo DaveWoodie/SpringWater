@@ -15,13 +15,6 @@
     margin-bottom: 0px;
 }
 
-#featuredHeader {
-    background-color: #329932;
-    border:2px solid black;
-    padding:10px;
-	color: white;
-}
-
 .whiteText {
     color: #ffffff;
     text-align: center;
@@ -103,6 +96,17 @@ textarea {
 #itemThumb img {
     max-height: 300px;
     max-width: 300px;
+}
+
+#carouselThumb {
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+#logo {
+    width:auto;
+    height:25px
 }
 
 /* Callum Cooper */
