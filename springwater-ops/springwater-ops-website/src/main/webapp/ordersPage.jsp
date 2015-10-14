@@ -169,7 +169,7 @@
                         <br>
                         <a href="#">Garden Gome</a>
                         <p>Quantity: 3</p>
-                        <p>£2.99</p>
+                        <p>&#163;2.99</p>
                         <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span> Buy it Again</button>
                     </div>
                     
