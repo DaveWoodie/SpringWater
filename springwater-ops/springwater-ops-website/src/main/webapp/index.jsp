@@ -73,9 +73,7 @@
                 <div class="row">
                         <!-- Left Panel -->
                         <div class="col-lg-4">
-                            <a class="thumbnail" id="carouselThumb" href="#">
-                                <img class="img-responsive" src="resources/img/logo.png" alt="">
-                            </a>
+                            <img class="img-responsive thumbnail" id="carouselThumb" src="resources/img/logo.png" alt="">
                             <div class="panel panel-default">
                                 <div class="panel-body" style="text-align:center">
                                     Welcome to NB Gardens. We are a retailer of high quality garden products who pride ourselves in our high quality gnomes.

@@ -148,8 +148,8 @@
                             <tr>
                                 <td><a class="thumbnail" id="wishThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/jacuzzi03.jpg"></a></td>
                                 <td id="textLine">
-                                    <h2>Product Name</h2>
-                                    <h5>A lovely little pot we found in Central America. We traded three buttons and a chocolate bar wrapper for the recipe.</h5>
+                                    <h2>Jucuzzi 5000</h2>
+                                    <h5>A top of the range jacuzzi with 600 different bubble settings including an equaliser mode that bubbles to your beats.</h5>
                                 </td>
                                 <td id="wishLine"><span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                         <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
@@ -166,8 +166,8 @@
                             <tr>
                                 <td><a class="thumbnail" id="wishThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/hoe01.jpg"></a></td>
                                 <td id="textLine">
-                                    <h2>Product Name</h2>
-                                    <h5>A lovely little pot we found in Central America. We traded three buttons and a chocolate bar wrapper for the recipe.</h5>
+                                    <h2>Small Hoe</h2>
+                                    <h5>A small hoe with a ceramic blade perfect for hoeing and such.</h5>
                                 </td>
                                 <td id="wishLine"><span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                         <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>

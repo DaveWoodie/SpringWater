@@ -5,6 +5,7 @@
 package com.netbuilder.app;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
@@ -36,23 +37,23 @@ import javax.swing.table.TableModel;
 public class SupplierFrame extends JFrame{
 	
 	private String [] columns = {"Product ID", "Product Name"};
-	TableModel productListModel = new DefaultTableModel(columns, 20);
+	TableModel productListModel;
 	JPanel base, main, left, right, bottom, bottomOptions;
-	JLabel rightTest, leftTest;
+	JLabel rightTest, leftLogo;
 	JTable productList;
 	JScrollPane bottomPane;
 	JButton exit;
 	JButton select;
 	int selectedID;
 	
-	public SupplierFrame() {
-		initUI();
+	public SupplierFrame(int supplierID, String supplierName) {
+		initUI(supplierID, supplierName);
 		setVisible(true);
 	}
 	/**
 	 * Method to construct the GUI JFrame for display
 	 */
-	public void initUI() {
+	public void initUI(int supplierID, String supplierName) {
 		
 		//configure base panel
 		base = new JPanel();
@@ -64,26 +65,31 @@ public class SupplierFrame extends JFrame{
 		main.setLayout(new GridLayout(1, 2));
 		
 		//create left panel
+		LoadData lD = new LoadData();
+		Object [][] products = lD.fetchSupplierProducts();
+		Object [] supplierDetails = lD.fetchSupplierDetails();
 		left = new JPanel();
 		left.setLayout(new BoxLayout(left, BoxLayout.Y_AXIS));
 		try{
-			BufferedImage Logo = ImageIO.read(new File("src/test/Resources/logoExample.png"));
-			leftTest = new JLabel(new ImageIcon(Logo));
+			BufferedImage Logo = ImageIO.read(new File("src/main/resources/images/" + supplierDetails[6]));
+			leftLogo = new JLabel(new ImageIcon(Logo));
 		}
 		catch(IOException ex){
 			System.out.println(ex);
 		}
-		left.add(leftTest);
+		left.add(leftLogo);
 		
 		//create right panel
 		right = new JPanel();
 		right.setLayout(new BoxLayout(right, BoxLayout.Y_AXIS));
 		right.setMinimumSize(new Dimension(350,50));
-		rightTest = new JLabel("<html>Supplier ID: 001<br>Supplier Name: NB Supplies<br>Supplier Address: 59<br>NB Road<br><br>Gnomes<br>GN0 M3S");
+		rightTest = new JLabel("<html>  Supplier ID: " + supplierID + "<br>  Supplier Name: " + supplierName + "<br><br><br>  Supplier Address:<br>" + supplierDetails[0] + "<br>  " + supplierDetails[1] + "<br>  " + supplierDetails[2] + "<br>  " + supplierDetails[3] + "<br>  " +  supplierDetails[4]);
+		rightTest.setFont(new Font("Serif", Font.BOLD, 16));
 		right.add(rightTest);
 		
 		//create bottom panel
 		bottom = new JPanel();
+		productListModel = new DefaultTableModel(products, columns);
 		productList = new JTable(productListModel);
 		ListSelectionModel prListSelectionModel =productList.getSelectionModel();
 		prListSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

@@ -10,6 +10,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -40,12 +42,15 @@ import javax.swing.table.DefaultTableModel;
 @SuppressWarnings("serial")
 public class ItemGUI extends JFrame
 {	
-	private int itemID;
-	private Graphics g;
+	private int itemID = 1;
 	private BufferedImage productImage;
 	private JTabbedPane tabbedPane;
 	private DefaultTableModel tableModel =  new DefaultTableModel();
 	private String[] dayArray, monthArray, yearArray, durationArray;
+	private LoadData Data = new LoadData();
+	private Object[][] Inventory;
+	private Object[][] PO;
+	private JLabel textName, textPrice, textStock;
 
 	/**
 	 * Constructor that creates an instance of an item GUI for the item ID that is passed
@@ -60,7 +65,7 @@ public class ItemGUI extends JFrame
 	}
 	
 	/**
-	 * Blank constructor to create an instance of an item GUI that doesn't include ItemID
+	 * Constructor to create an instance of an item GUI that doesn't include ItemID
 	 */
 	public ItemGUI()
 	{
@@ -75,10 +80,13 @@ public class ItemGUI extends JFrame
 	{
 		//configure JFrame
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		
+	
+		Inventory = Data.fetchInventoryList();
+		PO = Data.fetchPurchaseOrders();
 		setUpTableModel();
 		setSalesArrays();
-		getProductImage("logoPlaceholder.png");
+		
+		getProductImage("trial_gnome.png");
 	}
 	
 	/**
@@ -95,7 +103,6 @@ public class ItemGUI extends JFrame
 		predictedSalesPanel();
 		
 		//configure size
-		//setLayout();
 		setSize(new Dimension(650, 600));
 		setMinimumSize(new Dimension(650, 600));
 		setPreferredSize(new Dimension(650, 600));
@@ -123,28 +130,28 @@ public class ItemGUI extends JFrame
 			//ID
 			JPanel panelID = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			JLabel labelID = new JLabel("ID : ");
-			JLabel textID = new JLabel("");
+			JLabel textID = new JLabel(String.valueOf(itemID));
 			panelID.add(labelID);
 			panelID.add(textID);
 			
 			//Name
 			JPanel panelMainName = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			JLabel labelName = new JLabel("Item : ");
-			JLabel textName = new JLabel("");
+			textName = new JLabel("");
 			panelMainName.add(labelName);
 			panelMainName.add(textName);
 			
 			//Price
 			JPanel panelPrice = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			JLabel labelPrice = new JLabel("Price : ");
-			JLabel textPrice = new JLabel("");
+			textPrice = new JLabel("");
 			panelPrice.add(labelPrice);
 			panelPrice.add(textPrice);
 			
 			//Stock
 			JPanel panelStock = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			JLabel labelStock = new JLabel("Stock Level : ");
-			JLabel textStock = new JLabel("");
+			textStock = new JLabel("");
 			panelStock.add(labelStock);
 			panelStock.add(textStock);
 			
@@ -175,7 +182,16 @@ public class ItemGUI extends JFrame
 		scrollTable.setMinimumSize(new Dimension(getWidth(), getHeight()));
 		scrollTable.setViewportView(tableItem);
 		
-		JButton buttonDelivery = new JButton("View Delivery");
+		JButton buttonDelivery = new JButton("View Purchase Order");
+		buttonDelivery.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				
+				
+			}
+		});
 		
 			//add components to scroll pane
 			panelTable.add(scrollTable, BorderLayout.CENTER);
@@ -184,6 +200,10 @@ public class ItemGUI extends JFrame
 		//adding components to item panel
 		panelMain.add(panelItem);
 		panelMain.add(panelTable);
+		
+		searchItemArray(itemID);
+		
+		tableModel.addRow(new Object[]{PO[1][1], PO[1][1], PO[1][2], PO[1][3]});
 	}
 	
 	/**
@@ -239,6 +259,15 @@ public class ItemGUI extends JFrame
 		tabbedPane.add("Predicted Sales", panelPredictedSales);
 	}
 	
+	public void searchItemArray(int itemID)
+	{
+		textName.setText((String) Inventory[itemID][1]);
+		textPrice.setText("£40");
+		textStock.setText(String.valueOf((int) Inventory[itemID][2]));
+		
+		
+	}
+	
 	/**
 	 * Method to set up the table model for display
 	 */
@@ -285,12 +314,10 @@ public class ItemGUI extends JFrame
 		
 		for(int i = 0; i < yearArray.length; i++)
 		{
-			yearArray[i] = Integer.toString(i + 2006);
+			yearArray[i] = Integer.toString(2015 - i);
 		}
 		
 		durationArray = new String[]{"Days", "Weeks", "Months"};
-		
-		
 	}
 	
 	public static void main(String[] args)

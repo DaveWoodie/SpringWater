@@ -39,6 +39,7 @@ public class SuppliersFrame extends JPanel{
 	JButton filter, select, reset, add;
 	JLabel searchLabel, filterLabel;
 	private int selectedOrder;
+	private String selectedName;
 	
 	/**
 	 * Method to create GUI panel for the list of suppliers
@@ -77,6 +78,7 @@ public class SuppliersFrame extends JPanel{
 				int selectedRow = suppliers.getSelectedRow();
 				try {
 					selectedOrder = Integer.parseInt(suppliers.getValueAt(selectedRow, 0).toString());
+					selectedName = (suppliers.getValueAt(selectedRow, 1).toString());
 					//System.out.println("Supplier ID: " + selectedOrder + " selected!");
 				}
 				catch (NullPointerException npe) {
@@ -108,7 +110,7 @@ public class SuppliersFrame extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Take selected supplier from list and load into supplier frame
 				@SuppressWarnings("unused")
-				SupplierFrame sF = new SupplierFrame();
+				SupplierFrame sF = new SupplierFrame(selectedOrder, selectedName);
 			}
 			
 		});

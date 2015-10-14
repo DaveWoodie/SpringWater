@@ -11,7 +11,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -30,11 +29,15 @@ public class DailyStockReportFrame {
 	public DailyStockReportFrame() {
 	}
 
+	/**
+	 * method to get the daily stock report pain
+	 * @return a JPanel containing the stock report
+	 */
 	public JPanel getStockReportPanel() {
-		int numRows = 30;
+//		int numRows = 30;
 		String[] colHeadings = { "Item ID", "Item Name", "Stock Level","Sales Rate" };
 		final JLabel fastSellingLabel = new JLabel("Fast Selling Items");
-		final JLabel LowStockLabel = new JLabel("Low stock Items");
+		final JLabel LowStockLabel = new JLabel("Current Stock");
 		JPanel pane = new JPanel();
 		JPanel lowStockPanel = new JPanel();
 		JPanel fastSellingPanel = new JPanel();
@@ -42,7 +45,7 @@ public class DailyStockReportFrame {
 
 		// Create Table Models
 		LoadData lD = new LoadData();
-		DefaultTableModel lowStockModel = new DefaultTableModel(lD.fetchLowStockList(), colHeadings);
+		DefaultTableModel lowStockModel = new DefaultTableModel(lD.fetchStockList(), colHeadings);
 		//lowStockModel.setColumnIdentifiers(colHeadings);
 		DefaultTableModel fastSellingkModel = new DefaultTableModel(lD.fetchHighSaleList(), colHeadings);
 		//fastSellingkModel.setColumnIdentifiers(colHeadings);
@@ -149,6 +152,8 @@ public class DailyStockReportFrame {
 	}
 	
 	//fills the table with test data
+	@Deprecated
+	@SuppressWarnings("unused")
 	private DefaultTableModel fillTable(int numRows, DefaultTableModel dtm) {
 		for (int i = 0;i<numRows; i++) {
 			dtm.setValueAt(i+1, i, 0);
