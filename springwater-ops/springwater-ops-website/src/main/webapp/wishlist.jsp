@@ -95,7 +95,7 @@
                                 <td><a class="thumbnail" id="wishThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/pot03.jpg"></a></td>
                                 <td id="textLine">
                                     <h2>Brown Plant Pot</h2>
-                                    <h5>A lovely little pot we found in Central America. We traded three buttons and a chocolate bar wrapper for the recipe.</h5>
+                                    <h5>A brown pot, perfect for putting plants inside.</h5>
                                 </td>
                                 <td id="wishLine"><span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                         <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
@@ -112,8 +112,8 @@
                             <tr>
                                 <td><a class="thumbnail" id="wishThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome.jpg"></a></td>
                                 <td id="textLine">
-                                    <h2>Cheeky Gnome</h2>
-                                    <h5>This little gnome has a really cheeky face, you can tell he's been up to no good. Which is why we found him outside Guantanamo Bay.</h5>
+                                    <h2>Happy Gnome</h2>
+                                    <h5>A happy looking gnome with a red hat.</h5>
                                 </td>
                                 <td id="wishLine"><span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                         <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
@@ -131,7 +131,7 @@
                                 <td><a class="thumbnail" id="wishThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/gnome05.jpg"></a></td>
                                 <td id="textLine">
                                     <h2>Three Wise Gnomes</h2>
-                                    <h5>A set of three wise gnomes, based on the three wise monkeys: gold, frankincense and myrrh.</h5>
+                                    <h5>A set of three wise gnomes, based on the three wise monkeys.</h5>
                                 </td>
                                 <td id="wishLine"><span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                         <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
@@ -148,7 +148,7 @@
                             <tr>
                                 <td><a class="thumbnail" id="wishThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/jacuzzi03.jpg"></a></td>
                                 <td id="textLine">
-                                    <h2>Jucuzzi 5000</h2>
+                                    <h2>Jacuzzi 5000</h2>
                                     <h5>A top of the range jacuzzi with 600 different bubble settings including an equaliser mode that bubbles to your beats.</h5>
                                 </td>
                                 <td id="wishLine"><span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
@@ -167,7 +167,7 @@
                                 <td><a class="thumbnail" id="wishThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/hoe01.jpg"></a></td>
                                 <td id="textLine">
                                     <h2>Small Hoe</h2>
-                                    <h5>A small hoe with a ceramic blade perfect for hoeing and such.</h5>
+                                    <h5>A small hoe with a ceramic blade.</h5>
                                 </td>
                                 <td id="wishLine"><span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                         <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
