@@ -99,10 +99,10 @@
 
                                         <!-- Item Row -->
                                         <tr>
-                                            <td>[ITEM NAME]</td>
-                                            <td>&pound;0.00</td>
-                                            <td>1</td>
-                                            <td>&pound;0.00</td>
+                                            <td>Happy Gnome</td>
+                                            <td>&pound;2.99</td>
+                                            <td>3</td>
+                                            <td>&pound;8.97</td>
                                             <td>
                                                 <button class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                                                 <button class="btn btn-info"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
@@ -110,44 +110,6 @@
                                             </td>
                                         </tr>
 
-                                        <!-- Item Row -->
-                                        <tr>
-                                            <td>[ITEM NAME]</td>
-                                            <td>&pound;0.00</td>
-                                            <td>1</td>
-                                            <td>&pound;0.00</td>
-                                            <td>
-                                                <button class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-                                                <button class="btn btn-info"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
-                                                <button class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                                            </td>
-                                        </tr>
-
-                                        <!-- Item Row -->
-                                        <tr>
-                                            <td>[ITEM NAME]</td>
-                                            <td>&pound;0.00</td>
-                                            <td>1</td>
-                                            <td>&pound;0.00</td>
-                                            <td>
-                                                <button class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-                                                <button class="btn btn-info"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
-                                                <button class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                                            </td>
-                                        </tr>
-
-                                        <!-- Item Row -->
-                                        <tr>
-                                            <td>[ITEM NAME]</td>
-                                            <td>&pound;0.00</td>
-                                            <td>1</td>
-                                            <td>&pound;0.00</td>
-                                            <td>
-                                                <button class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-                                                <button class="btn btn-info"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
-                                                <button class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                                            </td>
-                                        </tr>
                                     </tbody>
                                 </table>
 
@@ -170,19 +132,19 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-sm-6 panel-body" id="panelLeft">Subtotal:</div>
-                                        <div class="col-sm-6 panel-body">&pound;0.00</div>
+                                        <div class="col-sm-6 panel-body">&pound;8.97</div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6 panel-body" id="panelLeft">VAT (20%):</div>
-                                        <div class="col-sm-6 panel-body">&pound;0.00</div>
+                                        <div class="col-sm-6 panel-body">&pound;1.79</div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6 panel-body" id="panelLeft">Postage:</div>
-                                        <div class="col-sm-6 panel-body">&pound;0.00</div>
+                                        <div class="col-sm-6 panel-body">&pound;3.99</div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6 panel-body" id="panelLeft">Total Price:</div>
-                                        <div class="col-sm-6 panel-body">&pound;0.00</div>
+                                        <div class="col-sm-6 panel-body">&pound;14.75</div>
                                     </div>
                                 </div>
                             </div>
@@ -210,7 +172,7 @@
 
                             <!-- Accept Button -->
                             <div class="panel" style="background:none" id="paymentDiv">
-                                <a href="http://www.paypal.com" class="btn btn-block btn-primary"><img src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom-white.svg" style="width:40%;height:auto"></a>
+                                <a href="orderConfirm.jsp" class="btn btn-block btn-primary"><img src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom-white.svg" style="width:40%;height:auto"></a>
                             </div>
 
                         </div>
