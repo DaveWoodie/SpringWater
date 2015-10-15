@@ -166,8 +166,8 @@
                             <tr>
                                 <td><a class="thumbnail" id="wishThumb" href="itemPage.jsp"><img class="img-responsive" src="resources/img/hoe01.jpg"></a></td>
                                 <td id="textLine">
-                                    <h2>Small Hoe</h2>
-                                    <h5>A small hoe with a ceramic blade.</h5>
+                                    <h2>Garden Tool</h2>
+                                    <h5>A small garden tool with a ceramic blade.</h5>
                                 </td>
                                 <td id="wishLine"><span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                         <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
