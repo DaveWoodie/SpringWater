@@ -5,6 +5,7 @@
 
 package com.netbuilder.app;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
@@ -18,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -36,11 +38,14 @@ public class DailyStockReportGUI {
 	public JPanel getStockReportPanel() {
 //		int numRows = 30;
 		String[] colHeadings = { "Item ID", "Item Name", "Stock Level","Sales Rate" };
-		final JLabel fastSellingLabel = new JLabel("Fast Selling Items");
-		final JLabel LowStockLabel = new JLabel("Current Stock");
+		final JLabel fastSellingLabel = new JLabel("Fast Selling Items", SwingConstants.CENTER);
+		final JLabel LowStockLabel = new JLabel("Current Stock", SwingConstants.CENTER);
 		JPanel pane = new JPanel();
 		JPanel lowStockPanel = new JPanel();
 		JPanel fastSellingPanel = new JPanel();
+		JPanel topPanel = new JPanel();
+		JPanel bottomPanel = new JPanel();
+		JPanel mainPane = new JPanel();
 		GridLayout stockReportLayout = new GridLayout(1, 2);
 
 		// Create Table Models
@@ -132,8 +137,8 @@ public class DailyStockReportGUI {
 		fastSellingPanel.setLayout(fastSellingBoxLayout);
 
 		// Formatting
-		fastSellingLabel.setForeground(Color.GREEN);
-		LowStockLabel.setForeground(Color.RED);
+//		fastSellingLabel.setForeground(Color.GREEN);
+//		LowStockLabel.setForeground(Color.RED);
 //		fastSellingPanel.setBackground(Color.WHITE);
 //		lowStockPanel.setBackground(Color.WHITE);
 //		fastSellingTable.getTableHeader().setBackground(Color.WHITE);
@@ -144,24 +149,34 @@ public class DailyStockReportGUI {
 		// Add components to low stock panel
 //		lowStockTable.setPreferredScrollableViewportSize(lowStockTable.getPreferredSize());
 //		lowStockTable.setFillsViewportHeight(true);
-		LowStockLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		lowStockPanel.add(LowStockLabel);
+		LowStockLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+//		lowStockPanel.add(LowStockLabel);
 		lowStockPanel.add(new JScrollPane(lowStockTable));
-		lowStockPanel.add(lowStockSelect);
+//		lowStockPanel.add(lowStockSelect);
 
 		// Add components to fast selling panel
 //		fastSellingTable.setPreferredScrollableViewportSize(fastSellingTable.getPreferredSize());
 //		fastSellingTable.setFillsViewportHeight(true);
-		fastSellingLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		fastSellingPanel.add(fastSellingLabel);
+		fastSellingLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+//		fastSellingPanel.add(fastSellingLabel);
 		fastSellingPanel.add(new JScrollPane(fastSellingTable));
-		fastSellingPanel.add(fastSellingSelect);
+//		fastSellingPanel.add(fastSellingSelect);
 
 		// set up and add pane
 		pane.setLayout(stockReportLayout);
 		pane.add(lowStockPanel);
 		pane.add(fastSellingPanel);
-		return pane;
+		topPanel.setLayout(stockReportLayout);
+		topPanel.add(LowStockLabel);
+		topPanel.add(fastSellingLabel);
+		bottomPanel.setLayout(stockReportLayout);
+		bottomPanel.add(lowStockSelect);
+		bottomPanel.add(fastSellingSelect);
+		mainPane.setLayout(new BorderLayout());
+		mainPane.add(topPanel, BorderLayout.NORTH);
+		mainPane.add(pane, BorderLayout.CENTER);
+		mainPane.add(bottomPanel, BorderLayout.SOUTH);
+		return mainPane;
 	}
 	
 	//fills the table with test data
