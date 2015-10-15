@@ -39,6 +39,8 @@ public class LoginGUI extends JPanel implements ActionListener{
 	private JButton buttonLogin;
 	private Color colour;
 	
+	private IconLoader iconLoader = new IconLoader();
+	
 	private GUIStart src;
 	
 	public LoginGUI()
@@ -89,6 +91,7 @@ public class LoginGUI extends JPanel implements ActionListener{
 		
 		try
 		{
+			//Icon icon = iconLoader.createImageIcon(path, imageWidth, imageHeight)
 			BufferedImage Logo = ImageIO.read(new File("src/main/Resources/logo.png"));
 			JLabel labelLogo = new JLabel(new ImageIcon(Logo));
 			panelLogo.add(labelLogo);
