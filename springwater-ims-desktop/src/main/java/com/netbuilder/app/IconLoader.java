@@ -35,7 +35,8 @@ public class IconLoader {
     		img = ImageIO.read(new File(path));
     	} catch (Exception e) {
     		System.out.println("***ERROR: Couldn't load image at: '"+path+"' in IconLoader class");
-    		throw new Error(e);
+    		// throw new Error(e);
+    		return null;
     	}
     	return img;
 	}
