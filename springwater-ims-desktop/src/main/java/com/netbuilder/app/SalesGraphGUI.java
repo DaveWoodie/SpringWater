@@ -1,9 +1,16 @@
+/**
+ * @author Tom Stacey, Freshwater
+ * @date 16/10/2015
+ */
+
 package com.netbuilder.app;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import org.jfree.chart.ChartFactory;
@@ -14,40 +21,41 @@ import org.jfree.chart.axis.CategoryLabelPositions;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
+import com.netbuilder.app.GraphData;
 
+/**
+ *Sales Graph Panel showing a  
+ */
 @SuppressWarnings("serial")
 public class SalesGraphGUI extends JPanel
 {
 	private DefaultCategoryDataset dataset;
+	private GraphData graphData;
+	private ArrayList<Object[]> dataList;
 
-	public SalesGraphGUI() {
+	public SalesGraphGUI() 
+	{
 		makeDataset();
 		drawChart();
 		repaint();
 		revalidate();
 	}
 	
-	private void makeDataset() {
+	public void makeDataset() 
+	{
+		graphData = new GraphData();
+		dataList = graphData.getDataArray();
+		
 		dataset = new DefaultCategoryDataset();
-		dataset.addValue(20.0, "sales","05/07/2015");
-		dataset.addValue(23.0, "sales","12/07/2015");
-		dataset.addValue(24.0, "sales","19/07/2015");
-		dataset.addValue(7.0, "sales","26/07/2015");
-		dataset.addValue(25.0, "sales","02/08/2015");
-		dataset.addValue(24.0, "sales","09/08/2015");
-		dataset.addValue(25.0, "sales","16/08/2015");
-		dataset.addValue(27.0, "sales","23/08/2015");
-		dataset.addValue(28.0, "sales","30/08/2015");
-		dataset.addValue(35.0, "sales","06/09/2015");
-		dataset.addValue(34.0, "sales","13/09/2015");
-		dataset.addValue(36.0, "sales","20/09/2015");
-		dataset.addValue(37.0, "sales","27/09/2015");
-		dataset.addValue(39.0, "sales","04/10/2015");
-		dataset.addValue(38.0, "sales","11/11/2015");
+		
+		for(int i = 0; i < dataList.size(); i++)
+		{	
+			dataset.addValue((double) dataList.get(i)[0], (Comparable<?>) dataList.get(i)[1], (Comparable<?>) dataList.get(i)[2]);
+		}
 	}
 	
-	private void drawChart() {
-
+	private void drawChart() 
+	{
 	      JFreeChart lineChart = ChartFactory.createLineChart(
 	         "Sales",
 	         "Week","Number of Items sold",
@@ -61,8 +69,18 @@ public class SalesGraphGUI extends JPanel
 	      ChartPanel chartPanel = new ChartPanel( lineChart );
 	      chartPanel.setPreferredSize( new Dimension( 600, 400 ) );
 	      this.add(chartPanel);
-	
 	}
 	
-	
+	public static void main(String[] args)
+	{
+		JFrame j = new JFrame();
+		SalesGraphGUI sg = new SalesGraphGUI();
+		
+		j.setVisible(true);
+		j.add(sg);
+		j.setSize(650, 450);
+		j.setLocationRelativeTo(null);
+	}
 }
+
+
