@@ -3,12 +3,17 @@ package com.netbuilder.controller;
 import java.util.ArrayList;
 import java.util.Date;
 
-import com.netbuilder.app.PurchaseOrdersGUI;
+import com.netbuilder.app.IndividualPurchaseOrderViewFrame;
+
 
 public class PurchaseOrderController {
-	
+//	
 //	private PurchaseOrdersGUI purchaseOrderGUI;
 //	private PurchaseOrder purchaseOrder;
+//	private Employee employee;
+//	private PurchaseOrderStatus purchaseOrderStatus;
+//	private Supplier supplier;
+//	private User user
 //	
 //	public PurchaseOrderController(IndividualPurchaseOrderViewFrame iPOVF, PurchaseOrder pO) {
 //		
@@ -28,16 +33,20 @@ public class PurchaseOrderController {
 //		return purchaseOrder.getDateExpected();
 //	}
 //
-//	public Employee getEmployee() {
-//		return purchaseOrder.getEmployee();
+//	public int getEmployee() {
+//		employee = purchaseOrder.getEmployee();
+//		user = employee.getUser();
+//		return user.getUserID();
 //	}
 //
-//	public PurchaseOrderStatus getPurchaseOrderStatus() {
-//		return purchaseOrder.getPurchaseOrderStatus();
+//	public String getPurchaseOrderStatus() {
+//		purchaseOrderStatus = purchaseOrder.getPurchaseOrderStatus();
+//		return purchaseOrderStatus.getPurchOrderStatus();
 //	}
 //
-//	public Supplier getSupplier() {
-//		return purchaseOrder.getSupplier();
+//	public String getSupplier() {
+//		supplier = purchaseOrder.getSupplier();
+//		return supplier.getSupplierName();
 //	}
 //	
 //	public void setDateExpected(Date dE) {
