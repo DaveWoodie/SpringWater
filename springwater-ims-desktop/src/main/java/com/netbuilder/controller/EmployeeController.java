@@ -1,32 +1,25 @@
 package com.netbuilder.controller;
 
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.netbuilder.entities.Employee;
+import com.netbuilder.entityrepository.EmployeeRepository;
+
 public class EmployeeController 
 {
-	/*private Employee employee;
+	@Autowired
+	EmployeeRepository employeeRepo;
 	
-	public EmployeeController(Employee employee)
-	{
-		this.employee = employee;
-	}
+	private ArrayList<Employee> employeeList = new ArrayList<Employee>();
 	
-	public int getEmployeeID()
+	public void getEmployees()
 	{
-		return employee.getID();
+		employeeList = (ArrayList<Employee>) employeeRepo.findAll();
+		for(Employee employee : employeeList)
+		{
+			System.out.println(employee.getUser());
+		}
 	}
-	
-	public String getEmployeeName()
-	{
-		return employee.getName();
-	}
-	
-	public int getRoleID()
-	{
-		return employee.getRole().getID();
-	}
-	
-	public String getRoleName()
-	{
-		return employee.getRole().getName();
-	}
-	*/
 }
