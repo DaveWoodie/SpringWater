@@ -19,6 +19,7 @@ public class Supplier {
 	private String telephone;
 	private String email;
 	private Address address;
+	private int averageDeliveryTime;
 	
 	/**
 	 * Blank constructor to create an empty Supplier object. USed in testing only
@@ -53,6 +54,10 @@ public class Supplier {
 		this.address = address;
 	}
 	
+	public void setAverageDeliveryTime(int time) {
+		this.averageDeliveryTime = time;
+	}
+	
 	public int getSupplierID() {
 		return this.supplierID;
 	}
@@ -71,5 +76,9 @@ public class Supplier {
 	
 	public Address getAddress() {
 		return this.address;
+	}
+	
+	public int getAverageDeliveryTime() {
+		return this.averageDeliveryTime;
 	}
 }
