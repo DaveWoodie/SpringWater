@@ -9,7 +9,7 @@ import javax.jms.Session;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 
-public class JMSQueueSender 
+public class JmsMessageSender 
 {
 	private JmsTemplate jmsTemplate;
 	private Queue queue;
@@ -24,7 +24,7 @@ public class JMSQueueSender
 		this.queue = queue;
 	}
 	
-	public void simpleSend()
+	public void Send()
 	{
 		this.jmsTemplate.send(this.queue, new MessageCreator()
 		{
