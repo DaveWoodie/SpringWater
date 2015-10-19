@@ -37,7 +37,13 @@ public class GraphData
 		graphData.add(new Object[]{37.0, "sales","27/09/2015"});
 		graphData.add(new Object[]{39.0, "sales","04/10/2015"});
 		graphData.add(new Object[]{38.0, "sales","11/11/2015"});
-	    graphData.add(new Object[]{12.0, "sales","09/04/2015"});	
+	    graphData.add(new Object[]{12.0, "sales","09/04/2015"});
+	    graphData.add(new Object[]{34.0, "sales","13/09/2014"});				
+		graphData.add(new Object[]{36.0, "sales","20/09/2014"});
+		graphData.add(new Object[]{37.0, "sales","27/09/2014"});
+		graphData.add(new Object[]{39.0, "sales","04/10/2014"});
+		graphData.add(new Object[]{38.0, "sales","11/11/2014"});
+	    graphData.add(new Object[]{12.0, "sales","09/04/2014"});
 	}
 	
 	public void sortArray()

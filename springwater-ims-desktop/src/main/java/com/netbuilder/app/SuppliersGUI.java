@@ -125,7 +125,7 @@ public class SuppliersGUI extends JPanel{
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO Reset search filters and reload full list of results
-				
+
 			}
 			
 		});
@@ -135,6 +135,8 @@ public class SuppliersGUI extends JPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				//TODO add new supplier details
+				AddSupplierFrame asf = new AddSupplierFrame();
+				asf.setVisible(true);
 			}
 			
 		});
