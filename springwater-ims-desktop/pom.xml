@@ -97,7 +97,6 @@
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
-			<version>8.0.27</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sun.el</groupId>
@@ -108,6 +107,11 @@
 			<groupId>org.jfree</groupId>
 			<artifactId>jfreechart</artifactId>
 			<version>1.0.19</version>
+		</dependency>
+		<dependency>
+			<groupId>com.netbuilder</groupId>
+  			<artifactId>common</artifactId>
+  			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 

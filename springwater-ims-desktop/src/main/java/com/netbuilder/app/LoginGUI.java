@@ -25,6 +25,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import com.netbuilder.controller.ItemController;
+
 /**
  * Create a login JFrame
  */
@@ -37,6 +39,7 @@ public class LoginGUI extends JPanel implements ActionListener{
 	private JTextField textUsername;
 	private JPasswordField textPassword;
 	private JButton buttonLogin;
+	private JButton examplebutton;
 	private Color colour;
 	
 	private IconLoader iconLoader = new IconLoader();
@@ -131,6 +134,17 @@ public class LoginGUI extends JPanel implements ActionListener{
 		buttonLogin = new JButton("Login");
 		buttonLogin.addActionListener(this);
 		panelLogin.add(buttonLogin);
+		
+		
+		examplebutton = new JButton("Login");
+		examplebutton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ItemController itemController = new ItemController();
+				itemController.getItems();
+			}
+		});
+		panelLogin.add(examplebutton);
 		
 		//add components to container panel
 		panelBackground.add(panelLogo);
