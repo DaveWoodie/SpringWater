@@ -5,9 +5,7 @@
 
 package com.netbuilder.app;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -20,11 +18,10 @@ import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.CategoryLabelPositions;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
-
 import com.netbuilder.app.GraphData;
 
 /**
- *Sales Graph Panel showing a  
+ *Sales Graph Panel showing the specified products sales
  */
 @SuppressWarnings("serial")
 public class SalesGraphGUI extends JPanel
@@ -57,17 +54,20 @@ public class SalesGraphGUI extends JPanel
 	private void drawChart() 
 	{
 	      JFreeChart lineChart = ChartFactory.createLineChart(
-	         "Sales",
-	         "Week","Number of Items sold",
-	         dataset,
+	         "Sales",						 //Chart title
+	         "Week",					     //X Label
+	         "Number of Items sold",		 //Y Label
+	         dataset,						 //Data
 	         PlotOrientation.VERTICAL,
-	         true,true,false);
+	         true,							 //Include Legend
+	         true,false);
+	      
 	      
 	      CategoryAxis axis = lineChart.getCategoryPlot().getDomainAxis();
 	      axis.setCategoryLabelPositions(CategoryLabelPositions.UP_45);
 
-	      ChartPanel chartPanel = new ChartPanel( lineChart );
-	      chartPanel.setPreferredSize( new Dimension( 600, 400 ) );
+	      ChartPanel chartPanel = new ChartPanel(lineChart);
+	      chartPanel.setPreferredSize(new Dimension(600, 400));
 	      this.add(chartPanel);
 	}
 	
