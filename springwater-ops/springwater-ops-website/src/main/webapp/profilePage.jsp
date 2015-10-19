@@ -141,12 +141,48 @@
                         <!-- Profile stuff -->
                         <div class="col-sm-8">
                             <div class="well">
-                                <p>CustomerID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp001</p>
-                                <p>Username: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspgnomefan23</p>
-                                <p>Email: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspgardenfanatic@gmail.com</p>
-                                <p>Date of Birth: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp08/10/90</p>
-                                <p>Phone Number: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp07523476525</p>
-                                <p>Current Credit: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp0.00 GBP</p>
+                                <div class="container">
+                                    <div class="col-lg-2">
+                                        <div class="panel-body">
+                                            CustomerID:
+                                        </div>
+                                        <div class="panel-body">
+                                            Username:
+                                        </div>
+                                        <div class="panel-body">
+                                            Email:
+                                        </div>
+                                        <div class="panel-body">
+                                            Date of Birth:
+                                        </div>
+                                        <div class="panel-body">
+                                            Phone Number:
+                                        </div>
+                                        <div class="panel-body">
+                                            Customer Credit:
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="panel-body">
+                                            123
+                                        </div>
+                                        <div class="panel-body">
+                                            gn0me0
+                                        </div>
+                                        <div class="panel-body">
+                                            ilovegnomes@gnomemail.com
+                                        </div>
+                                        <div class="panel-body">
+                                            01/01/2000
+                                        </div>
+                                        <div class="panel-body">
+                                            01234 567 891
+                                        </div>
+                                        <div class="panel-body">
+                                            &pound;100.00
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </ul>

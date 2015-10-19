@@ -247,9 +247,6 @@ public class ItemGUI extends JFrame
 		//add components to sales panel
 		panelSales.add(panelGraph, BorderLayout.CENTER);
 		panelSales.add(panelOptions, BorderLayout.NORTH);
-		
-		//http://mathbits.com/MathBits/Java/Graphics/linegraphonly.htm
-		
 	}
 	
 	/**
