@@ -83,7 +83,7 @@ public class SupplierFrame extends JFrame{
 		right = new JPanel();
 		right.setLayout(new BoxLayout(right, BoxLayout.Y_AXIS));
 		right.setMinimumSize(new Dimension(350,50));
-		rightTest = new JLabel("<html>  Supplier ID: " + supplierID + "<br>  Supplier Name: " + supplierName + "<br><br><br>  Supplier Address:<br>" + supplierDetails[0] + "<br>  " + supplierDetails[1] + "<br>  " + supplierDetails[2] + "<br>  " + supplierDetails[3] + "<br>  " +  supplierDetails[4]);
+		rightTest = new JLabel("<html>  Supplier ID: " + supplierID + "<br>  Supplier Name: " + supplierName + "<br><br><br>  Supplier Address:<br>" + supplierDetails[0] + "<br>  " + supplierDetails[1] + "<br>  " + supplierDetails[2] + "<br>  " + supplierDetails[3] + "<br>  " +  supplierDetails[4] + "<br>  " +  supplierDetails[5] + "<br><br>  Average Delivery Time: " + supplierDetails[7] + " Days");
 		rightTest.setFont(new Font("Serif", Font.BOLD, 16));
 		right.add(rightTest);
 		

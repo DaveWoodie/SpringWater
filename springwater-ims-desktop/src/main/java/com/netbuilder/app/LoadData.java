@@ -104,7 +104,7 @@ public class LoadData {
 	
 	public Object[] fetchSupplierDetails() {
 		
-		Object [] supplierDetails = {59, "NB Road", "", "Gnome City", "Gnomes", "GN0 M3S", "placeholder.png"};
+		Object [] supplierDetails = {59, "NB Road", "", "Gnome City", "Gnomes", "GN0 M3S", "placeholder.png", 3};
 		
 		return supplierDetails;
 	}
