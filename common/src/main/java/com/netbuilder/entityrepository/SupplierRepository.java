@@ -10,6 +10,12 @@ import com.netbuilder.entities.Supplier;
  * @author tstacey
  * @date 07/10/2015
  */
+
+/**#
+ * Modified to change the naming convention slightly.
+ * @author dwoodward
+ *
+ */
 public interface SupplierRepository extends CrudRepository<Supplier, Integer> {
-	public Supplier findOneByName(String supplierName);
+	public Supplier findSupplierByName(String supplierName);
 }

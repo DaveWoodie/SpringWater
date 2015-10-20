@@ -16,4 +16,5 @@ public interface ItemRepository extends MongoRepository<Item, String> {
 	public List<Item> findByItemName (String name);
 	public List<Item> findByDiscontinued (boolean discontinued);
 	public List<Item> findByPorousware (boolean pW);
+	public List<Item> findBySalesRate (double a);
 }
