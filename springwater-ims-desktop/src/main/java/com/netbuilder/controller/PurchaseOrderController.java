@@ -3,61 +3,30 @@ package com.netbuilder.controller;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.netbuilder.app.IndividualPurchaseOrderViewFrame;
+import com.netbuilder.entities.Item;
+import com.netbuilder.entities.PurchaseOrder;
+import com.netbuilder.entityrepository.PurchaseOrderRepository;
 
 
 public class PurchaseOrderController {
-//	
-//	private PurchaseOrdersGUI purchaseOrderGUI;
-//	private PurchaseOrder purchaseOrder;
-//	private Employee employee;
-//	private PurchaseOrderStatus purchaseOrderStatus;
-//	private Supplier supplier;
-//	private User user
-//	
-//	public PurchaseOrderController(IndividualPurchaseOrderViewFrame iPOVF, PurchaseOrder pO) {
-//		
-//		purchaseOrder = pO;
-//		purchaseOrderGUI = iPOVF;
+	
+	private PurchaseOrder purchaseOrder;
+	@Autowired
+	PurchaseOrderRepository purchaseItemRepository;
+	ArrayList<PurchaseOrder> purchaseOrderList;
+	
+//	public PurchaseOrder getPurchaseOrder(int id) {
+//		purchaseOrder = purchaseItemRepository.findbyPurchaseOrderID(id);
+//		return purchaseOrder;
 //	}
 //	
-//	public int getIDPurchaseOrder() {
-//		return purchaseOrder.getIDPurchaseOrder();
+//	public ArrayList<PurchaseOrder> getPurchaseOrderList() {
+//		purchaseOrderList = (ArrayList<PurchaseOrder>) purchaseItemRepository.findAll();
+//		return purchaseOrderList;
 //	}
-//
-//	public Date getDatePlaced() {
-//		return purchaseOrder.getDatePlaced();
-//	}
-//
-//	public Date getDateExpected() {
-//		return purchaseOrder.getDateExpected();
-//	}
-//
-//	public int getEmployee() {
-//		employee = purchaseOrder.getEmployee();
-//		user = employee.getUser();
-//		return user.getUserID();
-//	}
-//
-//	public String getPurchaseOrderStatus() {
-//		purchaseOrderStatus = purchaseOrder.getPurchaseOrderStatus();
-//		return purchaseOrderStatus.getPurchOrderStatus();
-//	}
-//
-//	public String getSupplier() {
-//		supplier = purchaseOrder.getSupplier();
-//		return supplier.getSupplierName();
-//	}
-//	
-//	public void setDateExpected(Date dE) {
-//		purchaseOrder.setDateExpected(dE);
-//	}
-//
-//	public void setEmployee(Employee e) {
-//		purchaseOrder.setEmployee(e);
-//	}
-//
-//	public void setPurchaseOrderStatus(PurchaseOrderStatus pOS) {
-//		purchaseOrder.setPurchaseOrderStatus(pOS);
-//	}
+	
+	
 }
