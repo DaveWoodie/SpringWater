@@ -130,47 +130,30 @@ public class InventoryItemFrame extends JPanel implements MouseListener {
 		this.repaint();
 		this.revalidate();
 	}
-
+	
 	public int getID() {
 		return productID;
 	}
-	
 	public String getName() {
 		return productName;
 	}
-
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		ItemGUI itemGUI = new ItemGUI(this.productID);
 	}
-
-
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
-
-
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
-
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		setBackground(hoverBackgroundColor);
-		
 	}
-
-
 	@Override
 	public void mouseExited(MouseEvent e) {
 		setBackground(backgroundColor);
-		
 	}
-
-
 }
