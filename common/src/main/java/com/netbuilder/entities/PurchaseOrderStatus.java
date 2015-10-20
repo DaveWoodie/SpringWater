@@ -28,7 +28,7 @@ public class PurchaseOrderStatus {
 	 * @MethodAuthor tstacey
 	 * @date 08/10/2015
 	 */
-	public PurchaseOrderStatus(String status) {
+	public PurchaseOrderStatus(int id, String status) {
 		this.status = status;
 	}
 	
