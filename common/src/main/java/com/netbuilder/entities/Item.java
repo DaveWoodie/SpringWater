@@ -120,7 +120,7 @@ public class Item {
      * Method to get the sales rate for this period
      * @return Returns int data type
      */
-    public int getSalesRate() {
+    public double getSalesRate() {
 		return salesRate;
 	}
     
@@ -128,7 +128,7 @@ public class Item {
      * Method to get the sales rate for the last period
      * @return Returns int data type
      */
-    public int getpSalesRate() {
+    public double getpSalesRate() {
 		return pSalesRate;
 	}
     

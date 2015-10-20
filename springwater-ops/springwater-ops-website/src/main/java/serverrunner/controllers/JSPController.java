@@ -12,8 +12,8 @@ public class JSPController {
 	        return "index.jsp";
 	  }
 	 
-//	 @RequestMapping("/home")
-//	    public String home(ModelAndView modelAndView) {
-//	        return "index.jsp";
-//	  }
+	 @RequestMapping("/home")
+	    public String home(ModelAndView modelAndView) {
+	        return "index.jsp";
+	  }
 }
