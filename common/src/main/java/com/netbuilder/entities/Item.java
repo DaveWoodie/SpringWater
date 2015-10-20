@@ -20,8 +20,8 @@ public class Item {
 	private String imageLocation;
 	private boolean discontinued;
 	//Might need these rates to be float
-	private int salesRate;
-	private int pSalesRate;
+	private double salesRate;
+	private double pSalesRate;
 	private boolean isPorousware;
 	
 	private HashMap<String, String> attributes;
@@ -29,7 +29,7 @@ public class Item {
 	private Supplier idSupplier;
 	
 	/**
-	 * Constructor to build an instance of Item, not null variables are itemName, price, stock, imageLocation, discontinued and isPorouswares
+	 * Constructor to build an instance of Item, not null variables are itemName, price, stock, imageLocation, discontinued and isPorousware
 	 * 
 	 * @author chrisjwwalker
 	 * @param itemName : String; name of the item
