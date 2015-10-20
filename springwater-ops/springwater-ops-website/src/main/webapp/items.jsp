@@ -404,6 +404,9 @@
                     <div id="paymentDiv">
                         <p><span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span> We only accept <a href="http://www.paypal.com/"><img src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom-white.svg" style="width:25%;height:auto"></a> as a payment option</p>
                     </div>
+                    <div id="paymentDiv">
+                    		<p><span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span> We operate on a 'buy now, pay if satisfied' policy</p>
+                    	</div>
                 </div>
                 <div class="col-md-3"></div>
             </div>

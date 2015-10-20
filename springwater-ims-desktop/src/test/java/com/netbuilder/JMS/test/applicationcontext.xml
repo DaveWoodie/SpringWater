@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+   	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+   	   xmlns:jee="http://www.springframework.org/schema/jee" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       					   http://www.springframework.org/schema/beans/spring-beans-2.0.xsd 
+        				   http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.0.xsd"> 
+        				   
+       <bean id="JmsMessageSender" 
+       		 class="com.netbuilder.JMS.test.JmsMessageSender">
+       		 <property name="jmsTemplate">
+       		 	<ref bean="jmsTemplate"/>
+       		 </property>
+       </bean>
+       
+       <bean id="JmsReciever" 
+       		 class="com.netbuilder.JMS.test.JmsReceiver">
+       		 <property name="jmsTemplate">
+       		 	<ref bean="jmsTemplate"/>
+       		 </property>
+       </bean>
+       
+       <bean id="jmsTemplate"
+       		class="org.springframework.jms.core.jmsTemplate">
+       		<property name="connectionFactory">
+       			<ref bean="jmsQueueConnectionfactory"/>
+       		</property>
+       		<property name="defaultDestination">
+       			<ref bean="destination"/>
+       		</property>
+       	</bean>
+       
+       <bean id="jmsContainer"
+       		 class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+       		 <property name="connectionFactory" ref="connectionfactory"/>
+       		 <property name="destination" ref="queueDestination"/>
+       		 <property name="messageListener" ref="messageListener"/>
+       </bean>
+</beans>
