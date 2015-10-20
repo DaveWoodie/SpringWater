@@ -11,7 +11,7 @@
     <link href="resources/collapse.css" rel="stylesheet">
     
     <!-- Load Javascript files -->
-    <script src="avatars.js" type="text/javascript"></script>
+    <script src="resources/js/avatars.js" type="text/javascript"></script>
 
 </head>
 

@@ -9,10 +9,10 @@
     <link href="resources/Bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="resources/main.css" rel="stylesheet">
     <link href="resources/collapse.css" rel="stylesheet">
+    
 </head>
 
 <body>
-    
     <!-- Navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -152,213 +152,45 @@
                     <h2 id="productTitle">Category / Search Results</h2>
                 </div>
             
-                <!-- Item -->
-                <div class="col-lg-3 col-md-3 col-xs-4 thumb">
-                    <a class="thumbnail" href="itemPage.jsp">
-                    <img class="img-responsive" src="resources/img/gnome.jpg" id="itemThumb" alt="">
-                    </a>
-                    <h4 style="text-align:center" id="supersubtitle">Product Name</h4>
-                    <h4 style="text-align:center" id="supersubtitle">&pound;0.00</h4>
-                    <p style="text-align:center">
-                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                    </p>
-                </div>
-                
-                <!-- Item -->
-                <div class="col-lg-3 col-md-3 col-xs-4 thumb">
-                    <a class="thumbnail" href="itemPage.jsp">
-                    <img class="img-responsive" src="resources/img/gnome02.jpg" id="itemThumb" alt="">
-                    </a>
-                    <h4 style="text-align:center" id="supersubtitle">Product Name</h4>
-                    <h4 style="text-align:center" id="supersubtitle">&pound;0.00</h4>
-                    <p style="text-align:center">
-                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                    </p>
-                </div>
-                
-                <!-- Item -->
-                <div class="col-lg-3 col-md-3 col-xs-4 thumb">
-                    <a class="thumbnail" href="itemPage.jsp">
-                    <img class="img-responsive" src="resources/img/gnome03.jpg" id="itemThumb" alt="">
-                    </a>
-                    <h4 style="text-align:center" id="supersubtitle">Product Name</h4>
-                    <h4 style="text-align:center" id="supersubtitle">&pound;0.00</h4>
-                    <p style="text-align:center">
-                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                    </p>
-                </div>
-                
-                <!-- Item -->
-                <div class="col-lg-3 col-md-3 col-xs-4 thumb">
-                    <a class="thumbnail" href="itemPage.jsp">
-                    <img class="img-responsive" src="resources/img/gnome04.jpg" id="itemThumb" alt="">
-                    </a>
-                    <h4 style="text-align:center" id="supersubtitle">Product Name</h4>
-                    <h4 style="text-align:center" id="supersubtitle">&pound;0.00</h4>
-                    <p style="text-align:center">
-                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                    </p>
-                </div>
-                
-                <!-- Item -->
-                <div class="col-lg-3 col-md-3 col-xs-4 thumb">
-                    <a class="thumbnail" href="itemPage.jsp">
-                    <img class="img-responsive" src="resources/img/gnome05.jpg" id="itemThumb" alt="">
-                    </a>
-                    <h4 style="text-align:center" id="supersubtitle">Product Name</h4>
-                    <h4 style="text-align:center" id="supersubtitle">&pound;0.00</h4>
-                    <p style="text-align:center">
-                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                    </p>
-                </div>
-                
-                <!-- Item -->
-                <div class="col-lg-3 col-md-3 col-xs-4 thumb">
-                    <a class="thumbnail" href="itemPage.jsp">
-                    <img class="img-responsive" src="resources/img/gnome06.jpg" id="itemThumb" alt="">
-                    </a>
-                    <h4 style="text-align:center" id="supersubtitle">Product Name</h4>
-                    <h4 style="text-align:center" id="supersubtitle">&pound;0.00</h4>
-                    <p style="text-align:center">
-                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                    </p>
-                </div>
-                
-                <!-- Item -->
-                <div class="col-lg-3 col-md-3 col-xs-4 thumb">
-                    <a class="thumbnail" href="itemPage.jsp">
-                    <img class="img-responsive" src="resources/img/jacuzzi01.png" id="itemThumb" alt="">
-                    </a>
-                    <h4 style="text-align:center" id="supersubtitle">Product Name</h4>
-                    <h4 style="text-align:center" id="supersubtitle">&pound;0.00</h4>
-                    <p style="text-align:center">
-                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                    </p>
-                </div>
-                
-                <!-- Item -->
-                <div class="col-lg-3 col-md-3 col-xs-4 thumb">
-                    <a class="thumbnail" href="itemPage.jsp">
-                    <img class="img-responsive" src="resources/img/jacuzzi02.jpg" id="itemThumb" alt="">
-                    </a>
-                    <h4 style="text-align:center" id="supersubtitle">Product Name</h4>
-                    <h4 style="text-align:center" id="supersubtitle">&pound;0.00</h4>
-                    <p style="text-align:center">
-                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                    </p>
-                </div>
-                
-                <!-- Item -->
-                <div class="col-lg-3 col-md-3 col-xs-4 thumb">
-                    <a class="thumbnail" href="itemPage.jsp">
-                    <img class="img-responsive" src="resources/img/jacuzzi04.png" id="itemThumb" alt="">
-                    </a>
-                    <h4 style="text-align:center" id="supersubtitle">Product Name</h4>
-                    <h4 style="text-align:center" id="supersubtitle">&pound;0.00</h4>
-                    <p style="text-align:center">
-                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                    </p>
-                </div>
-                
-                <!-- Item -->
-                <div class="col-lg-3 col-md-3 col-xs-4 thumb">
-                    <a class="thumbnail" href="itemPage.jsp">
-                    <img class="img-responsive" src="resources/img/hoe01.jpg" id="itemThumb" alt="">
-                    </a>
-                    <h4 style="text-align:center" id="supersubtitle">Product Name</h4>
-                    <h4 style="text-align:center" id="supersubtitle">&pound;0.00</h4>
-                    <p style="text-align:center">
-                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                    </p>
-                </div>
-                
-                <!-- Item -->
-                <div class="col-lg-3 col-md-3 col-xs-4 thumb">
-                    <a class="thumbnail" href="itemPage.jsp">
-                    <img class="img-responsive" src="resources/img/hoe2.jpg" id="itemThumb" alt="">
-                    </a>
-                    <h4 style="text-align:center" id="supersubtitle">Product Name</h4>
-                    <h4 style="text-align:center" id="supersubtitle">&pound;0.00</h4>
-                    <p style="text-align:center">
-                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                    </p>
-                </div>
-                
-                <!-- Item -->
-                <div class="col-lg-3 col-md-3 col-xs-4 thumb">
-                    <a class="thumbnail" href="itemPage.jsp">
-                    <img class="img-responsive" src="resources/img/pot01.jpg" id="itemThumb" alt="">
-                    </a>
-                    <h4 style="text-align:center" id="supersubtitle">Product Name</h4>
-                    <h4 style="text-align:center" id="supersubtitle">&pound;0.00</h4>
-                    <p style="text-align:center">
-                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                    </p>
-                </div>
-                
-                <!-- Item -->
-                <div class="col-lg-3 col-md-3 col-xs-4 thumb">
-                    <a class="thumbnail" href="itemPage.jsp">
-                    <img class="img-responsive" src="resources/img/pot02.JPG" id="itemThumb" alt="">
-                    </a>
-                    <h4 style="text-align:center" id="supersubtitle">Product Name</h4>
-                    <h4 style="text-align:center" id="supersubtitle">&pound;0.00</h4>
-                    <p style="text-align:center">
-                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                    </p>
-                </div>
+                <!-- Loads content into page -->
+                <script th:inline="javascript">
+                /*<![CDATA[*/
+
+                    var itemList = [[${itemList}]];
+
+                    for(var i = 0;i < itemList.length; i++) 
+                    {
+                        var div = document.createElement('div');
+                        var a = document.createElement('a');
+                        var img = document.createElement('img');
+                        var text1 = document.createElement('h4');
+                        var text2 = document.createElement('h4');
+                        var p = document.createElement('p');
+                        var style = document.createAttribute('style');
+                        var id = document.createAttribute('id');
+                        var href = document.createAttribute('href');
+                        var text1text = document.createTextNode(itemList[i].getItemName);
+                        var text2text = document.createTextNode(itemList[i].getPrice);
+                        href.value = itemList[i].getImageLocation;
+                        id.value = 'supersubtitle';
+                        style.value = 'text-align:center';
+                        div.className = 'col-lg-3 col-md-3 col-xs-4 thumb';
+                        a.className = 'thumbnail';
+                        img.className = 'img-responsive';
+                        text1.setAttribute(id);
+                        text1.setAttribute(style);
+                        text2.setAttribute(style);
+                        text2.setAttribute(id);
+                        text1.appendChild(text1text);
+                        text2.appendChild(text2text);
+                        p.setAttribute(style);
+                        a.innerHTML = img;
+                        
+                        div.innerHTML = a + text1 + text2 + p;
+                    }
+
+                /*]]>*/
+                </script>
                 
                 <!-- Item -->
                 <div class="col-lg-3 col-md-3 col-xs-4 thumb">
