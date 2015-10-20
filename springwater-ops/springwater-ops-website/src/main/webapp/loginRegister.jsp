@@ -26,7 +26,7 @@
     <link href="resources/collapse.css" rel="stylesheet">
     
     <!-- Load in register user javascript files -->
-    <script src="js/registerUser.js" type="text/javascript"></script>
+    <script src="resources/js/registerUser.js" type="text/javascript"></script>
     
 </head>
 
@@ -129,36 +129,36 @@
                         <br>
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Last Name</span>
-                            <input type="text" class="form-control" placeholder="Last Name" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" placeholder="Last Name" aria-describedby="basic-addon1" id="lastNameInput">
                         </div>
                         <br>
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Email</span>
-                            <input type="text" class="form-control" placeholder="Email Address" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" placeholder="Email Address" aria-describedby="basic-addon1" id="emailInput">
                         </div>
                         <br>
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Password</span>
-                            <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
+                            <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1" id="passwordInput">
                         </div>
                         <br>
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Confirm</span>
-                            <input type="password" class="form-control" placeholder="Confirm Password" aria-describedby="basic-addon1">
+                            <input type="password" class="form-control" placeholder="Confirm Password" aria-describedby="basic-addon1" id="confirmPasswordInput">
                         </div>
                         <br>
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Date of Birth</span>
-                            <input type="text" class="form-control" placeholder="Date of Birth" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" placeholder="Date of Birth" aria-describedby="basic-addon1" id="dobInput">
                         </div>
                         <br>
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Telephone Number</span>
-                            <input type="text" class="form-control" placeholder="Telephone Number (Landline or mobile)" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" placeholder="Telephone Number (Landline or mobile)" aria-describedby="basic-addon1" id="telephoneNumberInput">
                         </div>
                         <br>
                         	<!-- <a href="profilePage.jsp" type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Register</a> -->
-                        	<input type="submit" onclick="othername(); " />
+                        	<input type="submit" onclick="registerUserDetails(); " />
                     </form>
                     <br>
                     <div class="panel panel-info">

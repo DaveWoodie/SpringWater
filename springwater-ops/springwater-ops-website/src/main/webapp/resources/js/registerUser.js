@@ -6,7 +6,16 @@
  * 				to register on the loginRegister.jsp page.
  */
 
-function othername() {
-	//var input = document.getElementById("firstNameInput").value;
-	alert(input);
+function registerUserDetails() {
+	
+	// User attributes
+	var firstName = document.getElementById("firstNameInput").value;
+	var lastName = document.getElementById("lastNameInput").value;
+	var email = document.getElementById("emailInput").value;
+	var password = document.getElementById("passwordInput").value;
+	var confirmPassword = document.getElementById("confirmPasswordInput").value;
+	var dob = document.getElementById("dobInput").value;
+	var telephoneNumber = document.getElementById("telephoneNumberInput").value;
+	
+	alert(firstName + " " + lastName + " " + email + " " + password + " " + confirmPassword + " " + dob + " " + telephoneNumber);
 }
