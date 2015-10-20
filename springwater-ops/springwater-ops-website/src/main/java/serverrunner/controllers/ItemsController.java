@@ -22,11 +22,8 @@ public class ItemsController {
 
 	@RequestMapping(value = "/items", method = RequestMethod.GET)
 	public String greetingForm(Model model) {
-		items = new ArrayList<Item>();
 		items = itemRepository.findAll();
 		System.out.println("hello");
-		System.out.println(items.size());
-
 		model.addAttribute("itemList", items);
 		return "items";
 	}
