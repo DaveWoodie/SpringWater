@@ -24,6 +24,10 @@
     <link href="resources/Bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="resources/main.css" rel="stylesheet">
     <link href="resources/collapse.css" rel="stylesheet">
+    
+    <!-- Link javascript fiels -->
+    <script src="resources/js/registerUser.js" type="text/javascript"></script>
+    
 </head>
 
 <body>
@@ -84,6 +88,12 @@
 
     <!-- Content Area -->
     <div class="jumbotron content">
+    	
+    	<hr>
+    		<h1>Congratulations, you are now registered.</h1>
+    		<p>A confirmation email has been sent to </p><script>getName();</script>
+    	<hr>
+    
     </div>
     <!-- END OF CONTENT -->
     

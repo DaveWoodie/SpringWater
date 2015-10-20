@@ -13,8 +13,8 @@ import com.netbuilder.entities.Role;
  * @date 07/10/2015
  */
 @Repository
-public interface EmployeeRepository extends CrudRepository<Employee, Integer> {
-	
+public interface EmployeeRepository extends CrudRepository<Employee, Integer> 
+{	
 	public Employee findByID(int ID);
 	public ArrayList<Employee> findByRole(Role role);
 }
