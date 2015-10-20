@@ -9,7 +9,7 @@
     Page for allowing the user to login into NBGardens
     or create a new account
 
-    Last Modified by: chrisjwwalker
+    Last Modified by: c33-cooper
 
 --------------------------------------------------------->
 
