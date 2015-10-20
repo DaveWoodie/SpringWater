@@ -20,5 +20,17 @@ public class Application  {
 	
 	public static void main(String args[]) throws ServletException, LifecycleException {
 		ApplicationContext ctx = SpringApplication.run(Application.class, args);
+		
 	}
+	
+	/*
+	//Lists all beans active in the application context
+	//Use to view if a specific bean has been created
+	public void listBeans(ApplicationContext ctx)
+	{
+		for(int i = 0; i < ctx.getBeanDefinitionCount(); i++)
+		{
+			System.out.println("------> " + ctx.getBeanDefinitionNames()[i]);
+		}
+	}*/
 }
