@@ -14,7 +14,7 @@ import com.netbuilder.entities.Role;
  */
 @Repository
 public interface EmployeeRepository extends CrudRepository<Employee, Integer> {
-	public Employee findByID(int ID);
 	
+	public Employee findByID(int ID);
 	public ArrayList<Employee> findByRole(Role role);
 }
