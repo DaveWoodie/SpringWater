@@ -9,7 +9,7 @@ import com.netbuilder.entityrepository.ItemRepository;
 
 
 /**
- * retrieves ITem information from the common project to populate GUI fields
+ * retrieves Item information from the common project to populate GUI fields
  * @author tstacey
  * @date 19/10/2015
  */
