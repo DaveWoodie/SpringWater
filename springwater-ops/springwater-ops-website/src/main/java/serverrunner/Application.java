@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan
+@ComponentScan("com.netbuilder")
 @EnableAutoConfiguration
 public class Application  {
 	
