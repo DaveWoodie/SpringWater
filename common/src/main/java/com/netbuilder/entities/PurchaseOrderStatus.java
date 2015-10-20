@@ -43,4 +43,5 @@ public class PurchaseOrderStatus {
 	public String getPurchOrderStatus() {
 		return status;
 	}
+
 }
