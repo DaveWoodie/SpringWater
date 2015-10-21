@@ -14,7 +14,7 @@ public class Address {
 	@Id
 	private int addressID;
 	
-	private Customer customer;
+	private Integer customerID;
 	private ArrayList<String> addressLines;
 	private String city;
 	private String county;
@@ -27,8 +27,8 @@ public class Address {
 	 * @param county : String of the county of the address
 	 * @param postCode : String of the address post code
 	 */
-	public Address(Customer customer, ArrayList<String> addressLines, String city, String county, String postCode) {
-		this.customer = customer;
+	public Address(Integer customerID, ArrayList<String> addressLines, String city, String county, String postCode) {
+		this.customerID = customerID;
 		copyAddressLines(addressLines);
 		this.city = city;
 		this.county = county;
@@ -42,8 +42,8 @@ public class Address {
 	 * @param county : String of the county of the address 
 	 * @param postCode : String of the address post code
 	 */
-	public Address(Customer customer, ArrayList<String> addressLines, String city, String postCode) {
-		this.customer = customer;
+	public Address(Integer customerID, ArrayList<String> addressLines, String city, String postCode) {
+		this.customerID = customerID;
 		copyAddressLines(addressLines);
 		this.city = city;
 		this.postCode = postCode;
@@ -114,17 +114,17 @@ public class Address {
 	 * @return
 	 */
 	public boolean isCustomerAddress() {
-		if(customer == null) {
+		if(customerID == null) {
 			return false;
 		}
 		return true;
 	}
 	
-	public Customer getCustomer() throws IOException {
-		if(this.customer == null) {
+	public Integer getCustomer() throws IOException {
+		if(this.customerID == null) {
 			throw new IOException();
 		}
-		return this.customer;
+		return this.customerID;
 	}
 	
 	public int getAddressID() {
