@@ -91,14 +91,12 @@
     	
     	<hr>
     		<h1>Congratulations, you are now registered.</h1>
-    		<p>A confirmation email has been sent to </p>
+    		<p id="email"></p>
     		<p id="fName"></p>
     		
     		<script>
-				document.getElementById("fName").innerHTML = document.cookie;
-                
-                printAll();
-                printCookie();
+				document.getElementById("fName").innerHTML = getCookie("firstName") + " " + getCookie("lastName");
+                document.getElementById("email").innerHTML = "A confirmation email has been sent to " + getCookie("email");
 			</script>
     	<hr>
    
