@@ -80,6 +80,10 @@ public class User {
 		email = em;
 	}
 	
+	public void setUserID(int i) {
+		iDnum = i;
+	}
+	
 	/**
 	 * Method to get the User's ID Number.
 	 * @return Returns int data type.
