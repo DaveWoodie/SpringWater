@@ -7,14 +7,17 @@ package com.netbuilder.entities;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "customerorder")
 public class CustomerOrder 
 {
 	@Id
@@ -22,13 +25,13 @@ public class CustomerOrder
 	private int customerOrderID;
 	private Date datePlaced;
 	private Date dateShipped;
-	@ManyToOne
+	@ManyToOne (cascade=CascadeType.PERSIST)
 	@PrimaryKeyJoinColumn (name="idCustomer")
 	private Customer customer;
-	@ManyToOne
+	@ManyToOne (cascade=CascadeType.PERSIST)
 	@PrimaryKeyJoinColumn (name="idCustomerOrderStatus")
 	private CustomerOrderStatus customerOrderStatus;
-	@ManyToOne
+	@ManyToOne (cascade=CascadeType.PERSIST)
 	@PrimaryKeyJoinColumn (name="idEmployee")
 	private Employee employee;
 	private boolean isPaid;

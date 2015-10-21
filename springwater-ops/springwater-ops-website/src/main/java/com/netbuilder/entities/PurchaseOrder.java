@@ -6,27 +6,30 @@ package com.netbuilder.entities;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "purchaseorder")
 public class PurchaseOrder {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPurchaseOrder;
 	private Date datePlaced;
 	private Date dateExpected;
-	@ManyToOne
+	@ManyToOne (cascade=CascadeType.PERSIST)
 	@PrimaryKeyJoinColumn(name = "idEmployee")
 	private Employee employee;
-	@ManyToOne
+	@ManyToOne (cascade=CascadeType.PERSIST)
 	@PrimaryKeyJoinColumn(name = "idPurchaseOrderStatus")
 	private PurchaseOrderStatus purchaseOrderStatus;
-	@ManyToOne
+	@ManyToOne (cascade=CascadeType.PERSIST)
 	@PrimaryKeyJoinColumn(name = "idSupplier")
 	private Supplier supplier;
 	

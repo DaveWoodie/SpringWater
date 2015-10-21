@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Class to hold all of the details for one Supplier
@@ -11,6 +12,7 @@ import javax.persistence.Id;
  * @date 06/10/2015
  */
 @Entity
+@Table(name = "supplier")
 public class Supplier {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)

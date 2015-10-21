@@ -1,9 +1,11 @@
 package com.netbuilder.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 /**
  * Class representing a line in a product order
@@ -13,12 +15,13 @@ import javax.persistence.PrimaryKeyJoinColumn;
  */
 
 @Entity
+@Table(name = "purchaseorderline")
 public class PurchaseOrderLine {
 	private int quantity;
 	
 	private int itemID;
 	@Id
-	@ManyToOne
+	@ManyToOne (cascade=CascadeType.PERSIST)
 	@PrimaryKeyJoinColumn(name = "idPurchaseOrder")
 	private PurchaseOrder purchaseOrder;
 
