@@ -25,7 +25,7 @@
     <link href="resources/main.css" rel="stylesheet">
     <link href="resources/collapse.css" rel="stylesheet">
     
-    <!-- Link javascript fiels -->
+    <!-- Link javascript fields -->
     <script src="resources/js/registerUser.js" type="text/javascript"></script>
     
 </head>
@@ -91,9 +91,14 @@
     	
     	<hr>
     		<h1>Congratulations, you are now registered.</h1>
-    		<p>A confirmation email has been sent to </p><script>getName();</script>
+    		<p>A confirmation email has been sent to </p>
+    		<p id="fName"></p>
+    		
+    		<script>
+				document.getElementById("fName").innerHTML = "Cookie = " + getLastNameCookie();
+			</script>
     	<hr>
-    
+   
     </div>
     <!-- END OF CONTENT -->
     
