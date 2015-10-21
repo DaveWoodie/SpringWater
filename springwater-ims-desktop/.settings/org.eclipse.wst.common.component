@@ -4,12 +4,18 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+<<<<<<< HEAD
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/resources"/>
         <dependent-module archiveName="common-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/common/common">
             <dependency-type>uses</dependency-type>
         </dependent-module>
 
+=======
+        <dependent-module archiveName="common-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/common/common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+>>>>>>> 86b277d3b0da0e72e57d8e41ca557c0bd1ba4280
         <property name="context-root" value="springwater-ims-desktop"/>
         <property name="java-output-path" value="/springwater-ims-desktop/target/classes"/>
     </wb-module>
