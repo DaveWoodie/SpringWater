@@ -5,7 +5,10 @@
 package com.netbuilder.apploader;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+
+
 
 
 
@@ -29,18 +32,32 @@ public class PurchaseOrderLineLoader {
 	private SQLDBConnector sqlDB;
 	ArrayList<PurchaseOrderLine> purchaseOrderItemList;
 	ArrayList<Item> itemList;
+	PurchaseOrder purchaseOrder;
 	
-	public void constructResult(PurchaseOrder pO) {
+	public void constructResult() {
 		purchaseOrderItemList.clear();
-		ResultSet rs = sqlDB.queryDB(sql);
-		while (rs.next()) {
-			PurchaseOrderLine pOL = new PurchaseOrderLine(rs.getInt("idQuantity", rs.getInt("idItem"), pO));
-			purchaseOrderItemList.add(pOL);
+		try {
+			ResultSet rs = sqlDB.queryDB(sql);
+			while (rs.next()) {
+				PurchaseOrderLine pOL = new PurchaseOrderLine(rs.getInt("idQuantity"), rs.getInt("idItem"), purchaseOrder);
+				purchaseOrderItemList.add(pOL);
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	public ArrayList<PurchaseOrderLine> getPurchaseOrderLineByOrderID(PurchaseOrder pO) {
-		sql = listQuery + tableName + "WHERE idPurchaseOrder = " + pO.getIDPurchaseOrder();
-		constructResult(pO);
+		sql = listQuery + tableName + " WHERE idPurchaseOrder = " + pO.getIDPurchaseOrder();
+		purchaseOrder = pO;
+		constructResult();
+		return purchaseOrderItemList;
+	}
+	
+	public ArrayList<PurchaseOrderLine> getPurchaseOrderLineByProduct(Item item) {
+		sql = listQuery + tableName + " WHERE idItem = " + item.getIdItem();
+		constructResult();
 		return purchaseOrderItemList;
 	}
 }
