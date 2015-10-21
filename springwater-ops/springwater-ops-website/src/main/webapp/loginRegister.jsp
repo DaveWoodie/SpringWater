@@ -4,7 +4,7 @@
     
     loginRegister.html
 
-    13/10/2015
+    21/10/2015
 
     Page for allowing the user to login into NBGardens
     or create a new account
