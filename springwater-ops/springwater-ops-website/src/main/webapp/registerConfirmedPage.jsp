@@ -97,8 +97,8 @@
     		<script>
 				document.getElementById("fName").innerHTML = document.cookie;
                 
-                printAll();
-                printCookie();
+               printAll();
+               printCookie();
 			</script>
     	<hr>
    

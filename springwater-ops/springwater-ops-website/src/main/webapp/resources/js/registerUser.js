@@ -74,19 +74,9 @@ function getLastNameCookie() {
 	return lastNameCookie;
 }
 
-
-
 function printCookie() {
     console.log(document.cookie);
 }
-
-
-
-
-
-
-
-
 
 function printAll(){
     console.log("FirstName: " + firstNameCookie);
