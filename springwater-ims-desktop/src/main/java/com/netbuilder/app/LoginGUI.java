@@ -26,6 +26,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import com.netbuilder.controller.ItemController;
+import com.netbuilder.logic.LoginAuthentication;
 
 /**
  * Create a login JFrame
@@ -41,6 +42,8 @@ public class LoginGUI extends JPanel implements ActionListener{
 	private JButton buttonLogin;
 	private JButton examplebutton;
 	private Color colour;
+	
+	private LoginAuthentication loginAuth = new LoginAuthentication();
 	
 	private IconLoader iconLoader = new IconLoader();
 	
