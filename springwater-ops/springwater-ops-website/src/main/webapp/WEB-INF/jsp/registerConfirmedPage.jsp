@@ -4,7 +4,7 @@
     
     registerConfirmedPage.jsp
 
-    20/10/2015
+    21/10/2015
 
     Page for the confirmation of a registered
     user.
@@ -91,11 +91,12 @@
     	
     	<hr>
     		<h1>Congratulations, you are now registered.</h1>
-    		<p>A confirmation email has been sent to </p>
+    		<p id="email"></p>
     		<p id="fName"></p>
     		
     		<script>
-				document.getElementById("fName").innerHTML = "Cookie = " + getLastNameCookie();
+				document.getElementById("fName").innerHTML = getCookie("firstName") + " " + getCookie("lastName");
+                document.getElementById("email").innerHTML = "A confirmation email has been sent to " + getCookie("email");
 			</script>
     	<hr>
    
