@@ -1,5 +1,7 @@
 package com.netbuilder.app;
 
+import java.util.ArrayList;
+
 public class LoadData {
 	
 	Object[][] inventoryList;
@@ -15,6 +17,18 @@ public class LoadData {
 		
 		return purchaseOrderList;
 		
+	}
+	
+	public ArrayList<Object[]> fetchPurchaseOrderList()
+	{
+		ArrayList<Object[]> purchaseOrderList = new ArrayList<Object[]>();
+		
+		for(int i = 1; i < fetchPurchaseOrders().length; i++)
+		{
+			purchaseOrderList.add((Object[]) fetchPurchaseOrders()[i]);
+		}
+				
+		return purchaseOrderList;
 	}
 	
 	public Object[][] fetchSuppliers() {
