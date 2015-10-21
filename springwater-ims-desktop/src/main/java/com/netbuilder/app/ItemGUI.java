@@ -205,7 +205,8 @@ public class ItemGUI extends JFrame
 		
 		searchItemArray(itemID);
 		
-		tableModel.addRow(new Object[]{PO[1][0], PO[1][1], 35, 0});
+		tableModel.addRow(new Object[]{6, "02/06/2015", 20, "Order Placed"});
+		tableModel.addRow(new Object[]{PO[1][0], PO[1][1], 35, "Order Completed"});
 		
 	}
 	
@@ -274,7 +275,7 @@ public class ItemGUI extends JFrame
 		tableModel.addColumn("Purchase Order ID");
 		tableModel.addColumn("Date");
 		tableModel.addColumn("Stock In");
-		tableModel.addColumn("Amount Damaged");
+		tableModel.addColumn("Status");
 	}
 	
 	/**

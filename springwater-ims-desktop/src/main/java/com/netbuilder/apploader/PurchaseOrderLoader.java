@@ -36,7 +36,7 @@ public class PurchaseOrderLoader {
 		purchaseOrderList.clear();
 		ResultSet rs = sqlDB.queryDB(sql);
 		while (rs.next()) {
-			PurchaseOrderStatus pOS = new PurchaseOrderStatus(rs.getInt("purchaseorderstatus.idPurchaseOrderStatus"), rs.getString("purchaseorderstatus.status"));
+			PurchaseOrderStatus pOS = new PurchaseOrderStatus(rs.getString("purchaseorderstatus.status"));
 			//TODO attach code to connect to mongo DB to produce address
 			Supplier supplier = new Supplier(rs.getString("supplier.supplierName"), new Address());
 			Role role = new Role(rs.getString("role.roleName"));
@@ -83,7 +83,7 @@ public class PurchaseOrderLoader {
 	}
 	
 	/**
-	 * Method to construct the sql query to retrive all purchase orders to a given supplier
+	 * Method to construct the sql query to retrieve all purchase orders to a given supplier
 	 * @param supplierName String name of the supplier being searched by
 	 * @return the ArrayList of purchase orders created from the query
 	 */
