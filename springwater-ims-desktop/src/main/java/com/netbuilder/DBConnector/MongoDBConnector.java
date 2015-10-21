@@ -41,7 +41,7 @@ public class MongoDBConnector {
 			e.printStackTrace();
 		}
 	}
-	
+		
 	public static void main(String [] args) {
 		openCon();
 	}
