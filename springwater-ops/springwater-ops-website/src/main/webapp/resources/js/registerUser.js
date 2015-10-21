@@ -21,13 +21,13 @@ var telephoneNumber;
 function registerUserDetails() {
 	
 	// User attributes
-	var firstName = document.getElementById("firstNameInput").value;
-	var lastName = document.getElementById("lastNameInput").value;
-	var email = document.getElementById("emailInput").value;
-	var password = document.getElementById("passwordInput").value;
-	var confirmPassword = document.getElementById("confirmPasswordInput").value;
-	var dob = document.getElementById("dobInput").value;
-	var telephoneNumber = document.getElementById("telephoneNumberInput").value;
+	firstName = document.getElementById("firstNameInput").value;
+	lastName = document.getElementById("lastNameInput").value;
+	email = document.getElementById("emailInput").value;
+	password = document.getElementById("passwordInput").value;
+	confirmPassword = document.getElementById("confirmPasswordInput").value;
+	dob = document.getElementById("dobInput").value;
+	telephoneNumber = document.getElementById("telephoneNumberInput").value;
 	
 	// Run a check to see whether users passwords match
 	if (password === confirmPassword && firstName != "" && lastName != "" && email != ""
@@ -35,6 +35,8 @@ function registerUserDetails() {
 		
 		// Return false to the event window
 		window.event.returnValue = false;
+        
+        document.cookie = "firstname = " + firstNameCookie + "; lastname = " + lastNameCookie + "";
 		
 		// Jump to the registered confirmation page
 		window.location.href="registerConfirmedPage.jsp";
@@ -53,7 +55,7 @@ function registerUserDetails() {
 // Function to set a name cookie
 function setFirstNameCookie(cname) {
 	// Set the first name cookie
-   firstNameCookie=document.cookie = cname;
+   firstNameCookie = cname; 
 }
 
 // get the first name cookie
@@ -64,10 +66,29 @@ function getFirstNameCookie() {
 //Function to set a last name cookie
 function setLastNameCookie(cname) {
 	// Set the first name cookie
-	lastNameCookie=document.cookie = cname;
+	lastNameCookie = cname;
 }
 
 // get the first last name cookie
 function getLastNameCookie() {
 	return lastNameCookie;
+}
+
+
+
+function printCookie() {
+    console.log(document.cookie);
+}
+
+
+
+
+
+
+
+
+
+function printAll(){
+    console.log("FirstName: " + firstNameCookie);
+    console.log("LastName: " + lastNameCookie);
 }

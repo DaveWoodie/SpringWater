@@ -95,7 +95,10 @@
     		<p id="fName"></p>
     		
     		<script>
-				document.getElementById("fName").innerHTML = "Cookie = " + getLastNameCookie();
+				document.getElementById("fName").innerHTML = document.cookie;
+                
+                printAll();
+                printCookie();
 			</script>
     	<hr>
    
