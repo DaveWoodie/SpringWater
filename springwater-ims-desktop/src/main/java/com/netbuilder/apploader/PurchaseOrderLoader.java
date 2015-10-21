@@ -1,11 +1,25 @@
+/**
+ * @author jforster
+ * @date 20/10/2015
+ */
 package com.netbuilder.apploader;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import com.netbuilder.entities.Address;
+import com.netbuilder.entities.Employee;
 import com.netbuilder.entities.PurchaseOrder;
 import com.netbuilder.entities.PurchaseOrderStatus;
+import com.netbuilder.entities.Role;
+import com.netbuilder.entities.Supplier;
+import com.netbuilder.entities.User;
 
+/**
+ * Class to construct database queries and load data into entities for the java app
+ * @author jforster
+ *
+ */
 public class PurchaseOrderLoader {
 	
 	final String tableName = " FROM purchaseorder";
@@ -13,19 +27,81 @@ public class PurchaseOrderLoader {
 	final String tableJoins = " LEFT JOIN purchaseorderstatus ON purchaseorder.idPurchaseOrderStatus = purchaseorderstatus.idPurchaseOrderStatus LEFT JOIN supplier ON purchaseorder.idSupplier = supplier.idSupplier LEFT JOIN employee ON purchaseorder.idUser = employee.idEmployee LEFT JOIN user ON purchaseorder.idUser = user.idUser";
 	private String sql;
 	private SQLDBConnector sqlDB;
+	ArrayList<PurchaseOrder> purchaseOrderList;
 	
-	public ArrayList<PurchaseOrder> getPurchaseOrderList() {
-		sql = listQuery + tableName + tableJoins;
+	/**
+	 * Method to execute constructed query and load data into objects
+	 */
+	public void constructResult() {
+		purchaseOrderList.clear();
 		ResultSet rs = sqlDB.queryDB(sql);
 		while (rs.next()) {
 			PurchaseOrderStatus pOS = new PurchaseOrderStatus(rs.getInt("purchaseorderstatus.idPurchaseOrderStatus"), rs.getString("purchaseorderstatus.status"));
-		}		
+			//TODO attach code to connect to mongo DB to produce address
+			Supplier supplier = new Supplier(rs.getString("supplier.supplierName"), new Address());
+			Role role = new Role(rs.getString("role.roleName"));
+			User user = new User(rs.getString("user.password"), rs.getString("user.forename"), rs.getString("user.surname"), rs.getString("user.email"), rs.getBoolean("user.isEmployee"));
+			user.setUserID(rs.getInt("user.idUser"));
+			Employee employee = new Employee(user, role);
+			PurchaseOrder pO = new PurchaseOrder(rs.getDate("purchaseorder.datePlaced"), employee, pOS, supplier);
+			pO.setIDPurchaseOrder(rs.getInt("purchaseorder.idPurchaseOrder"));
+			pO.setDateExpected(rs.getDate("purchaseorder.dateExpected"));
+			purchaseOrderList.add(pO);
+		}
 	}
 	
+	/**
+	 * Method to construct the sql query to retrieve all purchase orders
+	 * @return the ArrayList of purchase orders created from the query
+	 */
+	public ArrayList<PurchaseOrder> getPurchaseOrderList() {
+		sql = listQuery + tableName + tableJoins;
+		constructResult();
+		return purchaseOrderList;
+	}
+	
+	/**
+	 * Method to construct the sql query to retrieve all purchase orders with a given ID (should be one)
+	 * @param i Integer of the ID to search for
+	 * @return the ArrayList containing the single purchase order expected from the query
+	 */
+	public ArrayList<PurchaseOrder> getPurchaseOrderByID(int i) {
+		sql = listQuery + tableName + tableJoins + " WHERE idPurchaseOrder = " + i;
+		constructResult();
+		return purchaseOrderList;
+	}
+	
+	/**
+	 * Method to construct the sql query to retrieve all purchase orders with a given status
+	 * @param status String to search for
+	 * @return the ArrayList of purchase orders created from the query
+	 */
 	public ArrayList<PurchaseOrder> getPurchaseOrderListByStatus(String status) {
 		sql = listQuery + tableName + tableJoins + " WHERE status = '" + status +"'";
-		return null;
+		constructResult();
+		return purchaseOrderList;
 	}
 	
+	/**
+	 * Method to construct the sql query to retrive all purchase orders to a given supplier
+	 * @param supplierName String name of the supplier being searched by
+	 * @return the ArrayList of purchase orders created from the query
+	 */
+	public ArrayList<PurchaseOrder> getPurchaseOrderListBySupplier(String supplierName) {
+		sql = listQuery + tableName + tableJoins + " WHERE supplierName LIKE '%" + supplierName + "%'";
+		constructResult();
+		return purchaseOrderList;
+	}
+	
+	/**
+	 * Method to extract purchase order list from orderline query by item
+	 * @param i integer of the item id to search by
+	 * @return the ArrayList of purchase orders created from the query
+	 */
+	public ArrayList<PurchaseOrder> getPurchaseOrderListByItem(int i) {
+		//TODO connect to purchase orderline loader to retrieve purchase orders
+		//TODO pull purchase orders into list from orderline loader query result
+		return purchaseOrderList;
+	}
 }
 

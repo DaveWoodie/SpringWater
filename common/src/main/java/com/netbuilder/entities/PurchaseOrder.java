@@ -76,6 +76,10 @@ public class PurchaseOrder {
 		return supplier;
 	}
 	
+	public void setIDPurchaseOrder(int i) {
+		idPurchaseOrder = i;
+	}
+	
 	public void setDateExpected(Date dE) {
 		dateExpected = dE;
 	}
