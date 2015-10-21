@@ -90,4 +90,8 @@ public class PurchaseOrder {
 	public void setPurchaseOrderStatus(PurchaseOrderStatus pOS) {
 		purchaseOrderStatus = pOS;
 	}
+	
+	public void setIDPurchaseOrder(int i) {
+		idPurchaseOrder = i;
+	}
 }

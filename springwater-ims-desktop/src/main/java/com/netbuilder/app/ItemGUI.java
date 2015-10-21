@@ -15,6 +15,8 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -23,10 +25,12 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -49,7 +53,10 @@ public class ItemGUI extends JFrame
 	private LoadData Data = new LoadData();
 	private Object[][] Inventory;
 	private Object[][] PO;
-	private JLabel textName, textPrice, textStock, labelImage;
+	private ArrayList<Object[]> listPO;
+	private Object[][] Suppliers;
+	private JLabel textName, textPrice, textStock, labelImage, textSupplier;
+	private JTextField textAdd;
 
 	/**
 	 * Constructor that creates an instance of an item GUI for the item ID that is passed
@@ -82,6 +89,8 @@ public class ItemGUI extends JFrame
 	
 		Inventory = Data.fetchInventoryList();
 		PO = Data.fetchPurchaseOrders();
+		listPO = Data.fetchPurchaseOrderList();
+		Suppliers = Data.fetchSuppliers();
 		setUpTableModel();
 		setSalesArrays();
 	}
@@ -122,7 +131,7 @@ public class ItemGUI extends JFrame
 		panelItem.setBorder(BorderFactory.createLineBorder(Color.gray));
 		
 		//Item split
-		JPanel panelSplit = new JPanel(new GridLayout(10, 0));
+		JPanel panelSplit = new JPanel(new GridLayout(8, 0));
 		panelSplit.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, Color.gray));
 		
 			//ID
@@ -146,6 +155,13 @@ public class ItemGUI extends JFrame
 			panelPrice.add(labelPrice);
 			panelPrice.add(textPrice);
 			
+			//Supplier 
+			JPanel panelSupplier = new JPanel(new FlowLayout(FlowLayout.LEFT));
+			JLabel labelSupplier = new JLabel("Supplier : ");
+			textSupplier = new JLabel();
+			panelSupplier.add(labelSupplier);
+			panelSupplier.add(textSupplier);
+			
 			//Stock
 			JPanel panelStock = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			JLabel labelStock = new JLabel("Stock Level : ");
@@ -153,19 +169,74 @@ public class ItemGUI extends JFrame
 			panelStock.add(labelStock);
 			panelStock.add(textStock);
 			
+			//Add to purchase order
+			JPanel addToPO = new JPanel(new FlowLayout(FlowLayout.LEFT));
+			JLabel labelQuantity = new JLabel("Quantity : ");
+			textAdd = new JTextField(5);
+			JButton buttonAddToPO = new JButton("Add to Purchase Order");
+			addToPO.add(labelQuantity);
+			addToPO.add(textAdd);
+			addToPO.add(buttonAddToPO);
+			
+			buttonAddToPO.addActionListener(new ActionListener()
+			{
+				@Override
+				public void actionPerformed(ActionEvent e) 
+				{
+					//null check
+					if(textAdd.getText().equals(""))
+					{
+						textAdd.setText("0");
+					}
+					
+					if(Integer.parseInt(textAdd.getText()) > 0)
+					{
+						listPO.add(new Object[]{(listPO.size() - 1), "21/10/2015", textAdd.getText(),  "Order not sent", textSupplier.getText(), textPrice.getText()});
+						
+					}
+					else
+					{
+						textAdd.setText("0");
+						JOptionPane.showMessageDialog(null, "The quantity must be higher than 0");
+					}
+					
+					for(int i = 0; i < listPO.size(); i++)
+					{
+						if(listPO.get(i)[3].equals("Order not sent"))
+						{
+							String oldValue = (String) listPO.get(i)[3];
+							
+							String newValue = Integer.toString(Integer.parseInt(oldValue) + Integer.parseInt(textAdd.getText())); 
+							listPO.get(i)[3] = newValue;
+							
+							tableModel.setValueAt(newValue, listPO.size() - i, 3);
+							
+							System.out.println(listPO.get(i)[3]);
+						}
+						else
+						{
+							tableModel.insertRow(0, listPO.get(listPO.size() - 1));
+							break;
+						}
+					}
+				}
+			});
+			
 				//add components to item name panel
 				panelSplit.add(panelID);
 				panelSplit.add(panelMainName);
 				panelSplit.add(panelPrice);
+				panelSplit.add(panelSupplier);
 				panelSplit.add(new JPanel());
 				panelSplit.add(panelStock);
+				panelSplit.add(new JPanel());
+				panelSplit.add(addToPO);
 		
 		
 		//Item labelImage
 		JPanel panellabelImage = new JPanel(new BorderLayout());
 		panellabelImage.setBackground(Color.white);
 		getProductlabelImage((String)Inventory[itemID - 1][4]);
-		//productlabelImage.
 		Image scaledImg = img.getScaledInstance(250, 250, Image.SCALE_SMOOTH);
 		labelImage = new JLabel(new ImageIcon(scaledImg));
 		panellabelImage.add(labelImage);
@@ -205,7 +276,7 @@ public class ItemGUI extends JFrame
 		
 		searchItemArray(itemID);
 		
-		tableModel.addRow(new Object[]{6, "02/06/2015", 20, "Order Placed"});
+		tableModel.addRow(new Object[]{PO[2][0], "02/06/2015", 20, "Order Placed"});
 		tableModel.addRow(new Object[]{PO[1][0], PO[1][1], 35, "Order Completed"});
 		
 	}
@@ -265,6 +336,7 @@ public class ItemGUI extends JFrame
 		textName.setText((String) Inventory[itemID - 1][1]);
 		textPrice.setText((String) Inventory[itemID - 1][5]);
 		textStock.setText(String.valueOf((int) Inventory[itemID - 1][2]));
+		textSupplier.setText((String) Suppliers[1][1]);
 	}
 	
 	/**

@@ -2,38 +2,29 @@ package com.netbuilder.DBConnector;
 
 import java.net.UnknownHostException;
 
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 
 public class MongoDBConnector {
 
-	static final String databaseURL = null;
-	static final String userName = null;
-	static final String passWord = null;
+	static final String mongoURL = "10.50.15.27";
+	static final String userName = "superuser";
+	static final String passWord = "12345678";
 	
-	private String host = "localhost";
+	private MongoClient mongoClient;
 	
-	
-	public void openCon() {
-		
+	public void mongoConnect() {
 		try {
-			
-			//Connect to the host localhost through the default port 27017.
-			Mongo mongo = new Mongo("localhost", 27017);
-		
-			MongoClient mongoClient = new MongoClient();
-			DB db = mongoClient.getDB("database name");
-			boolean auth = db.authenticate("username", "password".toCharArray());
-			
-			//To get a table or collection from a Mongo DB
-			DBCollection table = db.getCollection("user");
-			
+			mongoClient = new MongoClient(mongoURL, 27017);
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	public void mongoDisconnect() {
+		mongoClient.close();
+	}
 	
+	public MongoClient getConnection() {
+		return mongoClient;
+	}
 }
