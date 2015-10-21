@@ -4,13 +4,10 @@ package com.netbuilder;
 import javax.servlet.ServletException;
 
 import org.apache.catalina.LifecycleException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 //@EnableMongoRepositories
@@ -23,7 +20,7 @@ public class Application  {
 
 		ApplicationContext ctx = SpringApplication.run(Application.class, args);
 		
-		//listBeans(ctx);
+		listBeans(ctx);
 	}
 	
 	
