@@ -82,6 +82,10 @@ public class User {
 	 * Method to get the User's ID Number.
 	 * @return Returns int data type.
 	 */
+	
+	public void setUserID(int i) {
+		iDnum = i;
+	}
 	public int getUserID() {
 		return iDnum;
 	}
