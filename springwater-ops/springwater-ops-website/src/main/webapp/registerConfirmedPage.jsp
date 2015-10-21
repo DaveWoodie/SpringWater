@@ -4,7 +4,7 @@
     
     registerConfirmedPage.jsp
 
-    20/10/2015
+    21/10/2015
 
     Page for the confirmation of a registered
     user.

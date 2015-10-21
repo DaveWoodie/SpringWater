@@ -1,3 +1,8 @@
+/**
+ * @author abutcher
+ * @date 20/10/2015
+ */
+
 package com.netbuilder.app;
 
 import java.awt.BorderLayout;
@@ -20,6 +25,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+@SuppressWarnings("serial")
 public class AddItemFrame extends JFrame {
 	private JPanel base, main, buttonBar;
 	private JLabel itemNameL, itemDescriptionL, itemPriceL, itemUnitPriceL,porousewareL, supplierL;
@@ -27,7 +33,7 @@ public class AddItemFrame extends JFrame {
 	private JTextArea itemDescriptionR;
 	private JComboBox supplierR;
 	private JRadioButton porouswareYesB, porouswareNoB;
-	private JButton addIB, cancelB;
+	private JButton addIB, addAttributesB, cancelB;
 	private GridBagConstraints c = new GridBagConstraints();
 
 	public static void main(String[] args) {
@@ -109,8 +115,8 @@ public class AddItemFrame extends JFrame {
 		main.add(porouswareNoB, c);
 		
 		 ButtonGroup group = new ButtonGroup();
-		    group.add(porouswareYesB);
-		    group.add(porouswareNoB);
+		 group.add(porouswareYesB);
+		 group.add(porouswareNoB);
 		
 		itemNameR = new JTextField();
 		itemNameR.setColumns(30);
@@ -147,6 +153,10 @@ public class AddItemFrame extends JFrame {
 		c.gridy = 5;		
 		main.add(supplierR, c);
 		
+		addAttributesB = new JButton("Add Attributes");
+		c.gridy = 6;		
+		main.add(addAttributesB, c);
+		
 		// Button Bar Panel
 		buttonBar = new JPanel();
 		buttonBar.setLayout(new GridLayout(1, 3));
@@ -163,7 +173,14 @@ public class AddItemFrame extends JFrame {
 				
 			}
 		});
+		
+		addAttributesB.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				
+				
+			}
+		});
+		
 		cancelB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 						dispose();
