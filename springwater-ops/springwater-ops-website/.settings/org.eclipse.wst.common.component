@@ -8,6 +8,7 @@
         <dependent-module archiveName="common-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/common/common">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+
         <property name="java-output-path" value="/website/target/classes"/>
         <property name="context-root" value="springwater-ops-website"/>
     </wb-module>
