@@ -11,8 +11,8 @@ import com.mongodb.MongoClient;
 public class MongoDBConnector {
 
 	static final String databaseURL = null;
-	static final String userName = "admin";
-	static final String passWord = "netbuilder";
+	static final String userName = "superuser";
+	static final String passWord = "12345678";
 	
 	private String host = "localhost";
 	
