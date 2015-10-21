@@ -12,6 +12,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -27,14 +28,18 @@ import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
 public class AddItemFrame extends JFrame {
-	private JPanel base, main, buttonBar;
+	private JPanel base, main, buttonBar, attributesP;
 	private JLabel itemNameL, itemDescriptionL, itemPriceL, itemUnitPriceL,porousewareL, supplierL;
 	private JTextField itemNameR, itemPriceR, itemUnitPriceR;
 	private JTextArea itemDescriptionR;
 	private JComboBox supplierR;
 	private JRadioButton porouswareYesB, porouswareNoB;
 	private JButton addIB, addAttributesB, cancelB;
+	private ArrayList<JComboBox> attributes = new ArrayList<JComboBox>();
+	private ArrayList<JLbael> attributesLabels = new ArrayList<JLabel>();
 	private GridBagConstraints c = new GridBagConstraints();
+	private GridBagConstraints attriC;
+	private int noOfA =0;
 
 	public static void main(String[] args) {
 		AddItemFrame iF = new AddItemFrame();
@@ -58,7 +63,7 @@ public class AddItemFrame extends JFrame {
 		setSize(500, 250);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
-		setResizable(false);
+		setResizable(true);
 	}
 
 	private void addContent() {
@@ -73,22 +78,18 @@ public class AddItemFrame extends JFrame {
 		}
 		
 		itemNameL = new JLabel("Name:");
-		c.gridx = 0;
 		c.gridy = 0;
 		main.add(itemNameL, c);
 			
 		itemDescriptionL = new JLabel("Description:");
-		c.gridx = 0;
 		c.gridy = 1;
 		main.add(itemDescriptionL, c);
 		
 		itemPriceL = new JLabel("Sale Price:");
-		c.gridx = 0;
 		c.gridy = 2;
 		main.add(itemPriceL, c);
 		
 		itemUnitPriceL = new JLabel("Unit Cost:");
-		c.gridx = 0;
 		c.gridy = 3;
 		main.add(itemUnitPriceL, c);
 		
@@ -98,9 +99,13 @@ public class AddItemFrame extends JFrame {
 		main.add(porousewareL, c);
 		
 		supplierL = new JLabel("Supplier:");
-		c.gridx = 0;
 		c.gridy = 5;
 		main.add(supplierL, c);
+		
+		attributesP = new JPanel();
+		c.gridy =6;
+		c.gridwidth=3;
+		main.add(attributesP, c);
 		
 		//Inputs
 		porouswareYesB = new JRadioButton("Yes");
@@ -153,9 +158,7 @@ public class AddItemFrame extends JFrame {
 		c.gridy = 5;		
 		main.add(supplierR, c);
 		
-		addAttributesB = new JButton("Add Attributes");
-		c.gridy = 6;		
-		main.add(addAttributesB, c);
+		addAttributePnael();
 		
 		// Button Bar Panel
 		buttonBar = new JPanel();
@@ -189,5 +192,26 @@ public class AddItemFrame extends JFrame {
 				
 				base.add(main, BorderLayout.CENTER);
 				base.add(buttonBar, BorderLayout.SOUTH);
+	}
+	
+	private void addAttributePnael()
+	{
+		attriC = new GridBagConstraints();
+		attriC.fill = GridBagConstraints.HORIZONTAL;
+		noOfA++;
+		
+		if(noOfA !=1)
+		{
+			attributesP.removeAll();
+			attributesP.revalidate();
+		}
+		
+		addAttributesB = new JButton("Add Attributes");
+		attriC.gridx = 0;
+		attriC.gridy = 0;
+		attriC.gridwidth = 2;
+		attributesP.add(addAttributesB, c);
+		
+		
 	}
 }

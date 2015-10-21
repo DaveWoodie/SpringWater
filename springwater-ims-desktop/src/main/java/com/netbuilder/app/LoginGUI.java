@@ -26,6 +26,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import com.netbuilder.controller.ItemController;
+import com.netbuilder.logic.LoginAuthentication;
 
 /**
  * Create a login JFrame
@@ -42,13 +43,14 @@ public class LoginGUI extends JPanel implements ActionListener{
 	private JButton examplebutton;
 	private Color colour;
 	
+	private LoginAuthentication loginAuth = new LoginAuthentication();
+	
 	private IconLoader iconLoader = new IconLoader();
 	
 	private GUIStart src;
 	
 	public LoginGUI()
 	{
-	//	initUI();
 		createUI();
 	}
 	
@@ -56,21 +58,7 @@ public class LoginGUI extends JPanel implements ActionListener{
 	public LoginGUI(GUIStart src)
 	{
 		this.src = src;
-	//	initUI();
 		createUI();
-	}
-	
-	/**
-	 * Initialize Login Frame location and size
-	 */
-	@Deprecated
-	public void initUI()
-	{
-//		setLocationRelativeTo(null);
-//		setVisible(true);
-//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		setResizable(false);
-//		getContentPane().setPreferredSize(new Dimension(350, 300));
 	}
 	
 	public void createUI() 
@@ -79,22 +67,18 @@ public class LoginGUI extends JPanel implements ActionListener{
 		panelBackground = new JPanel(new BoxLayout(panelBackground, BoxLayout.Y_AXIS));
 		panelBackground.setLayout(null);
 		panelBackground.setPreferredSize(new Dimension(350, 300));
-		//panelBackground.setSize(300, 300);
-		//panelBackground.setPreferredSize(new Dimension(400, 300));
 		panelBackground.setBorder(BorderFactory.createLineBorder(Color.gray));
 		panelBackground.setBackground(Color.white);
 		this.add(panelBackground);
 		
 		//logo Panel
 		panelLogo = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		//panelLogo.setBorder(BorderFactory.createLineBorder(Color.black));
 		panelLogo.setPreferredSize(new Dimension(210, 115));
 		panelLogo.setBounds(getPreferredSize().width / 2 - panelLogo.getPreferredSize().width / 2, 10, panelLogo.getPreferredSize().width, panelLogo.getPreferredSize().height);
 		panelLogo.setBackground(Color.white);
 		
 		try
 		{
-			//Icon icon = iconLoader.createImageIcon(path, imageWidth, imageHeight)
 			BufferedImage Logo = ImageIO.read(new File("src/main/Resources/logo.png"));
 			JLabel labelLogo = new JLabel(new ImageIcon(Logo));
 			panelLogo.add(labelLogo);
@@ -107,7 +91,6 @@ public class LoginGUI extends JPanel implements ActionListener{
 		//UserName panel
 		JPanel panelUsername = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		panelUsername.setPreferredSize(new Dimension(250, 50));
-		//panelUsername.setBorder(BorderFactory.createLineBorder(Color.black));
 		panelUsername.setBounds(getPreferredSize().width / 2 - panelUsername.getPreferredSize().width / 2, panelLogo.getBounds().y + panelLogo.getHeight(), panelUsername.getPreferredSize().width, panelUsername.getPreferredSize().height);
 		panelUsername.setBackground(Color.white);
 		labelUsername = new JLabel("Username : ");
@@ -118,7 +101,6 @@ public class LoginGUI extends JPanel implements ActionListener{
 		//Password panel
 		JPanel panelPassword = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		panelPassword.setPreferredSize(new Dimension(250, 50));
-		//panelPassword.setBorder(BorderFactory.createLineBorder(Color.black));
 		panelPassword.setBounds(getPreferredSize().width / 2 - panelPassword.getPreferredSize().width / 2, panelUsername.getBounds().y + panelUsername.getHeight(), panelPassword.getPreferredSize().width, panelPassword.getPreferredSize().height);
 		panelPassword.setBackground(Color.white);
 		labelPassword = new JLabel("Password : ");
@@ -128,23 +110,11 @@ public class LoginGUI extends JPanel implements ActionListener{
 		
 		//Login button panel
 		JPanel panelLogin = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		//panelLogin.setBorder(BorderFactory.createLineBorder(Color.black));
 		panelLogin.setBounds(panelPassword.getBounds().x, panelPassword.getBounds().y + panelPassword.getHeight() + 10, 250, 50);
 		panelLogin.setBackground(Color.white);
 		buttonLogin = new JButton("Login");
 		buttonLogin.addActionListener(this);
 		panelLogin.add(buttonLogin);
-		
-		
-		examplebutton = new JButton("Login");
-		examplebutton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				ItemController itemController = new ItemController();
-				itemController.getItems();
-			}
-		});
-		panelLogin.add(examplebutton);
 		
 		//add components to container panel
 		panelBackground.add(panelLogo);
