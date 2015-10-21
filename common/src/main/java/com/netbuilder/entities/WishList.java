@@ -16,7 +16,7 @@ import org.springframework.data.annotation.Id;
 public class WishList {
 	
 	@Id
-	private Customer customer;
+	private int customerID;
 	private ArrayList<Item> items;
 	
 	/**
@@ -24,9 +24,9 @@ public class WishList {
 	 * @param item : The list of items to be added to the WishList
 	 * @param customer : The customer that owns the WishList
 	 */
-	public WishList(Customer customer, ArrayList<Item> items) {
+	public WishList(int customerID, ArrayList<Item> items) {
 		// Initialise attributes
-		this.customer = customer;
+		this.customerID = customerID;
 		this.items = new ArrayList<Item>();
 		for(int i = 0; i < items.size(); i++) {
 			this.items.add(items.get(i));
@@ -39,8 +39,8 @@ public class WishList {
 	 * @MethodAuthor tstacey
 	 * @date 08/10/2015
 	 */
-	public WishList(Customer customer) {
-		this.customer = customer;
+	public WishList(int customerID) {
+		this.customerID = customerID;
 		this.items = new ArrayList<Item>();
 	}
 	
@@ -52,8 +52,8 @@ public class WishList {
 		return items.size();
 	}
 	
-	public Customer getCustomer() {
-		return customer;
+	public int getCustomerID() {
+		return customerID;
 	}
 
 	public void addItem(Item i) {
@@ -114,7 +114,7 @@ public class WishList {
 	 * 
 	 * @Method is a mutator customer ID.
 	 */
-	public void setCustomer(Customer c) {
-		this.customer = c;
+	public void setCustomer(int c) {
+		this.customerID = c;
 	}
 }

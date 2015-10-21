@@ -1,6 +1,7 @@
 package com.netbuilder.entityrepository;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import com.netbuilder.entities.Supplier;
 
@@ -16,6 +17,8 @@ import com.netbuilder.entities.Supplier;
  * @author dwoodward
  *
  */
+
+@Repository
 public interface SupplierRepository extends CrudRepository<Supplier, Integer> {
 	public Supplier findSupplierByName(String supplierName);
 }
