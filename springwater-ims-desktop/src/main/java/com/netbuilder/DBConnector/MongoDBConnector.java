@@ -14,20 +14,13 @@ public class MongoDBConnector {
 	static final String userName = "superuser";
 	static final String passWord = "12345678";
 	
-	private String host = "localhost";
-	
-	
 	public static void openCon() {
 		
 		try {
-			
 			//Connect to the host localhost through the default port 27017.
-			Mongo mongo = new Mongo("10.50.15.27", 27017);
-		
-			MongoClient mongoClient = new MongoClient();
+			MongoClient mongoClient = new MongoClient("10.50.15.27", 27017);
 			DB db = mongoClient.getDB("nbgardensdata");
 			boolean auth = db.authenticate(userName, passWord.toCharArray());
-			
 			//To get a table or collection from a Mongo DB
 			DBCollection table = db.getCollection("user");
 			
