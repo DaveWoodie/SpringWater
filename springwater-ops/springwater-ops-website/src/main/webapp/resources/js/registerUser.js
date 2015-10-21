@@ -7,11 +7,11 @@
  * 				for the functionality which allows the user
  * 				to register on the loginRegister.jsp page.
  * 
- * Last Modified: 20/10/2015
+ * Last Modified: 21/10/2015
  */
 
-var firstName;
-var lastName;
+var firstNameCookie;
+var lastNameCookie;
 var email;
 var password;
 var confirmPassword;
@@ -42,23 +42,32 @@ function registerUserDetails() {
 		alert("Error!\nAll fields must be completed.\nPassword and Confirmed Password must match.");
 	}
 	
-	// Create cookies for user
-	var firstNameCookie=getCookie("firstname");
-	//alert("Welcome again " + firstNameCookie);
+	// Create cookies for user and set
+	setFirstNameCookie(firstName);
+	setLastNameCookie(lastName);
+	
+	// Create an alert box
+	alert("Welcome " + getFirstNameCookie() + " " + getLastNameCookie() + ", you are now registered.");
 }
 
-function getName() {
-	document.write(getCookie("firstname"));
+// Function to set a name cookie
+function setFirstNameCookie(cname) {
+	// Set the first name cookie
+   firstNameCookie=document.cookie = cname;
 }
 
-// get cookie function
-function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0; i<ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1);
-        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
-    }
-    return "";
+// get the first name cookie
+function getFirstNameCookie() {
+	return firstNameCookie;
+}
+
+//Function to set a last name cookie
+function setLastNameCookie(cname) {
+	// Set the first name cookie
+	lastNameCookie=document.cookie = cname;
+}
+
+// get the first last name cookie
+function getLastNameCookie() {
+	return lastNameCookie;
 }
