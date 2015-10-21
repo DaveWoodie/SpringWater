@@ -9,8 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "purchaseorderstatus")
 public class PurchaseOrderStatus {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -43,5 +45,4 @@ public class PurchaseOrderStatus {
 	public String getPurchOrderStatus() {
 		return status;
 	}
-
 }
