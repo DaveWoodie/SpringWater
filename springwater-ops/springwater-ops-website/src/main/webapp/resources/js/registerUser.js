@@ -21,13 +21,13 @@ var telephoneNumber;
 function registerUserDetails() {
 	
 	// User attributes
-	firstName = document.getElementById("firstNameInput").value;
-	lastName = document.getElementById("lastNameInput").value;
-	email = document.getElementById("emailInput").value;
-	password = document.getElementById("passwordInput").value;
-	confirmPassword = document.getElementById("confirmPasswordInput").value;
-	dob = document.getElementById("dobInput").value;
-	telephoneNumber = document.getElementById("telephoneNumberInput").value;
+	var firstName = document.getElementById("firstNameInput").value;
+	var lastName = document.getElementById("lastNameInput").value;
+	var email = document.getElementById("emailInput").value;
+    var password = document.getElementById("passwordInput").value;
+	var confirmPassword = document.getElementById("confirmPasswordInput").value;
+    var dob = document.getElementById("dobInput").value;
+	var telephoneNumber = document.getElementById("telephoneNumberInput").value;
 	
 	// Run a check to see whether users passwords match
 	if (password === confirmPassword && firstName != "" && lastName != "" && email != ""
@@ -36,7 +36,7 @@ function registerUserDetails() {
 		// Return false to the event window
 		window.event.returnValue = false;
         
-        document.cookie = "firstname = " + firstNameCookie + "; lastname = " + lastNameCookie + "";
+        
 		
 		// Jump to the registered confirmation page
 		window.location.href="registerConfirmedPage.jsp";
@@ -45,40 +45,20 @@ function registerUserDetails() {
 	}
 	
 	// Create cookies for user and set
-	setFirstNameCookie(firstName);
-	setLastNameCookie(lastName);
+    setAllCookieVals(firstName, lastName, email);
 	
 	// Create an alert box
 	alert("Welcome " + getFirstNameCookie() + " " + getLastNameCookie() + ", you are now registered.");
 }
 
-// Function to set a name cookie
-function setFirstNameCookie(cname) {
-	// Set the first name cookie
-   firstNameCookie = cname; 
+function setAllCookieVals(fname, lname, email) {
+    document.cookie = "firstName = " + fname;
+    document.cookie = "lastName = " + lname;
+    document.cookie = "email = " + email;
 }
 
-// get the first name cookie
-function getFirstNameCookie() {
-	return firstNameCookie;
-}
-
-//Function to set a last name cookie
-function setLastNameCookie(cname) {
-	// Set the first name cookie
-	lastNameCookie = cname;
-}
-
-// get the first last name cookie
-function getLastNameCookie() {
-	return lastNameCookie;
-}
-
-function printCookie() {
-    console.log(document.cookie);
-}
-
-function printAll(){
-    console.log("FirstName: " + firstNameCookie);
-    console.log("LastName: " + lastNameCookie);
+function getCookie(name) {
+    var re = new RegExp(name + "=([^;]+)");
+    var value = re.exec(document.cookie);
+    return (value != null) ? unescape(value[1]) : null;
 }
