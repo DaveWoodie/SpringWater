@@ -27,13 +27,14 @@ import javax.swing.SwingUtilities;
 
 @SuppressWarnings("serial")
 public class AddSupplierFrame extends JFrame {
-	private JPanel base, main, buttonBar;
+	private JPanel base, main, buttonBar, addressP;
 	private JLabel nameL, tPhoneL, eMailL, addressTL, addressCL, addressPCL;
 	private JTextField nameT, tPhoneT, eMialT, addressTT, addressCT, addressPCT;
-	private JButton addSB, addSWPB, cancelB, addAddressLine;
+	private JButton addSB, cancelB, addAddressLine;
 	private ArrayList<JTextField> addressLines = new ArrayList<JTextField>();
 	private ArrayList<JLabel> addressLineLabels = new ArrayList<JLabel>();
 	private GridBagConstraints c = new GridBagConstraints();
+	private GridBagConstraints addressC;
 	private int noOfAL = 0;
 
 	public static void main(String[] args) {
@@ -54,7 +55,7 @@ public class AddSupplierFrame extends JFrame {
 	private void configFrame() {
 		setTitle("Add New Supplier");
 //		setSize(600,800);
-		setSize(500, 250);
+		setSize(500, 210);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -69,27 +70,27 @@ public class AddSupplierFrame extends JFrame {
 		
 		if (shouldFill) {
             //natural height, maximum width
-            c.fill = GridBagConstraints.HORIZONTAL;
-}
+            c.fill = GridBagConstraints.HORIZONTAL;           
+		}
 		
 		//Labels
 		nameL = new JLabel("Name:");
-//		c.weightx = 0.5;
 		c.gridx = 0;
 		c.gridy = 0;
 		main.add(nameL, c);
 			
 		tPhoneL = new JLabel("Contact Phone Number:");
-//		c.weightx = 0.5;
-		c.gridx = 0;
 		c.gridy = 1;
 		main.add(tPhoneL, c);
 		
 		eMailL = new JLabel("Contact e-mail:");
-//		c.weightx = 0.5;
-		c.gridx = 0;
 		c.gridy = 2;
 		main.add(eMailL, c);
+		
+		addressP = new JPanel(new GridBagLayout());
+		c.gridy = 3;
+		c.gridwidth =2;
+		main.add(addressP, c);		
 		
 		//Inputs
 		nameT = new JTextField();
@@ -113,38 +114,27 @@ public class AddSupplierFrame extends JFrame {
 		c.gridy = 2;
 		main.add(eMialT, c);
 			
-	addAddress();
+		addAddressPanel();
 		
 		// Button Bar Panel
 		buttonBar = new JPanel();
 		buttonBar.setLayout(new GridLayout(1, 3));
 		addSB = new JButton("Add");
-		addSWPB = new JButton("Add (With Products)");
+//		addSWPB = new JButton("Add (With Products)");
 		cancelB = new JButton("Cancel");
 
 		buttonBar.add(addSB);
-		buttonBar.add(addSWPB);
+//		buttonBar.add(addSWPB);
 		buttonBar.add(cancelB);
 
-		//ActionListeners
-		addAddressLine.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {			
-				addAddress();
-			}
-		});
-		
+		//ActionListeners	
 		addSB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {			
-				
+				//TODO send to database
+				getResults();
 			}
 		});
-		
-		addSWPB.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {			
 				
-			}
-		});
-		
 		cancelB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -155,91 +145,104 @@ public class AddSupplierFrame extends JFrame {
 		base.add(buttonBar, BorderLayout.SOUTH);
 	}
 	
-	private void addAddress()
+	private void addAddressPanel()
 	{	
+		addressC = new GridBagConstraints();
+		addressC.fill = GridBagConstraints.HORIZONTAL;
 		noOfAL++;
+		
+		setSize(getSize().width, getSize().height+20);
 		
 		if(noOfAL !=1)
 		{
-			base.removeAll();
-//			base.remove(addAddressLine);
-//			base.remove(addressTL);
-//			base.remove(addressTT);
-//			base.remove(addressCL);
-//			base.remove(addressCT);
-//			base.remove(addressPCL);
-//			base.remove(addressPCT);
+			addressP.removeAll();
+			addressP.revalidate();
 		}
 		
-		main.invalidate();
-		main.repaint();
-		main.revalidate();
-		base.updateUI();
+		addressLineLabels.add(new JLabel("Address Line " + noOfAL + ":"));
+		addressLines.add(new JTextField());
+		addressLines.get(noOfAL-1).setColumns(30);
 		
+		addressPCL = new JLabel("Address Post Code:       ");
+		addressC.gridy = noOfAL+6;
+		addressP.add(addressPCL, addressC);
 		
+		for (int i = 0; i < noOfAL; i++){		
+			addressC.gridx = 0;
+			addressC.gridy = i +2;
+			addressP.add(addressLineLabels.get(i), addressC);
+							
+			addressC.gridx = 1;
+			addressC.gridy = i +2;
+			addressP.add(addressLines.get(i), addressC);
+		}
 		
+		addAddressLine = new JButton("+");  
+		addAddressLine.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				addAddressPanel();
+				
+			}
+		});
 		
-//		addressLineLabels.add(new JLabel("Address Line " +noOfAL + ":"));
-//		c.gridx = 0;
-//		c.gridy = noOfAL +2;
-//		main.add(addressLineLabels.get(noOfAL -1), c);
-//		
-//		addressLines.add(new JTextField());
-//		addressLines.get(noOfAL -1).setColumns(30);
-//		c.gridx = 1;
-//		c.gridy = noOfAL +2;
-//		main.add(addressLines.get(noOfAL -1), c);
+		addressC.gridwidth = 2;
+		addressC.gridx = 0;
+		addressC.gridy = noOfAL+3;
+		addressP.add(addAddressLine, addressC);
+
+		addressTL = new JLabel("Address Town:");
+		addressC.gridy = noOfAL+4;
+		addressP.add(addressTL, addressC);
 		
-		addAddressLine = new JButton("+");    
-		c.weightx = 0.0;
-		c.gridwidth = 2;
-		c.gridx = 1;
-		c.gridy = noOfAL+3;
-		main.add(addAddressLine, c);
+		addressCL = new JLabel("Address County:");
+		addressC.gridy = noOfAL+5;
+		addressP.add(addressCL, addressC);
+			
+		addressTT = new JTextField();
+		addressTT.setColumns(30);
+		addressC.gridx = 1;
+		addressC.gridy = noOfAL+4;
+		addressP.add(addressTT, addressC);
 		
-//		addressTL = new JLabel("Address Town:");
-////		c.weightx = 0.5;
-//		c.gridx = 0;
-//		c.gridy = noOfAL+4;
-//		main.add(addressTL, c);
-//		
-//		addressCL = new JLabel("Address County:");
-////		c.weightx = 0.5;
-//		c.gridx = 0;
-//		c.gridy = noOfAL+5;
-//		main.add(addressCL, c);
-//		
-//		addressPCL = new JLabel("Address Post Code:");
-////		c.weightx = 0.5;
-//		c.gridx = 0;
-//		c.gridy = noOfAL+6;
-//		main.add(addressPCL, c); 
-//		
-//		addressTT = new JTextField();
-//		addressTT.setColumns(30);
-//		c.weightx = 0.5;
-//		c.gridx = 1;
-//		c.gridy = noOfAL+4;
-//		main.add(addressTT, c);
-//		
-//		addressCT = new JTextField();
-//		addressCT.setColumns(30);
-//		c.weightx = 0.5;
-//		c.gridx = 1;
-//		c.gridy = noOfAL+5;
-//		main.add(addressCT, c);
-//		
-//		addressPCT = new JTextField();
-//		addressPCT.setColumns(30);
-//		c.weightx = 0.5;
-//		c.gridx = 1;
-//		c.gridy = noOfAL+6;
-//		main.add(addressPCT, c);
-//		
-		repaint();
-		revalidate();
+		addressCT = new JTextField();
+		addressCT.setColumns(30);
+		addressC.weightx = 0.5;
+		addressC.gridy = noOfAL+5;
+		addressP.add(addressCT, addressC);
 		
-		System.out.println("here add");
+		addressPCT = new JTextField();
+		addressPCT.setColumns(30);
+		addressC.weightx = 0.5;
+		addressC.gridy = noOfAL+6;
+		addressP.add(addressPCT, addressC);
+		
+		addressP.repaint();
+		addressP.revalidate();		
+//		System.out.println("here add");
 	}
 	
+	/**
+	 * Method to collate the inputs from the GUI
+	 * @return an array of strings from inputs
+	 * @date 21/10/2015
+	 */
+	private String[] getResults()
+	{
+		//TODO Validate inputs
+		ArrayList<String> input = new ArrayList<String>();
+		input.add(nameT.getText());
+		input.add(tPhoneT.getText());
+		input.add(eMialT.getText());
+		input.add(addressTT.getText());
+		input.add(addressCT.getText());
+		input.add(addressPCT.getText());
+		for (JTextField al :addressLines)
+		{
+			input.add(al.getText());
+//			System.out.println(al.getText());
+		}
+		String[] array = new String[input.size()];
+		array =  input.toArray(array);
+		return array;
+	}
 }
