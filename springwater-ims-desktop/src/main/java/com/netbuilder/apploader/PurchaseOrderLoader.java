@@ -5,9 +5,10 @@
 package com.netbuilder.apploader;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.netbuilder.entities.Address;
+import com.netbuilder.DBConnector.SQLDBConnector;
 import com.netbuilder.entities.Employee;
 import com.netbuilder.entities.PurchaseOrder;
 import com.netbuilder.entities.PurchaseOrderStatus;
@@ -34,20 +35,27 @@ public class PurchaseOrderLoader {
 	 */
 	public void constructResult() {
 		purchaseOrderList.clear();
-		ResultSet rs = sqlDB.queryDB(sql);
-		while (rs.next()) {
-			PurchaseOrderStatus pOS = new PurchaseOrderStatus(rs.getString("purchaseorderstatus.status"));
-			//TODO attach code to connect to mongo DB to produce address
-			Supplier supplier = new Supplier(rs.getString("supplier.supplierName"), new Address());
-			Role role = new Role(rs.getString("role.roleName"));
-			User user = new User(rs.getString("user.password"), rs.getString("user.forename"), rs.getString("user.surname"), rs.getString("user.email"), rs.getBoolean("user.isEmployee"));
-			user.setUserID(rs.getInt("user.idUser"));
-			Employee employee = new Employee(user, role);
-			PurchaseOrder pO = new PurchaseOrder(rs.getDate("purchaseorder.datePlaced"), employee, pOS, supplier);
-			pO.setIDPurchaseOrder(rs.getInt("purchaseorder.idPurchaseOrder"));
-			pO.setDateExpected(rs.getDate("purchaseorder.dateExpected"));
-			purchaseOrderList.add(pO);
+		try {
+			ResultSet rs = sqlDB.queryDB(sql);
+			while (rs.next()) {
+				PurchaseOrderStatus pOS = new PurchaseOrderStatus(rs.getString("purchaseorderstatus.status"));
+				
+				Supplier supplier = new Supplier(rs.getString("supplier.supplierName"), rs.getInt("supplier.idAddress"));
+				Role role = new Role(rs.getString("role.roleName"));
+				User user = new User(rs.getString("user.password"), rs.getString("user.forename"), rs.getString("user.surname"), rs.getString("user.email"), rs.getBoolean("user.isEmployee"));
+				user.setUserID(rs.getInt("user.idUser"));
+				Employee employee = new Employee(user, role);
+				PurchaseOrder pO = new PurchaseOrder(rs.getDate("purchaseorder.datePlaced"), employee, pOS, supplier);
+				pO.setIDPurchaseOrder(rs.getInt("purchaseorder.idPurchaseOrder"));
+				pO.setDateExpected(rs.getDate("purchaseorder.dateExpected"));
+				purchaseOrderList.add(pO);
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();		
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		finally {}
 	}
 	
 	/**
