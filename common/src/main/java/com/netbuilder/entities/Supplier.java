@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Class to hold all of the details for one Supplier
@@ -11,6 +12,7 @@ import javax.persistence.Id;
  * @date 06/10/2015
  */
 @Entity
+@Table(name = "supplier")
 public class Supplier {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -18,7 +20,7 @@ public class Supplier {
 	private String supplierName;
 	private String telephone;
 	private String email;
-	private Address address;
+	private int addressID;
 	private int averageDeliveryTime;
 	
 	/**
@@ -33,9 +35,9 @@ public class Supplier {
 	 * @param supplierName
 	 * @param address
 	 */
-	public Supplier(String supplierName, Address address) {
+	public Supplier(String supplierName, int addressID) {
 		this.supplierName = supplierName;
-		this.address = address;
+		this.addressID = addressID;
 	}
 	
 	public void setSupplierName(String supplierName) {
@@ -50,8 +52,8 @@ public class Supplier {
 		this.email = email;
 	}
 	
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setAddress(int addressID) {
+		this.addressID = addressID;
 	}
 	
 	public void setAverageDeliveryTime(int time) {
@@ -74,8 +76,8 @@ public class Supplier {
 		return this.email;
 	}
 	
-	public Address getAddress() {
-		return this.address;
+	public int getAddressID() {
+		return this.addressID;
 	}
 	
 	public int getAverageDeliveryTime() {

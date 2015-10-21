@@ -1,8 +1,11 @@
 package com.netbuilder.entities;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 /**
  * Class representing a line in a customer order
@@ -10,13 +13,16 @@ import javax.persistence.PrimaryKeyJoinColumn;
  * @author cboucher
  * @date 06/10/2015
  */
+
+@Entity
+@Table(name = "customerorderline")
 public class CustomerOrderLine {
 	private int quantity;
-	@Id
-	private Item item;
+	
+	private int itemID;
 	
 	@Id
-	@ManyToOne
+	@ManyToOne (cascade=CascadeType.PERSIST)
 	@PrimaryKeyJoinColumn(name = "idCustomerOrder")
 	private CustomerOrder customerOrder;
 
@@ -30,10 +36,10 @@ public class CustomerOrderLine {
 	 * @param customerOrder
 	 *            : The customer order
 	 */
-	public CustomerOrderLine(int quantity, Item item,
+	public CustomerOrderLine(int quantity, int itemID,
 			CustomerOrder customerOrder) {
 		this.quantity = quantity;
-		this.item = item;
+		this.itemID = itemID;
 		this.customerOrder = customerOrder;
 	}
 
@@ -61,8 +67,8 @@ public class CustomerOrderLine {
 	 * 
 	 * @return The item
 	 */
-	public Item getItem() {
-		return item;
+	public int getItemID() {
+		return itemID;
 	}
 
 	/**
