@@ -90,12 +90,33 @@
     <div class="jumbotron content">
     	
     	<hr>
-    		<h1>Congratulations, you are now registered.</h1>
-    		<p>A confirmation email has been sent to </p>
+    	
+    		<div class="container">
+	    		<div class="page-header">
+	                   <center>
+	                   		<h1>Congratulations, </h1><h1 id="fName"></h1><h1>you are now registered!</h1>
+	                   </center>
+	             </div>
+             </div>
+    		
+    		<p id="email"></p>
     		<p id="fName"></p>
     		
+    		<!-- Script for calling cookie data  -->
     		<script>
-				document.getElementById("fName").innerHTML = "Cookie = " + getLastNameCookie();
+				document.getElementById("fName").innerHTML = getCookie("firstName") + " " + getCookie("lastName");
+                document.getElementById("email").innerHTML = "A confirmation email has been sent to " + getCookie("email");
+			</script>
+			
+			<div class="container">
+				<center>
+					<p id="uniqueNumberRef">customer reference number is </p> <p id="uniqueNum"></p>
+				</center>
+			</div>
+			
+			<!-- Script for creating unique number for user -->
+			<script>
+				document.getElementById("uniqueNum").innerHTML = getUniqueNumber();
 			</script>
     	<hr>
    

@@ -24,9 +24,9 @@ function registerUserDetails() {
 	var firstName = document.getElementById("firstNameInput").value;
 	var lastName = document.getElementById("lastNameInput").value;
 	var email = document.getElementById("emailInput").value;
-	var password = document.getElementById("passwordInput").value;
+    var password = document.getElementById("passwordInput").value;
 	var confirmPassword = document.getElementById("confirmPasswordInput").value;
-	var dob = document.getElementById("dobInput").value;
+    var dob = document.getElementById("dobInput").value;
 	var telephoneNumber = document.getElementById("telephoneNumberInput").value;
 	
 	// Run a check to see whether users passwords match
@@ -35,6 +35,8 @@ function registerUserDetails() {
 		
 		// Return false to the event window
 		window.event.returnValue = false;
+        
+        
 		
 		// Jump to the registered confirmation page
 		window.location.href="registerConfirmedPage.jsp";
@@ -43,31 +45,27 @@ function registerUserDetails() {
 	}
 	
 	// Create cookies for user and set
-	setFirstNameCookie(firstName);
-	setLastNameCookie(lastName);
+    setAllCookieVals(firstName, lastName, email);
 	
 	// Create an alert box
 	alert("Welcome " + getFirstNameCookie() + " " + getLastNameCookie() + ", you are now registered.");
 }
 
-// Function to set a name cookie
-function setFirstNameCookie(cname) {
-	// Set the first name cookie
-   firstNameCookie=document.cookie = cname;
+// function sets all the cookie values for the user
+function setAllCookieVals(fname, lname, email) {
+    document.cookie = "firstName = " + fname;
+    document.cookie = "lastName = " + lname;
+    document.cookie = "email = " + email;
 }
 
-// get the first name cookie
-function getFirstNameCookie() {
-	return firstNameCookie;
+// function returns all the cookie values to the user
+function getCookie(name) {
+    var re = new RegExp(name + "=([^;]+)");
+    var value = re.exec(document.cookie);
+    return (value != null) ? unescape(value[1]) : null;
 }
 
-//Function to set a last name cookie
-function setLastNameCookie(cname) {
-	// Set the first name cookie
-	lastNameCookie=document.cookie = cname;
-}
-
-// get the first last name cookie
-function getLastNameCookie() {
-	return lastNameCookie;
+// Function to create random unique number for user
+function getUniqueNumber() {
+	return Math.floor((Math.random() * 6000000000000000000) + 1);
 }

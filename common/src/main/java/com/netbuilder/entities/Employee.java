@@ -5,21 +5,24 @@
 
 package com.netbuilder.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "employee")
 public class Employee {
 	
 	@Id
-	@OneToOne
-	@PrimaryKeyJoinColumn(name = "idUser")
+	@OneToOne (cascade=CascadeType.ALL)
+	@PrimaryKeyJoinColumn(name = "idEmployee")
 	private User user;
-	@ManyToOne
-	@PrimaryKeyJoinColumn(name = "idEmployeeRole")
+	@ManyToOne (cascade=CascadeType.PERSIST)
+	@PrimaryKeyJoinColumn(name = "idRole")
 	private Role role;
 
 	/**
