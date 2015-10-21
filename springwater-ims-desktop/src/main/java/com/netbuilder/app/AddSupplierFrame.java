@@ -215,8 +215,6 @@ public class AddSupplierFrame extends JFrame {
 //		c.gridy = noOfAL+6;
 //		main.add(addressPCL, c); 
 //		
-//		
-//		
 //		addressTT = new JTextField();
 //		addressTT.setColumns(30);
 //		c.weightx = 0.5;
