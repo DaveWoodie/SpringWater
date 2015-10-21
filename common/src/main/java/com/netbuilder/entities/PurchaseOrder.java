@@ -29,6 +29,7 @@ public class PurchaseOrder {
 	@ManyToOne
 	@PrimaryKeyJoinColumn(name = "idSupplier")
 	private Supplier supplier;
+	private float Total;
 	
 	/**
 	 * Constructor to build an instance of PurchaseOrder, not null variables are date placed, employee owning, the order status and the supplier
