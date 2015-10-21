@@ -1,3 +1,7 @@
+/**
+ * @author jforster
+ * @date 21/10/15
+ */
 package com.netbuilder.logic;
 
 import java.text.DateFormat;
@@ -7,6 +11,11 @@ import java.util.ArrayList;
 import com.netbuilder.apploader.PurchaseOrderLoader;
 import com.netbuilder.entities.PurchaseOrder;
 
+/**
+ * Class to manage the logic and business rules for the application
+ * @author jforster
+ *
+ */
 public class PurchaseOrderLogic {
 	
 	Object [][] purchaseOrderList;
@@ -15,6 +24,10 @@ public class PurchaseOrderLogic {
 	DateFormat df = new SimpleDateFormat("dd/MM/yy");
 	ArrayList<PurchaseOrder> pOList;
 	
+	/**
+	 * Method to load and format the entities for the GUI for all purchase orders
+	 * @return the array of data to be displayed by the GUI
+	 */
 	public Object [][] fetchPurchaseOrders() {
 		pOList = new ArrayList<PurchaseOrder>(pOLoader.getPurchaseOrderList());
 		
@@ -23,6 +36,11 @@ public class PurchaseOrderLogic {
 		return purchaseOrderList;
 	}
 	
+	/**
+	 * Method to load and format the entity of a single purchase order for the GUI
+	 * @param id of the purchase order to be displayed
+	 * @return the array of data to display the purchase order in the GUI
+	 */
 	public Object[] fetchPurchaseOrdersByID(int id) {
 		pOList = new ArrayList<PurchaseOrder>(pOLoader.getPurchaseOrderByID(id));
 		float total = 3160;
@@ -37,6 +55,11 @@ public class PurchaseOrderLogic {
 		return purchaseOrder;
 	}
 	
+	/**
+	 * Method to load and format the entities for the GUI for all purchase orders of a specific status
+	 * @param status of the purchase order to be searched for
+	 * @return the array of data to be displayed by the GUI
+	 */
 	public Object [][] fetchPurchaseOrdersByStatus(String status) {
 		pOList = new ArrayList<PurchaseOrder>(pOLoader.getPurchaseOrderListByStatus(status));
 	
@@ -45,6 +68,11 @@ public class PurchaseOrderLogic {
 		return purchaseOrderList;
 	}
 	
+	/**
+	 * Method to load and format the entities for the GUI for all purchase orders of a specific supplier
+	 * @param supplier name of the supplier to be searched for
+	 * @return the array of data to be displayed by the GUI
+	 */
 	public Object [][] fetchPurchaseOrdersBySupplier(String supplier) {
 		pOList = new ArrayList<PurchaseOrder>(pOLoader.getPurchaseOrderListBySupplier(supplier));
 		
@@ -53,6 +81,11 @@ public class PurchaseOrderLogic {
 		return purchaseOrderList;
 	}
 	
+	/**
+	 * Method to load and format the entities for the GUI for all purchase orders containing a specific item
+	 * @param id of the item to be searched for
+	 * @return the array of data to be displayed by the GUI
+	 */
 	public Object [][] fetchPurchaseOrdersByItem(int id) {
 		pOList = new ArrayList<PurchaseOrder>(pOLoader.getPurchaseOrderListByItem(id));
 		
@@ -61,6 +94,9 @@ public class PurchaseOrderLogic {
 		return purchaseOrderList;
 	}
 	
+	/**
+	 * Method to format the purchase order entities' data into a format for the GUI
+	 */
 	public void formatTable() {
 		purchaseOrderList = new Object [pOList.size()][5];
 		for (int i = 0; i < pOList.size(); i++) {
