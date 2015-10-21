@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import com.netbuilder.entities.Employee;
 import com.netbuilder.entities.Item;
@@ -16,6 +17,8 @@ import com.netbuilder.entities.Supplier;
  * @author jforster
  *
  */
+
+@Repository
 public interface PurchaseOrderRepository extends CrudRepository<PurchaseOrder, Integer>{
 	
 	public PurchaseOrder findbyPurchaseOrderID(int pOID);

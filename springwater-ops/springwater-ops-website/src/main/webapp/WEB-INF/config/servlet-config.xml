@@ -79,5 +79,23 @@
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		  p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" p:order="1">
 	</bean>
+	
+<!-- 	<bean id="templateResolver" -->
+<!--        class="org.thymeleaf.templateresolver.ServletContextTemplateResolver"> -->
+<!-- 	  <property name="prefix" value="/WEB-INF/jsp/" /> -->
+<!-- 	  <property name="suffix" value=".jsp" /> -->
+<!-- 	  <property name="templateMode" value="JSP" /> -->
+<!-- 	</bean> -->
+    
+	<bean id="templateEngine"
+	    class="org.thymeleaf.spring4.SpringTemplateEngine">
+	 	<property name="templateResolver" ref="templateResolver" />
+	</bean>
+	
+	<bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+	  <property name="templateEngine" ref="templateEngine" />
+	  <property name="order" value="1" />
+	  <property name="viewNames" value="*.html" />
+	</bean>
 
 </beans>

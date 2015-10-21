@@ -3,6 +3,7 @@ package com.netbuilder.entityrepository;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.CustomerOrder;
@@ -15,6 +16,8 @@ import com.netbuilder.entities.Employee;
  * @author abutcher
  * @date 07/10/2015
  */
+
+@Repository
 public interface CustomerOrderRepository extends CrudRepository<CustomerOrder, Integer>  {
 	public CustomerOrder findByID(int id);
 	public List<CustomerOrder> findByCustomer(Customer c);

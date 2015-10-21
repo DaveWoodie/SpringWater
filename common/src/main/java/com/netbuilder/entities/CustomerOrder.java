@@ -7,14 +7,17 @@ package com.netbuilder.entities;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "customerorder")
 public class CustomerOrder 
 {
 	@Id
@@ -22,17 +25,17 @@ public class CustomerOrder
 	private int customerOrderID;
 	private Date datePlaced;
 	private Date dateShipped;
-	@ManyToOne
+	@ManyToOne (cascade=CascadeType.PERSIST)
 	@PrimaryKeyJoinColumn (name="idCustomer")
 	private Customer customer;
-	@ManyToOne
+	@ManyToOne (cascade=CascadeType.PERSIST)
 	@PrimaryKeyJoinColumn (name="idCustomerOrderStatus")
 	private CustomerOrderStatus customerOrderStatus;
-	@ManyToOne
+	@ManyToOne (cascade=CascadeType.PERSIST)
 	@PrimaryKeyJoinColumn (name="idEmployee")
 	private Employee employee;
 	private boolean isPaid;
-	private Address address;
+	private int addressID;
 	
 	/**
 	 * Constructor to build an instance of Customer Order.
@@ -43,14 +46,14 @@ public class CustomerOrder
 	 * @param orderStatus : the current status of the order.
 	 * @param employee : the employee who last checked out the order.
 	 */
-	public CustomerOrder(Date datePlaced, Customer customer, CustomerOrderStatus orderStatus, Employee employee, boolean isPaid, Address address) {
+	public CustomerOrder(Date datePlaced, Customer customer, CustomerOrderStatus orderStatus, Employee employee, boolean isPaid, int addressID) {
 		
 		this.datePlaced = new Date(datePlaced.getTime());
 		this.customer = customer;
 		this.customerOrderStatus = orderStatus;
 		this.employee = employee;
 		this.isPaid = isPaid;
-		this.address = address;
+		this.addressID = addressID;
 	}
 	
 	/**
@@ -91,8 +94,8 @@ public class CustomerOrder
 		return isPaid;
 	}
 	
-	public Address getDeliveryAddress() {
-		return address;
+	public int getDeliveryAddressID() {
+		return addressID;
 	}
 	
 	public void setDateShipped(Date dateShipped) {

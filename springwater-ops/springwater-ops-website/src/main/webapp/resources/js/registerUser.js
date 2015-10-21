@@ -51,14 +51,21 @@ function registerUserDetails() {
 	alert("Welcome " + getFirstNameCookie() + " " + getLastNameCookie() + ", you are now registered.");
 }
 
+// function sets all the cookie values for the user
 function setAllCookieVals(fname, lname, email) {
     document.cookie = "firstName = " + fname;
     document.cookie = "lastName = " + lname;
     document.cookie = "email = " + email;
 }
 
+// function returns all the cookie values to the user
 function getCookie(name) {
     var re = new RegExp(name + "=([^;]+)");
     var value = re.exec(document.cookie);
     return (value != null) ? unescape(value[1]) : null;
+}
+
+// Function to create random unique number for user
+function getUniqueNumber() {
+	return Math.floor((Math.random() * 6000000000000000000) + 1);
 }
