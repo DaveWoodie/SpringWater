@@ -40,7 +40,7 @@
                         <br />
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Password</span>
-                            <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1" id="passwordInput" />
+                            <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1" id="passwordInputLogin" />
                         </div>
                         <br />
                         <a onclick="loginUser(); " class="btn btn-success"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Login</a>

@@ -8,8 +8,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import com.netbuilder.apploader.PurchaseOrderLineLoader;
 import com.netbuilder.apploader.PurchaseOrderLoader;
 import com.netbuilder.entities.PurchaseOrder;
+import com.netbuilder.entities.PurchaseOrderLine;
 
 /**
  * Class to manage the logic and business rules for the application
@@ -19,10 +21,10 @@ import com.netbuilder.entities.PurchaseOrder;
 public class PurchaseOrderLogic {
 	
 	Object [][] purchaseOrderList;
-	Object [] purchaseOrder;
 	PurchaseOrderLoader pOLoader = new PurchaseOrderLoader();
 	DateFormat df = new SimpleDateFormat("dd/MM/yy");
 	ArrayList<PurchaseOrder> pOList;
+	ArrayList<PurchaseOrderLine> pOLList;
 	
 	/**
 	 * Method to load and format the entities for the GUI for all purchase orders
@@ -41,18 +43,12 @@ public class PurchaseOrderLogic {
 	 * @param id of the purchase order to be displayed
 	 * @return the array of data to display the purchase order in the GUI
 	 */
-	public Object[] fetchPurchaseOrdersByID(int id) {
+	public Object[][] fetchPurchaseOrdersByID(int id) {
 		pOList = new ArrayList<PurchaseOrder>(pOLoader.getPurchaseOrderByID(id));
-		float total = 3160;
-		//TODO connect to OrderLineLoader and ItemLoader to calculate price
-		purchaseOrder = new Object [5];
-		purchaseOrder[0] = pOList.get(0).getIDPurchaseOrder();
-		purchaseOrder[1] = df.format(pOList.get(0).getDatePlaced());
-		purchaseOrder[2] = pOList.get(0).getPurchaseOrderStatus().getPurchOrderStatus(); 
-		purchaseOrder[3] = pOList.get(0).getSupplier().getSupplierName();
-		purchaseOrder[4] = "£" + total;
 		
-		return purchaseOrder;
+		formatTable();
+		
+		return purchaseOrderList;
 	}
 	
 	/**
@@ -97,11 +93,18 @@ public class PurchaseOrderLogic {
 	/**
 	 * Method to format the purchase order entities' data into a format for the GUI
 	 */
-	public void formatTable() {
+	private void formatTable() {
 		purchaseOrderList = new Object [pOList.size()][5];
 		for (int i = 0; i < pOList.size(); i++) {
-			//TODO connect to OrderLineLoader and ItemLoader to calculate price
-			float total = 3160;
+			PurchaseOrderLineLoader pOLLoader = new PurchaseOrderLineLoader();
+			System.out.println("ID: " + pOList.get(i).getIDPurchaseOrder());
+			pOLList = pOLLoader.getPurchaseOrderLineByOrderID(pOList.get(i).getIDPurchaseOrder());
+			float total = 0;
+			for (int j = 0; j < pOLList.size(); j++) {
+				//TODO call ItemLoader to fetch item price
+				float itemPrice = 30;
+				total = total + (pOLList.get(j).getQuantity() * itemPrice);
+			}
 			purchaseOrderList[i][0] = pOList.get(i).getIDPurchaseOrder();
 			purchaseOrderList[i][1] = df.format(pOList.get(i).getDatePlaced()); 
 			purchaseOrderList[i][2] = pOList.get(i).getPurchaseOrderStatus().getPurchOrderStatus(); 

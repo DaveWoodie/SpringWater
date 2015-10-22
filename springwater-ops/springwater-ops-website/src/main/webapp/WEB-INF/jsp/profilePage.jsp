@@ -8,6 +8,13 @@
     
     <!-- Load Javascript files -->
     <script src="js/avatars.js" type="text/javascript"></script>
+    <script src="js/loginValidator.js" type="text/javascript"></script>
+    
+    
+	<!-- Show welcome message to user -->
+	<script>
+		showWelcomeMessage();
+	</script>
 
 </head>
 
@@ -99,7 +106,12 @@
 	                                       gn0me0
 	                                   </div>
 	                                   <div class="panel-body">
-	                                       ilovegnomes@gnomemail.com
+	                                   		<p id="emailID"></p>
+	                                   
+	                                    <!-- Script for calling cookie data  -->
+    										<script>
+												document.getElementById("emailID").innerHTML = getCookies("email");
+											</script>
 	                                   </div>
 	                                   <div class="panel-body">
 	                                       01/01/2000
