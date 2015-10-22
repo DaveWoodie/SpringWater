@@ -1,14 +1,70 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      th:include="template :: page">
+<html lang="en">
 
-<head th:fragment="header">
+<head>
     <title>NB Gardens</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="../../resources/Bootstrap/js/bootstrap.js" type="text/javascript"></script>
+    <link href="../../resources/Bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../../resources/Bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../../resources/main.css" rel="stylesheet">
+    <link href="../../resources/collapse.css" rel="stylesheet">
 </head>
 
 <body>
-<div th:fragment="content">    
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"><img src="../../resources/img/logo2.png" id="logo"></a>
+            </div>
+
+            <!-- Navbar items that collaspe into toggle menu -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Categories<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="items.html">Gnomes</a></li>
+                            <li><a href="items.html">Furniture</a></li>
+                            <li><a href="items.html">Tools</a></li>
+                            <li><a href="items.html">Pottery</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="items.html">Featured</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="items.html">Most Popular</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="items.html">Wishlist Items</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
+                        </span>
+                    </div>
+                </form>
+
+                <form class="navbar-form navbar-right" role="search">
+                    <a href="wishlist.html" class="btn btn-danger"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Wish List <span class="badge">0</span></a>
+                    <a href="basket.html" class="btn btn-info"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Basket <span class="badge">0</span></a>
+                    <a href="loginRegister.html" type="submit" class="btn btn-success"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login</a>
+                    <a href="loginRegister.html" class="btn btn-primary"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Register</a>
+                </form>
+            </div>
+            <!-- END OF COLLASPE AREA -->
+        </div>
+    </nav>
+    
     <!-- Page Content -->
     <div class="jumbotron content">
         
@@ -17,7 +73,7 @@
                 <div class="row">
                         <!-- Left Panel -->
                         <div class="col-lg-4">
-                            <img class="img-responsive thumbnail" id="carouselThumb" src="img/logo.png" alt="">
+                            <img class="img-responsive thumbnail" id="carouselThumb" src="../../resources/img/logo.png" alt="">
                             <div class="panel panel-default">
                                 <div class="panel-body" style="text-align:center">
                                     Welcome to NB Gardens. We are a retailer of high quality garden products who pride ourselves in our high quality gnomes.
@@ -27,7 +83,7 @@
                 
                         <!-- Right Panel -->
                         <div class="col-lg-8">
-                                <img src="img/header.jpg" class="img-responsive" style="width:auto;height:auto">
+                                <img src="../../resources/img/header.jpg" class="img-responsive" style="width:auto;height:auto">
                         </div>
                 </div>
         </div>
@@ -47,12 +103,12 @@
                         <div class="carousel-inner" role="listbox">
                             <!-- Gnome Carousel Images -->
                             <div class="item active">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/gnome.jpg"></a>
+                                <a class="thumbnail" id="smallThumb" href="itemPage.html"><img class="img-responsive" src="../../resources/img/gnome.jpg"></a>
                             </div>
 
                             <!-- Gnome Carousel Images -->
                             <div class="item">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/gnome02.jpg"></a>
+                                <a class="thumbnail" id="smallThumb" href="itemPage.html"><img class="img-responsive" src="../../resources/img/gnome02.jpg"></a>
                             </div>
                         </div>
 
@@ -81,12 +137,12 @@
                         <div class="carousel-inner" role="listbox">
                             <!-- Gnome Carousel Images -->
                             <div class="item active">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/gnome03.jpg"></a>
+                                <a class="thumbnail" id="smallThumb" href="itemPage.html"><img class="img-responsive" src="../../resources/img/gnome03.jpg"></a>
                             </div>
 
                             <!-- Gnome Carousel Images -->
                             <div class="item">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/gnome04.jpg"></a>
+                                <a class="thumbnail" id="smallThumb" href="itemPage.html"><img class="img-responsive" src="../../resources/img/gnome04.jpg"></a>
                             </div>
                         </div>
 
@@ -115,12 +171,12 @@
                         <div class="carousel-inner" role="listbox">
                             <!-- Gnome Carousel Images -->
                             <div class="item active">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/gnome05.jpg"></a>
+                                <a class="thumbnail" id="smallThumb" href="itemPage.html"><img class="img-responsive" src="../../resources/img/gnome05.jpg"></a>
                             </div>
 
                             <!-- Gnome Carousel Images -->
                             <div class="item">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/gnome06.jpg"></a>
+                                <a class="thumbnail" id="smallThumb" href="itemPage.html"><img class="img-responsive" src="../../resources/img/gnome06.jpg"></a>
                             </div>
                         </div>
 
@@ -149,12 +205,12 @@
                         <div class="carousel-inner" role="listbox">
                             <!-- Gnome Carousel Images -->
                             <div class="item active">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/jacuzzi01.png"></a>
+                                <a class="thumbnail" id="smallThumb" href="itemPage.html"><img class="img-responsive" src="../../resources/img/jacuzzi01.png"></a>
                             </div>
 
                             <!-- Gnome Carousel Images -->
                             <div class="item">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/jacuzzi02.jpg"></a>
+                                <a class="thumbnail" id="smallThumb" href="itemPage.html"><img class="img-responsive" src="../../resources/img/jacuzzi02.jpg"></a>
                             </div>
                         </div>
 
@@ -183,12 +239,12 @@
                         <div class="carousel-inner" role="listbox">
                             <!-- Gnome Carousel Images -->
                             <div class="item active">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/jacuzzi03.jpg"></a>
+                                <a class="thumbnail" id="smallThumb" href="itemPage.html"><img class="img-responsive" src="../../resources/img/jacuzzi03.jpg"></a>
                             </div>
 
                             <!-- Gnome Carousel Images -->
                             <div class="item">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/jacuzzi04.png"></a>
+                                <a class="thumbnail" id="smallThumb" href="itemPage.html"><img class="img-responsive" src="../../resources/img/jacuzzi04.png"></a>
                             </div>
                         </div>
 
@@ -217,12 +273,12 @@
                         <div class="carousel-inner" role="listbox">
                             <!-- Gnome Carousel Images -->
                             <div class="item active">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/hoe01.jpg"></a>
+                                <a class="thumbnail" id="smallThumb" href="itemPage.html"><img class="img-responsive" src="../../resources/img/hoe01.jpg"></a>
                             </div>
 
                             <!-- Gnome Carousel Images -->
                             <div class="item">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/hoe2.jpg"></a>
+                                <a class="thumbnail" id="smallThumb" href="itemPage.html"><img class="img-responsive" src="../../resources/img/hoe2.jpg"></a>
                             </div>
                         </div>
 
@@ -263,24 +319,10 @@
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/gnome.jpg"></a> 
+                                            <a class="thumbnail" id="carouselThumb" href="itemPage.html"><img class="img-responsive" src="../../resources/img/gnome.jpg"></a> 
                                         </div>
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/gnome02.jpg"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Gnome Carousel Images -->
-                            <div class="item">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/gnome03.jpg"></a> 
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/gnome04.jpg"></a>
+                                            <a class="thumbnail" id="carouselThumb" href="itemPage.html"><img class="img-responsive" src="../../resources/img/gnome02.jpg"></a>
                                         </div>
                                     </div>
                                 </div>
@@ -291,10 +333,24 @@
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/gnome05.jpg"></a> 
+                                            <a class="thumbnail" id="carouselThumb" href="itemPage.html"><img class="img-responsive" src="../../resources/img/gnome03.jpg"></a> 
                                         </div>
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/gnome06.jpg"></a>
+                                            <a class="thumbnail" id="carouselThumb" href="itemPage.html"><img class="img-responsive" src="../../resources/img/gnome04.jpg"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Gnome Carousel Images -->
+                            <div class="item">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <a class="thumbnail" id="carouselThumb" href="itemPage.html"><img class="img-responsive" src="../../resources/img/gnome05.jpg"></a> 
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <a class="thumbnail" id="carouselThumb" href="itemPage.html"><img class="img-responsive" src="../../resources/img/gnome06.jpg"></a>
                                         </div>
                                     </div>
                                 </div>
@@ -330,24 +386,10 @@
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/jacuzzi01.png"></a> 
+                                            <a class="thumbnail" id="carouselThumb" href="itemPage.html"><img class="img-responsive" src="../../resources/img/jacuzzi01.png"></a> 
                                         </div>
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/gnome.jpg"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Gnome Carousel Images -->
-                            <div class="item">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/pot03.jpg"></a> 
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/gnome05.jpg"></a>
+                                            <a class="thumbnail" id="carouselThumb" href="itemPage.html"><img class="img-responsive" src="../../resources/img/gnome.jpg"></a>
                                         </div>
                                     </div>
                                 </div>
@@ -358,10 +400,24 @@
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/pot01.jpg"></a> 
+                                            <a class="thumbnail" id="carouselThumb" href="itemPage.html"><img class="img-responsive" src="../../resources/img/pot03.jpg"></a> 
                                         </div>
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/pot02.JPG"></a>
+                                            <a class="thumbnail" id="carouselThumb" href="itemPage.html"><img class="img-responsive" src="../../resources/img/gnome05.jpg"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Gnome Carousel Images -->
+                            <div class="item">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <a class="thumbnail" id="carouselThumb" href="itemPage.html"><img class="img-responsive" src="../../resources/img/pot01.jpg"></a> 
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <a class="thumbnail" id="carouselThumb" href="itemPage.html"><img class="img-responsive" src="../../resources/img/pot02.JPG"></a>
                                         </div>
                                     </div>
                                 </div>
@@ -382,7 +438,37 @@
         <!-- /container -->
         </div>
     </div>
-</div>
+
+    <!-- Footer -->
+    <div class="jumbotron" id="searchBar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-2 whiteText">
+                    <a href="aboutus.jsp"><p class="whiteText"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> About</p></a>
+                </div>
+                <div class="col-md-2 whiteText">
+                    <a href="contact.jsp"><p class="whiteText"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Contact</p></a>
+                </div>
+                <div class="col-md-2 whiteText">
+                    <a href="faq.jsp"><p class="whiteText"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> FAQ</p></a>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 whiteText">
+                    <div id="paymentDiv">
+                        <p><span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span> We only accept <a href="http://www.paypal.com/"><img src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom-white.svg" style="width:25%;height:auto"></a> as a payment option</p>
+                    </div>
+                    	<div id="paymentDiv">
+                    		<p><span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span> We operate on a 'buy now, pay if satisfied' policy</p>
+                    	</div>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+    </div>
 
 </body>
 
