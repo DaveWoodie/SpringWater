@@ -39,6 +39,14 @@ public class MongoPull {
 	 * 
 	 * Method to fetch an address based on an address ID
 	 * 
+	 * In order that information is returned
+	 *	> Address Lines
+	 *		> Address Line 1
+	 *		> Address Line 2
+	 *	> City
+	 *	> County
+	 *	> Post Code
+	 * 
 	 * @param id: Takes an int which is the address ID
 	 * @return returns a List containing all the lines of address associated with the ID
 	 */
@@ -84,6 +92,29 @@ public class MongoPull {
 	/**
 	 * 
 	 * Method to fetch all the information stored on a given item based on idItem
+	 * 
+	 * In order that information is returned
+	 * 	> Item Name
+	 * 	> Item Description
+	 * 	> Image Location
+	 * 	> Number in stock
+	 * 	> Item Price 
+	 * 	> Item Cost
+	 * 	> Sales Rate
+	 * 	> Previous Sales Rate
+	 * 	> Is Porous?
+	 * 	> Discontinued?
+	 * 	> Supplier ID
+	 * 	> Attributes
+	 * 		> Height
+	 * 		> Width
+	 * 		> Depth
+	 * 		> Following Attributes aren't in every Item...
+	 * 			> HatColour
+	 * 			> Accessory
+	 * 			> Dial Stone
+	 * 			> Colour
+	 *			> Number of People
 	 * 
 	 * @param id: Takes an int which is the idItem of a given item
 	 * @return returns a list containing all the information for the given item
@@ -140,6 +171,9 @@ public class MongoPull {
 	/**
 	 * 
 	 * Method to fetch the contents of a customers wish list
+	 * 
+	 * Order that information is returned 
+	 * 	> idItemX
 	 * 
 	 * @param id : Takes an int which is the idCustomer of a customer 
 	 * @return returns a List containing the items stored within a customers wish list 
