@@ -60,7 +60,7 @@ public class LoginLoader
 		
 		try 
 		{
-			rSet = SQL.queryDB("SELECT idUser FROM nbgardensdata.user;");
+			rSet = SQL.queryDB("SELECT idUser FROM nbgardensdata.user WHERE isEmployee = 1;");
 			rSet.last();
 			Rows = rSet.getRow();
 			rSet.first();
@@ -102,7 +102,7 @@ public class LoginLoader
 		
 		try 
 		{
-			rSet = SQL.queryDB("SELECT password FROM nbgardensdata.user;");
+			rSet = SQL.queryDB("SELECT password FROM nbgardensdata.user WHERE isEmployee = 1;");
 			rSet.last();
 			Rows = rSet.getRow();
 			rSet.first();

@@ -16,9 +16,6 @@
 <head th:fragment="header">
     <title>NB Gardens - Login/Register</title>
  
-    <!-- Load in login/register user javascript files -->
-    <script src="js/registerUser.js" type="text/javascript"></script>
-    <script src="js/loginValidator.js" type="text/javascript"></script>
     
 </head>
 
@@ -32,18 +29,18 @@
                         <h1 id="productTitle">Already with us?<small> Log in now!</small></h1>
                     </div>
 
-                    <form>
+                    <form th:action="@{/loginForm}" method="post">
                         <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1">Email</span>
-                            <input type="text" class="form-control" placeholder="Email Address" aria-describedby="basic-addon1" id="emailAddressInput" />
+                            <span class="input-group-addon" id="basic-addon1" data-icon="u">Email</span>
+                            <input type="text" class="form-control" placeholder="Email Address" aria-describedby="basic-addon1" id="emailAddressInput" name="emailAddressInput" required="required"/>
                         </div>
                         <br />
                         <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1">Password</span>
-                            <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1" id="passwordInputLogin" />
+                            <span class="input-group-addon" id="basic-addon1" data-icon="p">Password</span>
+                            <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1" id="passwordInputLogin" name="passwordInputLogin" required="required"/>
                         </div>
                         <br />
-                        <a onclick="loginUser(); " class="btn btn-success"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Login</a>
+                        <input type="submit" class="btn btn-success"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Login</input>
                     </form>
                     <br />
                     <div class="panel panel-danger">
@@ -112,5 +109,8 @@
     </div>
 </div>
 </body>
+    <!-- Load in login/register user javascript files -->
+    <script src="js/registerUser.js" type="text/javascript"></script>
+    <script src="js/loginValidator.js" type="text/javascript"></script>
 
 </html>

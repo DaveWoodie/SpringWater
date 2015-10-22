@@ -39,9 +39,11 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 	private JPanel searchPanel;
 	private JPanel searchFieldPanel;
 	private JPanel searchButtonPanel;
+	private JPanel addNewItemButtonPanel;
 	
 	private JTextField searchField;
 	private JButton searchButton;
+	private JButton addNewItemButton;
 	
 	private ArrayList<InventoryItemFrame> items = new ArrayList<InventoryItemFrame>();
 	
@@ -94,8 +96,9 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		setAbsoluteSize(searchPanel, WIDTH, SEARCH_PANEL_HEIGHT);
 		searchPanel.repaint();
 		searchPanel.revalidate();
-		setAbsoluteSize(searchFieldPanel, WIDTH*11/16, SEARCH_PANEL_HEIGHT);
-		setAbsoluteSize(searchButtonPanel, WIDTH*1/4, SEARCH_PANEL_HEIGHT);
+		setAbsoluteSize(searchFieldPanel, WIDTH*2/5, SEARCH_PANEL_HEIGHT);
+		setAbsoluteSize(searchButtonPanel, WIDTH*4/15, SEARCH_PANEL_HEIGHT);
+		setAbsoluteSize(addNewItemButtonPanel, WIDTH*4/15, SEARCH_PANEL_HEIGHT);
 
 		setAbsoluteSize(scrollPane, WIDTH, HEIGHT-SEARCH_PANEL_HEIGHT);
 		
@@ -149,6 +152,9 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		searchButtonPanel = new JPanel();
 		addSearchButtonPanel();
 		
+		addNewItemButtonPanel = new JPanel();
+		addAddNewItemButtonPanel();
+		
 		this.add(searchPanel);
 		
 		
@@ -173,7 +179,7 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 	}
 	
 	private void addSearchFieldPanel() {
-		setAbsoluteSize(searchFieldPanel, WIDTH*11/16, SEARCH_PANEL_HEIGHT);
+		setAbsoluteSize(searchFieldPanel, WIDTH*2/5, SEARCH_PANEL_HEIGHT);
 		searchFieldPanel.setLayout(new GridBagLayout());
 		addSearchField();
 		searchPanel.add(searchFieldPanel);
@@ -190,7 +196,7 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 	}
 	
 	private void addSearchButtonPanel() {
-		setAbsoluteSize(searchButtonPanel, WIDTH*1/4, SEARCH_PANEL_HEIGHT);
+		setAbsoluteSize(searchButtonPanel, WIDTH*4/15, SEARCH_PANEL_HEIGHT);
 		searchButtonPanel.setLayout(new GridBagLayout());
 		
 		searchButton = new JButton("Search");
@@ -198,6 +204,17 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		searchButtonPanel.add(searchButton);
 		
 		searchPanel.add(searchButtonPanel);
+	}
+
+	private void addAddNewItemButtonPanel() {
+		setAbsoluteSize(addNewItemButtonPanel, WIDTH*4/15, SEARCH_PANEL_HEIGHT);
+		addNewItemButtonPanel.setLayout(new GridBagLayout());
+		
+		addNewItemButton = new JButton("Add New Item");
+		addNewItemButton.addActionListener(this);
+		addNewItemButtonPanel.add(addNewItemButton);
+		
+		searchPanel.add(addNewItemButtonPanel);
 	}
 	
 	private void addInventoryList() {
@@ -272,6 +289,10 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 				currentlyDisplayedItems = items;
 				fillContentPanelsBasedOnSize();
 			}
+		}
+		else if(e.getSource().equals(addNewItemButton)) {
+			AddItemFrame aif = new AddItemFrame();
+			aif.setVisible(true);
 		}
 	}
 

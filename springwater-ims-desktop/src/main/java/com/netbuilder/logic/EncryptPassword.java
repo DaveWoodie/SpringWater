@@ -19,7 +19,14 @@ public class EncryptPassword {
 	public EncryptPassword() {
 		
 	}
-	
+
+	/**
+	 *
+	 * Method to convert a given string into SHA1 for comparison against SHA1 password stored in MySQL database
+	 *
+	 * @param passwordString: Takes on a string to convert into SHA1
+	 * @return returns string encrypted in SHA1
+	 */
 	public String checkSHA1(String passwordString){
 		
 		try {
