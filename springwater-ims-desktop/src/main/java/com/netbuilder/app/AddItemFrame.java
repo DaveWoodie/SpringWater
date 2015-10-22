@@ -29,13 +29,14 @@ import javax.swing.JTextField;
 @SuppressWarnings("serial")
 public class AddItemFrame extends JFrame {
 	private JPanel base, main, buttonBar, attributesP;
-	private JLabel itemNameL, itemDescriptionL, itemPriceL, itemUnitPriceL,porousewareL, supplierL;
+	private JLabel itemNameL, itemDescriptionL, itemPriceL, itemUnitPriceL,porousewareL, supplierL, typeL, column1L,column2L;
 	private JTextField itemNameR, itemPriceR, itemUnitPriceR;
 	private JTextArea itemDescriptionR;
-	private JComboBox supplierR;
+	private JComboBox supplierR, typeR;
 	private JRadioButton porouswareYesB, porouswareNoB;
 	private JButton addIB, addAttributesB, cancelB;
-	private ArrayList<JComboBox> attributes = new ArrayList<JComboBox>();
+	private ArrayList<JTextField> attributesNames = new ArrayList<JTextField>();
+	private ArrayList<JTextField> attributesDes = new ArrayList<JTextField>();
 	private ArrayList<JLabel> attributesLabels = new ArrayList<JLabel>();
 	private GridBagConstraints c = new GridBagConstraints();
 	private GridBagConstraints attriC;
@@ -44,7 +45,6 @@ public class AddItemFrame extends JFrame {
 	public static void main(String[] args) {
 		AddItemFrame iF = new AddItemFrame();
 		iF.setVisible(true);
-
 	}
 
 	public AddItemFrame() {
@@ -59,11 +59,10 @@ public class AddItemFrame extends JFrame {
 
 	private void configFrame() {
 		setTitle("Add New Item");
-		// setSize(600,800);
-		setSize(500, 250);
+		setSize(500, 320);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
-		setResizable(true);
+		setResizable(false);
 	}
 
 	private void addContent() {
@@ -78,6 +77,7 @@ public class AddItemFrame extends JFrame {
 		}
 		
 		itemNameL = new JLabel("Name:");
+		c.gridx = 0;
 		c.gridy = 0;
 		main.add(itemNameL, c);
 			
@@ -94,24 +94,33 @@ public class AddItemFrame extends JFrame {
 		main.add(itemUnitPriceL, c);
 		
 		porousewareL = new JLabel("PorouseWare:");
-		c.gridx = 0;
 		c.gridy = 4;
 		main.add(porousewareL, c);
 		
-		supplierL = new JLabel("Supplier:");
+		typeL = new JLabel("Catergory;");
 		c.gridy = 5;
+		main.add(typeL, c);
+		
+		supplierL = new JLabel("Supplier:");
+		c.gridy = 6;
 		main.add(supplierL, c);
 		
-		attributesP = new JPanel();
-		c.gridy =6;
+		attributesP = new JPanel(new GridBagLayout());
+		c.gridy =7;
 		c.gridwidth=3;
 		main.add(attributesP, c);
+		
+		column1L = new JLabel("Name");
+		column1L.setBorder(BorderFactory.createLineBorder(Color.black));
+		column2L = new JLabel("Description");
+		column2L.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		//Inputs
 		porouswareYesB = new JRadioButton("Yes");
 		porouswareYesB.setSelected(true);
 		c.gridx = 1;
 		c.gridy = 4;
+		c.gridwidth= 1;
 		main.add(porouswareYesB, c);
 		
 		porouswareNoB = new JRadioButton("No");
@@ -152,13 +161,18 @@ public class AddItemFrame extends JFrame {
 		itemUnitPriceR.setBorder(BorderFactory.createLineBorder(Color.black));
 		c.gridy = 3;
 		main.add(itemUnitPriceR, c);
-				
-		supplierR = new JComboBox();
-		supplierR.setBorder(BorderFactory.createLineBorder(Color.black));
-		c.gridy = 5;		
-		main.add(supplierR, c);
 		
-		addAttributePnael();
+		typeR = new JComboBox();
+		//TODO get category list and add to combo box
+		typeR.setBorder(BorderFactory.createLineBorder(Color.black));
+		c.gridy =5;
+		main.add(typeR, c);
+		
+		supplierR = new JComboBox();
+		//TODO get supplier list and add to combo box
+		supplierR.setBorder(BorderFactory.createLineBorder(Color.black));
+		c.gridy = 6;		
+		main.add(supplierR, c); 
 		
 		// Button Bar Panel
 		buttonBar = new JPanel();
@@ -166,21 +180,16 @@ public class AddItemFrame extends JFrame {
 		addIB = new JButton("Add");
 		cancelB = new JButton("Cancel");
 
+		addAttributePnael();
+		
 		buttonBar.add(addIB);
 		buttonBar.add(cancelB);
 
 		//ActionListeners
 		addIB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO get inputs and add item
-				
-			}
-		});
-		
-		addAttributesB.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
+				// TODO add item
+				getResults();
 			}
 		});
 		
@@ -194,24 +203,77 @@ public class AddItemFrame extends JFrame {
 				base.add(buttonBar, BorderLayout.SOUTH);
 	}
 	
-	private void addAttributePnael()
-	{
+	private void addAttributePnael() {
 		attriC = new GridBagConstraints();
 		attriC.fill = GridBagConstraints.HORIZONTAL;
 		noOfA++;
 		
-		if(noOfA !=1)
-		{
+		setSize(getSize().width, getSize().height+20);
+		
+		if(noOfA !=1) {
 			attributesP.removeAll();
 			attributesP.revalidate();
 		}
 		
-		addAttributesB = new JButton("Add Attributes");
-		attriC.gridx = 0;
+		attriC.gridx = 1;
 		attriC.gridy = 0;
-		attriC.gridwidth = 2;
-		attributesP.add(addAttributesB, c);
+		attributesP.add(column1L, attriC);
 		
+		attriC.gridx = 2;
+		attributesP.add(column2L, attriC);
 		
+		attributesLabels.add(new JLabel("Attribute " + noOfA + ":"));
+		attributesNames.add(new JTextField());
+		attributesNames.get(noOfA-1).setColumns(15);
+		attributesNames.get(noOfA-1).setBorder(BorderFactory.createLineBorder(Color.black));
+		attributesDes.add(new JTextField());
+		attributesDes.get(noOfA-1).setColumns(15);
+		attributesDes.get(noOfA-1).setBorder(BorderFactory.createLineBorder(Color.black));	
+		
+		for (int i = 0; i < noOfA; i++){		
+			attriC.gridx = 0;
+			attriC.gridy = i +2;
+			attributesP.add(attributesLabels.get(i), attriC);
+							
+			attriC.gridx = 1;
+			attriC.gridy = i +2;
+			attributesP.add(attributesNames.get(i), attriC);
+			
+			attriC.gridx = 2;
+			attriC.gridy = i +2;
+			attributesP.add(attributesDes.get(i), attriC);
+		}
+		
+		addAttributesB = new JButton("+");
+		addAttributesB.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				addAttributePnael();				
+			}
+		});
+		
+		attriC.gridx = 0;
+		attriC.gridy = noOfA+4;
+		attriC.gridwidth = 3;
+		attributesP.add(addAttributesB, attriC);		
+	}
+	
+	private Object[] getResults(){
+		//TODO Validate inputs
+		ArrayList<Object> input = new ArrayList<Object>();
+		input.add(itemNameR.getText());
+		input.add(itemDescriptionR.getText());
+		input.add(itemPriceR.getText());
+		input.add(itemUnitPriceR.getText());
+		input.add(supplierR.getSelectedItem());
+		input.add(typeR.getSelectedItem());	
+		
+		for (int i = 0; i<noOfA;i++)
+		{
+			input.add(attributesNames.get(i).getText());
+			input.add(attributesDes.get(i).getText());
+		}
+		Object[] array = new Object[input.size()];
+		array =  input.toArray(array);
+		return array;
 	}
 }
