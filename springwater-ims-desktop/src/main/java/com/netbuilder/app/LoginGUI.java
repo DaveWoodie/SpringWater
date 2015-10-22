@@ -21,6 +21,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -44,7 +45,6 @@ public class LoginGUI extends JPanel implements ActionListener{
 	private Color colour;
 	
 	private LoginAuthentication loginAuth = new LoginAuthentication();
-	
 	private IconLoader iconLoader = new IconLoader();
 	
 	private GUIStart src;
@@ -53,7 +53,6 @@ public class LoginGUI extends JPanel implements ActionListener{
 	{
 		createUI();
 	}
-	
 
 	public LoginGUI(GUIStart src)
 	{
@@ -71,7 +70,7 @@ public class LoginGUI extends JPanel implements ActionListener{
 		panelBackground.setBackground(Color.white);
 		this.add(panelBackground);
 		
-		//logo Panel
+		//Logo Panel
 		panelLogo = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		panelLogo.setPreferredSize(new Dimension(210, 115));
 		panelLogo.setBounds(getPreferredSize().width / 2 - panelLogo.getPreferredSize().width / 2, 10, panelLogo.getPreferredSize().width, panelLogo.getPreferredSize().height);
@@ -128,9 +127,19 @@ public class LoginGUI extends JPanel implements ActionListener{
 
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource().equals(buttonLogin)) {
-			src.revertToMain();
+	public void actionPerformed(ActionEvent e) 
+	{
+		if (e.getSource().equals(buttonLogin)) 
+		{
+			if(loginAuth.checkLogin(textUsername.getText(), textPassword.getPassword()) == true)
+			{
+				src.revertToMain();
+			}
+			else
+			{
+				textUsername.setText("");
+				textPassword.setText("");
+			}
 		}
 	}
 }
