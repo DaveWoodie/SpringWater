@@ -15,8 +15,10 @@
 
 <head th:fragment="header">
     <title>NB Gardens - Login/Register</title>
-    <!-- Load in register user javascript files -->
+ 
+    <!-- Load in login/register user javascript files -->
     <script src="js/registerUser.js" type="text/javascript"></script>
+    <script src="js/loginValidator.js" type="text/javascript"></script>
     
 </head>
 
@@ -33,15 +35,15 @@
                     <form>
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Email</span>
-                            <input type="text" class="form-control" placeholder="Email Address" aria-describedby="basic-addon1" />
+                            <input type="text" class="form-control" placeholder="Email Address" aria-describedby="basic-addon1" id="emailAddressInput" />
                         </div>
                         <br />
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Password</span>
-                            <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1" />
+                            <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1" id="passwordInput" />
                         </div>
                         <br />
-                        <a href="profile" type="submit" class="btn btn-success"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Login</a>
+                        <a onclick="loginUser(); " class="btn btn-success"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Login</a>
                     </form>
                     <br />
                     <div class="panel panel-danger">

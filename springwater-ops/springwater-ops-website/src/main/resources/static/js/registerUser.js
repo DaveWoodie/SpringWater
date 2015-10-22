@@ -36,8 +36,6 @@ function registerUserDetails() {
 		// Return false to the event window
 		window.event.returnValue = false;
         
-        
-		
 		// Jump to the registered confirmation page
 		window.location.href="registerconfirmed";
 	} else {
