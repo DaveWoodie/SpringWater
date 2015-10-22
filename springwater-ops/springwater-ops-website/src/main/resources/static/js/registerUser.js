@@ -7,7 +7,7 @@
  * 				for the functionality which allows the user
  * 				to register on the loginRegister.jsp page.
  * 
- * Last Modified: 21/10/2015
+ * Last Modified: c33-cooper - 21/10/2015
  */
 
 var firstNameCookie;

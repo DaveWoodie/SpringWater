@@ -29,34 +29,59 @@ public class PurchaseOrderLineLoader {
 	final String tableName = " FROM purchaseorderline";
 	final String listQuery = "SELECT *";
 	private String sql;
-	private SQLDBConnector sqlDB;
-	ArrayList<PurchaseOrderLine> purchaseOrderItemList;
+	private SQLDBConnector sqlDB = new SQLDBConnector();
+	ArrayList<PurchaseOrderLine> purchaseOrderItemList = new ArrayList<PurchaseOrderLine>();
 	ArrayList<Item> itemList;
 	PurchaseOrder purchaseOrder;
 	
-	public void constructResult() {
-		purchaseOrderItemList.clear();
+	/**
+	 * Method to executed constructed sql query and load data into objects
+	 */
+	private void constructResult() {
+		 purchaseOrderItemList.clear();
 		try {
+			sqlDB.openCon();
 			ResultSet rs = sqlDB.queryDB(sql);
 			while (rs.next()) {
-				PurchaseOrderLine pOL = new PurchaseOrderLine(rs.getInt("idQuantity"), rs.getInt("idItem"), purchaseOrder);
+				PurchaseOrderLine pOL = new PurchaseOrderLine(rs.getInt("Quantity"), rs.getInt("idItem"), purchaseOrder);
 				purchaseOrderItemList.add(pOL);
 			}
+			rs.close();
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			sqlDB.closeCon();
 		}
 	}
-	public ArrayList<PurchaseOrderLine> getPurchaseOrderLineByOrderID(PurchaseOrder pO) {
-		sql = listQuery + tableName + " WHERE idPurchaseOrder = " + pO.getIDPurchaseOrder();
-		purchaseOrder = pO;
-		constructResult();
-		return purchaseOrderItemList;
+	
+	/**
+	 * Method to construct the SQL query to retrieve all purchase order lines by order ID 
+	 * @param id of the Purchase Order to search for
+	 * @return the ArrayList of purchase orderlines created from the query
+	 */
+	public ArrayList<PurchaseOrderLine> getPurchaseOrderLineByOrderID(int id) {
+		sql = listQuery + tableName + " WHERE idPurchaseOrder = " + id;
+		PurchaseOrderLoader pOL = new PurchaseOrderLoader();
+		ArrayList<PurchaseOrder> pOList = pOL.getPurchaseOrderByID(id);
+		if (!pOList.isEmpty()) {
+			purchaseOrder = pOList.get(0);
+			constructResult();
+			return purchaseOrderItemList;
+		}
+		return null;
+		
 	}
 	
-	public ArrayList<PurchaseOrderLine> getPurchaseOrderLineByProduct(Item item) {
-		sql = listQuery + tableName + " WHERE idItem = " + item.getIdItem();
+	/**
+	 * Method to construct the SQL query to retrieve all purchase order lines by item ID
+	 * @param id of the Item to search for
+	 * @return the ArrayList of purchase orderlines created from the query
+	 */
+	public ArrayList<PurchaseOrderLine> getPurchaseOrderLineByProduct(int id) {
+		sql = listQuery + tableName + " WHERE idItem = " + id;
+		//TODO pull item from mongoDB
 		constructResult();
 		return purchaseOrderItemList;
 	}
