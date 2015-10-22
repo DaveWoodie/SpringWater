@@ -15,9 +15,10 @@ public class SQLDBConnector {
 	private Object o;
 	private List<Object> l;
 	
-	static final String databaseURL = null;
-	static final String userName = null;
-	static final String passWord = null;
+	static final String IP = "10.50.15.29";
+	static final String databaseURL = "jdbc:mysql://" + IP + ":3306/nbgardensdata";
+	static final String userName = "root";
+	static final String passWord = "password";
 	
 	private Connection con = null;
 	private Statement stmt = null;
