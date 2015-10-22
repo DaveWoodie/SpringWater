@@ -36,10 +36,8 @@ function registerUserDetails() {
 		// Return false to the event window
 		window.event.returnValue = false;
         
-        
-		
 		// Jump to the registered confirmation page
-		window.location.href="registerConfirmedPage.jsp";
+		window.location.href="registerconfirmed";
 	} else {
 		alert("Error!\nAll fields must be completed.\nPassword and Confirmed Password must match.");
 	}

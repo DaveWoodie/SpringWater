@@ -24,11 +24,12 @@ import com.netbuilder.entities.User;
 public class PurchaseOrderLoader {
 	
 	final String tableName = " FROM purchaseorder";
-	final String listQuery = "SELECT purchaseorder.*, purchaseorderstatus.*, supplier.*, employee.*, user.*";
-	final String tableJoins = " LEFT JOIN purchaseorderstatus ON purchaseorder.idPurchaseOrderStatus = purchaseorderstatus.idPurchaseOrderStatus LEFT JOIN supplier ON purchaseorder.idSupplier = supplier.idSupplier LEFT JOIN employee ON purchaseorder.idUser = employee.idEmployee LEFT JOIN user ON purchaseorder.idUser = user.idUser";
+	final String listQuery = "SELECT purchaseorder.*, purchaseorderstatus.*, supplier.*, employee.*, user.*, role.*";
+	final String tableJoins = " LEFT JOIN purchaseorderstatus ON purchaseorder.idPurchaseOrderStatus = purchaseorderstatus.idPurchaseOrderStatus LEFT JOIN supplier ON purchaseorder.idSupplier = supplier.idSupplier LEFT JOIN employee ON purchaseorder.idEmployee = employee.idEmployee LEFT JOIN user ON purchaseorder.idEmployee = user.idUser LEFT JOIN role ON employee.idRole = role.idRole";
+	final String orderBy = " ORDER BY purchaseorder.datePlaced DESC";
 	private String sql;
-	private SQLDBConnector sqlDB;
-	ArrayList<PurchaseOrder> purchaseOrderList;
+	private SQLDBConnector sqlDB = new SQLDBConnector();
+	ArrayList<PurchaseOrder> purchaseOrderList = new ArrayList<PurchaseOrder>();
 	
 	/**
 	 * Method to execute constructed query and load data into objects
@@ -36,12 +37,13 @@ public class PurchaseOrderLoader {
 	public void constructResult() {
 		purchaseOrderList.clear();
 		try {
+			sqlDB.openCon();
 			ResultSet rs = sqlDB.queryDB(sql);
 			while (rs.next()) {
 				PurchaseOrderStatus pOS = new PurchaseOrderStatus(rs.getString("purchaseorderstatus.status"));
 				
 				Supplier supplier = new Supplier(rs.getString("supplier.supplierName"), rs.getInt("supplier.idAddress"));
-				Role role = new Role(rs.getString("role.roleName"));
+				Role role = new Role(rs.getString("role.Role"));
 				User user = new User(rs.getString("user.password"), rs.getString("user.forename"), rs.getString("user.surname"), rs.getString("user.email"), rs.getBoolean("user.isEmployee"));
 				user.setUserID(rs.getInt("user.idUser"));
 				Employee employee = new Employee(user, role);
@@ -50,12 +52,16 @@ public class PurchaseOrderLoader {
 				pO.setDateExpected(rs.getDate("purchaseorder.dateExpected"));
 				purchaseOrderList.add(pO);
 			}
+			rs.close();
+			
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		finally {}
+		finally {
+			sqlDB.closeCon();
+		}
 	}
 	
 	/**
@@ -63,7 +69,7 @@ public class PurchaseOrderLoader {
 	 * @return the ArrayList of purchase orders created from the query
 	 */
 	public ArrayList<PurchaseOrder> getPurchaseOrderList() {
-		sql = listQuery + tableName + tableJoins;
+		sql = listQuery + tableName + tableJoins + orderBy;
 		constructResult();
 		return purchaseOrderList;
 	}
@@ -85,7 +91,7 @@ public class PurchaseOrderLoader {
 	 * @return the ArrayList of purchase orders created from the query
 	 */
 	public ArrayList<PurchaseOrder> getPurchaseOrderListByStatus(String status) {
-		sql = listQuery + tableName + tableJoins + " WHERE status = '" + status +"'";
+		sql = listQuery + tableName + tableJoins + " WHERE status = '" + status +"'" + orderBy;
 		constructResult();
 		return purchaseOrderList;
 	}
@@ -96,7 +102,7 @@ public class PurchaseOrderLoader {
 	 * @return the ArrayList of purchase orders created from the query
 	 */
 	public ArrayList<PurchaseOrder> getPurchaseOrderListBySupplier(String supplierName) {
-		sql = listQuery + tableName + tableJoins + " WHERE supplierName LIKE '%" + supplierName + "%'";
+		sql = listQuery + tableName + tableJoins + " WHERE supplierName LIKE '%" + supplierName + "%'" + orderBy;
 		constructResult();
 		return purchaseOrderList;
 	}
