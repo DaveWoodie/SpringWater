@@ -19,18 +19,19 @@ function loginUser() {
 	
 	// Log user login details
 	emailAddress = document.getElementById("emailAddressInput").value;
-	password = document.getElementById("passwordInput").value;
+	password = document.getElementById("passwordInputLogin").value;
 	
 	// check the email address
 	if (emailAddress === checkEmailAddressDatabase(dummyEmailAddress, emailAddress) &&
 			password === checkPasswordDatabase(dummyPasswords, password)) {
-		alert("Address has been found in the database!!!");
-		
 		// Jump to the logged in profile page
 		window.location.href="profile";
 	} else {
 		alert("Login details have NOT been found in database!!!");
 	}
+	
+	// Create cookies for user and set
+	setAllCookieVals(emailAddress);
 }
 
 // function checks through database to see whether
@@ -53,4 +54,23 @@ function checkPasswordDatabase(arr, obj) {
 		if (arr[i] === obj) { return arr[i]; }
 	}
 	return "";
+}
+
+// function sets all the cookie values for the user
+// when they log into the system.
+function setAllCookieVals(email) {
+	document.cookie = "email = " + email;
+}
+
+// function returns all the cookie values to the user
+function getCookies(name) {
+	var re = new RegExp(name + "=([^;]+)");
+    var value = re.exec(document.cookie);
+    return (value != null) ? unescape(value[1]) : null;
+}
+
+// function for welcome message once the user
+// has logged onto the system.
+function showWelcomeMessage() {
+	alert("Welcome back, " + getCookies("email"));
 }
