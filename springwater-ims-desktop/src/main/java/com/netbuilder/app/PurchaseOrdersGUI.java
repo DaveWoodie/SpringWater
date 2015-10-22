@@ -10,6 +10,9 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -23,7 +26,6 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -170,8 +172,26 @@ public class PurchaseOrdersGUI extends JPanel {
 						break;
 						
 					case "Date":
-						update = null;
+						SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
+						try {
+							Date date = formatter.parse(input);
+							System.out.println("Date populated: " + formatter.format(date));
+							update = lD.fetchPurchaseOrdersByDate(date);
+						} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+							try {
+								formatter = new SimpleDateFormat("dd/MM/yyyy");
+								Date date = formatter.parse(input);
+								System.out.println("Date populated: " + formatter.format(date));
+								update = lD.fetchPurchaseOrdersByDate(date);
+							} catch (ParseException e2) {
+								// TODO Auto-generated catch block
+								update = null;
+							}
+						}
 						break;
+					
 					
 					default:
 						update = null;
@@ -207,8 +227,6 @@ public class PurchaseOrdersGUI extends JPanel {
 		reset = new JButton("Reset Filters");
 		reset.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				// TODO Reset search filters and reload full list of results
-				//This method should re-populate the entire table with call to either the dummy data or the database
 				final PurchaseOrderLogic lD = new PurchaseOrderLogic();
 				purchaseListTable = new DefaultTableModel(lD.fetchPurchaseOrders(), columns){
 					@Override

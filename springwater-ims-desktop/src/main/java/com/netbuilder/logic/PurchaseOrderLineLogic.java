@@ -4,6 +4,8 @@
  */
 package com.netbuilder.logic;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import com.netbuilder.apploader.PurchaseOrderLineLoader;
@@ -28,14 +30,14 @@ public class PurchaseOrderLineLogic {
 		for (int i = 0; i < pOLList.size(); i++) {
 			//TODO connect to ItemLoader to calculate subtotal and get item name
 			String itemName = "Gnome";
-			int numberDamaged = 2;
+			NumberFormat formatter = new DecimalFormat("#0.00"); 
 			float itemPrice = 30;
 			float subTotal = pOLList.get(i).getQuantity() * itemPrice;
 			purchaseOrderLineList[i][0] = pOLList.get(i).getItemID();
 			purchaseOrderLineList[i][1] = itemName;
 			purchaseOrderLineList[i][2] = pOLList.get(i).getQuantity();
-			purchaseOrderLineList[i][3] = numberDamaged;
-			purchaseOrderLineList[i][4] = subTotal;
+			purchaseOrderLineList[i][3] = pOLList.get(i).getDamagedQuantity();
+			purchaseOrderLineList[i][4] = "£" + formatter.format(subTotal);
 		}
 	}
 	
