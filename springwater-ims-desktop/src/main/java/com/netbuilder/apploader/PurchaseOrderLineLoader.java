@@ -44,6 +44,7 @@ public class PurchaseOrderLineLoader {
 			ResultSet rs = sqlDB.queryDB(sql);
 			while (rs.next()) {
 				PurchaseOrderLine pOL = new PurchaseOrderLine(rs.getInt("Quantity"), rs.getInt("idItem"), purchaseOrder);
+				pOL.setDamagedQuantity(rs.getInt("quantityDamaged"));
 				purchaseOrderItemList.add(pOL);
 			}
 			rs.close();

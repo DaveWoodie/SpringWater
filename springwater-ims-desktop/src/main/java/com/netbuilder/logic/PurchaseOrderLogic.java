@@ -5,11 +5,16 @@
 package com.netbuilder.logic;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
+import com.netbuilder.DBConnector.MongoPull;
 import com.netbuilder.apploader.PurchaseOrderLineLoader;
 import com.netbuilder.apploader.PurchaseOrderLoader;
+import com.netbuilder.entities.Item;
 import com.netbuilder.entities.PurchaseOrder;
 import com.netbuilder.entities.PurchaseOrderLine;
 
@@ -25,6 +30,7 @@ public class PurchaseOrderLogic {
 	DateFormat df = new SimpleDateFormat("dd/MM/yy");
 	ArrayList<PurchaseOrder> pOList;
 	ArrayList<PurchaseOrderLine> pOLList;
+	ArrayList<Item> itemList;
 	
 	/**
 	 * Method to load and format the entities for the GUI for all purchase orders
@@ -90,6 +96,13 @@ public class PurchaseOrderLogic {
 		return purchaseOrderList;
 	}
 	
+	public Object[][] fetchPurchaseOrdersByDate(Date date){
+		pOList = new ArrayList<PurchaseOrder>(pOLoader.getPurchaseOrderListByDate(date));
+		
+		formatTable();
+		
+		return purchaseOrderList;
+	}
 	/**
 	 * Method to format the purchase order entities' data into a format for the GUI
 	 */
@@ -97,11 +110,14 @@ public class PurchaseOrderLogic {
 		purchaseOrderList = new Object [pOList.size()][5];
 		for (int i = 0; i < pOList.size(); i++) {
 			PurchaseOrderLineLoader pOLLoader = new PurchaseOrderLineLoader();
-			System.out.println("ID: " + pOList.get(i).getIDPurchaseOrder());
 			pOLList = pOLLoader.getPurchaseOrderLineByOrderID(pOList.get(i).getIDPurchaseOrder());
+			NumberFormat formatter = new DecimalFormat("#0.00"); 
 			float total = 0;
 			for (int j = 0; j < pOLList.size(); j++) {
-				//TODO call ItemLoader to fetch item price
+//				MongoPull mP = new MongoPull();
+//				itemList = mP.getItemInf(pOLList.get(j).getItemID());
+				
+//				float itemPrice = itemList.get(0).getCost();
 				float itemPrice = 30;
 				total = total + (pOLList.get(j).getQuantity() * itemPrice);
 			}
@@ -109,7 +125,7 @@ public class PurchaseOrderLogic {
 			purchaseOrderList[i][1] = df.format(pOList.get(i).getDatePlaced()); 
 			purchaseOrderList[i][2] = pOList.get(i).getPurchaseOrderStatus().getPurchOrderStatus(); 
 			purchaseOrderList[i][3] = pOList.get(i).getSupplier().getSupplierName();
-			purchaseOrderList[i][4] = "£" + total;
+			purchaseOrderList[i][4] = "£" + formatter.format(total);
 		}
 	}
 }

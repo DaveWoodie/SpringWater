@@ -1,3 +1,8 @@
+/**
+ * @author chrisjwwalker
+ * @date 22/10/2015
+ */
+
 package com.netbuilder.DBConnector;
 
 import java.net.UnknownHostException;
@@ -6,12 +11,20 @@ import com.mongodb.MongoClient;
 
 public class MongoDBConnector {
 
+	/*
+	 * 
+	 * String to specify URL to MongoDB
+	 * 
+	 * */
 	static final String mongoURL = "10.50.15.15";
-	static final String userName = "superuser";
-	static final String passWord = "12345678";
 	
 	private MongoClient mongoClient;
 	
+	/**
+	 * 
+	 * Method to connect to the MongoDB
+	 * 
+	 */
 	public void mongoConnect() {
 		try {
 			mongoClient = new MongoClient(mongoURL, 27017);
@@ -20,10 +33,21 @@ public class MongoDBConnector {
 		}
 	}
 	
+	/**
+	 * 
+	 * Method to disconnect from MongoDB
+	 * 
+	 */
 	public void mongoDisconnect() {
 		mongoClient.close();
 	}
 	
+	/**
+	 * 
+	 * public method to return the mongo client to be used in other classes
+	 * 
+	 * @return MongoClient
+	 */
 	public MongoClient getConnection() {
 		return mongoClient;
 	}
