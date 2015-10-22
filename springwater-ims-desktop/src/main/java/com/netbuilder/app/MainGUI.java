@@ -20,11 +20,12 @@ import javax.swing.BoxLayout;
 import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
 
+import com.netbuilder.apploader.LoginLoader;
+
 /**
- * 
  * GUI to load and select all other GUIs
- *
  */
+
 @SuppressWarnings("serial")
 public class MainGUI extends JPanel implements ComponentListener , ActionListener{
 	
@@ -37,6 +38,9 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 	PurchaseOrdersGUI pO;
 	
 	private GUIStart src;
+	private String userID;
+	private LoginLoader loginLoader = new LoginLoader();
+	private String[] User = new String[1];
 	
 	/**
 	 * Method to call GUI initialisation
@@ -45,9 +49,11 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 		initUI();
 	}
 	
-	public MainGUI(GUIStart src) {
+	public MainGUI(GUIStart src, String userID) {
 		this.src = src;
 		this.src.addComponentListener(this);
+		this.userID = userID;
+		User = loginLoader.getNameByID(userID);
 		initUI();
 	}
 	
@@ -92,7 +98,7 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 		bottom.setLayout(new BoxLayout(bottom, BoxLayout.X_AXIS));
 		
 		//PlaceHolder for actual Login details.
-		loginDetails = new JLabel("<html>Employee ID: 1<br>Employee Name: Al Stock");
+		loginDetails = new JLabel("<html>Employee ID: " + userID + "<br>Employee Name: " + User[0] + " " + User[1]);
 		
 		//create logout button
 		logout = new JButton("Logout");
