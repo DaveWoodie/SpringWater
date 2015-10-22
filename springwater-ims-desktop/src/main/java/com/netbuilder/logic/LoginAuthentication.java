@@ -60,7 +60,7 @@ public class LoginAuthentication
 				return true;
 			}
 		}
-		JOptionPane.showMessageDialog(null, "Login unsuccessful");
+		JOptionPane.showMessageDialog(null, "Incorrect user name or password");
 		return false;
 	}
 }
