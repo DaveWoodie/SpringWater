@@ -53,7 +53,7 @@
                         <div class="col-md-3">
                             <h3>Arriving Sat, 15 Aug - Wed, 19 Aug</h3>
                             <p><b>Dispatched</b></p>
-                            <img id="orderImage" src="img/gnome.jpg">
+                            <img id="orderImage" src="img/gnome.jpg" />
                         </div>
 
                         <div class="col-md-3">

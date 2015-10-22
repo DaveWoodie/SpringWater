@@ -103,7 +103,7 @@
 
                     <!-- Search Field -->
                     <div class="input-group panel">
-                        <input type="text" class="form-control" placeholder="Search for a question...">
+                        <input type="text" class="form-control" placeholder="Search for a question..." />
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                         </span>
@@ -114,18 +114,17 @@
                         <h4 id="supersubtitle">Have a question?</h4></div>
                     <div></div>
                     <div class="panel panel-default">
-                        <input type="text" class="form-control" placeholder="Topic...">
+                        <input type="text" class="form-control" placeholder="Topic..." />
                     </div>
                     <div class="panel panel-default">
-                        <input type="text" class="form-control" placeholder="Your email...">
+                        <input type="text" class="form-control" placeholder="Your email..." />
                     </div>
                     <div class="panel panel-default">
-                        <textarea rows="10" cols=auto class="form-control" placeholder="Details..."></textarea>
+                        <textarea rows="10" cols="auto" class="form-control" placeholder="Details..."></textarea>
                     </div>
                     <div>
                         <button class="btn btn-block btn-primary"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Submit</button>
                     </div>
-
                 </div>
             </div>
         </div>

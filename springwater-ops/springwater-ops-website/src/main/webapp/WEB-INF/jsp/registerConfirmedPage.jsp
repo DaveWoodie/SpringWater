@@ -1,17 +1,13 @@
-<!--------------------------------------------------------
-
-    Callum Cooper 
+<!--     Callum Cooper  -->
     
-    registerConfirmedPage.jsp
+<!--     registerConfirmedPage.jsp -->
 
-    21/10/2015
+<!--     21/10/2015 -->
 
-    Page for the confirmation of a registered
-    user.
+<!--     Page for the confirmation of a registered -->
+<!--     user. -->
 
-    Last Modified by: c33-cooper
-
---------------------------------------------------------->
+<!--     Last Modified by: c33-cooper -->
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -38,17 +34,16 @@
 	             </div>
              </div>
     		
-    		<p id="email"></p>
-    		<p id="fName"></p>
+    		<p style="text-align:center" id="email"></p>
+    		<p style="text-align:center" id="fName"></p>
     		
     		<!-- Script for calling cookie data  -->
     		<script>
 				document.getElementById("fName").innerHTML = getCookie("firstName") + " " + getCookie("lastName");
                 document.getElementById("email").innerHTML = "A confirmation email has been sent to " + getCookie("email");
 			</script>
-			
-			<div class="container">
-					<p style="text-align:center" id="uniqueNumberRef">customer reference number is </p> <p id="uniqueNum"></p>
+			<div class="container" style="text-align:center">
+					<p id="uniqueNumberRef">customer reference number is </p> <p id="uniqueNum"></p>
 			</div>
 			
 			<!-- Script for creating unique number for user -->

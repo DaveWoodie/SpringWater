@@ -25,7 +25,7 @@
                     <!-- Search field -->
                     <li>
                         <div class="input-group panel">
-                            <input type="text" class="form-control" placeholder="Search for an item...">
+                            <input type="text" class="form-control" placeholder="Search for an item..." />
                             <span class="input-group-btn">
                             <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                             </span>
@@ -139,7 +139,7 @@
                 <!-- Item -->
                 <div class="col-lg-3 col-md-3 col-xs-4 thumb">
                     <a class="thumbnail" href="itempage">
-                    <img class="img-responsive" src="img/pot03.jpg" id="itemThumb" alt="">
+                    <img class="img-responsive" src="img/pot03.jpg" id="itemThumb" alt="" />
                     </a>
                     <h4 style="text-align:center" id="supersubtitle">Product Name</h4>
                     <h4 style="text-align:center" id="supersubtitle">&pound;0.00</h4>
