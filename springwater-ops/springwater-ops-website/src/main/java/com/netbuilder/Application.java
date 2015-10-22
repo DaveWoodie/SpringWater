@@ -10,6 +10,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
+import com.netbuilder.test.ItemDatabase;
+
 //@EnableMongoRepositories
 //@EnableJpaRepositories
 @ComponentScan
@@ -18,6 +20,7 @@ public class Application  {
 	
 	public static void main(String args[]) throws ServletException, LifecycleException {
 
+		ItemDatabase.fillDatabase();
 		ApplicationContext ctx = SpringApplication.run(Application.class, args);
 		
 		listBeans(ctx);

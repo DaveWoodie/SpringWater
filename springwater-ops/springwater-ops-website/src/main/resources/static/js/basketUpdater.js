@@ -8,13 +8,30 @@
  * Date modified: c33-cooper - 22/10/2015
  */
 
-// Basket attributes
-var itemCount = 0;
+// Cookie attributes
+var itemCountCookie;
 
-function updateBasketcount() {
-	itemCount += 1;
+// Basket attributes
+var itemCount = 1;
+
+// function for updating the basket
+function basketUpdater() {
+	setAllCookieVals(itemCount);
 }
 
-function getBasketCount() {
-	return itemCount;
+function updateItemCount() {
+	itemCount += 1;
+	setAllCookieVals(itemCount);
+}
+
+// Function sets all the cookie values for the items
+function setAllCookieVals(iCount) {
+	document.cookie = "itemCount = " + iCount;
+}
+
+// Function returns all the cookie values for the item count
+function getCookies(name) {
+	var re = new RegExp(name + "=([^;]+)");
+    var value = re.exec(document.cookie);
+    return (value != null) ? unescape(value[1]) : null;
 }

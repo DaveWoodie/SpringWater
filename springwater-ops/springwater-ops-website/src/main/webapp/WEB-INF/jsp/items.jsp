@@ -85,6 +85,8 @@
                     </li>
               	</ul>
   				</div>
+  				
+  				<button onclick="updateItemCount()">Update Cart</button>
 
       		</div>    
 
@@ -99,7 +101,7 @@
                 <div th:each="item : ${itemList}" id="testItems">
                     <!-- Item Template-->
                     <div id ="itemTemplate" class="col-lg-3 col-md-3 col-xs-4 thumb">
-                        <a class="thumbnail" href="itempage">
+                        <a class="thumbnail" th:href="'itempage+' + ${item.itemName}">
                         <img class="img-responsive" th:src="${item.imageLocation}" id="itemThumb" alt="" />
                         </a>
                         <h4 style="text-align:center" id="supersubtitle"><p id="itemName" th:text="${item.itemName}"/></h4>
