@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.netbuilder.logic;
 
 import java.util.ArrayList;
@@ -17,8 +20,15 @@ public class LoginAuthentication
 		passwordList = loginLoader.getPasswords();
 	}
 	
-	public void checkLogin(int userID, String Password)
+	public boolean checkLogin(int userID, String Password)
 	{
-		
+		for(int i = 0; i < userList.size(); i++)
+		{
+			if(userID == userList.get(i) && Password == passwordList.get(i))
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 }
