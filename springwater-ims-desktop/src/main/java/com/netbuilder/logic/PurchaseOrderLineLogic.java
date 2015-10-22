@@ -29,7 +29,8 @@ public class PurchaseOrderLineLogic {
 			//TODO connect to ItemLoader to calculate subtotal and get item name
 			String itemName = "Gnome";
 			int numberDamaged = 2;
-			float subTotal = 300;
+			float itemPrice = 30;
+			float subTotal = pOLList.get(i).getQuantity() * itemPrice;
 			purchaseOrderLineList[i][0] = pOLList.get(i).getItemID();
 			purchaseOrderLineList[i][1] = itemName;
 			purchaseOrderLineList[i][2] = pOLList.get(i).getQuantity();

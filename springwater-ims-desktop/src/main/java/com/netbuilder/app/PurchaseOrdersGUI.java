@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -105,7 +106,7 @@ public class PurchaseOrdersGUI extends JPanel {
 		
 		filterPurchaseOrder = new JComboBox<String>(purchaseOrderCategories);
 		
-		PurchaseOrderLogic lD = new PurchaseOrderLogic();
+		final PurchaseOrderLogic lD = new PurchaseOrderLogic();
 		purchaseListTable = new DefaultTableModel(lD.fetchPurchaseOrders(), columns){
 			@Override
 		    public boolean isCellEditable(int i, int i1) {
@@ -123,13 +124,18 @@ public class PurchaseOrdersGUI extends JPanel {
 			
 			public void valueChanged(ListSelectionEvent e) {
 				// TODO select ID of selected row
-				int selectedRow = purchaseOrderTable.getSelectedRow();
-				try {
-					currentlySelectedOrder = Integer.parseInt(purchaseOrderTable.getValueAt(selectedRow, 0).toString());
-					//System.out.println("Supplier ID: " + currentlySelectedOrder + " selected!");
+				if (purchaseOrderTable.getSelectedRow() != -1) {
+					try {
+						int selectedRow = purchaseOrderTable.getSelectedRow();
+						currentlySelectedOrder = Integer.parseInt(purchaseOrderTable.getValueAt(selectedRow, 0).toString());
+						//System.out.println("Supplier ID: " + currentlySelectedOrder + " selected!");
+					}
+					catch (NullPointerException npe) {
+						System.out.println("Null Purchase Order!");
+					} 
 				}
-				catch (NullPointerException npe) {
-					System.out.println("Null Purchase Order!");
+				else {
+					currentlySelectedOrder = 0;
 				}
 			}
 			
@@ -146,13 +152,45 @@ public class PurchaseOrdersGUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO set filter of table results
 				//Should apply the filters selected to the table.
+				Object[][] update;
+				String input = searchField.getText();
+				switch (filterPurchaseOrder.getSelectedItem().toString()) {
+					case "Order ID":
+						System.out.println(input);
+						int i = Integer.parseInt(input);
+						update = lD.fetchPurchaseOrdersByID(i);
+						break;
+					
+					case "Status":
+						update = lD.fetchPurchaseOrdersByStatus(input);
+						break;
+						
+					case "Supplier":
+						update = lD.fetchPurchaseOrdersBySupplier(input);
+						break;
+						
+					case "Date":
+						update = null;
+						break;
+					
+					default:
+						update = null;
+						
+				}
+				purchaseListTable =  new DefaultTableModel(update, columns){
+					@Override
+				    public boolean isCellEditable(int i, int i1) {
+				        return false; //To change body of generated methods, choose Tools | Templates.
+				    }
+				};
+				purchaseOrderTable.setModel(purchaseListTable);
 			}
 		});
 		
 		select = new JButton("Select Order");
 		select.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				if(currentlySelectedOrder ==0) {
+				if(currentlySelectedOrder == 0) {
 					System.out.println("No Purchase Order selected!");
 				}
 				else {
@@ -171,6 +209,14 @@ public class PurchaseOrdersGUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Reset search filters and reload full list of results
 				//This method should re-populate the entire table with call to either the dummy data or the database
+				final PurchaseOrderLogic lD = new PurchaseOrderLogic();
+				purchaseListTable = new DefaultTableModel(lD.fetchPurchaseOrders(), columns){
+					@Override
+				    public boolean isCellEditable(int i, int i1) {
+				        return false; //To change body of generated methods, choose Tools | Templates.
+				    }
+				};
+				purchaseOrderTable.setModel(purchaseListTable);
 			}
 		});
 		//Currently Commented out due to not really being sure if we need/want the functionality

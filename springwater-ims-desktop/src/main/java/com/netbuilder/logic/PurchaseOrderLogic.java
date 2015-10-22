@@ -21,7 +21,6 @@ import com.netbuilder.entities.PurchaseOrderLine;
 public class PurchaseOrderLogic {
 	
 	Object [][] purchaseOrderList;
-	Object [] purchaseOrder;
 	PurchaseOrderLoader pOLoader = new PurchaseOrderLoader();
 	DateFormat df = new SimpleDateFormat("dd/MM/yy");
 	ArrayList<PurchaseOrder> pOList;
@@ -44,24 +43,12 @@ public class PurchaseOrderLogic {
 	 * @param id of the purchase order to be displayed
 	 * @return the array of data to display the purchase order in the GUI
 	 */
-	public Object[] fetchPurchaseOrdersByID(int id) {
+	public Object[][] fetchPurchaseOrdersByID(int id) {
 		pOList = new ArrayList<PurchaseOrder>(pOLoader.getPurchaseOrderByID(id));
-		PurchaseOrderLineLoader pOLLoader = new PurchaseOrderLineLoader();
-		pOLList = pOLLoader.getPurchaseOrderLineByOrderID(pOList.get(0).getIDPurchaseOrder());
-		float total = 0;
-		for (int j = 0; j < pOLList.size(); j++) {
-			//TODO call ItemLoader to fetch item price
-			float itemPrice = 30;
-			total = total + (pOLList.get(j).getQuantity() * itemPrice);
-		}
-		purchaseOrder = new Object [5];
-		purchaseOrder[0] = pOList.get(0).getIDPurchaseOrder();
-		purchaseOrder[1] = df.format(pOList.get(0).getDatePlaced());
-		purchaseOrder[2] = pOList.get(0).getPurchaseOrderStatus().getPurchOrderStatus(); 
-		purchaseOrder[3] = pOList.get(0).getSupplier().getSupplierName();
-		purchaseOrder[4] = "£" + total;
 		
-		return purchaseOrder;
+		formatTable();
+		
+		return purchaseOrderList;
 	}
 	
 	/**
@@ -110,6 +97,7 @@ public class PurchaseOrderLogic {
 		purchaseOrderList = new Object [pOList.size()][5];
 		for (int i = 0; i < pOList.size(); i++) {
 			PurchaseOrderLineLoader pOLLoader = new PurchaseOrderLineLoader();
+			System.out.println("ID: " + pOList.get(i).getIDPurchaseOrder());
 			pOLList = pOLLoader.getPurchaseOrderLineByOrderID(pOList.get(i).getIDPurchaseOrder());
 			float total = 0;
 			for (int j = 0; j < pOLList.size(); j++) {

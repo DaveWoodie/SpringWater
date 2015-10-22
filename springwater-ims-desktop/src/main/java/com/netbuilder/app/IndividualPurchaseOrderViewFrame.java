@@ -68,7 +68,7 @@ public class IndividualPurchaseOrderViewFrame extends JFrame {
 		contentPane.add(scrollPane);
 		
 		PurchaseOrderLineLogic lD =  new PurchaseOrderLineLogic();
-		defaultItemTable = new DefaultTableModel(lD.fetchPurchaseOrderLinesByItemID(id), columns){
+		defaultItemTable = new DefaultTableModel(lD.fetchPurchaseOrderLinesByPurchaseOrderID(id), columns){
 			@Override
 		    public boolean isCellEditable(int i, int i1) {
 		        return false; //To change body of generated methods, choose Tools | Templates.
