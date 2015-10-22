@@ -85,6 +85,8 @@
                     </li>
               	</ul>
   				</div>
+  				
+  				<button onclick="updateItemCount()">Update Cart</button>
 
       		</div>  
         

@@ -10,11 +10,19 @@
         <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
         <link href="main.css" rel="stylesheet" />
         <link href="collapse.css" rel="stylesheet" />
+        
+        <!-- Import javaScript files for basket update -->
+        <script src="js/basketUpdater.js" type="text/javascript"></script>
     </head>
     
     <div th:include="this :: header"></div>
     
 <body>
+	<!-- Call the basket updater -->
+	<script>
+    	basketUpdater();
+    </script>
+
     <!-- Navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -60,9 +68,13 @@
 
                 <form class="navbar-form navbar-right" role="search">
                     <a href="wishlist" class="btn btn-danger"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Wish List <span class="badge">0</span></a>
-                    <a href="basket" class="btn btn-info"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Basket <span class="badge">0</span></a>
+                    <a href="basket" class="btn btn-info"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Basket <span class="badge" id="basketCount"></span></a>
                     <a href="loginregister" type="submit" class="btn btn-success"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login</a>
                     <a href="loginregister" class="btn btn-primary"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Register</a>
+                    
+                    <script>
+                    	document.getElementById("basketCount").innerHTML = getCookies("itemCount");
+                    </script>
                 </form>
             </div>
             <!-- END OF COLLASPE AREA -->
