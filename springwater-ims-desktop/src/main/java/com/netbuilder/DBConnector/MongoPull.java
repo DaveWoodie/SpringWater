@@ -14,6 +14,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
+import com.netbuilder.entities.Item;
 
 public class MongoPull {
 
@@ -30,6 +31,7 @@ public class MongoPull {
 	private List<String> addrVals = new ArrayList<String>();
 	private List<String> itemInfs = new ArrayList<String>();
 	private List<String> wishListSet = new ArrayList<String>();
+	private ArrayList<Item> itemList = new ArrayList<Item>();
 
 	public MongoPull() {
 
@@ -119,7 +121,7 @@ public class MongoPull {
 	 * @param id: Takes an int which is the idItem of a given item
 	 * @return returns a list containing all the information for the given item
 	 */
-	public List<String> getItemInf(int id) {
+	public ArrayList<Item> getItemInf(int id) {
 		//Connect to MongoDB
 		mdbc.mongoConnect();
 		
@@ -135,10 +137,12 @@ public class MongoPull {
 		DBCursor cursor = collection.find(item);		
 		
 		itemInfs.clear();
+		itemList.clear();
 		
 		while(cursor.hasNext()) {
 			
 			cursor.next();
+			Item i = new Item(cursor.curr().get("ItemName").toString(), cursor.curr().get("ItemDescription").toString(), (float) cursor.curr().get("ItemPrice"), (float) cursor.curr().get("ItemCost"), (int) cursor.curr().get("NumberInStock"), cursor.curr().get("ImageLocation").toString(), (boolean) cursor.curr().get("Discontinued"), (boolean) cursor.curr().get("IsPorousware"), (int) cursor.curr().get("idSupplier"));
 			
 			itemInfs.add(cursor.curr().get("ItemName").toString());
 			itemInfs.add(cursor.curr().get("ItemDescription").toString());
@@ -151,13 +155,15 @@ public class MongoPull {
 			itemInfs.add(cursor.curr().get("Discontinued").toString());
 			itemInfs.add(cursor.curr().get("idSupplier").toString());
 			
-			BSONObject bsobj = (BSONObject) cursor.curr().get("Attributes");
 			
-			for(int i = 0; i < attrs.length; i++) {
-				if(bsobj.containsField(attrs[i])) {
-					itemInfs.add(bsobj.get(attrs[i]).toString());
-				}
-			}
+//			BSONObject bsobj = (BSONObject) cursor.curr().get("Attributes");
+//			
+//			for(int i = 0; i < attrs.length; i++) {
+//				if(bsobj.containsField(attrs[i])) {
+//					itemInfs.add(bsobj.get(attrs[i]).toString());
+//				}
+//			}
+			itemList.add(i);
 		}
 		
 		cursor.close();
@@ -165,7 +171,7 @@ public class MongoPull {
 		//Disconnect from MongoDB
 		mdbc.mongoDisconnect();
 		
-		return itemInfs;
+		return itemList;
 	}
 	
 	/**

@@ -117,5 +117,12 @@ public class PurchaseOrderLoader {
 		//TODO pull purchase orders into list from orderline loader query result
 		return purchaseOrderList;
 	}
+	
+	public ArrayList<PurchaseOrder> getPurchaseOrderListByDate(java.util.Date date) {
+		java.sql.Date queryDate = new java.sql.Date(date.getTime());
+		sql = listQuery + tableName + tableJoins + " WHERE datePlaced = '" + queryDate + "'";
+		constructResult();
+		return purchaseOrderList;
+	}
 }
 
