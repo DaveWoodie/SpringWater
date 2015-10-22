@@ -17,7 +17,7 @@
                 <div class="row">
                         <!-- Left Panel -->
                         <div class="col-lg-4">
-                            <img class="img-responsive thumbnail" id="carouselThumb" src="img/logo.png" alt="">
+                            <img class="img-responsive thumbnail" id="carouselThumb" src="img/logo.png" alt="" />
                             <div class="panel panel-default">
                                 <div class="panel-body" style="text-align:center">
                                     Welcome to NB Gardens. We are a retailer of high quality garden products who pride ourselves in our high quality gnomes.
@@ -27,7 +27,7 @@
                 
                         <!-- Right Panel -->
                         <div class="col-lg-8">
-                                <img src="img/header.jpg" class="img-responsive" style="width:auto;height:auto">
+                                <img src="img/header.jpg" class="img-responsive" style="width:auto;height:auto" />
                         </div>
                 </div>
         </div>
@@ -47,12 +47,12 @@
                         <div class="carousel-inner" role="listbox">
                             <!-- Gnome Carousel Images -->
                             <div class="item active">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/gnome.jpg"></a>
+                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/gnome.jpg" /></a>
                             </div>
 
                             <!-- Gnome Carousel Images -->
                             <div class="item">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/gnome02.jpg"></a>
+                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/gnome02.jpg" /></a>
                             </div>
                         </div>
 
@@ -81,12 +81,12 @@
                         <div class="carousel-inner" role="listbox">
                             <!-- Gnome Carousel Images -->
                             <div class="item active">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/gnome03.jpg"></a>
+                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/gnome03.jpg" /></a>
                             </div>
 
                             <!-- Gnome Carousel Images -->
                             <div class="item">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/gnome04.jpg"></a>
+                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/gnome04.jpg" /></a>
                             </div>
                         </div>
 
@@ -115,12 +115,12 @@
                         <div class="carousel-inner" role="listbox">
                             <!-- Gnome Carousel Images -->
                             <div class="item active">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/gnome05.jpg"></a>
+                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/gnome05.jpg" /></a>
                             </div>
 
                             <!-- Gnome Carousel Images -->
                             <div class="item">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/gnome06.jpg"></a>
+                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/gnome06.jpg" /></a>
                             </div>
                         </div>
 
@@ -149,12 +149,12 @@
                         <div class="carousel-inner" role="listbox">
                             <!-- Gnome Carousel Images -->
                             <div class="item active">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/jacuzzi01.png"></a>
+                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/jacuzzi01.png" /></a>
                             </div>
 
                             <!-- Gnome Carousel Images -->
                             <div class="item">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/jacuzzi02.jpg"></a>
+                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/jacuzzi02.jpg" /></a>
                             </div>
                         </div>
 
@@ -183,12 +183,12 @@
                         <div class="carousel-inner" role="listbox">
                             <!-- Gnome Carousel Images -->
                             <div class="item active">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/jacuzzi03.jpg"></a>
+                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/jacuzzi03.jpg" /></a>
                             </div>
 
                             <!-- Gnome Carousel Images -->
                             <div class="item">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/jacuzzi04.png"></a>
+                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/jacuzzi04.png" /></a>
                             </div>
                         </div>
 
@@ -217,12 +217,12 @@
                         <div class="carousel-inner" role="listbox">
                             <!-- Gnome Carousel Images -->
                             <div class="item active">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/hoe01.jpg"></a>
+                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/hoe01.jpg" /></a>
                             </div>
 
                             <!-- Gnome Carousel Images -->
                             <div class="item">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/hoe2.jpg"></a>
+                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/hoe2.jpg" /></a>
                             </div>
                         </div>
 
@@ -263,24 +263,10 @@
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/gnome.jpg"></a> 
+                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/gnome.jpg" /></a> 
                                         </div>
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/gnome02.jpg"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Gnome Carousel Images -->
-                            <div class="item">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/gnome03.jpg"></a> 
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/gnome04.jpg"></a>
+                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/gnome02.jpg" /></a>
                                         </div>
                                     </div>
                                 </div>
@@ -291,10 +277,24 @@
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/gnome05.jpg"></a> 
+                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/gnome03.jpg" /></a> 
                                         </div>
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/gnome06.jpg"></a>
+                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/gnome04.jpg" /></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Gnome Carousel Images -->
+                            <div class="item">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/gnome05.jpg" /></a> 
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/gnome06.jpg" /></a>
                                         </div>
                                     </div>
                                 </div>
@@ -330,24 +330,10 @@
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/jacuzzi01.png"></a> 
+                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/jacuzzi01.png" /></a> 
                                         </div>
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/gnome.jpg"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Gnome Carousel Images -->
-                            <div class="item">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/pot03.jpg"></a> 
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/gnome05.jpg"></a>
+                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/gnome.jpg" /></a>
                                         </div>
                                     </div>
                                 </div>
@@ -358,10 +344,24 @@
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/pot01.jpg"></a> 
+                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/pot03.jpg" /></a> 
                                         </div>
                                         <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/pot02.JPG"></a>
+                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/gnome05.jpg" /></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Gnome Carousel Images -->
+                            <div class="item">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/pot01.jpg" /></a> 
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/pot02.JPG" /></a>
                                         </div>
                                     </div>
                                 </div>
