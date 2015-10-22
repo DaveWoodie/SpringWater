@@ -53,7 +53,6 @@ public class AddItemFrame extends JFrame {
 	}
 
 	public AddItemFrame() {
-		// System.out.print("Here");
 		initUI();
 	}
 
@@ -286,25 +285,38 @@ public class AddItemFrame extends JFrame {
 		if (itemNameR.getText().isEmpty()) {
 			ready = false;
 			JFrame frame = new JFrame("Add new item");
-			JOptionPane.showMessageDialog(frame, "An item name must be entered", "Error",
+			JOptionPane.showMessageDialog(frame, "An item name must be entered!!", "Error",
 					JOptionPane.ERROR_MESSAGE);
 		}
 		
 		if (itemDescriptionR.getText().isEmpty()) {
 			ready = false;
+			JFrame frame = new JFrame("Add new item");
+			JOptionPane.showMessageDialog(frame, "An item description must be entered!!", "Error",
+					JOptionPane.ERROR_MESSAGE);
 		}
 		
 		if (itemPriceR.getText().isEmpty()) {
 			ready = false;
+			JFrame frame = new JFrame("Add new item");
+			JOptionPane.showMessageDialog(frame, "An item sale price must be entered!!", "Error",
+					JOptionPane.ERROR_MESSAGE);
 		}
 		
 		if (itemUnitPriceR.getText().isEmpty()) {
 			ready = false;
+			JFrame frame = new JFrame("Add new item");
+			JOptionPane.showMessageDialog(frame, "An item unit cost must be entered!!", "Error",
+					JOptionPane.ERROR_MESSAGE);
 		}
 		
 		return ready;
 	}
 	
+	/**
+	 * Method to collate the inputs from the GUI
+	 * @return array of objects representing the attributes of the item
+	 */
 	private Object[] getResults(){
 		ArrayList<Object> input = new ArrayList<Object>();
 		input.add(itemNameR.getText());

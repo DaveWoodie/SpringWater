@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h1 id="productTitle">Product Title</h1>
+                        <h1 id="productTitle" th:text="${item.itemName}"></h1>
                     </div>
                 </div>
             </div>
@@ -33,15 +33,15 @@
             <div class="row">
                 <div class="col-md-5">
                     <a href="#" class="thumbnail" data-toggle="modal" data-target="#enlargedImage">
-                        <img src="img/placeholder2.png" alt="..." width="60%" height="60%" />
+                        <img th:src="${item.imageLocation}" alt="..." width="60%" height="60%" />
                     </a>
                 </div>
                 <div class="col-md-7">
                     <div class="page-header">
-                        <h1 id="desc">Description</h1>
+                        <h1 id="desc" th:text="'£' + ${item.price}"></h1>
                     </div>
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p th:text="${item.description}"></p>
 
                     <a class="btn btn-danger btn-lg" href=""><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Add to Wish List</a>
                     <a class="btn btn-warning btn-lg" href="#reviews"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Reviews</a>
