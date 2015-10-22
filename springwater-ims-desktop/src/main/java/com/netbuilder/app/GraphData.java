@@ -91,6 +91,48 @@ public class GraphData
 		graphData = objectArray;
 	}
 	
+	public ArrayList<Integer[]> getYearArray()
+	{
+		ArrayList<Integer[]> yearArray = new ArrayList<Integer[]>();
+		DateFormat df = new SimpleDateFormat("YYYY");
+		Date date;
+		int total = 0;
+		
+		//scan through the graph data where the year is between 2010 and 2016
+		for(int year = 2010; year < 2016; year++)
+		{
+			for(int i = 0; i < graphData.size(); i++)
+			{
+				String s = (String) graphData.get(i)[2];
+				
+				try 
+				{
+					date = df.parse(s);
+					s = df.format(date);
+				} 
+				catch(ParseException e) 
+				{
+					e.printStackTrace();
+				}
+				
+				if(year == Integer.parseInt(s))
+				{
+					int sales = (int) graphData.get(i)[1];
+					total = total + sales;
+				}
+			}
+			yearArray.add(new Integer[]{year, total});
+			total = 0;
+		}
+		
+		for(int i = 0; i < graphData.size(); i++)
+		{
+			//yearArray.add((String) graphData.get(i)[2]);
+		}
+		
+		return yearArray;
+	}
+	
 	public ArrayList<Object[]> getDataArray()
 	{
 		return graphData;
@@ -101,8 +143,4 @@ public class GraphData
 		graphData.add(new Object[]{(double)itemsSold, "Sales", Date});
 		sortArray();
 	}
-	
-	/*public static void main(String[] args) {
-		GraphData gd = new GraphData();
-	}*/
 }
