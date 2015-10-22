@@ -75,12 +75,12 @@ public class SalesGraphGUI extends JPanel implements ActionListener
 		buttonUpdate.addActionListener(this);
 				
 			//add components to options panel
-			panelOptions.add(labelDate);
+			/*panelOptions.add(labelDate);
 			panelOptions.add(comboDay);
 			panelOptions.add(comboMonth);
 			panelOptions.add(comboYear);
 			panelOptions.add(Box.createRigidArea(new Dimension(20, 0)));
-			panelOptions.add(labelDuration);
+			panelOptions.add(labelDuration);*/
 			panelOptions.add(comboDuration);
 			panelOptions.add(Box.createRigidArea(new Dimension(20, 0)));
 			panelOptions.add(buttonUpdate);
@@ -134,7 +134,7 @@ public class SalesGraphGUI extends JPanel implements ActionListener
 	{
 		JFreeChart lineChart = ChartFactory.createLineChart(
 	         "Sales",						 //Chart title
-	         "Day",					     //X Label
+	         "Day",					         //X Label
 	         "Number of Items sold",		 //Y Label
 	         dataset,						 //Data
 	         PlotOrientation.VERTICAL,
@@ -152,8 +152,13 @@ public class SalesGraphGUI extends JPanel implements ActionListener
 	
 	private void drawChartYears()
 	{
-		//DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		ArrayList<Integer[]> yearArray = graphData.getYearArray();
+		
+		for(int i = 0; i < yearArray.size(); i++)
+		{
+			dataset.addValue(yearArray.get(i)[1], "Year", yearArray.get(i)[0]);
+		}
 		
 		JFreeChart lineChart = ChartFactory.createLineChart(
 				 "Sales",						 //Chart title

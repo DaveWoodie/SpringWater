@@ -16,7 +16,7 @@ public class GUIStart extends JFrame {
 
 	public static void main(String[] args) {
 		@SuppressWarnings("unused")
-		GUIStart gStart = new GUIStart();
+		GUIStart gStar1t = new GUIStart();
 	}
  
 	/**
@@ -54,10 +54,10 @@ public class GUIStart extends JFrame {
 	/**
 	 * sets up the frame for the main content
 	 */
-	private void mainGUISetup() {
+	private void mainGUISetup(String userID) {
 		setVisible(false);
 		this.getContentPane().removeAll();
-		mFrame = new MainGUI(this);
+		mFrame = new MainGUI(this, userID);
 		setResizable(true);
 		this.getContentPane().add(mFrame);
 		pack();
@@ -69,8 +69,8 @@ public class GUIStart extends JFrame {
 	/**
 	 * calls the settings for main
 	 */
-	public void revertToMain() {
-		mainGUISetup();
+	public void revertToMain(String userID) {
+		mainGUISetup(userID);
 	}
 	
 	/**

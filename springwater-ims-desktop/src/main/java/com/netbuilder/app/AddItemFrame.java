@@ -12,14 +12,17 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -30,17 +33,19 @@ import javax.swing.JTextField;
 public class AddItemFrame extends JFrame {
 	private JPanel base, main, buttonBar, attributesP;
 	private JLabel itemNameL, itemDescriptionL, itemPriceL, itemUnitPriceL,porousewareL, supplierL, typeL, column1L,column2L;
-	private JTextField itemNameR, itemPriceR, itemUnitPriceR;
+	private JTextField itemNameR;
 	private JTextArea itemDescriptionR;
 	private JComboBox supplierR, typeR;
 	private JRadioButton porouswareYesB, porouswareNoB;
 	private JButton addIB, addAttributesB, cancelB;
+	private JFormattedTextField itemPriceR, itemUnitPriceR;
 	private ArrayList<JTextField> attributesNames = new ArrayList<JTextField>();
 	private ArrayList<JTextField> attributesDes = new ArrayList<JTextField>();
 	private ArrayList<JLabel> attributesLabels = new ArrayList<JLabel>();
 	private GridBagConstraints c = new GridBagConstraints();
 	private GridBagConstraints attriC;
 	private int noOfA =0;
+	private TextPrompt inp, idp, ispp, iucp ;
 
 	public static void main(String[] args) {
 		AddItemFrame iF = new AddItemFrame();
@@ -48,7 +53,6 @@ public class AddItemFrame extends JFrame {
 	}
 
 	public AddItemFrame() {
-		// System.out.print("Here");
 		initUI();
 	}
 
@@ -69,7 +73,8 @@ public class AddItemFrame extends JFrame {
 		base = new JPanel(new BorderLayout());
 		add(base);
 		main = new JPanel(new GridBagLayout());
-
+		DecimalFormat df = new DecimalFormat("#.00"); 
+		
 		boolean shouldFill = true;
 
 		if (shouldFill) {
@@ -85,11 +90,11 @@ public class AddItemFrame extends JFrame {
 		c.gridy = 1;
 		main.add(itemDescriptionL, c);
 		
-		itemPriceL = new JLabel("Sale Price:");
+		itemPriceL = new JLabel("Sale Price: £");	
 		c.gridy = 2;
 		main.add(itemPriceL, c);
 		
-		itemUnitPriceL = new JLabel("Unit Cost:");
+		itemUnitPriceL = new JLabel("Unit Cost: £");
 		c.gridy = 3;
 		main.add(itemUnitPriceL, c);
 		
@@ -133,15 +138,19 @@ public class AddItemFrame extends JFrame {
 		 group.add(porouswareNoB);
 		
 		itemNameR = new JTextField();
+		inp = new TextPrompt("Gnome with hat", itemNameR);
+		inp.changeAlpha(0.75f);
 		itemNameR.setColumns(30);
 		itemNameR.setBorder(BorderFactory.createLineBorder(Color.black));
 		c.weightx = 0.5;
 		c.gridx = 1;
 		c.gridy = 0;
-		c.gridwidth = 2;
+		c.gridwidth = 2;	
 		main.add(itemNameR, c);
 		
 		itemDescriptionR = new JTextArea();
+		idp = new TextPrompt("Gnome with blue jacket and red hat.........", itemDescriptionR);
+		idp.changeAlpha(0.75f);
 		itemDescriptionR.setColumns(30);
 		itemDescriptionR.setRows(5);
 		itemDescriptionR.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -149,14 +158,18 @@ public class AddItemFrame extends JFrame {
 		JScrollPane scroll = new JScrollPane (itemDescriptionR);
 		main.add(scroll, c);
 		
-		itemPriceR = new JTextField();
+		itemPriceR = new JFormattedTextField(df);
+		ispp = new TextPrompt("10.00", itemPriceR);
+		ispp.changeAlpha(0.75f);
 		itemPriceR.setColumns(30);
 		itemPriceR.setBorder(BorderFactory.createLineBorder(Color.black));
 		c.weightx = 0.5;
 		c.gridy = 2;
 		main.add(itemPriceR, c);
 		
-		itemUnitPriceR = new JTextField();
+		itemUnitPriceR = new JFormattedTextField(df);
+		iucp = new TextPrompt("10.00", itemUnitPriceR);
+		iucp.changeAlpha(0.75f);
 		itemUnitPriceR.setColumns(30);
 		itemUnitPriceR.setBorder(BorderFactory.createLineBorder(Color.black));
 		c.gridy = 3;
@@ -164,12 +177,14 @@ public class AddItemFrame extends JFrame {
 		
 		typeR = new JComboBox();
 		//TODO get category list and add to combo box
+//		supplierR.setSelectedIndex(0);
 		typeR.setBorder(BorderFactory.createLineBorder(Color.black));
 		c.gridy =5;
 		main.add(typeR, c);
 		
 		supplierR = new JComboBox();
 		//TODO get supplier list and add to combo box
+//		supplierR.setSelectedIndex(0);
 		supplierR.setBorder(BorderFactory.createLineBorder(Color.black));
 		c.gridy = 6;		
 		main.add(supplierR, c); 
@@ -189,7 +204,9 @@ public class AddItemFrame extends JFrame {
 		addIB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO add item
-				getResults();
+				if(isFilledOut()){
+					getResults();
+				}				
 			}
 		});
 		
@@ -257,15 +274,58 @@ public class AddItemFrame extends JFrame {
 		attributesP.add(addAttributesB, attriC);		
 	}
 	
+	/**
+	 * check to see if all required fields are filled out
+	 * @return false if not filled out
+	 */
+	private boolean isFilledOut()
+	{
+		boolean ready = true;
+		
+		if (itemNameR.getText().isEmpty()) {
+			ready = false;
+			JFrame frame = new JFrame("Add new item");
+			JOptionPane.showMessageDialog(frame, "An item name must be entered!!", "Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
+		
+		if (itemDescriptionR.getText().isEmpty()) {
+			ready = false;
+			JFrame frame = new JFrame("Add new item");
+			JOptionPane.showMessageDialog(frame, "An item description must be entered!!", "Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
+		
+		if (itemPriceR.getText().isEmpty()) {
+			ready = false;
+			JFrame frame = new JFrame("Add new item");
+			JOptionPane.showMessageDialog(frame, "An item sale price must be entered!!", "Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
+		
+		if (itemUnitPriceR.getText().isEmpty()) {
+			ready = false;
+			JFrame frame = new JFrame("Add new item");
+			JOptionPane.showMessageDialog(frame, "An item unit cost must be entered!!", "Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
+		
+		return ready;
+	}
+	
+	/**
+	 * Method to collate the inputs from the GUI
+	 * @return array of objects representing the attributes of the item
+	 */
 	private Object[] getResults(){
-		//TODO Validate inputs
 		ArrayList<Object> input = new ArrayList<Object>();
 		input.add(itemNameR.getText());
 		input.add(itemDescriptionR.getText());
 		input.add(itemPriceR.getText());
 		input.add(itemUnitPriceR.getText());
-		input.add(supplierR.getSelectedItem());
+		input.add(porouswareYesB.isSelected());
 		input.add(typeR.getSelectedItem());	
+		input.add(supplierR.getSelectedItem());
 		
 		for (int i = 0; i<noOfA;i++)
 		{

@@ -124,8 +124,20 @@ public class LoginGUI extends JPanel implements ActionListener{
 		//add background panel to login frame
 		add(panelBackground);	
 	}
+	
+	/** 
+	 * Method to get the Users ID
+	 * 
+	 * @return Returns the users ID
+	 */
+	public String getUserID()
+	{
+		return textUsername.getText();
+	}
 
-
+	/**
+	 * Manages the event when the Login button is clicked
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
@@ -133,7 +145,7 @@ public class LoginGUI extends JPanel implements ActionListener{
 		{
 			if(loginAuth.checkLogin(textUsername.getText(), textPassword.getPassword()) == true)
 			{
-				src.revertToMain();
+				src.revertToMain(textUsername.getText());
 			}
 			else
 			{
