@@ -102,8 +102,6 @@ public class MongoPull {
 			for(int i = 0; i < attrs.length; i++) {
 				if(bsobj.containsField(attrs[i])) {
 					itemInfs.add(bsobj.get(attrs[i]).toString());
-				} else {
-					
 				}
 			}
 		}
