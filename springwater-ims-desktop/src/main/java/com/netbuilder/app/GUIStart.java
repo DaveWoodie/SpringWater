@@ -16,7 +16,7 @@ public class GUIStart extends JFrame {
 
 	public static void main(String[] args) {
 		@SuppressWarnings("unused")
-		GUIStart gStart = new GUIStart();
+		GUIStart gStar1t = new GUIStart();
 	}
  
 	/**

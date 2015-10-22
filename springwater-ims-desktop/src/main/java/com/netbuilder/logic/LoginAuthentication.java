@@ -17,6 +17,7 @@ import com.netbuilder.apploader.LoginLoader;
 public class LoginAuthentication 
 {
 	LoginLoader loginLoader = new LoginLoader();
+	EncryptPassword encryption = new EncryptPassword();
 	
 	ArrayList<Integer> userList = new ArrayList<Integer>();
 	ArrayList<String> passwordList = new ArrayList<String>();
@@ -52,10 +53,11 @@ public class LoginAuthentication
 		//Converts char array to a String
 		String passwordString = new String(passwordField);
 		
+		String encryptedPassword = encryption.checkSHA1(passwordString);
 		//Search lists for a match
 		for(int i = 0; i < userList.size(); i++)
 		{
-			if(userID == userList.get(i) && passwordString.equals(passwordList.get(i)))
+			if(userID == userList.get(i) && encryptedPassword.equals(passwordList.get(i)))
 			{
 				return true;
 			}
