@@ -6,7 +6,7 @@ import com.mongodb.MongoClient;
 
 public class MongoDBConnector {
 
-	static final String mongoURL = "10.50.15.27";
+	static final String mongoURL = "10.50.15.15";
 	static final String userName = "superuser";
 	static final String passWord = "12345678";
 	

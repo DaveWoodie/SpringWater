@@ -31,7 +31,6 @@ public class LoginLoader
 		int Rows = 0;
 		
 		SQL.openCon();
-		System.out.println("Connection to SQL DB Opened");
 		
 		try 
 		{
@@ -59,7 +58,6 @@ public class LoginLoader
 		}
 			
 		SQL.closeCon();
-		System.out.println("Connection to SQL DB Closed");
 				
 		return Users;
 	}
@@ -75,7 +73,6 @@ public class LoginLoader
 		int Rows = 0;
 		
 		SQL.openCon();
-		System.out.println("Connection to SQL DB Opened");
 		
 		try 
 		{
@@ -103,7 +100,6 @@ public class LoginLoader
 		}
 		
 		SQL.closeCon();
-		System.out.println("Connection to SQL DB Closed");
 		
 		return Passwords;
 	}
