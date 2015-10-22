@@ -20,7 +20,7 @@ public class PurchaseOrderLogic {
 	
 	Object [][] purchaseOrderList;
 	Object [] purchaseOrder;
-	PurchaseOrderLoader pOLoader;
+	PurchaseOrderLoader pOLoader = new PurchaseOrderLoader();
 	DateFormat df = new SimpleDateFormat("dd/MM/yy");
 	ArrayList<PurchaseOrder> pOList;
 	
