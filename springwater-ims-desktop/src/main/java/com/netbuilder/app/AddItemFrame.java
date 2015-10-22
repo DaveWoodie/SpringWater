@@ -36,7 +36,7 @@ public class AddItemFrame extends JFrame {
 	private JRadioButton porouswareYesB, porouswareNoB;
 	private JButton addIB, addAttributesB, cancelB;
 	private ArrayList<JComboBox> attributes = new ArrayList<JComboBox>();
-	private ArrayList<JLbael> attributesLabels = new ArrayList<JLabel>();
+	private ArrayList<JLabel> attributesLabels = new ArrayList<JLabel>();
 	private GridBagConstraints c = new GridBagConstraints();
 	private GridBagConstraints attriC;
 	private int noOfA =0;
