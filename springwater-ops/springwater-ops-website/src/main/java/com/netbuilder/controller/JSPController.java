@@ -82,7 +82,7 @@ public class JSPController {
 	        return "profilePage";
 	  }
 	 
-	 @RequestMapping("registerconfirmation")
+	 @RequestMapping("registerconfirmed")
 	    public String registerConfirmedPage(ModelAndView modelAndView) {
 	        return "registerConfirmedPage";
 	  }

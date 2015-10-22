@@ -92,7 +92,6 @@ public class ItemGUI extends JFrame
 		listPO = Data.fetchPurchaseOrderList();
 		Suppliers = Data.fetchSuppliers();
 		setUpTableModel();
-		setSalesArrays();
 	}
 	
 	/**
@@ -282,43 +281,12 @@ public class ItemGUI extends JFrame
 	}
 	
 	/**
-	 * Creates the previous sales panel  
+	 * Creates the sales panel  
 	 */
 	public void itemSalesPanel()
 	{
-		//previous sales panel
-		JPanel panelSales = new JPanel(new BorderLayout());
-		tabbedPane.add("Sales", panelSales);
-		
-		//graph panel
-		JPanel panelGraph = new SalesGraphGUI();
-		panelGraph.setBorder(BorderFactory.createLineBorder(Color.gray));
-		
-		//Options
-		JPanel panelOptions = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		panelOptions.setBorder(BorderFactory.createLineBorder(Color.gray));
-		JLabel labelDate = new JLabel("Start Date : ");
-		JLabel labelDuration = new JLabel("Duration : ");
-		JComboBox<String> comboDay = new JComboBox<String>(dayArray);
-		JComboBox<String> comboMonth = new JComboBox<String>(monthArray);
-		JComboBox<String> comboYear = new JComboBox<String>(yearArray);
-		JComboBox<String> comboDuration = new JComboBox<String>(durationArray);
-		JButton buttonUpdate = new JButton("Update");
-		
-			//add components to options panel
-			panelOptions.add(labelDate);
-			panelOptions.add(comboDay);
-			panelOptions.add(comboMonth);
-			panelOptions.add(comboYear);
-			panelOptions.add(Box.createRigidArea(new Dimension(20, 0)));
-			panelOptions.add(labelDuration);
-			panelOptions.add(comboDuration);
-			panelOptions.add(Box.createRigidArea(new Dimension(20, 0)));
-			panelOptions.add(buttonUpdate);
-		
-		//add components to sales panel
-		panelSales.add(panelGraph, BorderLayout.CENTER);
-		panelSales.add(panelOptions, BorderLayout.NORTH);
+		JPanel panelSales = new SalesGraphGUI();
+		tabbedPane.add("Sales" ,panelSales);
 	}
 	
 	/**
@@ -366,30 +334,6 @@ public class ItemGUI extends JFrame
 		{
 			e.printStackTrace();
 		}
-	}
-	
-	public void setSalesArrays()
-	{
-		dayArray = new String[31];
-		monthArray = new String[12];
-		yearArray = new String[10];
-				
-		for(int i = 0; i < dayArray.length; i++)
-		{
-			dayArray[i] = Integer.toString(i + 1);
-		}
-		
-		for(int i = 0; i < monthArray.length; i++)
-		{
-			monthArray[i] = Integer.toString(i + 1);
-		}
-		
-		for(int i = 0; i < yearArray.length; i++)
-		{
-			yearArray[i] = Integer.toString(2015 - i);
-		}
-		
-		durationArray = new String[]{"Days", "Weeks", "Months"};
 	}
 	
 	public static void main(String[] args)

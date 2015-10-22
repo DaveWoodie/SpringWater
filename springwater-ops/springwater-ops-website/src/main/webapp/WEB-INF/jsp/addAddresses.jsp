@@ -1,17 +1,13 @@
-<!--------------------------------------------------------
-
-    Chris J W Walker 
+<!--     Chris J W Walker  -->
     
-    addAddresses.html
+<!--     addAddresses.html -->
 
-    13/10/2015
+<!--     13/10/2015 -->
 
-    Page for customers to manage their addresses. 
-    View, add and delete addresses.
+<!--     Page for customers to manage their addresses.  -->
+<!--     View, add and delete addresses. -->
 
-    Last Modified by: chrisjwwalker
-
---------------------------------------------------------->
+<!--     Last Modified by: chrisjwwalker -->
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -42,29 +38,29 @@
                     <form>
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Address Line 1</span>
-                            <input type="text" class="form-control" placeholder="Address Line 1" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" placeholder="Address Line 1" aria-describedby="basic-addon1" />
                         </div>
-                        <br>
+                        <br />
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Address Line 2</span>
-                            <input type="text" class="form-control" placeholder="Address Line 2" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" placeholder="Address Line 2" aria-describedby="basic-addon1" />
                         </div>
-                        <br>
+                        <br />
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Town or City</span>
-                            <input type="text" class="form-control" placeholder="Town or City" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" placeholder="Town or City" aria-describedby="basic-addon1" />
                         </div>
-                        <br>
+                        <br />
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">County</span>
-                            <input type="text" class="form-control" placeholder="County" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" placeholder="County" aria-describedby="basic-addon1" />
                         </div>
-                        <br>
+                        <br />
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Post Code</span>
-                            <input type="text" class="form-control" placeholder="Post Code" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" placeholder="Post Code" aria-describedby="basic-addon1" />
                         </div>
-                        <br>
+                        <br />
                         <button class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Address</button>
                     </form>
                 </div>
@@ -82,9 +78,9 @@
                         <div class="panel-body">
                             <p>
                                 62 Bentley Road
-                                <br> Uttoxeter
-                                <br> Staffordshire
-                                <br> ST14 7EN
+                                <br /> Uttoxeter
+                                <br /> Staffordshire
+                                <br /> ST14 7EN
                             </p>
                             <button class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit Address</button>
                             <button class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete Address</button>
@@ -99,10 +95,10 @@
                         <div class="panel-body">
                             <p>
                                 NETBuilder LTD
-                                <br> Floor 5
-                                <br> Anchorage Quay
-                                <br> Salford Quays
-                                <br> M50 3YJ
+                                <br /> Floor 5
+                                <br /> Anchorage Quay
+                                <br /> Salford Quays
+                                <br /> M50 3YJ
                             </p>
                             <button class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit Address</button>
                             <button class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete Address</button>
@@ -117,9 +113,9 @@
                         <div class="panel-body">
                             <p>
                                 Flat 4 Phoenix Nights
-                                <br> Phoenix Street
-                                <br> Lancaster
-                                <br> LA1 1DD
+                                <br /> Phoenix Street
+                                <br /> Lancaster
+                                <br /> LA1 1DD
                             </p>
                             <button class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit Address</button>
                             <button class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete Address</button>
