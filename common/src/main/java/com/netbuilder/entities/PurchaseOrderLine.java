@@ -20,6 +20,7 @@ public class PurchaseOrderLine {
 	private int quantity;
 	
 	private int itemID;
+	private int damagedQuantity;
 	@Id
 	@ManyToOne (cascade=CascadeType.PERSIST)
 	@PrimaryKeyJoinColumn(name = "idPurchaseOrder")
@@ -68,6 +69,14 @@ public class PurchaseOrderLine {
 	 */
 	public int getItemID() {
 		return itemID;
+	}
+	
+	public int getDamagedQuantity() {
+		return damagedQuantity;
+	}
+	
+	public void setDamagedQuantity(int i) {
+		damagedQuantity = i;
 	}
 	
 	/**

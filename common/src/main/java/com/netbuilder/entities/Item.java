@@ -16,6 +16,7 @@ public class Item {
 	private String itemName;
 	private String itemDescription;
 	private float price;
+	private float cost;
 	private int stock;
 	private String imageLocation;
 	private boolean discontinued;
@@ -26,7 +27,7 @@ public class Item {
 	
 	private HashMap<String, String> attributes;
 	
-	private Supplier idSupplier;
+	private int idSupplier;
 	
 	/**
 	 * Constructor to build an instance of Item, not null variables are itemName, price, stock, imageLocation, discontinued and isPorousware
@@ -43,15 +44,16 @@ public class Item {
 	 * @param idSupplier: Supplier: relates to the supplier information that this item can be purchased from
 	 * @param attributes: HashMap of Srting to String detailing all of the procuct attributes
 	 */
-	public Item(String itemName, String itemDescription, float price, int stock, String imageLocation, boolean discontinued, int salesRate, int pSalesRate, boolean isPorousware, Supplier idSupplier, HashMap<String, String> attributes) {
+	public Item(String itemName, String itemDescription, float price, float cost, int stock, String imageLocation, boolean discontinued, boolean isPorousware, int idSupplier) {
 		this.itemName = itemName;
 		this.itemDescription = itemDescription;
 		this.price = price;
+		this.cost = cost;
 		this.stock = stock;
 		this.imageLocation = imageLocation;
 		this.discontinued = discontinued;
-		this.salesRate = salesRate;
-		this.pSalesRate = pSalesRate;
+//		this.salesRate = salesRate;
+//		this.pSalesRate = pSalesRate;
 		this.isPorousware = isPorousware;
 		this.idSupplier = idSupplier;
 	}
@@ -96,9 +98,13 @@ public class Item {
      * Method to get the price of the item
      * @return Returns double data type
      */
-    public double getPrice() {
+    public float getPrice() {
 		return price;
 	}
+    
+    public float getCost() {
+    	return cost;
+    }
     
     /**
      * Method to get how many of this item is in stock
@@ -136,7 +142,7 @@ public class Item {
      * Method to get the supplier information
      * @return Returns a Supplier Object
      */
-    public Supplier getIdSupplier() {
+    public int getIdSupplier() {
 		return idSupplier;
 	}
     
@@ -183,6 +189,10 @@ public class Item {
      */
 	public void setPrice(float price) {
 		this.price = price;
+	}
+	
+	public void setCost(float cost) {
+		this.cost = cost;
 	}
 	
 	/**
