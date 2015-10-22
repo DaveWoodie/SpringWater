@@ -19,6 +19,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
+import com.netbuilder.logic.PurchaseOrderLineLogic;
+
 @SuppressWarnings("serial")
 public class IndividualPurchaseOrderViewFrame extends JFrame {
 
@@ -65,8 +67,8 @@ public class IndividualPurchaseOrderViewFrame extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		contentPane.add(scrollPane);
 		
-		LoadData lD =  new LoadData();
-		defaultItemTable = new DefaultTableModel(lD.fetchIndividualPurchaseOrder(), columns){
+		PurchaseOrderLineLogic lD =  new PurchaseOrderLineLogic();
+		defaultItemTable = new DefaultTableModel(lD.fetchPurchaseOrderLinesByPurchaseOrderID(id), columns){
 			@Override
 		    public boolean isCellEditable(int i, int i1) {
 		        return false; //To change body of generated methods, choose Tools | Templates.

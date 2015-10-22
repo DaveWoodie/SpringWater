@@ -25,7 +25,7 @@
                     <!-- Search field -->
                     <li>
                         <div class="input-group panel">
-                            <input type="text" class="form-control" placeholder="Search for an item...">
+                            <input type="text" class="form-control" placeholder="Search for an item..." />
                             <span class="input-group-btn">
                             <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                             </span>
@@ -86,70 +86,68 @@
               	</ul>
   				</div>
 
-      		</div>  
-        
+      		</div>    
+
             <!-- Right Column -->
-      		<div class="col-md-9" id="rightCol">
+            <div class="col-md-9">
                 <!-- Item Grid -->
                 <!-- Header -->
                 <div class="col-lg-12">
                     <h2 id="productTitle">Category / Search Results</h2>
                 </div>
-            
-                <!-- Loads content into page -->
-                <script th:inline="javascript">
-                /*<![CDATA[*/
 
-                    var itemList = [[${itemList}]];
-
-                    for(var i = 0;i < itemList.length; i++) 
-                    {
-                        var div = document.createElement('div');
-                        var a = document.createElement('a');
-                        var img = document.createElement('img');
-                        var text1 = document.createElement('h4');
-                        var text2 = document.createElement('h4');
-                        var p = document.createElement('p');
-                        var style = document.createAttribute('style');
-                        var id = document.createAttribute('id');
-                        var href = document.createAttribute('href');
-                        var text1text = document.createTextNode(itemList[i].getItemName);
-                        var text2text = document.createTextNode(itemList[i].getPrice);
-                        href.value = itemList[i].getImageLocation;
-                        id.value = 'supersubtitle';
-                        style.value = 'text-align:center';
-                        div.className = 'col-lg-3 col-md-3 col-xs-4 thumb';
-                        a.className = 'thumbnail';
-                        img.className = 'img-responsive';
-                        text1.setAttribute(id);
-                        text1.setAttribute(style);
-                        text2.setAttribute(style);
-                        text2.setAttribute(id);
-                        text1.appendChild(text1text);
-                        text2.appendChild(text2text);
-                        p.setAttribute(style);
-                        a.innerHTML = img;
-                        
-                        div.innerHTML = a + text1 + text2 + p;
-                    }
-
-                /*]]>*/
-                </script>
-                
-                <!-- Item -->
-                <div class="col-lg-3 col-md-3 col-xs-4 thumb">
-                    <a class="thumbnail" href="itempage">
-                    <img class="img-responsive" src="img/pot03.jpg" id="itemThumb" alt="">
-                    </a>
-                    <h4 style="text-align:center" id="supersubtitle">Product Name</h4>
-                    <h4 style="text-align:center" id="supersubtitle">&pound;0.00</h4>
-                    <p style="text-align:center">
-                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                    </p>
+                <div th:each="item : ${itemList}" id="testItems">
+                    <!-- Item Template-->
+                    <div id ="itemTemplate" class="col-lg-3 col-md-3 col-xs-4 thumb">
+                        <a class="thumbnail" href="itempage">
+                        <img class="img-responsive" th:src="${item.imageLocation}" id="itemThumb" alt="" />
+                        </a>
+                        <h4 style="text-align:center" id="supersubtitle"><p id="itemName" th:text="${item.itemName}"/></h4>
+                        <h4 style="text-align:center" id="supersubtitle"><p id="itemPrice" th:text="'£' + ${item.price}" /></h4>
+                        <!-- Rating If Statement -->
+                        <p th:if="${item.rating} == 0" style="text-align:center">
+                            <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                        </p>
+                        <p th:if="${item.rating} == 1" style="text-align:center">
+                            <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                        </p>
+                        <p th:if="${item.rating} == 2" style="text-align:center">
+                            <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                        </p>
+                        <p th:if="${item.rating} == 3" style="text-align:center">
+                            <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                        </p>
+                        <p th:if="${item.rating} == 4" style="text-align:center">
+                            <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                        </p>
+                        <p th:if="${item.rating} == 5" style="text-align:center">
+                            <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                        </p>
+                    </div>  
                 </div>
                 
             </div>

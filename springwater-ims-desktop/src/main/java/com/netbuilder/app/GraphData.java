@@ -1,9 +1,15 @@
+/**
+ * @author Freshwater
+ * @date 21/10/2015
+ */
+
 package com.netbuilder.app;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 
@@ -91,6 +97,58 @@ public class GraphData
 		graphData = objectArray;
 	}
 	
+	public ArrayList<Integer[]> getYearArray()
+	{
+		ArrayList<Integer[]> yearArray = new ArrayList<Integer[]>();
+		char[] yearChar = new char[1];
+		DateFormat df = new SimpleDateFormat("yyyy");
+		DateFormat dff = new SimpleDateFormat("dd/MM/yyyy");
+		Date date;
+		Calendar calendar;
+		int total = 0;
+		int y = 0;
+		
+		//scan through the graph data where the year is between 2010 and 2016
+		for(int year = 2010; year < 2016; year++)
+		{
+			for(int i = 0; i < graphData.size(); i++)
+			{
+				//get date from graph data
+				String s = (String) graphData.get(i)[2];
+				
+				try 
+				{
+					calendar = Calendar.getInstance();
+					calendar.setTime(dff.parse(s));
+					//date = df.parse(s);
+					//s = df.format(date);
+					s = Integer.toString(calendar.get(calendar.YEAR));
+					y = calendar.get(calendar.YEAR);
+				} 
+				catch(ParseException e) 
+				{
+					e.printStackTrace();
+				}
+				
+				if(year == y)
+				{
+					Double d = (Double) graphData.get(i)[0];
+					int sales = d.intValue();
+					total = total + sales;
+				}
+			}
+			yearArray.add(new Integer[]{year, total});
+			total = 0;
+		}
+		
+		for(int i = 0; i < graphData.size(); i++)
+		{
+			//yearArray.add((String) graphData.get(i)[2]);
+		}
+		
+		return yearArray;
+	}
+	
 	public ArrayList<Object[]> getDataArray()
 	{
 		return graphData;
@@ -101,8 +159,4 @@ public class GraphData
 		graphData.add(new Object[]{(double)itemsSold, "Sales", Date});
 		sortArray();
 	}
-	
-	/*public static void main(String[] args) {
-		GraphData gd = new GraphData();
-	}*/
 }

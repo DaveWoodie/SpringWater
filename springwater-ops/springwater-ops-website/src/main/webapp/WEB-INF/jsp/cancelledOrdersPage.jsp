@@ -1,17 +1,13 @@
 <!DOCTYPE html>
-<!--------------------------------------------------------
-
-    Callum Cooper 
+<!--     Callum Cooper  -->
     
-    openOrdersPage.jps
+<!--     openOrdersPage.jps -->
 
-    14/10/2015
+<!--     14/10/2015 -->
 
-    Template for the cancelled orders page
+<!--     Template for the cancelled orders page -->
 
-    Last Modified by: Callum Cooper
-
---------------------------------------------------------->
+<!--     Last Modified by: Callum Cooper -->
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
@@ -40,7 +36,7 @@
                     <!-- Search for -->
                     <form class="navbar-form navbar-right" role="search">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search all orders">
+                            <input type="text" class="form-control" placeholder="Search all orders" />
                             <span class="input-group-btn"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search Orders</button>
                             </span>
                         </div>
@@ -66,7 +62,7 @@
             
               <div class="col-lg-12">
                 <!-- New horizontal line -->
-                <hr>
+                <hr />
             </div>
             
            <div class="rows">
