@@ -26,7 +26,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 
-                <a class="navbar-brand" href="index.jsp"><img src="img/logo2.png" style="width:auto;height:25px" /></a>
+                <a class="navbar-brand" href="/"><img src="img/logo2.png" style="width:auto;height:25px" /></a>
                 
             </div>
 

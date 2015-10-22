@@ -1,17 +1,12 @@
-<!--------------------------------------------------------
-
-    Chris J W Walker 
+<!--     Chris J W Walker  -->
     
-    contact.html
+<!--     contact.html -->
 
-    13/10/2015
+<!--     13/10/2015 -->
 
-    Page providing contact information for NBGardens
+<!--     Page providing contact information for NBGardens -->
 
-    Last Modified by: chrisjwwalker
-
---------------------------------------------------------->
-
+<!--     Last Modified by: chrisjwwalker -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"

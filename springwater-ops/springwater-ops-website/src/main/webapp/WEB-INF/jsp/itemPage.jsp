@@ -1,17 +1,14 @@
-<!--------------------------------------------------------
 
-    Chris J W Walker 
+<!--     Chris J W Walker  -->
     
-    loginRegister.html
+<!--     loginRegister.html -->
 
-    13/10/2015
+<!--     13/10/2015 -->
 
-    Page for viewing specific information about a 
-    single product
+<!--     Page for viewing specific information about a  -->
+<!--     single product -->
 
-    Last Modified by: chrisjwwalker
-
---------------------------------------------------------->
+<!--     Last Modified by: chrisjwwalker -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
@@ -36,7 +33,7 @@
             <div class="row">
                 <div class="col-md-5">
                     <a href="#" class="thumbnail" data-toggle="modal" data-target="#enlargedImage">
-                        <img src="img/placeholder2.png" alt="..." width="60%" height="60%">
+                        <img src="img/placeholder2.png" alt="..." width="60%" height="60%" />
                     </a>
                 </div>
                 <div class="col-md-7">
@@ -63,7 +60,7 @@
             <div class="row">
                 <div class="col-sm-6 col-md-3">
                     <div class="thumbnail">
-                        <a href="itempage"><img src="img/placeholder2.png" alt="..."></a>
+                        <a href="itempage"><img src="img/placeholder2.png" alt="..." /></a>
                         <div class="caption">
                             <h3>Recommended Item 1</h3>
                             <p>&pound;X.XX</p>
@@ -84,7 +81,7 @@
 
                 <div class="col-sm-6 col-md-3">
                     <div class="thumbnail">
-                        <a href="itempage"><img src="img/placeholder2.png" alt="..."></a>
+                        <a href="itempage"><img src="img/placeholder2.png" alt="..." /></a>
                         <div class="caption">
                             <h3>Recommended Item 2</h3>
                             <p>&pound;X.XX</p>
@@ -105,7 +102,7 @@
 
                 <div class="col-sm-6 col-md-3">
                     <div class="thumbnail">
-                        <a href="itempage"><img src="img/placeholder2.png" alt="..."></a>
+                        <a href="itempage"><img src="img/placeholder2.png" alt="..." /></a>
                         <div class="caption">
                             <h3>Recommended Item 3</h3>
                             <p>&pound;X.XX</p>
@@ -126,7 +123,7 @@
 
                 <div class="col-sm-6 col-md-3">
                     <div class="thumbnail">
-                        <a href="itemPage"><img src="img/placeholder2.png" alt="..."></a>
+                        <a href="itemPage"><img src="img/placeholder2.png" alt="..." /></a>
                         <div class="caption">
                             <h3>Recommended Item 4</h3>
                             <p>&pound;X.XX</p>
@@ -219,7 +216,7 @@
                 <h4 class="modal-title" id="myModalLabel">Product Name</h4>
             </div>
             <div class="modal-body">
-                <img class="center-block" src="img/placeholder2.png" alt="..." width="100%">
+                <img class="center-block" src="img/placeholder2.png" alt="..." width="100%" />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Close</button>
@@ -236,7 +233,7 @@
                 <h4 class="modal-title" id="myModalLabel">Product Name</h4>
             </div>
             <div class="modal-body">
-                <img class="center-block" src="img/placeholder2.png" alt="..." width="100%">
+                <img class="center-block" src="img/placeholder2.png" alt="..." width="100%" />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Close</button>
@@ -253,7 +250,7 @@
                 <h4 class="modal-title" id="myModalLabel">Product Name</h4>
             </div>
             <div class="modal-body">
-                <img class="center-block" src="img/placeholder2.png" alt="..." width="100%">
+                <img class="center-block" src="img/placeholder2.png" alt="..." width="100%" />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Close</button>
@@ -270,7 +267,7 @@
                 <h4 class="modal-title" id="myModalLabel">Product Name</h4>
             </div>
             <div class="modal-body">
-                <img class="center-block" src="img/placeholder2.png" alt="..." width="100%">
+                <img class="center-block" src="img/placeholder2.png" alt="..." width="100%" />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Close</button>
@@ -287,7 +284,7 @@
                 <h4 class="modal-title" id="myModalLabel">Product Name</h4>
             </div>
             <div class="modal-body">
-                <img class="center-block" src="img/placeholder2.png" alt="..." width="100%">
+                <img class="center-block" src="img/placeholder2.png" alt="..." width="100%" />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Close</button>
