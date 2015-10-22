@@ -27,8 +27,8 @@ public class PurchaseOrderLoader {
 	final String listQuery = "SELECT purchaseorder.*, purchaseorderstatus.*, supplier.*, employee.*, user.*";
 	final String tableJoins = " LEFT JOIN purchaseorderstatus ON purchaseorder.idPurchaseOrderStatus = purchaseorderstatus.idPurchaseOrderStatus LEFT JOIN supplier ON purchaseorder.idSupplier = supplier.idSupplier LEFT JOIN employee ON purchaseorder.idUser = employee.idEmployee LEFT JOIN user ON purchaseorder.idUser = user.idUser";
 	private String sql;
-	private SQLDBConnector sqlDB;
-	ArrayList<PurchaseOrder> purchaseOrderList;
+	private SQLDBConnector sqlDB = new SQLDBConnector();
+	ArrayList<PurchaseOrder> purchaseOrderList = new ArrayList<PurchaseOrder>();
 	
 	/**
 	 * Method to execute constructed query and load data into objects
@@ -36,6 +36,7 @@ public class PurchaseOrderLoader {
 	public void constructResult() {
 		purchaseOrderList.clear();
 		try {
+			sqlDB.openCon();
 			ResultSet rs = sqlDB.queryDB(sql);
 			while (rs.next()) {
 				PurchaseOrderStatus pOS = new PurchaseOrderStatus(rs.getString("purchaseorderstatus.status"));
@@ -55,7 +56,7 @@ public class PurchaseOrderLoader {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		finally {}
+		finally {sqlDB.closeCon();}
 	}
 	
 	/**
