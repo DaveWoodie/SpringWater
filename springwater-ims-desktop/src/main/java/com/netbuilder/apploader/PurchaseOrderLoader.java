@@ -34,7 +34,7 @@ public class PurchaseOrderLoader {
 	/**
 	 * Method to execute constructed query and load data into objects
 	 */
-	public void constructResult() {
+	private void constructResult() {
 		purchaseOrderList.clear();
 		try {
 			sqlDB.openCon();
@@ -55,7 +55,7 @@ public class PurchaseOrderLoader {
 			rs.close();
 			
 		} catch (SQLException sqle) {
-			sqle.printStackTrace();		
+			sqle.printStackTrace();	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
