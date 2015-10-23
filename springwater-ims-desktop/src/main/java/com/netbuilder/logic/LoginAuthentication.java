@@ -5,8 +5,6 @@
 
 package com.netbuilder.logic;
 
-import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
 
 import com.netbuilder.apploader.LoginLoader;
@@ -19,16 +17,12 @@ public class LoginAuthentication
 	LoginLoader loginLoader = new LoginLoader();
 	EncryptPassword encryption = new EncryptPassword();
 	
-	ArrayList<Integer> userList = new ArrayList<Integer>();
-	ArrayList<String> passwordList = new ArrayList<String>();
-	
 	/**
 	 * Constructor that fills the user name and password lists from the SQL database through the Login Loader class
 	 */
 	public LoginAuthentication()
 	{
-		userList = loginLoader.getUsers();
-		passwordList = loginLoader.getPasswords();
+		
 	}
 	
 	/**
