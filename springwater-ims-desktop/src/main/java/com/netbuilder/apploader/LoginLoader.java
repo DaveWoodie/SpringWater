@@ -51,6 +51,7 @@ public class LoginLoader
 	 * 
 	 * @return Returns an ArrayList containing all user names on the SQL Database
 	 */
+	@Deprecated
 	public ArrayList<Integer> getUsers()
 	{
 		ArrayList<Integer> Users = new ArrayList<Integer>();
@@ -93,6 +94,7 @@ public class LoginLoader
 	 * 
 	 * @return Returns an ArrayList containing all the user passwords on the SQL database
 	 */
+	@Deprecated
 	public ArrayList<String> getPasswords()
 	{
 		ArrayList<String> Passwords = new ArrayList<String>();
@@ -128,5 +130,37 @@ public class LoginLoader
 		SQL.closeCon();
 		
 		return Passwords;
+	}
+	
+	/**
+	 * 
+	 * Method that takes input and check if the user ID and password are both contained in one record of the MySQL database
+	 * 
+	 * @param idUser : int idUser
+	 * @param password : String password
+	 * @return : Returns a boolean; true if ResulSet only contains one record, false if not
+	 */
+	public boolean checkDetails(int idUser, String password) {
+		SQL.openCon();
+		
+		int rowCount = 0;
+		
+		try {
+			rSet = SQL.queryDB("select idUser, password from user where idUser = " + idUser + " and password = '" + password + "' and isEmployee = 1");
+			
+			if(rSet.next()) {
+				rowCount++;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		SQL.closeCon();
+		
+		if(rowCount == 1) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }

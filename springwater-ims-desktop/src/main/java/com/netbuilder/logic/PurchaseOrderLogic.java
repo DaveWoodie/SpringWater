@@ -114,11 +114,15 @@ public class PurchaseOrderLogic {
 			NumberFormat formatter = new DecimalFormat("#0.00"); 
 			float total = 0;
 			for (int j = 0; j < pOLList.size(); j++) {
-//				MongoPull mP = new MongoPull();
-//				itemList = mP.getItemInf(pOLList.get(j).getItemID());
-				
-//				float itemPrice = itemList.get(0).getCost();
-				float itemPrice = 30;
+				MongoPull mP = new MongoPull();
+				itemList = mP.getItemInf(pOLList.get(j).getItemID());
+				float itemPrice;
+				if (!itemList.isEmpty()) {
+					itemPrice = itemList.get(0).getCost();
+				}
+				else {
+					itemPrice = 30;
+				}
 				total = total + (pOLList.get(j).getQuantity() * itemPrice);
 			}
 			purchaseOrderList[i][0] = pOList.get(i).getIDPurchaseOrder();

@@ -58,7 +58,7 @@ public class MongoPull {
 		
 		//Connect to the NBGardensn database
 		DB db = mdbc.getConnection().getDB(dataBase);
-		//Get Specfic Collection
+		//Get Specfic Collection`
 		DBCollection collection = db.getCollection(AddrCol);
 		
 		BasicDBObject addr = new BasicDBObject();
@@ -127,14 +127,14 @@ public class MongoPull {
 		
 		String attrs[] = {"Height","Width","Depth","HatColour","Accessory","DialStone","Colour","NumberOfPeople"};
 		
-		//Connect to the NBGardensn database
+		//Connect to the NBGardens database
 		DB db = mdbc.getConnection().getDB(dataBase);
-		//Get Specfic Collection
+		//Get Specific Collection
 		DBCollection collection = db.getCollection(itemCol);
 		
 		BasicDBObject item = new BasicDBObject();
 		item.put("idItem", id);
-		DBCursor cursor = collection.find(item);		
+		DBCursor cursor = collection.find(item);
 		
 		itemInfs.clear();
 		itemList.clear();
@@ -142,19 +142,19 @@ public class MongoPull {
 		while(cursor.hasNext()) {
 			
 			cursor.next();
-			Item i = new Item(cursor.curr().get("ItemName").toString(), cursor.curr().get("ItemDescription").toString(), (float) cursor.curr().get("ItemPrice"), (float) cursor.curr().get("ItemCost"), (int) cursor.curr().get("NumberInStock"), cursor.curr().get("ImageLocation").toString(), (boolean) cursor.curr().get("Discontinued"), (boolean) cursor.curr().get("IsPorousware"), (int) cursor.curr().get("idSupplier"));
-			
-			itemInfs.add(cursor.curr().get("ItemName").toString());
-			itemInfs.add(cursor.curr().get("ItemDescription").toString());
-			itemInfs.add(cursor.curr().get("NumberInStock").toString());
-			itemInfs.add(cursor.curr().get("ItemPrice").toString());
-			itemInfs.add(cursor.curr().get("ItemCost").toString());
+			String itemName = cursor.curr().get("ItemName").toString();
+			String itemDescription = cursor.curr().get("ItemDescription").toString();
+			String numberInStock = cursor.curr().get("NumberInStock").toString();
+			String itemPrice = cursor.curr().get("ItemPrice").toString();
+			String itemCost = cursor.curr().get("ItemCost").toString();
+			String imageLocation = cursor.curr().get("ImageLocation").toString();
 			itemInfs.add(cursor.curr().get("SalesRate").toString());
 			itemInfs.add(cursor.curr().get("PSalesRate").toString());
-			itemInfs.add(cursor.curr().get("IsPorousware").toString());
-			itemInfs.add(cursor.curr().get("Discontinued").toString());
-			itemInfs.add(cursor.curr().get("idSupplier").toString());
+			boolean isPorousWare = (boolean) cursor.curr().get("IsPorousware");
+			boolean discontinued = (boolean) cursor.curr().get("Discontinued");
+			String idSupplier = cursor.curr().get("idSupplier").toString();
 			
+			Item newItem = new Item(itemName, itemDescription, Float.parseFloat(itemPrice), Float.parseFloat(itemCost), (int) Float.parseFloat(numberInStock), imageLocation, discontinued, isPorousWare, (int) Float.parseFloat(idSupplier));
 			
 //			BSONObject bsobj = (BSONObject) cursor.curr().get("Attributes");
 //			
@@ -163,7 +163,8 @@ public class MongoPull {
 //					itemInfs.add(bsobj.get(attrs[i]).toString());
 //				}
 //			}
-			itemList.add(i);
+			
+			itemList.add(newItem);
 		}
 		
 		cursor.close();
