@@ -55,17 +55,23 @@ public class LoginAuthentication
 		
 		String encryptedPassword = encryption.checkSHA1(passwordString);
 		
-		loginLoader.checkDetails(userString, encryptedPassword);
-		
-		//Search lists for a match
-		for(int i = 0; i < userList.size(); i++)
-		{
-			if(userID == userList.get(i) && encryptedPassword.equals(passwordList.get(i)))
-			{
-				return true;
-			}
+		if(loginLoader.checkDetails(userID, encryptedPassword)) {
+			return true;
 		}
+		
 		JOptionPane.showMessageDialog(null, "Incorrect user name or password");
 		return false;
+		
+
+//		//Search lists for a match
+//		for(int i = 0; i < userList.size(); i++)
+//		{
+//			if(userID == userList.get(i) && encryptedPassword.equals(passwordList.get(i)))
+//			{
+//				return true;
+//			}
+//		}
+//		JOptionPane.showMessageDialog(null, "Incorrect user name or password");
+//		return false;
 	}
 }
