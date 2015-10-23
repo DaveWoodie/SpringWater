@@ -12,18 +12,9 @@ import com.netbuilder.apploader.LoginLoader;
 /**
  * Class to authenticate a user's login
  */
-public class LoginAuthentication 
-{
+public class LoginAuthentication {
 	LoginLoader loginLoader = new LoginLoader();
 	EncryptPassword encryption = new EncryptPassword();
-	
-	/**
-	 * Constructor that fills the user name and password lists from the SQL database through the Login Loader class
-	 */
-	public LoginAuthentication()
-	{
-		
-	}
 	
 	/**
 	 * Method that checks if the user name and password input matches the SQL data
@@ -32,11 +23,9 @@ public class LoginAuthentication
 	 * @param passwordField : The Password char array taken from the login GUI
 	 * @return Returns true if the user name and password match the SQL data
 	 */
-	public boolean checkLogin(String userString, char[] passwordField)
-	{
+	public boolean checkLogin(String userString, char[] passwordField) {
 		//checks empty String
-		if(userString.equals(""))
-		{
+		if(userString.equals("")) {
 			JOptionPane.showMessageDialog(null, "Please enter a valid user name and password");
 			return false;
 		}
@@ -55,17 +44,5 @@ public class LoginAuthentication
 		
 		JOptionPane.showMessageDialog(null, "Incorrect user name or password");
 		return false;
-		
-
-//		//Search lists for a match
-//		for(int i = 0; i < userList.size(); i++)
-//		{
-//			if(userID == userList.get(i) && encryptedPassword.equals(passwordList.get(i)))
-//			{
-//				return true;
-//			}
-//		}
-//		JOptionPane.showMessageDialog(null, "Incorrect user name or password");
-//		return false;
 	}
 }
