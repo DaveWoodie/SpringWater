@@ -150,10 +150,10 @@
                                         <div class="col-sm-12 panel-body" id="A2"></div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-sm-12 panel-body" id="A2"></div>
+                                        <div class="col-sm-12 panel-body" id="A3"></div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-sm-12 panel-body" id="A3"></div>
+                                        <div class="col-sm-12 panel-body" id="A4"></div>
                                     </div>
                                 </div>
                             </div>
