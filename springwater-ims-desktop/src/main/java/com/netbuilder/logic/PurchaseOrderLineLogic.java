@@ -41,7 +41,7 @@ public class PurchaseOrderLineLogic {
 				System.out.println(itemPrice);
 			}
 			else {
-				itemPrice = 30;
+				itemPrice = 0;
 				itemName = "Failed";
 				System.out.println(itemPrice);
 			}
@@ -63,19 +63,6 @@ public class PurchaseOrderLineLogic {
 	 */
 	public Object[][] fetchPurchaseOrderLinesByPurchaseOrderID(int id) {
 		pOLList = new ArrayList<PurchaseOrderLine>(pOLLoader.getPurchaseOrderLineByOrderID(id));
-		
-		formatTable();
-		
-		return purchaseOrderLineList;
-	}
-	
-	/**
-	 * Method to load and format the entities for the GUI for all purchase order lines containing a specific item
-	 * @param id of the item to be searched for
-	 * @return the array of data to be displayed by the GUI
-	 */
-	public Object[][] fetchPurchaseOrderLinesByItemID(int id) {
-		pOLList = new ArrayList<PurchaseOrderLine>(pOLLoader.getPurchaseOrderLineByProduct(id));
 		
 		formatTable();
 		

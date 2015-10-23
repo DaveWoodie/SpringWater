@@ -113,16 +113,69 @@ public class PurchaseOrderLoader {
 	 * @return the ArrayList of purchase orders created from the query
 	 */
 	public ArrayList<PurchaseOrder> getPurchaseOrderListByItem(int i) {
-		//TODO connect to purchase orderline loader to retrieve purchase orders
-		//TODO pull purchase orders into list from orderline loader query result
+		PurchaseOrderLineLoader pOLLoader = new PurchaseOrderLineLoader();
+		ArrayList<Integer> purchaseOrderIDs = new ArrayList<Integer>();
+		purchaseOrderIDs = pOLLoader.getPurchaseOrderLineByProduct(i);
+		sql = listQuery + tableName + tableJoins;
+		for (int j = 0; j < purchaseOrderIDs.size(); j++) {
+			if (j == 0) {
+				sql = sql + " WHERE idPurchaseOrder = " + purchaseOrderIDs.get(i);
+			}
+			else {
+				sql = sql + " OR idPurchaseOrder = " + purchaseOrderIDs.get(i);
+			}
+		}
+		sql = sql + orderBy;
+		constructResult();
 		return purchaseOrderList;
 	}
 	
+	/**
+	 * Method to construct the sql query to retrieve all purchase orders placed on a given date
+	 * @param date of order placement
+	 * @return the Arraylist of purchase orders created from the query
+	 */
 	public ArrayList<PurchaseOrder> getPurchaseOrderListByDate(java.util.Date date) {
 		java.sql.Date queryDate = new java.sql.Date(date.getTime());
 		sql = listQuery + tableName + tableJoins + " WHERE datePlaced = '" + queryDate + "'";
 		constructResult();
 		return purchaseOrderList;
+	}
+	
+	/**
+	 * Method to construct the sql query to update a purchase order entry in the database and execute it
+	 * @param pO the purchase order to be updated
+	 */
+	public void setPurchaseOrder(PurchaseOrder pO){
+		java.sql.Date datePlaced = new java.sql.Date(pO.getDatePlaced().getTime());
+		java.sql.Date dateExpected = new java.sql.Date(pO.getDateExpected().getTime());
+		sql = "UPDATE purchaseOrder SET datePlaced = '" + datePlaced + "', dateExpected = '" + dateExpected + "', idEmployee = " + pO.getEmployee().getUser().getUserID() + ", idPurchaseOrderStatus = " + pO.getPurchaseOrderStatus().getStatusID() + ", idSupplier = " + pO.getSupplier().getSupplierID() + "WHERE idPurchaseOrder = " + pO.getIDPurchaseOrder();
+		sqlDB.openCon();
+		try {
+			sqlDB.updateDB(sql);
+		} 
+		catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		sqlDB.closeCon();
+	}
+	
+	public void createPurchaseOrder (PurchaseOrder pO) {
+		sql = "INSERT INTO purchaseOrder (idEmployee, idPurchaseOrderStatus, idSupplier) VALUE (" + pO.getEmployee().getUser().getUserID() + ", " + pO.getPurchaseOrderStatus().getStatusID() + ", " + pO.getSupplier().getSupplierID() + ")";
+		sqlDB.openCon();
+		try {
+			sqlDB.updateDB(sql);
+		} 
+		catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		sqlDB.closeCon();
 	}
 }
 

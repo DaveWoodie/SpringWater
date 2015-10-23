@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 
 
+
 import com.netbuilder.DBConnector.SQLDBConnector;
 import com.netbuilder.entities.Item;
 import com.netbuilder.entities.PurchaseOrder;
@@ -76,15 +77,28 @@ public class PurchaseOrderLineLoader {
 	}
 	
 	/**
-	 * Method to construct the SQL query to retrieve all purchase order lines by item ID
+	 * Method to construct the SQL query to retrieve all purchase order IDs by item ID
 	 * @param id of the Item to search for
 	 * @return the ArrayList of purchase orderlines created from the query
 	 */
-	public ArrayList<PurchaseOrderLine> getPurchaseOrderLineByProduct(int id) {
-		sql = listQuery + tableName + " WHERE idItem = " + id;
-		//TODO pull item from mongoDB
-		constructResult();
-		return purchaseOrderItemList;
+	public ArrayList<Integer> getPurchaseOrderLineByProduct(int id) {
+		sql = "SELECT idPurchaseOrder" + tableName + " WHERE idItem = " + id;
+		ArrayList<Integer> purchaseOrderIDs = new ArrayList<Integer>();
+		try{
+			sqlDB.openCon();
+			ResultSet rs = sqlDB.queryDB(sql);
+			while (rs.next()) {
+				int i = rs.getInt("idPurchaseOrder");
+				purchaseOrderIDs.add(i);
+			}
+		}
+		catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return purchaseOrderIDs;
 	}
 }
 
