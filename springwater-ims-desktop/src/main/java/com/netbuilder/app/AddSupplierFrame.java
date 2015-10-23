@@ -14,11 +14,16 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -37,10 +42,10 @@ public class AddSupplierFrame extends JFrame {
 	private GridBagConstraints addressC;
 	private int noOfAL = 0;
 
-	public static void main(String[] args) {
-		AddSupplierFrame a = new AddSupplierFrame();
-		a.setVisible(true);
-	}
+//	public static void main(String[] args) {
+//		AddSupplierFrame a = new AddSupplierFrame();
+//		a.setVisible(true);
+//	}
 	
 	public AddSupplierFrame() {
 		// System.out.print("Here");
@@ -129,9 +134,11 @@ public class AddSupplierFrame extends JFrame {
 
 		//ActionListeners	
 		addSB.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {			
-				//TODO send to database
-				getResults();
+			public void actionPerformed(ActionEvent e) {						
+				if(isFilledOut()) {
+					getResults();
+					//TODO send to database
+				}			
 			}
 		});
 				
@@ -190,7 +197,7 @@ public class AddSupplierFrame extends JFrame {
 		addressC.gridy = noOfAL+3;
 		addressP.add(addAddressLine, addressC);
 
-		addressTL = new JLabel("Address Town:");
+		addressTL = new JLabel("Address Town / City:");
 		addressC.gridy = noOfAL+4;
 		addressP.add(addressTL, addressC);
 		
@@ -219,6 +226,78 @@ public class AddSupplierFrame extends JFrame {
 		addressP.repaint();
 		addressP.revalidate();		
 //		System.out.println("here add");
+	}
+	
+	private boolean isFilledOut() {
+		boolean ready = true;
+		
+		if (nameT.getText().isEmpty()) {
+			ready = false;
+			JFrame frame = new JFrame("Add new supplier");
+			JOptionPane.showMessageDialog(frame, "A supplier name must be entered!!", "Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
+		
+		//Check if at least one contact detail has been entered
+		if(eMialT.getText().isEmpty() && tPhoneT.getText().isEmpty() ) {
+			ready = false;
+			JFrame frame = new JFrame("Add new supplier");
+			JOptionPane.showMessageDialog(frame, "A supplier contact e-mail or phone number must be entered!!", "Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
+			
+		if(!tPhoneT.getText().isEmpty()) {
+			String pn = tPhoneT.getText();
+			String regex = "^(0[12357])[0-9]{9}$";
+			Pattern pattern = Pattern.compile(regex);
+			 Matcher matcher = pattern.matcher(pn);
+			    if (!matcher.matches()) {
+					ready = false;
+					JFrame frame = new JFrame("Add new supplier");
+					JOptionPane.showMessageDialog(frame, "The phone number entered is not valid!!", "Error",
+							JOptionPane.ERROR_MESSAGE);
+			    }
+	}
+		
+		if(!eMialT.getText().isEmpty()) {
+			   try {
+				      InternetAddress emailAddr = new InternetAddress(eMialT.getText());
+				      emailAddr.validate();
+				   } catch (AddressException ex) {
+				      ready = false;
+						JFrame frame = new JFrame("Add new supplier");
+						JOptionPane.showMessageDialog(frame, "The e-mail address entered is not valid!!", "Error",
+								JOptionPane.ERROR_MESSAGE);
+				   }
+		}
+		
+		if (addressTT.getText().isEmpty()) {
+			ready = false;
+			JFrame frame = new JFrame("Add new supplier");
+			JOptionPane.showMessageDialog(frame, "A supplier town / city must be entered!!", "Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
+		
+		if (addressPCT.getText().isEmpty()) {
+			ready = false;
+			JFrame frame = new JFrame("Add new supplier");
+			JOptionPane.showMessageDialog(frame, "A supplier post code must be entered!!", "Error",
+					JOptionPane.ERROR_MESSAGE);
+		}else {
+			String pc = addressPCT.getText();
+			String regex = "^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}$";
+			Pattern pattern = Pattern.compile(regex);
+			
+			 Matcher matcher = pattern.matcher(pc);
+			    if (!matcher.matches()) {
+					ready = false;
+					JFrame frame = new JFrame("Add new supplier");
+					JOptionPane.showMessageDialog(frame, "The post code entered is not valid!!", "Error",
+							JOptionPane.ERROR_MESSAGE);
+			    }
+		}
+		
+		return ready;
 	}
 	
 	/**
