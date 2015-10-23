@@ -41,22 +41,35 @@ public class AddSupplierFrame extends JFrame {
 	private GridBagConstraints c = new GridBagConstraints();
 	private GridBagConstraints addressC;
 	private int noOfAL = 0;
+	private boolean edit =false;
 
-//	public static void main(String[] args) {
-//		AddSupplierFrame a = new AddSupplierFrame();
-//		a.setVisible(true);
-//	}
-	
-	public AddSupplierFrame() {
-		// System.out.print("Here");
-		initUI();
+	public static void main(String[] args) {
+		AddSupplierFrame a = new AddSupplierFrame(12);
+		a.setVisible(true);
 	}
-
-	private void initUI() {
+	
+	/**
+	 * constructor for adding a new supplier
+	 */
+	public AddSupplierFrame() {
 		configFrame();
 		addContent();
 	}
 
+	/**
+	 * constructor for editing a supplier
+	 * @param id - id of of supplier to edit
+	 */
+	public AddSupplierFrame(int id) {
+		edit = !edit; 
+		configFrame();
+		addContent();
+		setValues(id);
+	}
+	
+	/**
+	 * configures the frame
+	 */	
 	private void configFrame() {
 		setTitle("Add New Supplier");
 //		setSize(600,800);
@@ -66,6 +79,9 @@ public class AddSupplierFrame extends JFrame {
 		setResizable(false);
 	}
 
+	/**
+	 * creates the main panel of the frame
+	 */
 	private void addContent() {
 		base = new JPanel(new BorderLayout());
 		add(base);
@@ -124,7 +140,11 @@ public class AddSupplierFrame extends JFrame {
 		// Button Bar Panel
 		buttonBar = new JPanel();
 		buttonBar.setLayout(new GridLayout(1, 3));
-		addSB = new JButton("Add");
+		String buttonS = "Add";
+		if (edit) {
+			buttonS = "Save changes";
+		}
+		addSB = new JButton(buttonS);
 //		addSWPB = new JButton("Add (With Products)");
 		cancelB = new JButton("Cancel");
 
@@ -136,8 +156,13 @@ public class AddSupplierFrame extends JFrame {
 		addSB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {						
 				if(isFilledOut()) {
-					getResults();
-					//TODO send to database
+					if (edit) {
+						getResults();
+						//TODO update supplier
+					}else {
+						getResults();
+						//TODO send to database
+					}			
 				}			
 			}
 		});
@@ -152,6 +177,9 @@ public class AddSupplierFrame extends JFrame {
 		base.add(buttonBar, BorderLayout.SOUTH);
 	}
 	
+	/**
+	 * creates the address panel
+	 */
 	private void addAddressPanel()
 	{	
 		addressC = new GridBagConstraints();
@@ -228,6 +256,25 @@ public class AddSupplierFrame extends JFrame {
 //		System.out.println("here add");
 	}
 	
+	/**
+	 * Method to set the values of the form to relate to the given id
+	 * @param id - the id of the supplier to edit
+	 */
+	private void setValues(int id) {
+		//TODO get supplier information
+		nameT.setText("");
+		tPhoneT.setText("");
+		eMialT.setText("");
+		addressCT.setText("");
+		addressPCT.setText("");
+		addressTT.setText("");
+		//TODO set text in address lines
+	}
+	
+	/**
+	 * Validates and checks the form is filled out correctly
+	 * @return true if the form is correct
+	 */
 	private boolean isFilledOut() {
 		boolean ready = true;
 		
@@ -315,11 +362,12 @@ public class AddSupplierFrame extends JFrame {
 		input.add(addressTT.getText());
 		input.add(addressCT.getText());
 		input.add(addressPCT.getText());
-		for (JTextField al :addressLines)
-		{
+		
+		for (JTextField al :addressLines) {
 			input.add(al.getText());
 //			System.out.println(al.getText());
 		}
+		
 		String[] array = new String[input.size()];
 		array =  input.toArray(array);
 		return array;
