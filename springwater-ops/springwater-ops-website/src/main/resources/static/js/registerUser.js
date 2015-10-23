@@ -21,9 +21,9 @@ var telephoneNumber;
 function registerUserDetails() {
 	
 	// User attributes
-	var firstName = document.getElementById("firstNameInput").value;
-	var lastName = document.getElementById("lastNameInput").value;
-	var email = document.getElementById("emailInput").value;
+	firstName = document.getElementById("firstNameInput").value;
+	lastName = document.getElementById("lastNameInput").value;
+	email = document.getElementById("emailInput").value;
     var password = document.getElementById("passwordInput").value;
 	var confirmPassword = document.getElementById("confirmPasswordInput").value;
     var dob = document.getElementById("dobInput").value;
@@ -46,7 +46,7 @@ function registerUserDetails() {
     setAllCookieVals(firstName, lastName, email);
 	
 	// Create an alert box
-	alert("Welcome " + getFirstNameCookie() + " " + getLastNameCookie() + ", you are now registered.");
+	alert("Welcome " + getCookie(firstName));
 }
 
 // function sets all the cookie values for the user
