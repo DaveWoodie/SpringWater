@@ -91,4 +91,9 @@ public class JSPController {
 	    public String wishlist(ModelAndView modelAndView) {
 	        return "wishlist";
 	  }
+	 
+	 @RequestMapping("emailOrder")
+	 	public String emailOrder(ModelAndView modelAndView) {
+		 	return "emailOrder";
+	 }
 }

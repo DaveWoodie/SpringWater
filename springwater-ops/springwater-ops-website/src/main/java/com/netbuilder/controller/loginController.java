@@ -14,7 +14,6 @@ public class loginController {
 	
 	@RequestMapping(value = "loginForm", method = RequestMethod.POST)
 	public String doPost(HttpServletRequest request, HttpServletResponse response) {
-		
 		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		return "";
 	}
