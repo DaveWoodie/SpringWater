@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 
 
+
 import com.netbuilder.DBConnector.SQLDBConnector;
 import com.netbuilder.entities.Item;
 import com.netbuilder.entities.PurchaseOrder;
@@ -79,7 +80,7 @@ public class PurchaseOrderLineLoader {
 	/**
 	 * Method to construct the SQL query to retrieve all purchase order IDs by item ID
 	 * @param id of the Item to search for
-	 * @return the ArrayList of purchase orderlines created from the query
+	 * @return the ArrayList of purchase orderline IDs created from the query
 	 */
 	public ArrayList<Integer> getPurchaseOrderLineByProduct(int id) {
 		sql = "SELECT idPurchaseOrder" + tableName + " WHERE idItem = " + id;
@@ -99,6 +100,44 @@ public class PurchaseOrderLineLoader {
 			e.printStackTrace();
 		}
 		return purchaseOrderIDs;
+	}
+	
+	/**
+	 * Method to construct the sql query to update a purchase order line entry in the database and execute it
+	 * @param pOL the purchase order line object to be updated
+	 */
+	public void setPurchaseOrderLineDamagedStock(PurchaseOrderLine pOL){
+		sql = "UPDATE purchaseorderline SET quantityDamaged = " + pOL.getDamagedQuantity() + ", quantity = " + pOL.getQuantity() + "WHERE idItem = " + pOL.getItemID() + " AND idPurchaseOrder = " + pOL.getPurchaseOrder().getIDPurchaseOrder();
+		sqlDB.openCon();
+		try {
+			sqlDB.updateDB(sql);
+		} 
+		catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		sqlDB.closeCon();
+	}
+	
+	/**
+	 * Method to construct the sql query to create a purchase order line entry in the database and execute it
+	 * @param pOL
+	 */
+	public void createPurchaseOrderLine (PurchaseOrderLine pOL) {
+		sql = "INSERT INTO purchaseorderline (idPurchaseOrder, idItem, quantity, quantityDamaged) VALUE (" + pOL.getPurchaseOrder().getIDPurchaseOrder() + ", " + pOL.getItemID() + ", " + pOL.getQuantity() + ", " +pOL.getDamagedQuantity() + ")";
+		sqlDB.openCon();
+		try {
+			sqlDB.updateDB(sql);
+		} 
+		catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		sqlDB.closeCon();
 	}
 }
 

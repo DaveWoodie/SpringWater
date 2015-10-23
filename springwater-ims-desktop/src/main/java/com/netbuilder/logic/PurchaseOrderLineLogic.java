@@ -38,12 +38,10 @@ public class PurchaseOrderLineLogic {
 			if (!itemList.isEmpty()) {
 				itemPrice = itemList.get(0).getCost();
 				itemName = itemList.get(0).getItemName();
-				System.out.println(itemPrice);
 			}
 			else {
 				itemPrice = 0;
 				itemName = "Failed";
-				System.out.println(itemPrice);
 			}
 			
 			NumberFormat formatter = new DecimalFormat("#0.00"); 

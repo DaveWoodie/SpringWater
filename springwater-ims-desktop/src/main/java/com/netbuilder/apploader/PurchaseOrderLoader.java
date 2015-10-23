@@ -144,7 +144,7 @@ public class PurchaseOrderLoader {
 	
 	/**
 	 * Method to construct the sql query to update a purchase order entry in the database and execute it
-	 * @param pO the purchase order to be updated
+	 * @param pO the purchase order object to be updated
 	 */
 	public void setPurchaseOrder(PurchaseOrder pO){
 		java.sql.Date datePlaced = new java.sql.Date(pO.getDatePlaced().getTime());
@@ -163,6 +163,10 @@ public class PurchaseOrderLoader {
 		sqlDB.closeCon();
 	}
 	
+	/**
+	 * Method to construct the sql query to create a purchase order entry in the database and execute it
+	 * @param pO the purchase order object to be created
+	 */
 	public void createPurchaseOrder (PurchaseOrder pO) {
 		sql = "INSERT INTO purchaseOrder (idEmployee, idPurchaseOrderStatus, idSupplier) VALUE (" + pO.getEmployee().getUser().getUserID() + ", " + pO.getPurchaseOrderStatus().getStatusID() + ", " + pO.getSupplier().getSupplierID() + ")";
 		sqlDB.openCon();

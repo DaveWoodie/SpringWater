@@ -119,11 +119,9 @@ public class PurchaseOrderLogic {
 				float itemPrice;
 				if (!itemList.isEmpty()) {
 					itemPrice = itemList.get(0).getCost();
-					System.out.println(itemPrice);
 				}
 				else {
 					itemPrice = 30;
-					System.out.println(itemPrice);
 				}
 				total = total + (pOLList.get(j).getQuantity() * itemPrice);
 			}
