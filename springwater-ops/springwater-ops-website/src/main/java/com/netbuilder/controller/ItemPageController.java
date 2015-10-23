@@ -1,6 +1,7 @@
 package com.netbuilder.controller;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,25 +11,59 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.HandlerMapping;
 
-import com.netbuilder.test.Item;
-import com.netbuilder.test.ItemDatabase;
+import com.netbuilder.test.*;
 
 @Controller
 public class ItemPageController {
-	
-	private ArrayList<Item> itemList = ItemDatabase.itemList;
 
 	@RequestMapping(value = "/itempage+*", method = RequestMethod.GET)
 	public String getItem(HttpServletRequest request, Model model) {
+		
+		// Get current URL and compare to database
 		String url = (String) request
 				.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
-		for(Item item : itemList)
-		{
-			if(new String("/itempage+" + item.getItemName()).equals(url))
+		String search = url.replace("/itempage+", "");
+		Item result = ItemDatabase.searchID(search);
+		
+		// IF the item exists
+		if(result != null) {
+			
+			// Get related Items
+			ArrayList<Item> resultList = ItemDatabase.searchKeyword(result.getKeyword());
+			ArrayList<Item> relatedList = new ArrayList<Item>();
+			int deleteIndex = 0;
+			for(Item item : resultList)
 			{
-				model.addAttribute("item",item);
+				if(item.getItemID().equals(result.getItemID()))
+				{
+					deleteIndex = resultList.indexOf(item);
+				}
 			}
+			resultList.remove(deleteIndex);
+			Random rand = new Random();
+			int index = rand.nextInt(resultList.size());
+			relatedList.add(resultList.get(index));
+			index = rand.nextInt(resultList.size());
+			relatedList.add(resultList.get(index));
+			index = rand.nextInt(resultList.size());
+			relatedList.add(resultList.get(index));
+			index = rand.nextInt(resultList.size());
+			relatedList.add(resultList.get(index));
+			
+			// Get the reviews for the item
+			ArrayList<Review> reviewList = result.getReviews();
+			
+			// Add the data to the web page
+			model.addAttribute("item", result);
+			model.addAttribute("relatedList", relatedList);
+			model.addAttribute("reviewList", reviewList);
+			return "itemPage";
 		}
-		return "itemPage";
+		
+		// Return an error page
+		else
+		{
+			return "errorPage";
+		}
 	}
 }
