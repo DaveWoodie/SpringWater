@@ -47,10 +47,10 @@ public class AddItemFrame extends JFrame {
 	private int noOfA =0;
 	private TextPrompt inp, idp, ispp, iucp ;
 
-	public static void main(String[] args) {
-		AddItemFrame iF = new AddItemFrame();
-		iF.setVisible(true);
-	}
+//	public static void main(String[] args) {
+//		AddItemFrame iF = new AddItemFrame();
+//		iF.setVisible(true);
+//	}
 
 	public AddItemFrame() {
 		initUI();
