@@ -15,7 +15,10 @@
 
 <head th:fragment="header">
     <title>NB Gardens - Login/Register</title>
- 
+ 	
+ 	  <!-- Load in login/register user javascript files -->
+    <script src="js/registerUser.js" type="text/javascript"></script>
+    <script src="js/loginValidator.js" type="text/javascript"></script>
     
 </head>
 
@@ -109,8 +112,4 @@
     </div>
 </div>
 </body>
-    <!-- Load in login/register user javascript files -->
-    <script src="js/registerUser.js" type="text/javascript"></script>
-    <script src="js/loginValidator.js" type="text/javascript"></script>
-
 </html>
