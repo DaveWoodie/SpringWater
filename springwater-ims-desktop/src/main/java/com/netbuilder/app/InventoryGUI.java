@@ -291,7 +291,8 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 			}
 		}
 		else if(e.getSource().equals(addNewItemButton)) {
-			
+			AddItemFrame aif = new AddItemFrame();
+			aif.setVisible(true);
 		}
 	}
 
