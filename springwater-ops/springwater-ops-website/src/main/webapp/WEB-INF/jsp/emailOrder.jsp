@@ -17,6 +17,9 @@
                     </div>
                 </div>
 
+                <script src="js/emailUpdated.js" type="text/javascript"></script>
+
+
                 <div class="row">
                     <div class="col-md-8">
                         <h1 id="productTitle"><small>Your Details</small></h1>
@@ -49,30 +52,30 @@
 
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">Address Line 1</span>
-                                    <input type="text" class="form-control" id="0" placeholder="Address Line 1" aria-describedby="basic-addon1" />
+                                    <input type="text" class="form-control" id="0" placeholder="Address Line 1" oninput="updateAddr(0)" aria-describedby="basic-addon1" />
                                 </div>
                                 <br />
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">Address Line 2</span>
-                                    <input type="text" class="form-control" id="1" placeholder="Address Line 2" aria-describedby="basic-addon1" />
+                                    <input type="text" class="form-control" id="1" placeholder="Address Line 2" oninput="updateAddr(1)" aria-describedby="basic-addon1" />
                                 </div>
                                 <br />
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">Town or City</span>
-                                    <input type="text" class="form-control" id="2" placeholder="Town or City" aria-describedby="basic-addon1" />
+                                    <input type="text" class="form-control" id="2" placeholder="Town or City" oninput="updateAddr(2)" aria-describedby="basic-addon1" />
                                 </div>
                                 <br />
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">County</span>
-                                    <input type="text" class="form-control" id="3" placeholder="County" aria-describedby="basic-addon1" />
+                                    <input type="text" class="form-control" id="3" placeholder="County" oninput="updateAddr(3)" aria-describedby="basic-addon1" />
                                 </div>
                                 <br />
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">Post Code</span>
-                                    <input type="text" class="form-control" id="4" placeholder="Post Code" aria-describedby="basic-addon1" />
+                                    <input type="text" class="form-control" id="4" placeholder="Post Code" oninput="updateAddr(4)" aria-describedby="basic-addon1" />
                                 </div>
                             </div>
-                            
+
                             <div class="well">
                                 <p><small>Add items to your order</small></p>
 
@@ -138,19 +141,19 @@
                                     <h3 class="panel-title">Delivery Address</h3></div>
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-sm-12 panel-body" id="0"></div>
+                                        <div class="col-sm-12 panel-body" id="A0"></div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-sm-12 panel-body" id="1"></div>
+                                        <div class="col-sm-12 panel-body" id="A1"></div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-sm-12 panel-body" id="2"></div>
+                                        <div class="col-sm-12 panel-body" id="A2"></div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-sm-12 panel-body" id="2"></div>
+                                        <div class="col-sm-12 panel-body" id="A3"></div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-sm-12 panel-body" id="3"></div>
+                                        <div class="col-sm-12 panel-body" id="A4"></div>
                                     </div>
                                 </div>
                             </div>
@@ -172,7 +175,5 @@
         </div>
     </div>
 </body>
-
-<script type="text/javascript" src="emailUpdated.js"></script>
 
 </html>
