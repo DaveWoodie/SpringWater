@@ -42,9 +42,7 @@ public class PurchaseOrder {
 	 * @param pOS : PurchaseOrderStatus of the order
 	 * @param s : Supplier who fufills the order 
 	 */
-	public PurchaseOrder (Date dP, Employee e, PurchaseOrderStatus pOS, Supplier s) {
-		datePlaced = new Date(dP.getTime());
-		employee = e;
+	public PurchaseOrder (PurchaseOrderStatus pOS, Supplier s) {
 		purchaseOrderStatus = pOS;
 		supplier = s;
 	}
@@ -81,6 +79,10 @@ public class PurchaseOrder {
 	
 	public void setDateExpected(Date dE) {
 		dateExpected = dE;
+	}
+	
+	public void setDatePlaced(Date dP) {
+		datePlaced = dP;
 	}
 
 	public void setEmployee(Employee e) {

@@ -32,7 +32,7 @@
 
             <div class="row">
                 <div class="col-md-5">
-                    <a href="#" class="thumbnail" data-toggle="modal" data-target="#enlargedImage">
+                    <a href="#enlargedImage" class="thumbnail">
                         <img th:src="${item.imageLocation}" alt="..." width="60%" height="60%" />
                     </a>
                 </div>
@@ -106,89 +106,65 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-6 col-md-3">
+                
+                <!-- Related Item -->
+                <div th:each="item : ${relatedList}" class="col-sm-6 col-md-3">
                     <div class="thumbnail">
-                        <a href="itempage"><img src="img/placeholder2.png" alt="..." /></a>
+                        <a th:href="'itempage+' + ${item.itemID}"><img th:src="${item.imageLocation}" alt="..." /></a>
                         <div class="caption">
-                            <h3>Recommended Item 1</h3>
-                            <p>&pound;X.XX</p>
-                            <p>
+                            <h3 style="text-align:center" th:text="${item.itemName}"></h3>
+                            <p style="text-align:center" th:text="'£' + ${item.price}"></p>
+                            <!-- Rating If Statement -->
+                            <p th:if="${item.rating} == 0" style="text-align:center">
+                                <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                            </p>
+                            <p th:if="${item.rating} == 1" style="text-align:center">
+                                <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                            </p>
+                            <p th:if="${item.rating} == 2" style="text-align:center">
+                                <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                            </p>
+                            <p th:if="${item.rating} == 3" style="text-align:center">
+                                <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                            </p>
+                            <p th:if="${item.rating} == 4" style="text-align:center">
                                 <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                                 <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                                 <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                                 <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star-empty ratings" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                            </p>
+                            <p th:if="${item.rating} == 5" style="text-align:center">
+                                <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                             </p>
                             <p>
-                                <a href="itempage" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span> Go to Item</a>
-                                <a href="#" class="btn btn-success" data-toggle="modal" data-target="#RI1" role="button"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Quick Look</a>
+                                <a th:href="'itempage+' + ${item.itemID}" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span> Go to Item</a>
+                                <a thhref="'#' + ${item.itemID}" class="btn btn-success" role="button"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Quick Look</a>
                             </p>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <a href="itempage"><img src="img/placeholder2.png" alt="..." /></a>
-                        <div class="caption">
-                            <h3>Recommended Item 2</h3>
-                            <p>&pound;X.XX</p>
-                            <p>
-                                <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star-empty ratings" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star-empty ratings" aria-hidden="true"></span>
-                            </p>
-                            <p>
-                                <a href="itempage" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span> Go to Item</a>
-                                <a href="#" class="btn btn-success" data-toggle="modal" data-target="#RI2" role="button"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Quick Look</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <a href="itempage"><img src="img/placeholder2.png" alt="..." /></a>
-                        <div class="caption">
-                            <h3>Recommended Item 3</h3>
-                            <p>&pound;X.XX</p>
-                            <p>
-                                <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                            </p>
-                            <p>
-                                <a href="itempage" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span> Go to Item</a>
-                                <a href="#" class="btn btn-success" data-toggle="modal" data-target="#RI3" role="button"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Quick Look</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <a href="itemPage"><img src="img/placeholder2.png" alt="..." /></a>
-                        <div class="caption">
-                            <h3>Recommended Item 4</h3>
-                            <p>&pound;X.XX</p>
-                            <p>
-                                <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star-empty ratings" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star-empty ratings" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star-empty ratings" aria-hidden="true"></span>
-                            </p>
-                            <p>
-                                <a href="itempage" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span> Go to Item</a>
-                                <a href="#" class="btn btn-success" data-toggle="modal" data-target="#RI4" role="button"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Quick Look</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>
@@ -205,46 +181,58 @@
                         <thead>
                         	<tr>
 	                            <th>Reviewer</th>
-	                            <th style="width: 22%">Rating</th>
+	                            <th style="width: 22%;text-align:center">Rating</th>
 	                            <th>Comment</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td>GnomeFanatic616</td>
-                                <td class="reviewRatings">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            <tr th:each="review : ${reviewList}">
+                                <td th:text="${review.author}"></td>
+                                <td th:if="${review.rating} == 0" class="reviewRatings">
+                                    <!-- Rating If Statement -->
+                                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
                                     <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
                                     <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
                                 </td>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</td>
-                            </tr>
-
-                            <tr>
-                                <td>Garden_Warrior</td>
-                                <td class="reviewRatings">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </td>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</td>
-                            </tr>
-
-                            <tr>
-                                <td>Gn0m3Gardener</td>
-                                <td class="reviewRatings">
+                                <td th:if="${review.rating} == 1" class="reviewRatings">
                                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                                     <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
                                     <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
                                     <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
                                     <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
                                 </td>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</td>
+                                <td th:if="${review.rating} == 2" class="reviewRatings">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                                </td>
+                                <td th:if="${review.rating} == 3" class="reviewRatings">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                                </td>
+                                <td th:if="${review.rating} == 4" class="reviewRatings">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                                </td>
+                                <td th:if="${review.rating} == 5" class="reviewRatings">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                </td>
+                                <td th:text="${review.body}"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -261,10 +249,10 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Product Name</h4>
+                <h4 class="modal-title" id="myModalLabel" th:text="${item.itemName}"></h4>
             </div>
             <div class="modal-body">
-                <img class="center-block" src="img/placeholder2.png" alt="..." width="100%" />
+                <img class="center-block" th:src="${item.imageLocation}" alt="..." width="100%" />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Close</button>
@@ -273,66 +261,15 @@
     </div>
 </div>
 
-<div class="modal fade" id="RI1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div th:each="item : ${relatedList}" class="modal fade" th:id="${item.itemID}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Product Name</h4>
+                <h4 class="modal-title" id="myModalLabel" th:text="${item.itemName}"></h4>
             </div>
             <div class="modal-body">
-                <img class="center-block" src="img/placeholder2.png" alt="..." width="100%" />
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="RI2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Product Name</h4>
-            </div>
-            <div class="modal-body">
-                <img class="center-block" src="img/placeholder2.png" alt="..." width="100%" />
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="RI3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Product Name</h4>
-            </div>
-            <div class="modal-body">
-                <img class="center-block" src="img/placeholder2.png" alt="..." width="100%" />
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="RI4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Product Name</h4>
-            </div>
-            <div class="modal-body">
-                <img class="center-block" src="img/placeholder2.png" alt="..." width="100%" />
+                <img class="center-block" th:src="${item.imageLocation}" alt="..." width="100%" />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Close</button>
