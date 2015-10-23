@@ -12,9 +12,11 @@ public class Item {
 	private String keyword;
 	private ArrayList<Review> reviews;
 	private String category;
+	private String colour;
 
 	public Item(String itemID, String itemName, float price,
-			String imageLocation, int rating, String description, String category, String keyword) {
+			String imageLocation, int rating, String description,
+			String category, String keyword, String colour) {
 		this.itemName = itemName;
 		this.price = price;
 		this.imageLocation = imageLocation;
@@ -23,6 +25,7 @@ public class Item {
 		this.itemID = itemID;
 		this.category = category;
 		this.keyword = keyword;
+		this.colour = colour;
 		reviews = new ArrayList<Review>();
 	}
 
@@ -60,5 +63,13 @@ public class Item {
 
 	public ArrayList<Review> getReviews() {
 		return reviews;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+	
+	public String getColour() {
+		return colour;
 	}
 }

@@ -44,10 +44,10 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Categories<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="items">Gnomes</a></li>
-                            <li><a href="items">Furniture</a></li>
-                            <li><a href="items">Tools</a></li>
-                            <li><a href="items">Pottery</a></li>
+                            <li><a th:href="@{/items(category=Gnome)}">Gnomes</a></li>
+                            <li><a th:href="@{/items(category=Furniture)}">Furniture</a></li>
+                            <li><a th:href="@{/items(category=Tool)}">Tools</a></li>
+                            <li><a th:href="@{/items(category=Pottery)}">Pottery</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="items">Featured</a></li>
                             <li role="separator" class="divider"></li>
