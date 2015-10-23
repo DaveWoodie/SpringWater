@@ -54,6 +54,9 @@ public class LoginAuthentication
 		String passwordString = new String(passwordField);
 		
 		String encryptedPassword = encryption.checkSHA1(passwordString);
+		
+		loginLoader.checkDetails(userString, encryptedPassword);
+		
 		//Search lists for a match
 		for(int i = 0; i < userList.size(); i++)
 		{

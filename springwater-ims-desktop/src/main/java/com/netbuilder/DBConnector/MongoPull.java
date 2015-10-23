@@ -58,7 +58,7 @@ public class MongoPull {
 		
 		//Connect to the NBGardensn database
 		DB db = mdbc.getConnection().getDB(dataBase);
-		//Get Specfic Collection
+		//Get Specfic Collection`
 		DBCollection collection = db.getCollection(AddrCol);
 		
 		BasicDBObject addr = new BasicDBObject();

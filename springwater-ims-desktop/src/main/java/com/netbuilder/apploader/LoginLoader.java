@@ -129,4 +129,24 @@ public class LoginLoader
 		
 		return Passwords;
 	}
+	
+	public void checkDetails(String idUser, String password) {
+		SQL.openCon();
+		
+		int id = Integer.parseInt((String) idUser);
+		int rowCount = 0;
+		
+		try {
+			rSet = SQL.queryDB("select idUser, password from user where idUser = " + id + " and password = '" + password + "' and isEmployee = 1");
+			
+			if(rSet.next()) {
+				rowCount++;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		SQL.closeCon();
+		
+		System.out.println(rowCount);
+	}
 }
