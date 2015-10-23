@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import com.netbuilder.DBConnector.SQLDBConnector;
 import com.netbuilder.entities.Employee;
+import com.netbuilder.entities.Item;
 import com.netbuilder.entities.PurchaseOrder;
 import com.netbuilder.entities.PurchaseOrderStatus;
 import com.netbuilder.entities.Role;
@@ -41,13 +42,14 @@ public class PurchaseOrderLoader {
 			ResultSet rs = sqlDB.queryDB(sql);
 			while (rs.next()) {
 				PurchaseOrderStatus pOS = new PurchaseOrderStatus(rs.getString("purchaseorderstatus.status"));
-				
 				Supplier supplier = new Supplier(rs.getString("supplier.supplierName"), rs.getInt("supplier.idAddress"));
 				Role role = new Role(rs.getString("role.Role"));
 				User user = new User(rs.getString("user.password"), rs.getString("user.forename"), rs.getString("user.surname"), rs.getString("user.email"), rs.getBoolean("user.isEmployee"));
 				user.setUserID(rs.getInt("user.idUser"));
 				Employee employee = new Employee(user, role);
-				PurchaseOrder pO = new PurchaseOrder(rs.getDate("purchaseorder.datePlaced"), employee, pOS, supplier);
+				PurchaseOrder pO = new PurchaseOrder(pOS, supplier);
+				pO.setDatePlaced(rs.getDate("purchaseorder.datePlaced"));
+				pO.setEmployee(employee);
 				pO.setIDPurchaseOrder(rs.getInt("purchaseorder.idPurchaseOrder"));
 				pO.setDateExpected(rs.getDate("purchaseorder.dateExpected"));
 				purchaseOrderList.add(pO);
@@ -138,6 +140,12 @@ public class PurchaseOrderLoader {
 	public ArrayList<PurchaseOrder> getPurchaseOrderListByDate(java.util.Date date) {
 		java.sql.Date queryDate = new java.sql.Date(date.getTime());
 		sql = listQuery + tableName + tableJoins + " WHERE datePlaced = '" + queryDate + "'";
+		constructResult();
+		return purchaseOrderList;
+	}
+	
+	public ArrayList<PurchaseOrder> getPurchaseOrderListByItemValid(Item item) {
+		sql = listQuery + tableName + tableJoins + " WHERE idSupplier LIKE '%" + item.getIdSupplier() + "%' AND idPurchaseOrderStatus = 1";
 		constructResult();
 		return purchaseOrderList;
 	}
