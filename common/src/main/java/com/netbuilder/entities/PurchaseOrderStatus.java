@@ -45,4 +45,8 @@ public class PurchaseOrderStatus {
 	public String getPurchOrderStatus() {
 		return status;
 	}
+	
+	public void setPurchOrderID(int i) {
+		statusID = i;
+	}
 }

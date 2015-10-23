@@ -19,6 +19,7 @@ import com.netbuilder.apploader.SupplierLoader;
 import com.netbuilder.entities.Item;
 import com.netbuilder.entities.PurchaseOrder;
 import com.netbuilder.entities.PurchaseOrderLine;
+import com.netbuilder.entities.PurchaseOrderStatus;
 import com.netbuilder.entities.Supplier;
 
 /**
@@ -167,9 +168,24 @@ public class PurchaseOrderLogic {
 					lineFound = true;
 				}
 			}
-			if (lineFound) {
+			if (!lineFound) {
+				pOL = new PurchaseOrderLine(quantityAdd, item.getIdItem(), itemPurchaseOrderList.get(0));
 				pOLLoader.createPurchaseOrderLine(pOL);
 			}
+			else {
+				pOL.setQuantity((pOL.getQuantity() + quantityAdd));
+				pOLLoader.setPurchaseOrderLineStock(pOL);
+			}
+		}
+	}
+	
+	public void updatePurchaseOrderStatus (PurchaseOrder pO) {
+		if (pO.getPurchaseOrderStatus().getStatusID() == 1) {
+			//TODO get current employee and set on purchase order
+			PurchaseOrderStatusLoader pOSLoader = new PurchaseOrderStatusLoader();
+			PurchaseOrderStatus pOS = pOSLoader.getPurchaseOrderStatus(2);
+			pO.setPurchaseOrderStatus(pOS);
+			pOLoader.setPurchaseOrder(pO);
 		}
 	}
 }

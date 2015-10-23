@@ -18,6 +18,7 @@ public class PurchaseOrderStatusLoader {
 			ResultSet rs = sqlDB.queryDB(sql);
 			while (rs.next()) {
 				pOS = new PurchaseOrderStatus(rs.getString("status"));
+				pOS.setPurchOrderID(rs.getInt("idpurchaseorderstatus"));
 				return pOS;
 			}
 			rs.close();

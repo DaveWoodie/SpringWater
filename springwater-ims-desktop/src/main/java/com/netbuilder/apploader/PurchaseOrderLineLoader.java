@@ -106,7 +106,7 @@ public class PurchaseOrderLineLoader {
 	 * Method to construct the sql query to update a purchase order line entry in the database and execute it
 	 * @param pOL the purchase order line object to be updated
 	 */
-	public void setPurchaseOrderLineDamagedStock(PurchaseOrderLine pOL){
+	public void setPurchaseOrderLineStock(PurchaseOrderLine pOL){
 		sql = "UPDATE purchaseorderline SET quantityDamaged = " + pOL.getDamagedQuantity() + ", quantity = " + pOL.getQuantity() + "WHERE idItem = " + pOL.getItemID() + " AND idPurchaseOrder = " + pOL.getPurchaseOrder().getIDPurchaseOrder();
 		sqlDB.openCon();
 		try {
