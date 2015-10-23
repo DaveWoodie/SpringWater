@@ -8,7 +8,9 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
+import com.netbuilder.DBConnector.MongoPull;
 import com.netbuilder.apploader.PurchaseOrderLineLoader;
+import com.netbuilder.entities.Item;
 import com.netbuilder.entities.PurchaseOrderLine;
 
 /**
@@ -21,6 +23,7 @@ public class PurchaseOrderLineLogic {
 	Object[][] purchaseOrderLineList;
 	PurchaseOrderLineLoader pOLLoader = new PurchaseOrderLineLoader();
 	ArrayList<PurchaseOrderLine> pOLList;
+	ArrayList<Item> itemList;
 	
 	/**
 	 * Method to format the purchase order line entities's data into a format for the GUI
@@ -28,10 +31,22 @@ public class PurchaseOrderLineLogic {
 	private void formatTable() {
 		purchaseOrderLineList = new Object [pOLList.size()][5];
 		for (int i = 0; i < pOLList.size(); i++) {
-			//TODO connect to ItemLoader to calculate subtotal and get item name
-			String itemName = "Gnome";
+			MongoPull mP = new MongoPull();
+			itemList = mP.getItemInf(pOLList.get(i).getItemID());
+			float itemPrice = 0;
+			String itemName = "Placeholder";
+			if (!itemList.isEmpty()) {
+				itemPrice = itemList.get(0).getCost();
+				itemName = itemList.get(0).getItemName();
+				System.out.println(itemPrice);
+			}
+			else {
+				itemPrice = 30;
+				itemName = "Failed";
+				System.out.println(itemPrice);
+			}
+			
 			NumberFormat formatter = new DecimalFormat("#0.00"); 
-			float itemPrice = 30;
 			float subTotal = pOLList.get(i).getQuantity() * itemPrice;
 			purchaseOrderLineList[i][0] = pOLList.get(i).getItemID();
 			purchaseOrderLineList[i][1] = itemName;
