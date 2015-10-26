@@ -274,6 +274,13 @@ public class AddItemFrame extends JFrame {
 		attributesP.add(addAttributesB, attriC);		
 	}
 	
+	private void setValues(int id) {
+		//TODO get item details
+		itemNameR.setText("");
+		itemDescriptionR.setText("");
+		//TODO fill attributes
+	}
+	
 	/**
 	 * check to see if all required fields are filled out
 	 * @return false if not filled out
