@@ -56,6 +56,7 @@ public class Item {
 //		this.pSalesRate = pSalesRate;
 		this.isPorousware = isPorousware;
 		this.idSupplier = idSupplier;
+		this.attributes = new HashMap<String, String>();
 	}
 	
 	@Deprecated
