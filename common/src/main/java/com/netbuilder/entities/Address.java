@@ -120,7 +120,7 @@ public class Address {
 		return true;
 	}
 	
-	public Integer getCustomer() throws IOException {
+	public Integer getCustomerID() throws IOException {
 		if(this.customerID == null) {
 			throw new IOException();
 		}
