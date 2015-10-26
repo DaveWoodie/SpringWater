@@ -33,6 +33,15 @@ public class MongoPull {
 	private List<String> wishListSet = new ArrayList<String>();
 	private ArrayList<Item> itemList = new ArrayList<Item>();
 
+	
+	public static void main(String[] args) {
+		MongoPull tst = new MongoPull();
+		List<String> addrCols = tst.getAddress(4);
+		for(String s: addrCols) {
+			System.out.println(s);
+		}
+	}
+	
 	public MongoPull() {
 
 	}

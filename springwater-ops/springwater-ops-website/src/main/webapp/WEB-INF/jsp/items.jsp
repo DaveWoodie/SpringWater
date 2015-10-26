@@ -5,6 +5,10 @@
 
 <head th:fragment="header">
     <title>NB Gardens - Items</title>    
+    
+     <!-- Import javaScript files for basket update -->
+     <script src="js/basketUpdater.js" type="text/javascript"></script>
+     <script src="js/searchItemValidator.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -25,9 +29,9 @@
                     <!-- Search field -->
                     <li>
                         <div class="input-group panel">
-                            <input type="text" class="form-control" placeholder="Search for an item..." />
+                            <input type="text" class="form-control" id="searchInput" placeholder="Search for an item..."/>
                             <span class="input-group-btn">
-                            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                            <a th:href="@{/items(search=*{search})}" class="btn btn-default" type="button" onclick="searchItems()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
                             </span>
                         </div>
                     </li>
@@ -64,21 +68,21 @@
                                 <a href="#ColourMenu" class="list-group-item strong" data-toggle="collapse" data-parent="#ColourMenu">Colour<i class="fa fa-caret-down"></i></a>
                                 <div class="collapse list-group-submenu" id="ColourMenu">
                                     <a href="#" class="list-group-item" data-parent="#ColourMenu">
-                                        <button class="btn btn-primary" type="button" id="BlueButton"></button>
-                                        <button class="btn btn-success" type="button" id="GreenButton"></button>
-                                        <button class="btn btn-warning" type="button" id="YellowButton"></button>
-                                        <button class="btn btn-danger" type="button" id="RedButton"></button>
-                                        <button class="btn" style="background:gray" type="button" id="GreyButton"></button>
-                                        <button class="btn btn-default btn-outline" type="button" id="WhiteButton"></button>
+                                        <a th:href="@{/items(colour=Blue)}" class="btn btn-primary" type="button" id="BlueButton"></a>
+                                        <a th:href="@{/items(colour=Green)}" class="btn btn-success" type="button" id="GreenButton"></a>
+                                        <a th:href="@{/items(colour=Yellow)}" class="btn btn-warning" type="button" id="YellowButton"></a>
+                                        <a th:href="@{/items(colour=Red)}" class="btn btn-danger" type="button" id="RedButton"></a>
+                                        <a th:href="@{/items(colour=Grey)}" class="btn" style="background:gray" type="button" id="GreyButton"></a>
+                                        <a th:href="@{/items(colour=White)}" class="btn btn-default btn-outline" type="button" id="WhiteButton"></a>
 
                                     </a>
                                 </div>
                                 <a href="#CategoryMenu" class="list-group-item strong" data-toggle="collapse" data-parent="#CategoryMenu">Category<i class="fa fa-caret-down"></i></a>
                                 <div class="collapse list-group-submenu" id="CategoryMenu">
-                                    <a href="#" class="list-group-item" data-parent="#CategoryMenu">Gnomes</a>
-                                    <a href="#" class="list-group-item" data-parent="#CategoryMenu">Furniture</a>
-                                    <a href="#" class="list-group-item" data-parent="#CategoryMenu">Tools</a>
-                                    <a href="#" class="list-group-item" data-parent="#CategoryMenu">Pottery</a>
+                                    <a th:href="@{/items(category=Gnome)}" class="list-group-item" data-parent="#CategoryMenu">Gnomes</a>
+                                    <a th:href="@{/items(category=Furniture)}" class="list-group-item" data-parent="#CategoryMenu">Furniture</a>
+                                    <a th:href="@{/items(category=Tool)}" class="list-group-item" data-parent="#CategoryMenu">Tools</a>
+                                    <a th:href="@{/items(category=Pottery)}" class="list-group-item" data-parent="#CategoryMenu">Pottery</a>
                                 </div>
                             </div>
                         </div>
@@ -95,7 +99,7 @@
                 <!-- Item Grid -->
                 <!-- Header -->
                 <div class="col-lg-12">
-                    <h2 id="productTitle">Category / Search Results</h2>
+                    <h2 id="productTitle">Search Results</h2>
                 </div>
 
                 <div th:each="item : ${itemList}" id="testItems">

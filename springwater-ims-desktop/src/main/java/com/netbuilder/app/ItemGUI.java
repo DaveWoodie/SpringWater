@@ -34,7 +34,9 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import com.netbuilder.apploader.ItemLoader;
+import com.netbuilder.apploader.SupplierLoader;
 import com.netbuilder.entities.Item;
+import com.netbuilder.entities.Supplier;
 
 /**
  *Creates a JFrame containing a selected item's details
@@ -42,26 +44,34 @@ import com.netbuilder.entities.Item;
 @SuppressWarnings("serial")
 public class ItemGUI extends JFrame
 {	
+	private Item item;
+	private ItemLoader itemLoader = new ItemLoader();
+	private SupplierLoader supplierLoader = new SupplierLoader();
+	
 	private int itemID = 1;
 	private BufferedImage productImage;
 	private Image img;
 	private JTabbedPane tabbedPane;
+	
+	//------test data----------------------
+	private LoadData Data = new LoadData();
+	private Object[][] Inventory;
+	private Object[][] PO;
+	private ArrayList<Object[]> listPO;
+	private Object[][] Suppliers;
+	//-------------------------------------
+	
+	
+	private JLabel textName, textPrice, textStock, labelImage, textSupplier;
+	private JTextField textAdd;
+	
 	private DefaultTableModel tableModel =  new DefaultTableModel(){
 		@Override
 	    public boolean isCellEditable(int i, int i1) {
 	        return false; //To change body of generated methods, choose Tools | Templates.
 	    }
 	};
-	private String[] dayArray, monthArray, yearArray, durationArray;
-	private LoadData Data = new LoadData();
-	private Object[][] Inventory;
-	private Object[][] PO;
-	private ArrayList<Object[]> listPO;
-	private Object[][] Suppliers;
-	private JLabel textName, textPrice, textStock, labelImage, textSupplier;
-	private JTextField textAdd;
-	//private ItemLoader itemLoader;
-
+	
 	/**
 	 * Constructor that creates an instance of an item GUI for the item ID that is passed
 	 * @param itemID : 
@@ -90,11 +100,22 @@ public class ItemGUI extends JFrame
 	{
 		//configure JFrame
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		//get Item info from entity
+		ArrayList<Item> itemList = new ArrayList<Item>();
+		
+		//pulls item info from MongDB
+		itemList = itemLoader.loadItemByID(itemID);
+		item = itemList.get(0);
 	
+		//-------------Testing--------------
+		//fetch dummy data
 		Inventory = Data.fetchInventoryList();
 		PO = Data.fetchPurchaseOrders();
 		listPO = Data.fetchPurchaseOrderList();
 		Suppliers = Data.fetchSuppliers();
+		//----------------------------------
+		
 		setUpTableModel();
 	}
 	
@@ -181,6 +202,7 @@ public class ItemGUI extends JFrame
 			addToPO.add(textAdd);
 			addToPO.add(buttonAddToPO);
 			
+			//testing button functionality with dummy data
 			buttonAddToPO.addActionListener(new ActionListener()
 			{
 				@Override
@@ -277,17 +299,19 @@ public class ItemGUI extends JFrame
 		panelMain.add(panelItem);
 		panelMain.add(panelTable);
 		
-		searchItemArray(itemID);
+		setLabels(itemID);
 		
+		//--------------------Testing-----------------------
+		//table testing
 		tableModel.addRow(new Object[]{PO[2][0], "02/06/2015", 20, "Order Placed"});
 		tableModel.addRow(new Object[]{PO[1][0], PO[1][1], 35, "Order Completed"});
 		
 		//mongo testing
-		/*ArrayList<Item> itemList = new ArrayList<Item>();
+		ArrayList<Item> itemList = new ArrayList<Item>();
 		itemLoader = new ItemLoader();
 		itemList = itemLoader.loadItemByID(1);
-		System.out.println(itemList.get(1).getItemName());
-		*/
+		System.out.println(itemList.get(0).getImageLocation());
+		//---------------------------------------------------
 	}
 	
 	/**
@@ -304,21 +328,24 @@ public class ItemGUI extends JFrame
 	 */
 	public void predictedSalesPanel()
 	{
-		//Predicted Sales Panel
 		JPanel panelPredictedSales = new JPanel();
 		tabbedPane.add("Predicted Sales", panelPredictedSales);
 	}
 	
-	public void searchItemArray(int itemID)
-	{
-		textName.setText((String) Inventory[itemID - 1][1]);
-		textPrice.setText((String) Inventory[itemID - 1][5]);
-		textStock.setText(String.valueOf((int) Inventory[itemID - 1][2]));
-		textSupplier.setText((String) Suppliers[1][1]);
+	public void setLabels(int itemID)
+	{	
+		textName.setText(item.getItemName());
+		textPrice.setText("£" + Float.toString(item.getPrice()));
+		textStock.setText(Integer.toString(item.getStock()));
+		
+		ArrayList<Supplier> supplierList = supplierLoader.getSupplierListByID(item.getIdSupplier());
+		textSupplier.setText(supplierList.get(0).getSupplierName());
+		
 	}
 	
 	/**
 	 * Method to set up the table model for display
+	 * Sets up table columns
 	 */
 	public void setUpTableModel()
 	{
@@ -334,10 +361,8 @@ public class ItemGUI extends JFrame
 	 */
 	public void getProductlabelImage(String labelImageFileName)
 	{
-		//Get Product labelImage
 		try 
 		{
-			productImage = ImageIO.read(new File("src/main/resources/Images/" + labelImageFileName));
 			img = ImageIO.read(new File("src/main/resources/Images/" + labelImageFileName));
 		} 
 		catch (IOException e) 
