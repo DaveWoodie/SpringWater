@@ -16,8 +16,6 @@ var op1 = 2.99;
 var op2 = 5.99;
 var op3 = 10.99;
 
-
-
 function updateAddr(ID) {
     for (var n = 0; n < document.getElementById(ID).value.length; n++) {
         answers[ID] = document.getElementById(ID).value;
@@ -33,7 +31,6 @@ function updateAddr(ID) {
 }
 
 function addItem() {
-
     var itemID = document.getElementById('itemEntry').value;
 
     var itemsOnOrder = document.getElementById('itemsOnOrder');
@@ -63,9 +60,7 @@ function addItem() {
     containerDiv.innerHTML = item;
 
     itemsOnOrder.appendChild(containerDiv);
-
 }
-
 
 function subTotal() {
 
@@ -112,7 +107,6 @@ function postageAndFinal() {
         document.getElementById('total').innerHTML = "&pound;" + total.toFixed(2);
     }
 }
-
 
 var MongoClient = require('mongodb').MongoClient
   , assert = require('assert');
