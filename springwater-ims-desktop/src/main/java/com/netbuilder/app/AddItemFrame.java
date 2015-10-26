@@ -46,29 +46,51 @@ public class AddItemFrame extends JFrame {
 	private GridBagConstraints attriC;
 	private int noOfA =0;
 	private TextPrompt inp, idp, ispp, iucp ;
+	private boolean edit = false;
 
 //	public static void main(String[] args) {
 //		AddItemFrame iF = new AddItemFrame();
 //		iF.setVisible(true);
 //	}
 
+	/**
+	 * constructor for adding a new item
+	 */
 	public AddItemFrame() {
-		initUI();
-	}
-
-	private void initUI() {
 		configFrame();
 		addContent();
 	}
 
+	/**
+	 * constructor for editing a item
+	 * @param id - id of of item to edit
+	 */
+	public AddItemFrame(int id) {
+		edit = !edit; 
+		configFrame();
+		addContent();
+		setValues(id);
+	}
+	
+	/**
+	 * configures the frame
+	 */	
 	private void configFrame() {
-		setTitle("Add New Item");
+		@SuppressWarnings("unused")
+		String titleS = "Add New Item";
+		if (edit) {
+			titleS = "Edit Item";
+		}
+		setTitle("titleS");
 		setSize(500, 320);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
 	}
 
+	/**
+	 * creates the main panel of the frame
+	 */
 	private void addContent() {
 		base = new JPanel(new BorderLayout());
 		add(base);
@@ -192,7 +214,11 @@ public class AddItemFrame extends JFrame {
 		// Button Bar Panel
 		buttonBar = new JPanel();
 		buttonBar.setLayout(new GridLayout(1, 3));
-		addIB = new JButton("Add");
+		String buttonS = "Add";
+		if (edit) {
+			buttonS = "Save changes";
+		}
+		addIB = new JButton(buttonS);
 		cancelB = new JButton("Cancel");
 
 		addAttributePnael();
@@ -220,6 +246,9 @@ public class AddItemFrame extends JFrame {
 				base.add(buttonBar, BorderLayout.SOUTH);
 	}
 	
+	/**
+	 * creates the attributes panel
+	 */
 	private void addAttributePnael() {
 		attriC = new GridBagConstraints();
 		attriC.fill = GridBagConstraints.HORIZONTAL;
@@ -274,10 +303,19 @@ public class AddItemFrame extends JFrame {
 		attributesP.add(addAttributesB, attriC);		
 	}
 	
+	/**
+	 * Method to set the values of the form to relate to the given id
+	 * @param id - the id of the item to edit
+	 */
 	private void setValues(int id) {
 		//TODO get item details
 		itemNameR.setText("");
 		itemDescriptionR.setText("");
+		itemPriceR.setText("");
+		itemUnitPriceR.setText("");
+		//TODO select correct radio button
+		typeR.setSelectedItem(null);
+		supplierR.setSelectedItem(null);
 		//TODO fill attributes
 	}
 	
