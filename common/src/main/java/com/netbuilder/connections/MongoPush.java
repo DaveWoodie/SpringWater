@@ -1,4 +1,4 @@
-package com.netbuilder.DBConnector;
+package com.netbuilder.connections;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;

@@ -3,7 +3,7 @@
  * @date 22/10/2015
  */
 
-package com.netbuilder.DBConnector;
+package com.netbuilder.connections;
 
 import java.util.ArrayList;
 import java.util.List;

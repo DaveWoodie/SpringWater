@@ -2,15 +2,14 @@
  * @author Freshwater
  * @date 23/10/2015
  */
-package com.netbuilder.apploader;
+package com.netbuilder.loaders;
 
 import java.util.ArrayList;
 
-import com.netbuilder.DBConnector.MongoPull;
+import com.netbuilder.connections.MongoPull;
 import com.netbuilder.entities.Item;
 
-public class ItemLoader 
-{
+public class ItemLoader {
 	private MongoPull mongoPull;
 	private ArrayList<Item> itemArray;
 	

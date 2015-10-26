@@ -4,8 +4,16 @@
       th:include="template :: page">
 
 <head th:fragment="header">
+<<<<<<< HEAD
     <title>NB Gardens - Items</title>   
     <script src="js/search.js" type="text/javascript"></script>
+=======
+    <title>NB Gardens - Items</title>    
+    
+     <!-- Import javaScript files for basket update -->
+     <script src="js/basketUpdater.js" type="text/javascript"></script>
+     <script src="js/searchItemValidator.js" type="text/javascript"></script>
+>>>>>>> 2cac678dadec5bcb8884696e1f1da38b889034c6
 </head>
 
 <body>
@@ -26,8 +34,7 @@
                     
                     <!-- Search field -->
                     <li>
-                        <div class="input-group panel">
-                            
+                        <div class="input-group panel">                            
                             <input type="text" class="form-control" id="searchBox" placeholder="Search for an item..."/>
                             <span class="input-group-btn">
                             <a class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true" onclick="search(); "></span></a>
