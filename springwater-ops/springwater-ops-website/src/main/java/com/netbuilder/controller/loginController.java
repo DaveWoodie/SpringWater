@@ -14,7 +14,13 @@ public class loginController {
 	
 	@RequestMapping(value = "loginForm", method = RequestMethod.POST)
 	public String doPost(HttpServletRequest request, HttpServletResponse response) {
-		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		return "";
+
+		String email = request.getParameter("emailAddressInput");
+		String passwd = request.getParameter("passwordInputLogin");
+		
+		System.out.println(email);
+		System.out.println(passwd);
+		
+		return "redirect:/loginregister";
 	}
 }
