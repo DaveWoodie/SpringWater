@@ -6,9 +6,8 @@ package com.netbuilder.logic;
 
 import java.util.ArrayList;
 
-import com.netbuilder.apploader.SupplierLoader;
-import com.netbuilder.entities.PurchaseOrder;
 import com.netbuilder.entities.Supplier;
+import com.netbuilder.loaders.SupplierLoader;
 
 public class SupplierLogic {	
 	private Object[][] supplierList;
