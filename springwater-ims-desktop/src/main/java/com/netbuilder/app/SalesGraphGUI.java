@@ -30,6 +30,10 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import com.netbuilder.app.GraphData;
+import com.netbuilder.apploader.PurchaseOrderLineLoader;
+import com.netbuilder.apploader.PurchaseOrderLoader;
+import com.netbuilder.entities.PurchaseOrder;
+import com.netbuilder.entities.PurchaseOrderLine;
 
 /**
  *Sales Graph Panel showing the specified products sales
@@ -37,6 +41,10 @@ import com.netbuilder.app.GraphData;
 @SuppressWarnings("serial")
 public class SalesGraphGUI extends JPanel implements ActionListener
 {
+	private int itemID;
+	private PurchaseOrderLoader purchaseOrderLoader = new PurchaseOrderLoader();
+	private PurchaseOrderLineLoader purchaseOrderLineLoader = new PurchaseOrderLineLoader();
+	
 	private DefaultCategoryDataset dataset;
 	private GraphData graphData;
 	private ArrayList<Object[]> dataList;
@@ -46,14 +54,12 @@ public class SalesGraphGUI extends JPanel implements ActionListener
 	private ChartPanel chartPanelDays, chartPanelYears;
 	private JPanel graphPanel;
 
-	public SalesGraphGUI() 
+	public SalesGraphGUI(int itemID) 
 	{
+		this.itemID = itemID;
+		
 		makeDataset();
-		setSalesArrays();
 		createUI();
-		//drawChartDays();
-		repaint();
-		revalidate();
 	}
 	
 	public void createUI()
@@ -64,23 +70,13 @@ public class SalesGraphGUI extends JPanel implements ActionListener
 		//Options
 		JPanel panelOptions = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		panelOptions.setBorder(BorderFactory.createLineBorder(Color.gray));
-		JLabel labelDate = new JLabel("Start Date : ");
-		JLabel labelDuration = new JLabel("Duration : ");
+		
 		//combo boxes
-		JComboBox<String> comboDay = new JComboBox<String>(dayArray);
-		JComboBox<String> comboMonth = new JComboBox<String>(monthArray);
-		JComboBox<String> comboYear = new JComboBox<String>(yearArray);
+		durationArray = new String[]{"Days", "Months", "Years"};
 		comboDuration = new JComboBox<String>(durationArray);
 		buttonUpdate = new JButton("Update");
 		buttonUpdate.addActionListener(this);
 				
-			//add components to options panel
-			/*panelOptions.add(labelDate);
-			panelOptions.add(comboDay);
-			panelOptions.add(comboMonth);
-			panelOptions.add(comboYear);
-			panelOptions.add(Box.createRigidArea(new Dimension(20, 0)));
-			panelOptions.add(labelDuration);*/
 			panelOptions.add(comboDuration);
 			panelOptions.add(Box.createRigidArea(new Dimension(20, 0)));
 			panelOptions.add(buttonUpdate);
@@ -95,6 +91,18 @@ public class SalesGraphGUI extends JPanel implements ActionListener
 	
 	public void makeDataset() 
 	{
+		//TODO pull date from purchase order 
+		ArrayList<PurchaseOrder> purchaseOrderList = purchaseOrderLoader.getPurchaseOrderListByItem(itemID);
+		
+		for(int i = 0; i < purchaseOrderList.size(); i++)
+		{
+			//go through each purchase order with the specified item inside and extract that purchase order line
+			ArrayList<PurchaseOrderLine> pOLine = purchaseOrderLineLoader.getPurchaseOrderLineByOrderAndProduct(purchaseOrderList.get(i).getIDPurchaseOrder(), itemID);
+			PurchaseOrderLine purchaseOrderLine = pOLine.get(0);
+			
+			//TODO create logic to add to dataset. might need to add if statement to only add date from orders which have the item within
+		}
+		
 		graphData = new GraphData();
 		dataList = graphData.getDataArray();
 		
@@ -104,30 +112,6 @@ public class SalesGraphGUI extends JPanel implements ActionListener
 		{	
 			dataset.addValue((double) dataList.get(i)[0], (Comparable<?>) dataList.get(i)[1], (Comparable<?>) dataList.get(i)[2]);
 		}
-	}
-	
-	public void setSalesArrays()
-	{
-		dayArray = new String[31];
-		monthArray = new String[12];
-		yearArray = new String[10];
-				
-		for(int i = 0; i < dayArray.length; i++)
-		{
-			dayArray[i] = Integer.toString(i + 1);
-		}
-		
-		for(int i = 0; i < monthArray.length; i++)
-		{
-			monthArray[i] = Integer.toString(i + 1);
-		}
-		
-		for(int i = 0; i < yearArray.length; i++)
-		{
-			yearArray[i] = Integer.toString(2015 - i);
-		}
-		
-		durationArray = new String[]{"Days", "Weeks", "Months", "Years"};
 	}
 	
 	private void drawChartDays() 
@@ -216,7 +200,8 @@ public class SalesGraphGUI extends JPanel implements ActionListener
 	public static void main(String[] args)
 	{
 		JFrame j = new JFrame();
-		SalesGraphGUI sg = new SalesGraphGUI();
+		int i = 1;
+		SalesGraphGUI sg = new SalesGraphGUI(i);
 		
 		j.setVisible(true);
 		j.add(sg);

@@ -59,13 +59,11 @@ public class ItemGUI extends JFrame
 	private Image img;
 	private JTabbedPane tabbedPane;
 	private JTable tableItem;
+	private JButton buttonDiscontinue, buttonAddToPO;
 	
 	//------test data----------------------
 	private LoadData Data = new LoadData();
 	private Object[][] Inventory;
-	private Object[][] PO;
-	private ArrayList<Object[]> listPO;
-	private Object[][] Suppliers;
 	//-------------------------------------
 	
 	
@@ -89,15 +87,20 @@ public class ItemGUI extends JFrame
 		
 		initGUI();
 		createUI();
+		setLabels();
+		loadTable();
 	}
 	
 	/**
 	 * Constructor to create an instance of an item GUI that doesn't include ItemID
+	 * Mainly for testing
 	 */
 	public ItemGUI()
 	{
 		initGUI();
 		createUI();
+		setLabels();
+		loadTable();
 	}
 	
 	/**
@@ -118,9 +121,6 @@ public class ItemGUI extends JFrame
 		//-------------Testing--------------
 		//fetch dummy data
 		Inventory = Data.fetchInventoryList();
-		PO = Data.fetchPurchaseOrders();
-		listPO = Data.fetchPurchaseOrderList();
-		Suppliers = Data.fetchSuppliers();
 		//----------------------------------
 		
 		setUpTableModel();
@@ -135,6 +135,7 @@ public class ItemGUI extends JFrame
 		tabbedPane = new JTabbedPane();
 		add(tabbedPane);
 		
+		//Sets up main panels
 		viewItemPanel();
 		itemSalesPanel();
 		predictedSalesPanel();
@@ -200,11 +201,60 @@ public class ItemGUI extends JFrame
 			panelStock.add(labelStock);
 			panelStock.add(textStock);
 			
+			//Discontinue Item
+			JPanel panelDiscontinue = new JPanel(new FlowLayout(FlowLayout.LEFT));
+			JLabel labelDiscontinue = new JLabel("Item Status : ");
+			buttonDiscontinue = new JButton("Active");
+			panelDiscontinue.add(labelDiscontinue);
+			panelDiscontinue.add(buttonDiscontinue);
+			
+			buttonDiscontinue.addActionListener(new ActionListener()
+			{
+				@Override
+				public void actionPerformed(ActionEvent e) 
+				{
+					if(buttonDiscontinue.getText().equals("Active"))
+					{
+						int choice = JOptionPane.showOptionDialog(null, "Do you want to discontinue this item?",
+														   "Choose an option", 
+														   JOptionPane.YES_NO_OPTION, 
+														   JOptionPane.QUESTION_MESSAGE, 
+														   null, 
+														   null, 
+														   null);
+						if(choice == JOptionPane.YES_OPTION)
+						{
+							buttonDiscontinue.setText("Discontinued");
+							textAdd.setEditable(false);
+							buttonAddToPO.setEnabled(false);
+							//TODO set isDiscontiued in mongo to true
+						}
+					}
+					else if(buttonDiscontinue.getText().equals("Discontinued"))
+					{
+						int choice = JOptionPane.showOptionDialog(null, "Do you want to set this product to active?",
+								   "Choose an option", 
+								   JOptionPane.YES_NO_OPTION, 
+								   JOptionPane.QUESTION_MESSAGE, 
+								   null, 
+								   null, 
+								   null);
+						if(choice == JOptionPane.YES_OPTION)
+						{
+							buttonDiscontinue.setText("Active");
+							textAdd.setEditable(true);
+							buttonAddToPO.setEnabled(true);
+							//TODO set isDiscontinued in mongo to false
+						}
+					}
+				}
+			});
+			
 			//Add to purchase order
 			JPanel addToPO = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			JLabel labelQuantity = new JLabel("Quantity : ");
 			textAdd = new JTextField(5);
-			JButton buttonAddToPO = new JButton("Add to Purchase Order");
+			buttonAddToPO = new JButton("Add to Purchase Order");
 			addToPO.add(labelQuantity);
 			addToPO.add(textAdd);
 			addToPO.add(buttonAddToPO);
@@ -262,7 +312,7 @@ public class ItemGUI extends JFrame
 				panelSplit.add(panelSupplier);
 				panelSplit.add(new JPanel());
 				panelSplit.add(panelStock);
-				panelSplit.add(new JPanel());
+				panelSplit.add(panelDiscontinue);
 				panelSplit.add(addToPO);
 		
 		
@@ -322,10 +372,6 @@ public class ItemGUI extends JFrame
 		//adding components to item panel
 		panelMain.add(panelItem);
 		panelMain.add(panelTable);
-		
-		setLabels();
-		
-		loadTable();
 	}
 	
 	/**
@@ -333,7 +379,7 @@ public class ItemGUI extends JFrame
 	 */
 	public void itemSalesPanel()
 	{
-		JPanel panelSales = new SalesGraphGUI();
+		JPanel panelSales = new SalesGraphGUI(itemID);
 		tabbedPane.add("Sales" ,panelSales);
 	}
 	
