@@ -40,6 +40,10 @@ public class Supplier {
 		this.addressID = addressID;
 	}
 	
+	public void setSupplierID(int id) {
+		this.supplierID =id;
+	}
+	
 	public void setSupplierName(String supplierName) {
 		this.supplierName = supplierName;
 	}
