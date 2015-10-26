@@ -1,11 +1,19 @@
 package com.netbuilder.DBConnector;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
+import com.netbuilder.entities.Address;
+import com.netbuilder.entities.Item;
 
 import org.bson.BSONObject;
 import org.bson.Document;
@@ -20,29 +28,86 @@ public class MongoPush {
 	public static void main(String[] args) {
 		
 		MongoPush tst = new MongoPush();
-		tst.deleteAddressByID(17);
-		//tst.addAddress();
+		Item item = new Item("Gnomeo", "Gnome Rome. Get it?", (float)3.51, (float)2.02, 500, "A4", false, false, 3);
+		tst.addItem(item);
 	}
 	
-	public void addItem() {
+	public int addItem(Item item) {
+		// TODO change item costs/prices to doubles instead of floats
 		mdbc.mongoConnect();
 		DB db = mdbc.getConnection().getDB("nbgardensdata");
 		
 		DBCollection collection = db.getCollection("Item");
 		
-		String json = "{idItem: 6, ItemName: 'Yellow Gnome'}";
+		int newItemID;
+		try {
+			newItemID = getMaxInt("Item", "idItem")+1;
+		} catch (Exception e) {
+			System.out.println("Unable to find Item Collection or idItem in addItem() in MongoPush");
+			throw new Error(e);
+		}
 
-		DBObject dbObject = (DBObject)JSON.parse(json);
+		BasicDBObject itemObject = createItemDBObjectFromItem(item, newItemID);
+		
 						
-		collection.insert(dbObject);
+		collection.insert(itemObject);
 		
 		mdbc.mongoDisconnect();
+		
+		return 1;
 	}
 	
-	public void addAddress() {
+	/**
+	 * creates the BasicDBObject in order to add it to MongoDB from an Item entity
+	 * @param item
+	 * @param id
+	 * @return
+	 */
+	private BasicDBObject createItemDBObjectFromItem(Item item, int id) {
+		BasicDBObject itemObject = new BasicDBObject();
+		itemObject.put("idItem", id);
+		itemObject.put("ItemName", item.getItemName());
+		itemObject.put("ItemDescription", item.getDescription());
+		itemObject.put("ImageLocation", item.getImageLocation());
+		itemObject.put("NumberInStock", item.getStock());
+		itemObject.put("ItemPrice", item.getPrice());
+		itemObject.put("ItemCost", item.getCost());
+		itemObject.put("SalesRate", item.getSalesRate());
+		itemObject.put("PSalesRate", item.getpSalesRate());
+		itemObject.put("IsPorousware", item.isPorousware());
+		itemObject.put("Discontinued", item.isDiscontinued());
+		itemObject.put("idSupplier", item.getIdSupplier());
+		
+		BasicDBObject itemAttributes = createAttributesFromItem(item);
+		itemObject.put("Attributes",itemAttributes);
+		return itemObject;
+	}
+	
+	private BasicDBObject createAttributesFromItem(Item item) {
+		BasicDBObject newAttributes = new BasicDBObject();
+		HashMap<String, String> itemAttributes = item.getAttributes();
+		
+	    Iterator<Entry<String, String>> it = itemAttributes.entrySet().iterator();
+	    while (it.hasNext()) {
+			Map.Entry<String,String> pair = (Map.Entry<String, String>)it.next();
+	        newAttributes.put(pair.getKey(),pair.getValue());
+	        it.remove(); // avoids a ConcurrentModificationException
+	    }
+		
+		return newAttributes;
+	}
+	
+	/**
+	 * Adds the passed address to the MongoDB database and returns the int value of the ID assigned to the new address
+	 * @param addr
+	 * @return the ID that was assigned to the new address
+	 */
+	public int addAddress(Address addr) {
 
 		mdbc.mongoConnect();
 		DB db = mdbc.getConnection().getDB("nbgardensdata");
+		BasicDBObject addressObject = new BasicDBObject();
+		BasicDBObject addressLines = new BasicDBObject();
 		
 		int newAddrID;
 		try {
@@ -52,32 +117,37 @@ public class MongoPush {
 			throw new Error(e);
 		}
 		
+		addressObject.put("idAddress",  (double) newAddrID);
 		
-		System.out.println(newAddrID);
+		if(addr.isCustomerAddress()) {
+			try {
+				int custID = addr.getCustomerID();
+				addressObject.put("idCustomer", custID);
+			} catch (Exception e) {
+				System.out.println("***ERROR incorrect return value from isCustomerAddress() in addAddress() in MongoPush");
+				throw new Error(e);
+			}
+		}
+		
+		ArrayList<String> addrLines = addr.getAddressLines();
+		for(int i = 0; i < addrLines.size(); i++) {
+			addressLines.put("AddressLine"+(i+1), addrLines.get(i));
+		}
+		
+		addressObject.put("AddressLines", addressLines);
+		
+		addressObject.put("City", addr.getCity());
+		if(addr.getCounty() != null) {
+			addressObject.put("County", addr.getCounty());
+		}
+
+		addressObject.put("PostCode", addr.getPostCode());
+		
 		
 		DBCollection collection = db.getCollection("Address");
-
-		
-		
-		String addr1 = "12 Highgarden Road";
-		String addr2 = "Some kind of other address line";
-		String city = "Telford";
-		String county = "Shropshire";
-		String postcode = "TF1 3JG";
-		
-		BasicDBObject addressLines = new BasicDBObject();
-		addressLines.put("AddressLine1", addr1);
-		addressLines.put("AddressLine2", addr2);
-		
-		BasicDBObject tstObj = new BasicDBObject();
-		tstObj.put("idAddress",  (double) newAddrID);
-		tstObj.put("AddressLines", addressLines);
-		tstObj.put("City", city);
-		tstObj.put("County", county);
-		tstObj.put("PostCode", postcode);
-		
-		collection.insert(tstObj);
+		collection.insert(addressObject);
 		mdbc.mongoDisconnect();
+		return newAddrID;
 	}
 	
 	/**
@@ -104,6 +174,10 @@ public class MongoPush {
 		return maxInt;
 	}
 	
+	/**
+	 * deletes an address from the MongoDB database specified by the passed id
+	 * @param id
+	 */
 	public void deleteAddressByID(int id) {
 
 		mdbc.mongoConnect();

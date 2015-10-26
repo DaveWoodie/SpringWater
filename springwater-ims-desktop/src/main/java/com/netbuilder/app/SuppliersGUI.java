@@ -25,6 +25,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import com.netbuilder.logic.PurchaseOrderLogic;
 import com.netbuilder.logic.SupplierLogic;
 
 @SuppressWarnings("serial")
@@ -42,6 +43,7 @@ public class SuppliersGUI extends JPanel{
 	JLabel searchLabel, filterLabel;
 	private int selectedOrder;
 	private String selectedName;
+	private SupplierLogic lD = new SupplierLogic();
 	
 	/**
 	 * Method to create GUI panel for the list of suppliers
@@ -65,7 +67,7 @@ public class SuppliersGUI extends JPanel{
 		//create components
 		categories = new JComboBox<String>(supplierCategories);
 		
-		SupplierLogic lD = new SupplierLogic();
+
 		supplierListModel = new DefaultTableModel(lD.fetchSuppliers(), columns){
 			@Override
 		    public boolean isCellEditable(int i, int i1) {
@@ -106,7 +108,32 @@ public class SuppliersGUI extends JPanel{
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO set filter of table results
-				
+				Object[][] update;
+				String input = searchTerm.getText();
+				switch (categories.getSelectedItem().toString()) {
+					case "Supplier ID":
+						System.out.println(input);
+						int i = Integer.parseInt(input);
+						update = lD.fetchSupplierByID(i);
+						break;
+					
+					case "Supplier Name":
+						update = lD.fetchSupplierByName(input);
+						break;
+//						
+//					case "Product ID":
+//						update = lD.fetchPurchaseOrdersBySupplier(input);
+//						break;
+					default:
+						update = null;
+				}
+				supplierListModel =  new DefaultTableModel(update, columns){
+						@Override
+					    public boolean isCellEditable(int i, int i1) {
+					        return false; //To change body of generated methods, choose Tools | Templates.
+					    }
+					};
+					suppliers.setModel(supplierListModel);	
 			}
 			
 		});
@@ -126,7 +153,14 @@ public class SuppliersGUI extends JPanel{
 		reset.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {
-				// TODO Reset search filters and reload full list of results
+				final SupplierLogic lD = new SupplierLogic();
+				supplierListModel = new DefaultTableModel(lD.fetchSuppliers(), columns){
+					@Override
+				    public boolean isCellEditable(int i, int i1) {
+				        return false; //To change body of generated methods, choose Tools | Templates.
+				    }
+				};
+				suppliers.setModel(supplierListModel);
 
 			}
 			
