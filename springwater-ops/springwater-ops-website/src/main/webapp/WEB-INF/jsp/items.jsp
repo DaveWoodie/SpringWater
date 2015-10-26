@@ -4,7 +4,8 @@
       th:include="template :: page">
 
 <head th:fragment="header">
-    <title>NB Gardens - Items</title>    
+    <title>NB Gardens - Items</title>   
+    <script src="js/search.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -20,17 +21,48 @@
               	
                 <!-- Filter Section -->
 				<div class="well"> 
+                    
               	<ul class="nav nav-stacked" id="sidebar">
                     
                     <!-- Search field -->
                     <li>
                         <div class="input-group panel">
-                            <input type="text" class="form-control" placeholder="Search for an item..."/>
+                            
+                            <input type="text" class="form-control" id="searchBox" placeholder="Search for an item..."/>
                             <span class="input-group-btn">
-                            <a th:href="@{/items(search=*{search})}" class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
+                            <a class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true" onclick="search(); "></span></a>
                             </span>
                         </div>
                     </li>
+                    
+                    <li>
+                        <div class="form-group">
+                            <label for="colour">Colour:</label>
+                            <select class="form-control" id="colour">
+                                <option></option>
+                                <option>Blue</option>
+                                <option>Green</option>
+                                <option>Yellow</option>
+                                <option>Red</option>
+                                <option>Grey</option>
+                                <option>White</option>
+                            </select>
+                        </div>
+                    </li >
+                    
+                    <li>
+                        <div class="form-group">
+                            <label for="category">Category:</label>
+                            <select class="form-control" id="category">
+                                <option></option>
+                                <option>Gnome</option>
+                                <option>Furniture</option>
+                                <option>Tool</option>
+                                <option>Pottery</option>
+                            </select>
+                        </div>
+                    </li>
+                    
                     
                     <!-- Sort box -->
                     <li>
