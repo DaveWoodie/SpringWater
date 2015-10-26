@@ -8,6 +8,7 @@
     
      <!-- Import javaScript files for basket update -->
      <script src="js/basketUpdater.js" type="text/javascript"></script>
+     <script src="js/searchItemValidator.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -28,9 +29,9 @@
                     <!-- Search field -->
                     <li>
                         <div class="input-group panel">
-                            <input type="text" class="form-control" placeholder="Search for an item..."/>
+                            <input type="text" class="form-control" id="searchInput" placeholder="Search for an item..."/>
                             <span class="input-group-btn">
-                            <a th:href="@{/items(search=*{search})}" class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
+                            <a th:href="@{/items(search=*{search})}" class="btn btn-default" type="button" onclick="searchItems()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
                             </span>
                         </div>
                     </li>
