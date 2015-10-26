@@ -16,7 +16,7 @@ public class MongoDBConnector {
 	 * String to specify URL to MongoDB
 	 * 
 	 * */
-	static final String mongoURL = "10.50.15.15";
+	static final String mongoURL = "10.50.15.28";
 	
 	private MongoClient mongoClient;
 	

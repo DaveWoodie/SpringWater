@@ -56,7 +56,7 @@ public class SupplierLoader {
 	 * @return the ArrayList of suppliers created from the query
 	 */
 	public ArrayList<Supplier> getSupplierListByID(int id){
-		sql = listQuery + tableName + "WHERE idSupplier = " + id;
+		sql = listQuery + tableName + " WHERE idSupplier = " + id;
 		constructResult();
 		return supplierList;
 	}
