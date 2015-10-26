@@ -7,10 +7,8 @@ package com.netbuilder.loaders;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 
 import com.netbuilder.connections.SQLDBConnector;
-import com.netbuilder.entities.PurchaseOrder;
 import com.netbuilder.entities.Supplier;
 
 /**
@@ -63,6 +61,11 @@ public class SupplierLoader {
 		return supplierList;
 	}
 
+	/**
+	 * @author abutcher
+	 * Method to construct the SQLquery to retrieve all suppliers
+	 * @return the ArrayList of suppliers created from the query
+	 */
 	public ArrayList<Supplier> getSupplierList() {
 		sql = listQuery + tableName;
 		constructResult();
