@@ -14,6 +14,13 @@ var itemCountCookie;
 // Basket attributes
 var itemCount = 1;
 
+// update the basket
+function update() {
+	var str = document.getElementById("basketCount");
+	var replacedCount = str.replace("Microsoft", "Replaced");
+	document.getElementById("basketCount").innerHTML = replacedCount;
+}
+
 // function for updating the basket
 function basketUpdater() {
 	setAllCookieVals(itemCount);
