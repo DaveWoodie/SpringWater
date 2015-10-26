@@ -5,6 +5,9 @@
 
 <head th:fragment="header">
     <title>NB Gardens - Items</title>    
+    
+     <!-- Import javaScript files for basket update -->
+     <script src="js/basketUpdater.js" type="text/javascript"></script>
 </head>
 
 <body>
