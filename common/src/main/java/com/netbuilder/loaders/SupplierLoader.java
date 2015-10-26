@@ -2,14 +2,14 @@
  * @author jforster
  * @date 23/10/15
  */
-package com.netbuilder.apploader;
+package com.netbuilder.loaders;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.netbuilder.DBConnector.SQLDBConnector;
+import com.netbuilder.connections.SQLDBConnector;
 import com.netbuilder.entities.PurchaseOrder;
 import com.netbuilder.entities.Supplier;
 

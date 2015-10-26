@@ -25,6 +25,8 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import com.netbuilder.logic.SupplierLogic;
+
 @SuppressWarnings("serial")
 public class SuppliersGUI extends JPanel{
 	
@@ -63,7 +65,7 @@ public class SuppliersGUI extends JPanel{
 		//create components
 		categories = new JComboBox<String>(supplierCategories);
 		
-		LoadData lD = new LoadData();
+		SupplierLogic lD = new SupplierLogic();
 		supplierListModel = new DefaultTableModel(lD.fetchSuppliers(), columns){
 			@Override
 		    public boolean isCellEditable(int i, int i1) {
