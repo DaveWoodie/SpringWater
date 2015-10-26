@@ -16,14 +16,18 @@ var op1 = 2.99;
 var op2 = 5.99;
 var op3 = 10.99;
 
+
+
 function updateAddr(ID) {
     for (var n = 0; n < document.getElementById(ID).value.length; n++) {
         answers[ID] = document.getElementById(ID).value;
     }
-
+    
     if (document.getElementById(ID).value === "") {
+        document.getElementById('A' + ID).style.display = "none";
         document.getElementById('A' + ID).innerHTML = "";
     } else {
+        document.getElementById('A' + ID).style.display = "block";
         document.getElementById('A' + ID).innerHTML = answers[ID];
     }
 }
@@ -66,18 +70,11 @@ function addItem() {
 function subTotal() {
 
     var parsed;
-    
+    tot=0;
     for (var i = 0; i < subTotals.length; i++) {
-
         parsed = parseFloat(subTotals[i]);
 
         tot += parsed;
-        
-        
-        console.log(parsed);
-        console.log(tot);
-        
-        increment++;
     }
 
     document.getElementById('subTot').innerHTML = "&pound;" + tot;
@@ -111,6 +108,21 @@ function postageAndFinal() {
     } else {
         document.getElementById('postage').innerHTML = "&pound;" + op3;
         total = tot + VAT + op3;
+        total = tot + VAT + op3;
         document.getElementById('total').innerHTML = "&pound;" + total.toFixed(2);
     }
 }
+
+
+var MongoClient = require('mongodb').MongoClient
+  , assert = require('assert');
+ 
+// Connection URL 
+var url = 'mongodb://localhost:27017/nbgardensdata';
+// Use connect method to connect to the Server 
+MongoClient.connect(url, function(err, db) {
+  assert.equal(null, err);
+  console.log("Connected correctly to server");
+ 
+  db.close();
+});

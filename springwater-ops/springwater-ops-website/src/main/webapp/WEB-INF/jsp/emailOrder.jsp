@@ -146,15 +146,9 @@
                                 </div>
                             </div>
 
-                            <!-- Address Options -->
-                            <div class="panel" style="background:none">
-                                <a href="addaddresses" class="btn btn-block btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Address</a>
-                                <a href="addaddresses" class="btn btn-block btn-info"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit Address</a>
-                            </div>
-
                             <!-- Accept Button -->
                             <div class="panel" style="background:none" id="paymentDiv">
-                                <a href="orderconfirm" class="btn btn-block btn-primary"><img src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom-white.svg" style="width:40%;height:auto" /></a>
+                                <a id="email" class="btn btn-block btn-primary"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Send Your Order</a>
                             </div>
                         </div>
                     </div>

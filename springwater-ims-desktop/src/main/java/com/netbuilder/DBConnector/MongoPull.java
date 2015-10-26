@@ -43,7 +43,7 @@ public class MongoPull {
 	}
 	
 	public MongoPull() {
-
+		
 	}
 	
 	/**
@@ -88,7 +88,13 @@ public class MongoPull {
 			}
 			
 			addrVals.add(cursor.curr().get("City").toString());
-			addrVals.add(cursor.curr().get("County").toString());
+			
+			// Tom S edit: check for county before adding county string to results
+			Object county = cursor.curr().get("County");
+			if(county != null) {
+				addrVals.add(cursor.curr().get("County").toString());
+			}
+			
 			addrVals.add(cursor.curr().get("PostCode").toString());
 		}
 		
