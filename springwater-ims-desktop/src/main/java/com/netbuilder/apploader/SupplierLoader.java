@@ -7,8 +7,10 @@ package com.netbuilder.apploader;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import com.netbuilder.DBConnector.SQLDBConnector;
+import com.netbuilder.entities.PurchaseOrder;
 import com.netbuilder.entities.Supplier;
 
 /**
@@ -60,4 +62,11 @@ public class SupplierLoader {
 		constructResult();
 		return supplierList;
 	}
+
+	public ArrayList<Supplier> getSupplierList() {
+		sql = listQuery + tableName;
+		constructResult();
+		return supplierList;
+	}
+
 }
