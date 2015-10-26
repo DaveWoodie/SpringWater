@@ -103,6 +103,19 @@ public class PurchaseOrderLineLoader {
 	}
 	
 	/**
+	 * Method that creates an SQL query to retrieve the purchase order line given the order id and item id 
+	 * @param orderID : The Order ID of the order to search for
+	 * @param productID : The Item ID of the item to search for
+	 * @return Returns the specified purchase order line in an ArrayList
+	 */
+	public ArrayList<PurchaseOrderLine> getPurchaseOrderLineByOrderAndProduct(int orderID, int productID)
+	{
+		sql = "SELECT * FROM purchaseorderline where idPurchaseOrder = " + orderID + " and idItem = " + productID;
+		constructResult();
+		return purchaseOrderItemList;
+	}
+	
+	/**
 	 * Method to construct the sql query to update a purchase order line entry in the database and execute it
 	 * @param pOL the purchase order line object to be updated
 	 */

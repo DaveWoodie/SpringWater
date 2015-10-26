@@ -6,9 +6,8 @@ package com.netbuilder.logic;
 
 import java.util.ArrayList;
 
-import com.netbuilder.apploader.SupplierLoader;
-import com.netbuilder.entities.PurchaseOrder;
 import com.netbuilder.entities.Supplier;
+import com.netbuilder.loaders.SupplierLoader;
 
 public class SupplierLogic {	
 	private Object[][] supplierList;
@@ -32,13 +31,21 @@ public class SupplierLogic {
 	 * @param id of the supplier to be displayed
 	 * @return the array of data to display the supplier in the GUI
 	 */
-//	public Object[][] fetchPurchaseOrdersByID(int id) {
-//		pOList = new ArrayList<PurchaseOrder>(pOLoader.getPurchaseOrderByID(id));
-//		
-//		formatTable();
-//		
-//		return purchaseOrderList;
-//	}
+	public Object[][] fetchSupplierByID(int id) {
+		sList = new ArrayList<Supplier>(sLoader.getSupplierListByID(id));
+		
+		formatTable();
+		
+		return supplierList;
+	}
+	
+	public Object[][] fetchSupplierByName(String input) {
+		sList = new ArrayList<Supplier>(sLoader.getSupplierListByName(input));
+		
+		formatTable();
+		
+		return supplierList;
+	}
 	
 	/**
 	 * Method to format the purchase order entities' data into a format for the GUI
@@ -51,4 +58,6 @@ public class SupplierLogic {
 		}
 		
 	}
+
+
 }
