@@ -19,7 +19,6 @@
 
                 <script src="js/emailUpdated.js" type="text/javascript"></script>
 
-
                 <div class="row">
                     <div class="col-md-8">
                         <h1 id="productTitle"><small>Your Details</small></h1>
@@ -81,10 +80,10 @@
 
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">Item Code</span>
-                                    <input type="text" class="form-control" placeholder="Item Code" aria-describedby="basic-addon1" />
+                                    <input id="itemEntry" type="text" class="form-control" placeholder="Item Code" aria-describedby="basic-addon1" />
                                 </div>
                                 <br />
-                                <a href="addaddresses" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Item</a>
+                                <a id="addItem" onclick="addItem()" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Item</a>
                             </div>
                         </form>
                     </div>
@@ -94,20 +93,9 @@
                             <!-- Total panel -->
                             <div class="panel panel-success">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Order Details</h3></div>
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-sm-6 panel-body" id="panelLeft">Red Gnome</div>
-                                        <div class="col-sm-6 panel-body">&pound;12.99</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-6 panel-body" id="panelLeft">Sundial</div>
-                                        <div class="col-sm-6 panel-body">&pound;45.00</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-6 panel-body" id="panelLeft">Jacuzzi</div>
-                                        <div class="col-sm-6 panel-body">&pound;399.95</div>
-                                    </div>
+                                    <h3 class="panel-title">Item on your Order</h3></div>
+                                <div id="itemsOnOrder" class="container">
+                                    
                                 </div>
                             </div>
 
@@ -117,19 +105,19 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-sm-6 panel-body" id="panelLeft">Subtotal:</div>
-                                        <div class="col-sm-6 panel-body">&pound;457.94</div>
+                                        <div id="subTot" class="col-sm-6 panel-body"></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6 panel-body" id="panelLeft">VAT (20%):</div>
-                                        <div class="col-sm-6 panel-body">&pound;91.58</div>
+                                        <div id="VAT" class="col-sm-6 panel-body"></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6 panel-body" id="panelLeft">Postage:</div>
-                                        <div class="col-sm-6 panel-body">&pound;10.99</div>
+                                        <div id="postage" class="col-sm-6 panel-body"></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6 panel-body" id="panelLeft">Total Price:</div>
-                                        <div class="col-sm-6 panel-body">&pound;560.51</div>
+                                        <div id="total" class="col-sm-6 panel-body"></div>
                                     </div>
                                 </div>
                             </div>
