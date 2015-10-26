@@ -6,8 +6,6 @@
 package com.netbuilder.app;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -19,16 +17,12 @@ import java.util.regex.Pattern;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.SpringLayout;
-import javax.swing.SwingUtilities;
 
 @SuppressWarnings("serial")
 public class AddSupplierFrame extends JFrame {
@@ -71,7 +65,12 @@ public class AddSupplierFrame extends JFrame {
 	 * configures the frame
 	 */	
 	private void configFrame() {
-		setTitle("Add New Supplier");
+		@SuppressWarnings("unused")
+		String titleS = "Add New Supplier";
+		if (edit) {
+			titleS = "Edit Supplier";
+		}
+		setTitle("titleS");
 //		setSize(600,800);
 		setSize(500, 210);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
