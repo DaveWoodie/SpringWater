@@ -123,8 +123,6 @@
 			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
-	
- 
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
@@ -136,11 +134,17 @@
 			<artifactId>tomcat-embed-jasper</artifactId>
 			<scope>provided</scope>
 		</dependency>
-<!-- 		<depENDENCY> -->
-<!-- 			<GROUPID>COM.NETBUILDER</GROUPID> -->
-<!--   			<ARTIFACTID>COMMON</ARTIFACTID> -->
-<!--   			<VERSION>0.0.1-SNAPSHOT</VERSION> -->
-<!-- 		</DEPENDENCY> -->
+		
+		
+		
+		<dependency>
+			<groupId>com.netbuilder</groupId>
+  			<artifactId>common</artifactId>
+  			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		
+		
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>

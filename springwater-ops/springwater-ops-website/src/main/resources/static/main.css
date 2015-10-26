@@ -66,6 +66,9 @@ a:hover {
     font-size: 30px;
 }
 
+#A0, #A1, #A2, #A3, #A4 {
+    display: none;
+}
 #placeHolderTeam {
     font-size: 200px;
     text-align: center;
