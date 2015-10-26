@@ -11,6 +11,9 @@
         <link href="main.css" rel="stylesheet" />
         <link href="collapse.css" rel="stylesheet" />
         
+        <!-- Import javascript for searching -->
+        <script src="js/search.js" type="text/javascript"></script>
+        
         <!-- Import javaScript files for basket update -->
         <script src="js/basketUpdater.js" type="text/javascript"></script>
         
@@ -49,22 +52,22 @@
                             <li><a th:href="@{/items(category=Tool)}">Tools</a></li>
                             <li><a th:href="@{/items(category=Pottery)}">Pottery</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="items">Featured</a></li>
+                            <li><a th:href="@{/items(featured=true)}">Featured</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="items">Most Popular</a></li>
+                            <li><a th:href="@{/items(mostpopular=true)}">Most Popular</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="items">Wishlist Items</a></li>
+                            <li><a th:href="@{/items(wishlist=true)}">Wishlist Items</a></li>
                         </ul>
                     </li>
                 </ul>
 
-                <form class="navbar-form navbar-left" role="search">
+                <span class="navbar-form navbar-left" role="search">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for..." />
-                        <span class="input-group-btn"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
+                        <input type="text" class="form-control" id="searchbar" placeholder="Search for an item..."/>
+                        <span class="input-group-btn"><button class="btn btn-default" type="button" onclick="searchNav();"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
                         </span>
                     </div>
-                </form>
+                </span>
 
                 <form class="navbar-form navbar-right" role="search">
                     <a href="wishlist" class="btn btn-danger"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Wish List <span class="badge">0</span></a>

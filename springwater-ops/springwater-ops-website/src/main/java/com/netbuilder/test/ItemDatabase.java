@@ -202,8 +202,8 @@ public class ItemDatabase {
 				}
 			}
 			if (searchNameKey) {
-				if (item.getItemName().contains(nameKey)
-						|| item.getKeyword().contains(nameKey)) {
+				if (item.getItemName().toLowerCase().contains(nameKey.toLowerCase())
+						|| item.getKeyword().toLowerCase().contains(nameKey.toLowerCase())) {
 					addNameKey = true;
 				} else {
 					addNameKey = false;
@@ -221,5 +221,41 @@ public class ItemDatabase {
 			}
 		}
 		return resultList;
+	}
+	
+	static public ArrayList<Item> mostPopular() {
+		// Query sales data
+		ArrayList<Item> popularList = new ArrayList<Item>();
+		popularList.add(itemList.get(0));
+		popularList.add(itemList.get(2));
+		popularList.add(itemList.get(4));
+		popularList.add(itemList.get(6));
+		popularList.add(itemList.get(8));
+		popularList.add(itemList.get(10));
+		return popularList;
+	}
+	
+	static public ArrayList<Item> featured() {
+		// Query featured data
+		ArrayList<Item> featuredList = new ArrayList<Item>();
+		featuredList.add(itemList.get(1));
+		featuredList.add(itemList.get(3));
+		featuredList.add(itemList.get(5));
+		featuredList.add(itemList.get(7));
+		featuredList.add(itemList.get(9));
+		featuredList.add(itemList.get(11));
+		return featuredList;
+	}
+	
+	static public ArrayList<Item> wishlist(String userID) {
+		// Query featured data
+		ArrayList<Item> wishlist = new ArrayList<Item>();
+		wishlist.add(itemList.get(2));
+		wishlist.add(itemList.get(5));
+		wishlist.add(itemList.get(6));
+		wishlist.add(itemList.get(9));
+		wishlist.add(itemList.get(1));
+		wishlist.add(itemList.get(3));
+		return wishlist;
 	}
 }

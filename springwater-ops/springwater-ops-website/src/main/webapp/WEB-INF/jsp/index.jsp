@@ -35,207 +35,9 @@
         <!-- Gnome Featured Carousel -->
         <div class="container-fluid">
                 <h1>Featured Items</h1>
-                <div class="col-lg-2">
-                    <div id="carousel-featured" class="carousel slide" data-ride="carousel">
-
-                        <ol class="carousel-indicators">
-                            <li data-target="#carousel-featured" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-featured" data-slide-to="1"></li>
-                            <li data-target="#carousel-featured" data-slide-to="2"></li>
-                        </ol>
-
-                        <div class="carousel-inner" role="listbox">
-                            <!-- Gnome Carousel Images -->
-                            <div class="item active">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/happygnome.jpg" /></a>
-                            </div>
-
-                            <!-- Gnome Carousel Images -->
-                            <div class="item">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/mushroomgnome.jpg" /></a>
-                            </div>
-                        </div>
-
-
-                        <!-- Carousel Control Buttons -->
-                        <a class="left carousel-control" href="#carousel-featured" role="button" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="right carousel-control" href="#carousel-featured" role="button" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                </div>
-            
-                <div class="col-lg-2">
-                    <div id="carousel-featured1" class="carousel slide" data-ride="carousel">
-
-                        <ol class="carousel-indicators">
-                            <li data-target="#carousel-featured" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-featured" data-slide-to="1"></li>
-                            <li data-target="#carousel-featured" data-slide-to="2"></li>
-                        </ol>
-
-                        <div class="carousel-inner" role="listbox">
-                            <!-- Gnome Carousel Images -->
-                            <div class="item active">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/lanterngnome.jpg" /></a>
-                            </div>
-
-                            <!-- Gnome Carousel Images -->
-                            <div class="item">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/threegnomes.jpg" /></a>
-                            </div>
-                        </div>
-
-
-                        <!-- Carousel Control Buttons -->
-                        <a class="left carousel-control" href="#carousel-featured1" role="button" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="right carousel-control" href="#carousel-featured1" role="button" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                </div>
-            
-                <div class="col-lg-2">
-                    <div id="carousel-featured2" class="carousel slide" data-ride="carousel">
-
-                        <ol class="carousel-indicators">
-                            <li data-target="#carousel-featured" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-featured" data-slide-to="1"></li>
-                            <li data-target="#carousel-featured" data-slide-to="2"></li>
-                        </ol>
-
-                        <div class="carousel-inner" role="listbox">
-                            <!-- Gnome Carousel Images -->
-                            <div class="item active">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/wheelbarrowgnome.jpg" /></a>
-                            </div>
-
-                            <!-- Gnome Carousel Images -->
-                            <div class="item">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/creepygnome.jpg" /></a>
-                            </div>
-                        </div>
-
-
-                        <!-- Carousel Control Buttons -->
-                        <a class="left carousel-control" href="#carousel-featured2" role="button" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="right carousel-control" href="#carousel-featured2" role="button" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                </div>
-            
-                <div class="col-lg-2">
-                    <div id="carousel-featured3" class="carousel slide" data-ride="carousel">
-
-                        <ol class="carousel-indicators">
-                            <li data-target="#carousel-featured" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-featured" data-slide-to="1"></li>
-                            <li data-target="#carousel-featured" data-slide-to="2"></li>
-                        </ol>
-
-                        <div class="carousel-inner" role="listbox">
-                            <!-- Gnome Carousel Images -->
-                            <div class="item active">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/jacuzzi01.png" /></a>
-                            </div>
-
-                            <!-- Gnome Carousel Images -->
-                            <div class="item">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/jacuzzi02.jpg" /></a>
-                            </div>
-                        </div>
-
-
-                        <!-- Carousel Control Buttons -->
-                        <a class="left carousel-control" href="#carousel-featured3" role="button" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="right carousel-control" href="#carousel-featured3" role="button" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                </div>
-            
-                <div class="col-lg-2">
-                    <div id="carousel-featured4" class="carousel slide" data-ride="carousel">
-
-                        <ol class="carousel-indicators">
-                            <li data-target="#carousel-featured" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-featured" data-slide-to="1"></li>
-                            <li data-target="#carousel-featured" data-slide-to="2"></li>
-                        </ol>
-
-                        <div class="carousel-inner" role="listbox">
-                            <!-- Gnome Carousel Images -->
-                            <div class="item active">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/jacuzzi03.jpg" /></a>
-                            </div>
-
-                            <!-- Gnome Carousel Images -->
-                            <div class="item">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/jacuzzi04.png" /></a>
-                            </div>
-                        </div>
-
-
-                        <!-- Carousel Control Buttons -->
-                        <a class="left carousel-control" href="#carousel-featured4" role="button" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="right carousel-control" href="#carousel-featured4" role="button" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                </div>
-            
-                <div class="col-lg-2">
-                    <div id="carousel-featured5" class="carousel slide" data-ride="carousel">
-
-                        <ol class="carousel-indicators">
-                            <li data-target="#carousel-featured" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-featured" data-slide-to="1"></li>
-                            <li data-target="#carousel-featured" data-slide-to="2"></li>
-                        </ol>
-
-                        <div class="carousel-inner" role="listbox">
-                            <!-- Gnome Carousel Images -->
-                            <div class="item active">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/neverbend.jpg" /></a>
-                            </div>
-
-                            <!-- Gnome Carousel Images -->
-                            <div class="item">
-                                <a class="thumbnail" id="smallThumb" href="itempage"><img class="img-responsive" src="img/spearjackson.jpg" /></a>
-                            </div>
-                        </div>
-
-
-                        <!-- Carousel Control Buttons -->
-                        <a class="left carousel-control" href="#carousel-featured5" role="button" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="right carousel-control" href="#carousel-featured5" role="button" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
+                <div th:each="item : ${featured}" class="col-lg-2">
+                    <div class="item">
+                                <a class="thumbnail" th:href="'itempage+' + ${item.itemID}"><img class="img-responsive" th:src="${item.imageLocation}" /></a>
                     </div>
                 </div>
         </div>
@@ -262,11 +64,8 @@
                             <div class="item active">
                                 <div class="container-fluid">
                                     <div class="row">
-                                        <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/happygnome.jpg" /></a> 
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/mushroomgnome.jpg" /></a>
+                                        <div th:each="item : ${mostpopular1}" class="col-lg-6">
+                                            <a class="thumbnail" id="carouselThumb" th:href="'itempage+' + ${item.itemID}"><img class="img-responsive" th:src="${item.imageLocation}" /></a> 
                                         </div>
                                     </div>
                                 </div>
@@ -276,11 +75,8 @@
                             <div class="item">
                                 <div class="container-fluid">
                                     <div class="row">
-                                        <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/lanterngnome.jpg" /></a> 
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/threegnomes.jpg" /></a>
+                                        <div th:each="item : ${mostpopular2}" class="col-lg-6">
+                                            <a class="thumbnail" id="carouselThumb" th:href="'itempage+' + ${item.itemID}"><img class="img-responsive" th:src="${item.imageLocation}" /></a> 
                                         </div>
                                     </div>
                                 </div>
@@ -290,11 +86,8 @@
                             <div class="item">
                                 <div class="container-fluid">
                                     <div class="row">
-                                        <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/spearjackson.jpg" /></a> 
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/neverbend.jpg" /></a>
+                                        <div th:each="item : ${mostpopular3}" class="col-lg-6">
+                                            <a class="thumbnail" id="carouselThumb" th:href="'itempage+' + ${item.itemID}"><img class="img-responsive" th:src="${item.imageLocation}" /></a> 
                                         </div>
                                     </div>
                                 </div>
@@ -329,11 +122,20 @@
                             <div class="item active">
                                 <div class="container-fluid">
                                     <div class="row">
-                                        <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/jacuzzi01.png" /></a> 
+                                        <div th:each="item : ${wishlist1}" class="col-lg-6">
+                                            <a class="thumbnail" id="carouselThumb" th:href="'itempage+' + ${item.itemID}"><img class="img-responsive" th:src="${item.imageLocation}" /></a> 
                                         </div>
-                                        <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/pot01.jpg" /></a>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Gnome Carousel Images -->
+                            <div class="item">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div th:each="item : ${wishlist2}" class="col-lg-6">
+                                            <a class="thumbnail" id="carouselThumb" th:href="'itempage+' + ${item.itemID}"><img class="img-responsive" th:src="${item.imageLocation}" /></a> 
                                         </div>
                                     </div>
                                 </div>
@@ -343,25 +145,8 @@
                             <div class="item">
                                 <div class="container-fluid">
                                     <div class="row">
-                                        <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/pot03.jpg" /></a> 
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/pot02.jpg" /></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Gnome Carousel Images -->
-                            <div class="item">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/pot01.jpg" /></a> 
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" href="itempage"><img class="img-responsive" src="img/pot02.JPG" /></a>
+                                        <div th:each="item : ${wishlist3}" class="col-lg-6">
+                                            <a class="thumbnail" id="carouselThumb" th:href="'itempage+' + ${item.itemID}"><img class="img-responsive" th:src="${item.imageLocation}" /></a> 
                                         </div>
                                     </div>
                                 </div>

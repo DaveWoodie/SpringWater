@@ -20,8 +20,14 @@ public class ItemsController {
 			@RequestParam(value = "category", required = false) String category,
 			@RequestParam(value = "search", required = false) String search,
 			@RequestParam(value = "colour", required = false) String colour,
+			@RequestParam(value = "featured", required = false) String featured,
+			@RequestParam(value = "mostpopular", required = false) String mostPopular,
+			@RequestParam(value = "wishlist", required = false) String wishlist,
 			Model model) {
 		ArrayList<Item> resultList = new ArrayList<Item>();
+		
+		//Change this once database connection exists
+		String userID = "001";
 		boolean searchCategory = false;
 		boolean searchNameKey = false;
 		boolean searchColour = false;
@@ -36,6 +42,15 @@ public class ItemsController {
 		}
 		resultList = ItemDatabase.multiSearch(searchCategory, category,
 				searchNameKey, search, searchColour, colour);
+		if (featured != null) {
+			resultList = ItemDatabase.featured();
+		}
+		if (mostPopular != null) {
+			resultList = ItemDatabase.mostPopular();
+		}
+		if (wishlist != null) {
+			resultList = ItemDatabase.wishlist(userID);
+		}
 		model.addAttribute("itemList", resultList);
 		return "items";
 	}
