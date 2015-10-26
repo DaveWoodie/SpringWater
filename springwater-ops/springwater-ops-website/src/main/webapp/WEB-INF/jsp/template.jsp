@@ -13,16 +13,16 @@
         
         <!-- Import javaScript files for basket update -->
         <script src="js/basketUpdater.js" type="text/javascript"></script>
+        
+        <!-- Call the basket updater -->
+		<script>
+	    	basketUpdater();
+	    </script>
     </head>
     
     <div th:include="this :: header"></div>
     
 <body>
-	<!-- Call the basket updater -->
-	<script>
-    	basketUpdater();
-    </script>
-
     <!-- Navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
