@@ -1,56 +1,87 @@
 package com.netbuilder.JMS;
 
-import java.io.File;
-
-import javax.faces.application.Application;
+import javax.annotation.Resource;
+import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
+import javax.jms.Destination;
 import javax.jms.JMSException;
-import javax.jms.Message;
+import javax.jms.MessageProducer;
+import javax.jms.Queue;
 import javax.jms.Session;
+import javax.jms.TextMessage;
+import javax.jms.Topic;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.jms.annotation.EnableJms;
-import org.springframework.jms.config.JmsListenerContainerFactory;
-import org.springframework.jms.config.SimpleJmsListenerContainerFactory;
-import org.springframework.jms.core.JmsTemplate;
-import org.springframework.jms.core.MessageCreator;
-import org.springframework.util.FileSystemUtils;
-
-@SpringBootApplication
-@EnableJms
-public class Sender {
+public class Sender{
+	//Injects resources for a connection factory, queue, and topic
+			@Resource(lookup = "jms/ConnectionFactory")
+			private static ConnectionFactory connectionFactory;
+			@Resource(lookup = "jms/Queue")private static Queue queue;
+			@Resource(lookup = "jms/Topic")private static Topic topic;
+			
+	public void Main (String [] args) {
+		
 	
-	@Bean JmsListenerContainerFactory<?>
-	myJmsContainerFactory(ConnectionFactory cF) {
-	SimpleJmsListenerContainerFactory f = new
-	SimpleJmsListenerContainerFactory();
-	 f.setConnectionFactory(cF);
-	 return f;
-	}
-
-	public static void main(String[] args) {
-		//clean out any previous data from run
-		FileSystemUtils.deleteRecursively(new File("activemq-data"));
+		//Retrieves and verifies command-line arguments that specify the destination type and the number of arguments
+		final int NUM_MSGS;
+		String destType = args[0];
+		System.out.println("Destination type is " + destType);
+		if ( ! ( destType.equals("queue") || destType.equals("topic") ) ) { 
+		    System.out.println("Argument must be 'queue' or " + "'topic'");
+		    System.exit(1);
+		}
+		if (args.length == 2){ 
+		    NUM_MSGS = (new Integer(args[1])).intValue();
+		} 
+		else { 
+		    NUM_MSGS = 1;
+		}
 		
-		//launch application
-		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+		//Assigns either the queue or the topic to a destination object, based on the specified destination type
 		
-		//send message
-		MessageCreator mC = new MessageCreator() {
-
-			@Override
-			public Message createMessage(Session session) throws JMSException {
-				return session.createTextMessage("ping!");
+		Destination dest = null;
+		try { 
+		    if (destType.equals("queue")) { 
+		        dest = (Destination) queue; 
+		    } else { 
+		        dest = (Destination) topic; 
+		    }
+		} 
+		catch (Exception e) {
+		    System.err.println("Error setting destination: " + e.toString()); 
+		    e.printStackTrace(); 
+		    System.exit(1);
+		}
+		
+		//Creates a Connection and a Session
+		Connection connection = null;
+		try {
+			connection = connectionFactory.createConnection();
+			Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+			
+			//Creates a MessageProducer and a TextMessage
+			MessageProducer producer = session.createProducer(dest);
+			TextMessage message = session.createTextMessage();
+			
+			//Sends one or more messages to the destination
+			for (int i = 0; i < NUM_MSGS; i++) { 
+			    message.setText("This is message " + (i + 1) + " from producer"); 
+			    System.out.println("Sending message: " + message.getText()); 
+			    producer.send(message);
 			}
 			
-		};
+			//Sends an empty control message to indicate the end of the message stream
+			producer.send(session.createMessage());
+			
+		} catch (JMSException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		 finally { 
+			    if (connection != null) { 
+			        try { connection.close(); } 
+			        catch (JMSException e) { } 
+			    }
+			}
 		
-		JmsTemplate jmsTemplate = context.getBean(JmsTemplate.class);
-		System.out.println("Sending a new message");
-		jmsTemplate.send("mailbox-destination", mC);
 	}
-	
 }
