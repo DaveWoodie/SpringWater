@@ -26,7 +26,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import com.netbuilder.controller.ItemController;
 import com.netbuilder.logic.LoginAuthentication;
 
 /**

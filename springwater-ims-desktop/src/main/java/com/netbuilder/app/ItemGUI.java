@@ -34,8 +34,12 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import com.netbuilder.apploader.ItemLoader;
+import com.netbuilder.apploader.PurchaseOrderLineLoader;
+import com.netbuilder.apploader.PurchaseOrderLoader;
 import com.netbuilder.apploader.SupplierLoader;
 import com.netbuilder.entities.Item;
+import com.netbuilder.entities.PurchaseOrder;
+import com.netbuilder.entities.PurchaseOrderLine;
 import com.netbuilder.entities.Supplier;
 
 /**
@@ -47,11 +51,14 @@ public class ItemGUI extends JFrame
 	private Item item;
 	private ItemLoader itemLoader = new ItemLoader();
 	private SupplierLoader supplierLoader = new SupplierLoader();
+	private PurchaseOrderLoader purchaseOrderLoader = new PurchaseOrderLoader();
+	private PurchaseOrderLineLoader purchaseOrderLineLoader = new PurchaseOrderLineLoader();
 	
 	private int itemID = 1;
 	private BufferedImage productImage;
 	private Image img;
 	private JTabbedPane tabbedPane;
+	private JTable tableItem;
 	
 	//------test data----------------------
 	private LoadData Data = new LoadData();
@@ -208,6 +215,7 @@ public class ItemGUI extends JFrame
 				@Override
 				public void actionPerformed(ActionEvent e) 
 				{
+					/*
 					//null check
 					if(textAdd.getText().equals(""))
 					{
@@ -243,7 +251,7 @@ public class ItemGUI extends JFrame
 							tableModel.insertRow(0, listPO.get(listPO.size() - 1));
 							break;
 						}
-					}
+					}*/
 				}
 			});
 			
@@ -274,7 +282,7 @@ public class ItemGUI extends JFrame
 		//Item Table
 		JPanel panelTable = new JPanel(new BorderLayout());
 		
-		JTable tableItem = new JTable(tableModel);
+		tableItem = new JTable(tableModel);
 		tableItem.setFillsViewportHeight(true);
 		JScrollPane scrollTable = new JScrollPane();
 		scrollTable.setMinimumSize(new Dimension(getWidth(), getHeight()));
@@ -286,8 +294,24 @@ public class ItemGUI extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				IndividualPurchaseOrderViewFrame ipo = new IndividualPurchaseOrderViewFrame(1, "Supplier", "12/07/2015", "Order Placed", "£100");
-				ipo.setVisible(true);
+				if(tableItem.getSelectedRow() > -1)
+				{
+					int purchaseOrderID = (int) tableModel.getValueAt(tableItem.getSelectedRow(), 0);
+					ArrayList<PurchaseOrder> purchaseOrderList = purchaseOrderLoader.getPurchaseOrderByID(purchaseOrderID);
+					PurchaseOrder purchaseOrder = purchaseOrderList.get(0);
+						
+					//TODO change individual PO frame constructor to only take the PO id and get the rest of the info from that
+					IndividualPurchaseOrderViewFrame ipo = new IndividualPurchaseOrderViewFrame(purchaseOrderID, 
+																								textSupplier.getText(), 
+																								"12/07/2015", 
+																								purchaseOrder.getPurchaseOrderStatus().getPurchOrderStatus(), 
+																								"£100");
+					ipo.setVisible(true);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Please choose a purchase order to view");
+				}
 			}
 		});
 		
@@ -299,19 +323,9 @@ public class ItemGUI extends JFrame
 		panelMain.add(panelItem);
 		panelMain.add(panelTable);
 		
-		setLabels(itemID);
+		setLabels();
 		
-		//--------------------Testing-----------------------
-		//table testing
-		tableModel.addRow(new Object[]{PO[2][0], "02/06/2015", 20, "Order Placed"});
-		tableModel.addRow(new Object[]{PO[1][0], PO[1][1], 35, "Order Completed"});
-		
-		//mongo testing
-		ArrayList<Item> itemList = new ArrayList<Item>();
-		itemLoader = new ItemLoader();
-		itemList = itemLoader.loadItemByID(1);
-		System.out.println(itemList.get(0).getImageLocation());
-		//---------------------------------------------------
+		loadTable();
 	}
 	
 	/**
@@ -332,7 +346,33 @@ public class ItemGUI extends JFrame
 		tabbedPane.add("Predicted Sales", panelPredictedSales);
 	}
 	
-	public void setLabels(int itemID)
+	/**
+	 * Method that loads the table model with the items purchase order information
+	 */
+	public void loadTable()
+	{
+		ArrayList<PurchaseOrder> purchaseOrderList = purchaseOrderLoader.getPurchaseOrderListByItem(itemID);
+		ArrayList<PurchaseOrderLine> purchaseOrderLineList;
+		
+		if(purchaseOrderList.size() > 0)
+		{
+			for(int i = 0; i < purchaseOrderList.size(); i++)
+			{
+				purchaseOrderLineList = purchaseOrderLineLoader.getPurchaseOrderLineByOrderAndProduct(purchaseOrderList.get(i).getIDPurchaseOrder(), itemID);
+				
+				tableModel.addRow(new Object[]{purchaseOrderList.get(i).getIDPurchaseOrder(), 
+											   purchaseOrderList.get(i).getDatePlaced(),
+											   purchaseOrderLineList.get(0).getQuantity(),
+											   purchaseOrderList.get(i).getPurchaseOrderStatus().getPurchOrderStatus()});
+			}
+		}
+	}
+	
+	/**
+	 * Method to set the JLabels on the Item Info panel
+	 * @param itemID : The specified items ID
+	 */
+	private void setLabels()
 	{	
 		textName.setText(item.getItemName());
 		textPrice.setText("£" + Float.toString(item.getPrice()));
@@ -340,7 +380,6 @@ public class ItemGUI extends JFrame
 		
 		ArrayList<Supplier> supplierList = supplierLoader.getSupplierListByID(item.getIdSupplier());
 		textSupplier.setText(supplierList.get(0).getSupplierName());
-		
 	}
 	
 	/**
@@ -357,7 +396,7 @@ public class ItemGUI extends JFrame
 	
 	/**
 	 * Method that loads an labelImage from the resources folder by passing the labelImage files name
-	 * @param labelImageFileName
+	 * @param labelImageFileName : The file location name in src/main/resources/Images/ e.g red_gnome.png
 	 */
 	public void getProductlabelImage(String labelImageFileName)
 	{
