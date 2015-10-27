@@ -3,11 +3,11 @@ package com.netbuilder.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import loaders.WebLoginLoader;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-//import com.netbuilder.loaders.WebLoginLoader;
 
 @Controller
 public class loginController {
@@ -34,6 +34,7 @@ public class loginController {
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}
+
 		
 		return "redirect:/loginregister";
 	}

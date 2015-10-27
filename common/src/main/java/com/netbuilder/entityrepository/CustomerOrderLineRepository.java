@@ -15,7 +15,6 @@ import com.netbuilder.entities.CustomerOrderLine;
  * @date 07/10/2015
  */
 
-@Repository
-public interface CustomerOrderLineRepository extends CrudRepository<CustomerOrderLine, Integer> {
+public interface CustomerOrderLineRepository {
 	public List<CustomerOrder> findByID(int id);
 }

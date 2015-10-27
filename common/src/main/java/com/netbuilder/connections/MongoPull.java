@@ -7,6 +7,7 @@ package com.netbuilder.connections;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.bson.BSONObject;
 
@@ -34,16 +35,29 @@ public class MongoPull {
 	private ArrayList<Item> itemList = new ArrayList<Item>();
 
 	
+	
 	public static void main(String[] args) {
 		MongoPull tst = new MongoPull();
-		List<String> addrCols = tst.getAddress(4);
-		for(String s: addrCols) {
-			System.out.println(s);
-		}
+		int itemID = 6;
+		ArrayList<Item> itList = tst.getItemInf(itemID);
+		Item i = itList.get(0);
+		i.print();
+		
+		i.setDescription("Gnome Romeo. Get it?");
+		
+		MongoPush mp = new MongoPush();
+		mp.updateItem(i);
+		mp.setContinuedStateForItem(itemID, true);
+		
+		System.out.println("");
+		itList = tst.getItemInf(itemID);
+		i = itList.get(0);
+		i.print();
 	}
 	
+	
 	public MongoPull() {
-
+		
 	}
 	
 	/**
@@ -88,7 +102,13 @@ public class MongoPull {
 			}
 			
 			addrVals.add(cursor.curr().get("City").toString());
-			addrVals.add(cursor.curr().get("County").toString());
+			
+			// Tom S edit: check for county before adding county string to results
+			Object county = cursor.curr().get("County");
+			if(county != null) {
+				addrVals.add(cursor.curr().get("County").toString());
+			}
+			
 			addrVals.add(cursor.curr().get("PostCode").toString());
 		}
 		
@@ -159,19 +179,24 @@ public class MongoPull {
 			String imageLocation = cursor.curr().get("ImageLocation").toString();
 			itemInfs.add(cursor.curr().get("SalesRate").toString());
 			itemInfs.add(cursor.curr().get("PSalesRate").toString());
-			boolean isPorousWare = (boolean) cursor.curr().get("IsPorousware");
-			boolean discontinued = (boolean) cursor.curr().get("Discontinued");
+			boolean isPorousWare = handleMongoBoolean(cursor.curr().get("IsPorousware"));
+			boolean discontinued = handleMongoBoolean(cursor.curr().get("Discontinued"));
 			String idSupplier = cursor.curr().get("idSupplier").toString();
 			
 			Item newItem = new Item(itemName, itemDescription, Float.parseFloat(itemPrice), Float.parseFloat(itemCost), (int) Float.parseFloat(numberInStock), imageLocation, discontinued, isPorousWare, (int) Float.parseFloat(idSupplier));
 			
-//			BSONObject bsobj = (BSONObject) cursor.curr().get("Attributes");
-//			
-//			for(int i = 0; i < attrs.length; i++) {
-//				if(bsobj.containsField(attrs[i])) {
-//					itemInfs.add(bsobj.get(attrs[i]).toString());
-//				}
-//			}
+			BSONObject bsobj = (BSONObject) cursor.curr().get("Attributes");
+			Set<String> keys = bsobj.keySet();
+			for(String key : keys) {
+				String val = bsobj.get(key).toString();
+				
+				try {
+					newItem.addAttribute(key, val);
+				} catch (Exception e) {
+					throw new Error(e);
+				}
+			}
+			newItem.setItemID(id);
 			
 			itemList.add(newItem);
 		}
@@ -182,6 +207,15 @@ public class MongoPull {
 		mdbc.mongoDisconnect();
 		
 		return itemList;
+	}
+	
+	/**
+	 * method to evaluate the passed Mongo boolean field
+	 * @param fieldToEvaluate
+	 * @return
+	 */
+	private boolean handleMongoBoolean(Object fieldToEvaluate) {
+		return fieldToEvaluate.toString().equals("true");
 	}
 	
 	/**

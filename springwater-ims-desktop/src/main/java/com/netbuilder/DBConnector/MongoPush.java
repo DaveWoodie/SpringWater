@@ -22,7 +22,6 @@ public class MongoPush {
 	
 	//Create instance of MongoDB Connector to connect to DB
 	private MongoDBConnector mdbc = new MongoDBConnector();
-	
 	private final String dataBase = "nbgardensdata";
 	
 	public static void main(String[] args) {
@@ -32,10 +31,15 @@ public class MongoPush {
 		tst.addItem(item);
 	}
 	
+	/**
+	 * Adds the passed Item to the MongoDB database and returns the ID assigned to the new Item
+	 * @param item
+	 * @return
+	 */
 	public int addItem(Item item) {
 		// TODO change item costs/prices to doubles instead of floats
 		mdbc.mongoConnect();
-		DB db = mdbc.getConnection().getDB("nbgardensdata");
+		DB db = mdbc.getConnection().getDB(dataBase);
 		
 		DBCollection collection = db.getCollection("Item");
 		
@@ -48,13 +52,26 @@ public class MongoPush {
 		}
 
 		BasicDBObject itemObject = createItemDBObjectFromItem(item, newItemID);
-		
 						
 		collection.insert(itemObject);
 		
 		mdbc.mongoDisconnect();
 		
-		return 1;
+		return newItemID;
+	}
+	
+	public void setContinuedStateForItem(int itemID, boolean continuedState) {
+		mdbc.mongoConnect();
+		DB db = mdbc.getConnection().getDB(dataBase);
+		
+		DBCollection collection = db.getCollection("Item");
+		
+		BasicDBObject newDocument = new BasicDBObject();
+		newDocument.append("$set", new BasicDBObject().append("Discontinued", !continuedState));
+				
+		BasicDBObject searchQuery = new BasicDBObject().append("idItem", itemID);
+
+		collection.update(searchQuery, newDocument);
 	}
 	
 	/**
@@ -83,6 +100,11 @@ public class MongoPush {
 		return itemObject;
 	}
 	
+	/**
+	 * Creates the Item Attributes HashMap from the attributes of the passed Item
+	 * @param item
+	 * @return
+	 */
 	private BasicDBObject createAttributesFromItem(Item item) {
 		BasicDBObject newAttributes = new BasicDBObject();
 		HashMap<String, String> itemAttributes = item.getAttributes();
@@ -105,7 +127,7 @@ public class MongoPush {
 	public int addAddress(Address addr) {
 
 		mdbc.mongoConnect();
-		DB db = mdbc.getConnection().getDB("nbgardensdata");
+		DB db = mdbc.getConnection().getDB(dataBase);
 		BasicDBObject addressObject = new BasicDBObject();
 		BasicDBObject addressLines = new BasicDBObject();
 		
