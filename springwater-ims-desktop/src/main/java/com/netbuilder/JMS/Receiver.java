@@ -1,23 +1,48 @@
 package com.netbuilder.JMS;
 
-import java.io.File;
+import javax.jms.Connection;
+import javax.jms.Destination;
+import javax.jms.Message;
+import javax.jms.MessageConsumer;
+import javax.jms.MessageListener;
+import javax.jms.Session;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.jms.annotation.JmsListener;
-import org.springframework.stereotype.Component;
-import org.springframework.util.FileSystemUtils;
+import org.apache.activemq.ActiveMQConnectionFactory;
 
-@Component
-public class Receiver {
+
+public class Receiver implements MessageListener{
 	
-	@Autowired
-	ConfigurableApplicationContext context;
+	public MessageConsumer consumer;
+	private final String boardName = "IMS.IN";
 	
-	@JmsListener(destination = "mailbox-destination", containerFactory = "myJmsContainerFactory")
-	public void receiveMessage(String message) {
-		System.out.println("Received " + message);
-		context.close();
-		FileSystemUtils.deleteRecursively(new File("activemq-data"));
+	public Receiver() {
+		try {
+			 
+            // Create a ConnectionFactory
+            ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://localhost:8081");
+
+            // Create a Connection
+            Connection connection = connectionFactory.createConnection();
+            connection.start();
+
+            // Create a Session
+            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+
+            // Create the destination (Topic or Queue)
+            Destination destination = session.createQueue(boardName);
+
+            // Create a MessageConsumer from the Session to the Topic or Queue
+            consumer = session.createConsumer(destination);
+		}
+		catch (Exception e) {
+			
+		}
 	}
+	
+	@Override
+	public void onMessage(Message message) {
+		// TODO Handle inbound message types
+		
+	}
+
 }

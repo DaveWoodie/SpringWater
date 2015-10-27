@@ -122,7 +122,12 @@ public class MongoPush {
 		return newAddrID;
 	}
 	
-	
+	/**
+	 * Adds a new WishList to the MongoDB database.
+	 * Throws exception if wishlist for that customer already exists
+	 * @param wish
+	 * @throws Exception
+	 */
 	public void addWishList(WishList wish) throws Exception {
 
 		mdbc.mongoConnect();
@@ -136,11 +141,14 @@ public class MongoPush {
 			System.out.println("Tried to add new wishlist for customer where wishlist already exists");
 			throw new Exception();
 		} else {
-			
+			BasicDBObject newWishList = makeMongoObjectFromWishList(wish);
+			collection.insert(newWishList);
 		}
 		
 		mdbc.mongoDisconnect();
 	}
+	
+	
 	
 	/******************************************************************************/
 	// UPDATE UPDATE UPDATE UPDATE UPDATE UPDATE UPDATE UPDATE UPDATE UPDATE UPDATE
@@ -317,5 +325,19 @@ public class MongoPush {
 		cursor.close();
 		return maxInt;
 	}
+	
+
+	private BasicDBObject makeMongoObjectFromWishList(WishList wish) {
+		BasicDBObject wishListObject = new BasicDBObject();
+		wishListObject.put("idCustomer", wish.getCustomerID());
+		int numberOfItems = wish.getItems().size();
+		int[] itemIDs = new int[numberOfItems];
+		for(int i = 0; i < numberOfItems; i++) {
+			itemIDs[i] = wish.getItems().get(i).getIdItem();
+		}
+		wishListObject.put("items", itemIDs);
+		return wishListObject;
+	}
+	
 	
 }

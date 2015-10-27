@@ -39,16 +39,28 @@ public class SupplierLogic {
 		return supplierList;
 	}
 	
-	public Object[][] fetchSupplierByName(String input) {
-		sList = new ArrayList<Supplier>(sLoader.getSupplierListByName(input));
+	/**
+	 * @author abutcher
+	 * Method to load and format the entity of a single supplier by name for the GUI
+	 * @param name of supplier to be displayed
+	 * @return the array of data to display the supplier in the GUI
+	 */
+	public Object[][] fetchSupplierByName(String name) {
+		sList = new ArrayList<Supplier>(sLoader.getSupplierListByName(name));
 		
 		formatTable();
 		
 		return supplierList;
 	}
 	
-	public Object[][] fetchSupplierByProductID(String input) {
-		sList = new ArrayList<Supplier>(sLoader.getSupplierListByProductID((Integer.parseInt(input))));
+	/**
+	 * @author abutcher
+	 * Method to load and format the entity of a single supplier by product id for the GUI
+	 * @param id of the product to find the supplier to be displayed
+	 * @return the array of data to display the supplier in the GUI
+	 */
+	public Object[][] fetchSupplierByProductID(String id) {
+		sList = new ArrayList<Supplier>(sLoader.getSupplierListByProductID((Integer.parseInt(id))));
 		
 		formatTable();
 		
@@ -59,10 +71,16 @@ public class SupplierLogic {
 	 * Method to format the purchase order entities' data into a format for the GUI
 	 */
 	private void formatTable() {
-		supplierList = new Object[sList.size()][2];
+		supplierList = new Object[sList.size()][7];
 		for (int i = 0; i < sList.size(); i++) {
 			supplierList[i][0] = sList.get(i).getSupplierID();
 			supplierList[i][1] = sList.get(i).getSupplierName();
+			supplierList[i][2] = sList.get(i).getTelephone();
+			supplierList[i][3] = sList.get(i).getEmail();
+			//TODO get address
+			supplierList[i][4] = sList.get(i).getAddressID();
+			supplierList[i][5] = sList.get(i).getAverageDeliveryTime();
+			supplierList[i][6] = "placeholder.png";
 		}
 		
 	}
