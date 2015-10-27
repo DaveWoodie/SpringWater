@@ -7,7 +7,6 @@ package com.netbuilder.loaders;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 
 import com.netbuilder.connections.SQLDBConnector;
 import com.netbuilder.entities.Item;

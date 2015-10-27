@@ -5,6 +5,7 @@ var item2 = ["Sundial", "45.00"];
 var item3 = ["Jacuzzi", "399.95"];
 
 var subTotals = [];
+var sublength = subTotals.length;
 
 var increment = 0;
 
@@ -20,7 +21,7 @@ function updateAddr(ID) {
     for (var n = 0; n < document.getElementById(ID).value.length; n++) {
         answers[ID] = document.getElementById(ID).value;
     }
-    
+
     if (document.getElementById(ID).value === "") {
         document.getElementById('A' + ID).style.display = "none";
         document.getElementById('A' + ID).innerHTML = "";
@@ -31,41 +32,30 @@ function updateAddr(ID) {
 }
 
 function addItem() {
-    var itemID = document.getElementById('itemEntry').value;
-
-    var itemsOnOrder = document.getElementById('itemsOnOrder');
-
+    
     var containerDiv = document.createElement('div');
-
-    var item;
-
-    if (itemID == 1) {
-        console.log(item1[0] + " " + item1[1]);
-        item = '<div class="row"> <div class="col-sm-6 panel-body" id="panelLeft">' + item1[0] + '</div> <div class="col-sm-6 panel-body">&pound;' + item1[1] + '</div> </div>';
-        subTotals.push(item1[1]);
-    } else if (itemID == 2) {
-        console.log(item2[0] + " " + item2[1]);
-        item = '<div class="row"> <div class="col-sm-6 panel-body" id="panelLeft">' + item2[0] + '</div> <div class="col-sm-6 panel-body">&pound;' + item2[1] + '</div> </div>';
-        subTotals.push(item2[1]);
-    } else if (itemID == 3) {
-        console.log(item3[0] + " " + item3[1]);
-        item = '<div class="row"> <div class="col-sm-6 panel-body" id="panelLeft">' + item3[0] + '</div> <div class="col-sm-6 panel-body">&pound;' + item3[1] + '</div> </div>';
-        subTotals.push(item3[1]);
-    } else {
-        console.log("Item Doesn't exist");
-    }
-
+    
+    var selector = document.getElementById('itemid');
+    var price = selector.options[selector.selectedIndex].value;
+    var itemInf = selector.options[selector.selectedIndex].text;
+    
+    subTotals[increment] = price;
+    
+    item = '<div id="' + increment + '" class="row"> <div class="col-sm-5 panel-body" id="panelLeft">' + itemInf + '</div> <div class="col-sm-2 panel-body">' + price + '</div> <div class="col-sm-5 panel-body text-center"><button onclick="removeItem(' + increment + ')" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Remove</button></div> </div>';
+    
     subTotal();
 
     containerDiv.innerHTML = item;
 
     itemsOnOrder.appendChild(containerDiv);
+    
+    increment++;
 }
 
 function subTotal() {
 
     var parsed;
-    tot=0;
+    tot = 0;
     for (var i = 0; i < subTotals.length; i++) {
         parsed = parseFloat(subTotals[i]);
 
@@ -80,7 +70,7 @@ function subTotal() {
 function vat() {
 
     VAT = tot * 0.2;
-    
+
     var rounded = VAT.toFixed(2);
 
     document.getElementById('VAT').innerHTML = "&pound;" + rounded;
@@ -91,8 +81,17 @@ function vat() {
 function postageAndFinal() {
 
     var total = 0;
-
-    if (subTotals.length < 4) {
+    
+ 
+    console.log(checkArray());
+    
+    
+    if(checkArray()) {   
+        document.getElementById('postage').innerHTML = "&pound;0.00";
+        document.getElementById('total').innerHTML = "&pound;0.00";
+        document.getElementById('subTot').innerHTML = "&pound;0.00";
+        document.getElementById('VAT').innerHTML = "&pound;0.00";
+    } else if (subTotals.length < 4) {
         document.getElementById('postage').innerHTML = "&pound;" + op1;
         total = tot + VAT + op1;
         document.getElementById('total').innerHTML = "&pound;" + total.toFixed(2);
@@ -108,15 +107,22 @@ function postageAndFinal() {
     }
 }
 
-var MongoClient = require('mongodb').MongoClient
-  , assert = require('assert');
- 
-// Connection URL 
-var url = 'mongodb://localhost:27017/nbgardensdata';
-// Use connect method to connect to the Server 
-MongoClient.connect(url, function(err, db) {
-  assert.equal(null, err);
-  console.log("Connected correctly to server");
- 
-  db.close();
-});
+function removeItem(divID) {
+    
+    var element = document.getElementById(divID);
+    element.parentNode.removeChild(element);
+    
+    subTotals[divID] = 0.00;
+    
+    subTotal();
+}
+
+function checkArray() {
+    for(var i = 0; i < subTotals.length; i++) {
+        if(subTotals[i] != 0.00) {
+            return false;
+        }
+    }
+    
+    return true;
+}
