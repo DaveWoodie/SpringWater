@@ -5,23 +5,20 @@
 
 package com.netbuilder.controller;
 
-import java.util.ArrayList;
-import java.util.Random;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.HandlerMapping;
-
-import com.netbuilder.test.Item;
 import com.netbuilder.test.ItemDatabase;
-import com.netbuilder.test.Review;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/basket")
 public class BasketController {
-
+	
+	@RequestMapping(method=RequestMethod.GET)
+	public String getBasket(Model model) {
+		String userID = "001";
+		model.addAttribute("basket",ItemDatabase.wishlist(userID));
+		return "basket";
+	}
 }
