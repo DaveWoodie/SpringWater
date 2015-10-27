@@ -6,6 +6,9 @@
 package com.netbuilder.entities;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.springframework.data.annotation.Id;
 
@@ -15,8 +18,8 @@ public class Item {
 	private int idItem;
 	private String itemName;
 	private String itemDescription;
-	private float price;
-	private float cost;
+	private double price;
+	private double cost;
 	private int stock;
 	private String imageLocation;
 	private boolean discontinued;
@@ -99,11 +102,11 @@ public class Item {
      * Method to get the price of the item
      * @return Returns double data type
      */
-    public float getPrice() {
+    public double getPrice() {
 		return price;
 	}
     
-    public float getCost() {
+    public double getCost() {
     	return cost;
     }
     
@@ -172,6 +175,10 @@ public class Item {
 	}
     //Setters
     
+	
+	public void setItemID(int id) {
+		this.idItem = id;
+	}
     /**
      * Method to set the items name
      * @param itemName: String of the item name
@@ -188,11 +195,11 @@ public class Item {
      * Method to set the items price
      * @param price: Int of items price
      */
-	public void setPrice(float price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	
-	public void setCost(float cost) {
+	public void setCost(double cost) {
 		this.cost = cost;
 	}
 	
@@ -281,5 +288,32 @@ public class Item {
 	
 	public void removeAttribute(String attributeName) {
 		attributes.remove(attributeName);
+	}
+	
+	/**
+	 * prints out the item's deets to the console. Used in testing
+	 */
+	public void print() {
+		System.out.println("idItem: "+idItem);
+		System.out.println("ItemName: "+itemName);
+		System.out.println("ItemDescription: "+itemDescription);
+		System.out.println("ImageLocation: "+imageLocation);
+		System.out.println("NumberInStock: "+stock);
+		System.out.println("ItemPrice: "+price);
+		System.out.println("ItemCost: "+cost);
+		System.out.println("SalesRate: "+salesRate);
+		System.out.println("PSalesRate: "+pSalesRate);
+		System.out.println("IsPorousware: "+isPorousware);
+		System.out.println("IsDiscontinued: "+discontinued);
+		System.out.println("idSupplier: "+idSupplier);
+		System.out.println("ATTRIBUTES:");
+
+	    Iterator<Entry<String, String>> it = attributes.entrySet().iterator();
+	    while (it.hasNext()) {
+			Map.Entry<String,String> pair = (Map.Entry<String, String>)it.next();
+	        System.out.println(pair.getKey()+" - "+pair.getValue());
+	        it.remove(); // avoids a ConcurrentModificationException
+	    }
+		
 	}
 }

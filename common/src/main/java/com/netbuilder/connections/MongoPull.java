@@ -7,6 +7,7 @@ package com.netbuilder.connections;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.bson.BSONObject;
 
@@ -36,14 +37,14 @@ public class MongoPull {
 	
 	public static void main(String[] args) {
 		MongoPull tst = new MongoPull();
-		List<String> addrCols = tst.getAddress(4);
-		for(String s: addrCols) {
-			System.out.println(s);
+		ArrayList<Item> itList = tst.getItemInf(6);
+		for(Item i : itList) {
+			i.print();
 		}
 	}
 	
 	public MongoPull() {
-
+		
 	}
 	
 	/**
@@ -88,7 +89,13 @@ public class MongoPull {
 			}
 			
 			addrVals.add(cursor.curr().get("City").toString());
-			addrVals.add(cursor.curr().get("County").toString());
+			
+			// Tom S edit: check for county before adding county string to results
+			Object county = cursor.curr().get("County");
+			if(county != null) {
+				addrVals.add(cursor.curr().get("County").toString());
+			}
+			
 			addrVals.add(cursor.curr().get("PostCode").toString());
 		}
 		
@@ -165,6 +172,18 @@ public class MongoPull {
 			
 			Item newItem = new Item(itemName, itemDescription, Float.parseFloat(itemPrice), Float.parseFloat(itemCost), (int) Float.parseFloat(numberInStock), imageLocation, discontinued, isPorousWare, (int) Float.parseFloat(idSupplier));
 			
+			BSONObject bsobj = (BSONObject) cursor.curr().get("Attributes");
+			Set<String> names = bsobj.keySet();
+			for(String key : names) {
+				String val = bsobj.get(key).toString();
+				
+				try {
+					newItem.addAttribute(key, val);
+				} catch (Exception e) {
+					throw new Error(e);
+				}
+			}
+			newItem.setItemID(id);
 //			BSONObject bsobj = (BSONObject) cursor.curr().get("Attributes");
 //			
 //			for(int i = 0; i < attrs.length; i++) {
