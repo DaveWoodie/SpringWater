@@ -18,13 +18,11 @@ public class loginController {
 	public String doPost(HttpServletRequest request, HttpServletResponse response) {
 
 		WebLoginLoader l = new WebLoginLoader();
-		
 		String returned = "redirect:/loginregister";
 		EncryptPassword n = new EncryptPassword(); 
 		
 		String email = request.getParameter("emailAddressInput");
 		String passwd = request.getParameter("passwordInputLogin");
-		
 		System.out.println(email);
 		System.out.println(passwd);
 		
@@ -39,11 +37,9 @@ public class loginController {
 			if (s[0].equals(email) && s[1].equals(n.checkSHA1(passwd))) { 
 				returned = "redirect:";
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return returned;
 	}
 }
