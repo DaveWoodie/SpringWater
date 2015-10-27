@@ -46,9 +46,9 @@
                                     <tbody>
 
                                         <!-- Item Row -->
-                                        <tr>
+                                        <tr th:each="item : ${basket}">
                                             <td th:text="${item.itemName}"></td>
-                                            <td>&pound;2.99</td>
+                                            <td th:text="${item.price}">&pound;</td>
                                             <td>3</td>
                                             <td>&pound;8.97</td>
                                             <td>
