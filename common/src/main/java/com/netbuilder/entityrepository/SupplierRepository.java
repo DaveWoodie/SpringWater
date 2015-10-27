@@ -18,7 +18,6 @@ import com.netbuilder.entities.Supplier;
  *
  */
 
-@Repository
-public interface SupplierRepository extends CrudRepository<Supplier, Integer> {
+public interface SupplierRepository {
 	public Supplier findSupplierByName(String supplierName);
 }

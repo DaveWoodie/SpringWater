@@ -15,7 +15,6 @@ import org.springframework.data.annotation.Id;
  */
 public class WishList {
 	
-	@Id
 	private int customerID;
 	private ArrayList<Item> items;
 	

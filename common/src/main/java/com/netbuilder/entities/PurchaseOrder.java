@@ -15,22 +15,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "purchaseorder")
 public class PurchaseOrder {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private int idPurchaseOrder;
 	private Date datePlaced;
 	private Date dateExpected;
-	@ManyToOne (cascade=CascadeType.PERSIST)
-	@PrimaryKeyJoinColumn(name = "idEmployee")
 	private Employee employee;
-	@ManyToOne (cascade=CascadeType.PERSIST)
-	@PrimaryKeyJoinColumn(name = "idPurchaseOrderStatus")
 	private PurchaseOrderStatus purchaseOrderStatus;
-	@ManyToOne (cascade=CascadeType.PERSIST)
-	@PrimaryKeyJoinColumn(name = "idSupplier")
 	private Supplier supplier;
 	
 	/**

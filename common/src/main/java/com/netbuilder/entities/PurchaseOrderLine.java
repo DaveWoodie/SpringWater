@@ -14,16 +14,11 @@ import javax.persistence.Table;
  * @date 06/10/2015
  */
 
-@Entity
-@Table(name = "purchaseorderline")
 public class PurchaseOrderLine {
 	private int quantity;
 	
 	private int itemID;
 	private int damagedQuantity;
-	@Id
-	@ManyToOne (cascade=CascadeType.PERSIST)
-	@PrimaryKeyJoinColumn(name = "idPurchaseOrder")
 	private PurchaseOrder purchaseOrder;
 
 	/**

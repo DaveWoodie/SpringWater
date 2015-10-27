@@ -9,8 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.netbuilder.entities.CustomerOrderStatus;
 
-@Repository
-public interface CustomerOrderStatusRepository extends CrudRepository<CustomerOrderStatus, Integer> {
+public interface CustomerOrderStatusRepository {
 	public CustomerOrderStatus findByID (int i);
 	public CustomerOrderStatus findByStatus (String s);
 }

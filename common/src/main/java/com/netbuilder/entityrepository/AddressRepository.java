@@ -12,8 +12,7 @@ import com.netbuilder.entities.Address;
  * @date 07/10/2015
  */
 
-@Repository
-public interface AddressRepository extends MongoRepository<Address, Integer> {
+public interface AddressRepository {
 	
 	// READ
 	public Address findOneByID(int addressID);

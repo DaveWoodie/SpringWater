@@ -1,7 +1,7 @@
-package com.netbuilder.loaders;
+package loaders;
 
 import java.sql.ResultSet;
-import com.netbuilder.connections.SQLDBConnector;
+import connections.SQLDBConnector;
 
 public class WebLoginLoader {
 	
@@ -18,7 +18,7 @@ public class WebLoginLoader {
 		SQL.openCon();
 		
 		try {
-			rSet = SQL.queryDB("SELECT email FROM user WHERE email = " + email);
+			rSet = SQL.queryDB("SELECT email FROM user WHERE email = '" + email + "'");
 			rSet.first();
 			login[0] = rSet.getString(1);
 			

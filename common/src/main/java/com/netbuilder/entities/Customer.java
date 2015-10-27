@@ -17,15 +17,10 @@ import javax.persistence.Table;
  * @date 06/10/2015
  *
  */
-@Entity
-@Table(name = "customer")
+
 public class Customer {
 	// Customer attributes
-	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int customerID;
-	@OneToOne (cascade=CascadeType.ALL)
-	@PrimaryKeyJoinColumn(name = "idUser")
 	private User user;
 	
 	private Date dob;
