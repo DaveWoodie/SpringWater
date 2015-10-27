@@ -22,6 +22,7 @@ public class Supplier {
 	private String email;
 	private int addressID;
 	private int averageDeliveryTime;
+	private String logoLocation;
 	
 	/**
 	 * Blank constructor to create an empty Supplier object. USed in testing only
@@ -38,6 +39,7 @@ public class Supplier {
 	public Supplier(String supplierName, int addressID) {
 		this.supplierName = supplierName;
 		this.addressID = addressID;
+		this.logoLocation = "Gnomes R' Us";
 	}
 	
 	public void setSupplierID(int id) {
@@ -64,6 +66,10 @@ public class Supplier {
 		this.averageDeliveryTime = time;
 	}
 	
+	public void setLogoLocation(String logoLocation) {
+		this.logoLocation = logoLocation;
+	}
+	
 	public int getSupplierID() {
 		return this.supplierID;
 	}
@@ -86,5 +92,9 @@ public class Supplier {
 	
 	public int getAverageDeliveryTime() {
 		return this.averageDeliveryTime;
+	}
+	
+	public String getLogoLocation() {
+		return logoLocation;
 	}
 }
