@@ -13,8 +13,7 @@ import com.netbuilder.entities.Item;
  * @date 07/10/2015
  */
 
-@Repository
-public interface ItemRepository extends MongoRepository<Item, String> {
+public interface ItemRepository extends MongoRepository {
 	public Item findByItemID (int iID);
 	public List<Item> findByItemName (String name);
 	public List<Item> findByDiscontinued (boolean discontinued);

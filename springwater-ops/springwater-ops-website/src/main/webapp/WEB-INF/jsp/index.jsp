@@ -1,4 +1,19 @@
+<!--     Callum Cooper  -->  
+<!--     index.jsp -->
+<!--     13/10/2015 -->
+<!--     Website Landing Page  -->
+<!--     Last Modified by: Chris Boucher -->
 <!DOCTYPE html>
+<!--     Callum Cooper  -->
+    
+<!--     openOrdersPage.jps -->
+
+<!--     14/10/2015 -->
+
+<!--     Template for the cancelled orders page -->
+
+<!--     Last Modified by: Callum Cooper -->
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       th:include="template :: page">
@@ -37,7 +52,7 @@
                 <h1>Featured Items</h1>
                 <div th:each="item : ${featured}" class="col-lg-2">
                     <div class="item">
-                                <a class="thumbnail" th:href="'itempage+' + ${item.itemID}"><img class="img-responsive" th:src="${item.imageLocation}" /></a>
+                                <a class="thumbnail" th:href="@{/itempage(itemid=${item.itemID})}"><img class="img-responsive" th:src="${item.imageLocation}" /></a>
                     </div>
                 </div>
         </div>
@@ -65,7 +80,7 @@
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div th:each="item : ${mostpopular1}" class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" th:href="'itempage+' + ${item.itemID}"><img class="img-responsive" th:src="${item.imageLocation}" /></a> 
+                                            <a class="thumbnail" id="carouselThumb" th:href="@{/itempage(itemid=${item.itemID})}"><img class="img-responsive" th:src="${item.imageLocation}" /></a> 
                                         </div>
                                     </div>
                                 </div>
@@ -76,7 +91,7 @@
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div th:each="item : ${mostpopular2}" class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" th:href="'itempage+' + ${item.itemID}"><img class="img-responsive" th:src="${item.imageLocation}" /></a> 
+                                            <a class="thumbnail" id="carouselThumb" th:href="@{/itempage(itemid=${item.itemID})}"><img class="img-responsive" th:src="${item.imageLocation}" /></a> 
                                         </div>
                                     </div>
                                 </div>
@@ -87,7 +102,7 @@
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div th:each="item : ${mostpopular3}" class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" th:href="'itempage+' + ${item.itemID}"><img class="img-responsive" th:src="${item.imageLocation}" /></a> 
+                                            <a class="thumbnail" id="carouselThumb" th:href="@{/itempage(itemid=${item.itemID})}"><img class="img-responsive" th:src="${item.imageLocation}" /></a> 
                                         </div>
                                     </div>
                                 </div>
@@ -123,7 +138,7 @@
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div th:each="item : ${wishlist1}" class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" th:href="'itempage+' + ${item.itemID}"><img class="img-responsive" th:src="${item.imageLocation}" /></a> 
+                                            <a class="thumbnail" id="carouselThumb" th:href="@{/itempage(itemid=${item.itemID})}"><img class="img-responsive" th:src="${item.imageLocation}" /></a> 
                                         </div>
                                         
                                     </div>
@@ -135,7 +150,7 @@
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div th:each="item : ${wishlist2}" class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" th:href="'itempage+' + ${item.itemID}"><img class="img-responsive" th:src="${item.imageLocation}" /></a> 
+                                            <a class="thumbnail" id="carouselThumb" th:href="@{/itempage(itemid=${item.itemID})}"><img class="img-responsive" th:src="${item.imageLocation}" /></a> 
                                         </div>
                                     </div>
                                 </div>
@@ -146,7 +161,7 @@
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div th:each="item : ${wishlist3}" class="col-lg-6">
-                                            <a class="thumbnail" id="carouselThumb" th:href="'itempage+' + ${item.itemID}"><img class="img-responsive" th:src="${item.imageLocation}" /></a> 
+                                            <a class="thumbnail" id="carouselThumb" th:href="@{/itempage(itemid=${item.itemID})}"><img class="img-responsive" th:src="${item.imageLocation}" /></a> 
                                         </div>
                                     </div>
                                 </div>

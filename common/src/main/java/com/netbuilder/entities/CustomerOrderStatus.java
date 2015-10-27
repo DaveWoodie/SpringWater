@@ -11,11 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "customerorderstatus")
 public class CustomerOrderStatus {
-	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+
 	private int statusID;
 	private String status;
 	

@@ -18,8 +18,7 @@ import com.netbuilder.entities.Supplier;
  *
  */
 
-@Repository
-public interface PurchaseOrderRepository extends CrudRepository<PurchaseOrder, Integer>{
+public interface PurchaseOrderRepository extends CrudRepository<PurchaseOrder, String> {
 	
 	public PurchaseOrder findbyPurchaseOrderID(int pOID);
 	

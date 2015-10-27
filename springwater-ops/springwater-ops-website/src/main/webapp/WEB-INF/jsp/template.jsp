@@ -1,3 +1,8 @@
+<!--     Chris J W Walker  -->
+<!--     template.jsp -->
+<!--     13/10/2015 -->
+<!--     Template for website navbar and footer  -->
+<!--     Last Modified by: Chris Boucher -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
