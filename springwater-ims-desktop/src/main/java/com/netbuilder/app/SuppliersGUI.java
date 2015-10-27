@@ -120,10 +120,10 @@ public class SuppliersGUI extends JPanel{
 					case "Supplier Name":
 						update = lD.fetchSupplierByName(input);
 						break;
-//						
-//					case "Product ID":
-//						update = lD.fetchPurchaseOrdersBySupplier(input);
-//						break;
+						
+					case "Product ID":
+						update = lD.fetchSupplierByProductID(input);
+						break;
 					default:
 						update = null;
 				}
