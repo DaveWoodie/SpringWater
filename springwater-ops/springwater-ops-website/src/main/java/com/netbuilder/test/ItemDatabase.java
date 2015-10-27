@@ -258,4 +258,16 @@ public class ItemDatabase {
 		wishlist.add(itemList.get(3));
 		return wishlist;
 	}
+	
+	static public ArrayList<Item> getBasket(String userID) {
+		// Query featured data
+		ArrayList<Item> wishlist = new ArrayList<Item>();
+		wishlist.add(itemList.get(2));
+		wishlist.add(itemList.get(5));
+		wishlist.add(itemList.get(6));
+		wishlist.add(itemList.get(9));
+		wishlist.add(itemList.get(1));
+		wishlist.add(itemList.get(3));
+		return wishlist;
+	}
 }

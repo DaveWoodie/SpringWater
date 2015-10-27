@@ -43,7 +43,7 @@
 
                                         <!-- Item Row -->
                                         <tr>
-                                            <td>Happy Gnome</td>
+                                            <td th:text="${item.itemName}"></td>
                                             <td>&pound;2.99</td>
                                             <td>3</td>
                                             <td>&pound;8.97</td>
