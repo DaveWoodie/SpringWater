@@ -28,6 +28,9 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import com.netbuilder.loaders.SupplierLoader;
+import com.netbuilder.logic.SupplierLogic;
+
 /**
  * 
  * GUI generation to display selected supplier and details
@@ -54,6 +57,7 @@ public class SupplierFrame extends JFrame{
 	 * Method to construct the GUI JFrame for display
 	 */
 	public void initUI(int supplierID, String supplierName) {
+		selectedID = supplierID;
 		
 		//configure base panel
 		base = new JPanel();
@@ -65,13 +69,16 @@ public class SupplierFrame extends JFrame{
 		main.setLayout(new GridLayout(1, 2));
 		
 		//create left panel
-		LoadData lD = new LoadData();
-		Object [][] products = lD.fetchSupplierProducts();
-		Object [] supplierDetails = lD.fetchSupplierDetails();
+		LoadData lDD = new LoadData();
+		SupplierLogic lD = new SupplierLogic();
+		Object [][] products = lDD.fetchSupplierProducts();
+		Object [][] supplierDetails = lD.fetchSupplierByID(selectedID);
 		left = new JPanel();
 		left.setLayout(new BoxLayout(left, BoxLayout.Y_AXIS));
 		try{
-			BufferedImage Logo = ImageIO.read(new File("src/main/resources/images/" + supplierDetails[6]));
+			String s = "src/main/resources/images/" + supplierDetails[0][6];
+//			System.out.println(s);
+			BufferedImage Logo = ImageIO.read(new File(s));
 			leftLogo = new JLabel(new ImageIcon(Logo));
 		}
 		catch(IOException ex){
@@ -83,7 +90,7 @@ public class SupplierFrame extends JFrame{
 		right = new JPanel();
 		right.setLayout(new BoxLayout(right, BoxLayout.Y_AXIS));
 		right.setMinimumSize(new Dimension(350,50));
-		rightTest = new JLabel("<html>  Supplier ID: " + supplierID + "<br>  Supplier Name: " + supplierName + "<br><br><br>  Supplier Address:<br>" + supplierDetails[0] + "<br>  " + supplierDetails[1] + "<br>  " + supplierDetails[2] + "<br>  " + supplierDetails[3] + "<br>  " +  supplierDetails[4] + "<br>  " +  supplierDetails[5] + "<br><br>  Average Delivery Time: " + supplierDetails[7] + " Days");
+		rightTest = new JLabel("<html>  Supplier ID: " + supplierID + "<br>  Supplier Name: " + supplierName  +"<br> "+ supplierDetails[0][2] + "<br>  " + supplierDetails[0][3] + "<br><br>  Address:<br>"   +   supplierDetails[0][4] + "<br>  "  + "<br><br>  Average Delivery Time: " +  supplierDetails[0][5]+ " Days");
 		rightTest.setFont(new Font("Serif", Font.BOLD, 16));
 		right.add(rightTest);
 		
