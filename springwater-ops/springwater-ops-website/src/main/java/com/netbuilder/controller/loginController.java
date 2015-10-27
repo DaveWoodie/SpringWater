@@ -22,7 +22,6 @@ public class loginController {
 		System.out.println(passwd);
 		
 		String[] s = new String[2];
-		
 		WebLoginLoader l = new WebLoginLoader();
 		
 		try {
