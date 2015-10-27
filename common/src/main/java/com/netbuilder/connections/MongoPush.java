@@ -21,12 +21,14 @@ public class MongoPush {
 	private MongoDBConnector mdbc = new MongoDBConnector();
 	private final String dataBase = "nbgardensdata";
 	
+	/*
 	public static void main(String[] args) {
 		
 		MongoPush tst = new MongoPush();
 		Item item = new Item("Gnomeo", "Gnome Romeo. Get it?", (float)3.51, (float)2.02, 500, "A4", false, false, 3);
 		tst.addItem(item);
 	}
+	*/
 	
 	/**
 	 * Adds the passed Item to the MongoDB database and returns the ID assigned to the new Item
@@ -57,6 +59,10 @@ public class MongoPush {
 		return newItemID;
 	}
 	
+	/**
+	 * Updates the mongoDB database entry for the passed Item. USes the item's ID to find the entry to update
+	 * @param item
+	 */
 	public void updateItem(Item item) {
 		mdbc.mongoConnect();
 		
@@ -71,6 +77,9 @@ public class MongoPush {
 		BasicDBObject newItemObj = createItemDBObjectFromItem(item, item.getIdItem());
 		
 		collection.update(searchObj, newItemObj);
+		
+
+		mdbc.mongoDisconnect();
 	}
 	
 	/**
