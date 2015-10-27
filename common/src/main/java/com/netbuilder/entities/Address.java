@@ -11,9 +11,8 @@ import org.springframework.data.annotation.Id;
  * @date 06/10/2015
  */
 public class Address {
-	@Id
+
 	private int addressID;
-	
 	private Integer customerID;
 	private ArrayList<String> addressLines;
 	private String city;

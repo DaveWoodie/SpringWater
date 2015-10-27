@@ -14,7 +14,6 @@ import org.springframework.data.annotation.Id;
 
 public class Item {
 	//Item attributes
-	@Id
 	private int idItem;
 	private String itemName;
 	private String itemDescription;

@@ -11,8 +11,7 @@ import com.netbuilder.entities.User;
  * @date 07/10/2015
  */
 
-@Repository
-public interface UserRepository extends CrudRepository<User, Integer> {
+public interface UserRepository {
 	public User findByID(int i);
 	public User findByForNam(String s);
 	public List<User> findByForNams(String s);
