@@ -15,6 +15,8 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
+import entities.Address;
 import entities.Item;
 
 public class MongoPull {
@@ -29,7 +31,6 @@ public class MongoPull {
 	private final String wishListCol = "WishList";
 	
 	//Lists returned by the following methods
-	private List<String> addrVals = new ArrayList<String>();
 	private List<String> itemInfs = new ArrayList<String>();
 	private List<String> wishListSet = new ArrayList<String>();
 	private ArrayList<Item> itemList = new ArrayList<Item>();
@@ -37,22 +38,25 @@ public class MongoPull {
 	
 	
 	public static void main(String[] args) {
+		
 		MongoPull tst = new MongoPull();
-		int itemID = 6;
-		ArrayList<Item> itList = tst.getItemInf(itemID);
-		Item i = itList.get(0);
-		i.print();
+//		int itemID = 6;
+//		ArrayList<Item> itList = tst.getItemInf(itemID);
+//		Item i = itList.get(0);
+//		i.print();
+//		
+//		i.setDescription("Gnome Romeo. Get it?");
+//		
+//		MongoPush mp = new MongoPush();
+//		mp.updateItem(i);
+//		mp.setContinuedStateForItem(itemID, true);
+//		
+//		System.out.println("");
+//		itList = tst.getItemInf(itemID);
+//		i = itList.get(0);
+//		i.print();
 		
-		i.setDescription("Gnome Romeo. Get it?");
-		
-		MongoPush mp = new MongoPush();
-		mp.updateItem(i);
-		mp.setContinuedStateForItem(itemID, true);
-		
-		System.out.println("");
-		itList = tst.getItemInf(itemID);
-		i = itList.get(0);
-		i.print();
+		tst.getAddress(1).print();
 	}
 	
 	
@@ -75,49 +79,58 @@ public class MongoPull {
 	 * @param id: Takes an int which is the address ID
 	 * @return returns a List containing all the lines of address associated with the ID
 	 */
-	public List<String> getAddress(int id) {
+	
+	
+	public Address getAddress(int id) {
 		//Connect to MongoDB
 		mdbc.mongoConnect();
 		
 		//Connect to the NBGardensn database
 		DB db = mdbc.getConnection().getDB(dataBase);
-		//Get Specfic Collection`
+		//Get Specfic Collection
 		DBCollection collection = db.getCollection(AddrCol);
 		
 		BasicDBObject addr = new BasicDBObject();
 		addr.put("idAddress", id);
-		DBCursor cursor = collection.find(addr);		
+		DBObject addrObj = collection.findOne(addr);		
 		
-		addrVals.clear();
 		
-		while(cursor.hasNext()) {
-			
-			cursor.next();
-			
-			BSONObject bsobj = (BSONObject) cursor.curr().get("AddressLines");
-			int i = 1;
-			while(bsobj.containsField("AddressLine" + i)) {
-				addrVals.add(bsobj.get("AddressLine" + i).toString());
-				i++;
-			}
-			
-			addrVals.add(cursor.curr().get("City").toString());
-			
-			// Tom S edit: check for county before adding county string to results
-			Object county = cursor.curr().get("County");
-			if(county != null) {
-				addrVals.add(cursor.curr().get("County").toString());
-			}
-			
-			addrVals.add(cursor.curr().get("PostCode").toString());
+		ArrayList<String> addressLines = new ArrayList<String>();
+		
+		BSONObject bsobj = (BSONObject) addrObj.get("AddressLines");
+		Set<String> keys = bsobj.keySet();
+		for(String key : keys) {
+			String val = bsobj.get(key).toString();
+			addressLines.add(val);
+		}
+		String city = addrObj.get("City").toString();
+		
+		Object countyCheck = addrObj.get("County");
+		String county = null;
+		if(countyCheck != null) {
+			county = addrObj.get("County").toString();
 		}
 		
-		cursor.close();
+		String postCode = addrObj.get("PostCode").toString();
+		
+		Address address;
+		if(county == null) {
+			address = new Address(addressLines, city, postCode);
+		} else {
+			address = new Address(addressLines, city, county, postCode);
+		}
+		
+		Integer customerID;
+		if(addrObj.get("idCustomer") != null) {
+			customerID = ((Double)(addrObj.get("idCustomer"))).intValue();
+			address.setCustomerID(customerID);
+		}
+		
 				
 		//Disconnect from MongoDB
 		mdbc.mongoDisconnect();
 		
-		return addrVals;
+		return address;
 	}
 	
 	/**
