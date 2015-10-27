@@ -109,6 +109,10 @@ public class Address {
 		this.postCode = postCode;
 	}
 	
+	public void setCustomerID(int id) {
+		this.customerID = id;
+	}
+	
 	/**
 	 * returns true if the address belongs to a customer
 	 * @return
@@ -145,5 +149,16 @@ public class Address {
 	
 	public String getPostCode() {
 		return this.postCode;
+	}
+	
+	public void print() {
+		System.out.println("Address ID: "+this.addressID);
+		System.out.println("Customer ID: "+this.customerID);
+		for(int i = 0; i < addressLines.size(); i++) {
+			System.out.println("Addr Line "+(i+1)+": "+addressLines.get(i));
+		}
+		System.out.println("City: "+this.city);
+		System.out.println("County: "+this.county);
+		System.out.println("PostCode: "+this.postCode);
 	}
 }

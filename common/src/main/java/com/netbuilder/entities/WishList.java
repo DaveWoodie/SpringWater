@@ -117,4 +117,12 @@ public class WishList {
 	public void setCustomer(int c) {
 		this.customerID = c;
 	}
+	
+	public void print() {
+		System.out.println("Customer ID: "+this.customerID);
+		System.out.println("Items: ");
+		for(Item i : this.items) {
+			System.out.println(i.getItemName());
+		}
+	}
 }
