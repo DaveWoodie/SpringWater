@@ -15,8 +15,7 @@ import com.netbuilder.entities.Customer;
  * @date 07/10/2015
  */
 
-@Repository
-public interface CustomerRepository extends CrudRepository<Customer, Integer> {
+public interface CustomerRepository {
 	public List<Customer> findByName(String name);
 	public Customer findByIDCustomer(int customerID);
 	public List<Customer> findByDob(Date dob);

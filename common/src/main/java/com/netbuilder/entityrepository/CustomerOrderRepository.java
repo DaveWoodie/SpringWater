@@ -17,8 +17,7 @@ import com.netbuilder.entities.Employee;
  * @date 07/10/2015
  */
 
-@Repository
-public interface CustomerOrderRepository extends CrudRepository<CustomerOrder, Integer>  {
+public interface CustomerOrderRepository {
 	public CustomerOrder findByID(int id);
 	public List<CustomerOrder> findByCustomer(Customer c);
 	public List<CustomerOrder> findByEmployee(Employee e);

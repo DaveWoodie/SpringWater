@@ -13,16 +13,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "employee")
 public class Employee {
 	
-	@Id
-	@OneToOne (cascade=CascadeType.ALL)
-	@PrimaryKeyJoinColumn(name = "idEmployee")
 	private User user;
-	@ManyToOne (cascade=CascadeType.PERSIST)
-	@PrimaryKeyJoinColumn(name = "idRole")
 	private Role role;
 
 	/**

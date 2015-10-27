@@ -10,7 +10,6 @@ import com.netbuilder.entities.WishList;
  * @date 07/10/2015
  */
 
-@Repository
-public interface WishListRepository extends MongoRepository<WishList, Integer>{
+public interface WishListRepository {
 	public WishList findByCustomerID(int customerID);
 }

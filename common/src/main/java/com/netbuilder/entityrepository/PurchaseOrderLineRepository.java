@@ -15,7 +15,6 @@ import com.netbuilder.entities.PurchaseOrderLine;
  * @date 07/10/2015
  */
 
-@Repository
-public interface PurchaseOrderLineRepository extends CrudRepository<PurchaseOrderLine, Integer> {
+public interface PurchaseOrderLineRepository {
 	public List<PurchaseOrder> findByID(int id);
 }
