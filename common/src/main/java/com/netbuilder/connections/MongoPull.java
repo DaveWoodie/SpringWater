@@ -35,7 +35,7 @@ public class MongoPull {
 	private ArrayList<Item> itemList = new ArrayList<Item>();
 
 	
-	/*
+	
 	public static void main(String[] args) {
 		MongoPull tst = new MongoPull();
 		int itemID = 6;
@@ -54,7 +54,7 @@ public class MongoPull {
 		i = itList.get(0);
 		i.print();
 	}
-	*/
+	
 	
 	public MongoPull() {
 		
@@ -179,8 +179,8 @@ public class MongoPull {
 			String imageLocation = cursor.curr().get("ImageLocation").toString();
 			itemInfs.add(cursor.curr().get("SalesRate").toString());
 			itemInfs.add(cursor.curr().get("PSalesRate").toString());
-			boolean isPorousWare = (boolean) cursor.curr().get("IsPorousware");
-			boolean discontinued = (boolean) cursor.curr().get("Discontinued");
+			boolean isPorousWare = handleMongoBoolean(cursor.curr().get("IsPorousware"));
+			boolean discontinued = handleMongoBoolean(cursor.curr().get("Discontinued"));
 			String idSupplier = cursor.curr().get("idSupplier").toString();
 			
 			Item newItem = new Item(itemName, itemDescription, Float.parseFloat(itemPrice), Float.parseFloat(itemCost), (int) Float.parseFloat(numberInStock), imageLocation, discontinued, isPorousWare, (int) Float.parseFloat(idSupplier));
@@ -207,6 +207,15 @@ public class MongoPull {
 		mdbc.mongoDisconnect();
 		
 		return itemList;
+	}
+	
+	/**
+	 * method to evaluate the passed Mongo boolean field
+	 * @param fieldToEvaluate
+	 * @return
+	 */
+	private boolean handleMongoBoolean(Object fieldToEvaluate) {
+		return fieldToEvaluate.toString().equals("true");
 	}
 	
 	/**

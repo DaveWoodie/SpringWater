@@ -13,8 +13,13 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.netbuilder.entities.Address;
 import com.netbuilder.entities.Item;
+import com.netbuilder.entities.WishList;
 
-
+/**
+ * Class to create, update and delete entries from the MongoDB database
+ * @author tstacey
+ *
+ */
 public class MongoPush {
 	
 	//Create instance of MongoDB Connector to connect to DB
@@ -29,6 +34,11 @@ public class MongoPush {
 		tst.addItem(item);
 	}
 	*/
+
+	/******************************************************************************/
+	// CREATE CREATE CREATE CREATE CREATE CREATE CREATE CREATE CREATE CREATE CREATE
+	/******************************************************************************/
+	
 	
 	/**
 	 * Adds the passed Item to the MongoDB database and returns the ID assigned to the new Item
@@ -36,7 +46,6 @@ public class MongoPush {
 	 * @return
 	 */
 	public int addItem(Item item) {
-		// TODO change item costs/prices to doubles instead of floats
 		mdbc.mongoConnect();
 		DB db = mdbc.getConnection().getDB(dataBase);
 		
@@ -59,94 +68,7 @@ public class MongoPush {
 		return newItemID;
 	}
 	
-	/**
-	 * Updates the mongoDB database entry for the passed Item. USes the item's ID to find the entry to update
-	 * @param item
-	 */
-	public void updateItem(Item item) {
-		mdbc.mongoConnect();
-		
-		//Connect to the NBGardensn database
-		DB db = mdbc.getConnection().getDB(dataBase);
-		//Get Specfic Collection`
-		DBCollection collection = db.getCollection("Item");
-		
-		BasicDBObject searchObj = new BasicDBObject();
-		searchObj.put("idItem", item.getIdItem());
-		//DBObject currItem = collection.findOne(searchObj);
-		BasicDBObject newItemObj = createItemDBObjectFromItem(item, item.getIdItem());
-		
-		collection.update(searchObj, newItemObj);
-		
 
-		mdbc.mongoDisconnect();
-	}
-	
-	/**
-	 * updates an item's discontinued state to correspond with the passed boolean and id
-	 * pass false to set the item as discontinued, true to set as continued
-	 * @param itemID
-	 * @param continuedState
-	 */
-	public void setContinuedStateForItem(int itemID, boolean continuedState) {
-		mdbc.mongoConnect();
-		DB db = mdbc.getConnection().getDB(dataBase);
-		
-		DBCollection collection = db.getCollection("Item");
-		
-		BasicDBObject newDocument = new BasicDBObject();
-		newDocument.append("$set", new BasicDBObject().append("Discontinued", !continuedState));
-				
-		BasicDBObject searchQuery = new BasicDBObject().append("idItem", itemID);
-
-		collection.update(searchQuery, newDocument);
-	}
-	
-	/**
-	 * creates the BasicDBObject in order to add it to MongoDB from an Item entity
-	 * @param item
-	 * @param id
-	 * @return
-	 */
-	private BasicDBObject createItemDBObjectFromItem(Item item, int id) {
-		BasicDBObject itemObject = new BasicDBObject();
-		itemObject.put("idItem", id);
-		itemObject.put("ItemName", item.getItemName());
-		itemObject.put("ItemDescription", item.getDescription());
-		itemObject.put("ImageLocation", item.getImageLocation());
-		itemObject.put("NumberInStock", item.getStock());
-		itemObject.put("ItemPrice", item.getPrice());
-		itemObject.put("ItemCost", item.getCost());
-		itemObject.put("SalesRate", item.getSalesRate());
-		itemObject.put("PSalesRate", item.getpSalesRate());
-		itemObject.put("IsPorousware", item.isPorousware());
-		itemObject.put("Discontinued", item.isDiscontinued());
-		itemObject.put("idSupplier", item.getIdSupplier());
-		
-		BasicDBObject itemAttributes = createAttributesFromItem(item);
-		itemObject.put("Attributes",itemAttributes);
-		return itemObject;
-	}
-	
-	/**
-	 * Creates the Item Attributes HashMap from the attributes of the passed Item
-	 * @param item
-	 * @return
-	 */
-	private BasicDBObject createAttributesFromItem(Item item) {
-		BasicDBObject newAttributes = new BasicDBObject();
-		HashMap<String, String> itemAttributes = item.getAttributes();
-		
-	    Iterator<Entry<String, String>> it = itemAttributes.entrySet().iterator();
-	    while (it.hasNext()) {
-			Map.Entry<String,String> pair = (Map.Entry<String, String>)it.next();
-	        newAttributes.put(pair.getKey(),pair.getValue());
-	        it.remove(); // avoids a ConcurrentModificationException
-	    }
-		
-		return newAttributes;
-	}
-	
 	/**
 	 * Adds the passed address to the MongoDB database and returns the int value of the ID assigned to the new address
 	 * @param addr
@@ -200,6 +122,178 @@ public class MongoPush {
 		return newAddrID;
 	}
 	
+	
+	public void addWishList(WishList wish) throws Exception {
+
+		mdbc.mongoConnect();
+		DB db = mdbc.getConnection().getDB(dataBase);
+		DBCollection collection = db.getCollection("WishList");
+		
+		BasicDBObject searchObj = new BasicDBObject();
+		searchObj.put("idCustomer", wish.getCustomerID());
+		DBObject checkObj = collection.findOne(searchObj);
+		if(checkObj == null) {
+			System.out.println("Tried to add new wishlist for customer where wishlist already exists");
+			throw new Exception();
+		} else {
+			
+		}
+		
+		mdbc.mongoDisconnect();
+	}
+	
+	/******************************************************************************/
+	// UPDATE UPDATE UPDATE UPDATE UPDATE UPDATE UPDATE UPDATE UPDATE UPDATE UPDATE
+	/******************************************************************************/
+	
+	
+	
+	/**
+	 * Updates the mongoDB database entry for the passed Item. USes the item's ID to find the entry to update
+	 * @param item
+	 */
+	public void updateItem(Item item) {
+		mdbc.mongoConnect();
+		
+		//Connect to the NBGardensn database
+		DB db = mdbc.getConnection().getDB(dataBase);
+		//Get Specfic Collection`
+		DBCollection collection = db.getCollection("Item");
+		
+		BasicDBObject searchObj = new BasicDBObject();
+		searchObj.put("idItem", item.getIdItem());
+		//DBObject currItem = collection.findOne(searchObj);
+		BasicDBObject newItemObj = createItemDBObjectFromItem(item, item.getIdItem());
+		
+		collection.update(searchObj, newItemObj);
+		
+
+		mdbc.mongoDisconnect();
+	}
+	
+	/**
+	 * updates an item's discontinued state to correspond with the passed boolean and id
+	 * pass false to set the item as discontinued, true to set as continued
+	 * @param itemID
+	 * @param continuedState
+	 */
+	public void setContinuedStateForItem(int itemID, boolean continuedState) {
+		mdbc.mongoConnect();
+		DB db = mdbc.getConnection().getDB(dataBase);
+		
+		DBCollection collection = db.getCollection("Item");
+		
+		BasicDBObject newDocument = new BasicDBObject();
+		newDocument.append("$set", new BasicDBObject().append("Discontinued", !continuedState));
+				
+		BasicDBObject searchQuery = new BasicDBObject().append("idItem", itemID);
+
+		collection.update(searchQuery, newDocument);
+	}
+	
+	
+	/******************************************************************************/
+	// DELETE DELETE DELETE DELETE DELETE DELETE DELETE DELETE DELETE DELETE DELETE
+	/******************************************************************************/
+	
+	
+	/**
+	 * deletes an address from the MongoDB database specified by the passed id
+	 * @param id
+	 */
+	public void deleteAddressByID(int id) {
+
+		mdbc.mongoConnect();
+		DB db = mdbc.getConnection().getDB(dataBase);
+		DBCollection collection = db.getCollection("Address");
+		
+
+		BasicDBObject addr = new BasicDBObject();
+		addr.put("idAddress", id);
+		DBObject doc = collection.findOne(addr);
+		collection.remove(doc);
+	}
+	
+	/**
+	 * deletes an item from the MongoDB database specified by the passed id
+	 * @param id
+	 */
+	public void deleteItemByID(int id) {
+
+		mdbc.mongoConnect();
+		DB db = mdbc.getConnection().getDB(dataBase);
+		DBCollection collection = db.getCollection("Item");
+		
+
+		BasicDBObject itm = new BasicDBObject();
+		itm.put("idItem", id);
+		DBObject doc = collection.findOne(itm);
+		collection.remove(doc);
+	}
+	
+	
+	public void createWishList() {
+		
+	}
+	
+	public void updateWishList() {
+		
+	}
+	
+	
+
+	/******************************************************************************/
+	// MISC MISC MISC MISC MISC MISC MISC MISC MISC MISC MISC MISC MISC MISC MISC
+	/******************************************************************************/
+	
+	
+
+	/**
+	 * creates the BasicDBObject in order to add it to MongoDB from an Item entity
+	 * @param item
+	 * @param id
+	 * @return
+	 */
+	private BasicDBObject createItemDBObjectFromItem(Item item, int id) {
+		BasicDBObject itemObject = new BasicDBObject();
+		itemObject.put("idItem", id);
+		itemObject.put("ItemName", item.getItemName());
+		itemObject.put("ItemDescription", item.getDescription());
+		itemObject.put("ImageLocation", item.getImageLocation());
+		itemObject.put("NumberInStock", item.getStock());
+		itemObject.put("ItemPrice", item.getPrice());
+		itemObject.put("ItemCost", item.getCost());
+		itemObject.put("SalesRate", item.getSalesRate());
+		itemObject.put("PSalesRate", item.getpSalesRate());
+		itemObject.put("IsPorousware", item.isPorousware());
+		itemObject.put("Discontinued", item.isDiscontinued());
+		itemObject.put("idSupplier", item.getIdSupplier());
+		
+		BasicDBObject itemAttributes = createAttributesFromItem(item);
+		itemObject.put("Attributes",itemAttributes);
+		return itemObject;
+	}
+	
+	/**
+	 * Creates the Item Attributes HashMap from the attributes of the passed Item
+	 * @param item
+	 * @return
+	 */
+	private BasicDBObject createAttributesFromItem(Item item) {
+		BasicDBObject newAttributes = new BasicDBObject();
+		HashMap<String, String> itemAttributes = item.getAttributes();
+		
+	    Iterator<Entry<String, String>> it = itemAttributes.entrySet().iterator();
+	    while (it.hasNext()) {
+			Map.Entry<String,String> pair = (Map.Entry<String, String>)it.next();
+	        newAttributes.put(pair.getKey(),pair.getValue());
+	        it.remove(); // avoids a ConcurrentModificationException
+	    }
+		
+		return newAttributes;
+	}
+	
+	
 	/**
 	 * returns an integer value of the max aggregate of the passed column in the passed collection. throws Exception if collection or column doesn't exist
 	 * requires a mongo connection to have been established
@@ -224,36 +318,4 @@ public class MongoPush {
 		return maxInt;
 	}
 	
-	/**
-	 * deletes an address from the MongoDB database specified by the passed id
-	 * @param id
-	 */
-	public void deleteAddressByID(int id) {
-
-		mdbc.mongoConnect();
-		DB db = mdbc.getConnection().getDB("nbgardensdata");
-		DBCollection collection = db.getCollection("Address");
-		
-
-		BasicDBObject addr = new BasicDBObject();
-		addr.put("idAddress", id);
-		DBObject doc = collection.findOne(addr);
-		collection.remove(doc);
-	}
-	
-	public void updateAddress() {
-		
-	}
-	
-	public void destoryAddress() {
-		
-	}
-	
-	public void createWishList() {
-		
-	}
-	
-	public void updateWishList() {
-		
-	}
 }
