@@ -105,9 +105,11 @@ public class MongoPull {
 		
 		Integer customerID;
 		if(addrObj.get("idCustomer") != null) {
-			customerID = ((Double)(addrObj.get("idCustomer"))).intValue();
+			customerID = (Integer) addrObj.get("idCustomer");
 			address.setCustomerID(customerID);
 		}
+		
+		address.setAddressID(((Double)(addrObj.get("idAddress"))).intValue());
 		
 				
 		//Disconnect from MongoDB
@@ -235,7 +237,7 @@ public class MongoPull {
 		
 		BasicDBObject wL = new BasicDBObject();
 		wL.put("idCustomer", custID);
-		DBObject wishListObj = collection.findOne(wL);	
+		DBObject wishListObj = collection.findOne(wL);
 		
 		wishListSet.clear();
 		
@@ -243,7 +245,7 @@ public class MongoPull {
 		BSONObject itemObj = (BSONObject) wishListObj.get("items");
 		Set<String> keys = itemObj.keySet();
 		for(String key : keys) {
-			Integer itemID = ((Double) itemObj.get(key)).intValue();
+			Integer itemID = (Integer) itemObj.get(key);
 			wlItems.add(getItemInf(itemID).get(0));
 		}
 		

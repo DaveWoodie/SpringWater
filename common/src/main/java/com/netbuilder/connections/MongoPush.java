@@ -29,9 +29,10 @@ public class MongoPush {
 	/*
 	public static void main(String[] args) {
 		
-		MongoPush tst = new MongoPush();
-		Item item = new Item("Gnomeo", "Gnome Romeo. Get it?", (float)3.51, (float)2.02, 500, "A4", false, false, 3);
-		tst.addItem(item);
+		MongoPush push = new MongoPush();
+		MongoPull pull = new MongoPull();
+		
+		
 	}
 	*/
 
@@ -58,8 +59,8 @@ public class MongoPush {
 			System.out.println("Unable to find Item Collection or idItem in addItem() in MongoPush");
 			throw new Error(e);
 		}
-
-		BasicDBObject itemObject = createItemDBObjectFromItem(item, newItemID);
+		item.setItemID(newItemID);
+		BasicDBObject itemObject = makeMongoObjectFromItem(item);
 						
 		collection.insert(itemObject);
 		
@@ -78,8 +79,6 @@ public class MongoPush {
 
 		mdbc.mongoConnect();
 		DB db = mdbc.getConnection().getDB(dataBase);
-		BasicDBObject addressObject = new BasicDBObject();
-		BasicDBObject addressLines = new BasicDBObject();
 		
 		int newAddrID;
 		try {
@@ -88,35 +87,11 @@ public class MongoPush {
 			System.out.println("Unable to find Address Collection or idAddress in addAddress() in MongoPush");
 			throw new Error(e);
 		}
-		
-		addressObject.put("idAddress",  (double) newAddrID);
-		
-		if(addr.isCustomerAddress()) {
-			try {
-				int custID = addr.getCustomerID();
-				addressObject.put("idCustomer", custID);
-			} catch (Exception e) {
-				System.out.println("***ERROR incorrect return value from isCustomerAddress() in addAddress() in MongoPush");
-				throw new Error(e);
-			}
-		}
-		
-		ArrayList<String> addrLines = addr.getAddressLines();
-		for(int i = 0; i < addrLines.size(); i++) {
-			addressLines.put("AddressLine"+(i+1), addrLines.get(i));
-		}
-		
-		addressObject.put("AddressLines", addressLines);
-		
-		addressObject.put("City", addr.getCity());
-		if(addr.getCounty() != null) {
-			addressObject.put("County", addr.getCounty());
-		}
+		addr.setAddressID(newAddrID);
 
-		addressObject.put("PostCode", addr.getPostCode());
-		
-		
+		BasicDBObject addressObject = makeMongoObjectFromAddress(addr);
 		DBCollection collection = db.getCollection("Address");
+		
 		collection.insert(addressObject);
 		mdbc.mongoDisconnect();
 		return newAddrID;
@@ -137,7 +112,7 @@ public class MongoPush {
 		BasicDBObject searchObj = new BasicDBObject();
 		searchObj.put("idCustomer", wish.getCustomerID());
 		DBObject checkObj = collection.findOne(searchObj);
-		if(checkObj == null) {
+		if(checkObj != null) {
 			System.out.println("Tried to add new wishlist for customer where wishlist already exists");
 			throw new Exception();
 		} else {
@@ -171,7 +146,7 @@ public class MongoPush {
 		BasicDBObject searchObj = new BasicDBObject();
 		searchObj.put("idItem", item.getIdItem());
 		//DBObject currItem = collection.findOne(searchObj);
-		BasicDBObject newItemObj = createItemDBObjectFromItem(item, item.getIdItem());
+		BasicDBObject newItemObj = makeMongoObjectFromItem(item);
 		
 		collection.update(searchObj, newItemObj);
 		
@@ -199,6 +174,44 @@ public class MongoPush {
 		collection.update(searchQuery, newDocument);
 	}
 	
+	/**
+	 * updates the MongoDB database entry for the passed WishList
+	 * @param wish
+	 */
+	public void updateWishList(WishList wish) {
+
+		mdbc.mongoConnect();
+		DB db = mdbc.getConnection().getDB(dataBase);
+		
+		DBCollection collection = db.getCollection("WishList");
+		
+		BasicDBObject searchObj = new BasicDBObject();
+		searchObj.put("idCustomer", wish.getCustomerID());
+		
+		BasicDBObject newWishList = makeMongoObjectFromWishList(wish);
+
+		collection.update(searchObj, newWishList);
+
+		mdbc.mongoDisconnect();
+		
+	}
+	
+	public void updateAddress(Address addr) {
+
+		mdbc.mongoConnect();
+		DB db = mdbc.getConnection().getDB(dataBase);
+		
+		DBCollection collection = db.getCollection("Address");
+		
+		BasicDBObject searchObj = new BasicDBObject();
+		searchObj.put("idAddress", addr.getAddressID());
+		
+		BasicDBObject newAddress = makeMongoObjectFromAddress(addr);
+
+		collection.update(searchObj, newAddress);
+
+		mdbc.mongoDisconnect();
+	}
 	
 	/******************************************************************************/
 	// DELETE DELETE DELETE DELETE DELETE DELETE DELETE DELETE DELETE DELETE DELETE
@@ -240,12 +253,17 @@ public class MongoPush {
 	}
 	
 	
-	public void createWishList() {
+	public void deleteWishListByCustomerID(int custID) {
+
+		mdbc.mongoConnect();
+		DB db = mdbc.getConnection().getDB(dataBase);
+		DBCollection collection = db.getCollection("WishList");
 		
-	}
-	
-	public void updateWishList() {
-		
+
+		BasicDBObject itm = new BasicDBObject();
+		itm.put("idCustomer", custID);
+		DBObject doc = collection.findOne(itm);
+		collection.remove(doc);
 	}
 	
 	
@@ -262,9 +280,9 @@ public class MongoPush {
 	 * @param id
 	 * @return
 	 */
-	private BasicDBObject createItemDBObjectFromItem(Item item, int id) {
+	private BasicDBObject makeMongoObjectFromItem(Item item) {
 		BasicDBObject itemObject = new BasicDBObject();
-		itemObject.put("idItem", id);
+		itemObject.put("idItem", item.getIdItem());
 		itemObject.put("ItemName", item.getItemName());
 		itemObject.put("ItemDescription", item.getDescription());
 		itemObject.put("ImageLocation", item.getImageLocation());
@@ -300,6 +318,7 @@ public class MongoPush {
 		
 		return newAttributes;
 	}
+	
 	
 	
 	/**
@@ -339,5 +358,44 @@ public class MongoPush {
 		return wishListObject;
 	}
 	
+
+	/**
+	 * Converts an address entity into a MongoDB object for updating/adding to the database
+	 * @param addr
+	 * @return
+	 */
+	private BasicDBObject makeMongoObjectFromAddress(Address addr) {
+		BasicDBObject addressObject = new BasicDBObject();
+		BasicDBObject addressLines = new BasicDBObject();
+
+		addressObject.put("idAddress",  (double) addr.getAddressID());
+		
+		if(addr.isCustomerAddress()) {
+			try {
+				int custID = addr.getCustomerID();
+				addressObject.put("idCustomer", custID);
+			} catch (Exception e) {
+				System.out.println("***ERROR incorrect return value from isCustomerAddress() in addAddress() in MongoPush");
+				throw new Error(e);
+			}
+		}
+		
+		ArrayList<String> addrLines = addr.getAddressLines();
+		for(int i = 0; i < addrLines.size(); i++) {
+			addressLines.put("AddressLine"+(i+1), addrLines.get(i));
+		}
+		
+		addressObject.put("AddressLines", addressLines);
+		
+		addressObject.put("City", addr.getCity());
+		if(addr.getCounty() != null) {
+			addressObject.put("County", addr.getCounty());
+		}
+
+		addressObject.put("PostCode", addr.getPostCode());
+		
+		
+		return addressObject;
+	}
 	
 }
