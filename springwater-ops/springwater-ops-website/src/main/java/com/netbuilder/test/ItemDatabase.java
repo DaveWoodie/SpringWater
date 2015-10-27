@@ -1,7 +1,12 @@
 package com.netbuilder.test;
 
 import java.util.ArrayList;
-
+/**
+ * 
+ * @author Chris Boucher
+ * @date 20/10/2015
+ *
+ */
 public class ItemDatabase {
 
 	static public ArrayList<Item> itemList;

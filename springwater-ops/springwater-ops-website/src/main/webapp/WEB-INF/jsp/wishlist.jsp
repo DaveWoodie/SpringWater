@@ -1,3 +1,12 @@
+<!--     Chris Boucher  -->
+    
+<!--     wishlist.jsp -->
+
+<!--     13/10/2015 -->
+
+<!--     Page for viewing a customer's wishlist -->
+
+<!--     Last Modified by: Chris Boucher -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
@@ -35,90 +44,56 @@
                         <tbody>
 
                             <!-- Wish List Row -->
-                            <tr>
-                                <td><a class="thumbnail" id="wishThumb" href="itemPage"><img class="img-responsive" src="img/pot03.jpg" /></a></td>
+                            <tr th:each="item : ${wishlist}">
+                                <td><a class="thumbnail" id="wishThumb" th:href="@{/itempage(itemid=${item.itemID})}"><img class="img-responsive" th:src="${item.imageLocation}" /></a></td>
                                 <td id="textLine">
-                                    <h2>Brown Plant Pot</h2>
-                                    <h5>A brown pot, perfect for putting plants inside.</h5>
+                                    <h2 th:text="${item.itemName}"></h2>
+                                    <h5 th:text="${item.description}"></h5>
                                 </td>
-                                <td id="wishLine"><span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span></td>
-                                <td><h2>&pound;0.00</h2></td>
-                                <td id="wishLine">
-                                    <button class="btn btn-block btn-warning"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Remove From Wish List</button>
+                                <!-- Rating If Statement -->
+                                <td th:if="${item.rating} == 0" id="wishline" style="text-align:center">
+                                    <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
                                 </td>
-                            </tr>
-                            
-                            <!-- Wish List Row -->
-                            <tr>
-                                <td><a class="thumbnail" id="wishThumb" href="itemPage"><img class="img-responsive" src="img/gnome.jpg" /></a></td>
-                                <td id="textLine">
-                                    <h2>Happy Gnome</h2>
-                                    <h5>A happy looking gnome with a red hat.</h5>
+                                <td th:if="${item.rating} == 1" id="wishline" style="text-align:center">
+                                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
                                 </td>
-                                <td id="wishLine"><span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span></td>
-                                <td><h2>&pound;0.00</h2></td>
-                                <td id="wishLine">
-                                    <button class="btn btn-block btn-warning"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Remove From Wish List</button>
+                                <td th:if="${item.rating} == 2" id="wishline" style="text-align:center">
+                                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
                                 </td>
-                            </tr>
-                            
-                            <!-- Wish List Row -->
-                            <tr>
-                                <td><a class="thumbnail" id="wishThumb" href="itemPage"><img class="img-responsive" src="img/gnome05.jpg" /></a></td>
-                                <td id="textLine">
-                                    <h2>Three Wise Gnomes</h2>
-                                    <h5>A set of three wise gnomes, based on the three wise monkeys.</h5>
+                                <td th:if="${item.rating} == 3" id="wishline" style="text-align:center">
+                                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
                                 </td>
-                                <td id="wishLine"><span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span></td>
-                                <td><h2>&pound;0.00</h2></td>
-                                <td id="wishLine">
-                                    <button class="btn btn-block btn-warning"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Remove From Wish List</button>
+                                <td th:if="${item.rating} == 4" id="wishline" style="text-align:center">
+                                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
                                 </td>
-                            </tr>
-                            
-                            <!-- Wish List Row -->
-                            <tr>
-                                <td><a class="thumbnail" id="wishThumb" href="itemPage"><img class="img-responsive" src="img/jacuzzi03.jpg" /></a></td>
-                                <td id="textLine">
-                                    <h2>Jacuzzi 5000</h2>
-                                    <h5>A top of the range jacuzzi with 600 different bubble settings including an equaliser mode that bubbles to your beats.</h5>
+                                <td th:if="${item.rating} == 5" id="wishline" style="text-align:center">
+                                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                                 </td>
-                                <td id="wishLine"><span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span></td>
-                                <td><h2>&pound;0.00</h2></td>
-                                <td id="wishLine">
-                                    <button class="btn btn-block btn-warning"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Remove From Wish List</button>
-                                </td>
-                            </tr>
-                            
-                            <!-- Wish List Row -->
-                            <tr>
-                                <td><a class="thumbnail" id="wishThumb" href="itemPage"><img class="img-responsive" src="img/hoe01.jpg" /></a></td>
-                                <td id="textLine">
-                                    <h2>Garden Tool</h2>
-                                    <h5>A small garden tool with a ceramic blade.</h5>
-                                </td>
-                                <td id="wishLine"><span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span></td>
-                                <td><h2>&pound;0.00</h2></td>
+                                <td><h2 th:text="'£' + ${item.price}"></h2></td>
                                 <td id="wishLine">
                                     <button class="btn btn-block btn-warning"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Remove From Wish List</button>
                                 </td>

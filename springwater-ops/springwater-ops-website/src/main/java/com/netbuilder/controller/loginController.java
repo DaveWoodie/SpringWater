@@ -23,17 +23,18 @@ public class loginController {
 		
 		String[] s = new String[2];
 		
-		WebLoginLoader l = new WebLoginLoader();
-		
-		try {
-			
-			s = l.getLoginByEmail(email);
-			System.out.println(s[0]);
-			System.out.println(s[1]);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		WebLoginLoader l = new WebLoginLoader();
+//		
+//		try {
+//			
+//			s = l.getLoginByEmail(email);
+//			System.out.println(s[0]);
+//			System.out.println(s[1]);
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+
 		
 		return "redirect:/loginregister";
 	}

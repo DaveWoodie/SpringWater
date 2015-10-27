@@ -1,12 +1,8 @@
 <!--     Chris J W Walker  -->
-    
 <!--     loginRegister.html -->
-
 <!--     21/10/2015 -->
-
 <!--     Page for allowing the user to login into NBGardens -->
 <!--     or create a new account -->
-
 <!--     Last Modified by: c33-cooper -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"

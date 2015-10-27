@@ -1,3 +1,8 @@
+<!--     Chris J W Walker  --> 
+<!--     aboutus.jsp -->
+<!--     13/10/2015 -->
+<!--     Page for viewing details on the company -->
+<!--     Last Modified by: Chris J W Walker -->
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"

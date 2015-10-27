@@ -1,6 +1,8 @@
 package loaders;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import connections.SQLDBConnector;
 
 public class WebLoginLoader {
@@ -22,10 +24,14 @@ public class WebLoginLoader {
 			rSet.first();
 			login[0] = rSet.getString(1);
 			
-			rSet = SQL.queryDB("SELECT password FROM user WHERE email = " + email);
+			rSet = SQL.queryDB("SELECT password FROM user WHERE email = '" + email + "'");
 			rSet.first();
 			login[1] = rSet.getString(1);
 		}
+		catch(SQLException e) {
+			System.out.println("Email does not exist in the database.");
+		}
+		
 		catch(Exception e) {
 			e.printStackTrace();
 		}
