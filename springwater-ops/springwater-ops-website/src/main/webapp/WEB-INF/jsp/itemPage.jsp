@@ -1,14 +1,9 @@
-
-<!--     Chris J W Walker  -->
-    
-<!--     loginRegister.html -->
-
+<!--     Chris J W Walker  --> 
+<!--     itemPage.jsp -->
 <!--     13/10/2015 -->
-
 <!--     Page for viewing specific information about a  -->
 <!--     single product -->
-
-<!--     Last Modified by: chrisjwwalker -->
+<!--     Last Modified by: Chris Boucher -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
@@ -110,7 +105,7 @@
                 <!-- Related Item -->
                 <div th:each="item : ${relatedList}" class="col-sm-6 col-md-3">
                     <div class="thumbnail">
-                        <a th:href="'itempage+' + ${item.itemID}"><img th:src="${item.imageLocation}" alt="..." /></a>
+                        <a th:href="@{/itempage(itemid=${item.itemID})}"><img th:src="${item.imageLocation}" alt="..." /></a>
                         <div class="caption">
                             <h3 style="text-align:center" th:text="${item.itemName}"></h3>
                             <p style="text-align:center" th:text="'£' + ${item.price}"></p>

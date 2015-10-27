@@ -1,3 +1,7 @@
+<!--     Chris Boucher  -->
+<!--     basket.jsp -->
+<!--     Page for viewing the customer's basket -->
+<!--     Last Modified by: Chris Boucher -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
@@ -43,7 +47,7 @@
 
                                         <!-- Item Row -->
                                         <tr>
-                                            <td>Happy Gnome</td>
+                                            <td th:text="${item.itemName}"></td>
                                             <td>&pound;2.99</td>
                                             <td>3</td>
                                             <td>&pound;8.97</td>

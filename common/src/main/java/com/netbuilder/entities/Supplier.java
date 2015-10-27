@@ -11,11 +11,9 @@ import javax.persistence.Table;
  * @author tstacey
  * @date 06/10/2015
  */
-@Entity
-@Table(name = "supplier")
+
 public class Supplier {
-	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+
 	private int supplierID;
 	private String supplierName;
 	private String telephone;

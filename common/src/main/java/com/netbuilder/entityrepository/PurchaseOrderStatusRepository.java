@@ -10,8 +10,7 @@ import com.netbuilder.entities.PurchaseOrderStatus;
  * @date 07/10/2015
  */
 
-@Repository
-public interface PurchaseOrderStatusRepository extends CrudRepository<PurchaseOrderStatus, Integer> {
+public interface PurchaseOrderStatusRepository {
 	public PurchaseOrderStatus findByID (int i);
 	public PurchaseOrderStatus findByStatus (String s);
 }

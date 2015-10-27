@@ -1,5 +1,10 @@
 package com.netbuilder.test;
-
+/**
+ * 
+ * @author Chris Boucher
+ * @date 23/10/2015
+ *
+ */
 public class Review {
 
 	private String author;
