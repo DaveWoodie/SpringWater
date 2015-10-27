@@ -41,7 +41,7 @@ function addItem() {
     
     subTotals[increment] = price;
     
-    item = '<div id="' + increment + '" class="row"> <div class="col-sm-5 panel-body" id="panelLeft">' + itemInf + '</div> <div class="col-sm-2 panel-body">' + price + '</div> <div class="col-sm-5 panel-body text-center"><button onclick="removeItem(' + increment + ')" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Remove</button></div> </div>';
+    item = '<div id="item' + increment + '" class="row"> <div class="col-sm-5 panel-body" id="panelLeft">' + itemInf + '</div> <div class="col-sm-2 panel-body">' + price + '</div> <div class="col-sm-5 panel-body text-center"><button onclick="removeItem(' + increment + ')" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Remove</button></div> </div>';
     
     subTotal();
 
@@ -109,7 +109,9 @@ function postageAndFinal() {
 
 function removeItem(divID) {
     
-    var element = document.getElementById(divID);
+    var id = "item" + divID;
+    
+    var element = document.getElementById(id);
     element.parentNode.removeChild(element);
     
     subTotals[divID] = 0.00;
@@ -125,4 +127,39 @@ function checkArray() {
     }
     
     return true;
+}
+
+function mail() {
+    
+    var name = document.getElementById('firstNameInput').value + " " + document.getElementById('lastNameInput').value; 
+    
+    var email = document.getElementById('emailInput').value;
+    
+    var phone = document.getElementById('telephoneNumberInput').value;
+    
+    var addr = document.getElementById('0').value + ", " + document.getElementById('1').value + ", " + document.getElementById('2').value + ", " + document.getElementById('3').value + ", " + document.getElementById('4').value;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    window.open('mailto:Chris.Walker@netbuilder.com?subject=Order_from' + name + '&body=' + name + email + phone + ');
 }

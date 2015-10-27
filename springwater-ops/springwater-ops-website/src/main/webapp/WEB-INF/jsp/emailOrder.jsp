@@ -117,19 +117,19 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-sm-6 panel-body" id="panelLeft">Subtotal:</div>
-                                        <div id="subTot" class="col-sm-6 panel-body"></div>
+                                        <div id="subTot" class="col-sm-6 panel-body">&pound;0.00</div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6 panel-body" id="panelLeft">VAT (20%):</div>
-                                        <div id="VAT" class="col-sm-6 panel-body"></div>
+                                        <div id="VAT" class="col-sm-6 panel-body">&pound;0.00</div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6 panel-body" id="panelLeft">Postage:</div>
-                                        <div id="postage" class="col-sm-6 panel-body"></div>
+                                        <div id="postage" class="col-sm-6 panel-body">&pound;0.00</div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6 panel-body" id="panelLeft">Total Price:</div>
-                                        <div id="total" class="col-sm-6 panel-body"></div>
+                                        <div id="total" class="col-sm-6 panel-body">&pound;0.00</div>
                                     </div>
                                 </div>
                             </div>
@@ -160,7 +160,7 @@
 
                             <!-- Accept Button -->
                             <div class="panel" style="background:none" id="paymentDiv">
-                                <a id="email" class="btn btn-block btn-primary"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Send Your Order</a>
+                                <a id="email" onclick="mail()" class="btn btn-block btn-primary"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Send Your Order</a>
                             </div>
                         </div>
                     </div>
