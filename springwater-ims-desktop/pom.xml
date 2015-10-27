@@ -19,7 +19,6 @@
  		<maven.compiler.source>1.7</maven.compiler.source>
  		<maven.compiler.target>1.7</maven.compiler.target>
  		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<start-class>xpadro.spring.jms.JmsJavaconfigApplication</start-class>
 		<java.version>1.8</java.version>
 		<amq.version>5.4.2</amq.version>
  	</properties>
