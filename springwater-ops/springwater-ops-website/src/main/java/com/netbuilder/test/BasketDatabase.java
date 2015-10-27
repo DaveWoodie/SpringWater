@@ -1,14 +1,19 @@
 package com.netbuilder.test;
 
 import java.util.ArrayList;
+
 /**
  * 
- * @author Chris Boucher
- * @date 20/10/2015
+ * @author Callum Cooper
+ * @date 27/10/2015
+ * @description Dummy database for items held in the basket
+ * @LastModified 27/10/2015
  *
  */
-public class ItemDatabase {
 
+public class BasketDatabase {
+	
+	// Basket Database Attributes
 	static public ArrayList<Item> itemList;
 
 	static public void fillDatabase() {
@@ -252,15 +257,15 @@ public class ItemDatabase {
 		return featuredList;
 	}
 	
-	static public ArrayList<Item> wishlist(String userID) {
+	static public ArrayList<Item> basket(String userID) {
 		// Query featured data
-		ArrayList<Item> wishlist = new ArrayList<Item>();
-		wishlist.add(itemList.get(2));
-		wishlist.add(itemList.get(5));
-		wishlist.add(itemList.get(6));
-		wishlist.add(itemList.get(9));
-		wishlist.add(itemList.get(1));
-		wishlist.add(itemList.get(3));
-		return wishlist;
+		ArrayList<Item> basket = new ArrayList<Item>();
+		basket.add(itemList.get(2));
+		basket.add(itemList.get(5));
+		basket.add(itemList.get(6));
+		basket.add(itemList.get(9));
+		basket.add(itemList.get(1));
+		basket.add(itemList.get(3));
+		return basket;
 	}
 }

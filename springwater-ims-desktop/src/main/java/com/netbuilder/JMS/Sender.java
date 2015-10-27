@@ -1,87 +1,68 @@
+/**
+ * @author jforster
+ * @date 27/10/15
+ */
 package com.netbuilder.JMS;
 
-import javax.annotation.Resource;
-import javax.jms.Connection;
-import javax.jms.ConnectionFactory;
-import javax.jms.Destination;
-import javax.jms.JMSException;
-import javax.jms.MessageProducer;
-import javax.jms.Queue;
-import javax.jms.Session;
-import javax.jms.TextMessage;
-import javax.jms.Topic;
+import java.io.Serializable;
 
+import javax.jms.Connection;
+import javax.jms.DeliveryMode;
+import javax.jms.Destination;
+import javax.jms.MessageProducer;
+import javax.jms.ObjectMessage;
+import javax.jms.Session;
+
+import org.apache.activemq.ActiveMQConnectionFactory;
+
+
+/**
+ * Class to create the JMS link and send a message containing any object
+ * @author jforster
+ *
+ */
 public class Sender{
-	//Injects resources for a connection factory, queue, and topic
-			@Resource(lookup = "jms/ConnectionFactory")
-			private static ConnectionFactory connectionFactory;
-			@Resource(lookup = "jms/Queue")private static Queue queue;
-			@Resource(lookup = "jms/Topic")private static Topic topic;
-			
-	public void Main (String [] args) {
-		
 	
-		//Retrieves and verifies command-line arguments that specify the destination type and the number of arguments
-		final int NUM_MSGS;
-		String destType = args[0];
-		System.out.println("Destination type is " + destType);
-		if ( ! ( destType.equals("queue") || destType.equals("topic") ) ) { 
-		    System.out.println("Argument must be 'queue' or " + "'topic'");
-		    System.exit(1);
-		}
-		if (args.length == 2){ 
-		    NUM_MSGS = (new Integer(args[1])).intValue();
-		} 
-		else { 
-		    NUM_MSGS = 1;
-		}
-		
-		//Assigns either the queue or the topic to a destination object, based on the specified destination type
-		
-		Destination dest = null;
-		try { 
-		    if (destType.equals("queue")) { 
-		        dest = (Destination) queue; 
-		    } else { 
-		        dest = (Destination) topic; 
-		    }
-		} 
-		catch (Exception e) {
-		    System.err.println("Error setting destination: " + e.toString()); 
-		    e.printStackTrace(); 
-		    System.exit(1);
-		}
-		
-		//Creates a Connection and a Session
-		Connection connection = null;
+	private final String boardName = "IMS.OUT";
+	
+	/**
+	 * Method to create the parameters for sending an object to the system Backend
+	 * @param toSend object that needs to be sent
+	 */
+	public void sendMessage(Object toSend) {
 		try {
-			connection = connectionFactory.createConnection();
-			Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-			
-			//Creates a MessageProducer and a TextMessage
-			MessageProducer producer = session.createProducer(dest);
-			TextMessage message = session.createTextMessage();
-			
-			//Sends one or more messages to the destination
-			for (int i = 0; i < NUM_MSGS; i++) { 
-			    message.setText("This is message " + (i + 1) + " from producer"); 
-			    System.out.println("Sending message: " + message.getText()); 
-			    producer.send(message);
-			}
-			
-			//Sends an empty control message to indicate the end of the message stream
-			producer.send(session.createMessage());
-			
-		} catch (JMSException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		 finally { 
-			    if (connection != null) { 
-			        try { connection.close(); } 
-			        catch (JMSException e) { } 
-			    }
-			}
-		
+            // Create a ConnectionFactory
+            ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://localhost:8081");
+
+            // Create a Connection
+            Connection connection = connectionFactory.createConnection();
+            connection.start();
+
+            // Create a Session
+            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+
+            // Create the destination (Topic or Queue)
+            Destination destination = session.createQueue(boardName);
+
+            // Create a MessageProducer from the Session to the Topic or Queue
+            MessageProducer producer = session.createProducer(destination);
+            producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
+
+            // Create a messages
+            ObjectMessage message = session.createObjectMessage((Serializable) toSend);
+
+            // Tell the producer to send the message
+            System.out.println("Sending Message...");
+            producer.send(message);
+
+            // Clean up
+            session.close();
+            connection.close();
+        }
+        catch (Exception e) {
+            System.out.println("Caught: " + e);
+            e.printStackTrace();
+        }
 	}
+
 }
