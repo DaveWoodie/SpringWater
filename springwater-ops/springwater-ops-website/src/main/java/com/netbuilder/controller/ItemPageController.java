@@ -3,27 +3,28 @@ package com.netbuilder.controller;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.HandlerMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.netbuilder.test.*;
-
+/**
+ * 
+ * @author Chris Boucher
+ * @date 23/10/2015
+ *
+ */
 @Controller
+@RequestMapping("/itempage")
 public class ItemPageController {
 
-	@RequestMapping(value = "/itempage+*", method = RequestMethod.GET)
-	public String getItem(HttpServletRequest request, Model model) {
+	@RequestMapping(method = RequestMethod.GET)
+	public String getItem(@RequestParam(value = "itemid", required = false) String itemID,
+			Model model) {
 		
-		// Get current URL and compare to database
-		String url = (String) request
-				.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
-		String search = url.replace("/itempage+", "");
-		Item result = ItemDatabase.searchID(search);
+		Item result = ItemDatabase.searchID(itemID);
 		
 		// IF the item exists
 		if(result != null) {

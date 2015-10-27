@@ -17,6 +17,8 @@ public class loginController {
 	@RequestMapping(value = "loginForm", method = RequestMethod.POST)
 	public String doPost(HttpServletRequest request, HttpServletResponse response) {
 
+		WebLoginLoader l = new WebLoginLoader();
+		
 		String returned = "redirect:/loginregister";
 		EncryptPassword n = new EncryptPassword(); 
 		
@@ -27,8 +29,7 @@ public class loginController {
 		System.out.println(passwd);
 		
 		String[] s = new String[2];
-		WebLoginLoader l = new WebLoginLoader();
-		
+
 		try {
 			
 			s = l.getLoginByEmail(email);
@@ -42,7 +43,7 @@ public class loginController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return returned;
 	}
 }
