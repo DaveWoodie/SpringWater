@@ -1,4 +1,14 @@
 <!DOCTYPE html>
+<!--     Callum Cooper  -->
+    
+<!--     openOrdersPage.jps -->
+
+<!--     14/10/2015 -->
+
+<!--     Template for the cancelled orders page -->
+
+<!--     Last Modified by: Callum Cooper -->
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       th:include="template :: page">
