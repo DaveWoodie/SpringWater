@@ -2,6 +2,7 @@ package com.netbuilder.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import loaders.WebLoginLoader;
 
@@ -13,10 +14,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class loginController {
 	
 	@RequestMapping(value = "loginForm", method = RequestMethod.POST)
-	public String doPost(HttpServletRequest request, HttpServletResponse response) {
+	public String doPost(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 
 		String email = request.getParameter("emailAddressInput");
 		String passwd = request.getParameter("passwordInputLogin");
+		
+		String userID = "001";
+		
+		session.setAttribute("sessionUser", userID);
 		
 		System.out.println(email);
 		System.out.println(passwd);
