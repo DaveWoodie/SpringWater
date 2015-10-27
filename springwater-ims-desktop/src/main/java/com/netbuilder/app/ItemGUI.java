@@ -30,7 +30,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import com.netbuilder.apploader.ItemLoader;
 import com.netbuilder.apploader.PurchaseOrderLineLoader;
 import com.netbuilder.apploader.PurchaseOrderLoader;
 import com.netbuilder.apploader.SupplierLoader;
@@ -38,6 +37,7 @@ import com.netbuilder.entities.Item;
 import com.netbuilder.entities.PurchaseOrder;
 import com.netbuilder.entities.PurchaseOrderLine;
 import com.netbuilder.entities.Supplier;
+import com.netbuilder.loaders.ItemLoader;
 
 /**
  *Creates a JFrame containing a selected item's details
@@ -201,7 +201,7 @@ public class ItemGUI extends JFrame
 			//Discontinue Item
 			JPanel panelDiscontinue = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			JLabel labelDiscontinue = new JLabel("Item Status : ");
-			buttonDiscontinue = new JButton("Active");
+			buttonDiscontinue = new JButton("");
 			panelDiscontinue.add(labelDiscontinue);
 			panelDiscontinue.add(buttonDiscontinue);
 			
@@ -224,7 +224,7 @@ public class ItemGUI extends JFrame
 							buttonDiscontinue.setText("Discontinued");
 							textAdd.setEditable(false);
 							buttonAddToPO.setEnabled(false);
-							//TODO set isDiscontiued in mongo to true
+							itemLoader.setDiscontinueStatus(itemID, false);
 						}
 					}
 					else if(buttonDiscontinue.getText().equals("Discontinued"))
@@ -241,7 +241,7 @@ public class ItemGUI extends JFrame
 							buttonDiscontinue.setText("Active");
 							textAdd.setEditable(true);
 							buttonAddToPO.setEnabled(true);
-							//TODO set isDiscontinued in mongo to false
+							itemLoader.setDiscontinueStatus(itemID, true);
 						}
 					}
 				}
@@ -262,43 +262,7 @@ public class ItemGUI extends JFrame
 				@Override
 				public void actionPerformed(ActionEvent e) 
 				{
-					/*
-					//null check
-					if(textAdd.getText().equals(""))
-					{
-						textAdd.setText("0");
-					}
 					
-					if(Integer.parseInt(textAdd.getText()) > 0)
-					{
-						listPO.add(new Object[]{(listPO.size() - 1), "21/10/2015", textAdd.getText(),  "Order not sent", textSupplier.getText(), textPrice.getText()});
-						
-					}
-					else
-					{
-						textAdd.setText("0");
-						JOptionPane.showMessageDialog(null, "The quantity must be higher than 0");
-					}
-					
-					for(int i = 0; i < listPO.size(); i++)
-					{
-						if(listPO.get(i)[3].equals("Order not sent"))
-						{
-							String oldValue = (String) listPO.get(i)[3];
-							
-							String newValue = Integer.toString(Integer.parseInt(oldValue) + Integer.parseInt(textAdd.getText())); 
-							listPO.get(i)[3] = newValue;
-							
-							tableModel.setValueAt(newValue, listPO.size() - i, 3);
-							
-							System.out.println(listPO.get(i)[3]);
-						}
-						else
-						{
-							tableModel.insertRow(0, listPO.get(listPO.size() - 1));
-							break;
-						}
-					}*/
 				}
 			});
 			
@@ -423,6 +387,20 @@ public class ItemGUI extends JFrame
 		
 		ArrayList<Supplier> supplierList = supplierLoader.getSupplierListByID(item.getIdSupplier());
 		textSupplier.setText(supplierList.get(0).getSupplierName());
+		
+		if(item.isDiscontinued() == true)
+		{
+			buttonDiscontinue.setText("Discontinued");
+			textAdd.setEditable(false);
+			buttonAddToPO.setEnabled(false);
+		}
+		else
+		{
+			buttonDiscontinue.setText("Active");
+			textAdd.setEditable(true);
+			buttonAddToPO.setEnabled(true);
+		}
+		
 	}
 	
 	/**
