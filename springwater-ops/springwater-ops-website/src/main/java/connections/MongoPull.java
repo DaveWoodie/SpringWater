@@ -18,6 +18,7 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import entities.Address;
 import entities.Item;
+import entities.WishList;
 
 public class MongoPull {
 
@@ -36,29 +37,13 @@ public class MongoPull {
 	private ArrayList<Item> itemList = new ArrayList<Item>();
 
 	
-	
+	/*
 	public static void main(String[] args) {
 		
 		MongoPull tst = new MongoPull();
-//		int itemID = 6;
-//		ArrayList<Item> itList = tst.getItemInf(itemID);
-//		Item i = itList.get(0);
-//		i.print();
-//		
-//		i.setDescription("Gnome Romeo. Get it?");
-//		
-//		MongoPush mp = new MongoPush();
-//		mp.updateItem(i);
-//		mp.setContinuedStateForItem(itemID, true);
-//		
-//		System.out.println("");
-//		itList = tst.getItemInf(itemID);
-//		i = itList.get(0);
-//		i.print();
-		
-		tst.getAddress(1).print();
+		tst.getWishList(3).print();
 	}
-	
+	*/
 	
 	public MongoPull() {
 		
@@ -77,11 +62,9 @@ public class MongoPull {
 	 *	> Post Code
 	 * 
 	 * @param id: Takes an int which is the address ID
-	 * @return returns a List containing all the lines of address associated with the ID
+	 * @return returns a List containing the address associated with the ID
 	 */
-	
-	
-	public Address getAddress(int id) {
+	public Address getAddress(int addressID) {
 		//Connect to MongoDB
 		mdbc.mongoConnect();
 		
@@ -91,7 +74,7 @@ public class MongoPull {
 		DBCollection collection = db.getCollection(AddrCol);
 		
 		BasicDBObject addr = new BasicDBObject();
-		addr.put("idAddress", id);
+		addr.put("idAddress", addressID);
 		DBObject addrObj = collection.findOne(addr);		
 		
 		
@@ -241,7 +224,7 @@ public class MongoPull {
 	 * @param id : Takes an int which is the idCustomer of a customer 
 	 * @return returns a List containing the items stored within a customers wish list 
 	 */
-	public List<String> getWishList(int id) {
+	public WishList getWishList(int custID) {
 		//Connect to MongoDB
 		mdbc.mongoConnect();
 		
@@ -251,29 +234,24 @@ public class MongoPull {
 		DBCollection collection = db.getCollection(wishListCol);
 		
 		BasicDBObject wL = new BasicDBObject();
-		wL.put("idCustomer", id);
-		DBCursor cursor = collection.find(wL);		
+		wL.put("idCustomer", custID);
+		DBObject wishListObj = collection.findOne(wL);	
 		
 		wishListSet.clear();
 		
-		while(cursor.hasNext()) {
-			
-			cursor.next();
-			
-			BSONObject bsobj = (BSONObject) cursor.curr().get("items");
-			int i = 1; 
-			while(bsobj.containsField("idItem" + i)) {
-				wishListSet.add(bsobj.get("idItem" + i).toString());
-				
-				i++;
-			}
+		ArrayList<Item> wlItems = new ArrayList<Item>();
+		BSONObject itemObj = (BSONObject) wishListObj.get("items");
+		Set<String> keys = itemObj.keySet();
+		for(String key : keys) {
+			Integer itemID = ((Double) itemObj.get(key)).intValue();
+			wlItems.add(getItemInf(itemID).get(0));
 		}
 		
-		cursor.close();
+		WishList wish = new WishList(custID, wlItems);
 				
 		//Disconnect from MongoDB
 		mdbc.mongoDisconnect();
 		
-		return wishListSet;
+		return wish;
 	}
 }
