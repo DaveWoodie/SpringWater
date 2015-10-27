@@ -1,3 +1,7 @@
+<!--     Chris Boucher  -->
+<!--     basket.jsp -->
+<!--     Page for viewing the customer's basket -->
+<!--     Last Modified by: Chris Boucher -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"

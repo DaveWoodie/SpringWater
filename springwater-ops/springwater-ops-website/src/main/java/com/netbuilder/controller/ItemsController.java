@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * 
+ * @author Chris Boucher
+ * @date 23/10/2015
+ *
+ */
 @Controller
 @RequestMapping("/items")
 public class ItemsController {
