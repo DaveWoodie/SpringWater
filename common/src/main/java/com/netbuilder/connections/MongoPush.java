@@ -57,6 +57,12 @@ public class MongoPush {
 		return newItemID;
 	}
 	
+	/**
+	 * updates an item's discontinued state to correspond with the passed boolean and id
+	 * pass false to set the item as discontinued, true to set as continued
+	 * @param itemID
+	 * @param continuedState
+	 */
 	public void setContinuedStateForItem(int itemID, boolean continuedState) {
 		mdbc.mongoConnect();
 		DB db = mdbc.getConnection().getDB(dataBase);

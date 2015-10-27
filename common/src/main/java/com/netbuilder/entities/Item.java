@@ -18,8 +18,8 @@ public class Item {
 	private int idItem;
 	private String itemName;
 	private String itemDescription;
-	private double price;
-	private double cost;
+	private float price;
+	private float cost;
 	private int stock;
 	private String imageLocation;
 	private boolean discontinued;
@@ -102,11 +102,11 @@ public class Item {
      * Method to get the price of the item
      * @return Returns double data type
      */
-    public double getPrice() {
+    public float getPrice() {
 		return price;
 	}
     
-    public double getCost() {
+    public float getCost() {
     	return cost;
     }
     
@@ -195,11 +195,11 @@ public class Item {
      * Method to set the items price
      * @param price: Int of items price
      */
-	public void setPrice(double price) {
+	public void setPrice(float price) {
 		this.price = price;
 	}
 	
-	public void setCost(double cost) {
+	public void setCost(float cost) {
 		this.cost = cost;
 	}
 	

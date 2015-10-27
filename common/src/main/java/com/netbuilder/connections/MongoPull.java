@@ -37,7 +37,16 @@ public class MongoPull {
 	
 	public static void main(String[] args) {
 		MongoPull tst = new MongoPull();
-		ArrayList<Item> itList = tst.getItemInf(6);
+		int itemID = 6;
+		ArrayList<Item> itList = tst.getItemInf(itemID);
+		for(Item i : itList) {
+			i.print();
+		}
+		MongoPush mp = new MongoPush();
+		mp.setContinuedStateForItem(itemID, false);
+		
+		System.out.println("");
+		itList = tst.getItemInf(itemID);
 		for(Item i : itList) {
 			i.print();
 		}
@@ -173,8 +182,8 @@ public class MongoPull {
 			Item newItem = new Item(itemName, itemDescription, Float.parseFloat(itemPrice), Float.parseFloat(itemCost), (int) Float.parseFloat(numberInStock), imageLocation, discontinued, isPorousWare, (int) Float.parseFloat(idSupplier));
 			
 			BSONObject bsobj = (BSONObject) cursor.curr().get("Attributes");
-			Set<String> names = bsobj.keySet();
-			for(String key : names) {
+			Set<String> keys = bsobj.keySet();
+			for(String key : keys) {
 				String val = bsobj.get(key).toString();
 				
 				try {
@@ -184,13 +193,6 @@ public class MongoPull {
 				}
 			}
 			newItem.setItemID(id);
-//			BSONObject bsobj = (BSONObject) cursor.curr().get("Attributes");
-//			
-//			for(int i = 0; i < attrs.length; i++) {
-//				if(bsobj.containsField(attrs[i])) {
-//					itemInfs.add(bsobj.get(attrs[i]).toString());
-//				}
-//			}
 			
 			itemList.add(newItem);
 		}
