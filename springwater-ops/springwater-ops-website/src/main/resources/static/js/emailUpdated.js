@@ -72,7 +72,7 @@ function subTotal() {
         tot += parsed;
     }
 
-    document.getElementById('subTot').innerHTML = "&pound;" + tot;
+    document.getElementById('subTot').innerHTML = "&pound;" + tot.toFixed(2);
 
     vat();
 }
