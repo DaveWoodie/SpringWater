@@ -6,13 +6,20 @@ package com.netbuilder.logic;
 
 import java.util.ArrayList;
 
+import com.netbuilder.connections.MongoPull;
+import com.netbuilder.entities.Address;
+import com.netbuilder.entities.Item;
 import com.netbuilder.entities.Supplier;
+import com.netbuilder.loaders.AddressLoader;
+import com.netbuilder.loaders.ItemLoader;
 import com.netbuilder.loaders.SupplierLoader;
 
 public class SupplierLogic {	
 	private Object[][] supplierList;
 	SupplierLoader sLoader = new SupplierLoader();
 	private ArrayList<Supplier> sList;
+	private AddressLoader aL = new AddressLoader();
+	private ItemLoader iL = new ItemLoader();
 
 	/**
 	 * Method to load and format the entities for the GUI for all Suppliers
@@ -67,6 +74,37 @@ public class SupplierLogic {
 		return supplierList;
 	}
 	
+//	/**
+//	 * @author abutcher
+//	 * @param supplierID
+//	 * @return
+//	 */
+//	public Object [][] fetchProducts(int supplierID) {
+//		///TODO
+//		ArrayList<Item> pList = new ArrayList<Item>();
+//		iL.loadItemByID(supplierID);
+//	}
+	
+	/**
+	 * @author abutcher
+	 * @param supplierDetails
+	 * @return
+	 */
+	public ArrayList<String> getAddress(int supplierDetails) {
+		ArrayList<String> address = new ArrayList<String>();
+		Address a = aL.loadAddressByID(supplierDetails).get(0);
+		for (String s:a.getAddressLines()) {
+			address.add(s);
+		}
+		
+		address.add(a.getCity());
+		if(a.getCounty().isEmpty()) {
+			address.add(a.getCounty());
+		}
+		address.add(a.getPostCode());
+		return address;
+	}
+	
 	/**
 	 * Method to format the purchase order entities' data into a format for the GUI
 	 */
@@ -77,7 +115,6 @@ public class SupplierLogic {
 			supplierList[i][1] = sList.get(i).getSupplierName();
 			supplierList[i][2] = sList.get(i).getTelephone();
 			supplierList[i][3] = sList.get(i).getEmail();
-			//TODO get address
 			supplierList[i][4] = sList.get(i).getAddressID();
 			supplierList[i][5] = sList.get(i).getAverageDeliveryTime();
 			supplierList[i][6] = "placeholder.png";

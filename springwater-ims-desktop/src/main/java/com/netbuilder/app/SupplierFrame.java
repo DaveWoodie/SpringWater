@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
@@ -90,7 +91,12 @@ public class SupplierFrame extends JFrame{
 		right = new JPanel();
 		right.setLayout(new BoxLayout(right, BoxLayout.Y_AXIS));
 		right.setMinimumSize(new Dimension(350,50));
-		rightTest = new JLabel("<html>  Supplier ID: " + supplierID + "<br>  Supplier Name: " + supplierName  +"<br> "+ supplierDetails[0][2] + "<br>  " + supplierDetails[0][3] + "<br><br>  Address:<br>"   +   supplierDetails[0][4] + "<br>  "  + "<br><br>  Average Delivery Time: " +  supplierDetails[0][5]+ " Days");
+		String str = "<html>  ID: " + supplierID + "<br>  Name: " + supplierName  +"<br> "+ supplierDetails[0][2] + "<br>  " + supplierDetails[0][3] + "<br>  Average Delivery Time: " +  supplierDetails[0][5]+ " Days"+ "<br><br>  Address "   +   supplierDetails[0][4]+ ":<br>";
+		ArrayList<String> address =  lD.getAddress((int)supplierDetails[0][4]);
+		for (String s :address) {
+			str = str + s + "<br>";
+		}
+		rightTest = new JLabel(str);
 		rightTest.setFont(new Font("Serif", Font.BOLD, 16));
 		right.add(rightTest);
 		
