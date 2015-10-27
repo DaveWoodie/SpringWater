@@ -10,7 +10,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.springframework.data.annotation.Id;
 
 public class Item {
 	//Item attributes
