@@ -39,6 +39,7 @@ public class MongoPull {
 		MongoPull tst = new MongoPull();
 		int itemID = 6;
 		ArrayList<Item> itList = tst.getItemInf(itemID);
+		
 		for(Item i : itList) {
 			i.print();
 		}

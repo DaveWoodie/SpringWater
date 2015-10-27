@@ -24,7 +24,7 @@ public class MongoPush {
 	public static void main(String[] args) {
 		
 		MongoPush tst = new MongoPush();
-		Item item = new Item("Gnomeo", "Gnome Rome. Get it?", (float)3.51, (float)2.02, 500, "A4", false, false, 3);
+		Item item = new Item("Gnomeo", "Gnome Romeo. Get it?", (float)3.51, (float)2.02, 500, "A4", false, false, 3);
 		tst.addItem(item);
 	}
 	
@@ -55,6 +55,22 @@ public class MongoPush {
 		mdbc.mongoDisconnect();
 		
 		return newItemID;
+	}
+	
+	public void updateItem(Item item) {
+		mdbc.mongoConnect();
+		
+		//Connect to the NBGardensn database
+		DB db = mdbc.getConnection().getDB(dataBase);
+		//Get Specfic Collection`
+		DBCollection collection = db.getCollection("Item");
+		
+		BasicDBObject searchObj = new BasicDBObject();
+		searchObj.put("idItem", item.getIdItem());
+		//DBObject currItem = collection.findOne(searchObj);
+		BasicDBObject newItemObj = createItemDBObjectFromItem(item, item.getIdItem());
+		
+		collection.update(searchObj, newItemObj);
 	}
 	
 	/**
