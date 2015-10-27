@@ -12,17 +12,14 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -55,7 +52,6 @@ public class ItemGUI extends JFrame
 	private PurchaseOrderLineLoader purchaseOrderLineLoader = new PurchaseOrderLineLoader();
 	
 	private int itemID = 1;
-	private BufferedImage productImage;
 	private Image img;
 	private JTabbedPane tabbedPane;
 	private JTable tableItem;
@@ -116,10 +112,11 @@ public class ItemGUI extends JFrame
 		
 		//pulls item info from MongDB
 		itemList = itemLoader.loadItemByID(itemID);
+		System.out.println(itemList.size());
 		item = itemList.get(0);
 	
 		//-------------Testing--------------
-		//fetch dummy data
+		//TODO fetch dummy data - needed for item images for now
 		Inventory = Data.fetchInventoryList();
 		//----------------------------------
 		
