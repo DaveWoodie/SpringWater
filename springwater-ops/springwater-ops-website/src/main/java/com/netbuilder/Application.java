@@ -1,4 +1,7 @@
-
+/**
+ * @author Chris J W Walker
+ * 
+ */
 package com.netbuilder;
 
 import javax.servlet.ServletException;

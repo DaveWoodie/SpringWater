@@ -1,3 +1,13 @@
+<!--
+
+    Chris J W Walker
+    
+    Email Order Form
+    
+    27/10/2015
+
+-->
+
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" th:include="template :: page">
 
@@ -79,8 +89,10 @@
                                 <p><small>Add items to your order</small></p>
 
                                 <div class="input-group">
-                                    <span class="input-group-addon" id="basic-addon1">Item Code</span>
-                                    <input id="itemEntry" type="text" class="form-control" placeholder="Item Code" aria-describedby="basic-addon1" />
+                                    <span class="input-group-addon" id="basic-addon1">Select Item</span>
+                                    <select class="form-control" id="itemid">
+                                        <option th:each="item : ${itemList}" th:value="${item.price}" th:text="${item.itemID} + '  ' + ${item.itemName}"></option>
+                                    </select>
                                 </div>
                                 <br />
                                 <a id="addItem" onclick="addItem()" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Item</a>
@@ -95,7 +107,7 @@
                                 <div class="panel-heading">
                                     <h3 class="panel-title">Item on your Order</h3></div>
                                 <div id="itemsOnOrder" class="container">
-                                    
+                             
                                 </div>
                             </div>
 
