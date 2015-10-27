@@ -3,6 +3,7 @@ package entities;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.springframework.data.annotation.Id;
 
 /**
  * Class to hold all of the details for an address. Used for both customer addresses and supplier addresses
@@ -89,6 +90,10 @@ public class Address {
 		for(String s : newAddressLines) {
 			this.addressLines.add(s);
 		}
+	}
+	
+	public void setAddressID(int newID) {
+		this.addressID = newID;
 	}
 	
 	public void setAddressLines(ArrayList<String> newAddressLines) {

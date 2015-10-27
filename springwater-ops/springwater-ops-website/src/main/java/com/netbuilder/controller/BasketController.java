@@ -9,7 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import com.netbuilder.test.ItemDatabase;
+
+import com.netbuilder.test.BasketDatabase;
 
 @Controller
 @RequestMapping("/basket")
@@ -18,7 +19,7 @@ public class BasketController {
 	@RequestMapping(method=RequestMethod.GET)
 	public String getBasket(Model model) {
 		String userID = "001";
-		model.addAttribute("basket",ItemDatabase.wishlist(userID));
+		model.addAttribute("basket", BasketDatabase.basket(userID));
 		return "basket";
 	}
 }
