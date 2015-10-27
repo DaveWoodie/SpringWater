@@ -92,6 +92,10 @@ public class Address {
 		}
 	}
 	
+	public void setAddressID(int newID) {
+		this.addressID = newID;
+	}
+	
 	public void setAddressLines(ArrayList<String> newAddressLines) {
 		copyAddressLines(newAddressLines);
 	}
