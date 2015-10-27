@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import com.netbuilder.connections.SQLDBConnector;
+import com.netbuilder.entities.Item;
 import com.netbuilder.entities.Supplier;
 
 /**
@@ -77,13 +78,28 @@ public class SupplierLoader {
 	/**
 	 * @author abutcher
 	 * Method to construct the SQLquery to retrieve suppliers by name
+	 * @param name of the supplier to search for
+	 * @return the ArrayList of suppliers created from the query
+	 */
+	public ArrayList<Supplier> getSupplierListByName(String name) {
+		sql = listQuery + tableName + " WHERE supplierName = '" + name + "'";
+		constructResult();
+		return supplierList;
+	}
+
+	/**
+	 * @author abutcher
+	 * Method to construct the SQLquery to retrieve suppliers by name
 	 * @param input the name of the supplier to search for
 	 * @return the ArrayList of suppliers created from the query
 	 */
-	public ArrayList<Supplier> getSupplierListByName(String input) {
-		sql = listQuery + tableName + " WHERE supplierName = '" + input + "'";
-		constructResult();
-		return supplierList;
+	public ArrayList<Supplier> getSupplierListByProductID(int id) {
+		int sID = 0;
+		ItemLoader il = new ItemLoader();
+		ArrayList<Item> item = new ArrayList<Item>();
+		item = il.loadItemByID(id);
+		sID = item.get(0).getIdSupplier();
+		return getSupplierListByID(sID);
 	}
 
 }

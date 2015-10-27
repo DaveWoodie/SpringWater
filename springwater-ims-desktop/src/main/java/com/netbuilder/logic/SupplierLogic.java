@@ -47,6 +47,14 @@ public class SupplierLogic {
 		return supplierList;
 	}
 	
+	public Object[][] fetchSupplierByProductID(String input) {
+		sList = new ArrayList<Supplier>(sLoader.getSupplierListByProductID((Integer.parseInt(input))));
+		
+		formatTable();
+		
+		return supplierList;
+	}
+	
 	/**
 	 * Method to format the purchase order entities' data into a format for the GUI
 	 */
@@ -58,6 +66,8 @@ public class SupplierLogic {
 		}
 		
 	}
+
+
 
 
 }
