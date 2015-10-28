@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import connections.MongoPush;
 import connections.SQLDBConnector;
 import entities.Item;
 import entities.Supplier;
@@ -24,9 +25,11 @@ public class SupplierLoader {
 	final String collumnsWTE = "supplierName`, `telephoneNumber`, `email`, `idAddress`) VALUES ('";
 	final String collumnsWT = "supplierName`, `telephoneNumber`, `idAddress`) VALUES ('";
 	final String collumnsWE = "supplierName`, `email`, `idAddress`) VALUES ('";
+	final String update = "UPDATE `nbgardensdata`.`supplier` SET `supplierName`='";
 	ArrayList<Supplier> supplierList = new ArrayList<Supplier>();
 	String sql;
 	private SQLDBConnector sqlDB = new SQLDBConnector();
+	private MongoPush push = new MongoPush(); 
 	
 	/**
 	 * Method to execute constructed query and load data into objects
@@ -133,6 +136,11 @@ public class SupplierLoader {
 		return getSupplierListByID(sID);
 	}
 
+	/**
+	 * @author abutcher
+	 * Method to send a new supplier to the database
+	 * @param newSupplier to add to database
+	 */
 	public void newSupplier(Supplier newSupplier) {
 		if (!newSupplier.getEmail().isEmpty() && !newSupplier.getTelephone().isEmpty()) {
 			sql = insertQuery + collumnsWTE + newSupplier.getSupplierName() +"', '"+ newSupplier.getTelephone() +"', '"+ newSupplier.getEmail()+"', '"+ newSupplier.getAddressID()+"')";
@@ -141,18 +149,24 @@ public class SupplierLoader {
 		}else {
 			sql = insertQuery + collumnsWT + newSupplier.getSupplierName() +"', '"+ newSupplier.getTelephone() +"', '"+ newSupplier.getAddressID()+"')";
 		}
-
 		sqlDB.openCon();
 		try {
 			sqlDB.updateDB(sql);
 		} 
 		catch (SQLException sqle) {
 			sqle.printStackTrace();
+			push.deleteAddressByID(newSupplier.getAddressID());
 		}
 		catch (Exception e) {
 			e.printStackTrace();
+			push.deleteAddressByID(newSupplier.getAddressID());
 		}
 		sqlDB.closeCon();
+	}
+
+	public void updateSupplier(Supplier upSP) {
+		sql = update+ upSP.getSupplierName()+ "', telephoneNumber ='"+upSP.getTelephone() + "', email ='" + upSP.getEmail() + "' WHERE `idSupplier`='"+upSP.getSupplierID()+"';";
+		//TODO Set Supplier ID
 	}
 
 }

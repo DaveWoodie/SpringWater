@@ -113,6 +113,11 @@ public class SupplierLogic {
 		return address;
 	}
 	
+	public Address getAddressAsAddress(int supplierDetails) {
+		Address a = aL.loadAddressByID(supplierDetails).get(0);
+		return a;
+	}
+	
 	/**
 	 * @author abutcher
 	 * Method to format the purchase order entities' data into a format for the GUI
@@ -157,11 +162,52 @@ public class SupplierLogic {
 		newSP.setAverageDeliveryTime(0);
 		if (!results[2].isEmpty()){
 			newSP.setEmail(results[2]);
+		}else {
+			newSP.setEmail("");
 		}
 		if (!results[1].isEmpty()){
 			newSP.setTelephone(results[1]);
+		}else {
+			newSP.setTelephone("");
 		}
 		sLoader.newSupplier(newSP);
+		
+		
+	}
+
+	public void updateSupplier(String[] results, int selectedID, int addressID) {
+		Supplier newSP;
+		Address address;
+		ArrayList <String> addressLines = new ArrayList<String>();
+		
+		//add new address
+		for (int i = 6 ; i < results.length; i++) {
+			addressLines.add(results[i]);
+		}
+		if (results[4].isEmpty()) {
+			address = new Address(addressLines, results[3], results[5]);
+		} else {
+			address = new Address(addressLines, results[3], results[4], results[5]);
+		}
+		address.setAddressID(addressID);
+		push.updateAddress(address);
+		
+		//add new supplier
+		newSP = new Supplier(results[0], addressID);
+		newSP.setAverageDeliveryTime(0);
+		if (!results[2].isEmpty()){
+			newSP.setEmail(results[2]);
+		}else {
+			newSP.setEmail("");
+		}
+		if (!results[1].isEmpty()){
+			newSP.setTelephone(results[1]);
+		}else {
+			newSP.setTelephone("");
+		}
+		sLoader.updateSupplier(newSP);
+		
+		
 		
 	}
 

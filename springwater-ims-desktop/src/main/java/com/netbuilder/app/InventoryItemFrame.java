@@ -18,6 +18,7 @@ import entities.Item;
 
 public class InventoryItemFrame extends JPanel implements MouseListener {
 
+	private String imageFolderLocation = "src/main/resources/images/";
 	private static final long serialVersionUID = 1L;
 	private static int HEIGHT = 70;
 	private int WIDTH;
@@ -27,8 +28,8 @@ public class InventoryItemFrame extends JPanel implements MouseListener {
 	private int productID;
 	private String productName;
 	private int quantity;
-	private String location;
 	private String imageLocation;
+	private boolean porousware;
 	
 	private IconLoader iconLoader;
 	
@@ -42,11 +43,11 @@ public class InventoryItemFrame extends JPanel implements MouseListener {
 	private Color backgroundColor = new Color(197,208,199);
 	private Color hoverBackgroundColor = new Color(157,166,159);
 	
-	public InventoryItemFrame(InventoryGUI src, int width, int productID, String productName, int quantity, String location, String imageLocation) {
+	public InventoryItemFrame(InventoryGUI src, int width, int productID, String productName, int quantity, boolean isPorousware, String imageLocation) {
 		this.productID = productID;
 		this.productName = productName;
 		this.quantity = quantity;
-		this.location = "Warehouse";
+		this.porousware = isPorousware;
 		this.imageLocation = imageLocation;
 		this.WIDTH = width;
 		initialSetup();
@@ -57,7 +58,7 @@ public class InventoryItemFrame extends JPanel implements MouseListener {
 		this.productID = item.getIdItem();
 		this.productName = item.getItemName();
 		this.quantity = item.getStock();
-		this.location = "Warehouse";
+		this.porousware = item.isPorousware();
 		this.imageLocation = item.getImageLocation();
 		this.WIDTH = width;
 		initialSetup();
@@ -83,7 +84,7 @@ public class InventoryItemFrame extends JPanel implements MouseListener {
 		infoPanel.add(new JLabel("Name: "+this.productName));
 		infoPanel.add(new JLabel("Item ID: "+this.productID));
 		infoPanel.add(new JLabel("Quantity: "+this.quantity));
-		infoPanel.add(new JLabel("Warehouse Location: "+this.location));
+		infoPanel.add(new JLabel("Porousware: "+porouswareReadout(this.porousware)));
 		
 
 		this.add(infoPanel);
@@ -93,7 +94,7 @@ public class InventoryItemFrame extends JPanel implements MouseListener {
 		imagePanel.setLayout(new GridBagLayout());
 		makeOpaque(imagePanel);
 		if(this.imageLocation != null) {
-			itemIcon = iconLoader.createImageIcon(this.imageLocation, IMAGE_SIZE, IMAGE_SIZE);
+			itemIcon = iconLoader.createImageIcon(this.imageFolderLocation+this.imageLocation, IMAGE_SIZE, IMAGE_SIZE);
 		} else {
 			itemIcon = loadDefaultImage();
 		}
@@ -112,6 +113,14 @@ public class InventoryItemFrame extends JPanel implements MouseListener {
 		buttonPanel.add(viewItemButton);
 		
 		this.add(buttonPanel);
+	}
+	
+	private String porouswareReadout(boolean porouwareStatus) {
+		if(porouwareStatus) {
+			return "Yes";
+		} else {
+			return "No";
+		}
 	}
 	
 	private void setFinalSize(JPanel panel, int width, int height) {

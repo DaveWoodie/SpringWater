@@ -25,10 +25,7 @@ public class UserDatabase {
 		// Add items to the list
 		userList.add(new User(
 				"01", "CallumCooper", "callum.cooper@netbuilder.com",
-						"12/05/1993", "07917800649", 100));
-//		userList.add(new User(
-//				"02", "AlStock", "callum.cooper@netbuilder.com",
-//						"12/05/1993", "07917800649", 100));
+						"12/05/1993", "07917800649", 100.00, "Callum", "Cooper"));
 	}
 	
 	// return the user database
@@ -39,7 +36,6 @@ public class UserDatabase {
 		
 		// Add users to the list
 		users.add(userList.get(0));
-		//users.add(userList.get(1));
 		
 		return users;
 	}

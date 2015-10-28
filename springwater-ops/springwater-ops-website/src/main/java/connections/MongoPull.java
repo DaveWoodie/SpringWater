@@ -16,6 +16,7 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+
 import entities.Address;
 import entities.Item;
 import entities.WishList;
@@ -42,19 +43,16 @@ public class MongoPull {
 		
 		MongoPull pull = new MongoPull();
 		MongoPush push = new MongoPush();
-		Address addr = pull.getAddress(1);
-		addr.setCustomerID(4);
-		push.updateAddress(addr);
 		
-		ArrayList<Address> addresses = pull.getAddressesByCustomerID(3);
-		for(Address a : addresses) {
-			a.print();
+		ArrayList<Item> items = pull.getItemsByAttribute("Category", "Gnomes");
+		for(Item i : items) {
+			i.print();
 			System.out.println();
 		}
+		
+		
 	}
 	*/
-	
-	
 	
 	public MongoPull() {
 		
@@ -304,6 +302,56 @@ public class MongoPull {
 		return items;
 	}
 	
+	
+	/**
+	 * returns all non-discontinued items with an attribute to match the name-value pair passed to the method
+	 * @param attributeName - the name of the attribute to search for
+	 * @param attributeVal - the corresponding string value of that attribute
+	 * @return ArrayList of Item entities
+	 */
+	public ArrayList<Item> getItemsByAttribute(String attributeName, String attributeVal) {
+		ArrayList<Item> items = new ArrayList<Item>();
+
+		mdbc.mongoConnect();
+		
+		DBCollection collection = this.getCollection(itemCol);
+		BasicDBObject searchObj = new BasicDBObject();
+		searchObj.put("Attributes."+attributeName,attributeVal);
+		
+		DBCursor cursor = collection.find(searchObj);
+		while(cursor.hasNext()) {
+			DBObject itemObj = cursor.next();
+			Item i = makeItemEntityFromMongoObject(itemObj);
+			if(!i.isDiscontinued()) {
+				items.add(i);
+			}
+		}
+		return items;
+	}
+	
+
+	/**
+	 * returns all non-discontinued items with an attribute to match the name-value pair passed to the method
+	 * @param attributeName - the name of the attribute to search for
+	 * @param attributeVal - the corresponding Integer value of that attribute
+	 * @return ArrayList of Item entities
+	 */
+	public ArrayList<Item> getItemsByAttribute(String attributeName, Integer attributeVal) {
+		return getItemsByAttribute(attributeName,((Double)attributeVal.doubleValue()).toString());
+		
+	}
+
+	/**
+	 * returns all non-discontinued items with an attribute to match the name-value pair passed to the method
+	 * @param attributeName - the name of the attribute to search for
+	 * @param attributeVal - the corresponding Double value of that attribute
+	 * @return ArrayList of Item entities
+	 */
+	public ArrayList<Item> getItemsByAttribute(String attributeName, Double attributeVal) {
+		return getItemsByAttribute(attributeName,attributeVal.toString());
+		
+	}
+	
 	private Item makeItemEntityFromMongoObject(DBObject itemObj) {
 
 		Item newItem;
@@ -314,13 +362,13 @@ public class MongoPull {
 		String itemPrice = itemObj.get("ItemPrice").toString();
 		String itemCost = itemObj.get("ItemCost").toString();
 		String imageLocation = itemObj.get("ImageLocation").toString();
-		itemInfs.add(itemObj.get("SalesRate").toString());
-		itemInfs.add(itemObj.get("PSalesRate").toString());
+		String salesRate = (itemObj.get("SalesRate").toString());
+		String pSalesRate = (itemObj.get("PSalesRate").toString());
 		boolean isPorousWare = handleMongoBoolean(itemObj.get("IsPorousware"));
 		boolean discontinued = handleMongoBoolean(itemObj.get("Discontinued"));
 		String idSupplier = itemObj.get("idSupplier").toString();
 		
-		newItem = new Item(itemName, itemDescription, Float.parseFloat(itemPrice), Float.parseFloat(itemCost), (int) Float.parseFloat(numberInStock), imageLocation, discontinued, isPorousWare, (int) Float.parseFloat(idSupplier));
+		newItem = new Item(itemName, itemDescription, Float.parseFloat(itemPrice), Float.parseFloat(itemCost), (int) Float.parseFloat(numberInStock), imageLocation, discontinued, isPorousWare, (int) Float.parseFloat(idSupplier), (int) Float.parseFloat(salesRate), (int) Float.parseFloat(pSalesRate));
 		newItem.setItemID((Integer) itemObj.get("idItem") );
 		
 		

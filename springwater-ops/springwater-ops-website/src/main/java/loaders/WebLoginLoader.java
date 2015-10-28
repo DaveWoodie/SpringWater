@@ -45,5 +45,27 @@ public class WebLoginLoader {
 		}
 		return login;
 	}
+	
+	public int getUserId(String email) {
+		
+		int i = 0;
+		
+		try {
+			rSet = SQL.queryDB("SELECT idUser FROM user WHERE email = '" + email + "'");
+			rSet.first();
+			i = rSet.getInt(1);
+		}
+		catch(SQLException e) {
+			System.out.println("Email does not exist in the database.");
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			SQL.closeCon();
+		}
+		
+		return i;
+	}
 
 }

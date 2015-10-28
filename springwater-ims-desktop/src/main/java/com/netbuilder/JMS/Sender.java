@@ -15,6 +15,8 @@ import javax.jms.Session;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
+import entities.MessageContent;
+
 
 /**
  * Class to create the JMS link and send a message containing any object
@@ -29,7 +31,7 @@ public class Sender{
 	 * Method to create the parameters for sending an object to the system Backend
 	 * @param toSend object that needs to be sent
 	 */
-	public void sendMessage(Object toSend) {
+	public void sendMessage(MessageContent toSend) {
 		try {
             // Create a ConnectionFactory
             ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://localhost:8081");
