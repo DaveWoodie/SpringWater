@@ -11,15 +11,15 @@ import com.netbuilder.entities.Address;
 import com.netbuilder.entities.Item;
 import com.netbuilder.entities.Supplier;
 import com.netbuilder.loaders.AddressLoader;
-import com.netbuilder.loaders.ItemLoader;
 import com.netbuilder.loaders.SupplierLoader;
 
 public class SupplierLogic {	
 	private Object[][] supplierList;
+	private Object[][] pListArray ;
 	SupplierLoader sLoader = new SupplierLoader();
 	private ArrayList<Supplier> sList;
 	private AddressLoader aL = new AddressLoader();
-	private ItemLoader iL = new ItemLoader();
+	private MongoPull mp = new MongoPull();
 
 	/**
 	 * Method to load and format the entities for the GUI for all Suppliers
@@ -74,16 +74,22 @@ public class SupplierLogic {
 		return supplierList;
 	}
 	
-//	/**
-//	 * @author abutcher
-//	 * @param supplierID
-//	 * @return
-//	 */
-//	public Object [][] fetchProducts(int supplierID) {
-//		///TODO
-//		ArrayList<Item> pList = new ArrayList<Item>();
-//		iL.loadItemByID(supplierID);
-//	}
+	/**
+	 * @author abutcher
+	 * @param supplierID
+	 * @return
+	 */
+	public Object [][] fetchProducts(int supplierID) {
+		ArrayList<Item> pList = new ArrayList<Item>();
+		pList = mp.getItemsBySupplier(supplierID, true);
+		pListArray = new Object[pList.size()][2];
+	
+		for (int i=0 ;i<pList.size();i++) {
+			pListArray[i][0] = pList.get(i).getIdItem();
+			pListArray[i][1] = pList.get(i).getItemName();
+		}
+		return pListArray;
+	}
 	
 	/**
 	 * @author abutcher
