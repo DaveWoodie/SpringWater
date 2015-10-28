@@ -148,7 +148,7 @@ public class MongoPull {
 	 * @param id: Takes an int which is the idItem of a given item
 	 * @return returns a list containing all the information for the given item
 	 */
-	public ArrayList<Item> getItemInf(int id) {
+	public Item getItem(int id) {
 		//Connect to MongoDB
 		mdbc.mongoConnect();
 		
@@ -166,6 +166,8 @@ public class MongoPull {
 		itemInfs.clear();
 		itemList.clear();
 		
+		Item newItem = null;
+		
 		while(cursor.hasNext()) {
 			
 			cursor.next();
@@ -181,7 +183,7 @@ public class MongoPull {
 			boolean discontinued = handleMongoBoolean(cursor.curr().get("Discontinued"));
 			String idSupplier = cursor.curr().get("idSupplier").toString();
 			
-			Item newItem = new Item(itemName, itemDescription, Float.parseFloat(itemPrice), Float.parseFloat(itemCost), (int) Float.parseFloat(numberInStock), imageLocation, discontinued, isPorousWare, (int) Float.parseFloat(idSupplier));
+			newItem = new Item(itemName, itemDescription, Float.parseFloat(itemPrice), Float.parseFloat(itemCost), (int) Float.parseFloat(numberInStock), imageLocation, discontinued, isPorousWare, (int) Float.parseFloat(idSupplier));
 			
 			BSONObject bsobj = (BSONObject) cursor.curr().get("Attributes");
 			Set<String> keys = bsobj.keySet();
@@ -204,6 +206,17 @@ public class MongoPull {
 		//Disconnect from MongoDB
 		mdbc.mongoDisconnect();
 		
+		return newItem;
+	}
+	
+	/**
+	 * Wrapper method for getItem() in order to return the Item corresponding to the passed itemID within an ArrayList containing only that item
+	 * @param itemID
+	 * @return
+	 */
+	public ArrayList<Item> getItemAsArrayList(int itemID) {
+		ArrayList<Item> itemList = new ArrayList<Item>();
+		itemList.add(getItem(itemID));
 		return itemList;
 	}
 	
@@ -246,7 +259,7 @@ public class MongoPull {
 		Set<String> keys = itemObj.keySet();
 		for(String key : keys) {
 			Integer itemID = (Integer) itemObj.get(key);
-			wlItems.add(getItemInf(itemID).get(0));
+			wlItems.add(getItem(itemID));
 		}
 		
 		WishList wish = new WishList(custID, wlItems);

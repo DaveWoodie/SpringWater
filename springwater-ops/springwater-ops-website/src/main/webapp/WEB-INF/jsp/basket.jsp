@@ -23,7 +23,6 @@
                 <div class="col-lg-8" id="leftCol">
                     <div class="container">
                         <h2 id="productTitle">Your Basket</h2>
-
                         <!-- Item Area -->
                         <div class="well">
                             <div class="panel panel-default">

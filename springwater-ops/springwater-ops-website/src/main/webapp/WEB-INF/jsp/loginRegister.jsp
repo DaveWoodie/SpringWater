@@ -93,7 +93,7 @@
                             <input type="text" class="form-control" placeholder="Telephone Number (Landline or mobile)" aria-describedby="basic-addon1" id="telephoneNumberRegisterInput" name="telephoneNumberRegisterInput" required="required"/>
                         </div>
                         <br />
-                        	  <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Register</button>
+                        	  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Register</button>
                         </form>
                     <br />
                     <div class="panel panel-info">

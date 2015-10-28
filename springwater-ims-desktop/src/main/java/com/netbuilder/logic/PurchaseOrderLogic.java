@@ -123,7 +123,7 @@ public class PurchaseOrderLogic {
 			float total = 0;
 			for (int j = 0; j < pOLList.size(); j++) {
 				MongoPull mP = new MongoPull();
-				itemList = mP.getItemInf(pOLList.get(j).getItemID());
+				itemList = mP.getItemAsArrayList(pOLList.get(j).getItemID());
 				float itemPrice;
 				if (!itemList.isEmpty()) {
 					itemPrice = itemList.get(0).getCost();

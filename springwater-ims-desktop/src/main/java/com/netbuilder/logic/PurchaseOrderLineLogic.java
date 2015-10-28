@@ -32,7 +32,7 @@ public class PurchaseOrderLineLogic {
 		purchaseOrderLineList = new Object [pOLList.size()][5];
 		for (int i = 0; i < pOLList.size(); i++) {
 			MongoPull mP = new MongoPull();
-			itemList = mP.getItemInf(pOLList.get(i).getItemID());
+			itemList = mP.getItemAsArrayList(pOLList.get(i).getItemID());
 			float itemPrice = 0;
 			String itemName = "Placeholder";
 			if (!itemList.isEmpty()) {

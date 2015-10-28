@@ -10,6 +10,12 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
+	<!-- Create a proxy to generate session-scoped baskets -->
+    <bean id="basket" class="com.netbuilder.session.Basket" scope="session">
+        <!-- This requires CGLIB -->
+        <aop:scoped-proxy/>
+    </bean>
+	
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 

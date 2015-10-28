@@ -11,25 +11,35 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
-import com.mongodb.util.JSON;
 import com.netbuilder.entities.Address;
 import com.netbuilder.entities.Item;
+import com.netbuilder.entities.WishList;
 
-import org.bson.BSONObject;
-import org.bson.Document;
-
+/**
+ * Class to create, update and delete entries from the MongoDB database
+ * @author tstacey
+ *
+ */
 public class MongoPush {
 	
 	//Create instance of MongoDB Connector to connect to DB
 	private MongoDBConnector mdbc = new MongoDBConnector();
 	private final String dataBase = "nbgardensdata";
 	
+	/*
 	public static void main(String[] args) {
 		
-		MongoPush tst = new MongoPush();
-		Item item = new Item("Gnomeo", "Gnome Rome. Get it?", (float)3.51, (float)2.02, 500, "A4", false, false, 3);
-		tst.addItem(item);
+		MongoPush push = new MongoPush();
+		MongoPull pull = new MongoPull();
+		
+		
 	}
+	*/
+
+	/******************************************************************************/
+	// CREATE CREATE CREATE CREATE CREATE CREATE CREATE CREATE CREATE CREATE CREATE
+	/******************************************************************************/
+	
 	
 	/**
 	 * Adds the passed Item to the MongoDB database and returns the ID assigned to the new Item
@@ -37,7 +47,6 @@ public class MongoPush {
 	 * @return
 	 */
 	public int addItem(Item item) {
-		// TODO change item costs/prices to doubles instead of floats
 		mdbc.mongoConnect();
 		DB db = mdbc.getConnection().getDB(dataBase);
 		
@@ -50,8 +59,8 @@ public class MongoPush {
 			System.out.println("Unable to find Item Collection or idItem in addItem() in MongoPush");
 			throw new Error(e);
 		}
-
-		BasicDBObject itemObject = createItemDBObjectFromItem(item, newItemID);
+		item.setItemID(newItemID);
+		BasicDBObject itemObject = makeMongoObjectFromItem(item);
 						
 		collection.insert(itemObject);
 		
@@ -60,6 +69,97 @@ public class MongoPush {
 		return newItemID;
 	}
 	
+
+	/**
+	 * Adds the passed address to the MongoDB database and returns the int value of the ID assigned to the new address
+	 * @param addr
+	 * @return the ID that was assigned to the new address
+	 */
+	public int addAddress(Address addr) {
+
+		mdbc.mongoConnect();
+		DB db = mdbc.getConnection().getDB(dataBase);
+		
+		int newAddrID;
+		try {
+			newAddrID = getMaxInt("Address", "idAddress")+1;
+		} catch (Exception e) {
+			System.out.println("Unable to find Address Collection or idAddress in addAddress() in MongoPush");
+			throw new Error(e);
+		}
+		addr.setAddressID(newAddrID);
+
+		BasicDBObject addressObject = makeMongoObjectFromAddress(addr);
+		DBCollection collection = db.getCollection("Address");
+		
+		collection.insert(addressObject);
+		mdbc.mongoDisconnect();
+		return newAddrID;
+	}
+	
+	/**
+	 * Adds a new WishList to the MongoDB database.
+	 * Throws exception if wishlist for that customer already exists
+	 * @param wish
+	 * @throws Exception
+	 */
+	public void addWishList(WishList wish) throws Exception {
+
+		mdbc.mongoConnect();
+		DB db = mdbc.getConnection().getDB(dataBase);
+		DBCollection collection = db.getCollection("WishList");
+		
+		BasicDBObject searchObj = new BasicDBObject();
+		searchObj.put("idCustomer", wish.getCustomerID());
+		DBObject checkObj = collection.findOne(searchObj);
+		if(checkObj != null) {
+			System.out.println("Tried to add new wishlist for customer where wishlist already exists");
+			throw new Exception();
+		} else {
+			BasicDBObject newWishList = makeMongoObjectFromWishList(wish);
+			collection.insert(newWishList);
+		}
+		
+		mdbc.mongoDisconnect();
+	}
+	
+	
+	
+	/******************************************************************************/
+	// UPDATE UPDATE UPDATE UPDATE UPDATE UPDATE UPDATE UPDATE UPDATE UPDATE UPDATE
+	/******************************************************************************/
+	
+	
+	
+	/**
+	 * Updates the mongoDB database entry for the passed Item. USes the item's ID to find the entry to update
+	 * @param item
+	 */
+	public void updateItem(Item item) {
+		mdbc.mongoConnect();
+		
+		//Connect to the NBGardensn database
+		DB db = mdbc.getConnection().getDB(dataBase);
+		//Get Specfic Collection`
+		DBCollection collection = db.getCollection("Item");
+		
+		BasicDBObject searchObj = new BasicDBObject();
+		searchObj.put("idItem", item.getIdItem());
+		//DBObject currItem = collection.findOne(searchObj);
+		BasicDBObject newItemObj = makeMongoObjectFromItem(item);
+		
+		collection.update(searchObj, newItemObj);
+		
+
+		mdbc.mongoDisconnect();
+	}
+	
+	/**
+	 * updates an item's discontinued state to correspond with the passed boolean and id
+	 * pass false to set the item as discontinued, true to set as continued
+	 * @param itemID
+	 * @param continuedState
+	 */
 	public void setContinuedStateForItem(int itemID, boolean continuedState) {
 		mdbc.mongoConnect();
 		DB db = mdbc.getConnection().getDB(dataBase);
@@ -75,14 +175,114 @@ public class MongoPush {
 	}
 	
 	/**
+	 * updates the MongoDB database entry for the passed WishList
+	 * @param wish
+	 */
+	public void updateWishList(WishList wish) {
+
+		mdbc.mongoConnect();
+		DB db = mdbc.getConnection().getDB(dataBase);
+		
+		DBCollection collection = db.getCollection("WishList");
+		
+		BasicDBObject searchObj = new BasicDBObject();
+		searchObj.put("idCustomer", wish.getCustomerID());
+		
+		BasicDBObject newWishList = makeMongoObjectFromWishList(wish);
+
+		collection.update(searchObj, newWishList);
+
+		mdbc.mongoDisconnect();
+		
+	}
+	
+	public void updateAddress(Address addr) {
+
+		mdbc.mongoConnect();
+		DB db = mdbc.getConnection().getDB(dataBase);
+		
+		DBCollection collection = db.getCollection("Address");
+		
+		BasicDBObject searchObj = new BasicDBObject();
+		searchObj.put("idAddress", addr.getAddressID());
+		
+		BasicDBObject newAddress = makeMongoObjectFromAddress(addr);
+
+		collection.update(searchObj, newAddress);
+
+		mdbc.mongoDisconnect();
+	}
+	
+	/******************************************************************************/
+	// DELETE DELETE DELETE DELETE DELETE DELETE DELETE DELETE DELETE DELETE DELETE
+	/******************************************************************************/
+	
+	
+	/**
+	 * deletes an address from the MongoDB database specified by the passed id
+	 * @param id
+	 */
+	public void deleteAddressByID(int id) {
+
+		mdbc.mongoConnect();
+		DB db = mdbc.getConnection().getDB(dataBase);
+		DBCollection collection = db.getCollection("Address");
+		
+
+		BasicDBObject addr = new BasicDBObject();
+		addr.put("idAddress", id);
+		DBObject doc = collection.findOne(addr);
+		collection.remove(doc);
+	}
+	
+	/**
+	 * deletes an item from the MongoDB database specified by the passed id
+	 * @param id
+	 */
+	public void deleteItemByID(int id) {
+
+		mdbc.mongoConnect();
+		DB db = mdbc.getConnection().getDB(dataBase);
+		DBCollection collection = db.getCollection("Item");
+		
+
+		BasicDBObject itm = new BasicDBObject();
+		itm.put("idItem", id);
+		DBObject doc = collection.findOne(itm);
+		collection.remove(doc);
+	}
+	
+	
+	public void deleteWishListByCustomerID(int custID) {
+
+		mdbc.mongoConnect();
+		DB db = mdbc.getConnection().getDB(dataBase);
+		DBCollection collection = db.getCollection("WishList");
+		
+
+		BasicDBObject itm = new BasicDBObject();
+		itm.put("idCustomer", custID);
+		DBObject doc = collection.findOne(itm);
+		collection.remove(doc);
+	}
+	
+	
+
+	/******************************************************************************/
+	// MISC MISC MISC MISC MISC MISC MISC MISC MISC MISC MISC MISC MISC MISC MISC
+	/******************************************************************************/
+	
+	
+
+	/**
 	 * creates the BasicDBObject in order to add it to MongoDB from an Item entity
 	 * @param item
 	 * @param id
 	 * @return
 	 */
-	private BasicDBObject createItemDBObjectFromItem(Item item, int id) {
+	private BasicDBObject makeMongoObjectFromItem(Item item) {
 		BasicDBObject itemObject = new BasicDBObject();
-		itemObject.put("idItem", id);
+		itemObject.put("idItem", item.getIdItem());
 		itemObject.put("ItemName", item.getItemName());
 		itemObject.put("ItemDescription", item.getDescription());
 		itemObject.put("ImageLocation", item.getImageLocation());
@@ -119,27 +319,56 @@ public class MongoPush {
 		return newAttributes;
 	}
 	
+	
+	
 	/**
-	 * Adds the passed address to the MongoDB database and returns the int value of the ID assigned to the new address
-	 * @param addr
-	 * @return the ID that was assigned to the new address
+	 * returns an integer value of the max aggregate of the passed column in the passed collection. throws Exception if collection or column doesn't exist
+	 * requires a mongo connection to have been established
+	 * @param collectionName
+	 * @param idColumnName
+	 * @return int max value
 	 */
-	public int addAddress(Address addr) {
+	private int getMaxInt(String collectionName, String columnName) throws Exception {
 
-		mdbc.mongoConnect();
-		DB db = mdbc.getConnection().getDB(dataBase);
+		int maxInt;
+		DB db = mdbc.getConnection().getDB("nbgardensdata");
+		DBCollection collection = db.getCollection(collectionName);
+
+		DBCursor cursor = collection.find().sort(new BasicDBObject(columnName, -1)).limit(1);
+		if(!cursor.hasNext()) {
+			throw new Exception();
+		} else {
+			cursor.next();
+			maxInt =  ((Double) cursor.curr().get(columnName)).intValue();
+		}
+		cursor.close();
+		return maxInt;
+	}
+	
+
+	private BasicDBObject makeMongoObjectFromWishList(WishList wish) {
+		BasicDBObject wishListObject = new BasicDBObject();
+		wishListObject.put("idCustomer", wish.getCustomerID());
+		int numberOfItems = wish.getItems().size();
+		int[] itemIDs = new int[numberOfItems];
+		for(int i = 0; i < numberOfItems; i++) {
+			itemIDs[i] = wish.getItems().get(i).getIdItem();
+		}
+		wishListObject.put("items", itemIDs);
+		return wishListObject;
+	}
+	
+
+	/**
+	 * Converts an address entity into a MongoDB object for updating/adding to the database
+	 * @param addr
+	 * @return
+	 */
+	private BasicDBObject makeMongoObjectFromAddress(Address addr) {
 		BasicDBObject addressObject = new BasicDBObject();
 		BasicDBObject addressLines = new BasicDBObject();
-		
-		int newAddrID;
-		try {
-			newAddrID = getMaxInt("Address", "idAddress")+1;
-		} catch (Exception e) {
-			System.out.println("Unable to find Address Collection or idAddress in addAddress() in MongoPush");
-			throw new Error(e);
-		}
-		
-		addressObject.put("idAddress",  (double) newAddrID);
+
+		addressObject.put("idAddress",  (double) addr.getAddressID());
 		
 		if(addr.isCustomerAddress()) {
 			try {
@@ -166,66 +395,7 @@ public class MongoPush {
 		addressObject.put("PostCode", addr.getPostCode());
 		
 		
-		DBCollection collection = db.getCollection("Address");
-		collection.insert(addressObject);
-		mdbc.mongoDisconnect();
-		return newAddrID;
+		return addressObject;
 	}
 	
-	/**
-	 * returns an integer value of the max aggregate of the passed column in the passed collection. throws Exception if collection or column doesn't exist
-	 * requires a mongo connection to have been established
-	 * @param collectionName
-	 * @param idColumnName
-	 * @return int max value
-	 */
-	private int getMaxInt(String collectionName, String columnName) throws Exception {
-
-		int maxInt;
-		DB db = mdbc.getConnection().getDB("nbgardensdata");
-		DBCollection collection = db.getCollection(collectionName);
-
-		DBCursor cursor = collection.find().sort(new BasicDBObject(columnName, -1)).limit(1);
-		if(!cursor.hasNext()) {
-			throw new Exception();
-		} else {
-			cursor.next();
-			maxInt =  ((Double) cursor.curr().get(columnName)).intValue();
-		}
-		cursor.close();
-		return maxInt;
-	}
-	
-	/**
-	 * deletes an address from the MongoDB database specified by the passed id
-	 * @param id
-	 */
-	public void deleteAddressByID(int id) {
-
-		mdbc.mongoConnect();
-		DB db = mdbc.getConnection().getDB("nbgardensdata");
-		DBCollection collection = db.getCollection("Address");
-		
-
-		BasicDBObject addr = new BasicDBObject();
-		addr.put("idAddress", id);
-		DBObject doc = collection.findOne(addr);
-		collection.remove(doc);
-	}
-	
-	public void updateAddress() {
-		
-	}
-	
-	public void destoryAddress() {
-		
-	}
-	
-	public void createWishList() {
-		
-	}
-	
-	public void updateWishList() {
-		
-	}
 }

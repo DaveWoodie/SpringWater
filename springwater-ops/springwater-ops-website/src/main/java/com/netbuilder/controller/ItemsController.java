@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  */
 @Controller
-@RequestMapping("/items")
+@RequestMapping("items")
 public class ItemsController {
 
 	@RequestMapping(method = RequestMethod.GET)
