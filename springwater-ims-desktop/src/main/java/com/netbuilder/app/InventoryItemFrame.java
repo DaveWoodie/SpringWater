@@ -18,6 +18,7 @@ import com.netbuilder.entities.Item;
 
 public class InventoryItemFrame extends JPanel implements MouseListener {
 
+	private String imageFolderLocation = "src/main/resources/images/";
 	private static final long serialVersionUID = 1L;
 	private static int HEIGHT = 70;
 	private int WIDTH;
@@ -93,7 +94,7 @@ public class InventoryItemFrame extends JPanel implements MouseListener {
 		imagePanel.setLayout(new GridBagLayout());
 		makeOpaque(imagePanel);
 		if(this.imageLocation != null) {
-			itemIcon = iconLoader.createImageIcon(this.imageLocation, IMAGE_SIZE, IMAGE_SIZE);
+			itemIcon = iconLoader.createImageIcon(this.imageFolderLocation+this.imageLocation, IMAGE_SIZE, IMAGE_SIZE);
 		} else {
 			itemIcon = loadDefaultImage();
 		}

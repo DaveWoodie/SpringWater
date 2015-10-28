@@ -230,7 +230,7 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		
 		scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.X_AXIS));
 		
-		addPlaceholderItems();
+		//addPlaceholderItems();
 		addAllItems();
 
 		setAbsoluteSize(scrollPane, WIDTH, HEIGHT-SEARCH_PANEL_HEIGHT);
@@ -266,10 +266,13 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 	private void addAllItems() {
 		Object[][] itemArray = placeHolders.fetchInventoryList();
 		
-		String imageFolderLocation = "src/main/resources/images/";
 		ArrayList<Item> loadedItems = loader.loadAllCurrentItems();
+		for(Item i : loadedItems) {
+			items.add(new InventoryItemFrame(this, WIDTH/2, i));
+		}
 				
 		fillContentPanelsBasedOnSize();
+		
 		
 	}
 	
