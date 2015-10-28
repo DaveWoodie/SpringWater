@@ -230,7 +230,7 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		
 		scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.X_AXIS));
 		
-		addPlaceholderItems();
+		//addPlaceholderItems();
 		addAllItems();
 
 		setAbsoluteSize(scrollPane, WIDTH, HEIGHT-SEARCH_PANEL_HEIGHT);
@@ -241,6 +241,7 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		scrollPanel.revalidate();
 	}
 	
+	/*
 	private void addPlaceholderItems() {
 		Object[][] itemArray = placeHolders.fetchInventoryList();
 		
@@ -251,10 +252,9 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 				int itemID = (int) itemArray[i][0];
 				String name = (String) itemArray[i][1];
 				int quantity = (int) itemArray[i][2];
-				String loc = (String) itemArray[i][3];
 				String imageLoc = imageFolderLocation.concat((String) itemArray[i][4]);
 				
-				InventoryItemFrame invItem = new InventoryItemFrame(this, WIDTH/2, itemID, name, quantity, loc, imageLoc);
+				InventoryItemFrame invItem = new InventoryItemFrame(this, WIDTH/2, itemID, name, quantity, false, imageLoc);
 				items.add(invItem);
 			}
 		}
@@ -262,10 +262,9 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		fillContentPanelsBasedOnSize();
 		
 	}
+	*/
 	
 	private void addAllItems() {
-		Object[][] itemArray = placeHolders.fetchInventoryList();
-		
 		ArrayList<Item> loadedItems = loader.loadAllCurrentItems();
 		for(Item i : loadedItems) {
 			items.add(new InventoryItemFrame(this, WIDTH/2, i));
