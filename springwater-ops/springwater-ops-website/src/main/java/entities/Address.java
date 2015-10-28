@@ -1,6 +1,7 @@
 package entities;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import org.springframework.data.annotation.Id;
@@ -10,8 +11,12 @@ import org.springframework.data.annotation.Id;
  * @author tstacey
  * @date 06/10/2015
  */
-public class Address {
+public class Address implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int addressID;
 	private Integer customerID;
 	private ArrayList<String> addressLines;

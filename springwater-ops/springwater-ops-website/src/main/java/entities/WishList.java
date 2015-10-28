@@ -1,6 +1,7 @@
 package entities;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +13,12 @@ import java.util.List;
  * @date 06/10/2015
  *
  */
-public class WishList {
+public class WishList implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int customerID;
 	private ArrayList<Item> items;
 	

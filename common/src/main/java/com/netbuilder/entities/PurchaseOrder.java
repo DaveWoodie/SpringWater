@@ -4,6 +4,7 @@
  */
 package com.netbuilder.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -15,8 +16,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-public class PurchaseOrder {
+public class PurchaseOrder implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int idPurchaseOrder;
 	private Date datePlaced;
 	private Date dateExpected;

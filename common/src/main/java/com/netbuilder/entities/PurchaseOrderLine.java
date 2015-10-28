@@ -1,5 +1,7 @@
 package com.netbuilder.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,7 +16,12 @@ import javax.persistence.Table;
  * @date 06/10/2015
  */
 
-public class PurchaseOrderLine {
+public class PurchaseOrderLine implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private int quantity;
 	
 	private int itemID;
