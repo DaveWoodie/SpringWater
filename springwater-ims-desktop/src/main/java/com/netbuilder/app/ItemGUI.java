@@ -431,8 +431,8 @@ public class ItemGUI extends JFrame
 		}
 	}
 	
-	public static void main(String[] args)
-	{
-		ItemGUI i = new ItemGUI();
-	}
+//	public static void main(String[] args)
+//	{
+//		ItemGUI i = new ItemGUI();
+//	}
 }

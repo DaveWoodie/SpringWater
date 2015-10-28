@@ -1,4 +1,4 @@
-package entitiyrepositories;
+package entityrepository;
 
 import java.util.Date;
 import java.util.List;
