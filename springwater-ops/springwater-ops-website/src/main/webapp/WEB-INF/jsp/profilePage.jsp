@@ -1,10 +1,10 @@
 <!--     Callum Cooper  -->
     
-<!--     openOrdersPage.jps -->
+<!--     profilePage.jps -->
 
 <!--     14/10/2015 -->
 
-<!--     Template for the cancelled orders page -->
+<!--     User profile page -->
 
 <!--     Last Modified by: Callum Cooper -->
 
