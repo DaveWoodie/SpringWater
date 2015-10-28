@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 
 
 
+
 import com.netbuilder.JMS.Sender;
 import com.netbuilder.connections.MongoPull;
 import com.netbuilder.loaders.ItemLoader;
@@ -24,6 +25,7 @@ import com.netbuilder.loaders.PurchaseOrderLoader;
 import com.netbuilder.loaders.PurchaseOrderStatusLoader;
 import com.netbuilder.loaders.SupplierLoader;
 import com.netbuilder.entities.Item;
+import com.netbuilder.entities.MessageContent;
 import com.netbuilder.entities.PurchaseOrder;
 import com.netbuilder.entities.PurchaseOrderLine;
 import com.netbuilder.entities.PurchaseOrderStatus;
@@ -153,8 +155,9 @@ public class PurchaseOrderLogic {
 		ArrayList<Object> messageList = new ArrayList<Object>();
 		messageList.add(item);
 		messageList.add(quantityAdd);
+		MessageContent messageContent = new MessageContent(messageList, "addItemToPurchaseOrder");
 		Sender sender = new Sender();
-		sender.sendMessage(messageList);
+		sender.sendMessage(messageContent);
 //		ArrayList<PurchaseOrder> itemPurchaseOrderList = new ArrayList<PurchaseOrder>();
 //		PurchaseOrderLineLoader pOLLoader = new PurchaseOrderLineLoader();
 //		itemPurchaseOrderList = pOLoader.getPurchaseOrderListByItemValid(item);

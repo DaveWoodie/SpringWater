@@ -10,7 +10,7 @@ public class JMSTest {
 //		// TODO Auto-generated method stub
 //		PurchaseOrderLogic pOLogic = new PurchaseOrderLogic();
 //		MongoPull mPull = new MongoPull();
-//		Item item = mPull.getItem(3);
+//		Item item = mPull.getItem(2);
 //		pOLogic.addItemToPurchaseOrder(item, 5);
 //	}
 }
