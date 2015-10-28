@@ -33,10 +33,10 @@ public class JSPController {
 		return "addAddresses";
 	}
 
-	@RequestMapping("basket")
-	public String basket(ModelAndView modelAndView) {
-		return "basket";
-	}
+//	@RequestMapping("basket")
+//	public String basket(ModelAndView modelAndView) {
+//		return "basket";
+//	}
 
 	@RequestMapping("cancelledorders")
 	public String cancelledOrdersPage(ModelAndView modelAndView) {
@@ -102,5 +102,4 @@ public class JSPController {
 	public String emailOrder(ModelAndView modelAndView) {
 		return "emailOrder";
 	}
-
 }

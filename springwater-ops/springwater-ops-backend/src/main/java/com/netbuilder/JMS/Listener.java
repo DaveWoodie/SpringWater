@@ -17,8 +17,8 @@ import javax.jms.Session;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
-import com.netbuilder.entities.Item;
-import com.netbuilder.entities.MessageContent;
+import entities.Item;
+import entities.MessageContent;
 import com.netbuilder.logic.PurchaseOrderBackendLogic;
 
 /**
