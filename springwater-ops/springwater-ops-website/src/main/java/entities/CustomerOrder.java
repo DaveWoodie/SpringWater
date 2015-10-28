@@ -5,6 +5,7 @@
 
 package entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -16,8 +17,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-public class CustomerOrder {
+public class CustomerOrder implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int customerOrderID;
 	private Date datePlaced;
 	private Date dateShipped;

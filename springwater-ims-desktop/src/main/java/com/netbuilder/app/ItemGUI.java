@@ -30,9 +30,9 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import com.netbuilder.apploader.PurchaseOrderLineLoader;
-import com.netbuilder.apploader.PurchaseOrderLoader;
-import com.netbuilder.apploader.SupplierLoader;
+import com.netbuilder.loaders.PurchaseOrderLineLoader;
+import com.netbuilder.loaders.PurchaseOrderLoader;
+import com.netbuilder.loaders.SupplierLoader;
 import com.netbuilder.entities.Item;
 import com.netbuilder.entities.PurchaseOrder;
 import com.netbuilder.entities.PurchaseOrderLine;

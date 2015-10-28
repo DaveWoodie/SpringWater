@@ -19,7 +19,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
 
-import com.netbuilder.apploader.LoginLoader;
+import com.netbuilder.loaders.LoginLoader;
 
 /**
  * GUI to load and select all other GUIs

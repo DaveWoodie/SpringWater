@@ -121,10 +121,10 @@ public class PurchaseOrderLoader {
 		sql = listQuery + tableName + tableJoins;
 		for (int j = 0; j < purchaseOrderIDs.size(); j++) {
 			if (j == 0) {
-				sql = sql + " WHERE idPurchaseOrder = " + purchaseOrderIDs.get(i);
+				sql = sql + " WHERE idPurchaseOrder = " + purchaseOrderIDs.get(j);
 			}
 			else {
-				sql = sql + " OR idPurchaseOrder = " + purchaseOrderIDs.get(i);
+				sql = sql + " OR idPurchaseOrder = " + purchaseOrderIDs.get(j);
 			}
 		}
 		sql = sql + orderBy;
@@ -145,7 +145,7 @@ public class PurchaseOrderLoader {
 	}
 	
 	public ArrayList<PurchaseOrder> getPurchaseOrderListByItemValid(Item item) {
-		sql = listQuery + tableName + tableJoins + " WHERE idSupplier LIKE '%" + item.getIdSupplier() + "%' AND idPurchaseOrderStatus = 1";
+		sql = listQuery + tableName + tableJoins + " WHERE supplier.idSupplier = " + item.getIdSupplier() + " AND purchaseorderstatus.idPurchaseOrderStatus = 1";
 		constructResult();
 		return purchaseOrderList;
 	}

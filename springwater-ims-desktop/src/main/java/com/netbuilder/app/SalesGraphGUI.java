@@ -33,8 +33,8 @@ import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import com.netbuilder.app.GraphData;
-import com.netbuilder.apploader.PurchaseOrderLineLoader;
-import com.netbuilder.apploader.PurchaseOrderLoader;
+import com.netbuilder.loaders.PurchaseOrderLineLoader;
+import com.netbuilder.loaders.PurchaseOrderLoader;
 import com.netbuilder.entities.PurchaseOrder;
 import com.netbuilder.entities.PurchaseOrderLine;
 
@@ -98,15 +98,18 @@ public class SalesGraphGUI extends JPanel implements ActionListener
 		
 		dataset = new DefaultCategoryDataset();
 		
-		for(int i = 0; i < purchaseOrderList.size(); i++)
+		if(purchaseOrderList.isEmpty() == false)
 		{
-			//go through each purchase order containing the specified item and get the purchase order line
-			ArrayList<PurchaseOrderLine> pOLine = purchaseOrderLineLoader.getPurchaseOrderLineByOrderAndProduct(purchaseOrderList.get(i).getIDPurchaseOrder(), itemID);
-			PurchaseOrderLine purchaseOrderLine = pOLine.get(0);
-			
-			Integer j = purchaseOrderLine.getQuantity();
-			
-			dataset.addValue(j.doubleValue(), (Comparable<?>) "sales", (Comparable<?>) purchaseOrderList.get(i).getDatePlaced());
+			for(int i = 0; i < purchaseOrderList.size(); i++)
+			{
+				//go through each purchase order containing the specified item and get the purchase order line
+				ArrayList<PurchaseOrderLine> pOLine = purchaseOrderLineLoader.getPurchaseOrderLineByOrderAndProduct(purchaseOrderList.get(i).getIDPurchaseOrder(), itemID);
+				PurchaseOrderLine purchaseOrderLine = pOLine.get(0);
+				
+				Integer j = purchaseOrderLine.getQuantity();
+				
+				dataset.addValue(j.doubleValue(), (Comparable<?>) "sales", (Comparable<?>) purchaseOrderList.get(i).getDatePlaced());
+			}
 		}
 	}
 	

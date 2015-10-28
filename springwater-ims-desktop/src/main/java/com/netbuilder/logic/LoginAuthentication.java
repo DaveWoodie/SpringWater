@@ -7,7 +7,7 @@ package com.netbuilder.logic;
 
 import javax.swing.JOptionPane;
 
-import com.netbuilder.apploader.LoginLoader;
+import com.netbuilder.loaders.LoginLoader;
 
 /**
  * Class to authenticate a user's login
