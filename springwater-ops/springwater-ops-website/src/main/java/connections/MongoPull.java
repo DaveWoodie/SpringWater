@@ -37,22 +37,39 @@ public class MongoPull {
 
 	
 	
-	/*
+	
 	public static void main(String[] args) {
 		
 		MongoPull pull = new MongoPull();
 		MongoPush push = new MongoPush();
-		Address addr = pull.getAddress(1);
-		addr.setCustomerID(4);
-		push.updateAddress(addr);
-		
-		ArrayList<Address> addresses = pull.getAddressesByCustomerID(3);
-		for(Address a : addresses) {
-			a.print();
+		ArrayList<Item> items = pull.getAllDiscontinuedItems();
+		for(Item i : items) {
+			i.print();
 			System.out.println();
 		}
+//		
+//		Item i = pull.getItem(1);
+//		i.setImageLocation("gnome.jpg");
+//		push.updateItem(i);
+//		
+//
+//		i = pull.getItem(2);
+//		i.setImageLocation("gnome02.jpg");
+//		push.updateItem(i);
+//
+//		i = pull.getItem(3);
+//		i.setImageLocation("gnome03.jpg");
+//		push.updateItem(i);
+//
+//		i = pull.getItem(4);
+//		i.setImageLocation("sundial.jpg");
+//		push.updateItem(i);
+//
+//		i = pull.getItem(5);
+//		i.setImageLocation("jacuzzi01.png");
+//		push.updateItem(i);
 	}
-	*/
+	
 	
 	
 	
