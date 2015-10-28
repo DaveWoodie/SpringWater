@@ -17,6 +17,8 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -62,10 +64,8 @@ public class AddItemFrame extends JFrame
 	private TextPrompt inp, idp, ispp, iucp ;
 	private boolean edit = false;
 	
-	private ItemLoader itemLoader;
-	
 	private JFileChooser fileChooser = new JFileChooser();
-	
+	private ItemLoader itemLoader = new ItemLoader();
 	private String imageLocation;
 
 	public static void main(String[] args) {
@@ -102,7 +102,7 @@ public class AddItemFrame extends JFrame
 			titleS = "Edit Item";
 		}
 		setTitle("Add an Item");
-		setSize(500, 350);
+		setSize(500, 360);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -262,7 +262,7 @@ public class AddItemFrame extends JFrame
 			public void actionPerformed(ActionEvent e) {
 				// TODO add item
 				if(isFilledOut()){
-					getResults();
+					getResult();
 				}				
 			}
 		});
@@ -468,6 +468,7 @@ public class AddItemFrame extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
+				//TODO set image location to location in java project not local machine
 				imageLocation = null;
 				
 				//open file chooser
@@ -503,11 +504,12 @@ public class AddItemFrame extends JFrame
 	}
 	
 	/**
-	 * Method that returns an item with the values added in the AddItemFrame
-	 * @return returns an Item object
+	 * Method that creates an Item object from the GUI results and adds it to MongoDB
 	 */
-	private Item getResult()
+	private void getResult()
 	{
+		copyFile(new File(textBrowse.getText()));
+		
 		Item item = new Item(itemNameR.getText(),                        //name
 					  		 itemDescriptionR.getText(),                 //description
 					         Float.parseFloat(itemPriceR.getText()),     //price
@@ -518,6 +520,30 @@ public class AddItemFrame extends JFrame
 					         porouswareYesB.isSelected(),    		     //is Porouswareable
 					         (int) supplierR.getSelectedItem());         //supplier
 			
-		return item;
+		
+		//itemLoader.addItem(item);
+	}
+
+	/**
+	 * Method to copy the source image file into the java project
+	 */
+	private void copyFile(File sourceFile)
+	{
+		File Source = sourceFile;
+		String Path = "src/main/resources/";
+		File Destination = new File(Path + Source.getName());
+		
+		//Copy from source to destination
+		try 
+		{
+			Files.copy(Source.toPath(), Destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
+		}
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+		
+		//set image location
+		imageLocation = Path + Source.getName();
 	}
 }
