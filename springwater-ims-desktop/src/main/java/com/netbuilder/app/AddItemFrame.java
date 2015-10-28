@@ -41,8 +41,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import com.netbuilder.entities.Item;
-import com.netbuilder.loaders.ItemLoader;
+import entities.Item;
+import loaders.ItemLoader;
 
 @SuppressWarnings("serial")
 public class AddItemFrame extends JFrame 

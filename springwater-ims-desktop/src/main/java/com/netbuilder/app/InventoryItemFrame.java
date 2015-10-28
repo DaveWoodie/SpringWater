@@ -14,7 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.netbuilder.entities.Item;
+import entities.Item;
 
 public class InventoryItemFrame extends JPanel implements MouseListener {
 

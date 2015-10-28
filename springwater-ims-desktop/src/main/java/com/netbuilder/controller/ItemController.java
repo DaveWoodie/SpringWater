@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import com.netbuilder.entities.Item;
-import com.netbuilder.entityrepository.ItemRepository;
+import entities.Item;
+import entityrepository.ItemRepository;
 
 
 /**

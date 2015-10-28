@@ -9,11 +9,11 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.netbuilder.entities.Employee;
-import com.netbuilder.entities.Item;
-import com.netbuilder.entities.PurchaseOrder;
-import com.netbuilder.entities.Supplier;
-import com.netbuilder.entityrepository.PurchaseOrderRepository;
+import entities.Employee;
+import entities.Item;
+import entities.PurchaseOrder;
+import entities.Supplier;
+import entityrepository.PurchaseOrderRepository;
 
 /**
  * Controller for the purchase order entities for the Java Application.
