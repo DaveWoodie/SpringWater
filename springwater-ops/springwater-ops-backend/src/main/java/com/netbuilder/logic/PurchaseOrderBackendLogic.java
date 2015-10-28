@@ -45,13 +45,11 @@ public class PurchaseOrderBackendLogic {
 				supplier = null;
 			}
 			PurchaseOrder pO = new PurchaseOrder(pOSLoader.getPurchaseOrderStatus(1), supplier);
-			System.out.println("Create new purchase order");
-//			pOLoader.createPurchaseOrder(pO);
+			pOLoader.createPurchaseOrder(pO);
 			PurchaseOrderLine pOL = new PurchaseOrderLine(quantityAdd, item.getIdItem(), pO);
-			System.out.println("Create new purchase order line");
-//			pOLLoader.createPurchaseOrderLine(pOL);
+			pOLLoader.createPurchaseOrderLine(pOL);
 		}
-		// If valid pending purchase to attach item to exists
+		// If valid pending purchase order to attach item to exists
 		else {
 			pOLList = pOLLoader.getPurchaseOrderLineByOrderID(itemPurchaseOrderList.get(0).getIDPurchaseOrder());
 			boolean lineFound = false;
@@ -65,14 +63,12 @@ public class PurchaseOrderBackendLogic {
 			//if item is not already on the purchase order
 			if (!lineFound) {
 				pOL = new PurchaseOrderLine(quantityAdd, item.getIdItem(), itemPurchaseOrderList.get(0));
-				System.out.println("Create new purchase order line");
-//				pOLLoader.createPurchaseOrderLine(pOL);
+				pOLLoader.createPurchaseOrderLine(pOL);
 			}
 			//if item is already on the purchase order
 			else {
 				pOL.setQuantity((pOL.getQuantity() + quantityAdd));
-				System.out.println("Update current purchase order line");
-//				pOLLoader.setPurchaseOrderLineStock(pOL);
+				pOLLoader.setPurchaseOrderLineStock(pOL);
 			}
 		}
 	}
