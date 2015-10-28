@@ -4,6 +4,9 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="springwater-ops-website-0.1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/springwater-ops-website/springwater-ops-website">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
 
         <property name="context-root" value="springwater-ims-desktop"/>
         <property name="java-output-path" value="/springwater-ims-desktop/target/classes"/>
