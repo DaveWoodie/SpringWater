@@ -34,16 +34,22 @@ public class MongoPull {
 	//Lists returned by the following methods
 	private List<String> itemInfs = new ArrayList<String>();
 	private List<String> wishListSet = new ArrayList<String>();
-	private ArrayList<Item> itemList = new ArrayList<Item>();
 
 	
 	/*
 	public static void main(String[] args) {
 		
-		MongoPull tst = new MongoPull();
-		tst.getWishList(3).print();
+		MongoPull pull = new MongoPull();
+		MongoPush push = new MongoPush();
+		ArrayList<Item> items = pull.getItemsBySupplier(1, false);
+		for(Item i : items) {
+			i.print();
+			System.out.println();
+		}
+		
 	}
 	*/
+	
 	
 	public MongoPull() {
 		
@@ -52,17 +58,8 @@ public class MongoPull {
 	/**
 	 * 
 	 * Method to fetch an address based on an address ID
-	 * 
-	 * In order that information is returned
-	 *	> Address Lines
-	 *		> Address Line 1
-	 *		> Address Line 2
-	 *	> City
-	 *	> County
-	 *	> Post Code
-	 * 
 	 * @param id: Takes an int which is the address ID
-	 * @return returns a List containing the address associated with the ID
+	 * @return returns an Address object  containing the address associated with the ID
 	 */
 	public Address getAddress(int addressID) {
 		//Connect to MongoDB
@@ -77,7 +74,23 @@ public class MongoPull {
 		addr.put("idAddress", addressID);
 		DBObject addrObj = collection.findOne(addr);		
 		
+		Address address = makeAddressEntityFromMongoObject(addrObj);
 		
+		//Disconnect from MongoDB
+		mdbc.mongoDisconnect();
+		
+		return address;
+	}
+	
+	
+	/**
+	 * takes a Mongo address Object and converts it into a java Address entity
+	 * @param addrObj
+	 * @return
+	 */
+	private Address makeAddressEntityFromMongoObject(DBObject addrObj) {
+
+
 		ArrayList<String> addressLines = new ArrayList<String>();
 		
 		BSONObject bsobj = (BSONObject) addrObj.get("AddressLines");
@@ -111,100 +124,108 @@ public class MongoPull {
 		
 		address.setAddressID(((Double)(addrObj.get("idAddress"))).intValue());
 		
-				
-		//Disconnect from MongoDB
-		mdbc.mongoDisconnect();
-		
 		return address;
+				
 	}
 	
 	/**
 	 * 
-	 * Method to fetch all the information stored on a given item based on idItem
-	 * 
-	 * In order that information is returned
-	 * 	> Item Name
-	 * 	> Item Description
-	 * 	> Image Location
-	 * 	> Number in stock
-	 * 	> Item Price 
-	 * 	> Item Cost
-	 * 	> Sales Rate
-	 * 	> Previous Sales Rate
-	 * 	> Is Porous?
-	 * 	> Discontinued?
-	 * 	> Supplier ID
-	 * 	> Attributes
-	 * 		> Height
-	 * 		> Width
-	 * 		> Depth
-	 * 		> Following Attributes aren't in every Item...
-	 * 			> HatColour
-	 * 			> Accessory
-	 * 			> Dial Stone
-	 * 			> Colour
-	 *			> Number of People
-	 * 
+	 * returns an Item entity based on idItem
 	 * @param id: Takes an int which is the idItem of a given item
-	 * @return returns a list containing all the information for the given item
+	 * @return returns an Item object containing all the information for the given item
 	 */
 	public Item getItem(int id) {
 		//Connect to MongoDB
 		mdbc.mongoConnect();
-		
-		String attrs[] = {"Height","Width","Depth","HatColour","Accessory","DialStone","Colour","NumberOfPeople"};
 		
 		//Connect to the NBGardens database
 		DB db = mdbc.getConnection().getDB(dataBase);
 		//Get Specific Collection
 		DBCollection collection = db.getCollection(itemCol);
 		
-		BasicDBObject item = new BasicDBObject();
-		item.put("idItem", id);
-		DBCursor cursor = collection.find(item);
+		BasicDBObject searchItem = new BasicDBObject();
+		searchItem.put("idItem", id);
+		DBObject itemObj = collection.findOne(searchItem);
 		
 		itemInfs.clear();
-		itemList.clear();
 		
-		Item newItem = null;
-		
-		while(cursor.hasNext()) {
-			
-			cursor.next();
-			String itemName = cursor.curr().get("ItemName").toString();
-			String itemDescription = cursor.curr().get("ItemDescription").toString();
-			String numberInStock = cursor.curr().get("NumberInStock").toString();
-			String itemPrice = cursor.curr().get("ItemPrice").toString();
-			String itemCost = cursor.curr().get("ItemCost").toString();
-			String imageLocation = cursor.curr().get("ImageLocation").toString();
-			itemInfs.add(cursor.curr().get("SalesRate").toString());
-			itemInfs.add(cursor.curr().get("PSalesRate").toString());
-			boolean isPorousWare = handleMongoBoolean(cursor.curr().get("IsPorousware"));
-			boolean discontinued = handleMongoBoolean(cursor.curr().get("Discontinued"));
-			String idSupplier = cursor.curr().get("idSupplier").toString();
-			
-			newItem = new Item(itemName, itemDescription, Float.parseFloat(itemPrice), Float.parseFloat(itemCost), (int) Float.parseFloat(numberInStock), imageLocation, discontinued, isPorousWare, (int) Float.parseFloat(idSupplier));
-			
-			BSONObject bsobj = (BSONObject) cursor.curr().get("Attributes");
-			Set<String> keys = bsobj.keySet();
-			for(String key : keys) {
-				String val = bsobj.get(key).toString();
-				
-				try {
-					newItem.addAttribute(key, val);
-				} catch (Exception e) {
-					throw new Error(e);
-				}
-			}
-			newItem.setItemID(id);
-			
-			itemList.add(newItem);
-		}
-		
-		cursor.close();
+		Item newItem = makeItemEntityFromMongoObject(itemObj);
 		
 		//Disconnect from MongoDB
 		mdbc.mongoDisconnect();
+		
+		return newItem;
+	}
+	
+	/**
+	 * returns all items provided by the passed supplier. If includeDiscontinued is set to true, will return discontinued items as well
+	 * @param supplierID
+	 * @param includeDiscontinued - flag to request discontinued items as well as current items
+	 * @return
+	 */
+	public ArrayList<Item> getItemsBySupplier(int supplierID, boolean includeDiscontinued) {
+		ArrayList<Item> items = new ArrayList<Item>();
+
+		mdbc.mongoConnect();
+		
+		//Connect to the NBGardens database
+		DB db = mdbc.getConnection().getDB(dataBase);
+		//Get Specific Collection
+		DBCollection collection = db.getCollection(itemCol);
+
+		BasicDBObject searchItem = new BasicDBObject();
+		searchItem.put("idSupplier", supplierID);
+		if(!includeDiscontinued) {
+			searchItem.put("Discontinued", false);
+		}
+		
+		DBCursor cursor = collection.find(searchItem);
+		
+		while(cursor.hasNext()) {
+			cursor.next();
+			Item item = makeItemEntityFromMongoObject(cursor.curr());
+			items.add(item);
+		}
+		
+		mdbc.mongoDisconnect();
+		
+		return items;
+		
+		
+		
+	}
+	
+	private Item makeItemEntityFromMongoObject(DBObject itemObj) {
+
+		Item newItem;
+		
+		String itemName = itemObj.get("ItemName").toString();
+		String itemDescription = itemObj.get("ItemDescription").toString();
+		String numberInStock = itemObj.get("NumberInStock").toString();
+		String itemPrice = itemObj.get("ItemPrice").toString();
+		String itemCost = itemObj.get("ItemCost").toString();
+		String imageLocation = itemObj.get("ImageLocation").toString();
+		itemInfs.add(itemObj.get("SalesRate").toString());
+		itemInfs.add(itemObj.get("PSalesRate").toString());
+		boolean isPorousWare = handleMongoBoolean(itemObj.get("IsPorousware"));
+		boolean discontinued = handleMongoBoolean(itemObj.get("Discontinued"));
+		String idSupplier = itemObj.get("idSupplier").toString();
+		
+		newItem = new Item(itemName, itemDescription, Float.parseFloat(itemPrice), Float.parseFloat(itemCost), (int) Float.parseFloat(numberInStock), imageLocation, discontinued, isPorousWare, (int) Float.parseFloat(idSupplier));
+		newItem.setItemID((Integer) itemObj.get("idItem") );
+		
+		
+		BSONObject bsobj = (BSONObject) itemObj.get("Attributes");
+		Set<String> keys = bsobj.keySet();
+		for(String key : keys) {
+			String val = bsobj.get(key).toString();
+			
+			try {
+				newItem.addAttribute(key, val);
+			} catch (Exception e) {
+				throw new Error(e);
+			}
+		}
 		
 		return newItem;
 	}

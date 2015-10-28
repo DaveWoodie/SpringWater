@@ -1,3 +1,8 @@
+/**
+ * @author dwoodward
+ * @date 27/10/2015
+ */
+
 package loaders;
 
 import java.sql.ResultSet;
@@ -39,7 +44,6 @@ public class WebLoginLoader {
 			SQL.closeCon();
 		}
 		return login;
-		
 	}
 
 }
