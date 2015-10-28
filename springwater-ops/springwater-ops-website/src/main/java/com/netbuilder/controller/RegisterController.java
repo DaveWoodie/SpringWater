@@ -3,6 +3,8 @@ package com.netbuilder.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import loaders.WebLoginLoader;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +18,7 @@ public class RegisterController {
 	 public String doPost(HttpServletRequest request, HttpServletResponse response) {
 		 
 		 WebRegisterAdder a = new WebRegisterAdder();
+//		 WebLoginLoader l = new WebLoginLoader();
 		 
 		 String returned = "redirect:";
 		 String[] data = new String[4];
@@ -25,16 +28,13 @@ public class RegisterController {
 		 data[2] = request.getParameter("lastNameRegisterInput");
 		 data[3] = request.getParameter("emailRegisterInput");
 		 
-		 a.addNewUser(data);
-		 
 //		 String passwordCheck = request.getParameter("confirmPasswordRegisterInput");
 		 String dob = request.getParameter("dobRegisterInput");
-		 int phonenumber = Integer.parseInt(request.getParameter("telephoneNumberRegisterInput"));
+		 String phonenumber = request.getParameter("telephoneNumberRegisterInput");
 		 
-		 
-		 
-		 a.addNewCustomer(dob, phonenumber);
-		 
+		 a.addNewUser(data);
+	 
+		 a.addNewCustomer(data[3], dob, phonenumber);
 		 
 		 return returned;
 	 }

@@ -98,17 +98,18 @@ public class SalesGraphGUI extends JPanel implements ActionListener
 		
 		dataset = new DefaultCategoryDataset();
 		
-		if(purchaseOrderList.isEmpty() == false)
+		if(purchaseOrderList.size() > 0)
 		{
 			for(int i = 0; i < purchaseOrderList.size(); i++)
 			{
 				//go through each purchase order containing the specified item and get the purchase order line
 				ArrayList<PurchaseOrderLine> pOLine = purchaseOrderLineLoader.getPurchaseOrderLineByOrderAndProduct(purchaseOrderList.get(i).getIDPurchaseOrder(), itemID);
-				PurchaseOrderLine purchaseOrderLine = pOLine.get(0);
-				
-				Integer j = purchaseOrderLine.getQuantity();
-				
-				dataset.addValue(j.doubleValue(), (Comparable<?>) "sales", (Comparable<?>) purchaseOrderList.get(i).getDatePlaced());
+	
+				if(pOLine.size() > 0) {
+					PurchaseOrderLine purchaseOrderLine = pOLine.get(0);
+					Integer j = purchaseOrderLine.getQuantity();
+					dataset.addValue(j.doubleValue(), (Comparable<?>) "sales", (Comparable<?>) purchaseOrderList.get(i).getDatePlaced());
+				}
 			}
 		}
 	}
@@ -192,13 +193,6 @@ public class SalesGraphGUI extends JPanel implements ActionListener
 		{
 			dataset.addValue(yearArray.get(i)[1], "Year", yearArray.get(i)[0]);
 		}
-		
-		/*ArrayList<Integer[]> yearArray = graphData.getYearArray();
-		
-		for(int i = 0; i < yearArray.size(); i++)
-		{
-			dataset.addValue(yearArray.get(i)[1], "Year", yearArray.get(i)[0]);
-		}*/
 		
 		JFreeChart lineChart = ChartFactory.createLineChart(
 				 "Sales",						 //Chart title
