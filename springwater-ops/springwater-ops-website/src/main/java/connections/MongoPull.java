@@ -16,6 +16,7 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+
 import entities.Address;
 import entities.Item;
 import entities.WishList;
@@ -37,41 +38,21 @@ public class MongoPull {
 
 	
 	
-	
-	/*public static void main(String[] args) {
+	/*
+	public static void main(String[] args) {
 		
 		MongoPull pull = new MongoPull();
 		MongoPush push = new MongoPush();
-		ArrayList<Item> items = pull.getAllDiscontinuedItems();
+		
+		ArrayList<Item> items = pull.getItemsByAttribute("Category", "Gnomes");
 		for(Item i : items) {
 			i.print();
 			System.out.println();
 		}
-//		
-//		Item i = pull.getItem(1);
-//		i.setImageLocation("gnome.jpg");
-//		push.updateItem(i);
-//		
-//
-//		i = pull.getItem(2);
-//		i.setImageLocation("gnome02.jpg");
-//		push.updateItem(i);
-//
-//		i = pull.getItem(3);
-//		i.setImageLocation("gnome03.jpg");
-//		push.updateItem(i);
-//
-//		i = pull.getItem(4);
-//		i.setImageLocation("sundial.jpg");
-//		push.updateItem(i);
-//
-//		i = pull.getItem(5);
-//		i.setImageLocation("jacuzzi01.png");
-//		push.updateItem(i);
-	}*/
-	
-	
-	
+		
+		
+	}
+	*/
 	
 	public MongoPull() {
 		
@@ -319,6 +300,56 @@ public class MongoPull {
 			items.add(makeItemEntityFromMongoObject(itemObj));
 		}
 		return items;
+	}
+	
+	
+	/**
+	 * returns all non-discontinued items with an attribute to match the name-value pair passed to the method
+	 * @param attributeName - the name of the attribute to search for
+	 * @param attributeVal - the corresponding string value of that attribute
+	 * @return ArrayList of Item entities
+	 */
+	public ArrayList<Item> getItemsByAttribute(String attributeName, String attributeVal) {
+		ArrayList<Item> items = new ArrayList<Item>();
+
+		mdbc.mongoConnect();
+		
+		DBCollection collection = this.getCollection(itemCol);
+		BasicDBObject searchObj = new BasicDBObject();
+		searchObj.put("Attributes."+attributeName,attributeVal);
+		
+		DBCursor cursor = collection.find(searchObj);
+		while(cursor.hasNext()) {
+			DBObject itemObj = cursor.next();
+			Item i = makeItemEntityFromMongoObject(itemObj);
+			if(!i.isDiscontinued()) {
+				items.add(i);
+			}
+		}
+		return items;
+	}
+	
+
+	/**
+	 * returns all non-discontinued items with an attribute to match the name-value pair passed to the method
+	 * @param attributeName - the name of the attribute to search for
+	 * @param attributeVal - the corresponding Integer value of that attribute
+	 * @return ArrayList of Item entities
+	 */
+	public ArrayList<Item> getItemsByAttribute(String attributeName, Integer attributeVal) {
+		return getItemsByAttribute(attributeName,((Double)attributeVal.doubleValue()).toString());
+		
+	}
+
+	/**
+	 * returns all non-discontinued items with an attribute to match the name-value pair passed to the method
+	 * @param attributeName - the name of the attribute to search for
+	 * @param attributeVal - the corresponding Double value of that attribute
+	 * @return ArrayList of Item entities
+	 */
+	public ArrayList<Item> getItemsByAttribute(String attributeName, Double attributeVal) {
+		return getItemsByAttribute(attributeName,attributeVal.toString());
+		
 	}
 	
 	private Item makeItemEntityFromMongoObject(DBObject itemObj) {
