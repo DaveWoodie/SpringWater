@@ -20,7 +20,7 @@ public class ItemLoader {
 	
 	public ArrayList<Item> loadItemByID(int itemID)
 	{
-		itemArray = mongoPull.getItemInf(itemID);
+		itemArray = mongoPull.getItemAsArrayList(itemID);
 		return itemArray;
 	}
 }

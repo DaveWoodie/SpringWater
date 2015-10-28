@@ -14,7 +14,7 @@ import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import com.netbuilder.DBConnector.MongoPull;
+import com.netbuilder.connections.MongoPull;
 import com.netbuilder.apploader.ItemLoader;
 import com.netbuilder.apploader.PurchaseOrderLineLoader;
 import com.netbuilder.apploader.PurchaseOrderLoader;

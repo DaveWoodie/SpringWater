@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.netbuilder.DBConnector.SQLDBConnector;
+import com.netbuilder.connections.SQLDBConnector;
 import com.netbuilder.entities.Employee;
 import com.netbuilder.entities.Item;
 import com.netbuilder.entities.PurchaseOrder;
