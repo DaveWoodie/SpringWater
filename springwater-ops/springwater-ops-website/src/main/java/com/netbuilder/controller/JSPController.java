@@ -102,5 +102,4 @@ public class JSPController {
 	public String emailOrder(ModelAndView modelAndView) {
 		return "emailOrder";
 	}
-
 }

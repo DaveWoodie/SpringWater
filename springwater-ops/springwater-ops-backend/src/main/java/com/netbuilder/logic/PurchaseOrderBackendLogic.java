@@ -8,14 +8,14 @@ import java.util.ArrayList;
 
 
 
-import com.netbuilder.entities.Item;
-import com.netbuilder.entities.PurchaseOrder;
-import com.netbuilder.entities.PurchaseOrderLine;
-import com.netbuilder.entities.Supplier;
-import com.netbuilder.loaders.PurchaseOrderLineLoader;
-import com.netbuilder.loaders.PurchaseOrderLoader;
-import com.netbuilder.loaders.PurchaseOrderStatusLoader;
-import com.netbuilder.loaders.SupplierLoader;
+import entities.Item;
+import entities.PurchaseOrder;
+import entities.PurchaseOrderLine;
+import entities.Supplier;
+import loaders.PurchaseOrderLineLoader;
+import loaders.PurchaseOrderLoader;
+import loaders.PurchaseOrderStatusLoader;
+import loaders.SupplierLoader;
 
 public class PurchaseOrderBackendLogic {
 
