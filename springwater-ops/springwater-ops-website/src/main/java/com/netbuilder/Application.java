@@ -26,7 +26,6 @@ public class Application  {
 	public static void main(String args[]) throws ServletException, LifecycleException {
 		FaqDatabase.fillDatabase();
 		ItemDatabase.fillDatabase();
-		BasketDatabase.fillDatabase();
 		ApplicationContext ctx = SpringApplication.run(Application.class, args);
 		
 		listBeans(ctx);

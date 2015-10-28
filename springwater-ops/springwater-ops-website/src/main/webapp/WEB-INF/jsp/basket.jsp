@@ -1,7 +1,7 @@
 <!--     Chris Boucher  -->
 <!--     basket.jsp -->
 <!--     Page for viewing the customer's basket -->
-<!--     Last Modified by: Chris Boucher -->
+<!--     Last Modified by: Callum Cooper -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
@@ -49,7 +49,7 @@
                                         <!-- NOTE ******* th:each is same as a foreach loop, that loops through the items
                                         					in the basket!!!! **** -->
                                         <tr th:each="item : ${basket}">
-                                            <td th:text="${item.itemName}"></td>
+                                            <td><a th:href="@{/itempage(itemid=${item.itemID})}" th:text="${item.itemName}"></a></td>
                                             <td th:text="${item.price}">&pound;</td>
                                             <td>3</td>
                                             <td th:text="${item.price}">&pound;</td>
