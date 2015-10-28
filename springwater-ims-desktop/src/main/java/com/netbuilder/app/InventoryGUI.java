@@ -19,6 +19,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+import com.netbuilder.connections.MongoPull;
+import com.netbuilder.entities.Item;
+import com.netbuilder.loaders.ItemLoader;
+
 /**
  * Searchable inventory list
  * @author tstacey
@@ -53,22 +57,23 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 	
 	private int currentColumns = 1;
 	
+	private ItemLoader loader = new ItemLoader();
 	
 	// Placeholder Data
 	private LoadData placeHolders = new LoadData();
 	
-	public static void main(String[] args) {
-		
-		JFrame w = new JFrame();
-		
-		InventoryGUI inv = new InventoryGUI();
-		w.add(inv);
-		w.pack();
-        w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		w.setVisible(true);
-
-	}
-	
+//	public static void main(String[] args) {
+//		
+//		JFrame w = new JFrame();
+//		
+//		InventoryGUI inv = new InventoryGUI();
+//		w.add(inv);
+//		w.pack();
+//        w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		w.setVisible(true);
+//
+//	}
+//	
 	public InventoryGUI() {
 		
 		initialSetup();
@@ -226,6 +231,7 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.X_AXIS));
 		
 		addPlaceholderItems();
+		addAllItems();
 
 		setAbsoluteSize(scrollPane, WIDTH, HEIGHT-SEARCH_PANEL_HEIGHT);
 		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
@@ -253,6 +259,16 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 			}
 		}
 		
+		fillContentPanelsBasedOnSize();
+		
+	}
+	
+	private void addAllItems() {
+		Object[][] itemArray = placeHolders.fetchInventoryList();
+		
+		String imageFolderLocation = "src/main/resources/images/";
+		ArrayList<Item> loadedItems = loader.loadAllCurrentItems();
+				
 		fillContentPanelsBasedOnSize();
 		
 	}

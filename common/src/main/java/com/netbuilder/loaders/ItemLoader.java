@@ -36,4 +36,9 @@ public class ItemLoader
 	{
 		mongoPush.addItem(itemToAdd);
 	}
+	
+	public ArrayList<Item> loadAllCurrentItems() 
+	{
+		return mongoPull.getAllCurrentItems();
+	}
 }
