@@ -111,11 +111,25 @@
 			<artifactId>jfreechart</artifactId>
 			<version>1.0.19</version>
 		</dependency>
+		
+		
+		
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.netbuilder</groupId> -->
+<!--   			<artifactId>common</artifactId> -->
+<!--   			<version>0.0.1-SNAPSHOT</version> -->
+<!-- 		</dependency> -->
+		
+		
+		
 		<dependency>
 			<groupId>com.netbuilder</groupId>
-  			<artifactId>common</artifactId>
-  			<version>0.0.1-SNAPSHOT</version>
+			<artifactId>springwater-ops-website</artifactId>
+  			<version>0.1.0</version>
 		</dependency>
+		
+		
+		
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -145,7 +159,7 @@
  				<groupId>org.springframework.boot</groupId>
  				<artifactId>spring-boot-maven-plugin</artifactId>
  			</plugin>
- 			
+ 		 			
  			<plugin>
 		        <groupId>org.apache.activemq.tooling</groupId>
 		        <artifactId>maven-activemq-plugin</artifactId>

@@ -5,14 +5,20 @@
 
 package com.netbuilder.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-public class CustomerOrderStatus {
+public class CustomerOrderStatus implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int statusID;
 	private String status;
 	

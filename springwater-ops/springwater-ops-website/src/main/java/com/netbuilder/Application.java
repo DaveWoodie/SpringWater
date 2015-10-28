@@ -16,6 +16,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 import com.netbuilder.test.BasketDatabase;
 import com.netbuilder.test.FaqDatabase;
 import com.netbuilder.test.ItemDatabase;
+import com.netbuilder.test.UserDatabase;
 
 //@EnableMongoRepositories
 //@EnableJpaRepositories
@@ -26,7 +27,7 @@ public class Application  {
 	public static void main(String args[]) throws ServletException, LifecycleException {
 		FaqDatabase.fillDatabase();
 		ItemDatabase.fillDatabase();
-		BasketDatabase.fillDatabase();
+		UserDatabase.fillDatabase();
 		ApplicationContext ctx = SpringApplication.run(Application.class, args);
 		
 		listBeans(ctx);

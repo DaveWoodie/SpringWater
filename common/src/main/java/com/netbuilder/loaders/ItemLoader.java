@@ -10,10 +10,10 @@ import com.netbuilder.connections.MongoPull;
 import com.netbuilder.connections.MongoPush;
 import com.netbuilder.entities.Item;
 
-public class ItemLoader {
+public class ItemLoader 
+{
 	private MongoPull mongoPull;
 	private MongoPush mongoPush;
-	private ArrayList<Item> itemArray;
 	
 	public ItemLoader()
 	{
@@ -23,12 +23,22 @@ public class ItemLoader {
 	
 	public ArrayList<Item> loadItemByID(int itemID)
 	{
-		itemArray = mongoPull.getItemInf(itemID);
+		ArrayList<Item> itemArray = mongoPull.getItemAsArrayList(itemID);
 		return itemArray;
 	}
 	
 	public void setDiscontinueStatus(int itemID, boolean bool)
 	{
 		mongoPush.setContinuedStateForItem(itemID, bool);
+	}
+	
+	public void addItem(Item itemToAdd)
+	{
+		mongoPush.addItem(itemToAdd);
+	}
+	
+	public ArrayList<Item> loadAllCurrentItems() 
+	{
+		return mongoPull.getAllCurrentItems();
 	}
 }

@@ -30,14 +30,14 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import com.netbuilder.apploader.PurchaseOrderLineLoader;
-import com.netbuilder.apploader.PurchaseOrderLoader;
-import com.netbuilder.apploader.SupplierLoader;
-import com.netbuilder.entities.Item;
-import com.netbuilder.entities.PurchaseOrder;
-import com.netbuilder.entities.PurchaseOrderLine;
-import com.netbuilder.entities.Supplier;
-import com.netbuilder.loaders.ItemLoader;
+import loaders.PurchaseOrderLineLoader;
+import loaders.PurchaseOrderLoader;
+import loaders.SupplierLoader;
+import entities.Item;
+import entities.PurchaseOrder;
+import entities.PurchaseOrderLine;
+import entities.Supplier;
+import loaders.ItemLoader;
 
 /**
  *Creates a JFrame containing a selected item's details
@@ -431,8 +431,8 @@ public class ItemGUI extends JFrame
 		}
 	}
 	
-	public static void main(String[] args)
-	{
-		ItemGUI i = new ItemGUI();
-	}
+//	public static void main(String[] args)
+//	{
+//		ItemGUI i = new ItemGUI();
+//	}
 }

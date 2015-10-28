@@ -8,10 +8,10 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
-import com.netbuilder.DBConnector.MongoPull;
-import com.netbuilder.apploader.PurchaseOrderLineLoader;
-import com.netbuilder.entities.Item;
-import com.netbuilder.entities.PurchaseOrderLine;
+import connections.MongoPull;
+import loaders.PurchaseOrderLineLoader;
+import entities.Item;
+import entities.PurchaseOrderLine;
 
 /**
  * Class to manage the logic and business rules for the application
@@ -32,7 +32,7 @@ public class PurchaseOrderLineLogic {
 		purchaseOrderLineList = new Object [pOLList.size()][5];
 		for (int i = 0; i < pOLList.size(); i++) {
 			MongoPull mP = new MongoPull();
-			itemList = mP.getItemInf(pOLList.get(i).getItemID());
+			itemList = mP.getItemAsArrayList(pOLList.get(i).getItemID());
 			float itemPrice = 0;
 			String itemName = "Placeholder";
 			if (!itemList.isEmpty()) {

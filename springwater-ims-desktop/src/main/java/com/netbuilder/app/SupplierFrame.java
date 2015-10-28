@@ -29,7 +29,6 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-import com.netbuilder.loaders.SupplierLoader;
 import com.netbuilder.logic.SupplierLogic;
 
 /**
@@ -72,7 +71,7 @@ public class SupplierFrame extends JFrame{
 		//create left panel
 		LoadData lDD = new LoadData();
 		SupplierLogic lD = new SupplierLogic();
-		Object [][] products = lDD.fetchSupplierProducts();
+		Object [][] products = lD.fetchProducts(selectedID);
 		Object [][] supplierDetails = lD.fetchSupplierByID(selectedID);
 		left = new JPanel();
 		left.setLayout(new BoxLayout(left, BoxLayout.Y_AXIS));

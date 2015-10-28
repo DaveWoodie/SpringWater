@@ -14,6 +14,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import entities.Item;
+
 public class InventoryItemFrame extends JPanel implements MouseListener {
 
 	private static final long serialVersionUID = 1L;
@@ -44,11 +46,21 @@ public class InventoryItemFrame extends JPanel implements MouseListener {
 		this.productID = productID;
 		this.productName = productName;
 		this.quantity = quantity;
-		this.location = location;
+		this.location = "Warehouse";
 		this.imageLocation = imageLocation;
 		this.WIDTH = width;
 		initialSetup();
 		
+	}
+	
+	public InventoryItemFrame(InventoryGUI src, int width, Item item) {
+		this.productID = item.getIdItem();
+		this.productName = item.getItemName();
+		this.quantity = item.getStock();
+		this.location = "Warehouse";
+		this.imageLocation = item.getImageLocation();
+		this.WIDTH = width;
+		initialSetup();
 	}
 	
 	private void initialSetup() {
