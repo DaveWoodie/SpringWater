@@ -31,10 +31,16 @@ public class MongoPush {
 		
 		MongoPush push = new MongoPush();
 		MongoPull pull = new MongoPull();
+		ArrayList<Address> addresses = pull.getAllAddresses();
+		for(Address a : addresses) {
+			a.print();
+			System.out.println();
+		}
 		
 		
 	}
 	*/
+	
 
 	/******************************************************************************/
 	// CREATE CREATE CREATE CREATE CREATE CREATE CREATE CREATE CREATE CREATE CREATE
@@ -87,7 +93,7 @@ public class MongoPush {
 			System.out.println("Unable to find Address Collection or idAddress in addAddress() in MongoPush");
 			throw new Error(e);
 		}
-		//addr.setAddressID(newAddrID);
+		addr.setAddressID(newAddrID);
 
 		BasicDBObject addressObject = makeMongoObjectFromAddress(addr);
 		DBCollection collection = db.getCollection("Address");
