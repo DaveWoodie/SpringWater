@@ -1,4 +1,4 @@
-package entitiyrepositories;
+package entityrepository;
 
 
 import org.springframework.data.mongodb.repository.MongoRepository;

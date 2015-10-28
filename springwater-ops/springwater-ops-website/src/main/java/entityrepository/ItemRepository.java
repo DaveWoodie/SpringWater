@@ -1,4 +1,4 @@
-package entitiyrepositories;
+package entityrepository;
 
 import java.util.List;
 

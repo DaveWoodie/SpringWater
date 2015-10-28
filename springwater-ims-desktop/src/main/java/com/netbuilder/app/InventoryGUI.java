@@ -57,18 +57,18 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 	// Placeholder Data
 	private LoadData placeHolders = new LoadData();
 	
-	public static void main(String[] args) {
-		
-		JFrame w = new JFrame();
-		
-		InventoryGUI inv = new InventoryGUI();
-		w.add(inv);
-		w.pack();
-        w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		w.setVisible(true);
-
-	}
-	
+//	public static void main(String[] args) {
+//		
+//		JFrame w = new JFrame();
+//		
+//		InventoryGUI inv = new InventoryGUI();
+//		w.add(inv);
+//		w.pack();
+//        w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		w.setVisible(true);
+//
+//	}
+//	
 	public InventoryGUI() {
 		
 		initialSetup();

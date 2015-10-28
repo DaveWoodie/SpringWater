@@ -60,10 +60,10 @@ public class AddItemFrame extends JFrame
 	
 	private String imageLocation;
 
-	public static void main(String[] args) {
-		AddItemFrame iF = new AddItemFrame();
-		iF.setVisible(true);
-	}
+//	public static void main(String[] args) {
+//		AddItemFrame iF = new AddItemFrame();
+//		iF.setVisible(true);
+//	}
 
 	/**
 	 * constructor for adding a new item

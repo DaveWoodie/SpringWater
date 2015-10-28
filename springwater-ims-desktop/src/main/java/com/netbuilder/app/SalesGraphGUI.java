@@ -250,17 +250,17 @@ public class SalesGraphGUI extends JPanel implements ActionListener
 		}
 	}
 	
-	public static void main(String[] args)
-	{
-		JFrame j = new JFrame();
-		int i = 1;
-		SalesGraphGUI sg = new SalesGraphGUI(i);
-		
-		j.setVisible(true);
-		j.add(sg);
-		j.setSize(650, 450);
-		j.setLocationRelativeTo(null);
-	}
+//	public static void main(String[] args)
+//	{
+//		JFrame j = new JFrame();
+//		int i = 1;
+//		SalesGraphGUI sg = new SalesGraphGUI(i);
+//		
+//		j.setVisible(true);
+//		j.add(sg);
+//		j.setSize(650, 450);
+//		j.setLocationRelativeTo(null);
+//	}
 
 }
 
