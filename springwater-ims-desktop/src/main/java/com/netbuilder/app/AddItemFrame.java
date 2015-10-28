@@ -11,8 +11,10 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -70,11 +72,13 @@ public class AddItemFrame extends JFrame
 	private SupplierLoader supplierLoader = new SupplierLoader();
 	private String imageLocation;
 	private ArrayList<String> supplierNames = new ArrayList<String>();
+	private ArrayList<Supplier> supplierList;
 
 	/**
 	 * constructor for adding a new item
 	 */
-	public AddItemFrame() {
+	public AddItemFrame() 
+	{
 		configFrame();
 		initValues();
 		addContent();
@@ -84,7 +88,8 @@ public class AddItemFrame extends JFrame
 	 * constructor for editing a item
 	 * @param id - id of of item to edit
 	 */
-	public AddItemFrame(int id) {
+	public AddItemFrame(int id) 
+	{
 		edit = !edit; 
 		configFrame();
 		addContent();
@@ -94,7 +99,7 @@ public class AddItemFrame extends JFrame
 	private void initValues()
 	{
 		//get suppliers from SQL
-		ArrayList<Supplier> supplierList = supplierLoader.getSupplierList();
+		supplierList = supplierLoader.getSupplierList();
 		
 		//add supplier names from supplierList into array
 		for(Supplier supplier : supplierList)
@@ -112,7 +117,7 @@ public class AddItemFrame extends JFrame
 		if (edit) {
 			titleS = "Edit Item";
 		}
-		setTitle("Add an Item");
+		setTitle(titleS);
 		setSize(500, 360);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -155,7 +160,7 @@ public class AddItemFrame extends JFrame
 		c.gridy = 4;
 		main.add(porousewareL, c);
 		
-		typeL = new JLabel(" Catergory :");
+		typeL = new JLabel(" Category :");
 		c.gridy = 5;
 		main.add(typeL, c);
 		
@@ -522,18 +527,36 @@ public class AddItemFrame extends JFrame
 	{
 		copyFile(new File(textBrowse.getText()));
 		
-		Item item = new Item(itemNameR.getText(),                        //name
-					  		 itemDescriptionR.getText(),                 //description
-					         Float.parseFloat(itemPriceR.getText()),     //price
-					         Float.parseFloat(itemUnitPriceR.getText()), //cost
-					         0, 						     		     //initial stock
-					         imageLocation, 				          	 //image location
-					         false,						  	             //is Discontinued
-					         porouswareYesB.isSelected(),    		     //is Porouswareable
-					         (int) supplierR.getSelectedItem());         //supplier
-			
+		Item item = new Item(itemNameR.getText(),                       			    //name
+					  		 itemDescriptionR.getText(),                			    //description
+					         Float.parseFloat(itemPriceR.getText()),    			    //price
+					         Float.parseFloat(itemUnitPriceR.getText()),				//cost
+					         0, 						     		     				//initial stock
+					         imageLocation, 				          	 				//image location
+					         false,						  	             				//is Discontinued
+					         porouswareYesB.isSelected(),    		     				//is Porouswareable
+					         getSupplierID((String) supplierR.getSelectedItem()));      //supplier
 		
-		//itemLoader.addItem(item);
+		//add the item to MongoDB
+		itemLoader.addItem(item);
+		
+		JOptionPane.showMessageDialog(null, "Item successfully added");
+		this.getContentPane().dispatchEvent(new WindowEvent((Window) this.getContentPane(), WindowEvent.WINDOW_CLOSING));
+	}
+	
+	private int getSupplierID(String supplierName)
+	{
+		int supplierID = 0;
+		
+		for(int i = 0; i < supplierList.size(); i++)
+		{
+			if(supplierName.equals(supplierList.get(i).getSupplierName()))
+			{
+				supplierID = supplierList.get(i).getSupplierID();
+			}
+		}
+		
+		return supplierID;
 	}
 
 	/**
