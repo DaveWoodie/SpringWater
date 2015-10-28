@@ -121,10 +121,10 @@ public class PurchaseOrderLoader {
 		sql = listQuery + tableName + tableJoins;
 		for (int j = 0; j < purchaseOrderIDs.size(); j++) {
 			if (j == 0) {
-				sql = sql + " WHERE idPurchaseOrder = " + purchaseOrderIDs.get(i);
+				sql = sql + " WHERE idPurchaseOrder = " + purchaseOrderIDs.get(j);
 			}
 			else {
-				sql = sql + " OR idPurchaseOrder = " + purchaseOrderIDs.get(i);
+				sql = sql + " OR idPurchaseOrder = " + purchaseOrderIDs.get(j);
 			}
 		}
 		sql = sql + orderBy;
