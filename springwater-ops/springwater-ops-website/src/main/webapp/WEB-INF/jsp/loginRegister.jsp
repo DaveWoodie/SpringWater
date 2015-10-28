@@ -39,7 +39,7 @@
                             <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1" id="passwordInputLogin" name="passwordInputLogin" required="required"/>
                         </div>
                         <br />
-                        <input type="submit" class="btn btn-success"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Login</input>
+                        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Login </button>
                     </form>
                     <br />
                     <div class="panel panel-danger">
@@ -57,43 +57,43 @@
                         <h1 id="productTitle">New here? <small> Register an account!</small></h1>
                     </div>
 
-                    <form>
+                    <form th:action="@{/registerForm}" method="post">
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">First Name</span>
-                            	<input type="text" class="form-control" placeholder="First Name" aria-describedby="basic-addon1" id="firstNameInput" />
+                            	<input type="text" class="form-control" placeholder="First Name" aria-describedby="basic-addon1" id="firstNameRegisterInput" name="firstNameRegisterInput" required="required"/>
                         </div>
                         <br />
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Last Name</span>
-                            <input type="text" class="form-control" placeholder="Last Name" aria-describedby="basic-addon1" id="lastNameInput" />
+                            <input type="text" class="form-control" placeholder="Last Name" aria-describedby="basic-addon1" id="lastNameRegisterInput" name="lastNameRegisterInput" required="required"/>
                         </div>
                         <br />
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Email</span>
-                            <input type="text" class="form-control" placeholder="Email Address" aria-describedby="basic-addon1" id="emailInput" />
+                            <input type="text" class="form-control" placeholder="Email Address" aria-describedby="basic-addon1" id="emailRegisterInput" name="emailRegisterInput" required="required"/>
                         </div>
                         <br />
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Password</span>
-                            <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1" id="passwordInput" />
+                            <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1" id="passwordRegisterInput" name="passwordRegisterInput"  onchange="form.confirmPasswordRegisterInput.pattern = this.value;" required="required"/>
                         </div>
                         <br />
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Confirm</span>
-                            <input type="password" class="form-control" placeholder="Confirm Password" aria-describedby="basic-addon1" id="confirmPasswordInput" />
+                            <input type="password" class="form-control" placeholder="Confirm Password" aria-describedby="basic-addon1" id="confirmPasswordRegisterInput" name="confirmPasswordRegisterInput" required="required"/>
                         </div>
                         <br />
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Date of Birth</span>
-                            <input type="text" class="form-control" placeholder="Date of Birth" aria-describedby="basic-addon1" id="dobInput" />
+                            <input type="text" class="form-control" placeholder="Date of Birth" aria-describedby="basic-addon1" id="dobRegisterInput" name="dobRegisterInput" required="required"/>
                         </div>
                         <br />
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Telephone Number</span>
-                            <input type="text" class="form-control" placeholder="Telephone Number (Landline or mobile)" aria-describedby="basic-addon1" id="telephoneNumberInput" />
+                            <input type="text" class="form-control" placeholder="Telephone Number (Landline or mobile)" aria-describedby="basic-addon1" id="telephoneNumberRegisterInput" name="telephoneNumberRegisterInput" required="required"/>
                         </div>
                         <br />
-                        	 <a onclick="registerUserDetails(); " class="btn btn-primary"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Register</a>
+                        	  <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Register</button>
                         </form>
                     <br />
                     <div class="panel panel-info">

@@ -45,11 +45,13 @@
                                     <tbody>
 
                                         <!-- Item Row -->
-                                        <tr>
-                                            <td>Happy Gnome</td>
-                                            <td>&pound;2.99</td>
+                                        <!-- NOTE ******* th:each is same as a foreach loop, that loops through the items
+                                        					in the basket!!!! **** -->
+                                        <tr th:each="item : ${basket}">
+                                            <td th:text="${item.itemName}"></td>
+                                            <td th:text="${item.price}">&pound;</td>
                                             <td>3</td>
-                                            <td>&pound;8.97</td>
+                                            <td th:text="${item.price}">&pound;</td>
                                             <td>
                                                 <button class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                                                 <button class="btn btn-info"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>

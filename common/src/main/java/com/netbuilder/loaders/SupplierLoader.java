@@ -7,7 +7,6 @@ package com.netbuilder.loaders;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 
 import com.netbuilder.connections.SQLDBConnector;
 import com.netbuilder.entities.Item;
@@ -38,6 +37,8 @@ public class SupplierLoader {
 				s.setEmail(rs.getString("email"));
 				s.setTelephone(rs.getString("telephoneNumber"));
 				s.setSupplierID(rs.getInt("idSupplier"));
+				int av = averageDelivery(s.getSupplierID());
+				s.setAverageDeliveryTime(av);
 				supplierList.add(s);
 			}
 			rs.close();
@@ -87,6 +88,32 @@ public class SupplierLoader {
 		return supplierList;
 	}
 
+	/**
+	 * @author abutcher
+	 * Method to construct the SQLquery to calculate average 
+	 * @param id of the supplier to calculate average
+	 * @return an int of average days
+	 */
+	private int averageDelivery(int id) {
+		int avg = 0;
+		sql = "SELECT AVG(DATEDIFF(dateexpected,dateplaced)) FROM purchaseorder where idSupplier = " + id; 
+		sqlDB.openCon();
+		try {
+			ResultSet rs = sqlDB.queryDB(sql);
+			rs.next();
+			avg = rs.getInt("AVG(DATEDIFF(dateexpected,dateplaced))");
+//			System.out.println(avg);
+		} 
+		catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		sqlDB.closeCon();
+		return avg;
+	}
+	
 	/**
 	 * @author abutcher
 	 * Method to construct the SQLquery to retrieve suppliers by name

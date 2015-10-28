@@ -58,10 +58,10 @@ public class JSPController {
 		return "itemPage";
 	}
 
-/*	@RequestMapping("items")
+	@RequestMapping("items")
 	public String items(ModelAndView modelAndView) {
 		return "items";
-	}*/
+	}
 
 	@RequestMapping("loginregister")
 	public String loginRegister(ModelAndView modelAndView) {

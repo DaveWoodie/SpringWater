@@ -1,4 +1,7 @@
-
+/**
+ * @author Chris J W Walker
+ * 
+ */
 package com.netbuilder;
 
 import javax.servlet.ServletException;
@@ -10,6 +13,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
+import com.netbuilder.test.BasketDatabase;
 import com.netbuilder.test.FaqDatabase;
 import com.netbuilder.test.ItemDatabase;
 
@@ -22,6 +26,7 @@ public class Application  {
 	public static void main(String args[]) throws ServletException, LifecycleException {
 		FaqDatabase.fillDatabase();
 		ItemDatabase.fillDatabase();
+		BasketDatabase.fillDatabase();
 		ApplicationContext ctx = SpringApplication.run(Application.class, args);
 		
 		listBeans(ctx);

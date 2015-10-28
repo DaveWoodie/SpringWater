@@ -93,4 +93,9 @@ public class SQLDBConnector {
 		stmt = (Statement) con.createStatement();
 		stmt.executeUpdate(sql);
 	}
+	
+	public void addToDB (String sql) throws Exception {
+		stmt = (Statement) con.createStatement();
+		stmt.executeUpdate(sql);
+	}
 }

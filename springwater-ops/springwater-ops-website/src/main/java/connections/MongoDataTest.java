@@ -1,6 +1,6 @@
 package connections;
 
-import java.util.List;
+import entities.WishList;
 
 public class MongoDataTest {
 
