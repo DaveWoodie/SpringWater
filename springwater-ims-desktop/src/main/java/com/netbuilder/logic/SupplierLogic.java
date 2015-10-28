@@ -157,11 +157,16 @@ public class SupplierLogic {
 		newSP.setAverageDeliveryTime(0);
 		if (!results[2].isEmpty()){
 			newSP.setEmail(results[2]);
+		}else {
+			newSP.setEmail("");
 		}
 		if (!results[1].isEmpty()){
 			newSP.setTelephone(results[1]);
+		}else {
+			newSP.setTelephone("");
 		}
 		sLoader.newSupplier(newSP);
+		
 		
 	}
 
