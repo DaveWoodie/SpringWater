@@ -19,6 +19,8 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 
 import entities.Item;
 import entities.MessageContent;
+import entities.PurchaseOrder;
+
 import com.netbuilder.logic.PurchaseOrderBackendLogic;
 
 /**
@@ -76,6 +78,27 @@ public class Listener implements MessageListener{
 					ArrayList<Object> object = (ArrayList<Object>) messageContent.getContents();
 					PurchaseOrderBackendLogic pOBL = new PurchaseOrderBackendLogic();
 					pOBL.addItemToPurchaseOrder((Item) object.get(0), (Integer) object.get(1));
+				}
+				else if (messageContent.getMessage().equals("calculateOrderQuantity")) {
+					Item item = (Item) messageContent.getContents();
+					PurchaseOrderBackendLogic pOBL = new PurchaseOrderBackendLogic();
+					pOBL.calculateOrderQuantity(item);
+				}
+				else if (messageContent.getMessage().equals("sendPurchaseOrder")) {
+					ArrayList<Object> object = (ArrayList<Object>) messageContent.getContents();
+					PurchaseOrderBackendLogic pOBL = new PurchaseOrderBackendLogic();
+					pOBL.sendPurchaseOrder((PurchaseOrder) object.get(0), (Integer) object.get(1));
+				}
+				else if (messageContent.getMessage().equals("receivePurchaseOrder")) {
+					System.out.println("Received purchase order");
+					ArrayList<Object> object = (ArrayList<Object>) messageContent.getContents();
+					PurchaseOrderBackendLogic pOBL = new PurchaseOrderBackendLogic();
+					pOBL.receivePurchaseOrder((PurchaseOrder) object.get(0), (Integer) object.get(1));
+				}
+				else if (messageContent.getMessage().equals("completePurchaseOrder")) {
+					ArrayList<Object> object = (ArrayList<Object>) messageContent.getContents();
+					PurchaseOrderBackendLogic pOBL = new PurchaseOrderBackendLogic();
+					pOBL.completePurchaseOrder((PurchaseOrder) object.get(0), (Integer) object.get(1));
 				}
 			}
 		} catch (JMSException e) {

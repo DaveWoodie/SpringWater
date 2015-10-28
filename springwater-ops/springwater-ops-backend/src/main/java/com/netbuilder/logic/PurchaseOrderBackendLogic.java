@@ -13,9 +13,18 @@ import java.util.ArrayList;
 
 
 
+
+
+
+
+import com.netbuilder.JMS.Sender;
+
+import connections.MongoPull;
 import entities.Item;
+import entities.MessageContent;
 import entities.PurchaseOrder;
 import entities.PurchaseOrderLine;
+import entities.PurchaseOrderStatus;
 import entities.Supplier;
 import loaders.PurchaseOrderLineLoader;
 import loaders.PurchaseOrderLoader;
@@ -85,8 +94,11 @@ public class PurchaseOrderBackendLogic {
 		}
 	}
 	
+	/**
+	 * Method to check if a purchase order is required to maintain levels of stock for an item
+	 * @param item to check the levels of
+	 */
 	public void calculateOrderQuantity(Item item) {
-		//fetch total inbound stock from purchase orders
 		int inboundStock = 0;
 		pOList = pOLoader.getPurchaseOrderListByItem(item.getIdItem());
 		for (int i = 0; i < pOList.size(); i++) {
@@ -109,6 +121,66 @@ public class PurchaseOrderBackendLogic {
 		}
 		if (stockOrder != 0) {
 			addItemToPurchaseOrder(item, stockOrder);
+		}
+	}
+	
+	/**
+	 * Method to set the purchase order as sent 
+	 * @param pO purchase order to be sent
+	 * @param employeeID id of the employee who sent the order
+	 */
+	public void sendPurchaseOrder(PurchaseOrder pO, Integer employeeID) {
+		PurchaseOrderStatusLoader pOSLoader = new PurchaseOrderStatusLoader();
+		//update order from pending to sent
+		if (pO.getPurchaseOrderStatus().getStatusID() == 1) {
+			//TODO get current employee and set on purchase order
+			PurchaseOrderStatus pOS = pOSLoader.getPurchaseOrderStatus(2);
+			pO.setPurchaseOrderStatus(pOS);
+			pOLoader.setPurchaseOrder(pO);
+		}
+	}
+	
+	public void receivePurchaseOrder(PurchaseOrder pO, Integer employeeID) {
+		PurchaseOrderStatusLoader pOSLoader = new PurchaseOrderStatusLoader();
+		System.out.println("Checking purchase order status");
+		System.out.println(pO.getPurchaseOrderStatus().getStatusID());
+		if (pO.getPurchaseOrderStatus().getStatusID() == 2) {
+			//TODO get current employee and set on purchase order
+			System.out.println("Correct status determined");
+			PurchaseOrderStatus pOS = pOSLoader.getPurchaseOrderStatus(3);
+			pO.setPurchaseOrderStatus(pOS);
+			System.out.println("Set purchase order");
+			pOLoader.setPurchaseOrder(pO);
+			String damagedReport = "<html>Damaged Stock Report<br>Purchaseorder: " + pO.getIDPurchaseOrder();
+			boolean damagedGoods = false;
+			PurchaseOrderLineLoader pOLLoader = new PurchaseOrderLineLoader();
+			ArrayList<PurchaseOrderLine> pOLList = pOLLoader.getPurchaseOrderLineByOrderID(pO.getIDPurchaseOrder());
+			for (int i = 0; i < pOLList.size(); i++) {
+				if (pOLList.get(i).getDamagedQuantity() > 0) {
+					System.out.println("Damaged item detected");
+					damagedGoods = true;
+					MongoPull mP = new MongoPull();
+					Item item = mP.getItem(pOLList.get(i).getItemID());
+					damagedReport = damagedReport + "<br>Item ID: " + item.getIdItem() + " Item Name: " + item.getItemName() + " Number Damaged: " + pOLList.get(i).getDamagedQuantity();
+				}
+			}
+			if (damagedGoods) {
+				System.out.println("Sending message to IMS");
+				MessageContent messageContent = new MessageContent(damagedReport, "damagedStockReport");
+				Sender sender = new Sender ("IMS.IN");
+				sender.sendMessage(messageContent);
+			}
+		}
+		
+	}
+	
+	public void completePurchaseOrder(PurchaseOrder pO, Integer employeeID) {
+		PurchaseOrderStatusLoader pOSLoader = new PurchaseOrderStatusLoader();
+		if (pO.getPurchaseOrderStatus().getStatusID() == 3) {
+			//TODO get current employee and set on purchase order
+			PurchaseOrderStatus pOS = pOSLoader.getPurchaseOrderStatus(4);
+			pO.setPurchaseOrderStatus(pOS);
+			pOLoader.setPurchaseOrder(pO);
 		}
 	}
 }
