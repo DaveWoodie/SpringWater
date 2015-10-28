@@ -162,7 +162,7 @@ public class AddSupplierFrame extends JFrame {
 						getResults();
 						//TODO update supplier
 					}else {
-//						sL.addNewSupplier(getResults());
+						sL.addNewSupplier(getResults());
 						JFrame frame = new JFrame("Add new supplier");
 						JOptionPane.showMessageDialog(frame, "Supplier has been added", "Warning",
 								JOptionPane.WARNING_MESSAGE);
