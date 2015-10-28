@@ -367,10 +367,13 @@ public class ItemGUI extends JFrame
 			{
 				purchaseOrderLineList = purchaseOrderLineLoader.getPurchaseOrderLineByOrderAndProduct(purchaseOrderList.get(i).getIDPurchaseOrder(), itemID);
 				
-				tableModel.addRow(new Object[]{purchaseOrderList.get(i).getIDPurchaseOrder(), 
-											   purchaseOrderList.get(i).getDatePlaced(),
-											   purchaseOrderLineList.get(0).getQuantity(),
-											   purchaseOrderList.get(i).getPurchaseOrderStatus().getPurchOrderStatus()});
+				if(!purchaseOrderLineList.isEmpty())
+				{
+					tableModel.addRow(new Object[]{purchaseOrderList.get(i).getIDPurchaseOrder(), 
+												   purchaseOrderList.get(i).getDatePlaced(),
+												   purchaseOrderLineList.get(0).getQuantity(),
+												   purchaseOrderList.get(i).getPurchaseOrderStatus().getPurchOrderStatus()});
+				}
 			}
 		}
 	}
@@ -386,7 +389,11 @@ public class ItemGUI extends JFrame
 		textStock.setText(Integer.toString(item.getStock()));
 		
 		ArrayList<Supplier> supplierList = supplierLoader.getSupplierListByID(item.getIdSupplier());
-		textSupplier.setText(supplierList.get(0).getSupplierName());
+		
+		if(!supplierList.isEmpty())
+		{
+			textSupplier.setText(supplierList.get(0).getSupplierName());
+		}
 		
 		if(item.isDiscontinued() == true)
 		{
