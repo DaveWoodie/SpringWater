@@ -67,11 +67,19 @@
 		                <div class="list-group">
 			                <ul>
 			                    <li class="list-group-item">
-			                        Joe
+			                       <table>
+    									<tr th:each="user : ${profile}">
+											<td th:text="${user.firstName}"></td>
+										</tr>
+									</table>
 			                    </li>
 			                    
 			                    <li class="list-group-item">
-			                        Bloggs
+			                        <table>
+    									<tr th:each="user : ${profile}">
+											<td th:text="${user.lastName}"></td>
+										</tr>
+									</table>
 			                    </li>
 			                </ul>
 		                </div>
@@ -116,16 +124,23 @@
 	                                       	<table>
     											<tr th:each="user : ${profile}">
 											        <td th:text="${user.customerID}"></td>
-											        <td th:text="${user.username}">...</td>
 											    </tr>
 											</table>
 	                                       	
 	                                   </div>
 	                                   <div class="panel-body">
-	                                       gn0me0
+	                                   <table>
+    										<tr th:each="user : ${profile}">
+	                                       		<td th:text="${user.username}">...</td>
+	                                       	</tr>
+										</table>
 	                                   </div>
 	                                   <div class="panel-body">
-	                                   		<p id="emailID"></p>
+	                                   	<table>
+    										<tr th:each="user : ${profile}">
+	                                       		<td th:text="${user.email}">...</td>
+	                                       	</tr>
+										</table>
 	                                   
 	                                    <!-- Script for calling cookie data  -->
     										<script>
@@ -133,13 +148,25 @@
 											</script>
 	                                   </div>
 	                                   <div class="panel-body">
-	                                       01/01/2000
+	                                       <table>
+    										<tr th:each="user : ${profile}">
+	                                       		<td th:text="${user.dateOfBirth}">...</td>
+	                                       	</tr>
+										</table>
 	                                   </div>
 	                                   <div class="panel-body">
-	                                       01234 567 891
+	                                        <table>
+    										<tr th:each="user : ${profile}">
+	                                       		<td th:text="${user.phoneNumber}">...</td>
+	                                       	</tr>
+										</table>
 	                                   </div>
 	                                   <div class="panel-body">
-	                                       &pound;100.00
+	                                       <table>
+    										<tr th:each="user : ${profile}">
+	                                       		<td th:text="${user.customerCredit}"></td>
+	                                       	</tr>
+										</table>
 	                                   </div>
 	                               </div>
 	                           </div>
