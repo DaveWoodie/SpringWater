@@ -16,6 +16,7 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+
 import entities.Address;
 import entities.Item;
 import entities.WishList;
@@ -42,19 +43,16 @@ public class MongoPull {
 		
 		MongoPull pull = new MongoPull();
 		MongoPush push = new MongoPush();
-		Address addr = pull.getAddress(1);
-		addr.setCustomerID(4);
-		push.updateAddress(addr);
 		
-		ArrayList<Address> addresses = pull.getAddressesByCustomerID(3);
-		for(Address a : addresses) {
-			a.print();
+		ArrayList<Item> items = pull.getItemsByAttribute("Category", "Gnomes");
+		for(Item i : items) {
+			i.print();
 			System.out.println();
 		}
+		
+		
 	}
 	*/
-	
-	
 	
 	public MongoPull() {
 		
@@ -302,6 +300,56 @@ public class MongoPull {
 			items.add(makeItemEntityFromMongoObject(itemObj));
 		}
 		return items;
+	}
+	
+	
+	/**
+	 * returns all non-discontinued items with an attribute to match the name-value pair passed to the method
+	 * @param attributeName - the name of the attribute to search for
+	 * @param attributeVal - the corresponding string value of that attribute
+	 * @return ArrayList of Item entities
+	 */
+	public ArrayList<Item> getItemsByAttribute(String attributeName, String attributeVal) {
+		ArrayList<Item> items = new ArrayList<Item>();
+
+		mdbc.mongoConnect();
+		
+		DBCollection collection = this.getCollection(itemCol);
+		BasicDBObject searchObj = new BasicDBObject();
+		searchObj.put("Attributes."+attributeName,attributeVal);
+		
+		DBCursor cursor = collection.find(searchObj);
+		while(cursor.hasNext()) {
+			DBObject itemObj = cursor.next();
+			Item i = makeItemEntityFromMongoObject(itemObj);
+			if(!i.isDiscontinued()) {
+				items.add(i);
+			}
+		}
+		return items;
+	}
+	
+
+	/**
+	 * returns all non-discontinued items with an attribute to match the name-value pair passed to the method
+	 * @param attributeName - the name of the attribute to search for
+	 * @param attributeVal - the corresponding Integer value of that attribute
+	 * @return ArrayList of Item entities
+	 */
+	public ArrayList<Item> getItemsByAttribute(String attributeName, Integer attributeVal) {
+		return getItemsByAttribute(attributeName,((Double)attributeVal.doubleValue()).toString());
+		
+	}
+
+	/**
+	 * returns all non-discontinued items with an attribute to match the name-value pair passed to the method
+	 * @param attributeName - the name of the attribute to search for
+	 * @param attributeVal - the corresponding Double value of that attribute
+	 * @return ArrayList of Item entities
+	 */
+	public ArrayList<Item> getItemsByAttribute(String attributeName, Double attributeVal) {
+		return getItemsByAttribute(attributeName,attributeVal.toString());
+		
 	}
 	
 	private Item makeItemEntityFromMongoObject(DBObject itemObj) {

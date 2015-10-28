@@ -28,29 +28,34 @@
                 </div>
 
                 <script src="js/emailUpdated.js" type="text/javascript"></script>
-
+                
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 id="productTitle"><small>Your Details</small></h1>
+                    </div>
+                </div>
+                   
+               
                 <div class="row">
                     <div class="col-md-8">
 
                         <div id="moreThan10" style="display: none" class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span><strong> Something isn't quite right! </strong> If you would like to order more than 10 items, please register for an account <strong><a href="loginregister">here</a></strong></div>
-
-                        <h1 id="productTitle"><small>Your Details</small></h1>
-                        <form>
+                        <form th:action="@{/sendMailSimple}" method="post">
                             <div class="well">
                                 <p><small>Contact Details</small></p>
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">First Name</span>
-                                    <input type="text" class="form-control" placeholder="First Name" aria-describedby="basic-addon1" id="firstNameInput" />
+                                    <input type="text" class="form-control" placeholder="First Name" aria-describedby="basic-addon1" id="firstNameInput" name="firstNameInput" />
                                 </div>
                                 <br />
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">Last Name</span>
-                                    <input type="text" class="form-control" placeholder="Last Name" aria-describedby="basic-addon1" id="lastNameInput" />
+                                    <input type="text" class="form-control" placeholder="Last Name" aria-describedby="basic-addon1" id="lastNameInput" name="lastNameInput" />
                                 </div>
                                 <br />
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">Email</span>
-                                    <input type="text" class="form-control" placeholder="Email Address" aria-describedby="basic-addon1" id="emailInput" />
+                                    <input type="text" class="form-control" placeholder="Email Address" aria-describedby="basic-addon1" id="emailInput" name="emailInput" />
                                 </div>
                                 <br />
                                 <div class="input-group">
@@ -99,11 +104,14 @@
                                 </div>
                                 <br />
                                 <a id="addItem" onclick="addItem()" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Item</a>
+                                <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Send Your Order</button>
                             </div>
                         </form>
                     </div>
 
                     <div class="col-md-4">
+                        <div class="alert alert-info" role="alert"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span><strong> Just so you know!</strong> If you would like to order more than 10 items, register for an account <strong><a href="loginregister">here</a></strong></div>
+
                         <div class="well">
                             <!-- Total panel -->
                             <div class="panel panel-success">
@@ -160,14 +168,7 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Accept Button -->
-                            <div class="panel" style="background:none" id="paymentDiv">
-                                <a id="email" onclick="mail()" class="btn btn-block btn-primary"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Send Your Order</a>
-                            </div>
                         </div>
-
-                        <div class="alert alert-info" role="alert"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span><strong> Just so you know!</strong> If you would like to order more than 10 items, register for an account <strong><a href="loginregister">here</a></strong></div>
                     </div>
                 </div>
             </div>
