@@ -145,7 +145,7 @@ public class PurchaseOrderLoader {
 	}
 	
 	public ArrayList<PurchaseOrder> getPurchaseOrderListByItemValid(Item item) {
-		sql = listQuery + tableName + tableJoins + " WHERE idSupplier LIKE '%" + item.getIdSupplier() + "%' AND idPurchaseOrderStatus = 1";
+		sql = listQuery + tableName + tableJoins + " WHERE supplier.idSupplier = " + item.getIdSupplier() + " AND purchaseorderstatus.idPurchaseOrderStatus = 1";
 		constructResult();
 		return purchaseOrderList;
 	}

@@ -6,7 +6,7 @@ package com.netbuilder.apploader;
 
 import java.util.ArrayList;
 
-import com.netbuilder.DBConnector.MongoPull;
+import com.netbuilder.connections.MongoPull;
 import com.netbuilder.entities.Item;
 
 public class ItemLoader 

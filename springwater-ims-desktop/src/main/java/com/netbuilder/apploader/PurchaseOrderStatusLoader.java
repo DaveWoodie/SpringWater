@@ -3,7 +3,7 @@ package com.netbuilder.apploader;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.netbuilder.DBConnector.SQLDBConnector;
+import com.netbuilder.connections.SQLDBConnector;
 import com.netbuilder.entities.PurchaseOrderStatus;
 
 public class PurchaseOrderStatusLoader {

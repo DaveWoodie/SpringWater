@@ -1,5 +1,6 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -18,7 +19,11 @@ import javax.persistence.Table;
  *
  */
 
-public class Customer {
+public class Customer implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// Customer attributes
 	private int customerID;
 	private User user;

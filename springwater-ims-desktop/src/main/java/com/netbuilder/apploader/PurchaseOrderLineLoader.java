@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 
 
-import com.netbuilder.DBConnector.SQLDBConnector;
+import com.netbuilder.connections.SQLDBConnector;
 import com.netbuilder.entities.Item;
 import com.netbuilder.entities.PurchaseOrder;
 import com.netbuilder.entities.PurchaseOrderLine;

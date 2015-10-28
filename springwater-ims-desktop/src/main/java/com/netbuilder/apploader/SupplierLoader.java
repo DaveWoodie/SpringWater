@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.netbuilder.DBConnector.SQLDBConnector;
+import com.netbuilder.connections.SQLDBConnector;
 import com.netbuilder.entities.PurchaseOrder;
 import com.netbuilder.entities.Supplier;
 
