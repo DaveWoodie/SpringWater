@@ -1,5 +1,5 @@
 /**
- * @author abutcher
+ * @author abutcher, Freshwater
  * @date 20/10/2015
  */
 
@@ -11,9 +11,10 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Image;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -23,9 +24,9 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageInputStream;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.ComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -42,7 +43,9 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import entities.Item;
+import entities.Supplier;
 import loaders.ItemLoader;
+import loaders.SupplierLoader;
 
 @SuppressWarnings("serial")
 public class AddItemFrame extends JFrame 
@@ -51,7 +54,7 @@ public class AddItemFrame extends JFrame
 	private JLabel itemNameL, itemDescriptionL, itemPriceL, itemUnitPriceL,porousewareL, supplierL, typeL, column1L,column2L, browseL;
 	private JTextField itemNameR, textBrowse;
 	private JTextArea itemDescriptionR;
-	private JComboBox supplierR, typeR;
+	private JComboBox<String> supplierR, typeR;
 	private JRadioButton porouswareYesB, porouswareNoB;
 	private JButton addIB, addAttributesB, removeAttributesB, cancelB;
 	private JFormattedTextField itemPriceR, itemUnitPriceR;
@@ -66,18 +69,18 @@ public class AddItemFrame extends JFrame
 	
 	private JFileChooser fileChooser = new JFileChooser();
 	private ItemLoader itemLoader = new ItemLoader();
+	private SupplierLoader supplierLoader = new SupplierLoader();
 	private String imageLocation;
-
-//	public static void main(String[] args) {
-//		AddItemFrame iF = new AddItemFrame();
-//		iF.setVisible(true);
-//	}
+	private ArrayList<String> supplierNames = new ArrayList<String>();
+	private ArrayList<Supplier> supplierList;
 
 	/**
 	 * constructor for adding a new item
 	 */
-	public AddItemFrame() {
+	public AddItemFrame() 
+	{
 		configFrame();
+		initValues();
 		addContent();
 	}
 
@@ -85,23 +88,35 @@ public class AddItemFrame extends JFrame
 	 * constructor for editing a item
 	 * @param id - id of of item to edit
 	 */
-	public AddItemFrame(int id) {
+	public AddItemFrame(int id) 
+	{
 		edit = !edit; 
 		configFrame();
 		addContent();
 		setValues(id);
 	}
 	
+	private void initValues()
+	{
+		//get suppliers from SQL
+		supplierList = supplierLoader.getSupplierList();
+		
+		//add supplier names from supplierList into array
+		for(Supplier supplier : supplierList)
+		{
+			supplierNames.add(supplier.getSupplierName());
+		}
+	}
+	
 	/**
 	 * configures the frame
 	 */	
 	private void configFrame() {
-		@SuppressWarnings("unused")
 		String titleS = "Add New Item";
 		if (edit) {
 			titleS = "Edit Item";
 		}
-		setTitle("Add an Item");
+		setTitle(titleS);
 		setSize(500, 360);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -144,7 +159,7 @@ public class AddItemFrame extends JFrame
 		c.gridy = 4;
 		main.add(porousewareL, c);
 		
-		typeL = new JLabel(" Catergory :");
+		typeL = new JLabel(" Category :");
 		c.gridy = 5;
 		main.add(typeL, c);
 		
@@ -235,9 +250,10 @@ public class AddItemFrame extends JFrame
 		c.gridy =5;
 		main.add(typeR, c);
 		
-		supplierR = new JComboBox();
-		//TODO get supplier list and add to combo box
-//		supplierR.setSelectedIndex(0);
+		//Supplier combo box
+		supplierR = new JComboBox(supplierNames.toArray());
+		supplierR.insertItemAt("Choose a supplier", 0);
+		supplierR.setSelectedIndex(0);
 		supplierR.setBorder(BorderFactory.createLineBorder(Color.black));
 		c.gridy = 6;		
 		main.add(supplierR, c); 
@@ -422,30 +438,6 @@ public class AddItemFrame extends JFrame
 	}
 	
 	/**
-	 * Method to collate the inputs from the GUI
-	 * @return array of objects representing the attributes of the item
-	 */
-	private Object[] getResults(){
-		ArrayList<Object> input = new ArrayList<Object>();
-		input.add(itemNameR.getText());
-		input.add(itemDescriptionR.getText());
-		input.add(itemPriceR.getText());
-		input.add(itemUnitPriceR.getText());
-		input.add(porouswareYesB.isSelected());
-		input.add(typeR.getSelectedItem());	
-		input.add(supplierR.getSelectedItem());
-		
-		for (int i = 0; i<noOfA;i++)
-		{
-			input.add(attributesNames.get(i).getText());
-			input.add(attributesDes.get(i).getText());
-		}
-		Object[] array = new Object[input.size()];
-		array =  input.toArray(array);
-		return array;
-	}
-	
-	/**
 	 * Method that creates a file browsing frame to select the image for the item
 	 * @return Returns the JPanel
 	 */
@@ -468,7 +460,6 @@ public class AddItemFrame extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				//TODO set image location to location in java project not local machine
 				imageLocation = null;
 				
 				//open file chooser
@@ -510,27 +501,46 @@ public class AddItemFrame extends JFrame
 	{
 		copyFile(new File(textBrowse.getText()));
 		
-		Item item = new Item(itemNameR.getText(),                        //name
-					  		 itemDescriptionR.getText(),                 //description
-					         Float.parseFloat(itemPriceR.getText()),     //price
-					         Float.parseFloat(itemUnitPriceR.getText()), //cost
-					         0, 						     		     //initial stock
-					         imageLocation, 				          	 //image location
-					         false,						  	             //is Discontinued
-					         porouswareYesB.isSelected(),    		     //is Porouswareable
-					         (int) supplierR.getSelectedItem());         //supplier
-			
+		Item item = new Item(itemNameR.getText(),                       			    //name
+					  		 itemDescriptionR.getText(),                			    //description
+					         Float.parseFloat(itemPriceR.getText()),    			    //price
+					         Float.parseFloat(itemUnitPriceR.getText()),				//cost
+					         0, 						     		     				//initial stock
+					         imageLocation, 				          	 				//image location
+					         false,						  	             				//is Discontinued
+					         porouswareYesB.isSelected(),    		     				//is Porouswareable
+					         getSupplierID((String) supplierR.getSelectedItem()));      //supplier
 		
-		//itemLoader.addItem(item);
+		//TODO MongoDB doesn't add item
+		//add the item to MongoDB
+		itemLoader.addItem(item);
+		
+		JOptionPane.showMessageDialog(null, "Item successfully added");
+		//this.getContentPane().dispatchEvent(new WindowEvent((Window) this.getContentPane(), WindowEvent.WINDOW_CLOSING));
+	}
+	
+	private int getSupplierID(String supplierName)
+	{
+		int supplierID = 0;
+		
+		for(int i = 0; i < supplierList.size(); i++)
+		{
+			if(supplierName.equals(supplierList.get(i).getSupplierName()))
+			{
+				supplierID = supplierList.get(i).getSupplierID();
+			}
+		}
+		
+		return supplierID;
 	}
 
 	/**
-	 * Method to copy the source image file into the java project
+	 * Method to copy an image file into the java project
 	 */
 	private void copyFile(File sourceFile)
 	{
 		File Source = sourceFile;
-		String Path = "src/main/resources/";
+		String Path = "src/main/resources/images/";
 		File Destination = new File(Path + Source.getName());
 		
 		//Copy from source to destination
@@ -544,6 +554,12 @@ public class AddItemFrame extends JFrame
 		}
 		
 		//set image location
-		imageLocation = Path + Source.getName();
+		imageLocation = Source.getName();
 	}
+	
+	/*public static void main(String[] args)
+	{
+		AddItemFrame i = new AddItemFrame();
+		i.setVisible(true);
+	}*/
 }
