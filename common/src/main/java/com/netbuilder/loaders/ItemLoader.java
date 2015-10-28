@@ -31,4 +31,8 @@ public class ItemLoader {
 	{
 		mongoPush.setContinuedStateForItem(itemID, bool);
 	}
+	
+	public ArrayList<Item> loadAllCurrentItems() {
+		return mongoPull.getAllCurrentItems();
+	}
 }
