@@ -1,5 +1,5 @@
 /**
- * @author abutcher
+ * @author abutcher, Freshwater
  * @date 20/10/2015
  */
 
@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.ComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -40,7 +41,9 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import entities.Item;
+import entities.Supplier;
 import loaders.ItemLoader;
+import loaders.SupplierLoader;
 
 @SuppressWarnings("serial")
 public class AddItemFrame extends JFrame 
@@ -49,7 +52,7 @@ public class AddItemFrame extends JFrame
 	private JLabel itemNameL, itemDescriptionL, itemPriceL, itemUnitPriceL,porousewareL, supplierL, typeL, column1L,column2L, browseL;
 	private JTextField itemNameR, textBrowse;
 	private JTextArea itemDescriptionR;
-	private JComboBox supplierR, typeR;
+	private JComboBox<String> supplierR, typeR;
 	private JRadioButton porouswareYesB, porouswareNoB;
 	private JButton addIB, addAttributesB, removeAttributesB, cancelB;
 	private JFormattedTextField itemPriceR, itemUnitPriceR;
@@ -64,18 +67,16 @@ public class AddItemFrame extends JFrame
 	
 	private JFileChooser fileChooser = new JFileChooser();
 	private ItemLoader itemLoader = new ItemLoader();
+	private SupplierLoader supplierLoader = new SupplierLoader();
 	private String imageLocation;
-
-//	public static void main(String[] args) {
-//		AddItemFrame iF = new AddItemFrame();
-//		iF.setVisible(true);
-//	}
+	private ArrayList<String> supplierNames = new ArrayList<String>();
 
 	/**
 	 * constructor for adding a new item
 	 */
 	public AddItemFrame() {
 		configFrame();
+		initValues();
 		addContent();
 	}
 
@@ -88,6 +89,18 @@ public class AddItemFrame extends JFrame
 		configFrame();
 		addContent();
 		setValues(id);
+	}
+	
+	private void initValues()
+	{
+		//get suppliers from SQL
+		ArrayList<Supplier> supplierList = supplierLoader.getSupplierList();
+		
+		//add supplier names from supplierList into array
+		for(Supplier supplier : supplierList)
+		{
+			supplierNames.add(supplier.getSupplierName());
+		}
 	}
 	
 	/**
@@ -233,9 +246,10 @@ public class AddItemFrame extends JFrame
 		c.gridy =5;
 		main.add(typeR, c);
 		
-		supplierR = new JComboBox();
-		//TODO get supplier list and add to combo box
-//		supplierR.setSelectedIndex(0);
+		//Supplier combo box
+		supplierR = new JComboBox(supplierNames.toArray());
+		supplierR.insertItemAt("Choose a supplier", 0);
+		supplierR.setSelectedIndex(0);
 		supplierR.setBorder(BorderFactory.createLineBorder(Color.black));
 		c.gridy = 6;		
 		main.add(supplierR, c); 
