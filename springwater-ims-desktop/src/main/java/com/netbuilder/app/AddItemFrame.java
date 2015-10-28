@@ -11,7 +11,6 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -23,7 +22,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageInputStream;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -525,7 +523,7 @@ public class AddItemFrame extends JFrame
 	}
 
 	/**
-	 * Method to copy the source image file into the java project
+	 * Method to copy an image file into the java project
 	 */
 	private void copyFile(File sourceFile)
 	{
@@ -545,5 +543,11 @@ public class AddItemFrame extends JFrame
 		
 		//set image location
 		imageLocation = Path + Source.getName();
+	}
+	
+	public static void main(String[] args)
+	{
+		AddItemFrame i = new AddItemFrame();
+		i.setVisible(true);
 	}
 }
