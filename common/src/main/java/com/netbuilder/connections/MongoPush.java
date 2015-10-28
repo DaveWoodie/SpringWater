@@ -87,7 +87,7 @@ public class MongoPush {
 			System.out.println("Unable to find Address Collection or idAddress in addAddress() in MongoPush");
 			throw new Error(e);
 		}
-		addr.setAddressID(newAddrID);
+		//addr.setAddressID(newAddrID);
 
 		BasicDBObject addressObject = makeMongoObjectFromAddress(addr);
 		DBCollection collection = db.getCollection("Address");
