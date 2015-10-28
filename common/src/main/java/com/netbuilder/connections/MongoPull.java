@@ -38,17 +38,17 @@ public class MongoPull {
 	
 	
 	
-	public static void main(String[] args) {
-		
-		MongoPull pull = new MongoPull();
-		MongoPush push = new MongoPush();
-		
-//		ArrayList<Address> addresses = pull.getAllAddresses();
-//		for(Address a : addresses) {
-//			a.print();
+//	public static void main(String[] args) {
+//		
+//		MongoPull pull = new MongoPull();
+//		MongoPush push = new MongoPush();
+//		ArrayList<Address> a = pull.getAllAddresses();
+//		for (Address b : a) {
+//			b.print();
 //			System.out.println();
 //		}
-	}
+//		
+//	}
 	
 	
 	
