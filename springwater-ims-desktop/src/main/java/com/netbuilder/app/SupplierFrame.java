@@ -45,8 +45,7 @@ public class SupplierFrame extends JFrame{
 	JLabel rightTest, leftLogo;
 	JTable productList;
 	JScrollPane bottomPane;
-	JButton exit;
-	JButton select;
+	JButton exit, edit, select;
 	int selectedID;
 	
 	public SupplierFrame(int supplierID, String supplierName) {
@@ -140,6 +139,15 @@ public class SupplierFrame extends JFrame{
 				
 			}
 		});
+		
+		edit = new JButton("Edit Supplier Details");
+		edit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
+			}
+		});
+		
 		exit = new JButton("Exit");
 		exit.addActionListener(new ActionListener(){
 

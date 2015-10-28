@@ -280,7 +280,7 @@ public class ItemGUI extends JFrame
 		//Item labelImage
 		JPanel panellabelImage = new JPanel(new BorderLayout());
 		panellabelImage.setBackground(Color.white);
-		getProductlabelImage((String)Inventory[itemID - 1][4]);
+		getProductlabelImage(item.getImageLocation());
 		Image scaledImg = img.getScaledInstance(250, 250, Image.SCALE_SMOOTH);
 		labelImage = new JLabel(new ImageIcon(scaledImg));
 		panellabelImage.add(labelImage);

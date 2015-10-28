@@ -9,7 +9,6 @@
 	</parent>
 
 	<artifactId>springwater-ops-backend</artifactId>
-	<packaging>war</packaging>
 	
 	<properties>
  		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -160,4 +159,5 @@
 	      </plugin>
  		</plugins>
  	</build>
+	<packaging>war</packaging>
 </project>
