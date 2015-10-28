@@ -7,6 +7,7 @@ package com.netbuilder.app;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -143,9 +144,10 @@ public class AddItemFrame extends JFrame
 		c.gridy = 6;
 		main.add(supplierL, c);
 		
+		///////////////////////////////////////////////////////////////////////////////
 		browseP = browseFiles();
 		c.gridy = 7;
-		c.gridwidth =3;
+		c.gridwidth = 3;
 		main.add(browseP, c);
 		
 		attributesP = new JPanel(new GridBagLayout());
