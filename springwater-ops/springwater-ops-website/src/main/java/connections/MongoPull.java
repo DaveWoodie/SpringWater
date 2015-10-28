@@ -37,13 +37,25 @@ public class MongoPull {
 	private ArrayList<Item> itemList = new ArrayList<Item>();
 
 	
-	/*
-	public static void main(String[] args) {
-		
-		MongoPull tst = new MongoPull();
-		tst.getWishList(3).print();
-	}
-	*/
+	
+//	public static void main(String[] args) {
+//		MongoPull tst = new MongoPull();
+//		int itemID = 6;
+//		ArrayList<Item> itList = tst.getItemInf(itemID);
+//		Item i = itList.get(0);
+//		i.print();
+//		
+//		i.setDescription("Gnome Romeo. Get it?");
+//		
+//		MongoPush mp = new MongoPush();
+//		mp.updateItem(i);
+//		mp.setContinuedStateForItem(itemID, true);
+//		
+//		System.out.println("");
+//		itList = tst.getItemInf(itemID);
+//		i = itList.get(0);
+//		i.print();
+//	}
 	
 	public MongoPull() {
 		
