@@ -36,7 +36,7 @@ import com.netbuilder.loaders.ItemLoader;
 @SuppressWarnings("serial")
 public class AddItemFrame extends JFrame 
 {
-	private JPanel base, main, buttonBar, attributesP;
+	private JPanel base, main, buttonBar, attributesP, browseP;
 	private JLabel itemNameL, itemDescriptionL, itemPriceL, itemUnitPriceL,porousewareL, supplierL, typeL, column1L,column2L;
 	private JTextField itemNameR;
 	private JTextArea itemDescriptionR;
@@ -93,7 +93,7 @@ public class AddItemFrame extends JFrame
 			titleS = "Edit Item";
 		}
 		setTitle("titleS");
-		setSize(500, 320);
+		setSize(500, 350);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -143,8 +143,13 @@ public class AddItemFrame extends JFrame
 		c.gridy = 6;
 		main.add(supplierL, c);
 		
+		browseP = browseFiles();
+		c.gridy = 7;
+		c.gridwidth =3;
+		main.add(browseP, c);
+		
 		attributesP = new JPanel(new GridBagLayout());
-		c.gridy =7;
+		c.gridy =8;
 		c.gridwidth=3;
 		main.add(attributesP, c);
 		
