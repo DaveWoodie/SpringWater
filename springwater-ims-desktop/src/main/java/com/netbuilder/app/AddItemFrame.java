@@ -67,7 +67,7 @@ public class AddItemFrame extends JFrame
 	private TextPrompt inp, idp, ispp, iucp ;
 	private boolean edit = false;
 	
-	private JFileChooser fileChooser = new JFileChooser();
+	private JFileChooser fileChooser;
 	private ItemLoader itemLoader = new ItemLoader();
 	private SupplierLoader supplierLoader = new SupplierLoader();
 	private String imageLocation;
@@ -445,7 +445,10 @@ public class AddItemFrame extends JFrame
 	{
 		JPanel browsePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		
-		//File chooser filter
+		//Set default directory for file chooser
+		fileChooser = new JFileChooser(System.getProperty("user.home"));
+		
+		//File extension filter
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Files .jpg, .png", "jpg", "png");
 		fileChooser.setFileFilter(filter);
 		
