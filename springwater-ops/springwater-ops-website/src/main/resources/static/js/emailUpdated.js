@@ -17,6 +17,8 @@ var op1 = 2.99;
 var op2 = 5.99;
 var op3 = 10.99;
 
+var itemCount = 0;
+
 function updateAddr(ID) {
     for (var n = 0; n < document.getElementById(ID).value.length; n++) {
         answers[ID] = document.getElementById(ID).value;
@@ -32,24 +34,32 @@ function updateAddr(ID) {
 }
 
 function addItem() {
-    
-    var containerDiv = document.createElement('div');
-    
-    var selector = document.getElementById('itemid');
-    var price = selector.options[selector.selectedIndex].value;
-    var itemInf = selector.options[selector.selectedIndex].text;
-    
-    subTotals[increment] = price;
-    
-    item = '<div id="item' + increment + '" class="row"> <div class="col-sm-5 panel-body" id="panelLeft">' + itemInf + '</div> <div class="col-sm-2 panel-body">' + price + '</div> <div class="col-sm-5 panel-body text-center"><button onclick="removeItem(' + increment + ')" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Remove</button></div> </div>';
-    
-    subTotal();
 
-    containerDiv.innerHTML = item;
+    if (itemCount == 10) {
+        document.getElementById('moreThan10').style.display = "block";
+    } else {
 
-    itemsOnOrder.appendChild(containerDiv);
-    
-    increment++;
+        document.getElementById('moreThan10').style.display = "none";
+
+        var containerDiv = document.createElement('div');
+
+        var selector = document.getElementById('itemid');
+        var price = selector.options[selector.selectedIndex].value;
+        var itemInf = selector.options[selector.selectedIndex].text;
+
+        subTotals[increment] = price;
+
+        item = '<div id="item' + increment + '" class="row"> <div class="col-sm-5 panel-body" id="panelLeft">' + itemInf + '</div> <div class="col-sm-2 panel-body">' + price + '</div> <div class="col-sm-5 panel-body text-center"><button onclick="removeItem(' + increment + ')" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Remove</button></div> </div>';
+
+        subTotal();
+
+        containerDiv.innerHTML = item;
+
+        itemsOnOrder.appendChild(containerDiv);
+
+        increment++;
+        itemCount++;
+    }
 }
 
 function subTotal() {
@@ -81,12 +91,12 @@ function vat() {
 function postageAndFinal() {
 
     var total = 0;
-    
- 
+
+
     console.log(checkArray());
-    
-    
-    if(checkArray()) {   
+
+
+    if (checkArray()) {
         document.getElementById('postage').innerHTML = "&pound;0.00";
         document.getElementById('total').innerHTML = "&pound;0.00";
         document.getElementById('subTot').innerHTML = "&pound;0.00";
@@ -108,58 +118,40 @@ function postageAndFinal() {
 }
 
 function removeItem(divID) {
+
+    document.getElementById('moreThan10').style.display = "none";
     
     var id = "item" + divID;
-    
+
     var element = document.getElementById(id);
     element.parentNode.removeChild(element);
-    
+
     subTotals[divID] = 0.00;
-    
+
     subTotal();
+
+    itemCount--;
 }
 
 function checkArray() {
-    for(var i = 0; i < subTotals.length; i++) {
-        if(subTotals[i] != 0.00) {
+    for (var i = 0; i < subTotals.length; i++) {
+        if (subTotals[i] != 0.00) {
             return false;
         }
     }
-    
+
     return true;
 }
 
 function mail() {
-    
-    var name = document.getElementById('firstNameInput').value + " " + document.getElementById('lastNameInput').value; 
-    
+
+    var name = document.getElementById('firstNameInput').value + " " + document.getElementById('lastNameInput').value;
+
     var email = document.getElementById('emailInput').value;
-    
+
     var phone = document.getElementById('telephoneNumberInput').value;
-    
+
     var addr = document.getElementById('0').value + ", " + document.getElementById('1').value + ", " + document.getElementById('2').value + ", " + document.getElementById('3').value + ", " + document.getElementById('4').value;
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    window.open('mailto:Chris.Walker@netbuilder.com?subject=Order_from' + name + '&body=' + name + email + phone + ');
-}
+
+    //window.open('mailto:Chris.Walker@netbuilder.com?subject=Order_from' + name + '&body=' + name + email + phone + ');
+    }
