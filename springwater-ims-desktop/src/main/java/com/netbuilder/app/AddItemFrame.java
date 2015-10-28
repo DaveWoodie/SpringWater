@@ -11,13 +11,22 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageInputStream;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -30,20 +39,21 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
-import com.netbuilder.entities.Item;
-import com.netbuilder.loaders.ItemLoader;
+import entities.Item;
+import loaders.ItemLoader;
 
 @SuppressWarnings("serial")
 public class AddItemFrame extends JFrame 
 {
 	private JPanel base, main, buttonBar, attributesP, browseP;
-	private JLabel itemNameL, itemDescriptionL, itemPriceL, itemUnitPriceL,porousewareL, supplierL, typeL, column1L,column2L;
-	private JTextField itemNameR;
+	private JLabel itemNameL, itemDescriptionL, itemPriceL, itemUnitPriceL,porousewareL, supplierL, typeL, column1L,column2L, browseL;
+	private JTextField itemNameR, textBrowse;
 	private JTextArea itemDescriptionR;
 	private JComboBox supplierR, typeR;
 	private JRadioButton porouswareYesB, porouswareNoB;
-	private JButton addIB, addAttributesB, cancelB;
+	private JButton addIB, addAttributesB, removeAttributesB, cancelB;
 	private JFormattedTextField itemPriceR, itemUnitPriceR;
 	private ArrayList<JTextField> attributesNames = new ArrayList<JTextField>();
 	private ArrayList<JTextField> attributesDes = new ArrayList<JTextField>();
@@ -54,16 +64,14 @@ public class AddItemFrame extends JFrame
 	private TextPrompt inp, idp, ispp, iucp ;
 	private boolean edit = false;
 	
-	private ItemLoader itemLoader;
-	
 	private JFileChooser fileChooser = new JFileChooser();
-	
+	private ItemLoader itemLoader = new ItemLoader();
 	private String imageLocation;
 
-	public static void main(String[] args) {
-		AddItemFrame iF = new AddItemFrame();
-		iF.setVisible(true);
-	}
+//	public static void main(String[] args) {
+//		AddItemFrame iF = new AddItemFrame();
+//		iF.setVisible(true);
+//	}
 
 	/**
 	 * constructor for adding a new item
@@ -93,8 +101,8 @@ public class AddItemFrame extends JFrame
 		if (edit) {
 			titleS = "Edit Item";
 		}
-		setTitle("titleS");
-		setSize(500, 350);
+		setTitle("Add an Item");
+		setSize(500, 360);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -115,43 +123,48 @@ public class AddItemFrame extends JFrame
 			c.fill = GridBagConstraints.HORIZONTAL;
 		}
 		
-		itemNameL = new JLabel("Name:");
+		itemNameL = new JLabel(" Name :");
 		c.gridx = 0;
 		c.gridy = 0;
 		main.add(itemNameL, c);
 			
-		itemDescriptionL = new JLabel("Description:");
+		itemDescriptionL = new JLabel(" Description :");
 		c.gridy = 1;
 		main.add(itemDescriptionL, c);
 		
-		itemPriceL = new JLabel("Sale Price: £");	
+		itemPriceL = new JLabel(" Sale Price : £");	
 		c.gridy = 2;
 		main.add(itemPriceL, c);
 		
-		itemUnitPriceL = new JLabel("Unit Cost: £");
+		itemUnitPriceL = new JLabel(" Unit Cost : £");
 		c.gridy = 3;
 		main.add(itemUnitPriceL, c);
 		
-		porousewareL = new JLabel("PorouseWare:");
+		porousewareL = new JLabel(" PorouseWare :");
 		c.gridy = 4;
 		main.add(porousewareL, c);
 		
-		typeL = new JLabel("Catergory;");
+		typeL = new JLabel(" Catergory :");
 		c.gridy = 5;
 		main.add(typeL, c);
 		
-		supplierL = new JLabel("Supplier:");
+		supplierL = new JLabel(" Supplier :");
 		c.gridy = 6;
 		main.add(supplierL, c);
 		
-		///////////////////////////////////////////////////////////////////////////////
+		browseL = new JLabel("  Image :");
+		c.gridy = 7;
+		main.add(browseL, c);
+		
 		browseP = browseFiles();
 		c.gridy = 7;
-		c.gridwidth = 3;
+		c.gridx = 1;
+		c.gridwidth = 2;
 		main.add(browseP, c);
 		
 		attributesP = new JPanel(new GridBagLayout());
-		c.gridy =8;
+		c.gridx = 0;
+		c.gridy = 8;
 		c.gridwidth=3;
 		main.add(attributesP, c);
 		
@@ -249,7 +262,7 @@ public class AddItemFrame extends JFrame
 			public void actionPerformed(ActionEvent e) {
 				// TODO add item
 				if(isFilledOut()){
-					getResults();
+					getResult();
 				}				
 			}
 		});
@@ -310,16 +323,32 @@ public class AddItemFrame extends JFrame
 		}
 		
 		addAttributesB = new JButton("+");
-		addAttributesB.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		addAttributesB.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
 				addAttributePanel();				
 			}
 		});
 		
-		attriC.gridx = 0;
+		removeAttributesB= new JButton("-");
+		removeAttributesB.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				
+			}
+		});
+		
+		attriC.gridx = 1;
 		attriC.gridy = noOfA+4;
-		attriC.gridwidth = 3;
+		attriC.gridwidth = 1;
 		attributesP.add(addAttributesB, attriC);
+		
+		//remove attributes button
+		attriC.gridx = 2;
+		attributesP.add(removeAttributesB, attriC);
 		
 		/*//TODO add erase last attribute field - in case of adding too many
 		attriC.gridy = noOfA+4;
@@ -377,6 +406,12 @@ public class AddItemFrame extends JFrame
 			errorMessage = errorMessage + '\n' + "An item unit cost must be entered";
 		}
 		
+		if (textBrowse.getText().isEmpty()) 
+		{
+			ready = false;
+			errorMessage = errorMessage + '\n' + "An item image file must be added";
+		}
+		
 		if(ready == false)
 		{
 			JFrame frame = new JFrame("Add new item");
@@ -416,25 +451,65 @@ public class AddItemFrame extends JFrame
 	 */
 	private JPanel browseFiles()
 	{
-		JPanel browsePanel = new JPanel();
+		JPanel browsePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		
-		JButton buttonBrowse = new JButton("Browse");
+		//File chooser filter
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Files .jpg, .png", "jpg", "png");
+		fileChooser.setFileFilter(filter);
+		
+		//JTextField
+		textBrowse = new JTextField(30);
+		textBrowse.setEditable(false);
+		
+		//browse button
+		JButton buttonBrowse = new JButton();
 		buttonBrowse.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				int returnValue = fileChooser.showOpenDialog(getContentPane());
+				//TODO set image location to location in java project not local machine
+				imageLocation = null;
+				
+				//open file chooser
+				fileChooser.showOpenDialog(getContentPane());
+				
+				//file chooser null check
+				if(fileChooser.getSelectedFile() != null)
+				{
+					//get image file path
+					imageLocation = fileChooser.getSelectedFile().getAbsolutePath();
+				}
+				
+				textBrowse.setText(imageLocation);
 			}
 		});
 		
+			//Add icon image to button
+			try
+			{
+				BufferedImage img = ImageIO.read(new File("src/main/resources/folder_icon.png"));
+				buttonBrowse.setIcon(new ImageIcon(img));
+			}
+			catch(IOException ex)
+			{
+				ex.printStackTrace();
+			}
+		
+		//add components to panel
+		browsePanel.add(textBrowse);
 		browsePanel.add(buttonBrowse);
 		
 		return browsePanel;
 	}
 	
-	private Item getResult()
+	/**
+	 * Method that creates an Item object from the GUI results and adds it to MongoDB
+	 */
+	private void getResult()
 	{
+		copyFile(new File(textBrowse.getText()));
+		
 		Item item = new Item(itemNameR.getText(),                        //name
 					  		 itemDescriptionR.getText(),                 //description
 					         Float.parseFloat(itemPriceR.getText()),     //price
@@ -445,6 +520,30 @@ public class AddItemFrame extends JFrame
 					         porouswareYesB.isSelected(),    		     //is Porouswareable
 					         (int) supplierR.getSelectedItem());         //supplier
 			
-		return item;
+		
+		//itemLoader.addItem(item);
+	}
+
+	/**
+	 * Method to copy the source image file into the java project
+	 */
+	private void copyFile(File sourceFile)
+	{
+		File Source = sourceFile;
+		String Path = "src/main/resources/";
+		File Destination = new File(Path + Source.getName());
+		
+		//Copy from source to destination
+		try 
+		{
+			Files.copy(Source.toPath(), Destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
+		}
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+		
+		//set image location
+		imageLocation = Path + Source.getName();
 	}
 }

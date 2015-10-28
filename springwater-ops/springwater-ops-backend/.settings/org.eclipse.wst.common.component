@@ -5,7 +5,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/webapp"/>
-        <dependent-module archiveName="common-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/common/common">
+        <dependent-module archiveName="springwater-ops-website-0.1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/springwater-ops-website/springwater-ops-website">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="java-output-path" value="/backend/target/classes"/>

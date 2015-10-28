@@ -1,4 +1,4 @@
-package entitiyrepositories;
+package entityrepository;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import entities.Item;
  * @date 07/10/2015
  */
 
-public interface ItemRepository {
+public interface ItemRepository extends MongoRepository {
 	public Item findByItemID (int iID);
 	public List<Item> findByItemName (String name);
 	public List<Item> findByDiscontinued (boolean discontinued);

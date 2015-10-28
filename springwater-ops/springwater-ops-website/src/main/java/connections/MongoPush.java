@@ -31,10 +31,16 @@ public class MongoPush {
 		
 		MongoPush push = new MongoPush();
 		MongoPull pull = new MongoPull();
+		ArrayList<Address> addresses = pull.getAllAddresses();
+		for(Address a : addresses) {
+			a.print();
+			System.out.println();
+		}
 		
 		
 	}
 	*/
+	
 
 	/******************************************************************************/
 	// CREATE CREATE CREATE CREATE CREATE CREATE CREATE CREATE CREATE CREATE CREATE
@@ -87,7 +93,7 @@ public class MongoPush {
 			System.out.println("Unable to find Address Collection or idAddress in addAddress() in MongoPush");
 			throw new Error(e);
 		}
-		//addr.setAddressID(newAddrID);
+		addr.setAddressID(newAddrID);
 
 		BasicDBObject addressObject = makeMongoObjectFromAddress(addr);
 		DBCollection collection = db.getCollection("Address");
@@ -301,7 +307,7 @@ public class MongoPush {
 	}
 	
 	/**
-	 * Creates the Item Attributes HashMap from the attributes of the passed Item
+	 * Creates the Item Attributes Mongo Object from the attributes of the passed Item
 	 * @param item
 	 * @return
 	 */
@@ -345,7 +351,11 @@ public class MongoPush {
 		return maxInt;
 	}
 	
-
+	/**
+	 * Converts the passed WishList entity into a mongo object in order to upload it to the database
+	 * @param wish - the WishList to be converted
+	 * @return BasicDBObject corresponding to the wishlist
+	 */
 	private BasicDBObject makeMongoObjectFromWishList(WishList wish) {
 		BasicDBObject wishListObject = new BasicDBObject();
 		wishListObject.put("idCustomer", wish.getCustomerID());

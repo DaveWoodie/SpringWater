@@ -1,4 +1,4 @@
-package entitiyrepositories;
+package entityrepository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -18,6 +18,6 @@ import entities.Supplier;
  *
  */
 
-public interface SupplierRepository {
+public interface SupplierRepository extends CrudRepository<Supplier, String> {
 	public Supplier findSupplierByName(String supplierName);
 }

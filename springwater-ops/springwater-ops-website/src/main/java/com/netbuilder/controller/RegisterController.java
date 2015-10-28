@@ -15,19 +15,25 @@ public class RegisterController {
 	 @RequestMapping(value="registerForm", method=RequestMethod.POST)
 	 public String doPost(HttpServletRequest request, HttpServletResponse response) {
 		 
+		 WebRegisterAdder a = new WebRegisterAdder();
+		 
 		 String returned = "redirect:";
 		 String[] data = new String[4];
 		 
-		 data[0] = request.getParameter("firstNameRegisterInput");
-		 data[1] = request.getParameter("lastNameRegisterInput");
-		 data[2] = request.getParameter("emailRegisterInput");
-		 data[3] = request.getParameter("passwordRegisterInput");
+		 data[0] = request.getParameter("passwordRegisterInput");
+		 data[1] = request.getParameter("firstNameRegisterInput");
+		 data[2] = request.getParameter("lastNameRegisterInput");
+		 data[3] = request.getParameter("emailRegisterInput");
+		 
+		 a.addNewUser(data);
+		 
 //		 String passwordCheck = request.getParameter("confirmPasswordRegisterInput");
 		 String dob = request.getParameter("dobRegisterInput");
-//		 int phonenumber = Integer.parseInt(request.getParameter("telephoneNumberRegisterInput"));
+		 int phonenumber = Integer.parseInt(request.getParameter("telephoneNumberRegisterInput"));
 		 
-		 WebRegisterAdder a = new WebRegisterAdder();
-		 a.addNewUser(data);
+		 
+		 
+		 a.addNewCustomer(dob, phonenumber);
 		 
 		 
 		 return returned;

@@ -20,6 +20,10 @@ import com.netbuilder.entities.Supplier;
 public class SupplierLoader {
 	final String tableName = " FROM supplier";
 	final String listQuery = "SELECT *";
+	final String insertQuery = "INSERT INTO `nbgardensdata`.`supplier` (`";
+	final String collumnsWTE = "supplierName`, `telephoneNumber`, `email`, `idAddress`) VALUES ('";
+	final String collumnsWT = "supplierName`, `telephoneNumber`, `idAddress`) VALUES ('";
+	final String collumnsWE = "supplierName`, `email`, `idAddress`) VALUES ('";
 	ArrayList<Supplier> supplierList = new ArrayList<Supplier>();
 	String sql;
 	private SQLDBConnector sqlDB = new SQLDBConnector();
@@ -127,6 +131,28 @@ public class SupplierLoader {
 		item = il.loadItemByID(id);
 		sID = item.get(0).getIdSupplier();
 		return getSupplierListByID(sID);
+	}
+
+	public void newSupplier(Supplier newSupplier) {
+		if (!newSupplier.getEmail().isEmpty() && !newSupplier.getTelephone().isEmpty()) {
+			sql = insertQuery + collumnsWTE + newSupplier.getSupplierName() +"', '"+ newSupplier.getTelephone() +"', '"+ newSupplier.getEmail()+"', '"+ newSupplier.getAddressID()+"')";
+		}else if(!newSupplier.getEmail().isEmpty()) {
+			sql = insertQuery + collumnsWE + newSupplier.getSupplierName() +"', '"+ newSupplier.getEmail()+"', '"+ newSupplier.getAddressID()+"')";
+		}else {
+			sql = insertQuery + collumnsWT + newSupplier.getSupplierName() +"', '"+ newSupplier.getTelephone() +"', '"+ newSupplier.getAddressID()+"')";
+		}
+
+		sqlDB.openCon();
+		try {
+			sqlDB.updateDB(sql);
+		} 
+		catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		sqlDB.closeCon();
 	}
 
 }
