@@ -301,7 +301,7 @@ public class MongoPush {
 	}
 	
 	/**
-	 * Creates the Item Attributes HashMap from the attributes of the passed Item
+	 * Creates the Item Attributes Mongo Object from the attributes of the passed Item
 	 * @param item
 	 * @return
 	 */
@@ -345,7 +345,11 @@ public class MongoPush {
 		return maxInt;
 	}
 	
-
+	/**
+	 * Converts the passed WishList entity into a mongo object in order to upload it to the database
+	 * @param wish - the WishList to be converted
+	 * @return BasicDBObject corresponding to the wishlist
+	 */
 	private BasicDBObject makeMongoObjectFromWishList(WishList wish) {
 		BasicDBObject wishListObject = new BasicDBObject();
 		wishListObject.put("idCustomer", wish.getCustomerID());
