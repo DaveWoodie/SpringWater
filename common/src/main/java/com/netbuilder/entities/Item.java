@@ -5,6 +5,7 @@
 
 package com.netbuilder.entities;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -12,7 +13,11 @@ import java.util.Map.Entry;
 
 import org.springframework.data.annotation.Id;
 
-public class Item {
+public class Item implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//Item attributes
 	private int idItem;
 	private String itemName;
