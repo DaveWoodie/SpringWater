@@ -19,6 +19,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -29,8 +30,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import com.netbuilder.entities.Item;
+import com.netbuilder.loaders.ItemLoader;
+
 @SuppressWarnings("serial")
-public class AddItemFrame extends JFrame {
+public class AddItemFrame extends JFrame 
+{
 	private JPanel base, main, buttonBar, attributesP;
 	private JLabel itemNameL, itemDescriptionL, itemPriceL, itemUnitPriceL,porousewareL, supplierL, typeL, column1L,column2L;
 	private JTextField itemNameR;
@@ -44,14 +49,20 @@ public class AddItemFrame extends JFrame {
 	private ArrayList<JLabel> attributesLabels = new ArrayList<JLabel>();
 	private GridBagConstraints c = new GridBagConstraints();
 	private GridBagConstraints attriC;
-	private int noOfA =0;
+	private int noOfA = 0;
 	private TextPrompt inp, idp, ispp, iucp ;
 	private boolean edit = false;
+	
+	private ItemLoader itemLoader;
+	
+	private JFileChooser fileChooser = new JFileChooser();
+	
+	private String imageLocation;
 
-//	public static void main(String[] args) {
-//		AddItemFrame iF = new AddItemFrame();
-//		iF.setVisible(true);
-//	}
+	public static void main(String[] args) {
+		AddItemFrame iF = new AddItemFrame();
+		iF.setVisible(true);
+	}
 
 	/**
 	 * constructor for adding a new item
@@ -221,7 +232,7 @@ public class AddItemFrame extends JFrame {
 		addIB = new JButton(buttonS);
 		cancelB = new JButton("Cancel");
 
-		addAttributePnael();
+		addAttributePanel();
 		
 		buttonBar.add(addIB);
 		buttonBar.add(cancelB);
@@ -249,11 +260,12 @@ public class AddItemFrame extends JFrame {
 	/**
 	 * creates the attributes panel
 	 */
-	private void addAttributePnael() {
+	private void addAttributePanel() {
 		attriC = new GridBagConstraints();
 		attriC.fill = GridBagConstraints.HORIZONTAL;
 		noOfA++;
 		
+		//add a 20 pixel drop to the frame when an attribute panel is added
 		setSize(getSize().width, getSize().height+20);
 		
 		if(noOfA !=1) {
@@ -293,14 +305,20 @@ public class AddItemFrame extends JFrame {
 		addAttributesB = new JButton("+");
 		addAttributesB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				addAttributePnael();				
+				addAttributePanel();				
 			}
 		});
 		
 		attriC.gridx = 0;
 		attriC.gridy = noOfA+4;
 		attriC.gridwidth = 3;
-		attributesP.add(addAttributesB, attriC);		
+		attributesP.add(addAttributesB, attriC);
+		
+		/*//TODO add erase last attribute field - in case of adding too many
+		attriC.gridy = noOfA+4;
+		JButton buttonRemoveAttribute = new JButton("-");
+		attributesP.add(buttonRemoveAttribute, attriC);
+		*/
 	}
 	
 	/**
@@ -326,33 +344,36 @@ public class AddItemFrame extends JFrame {
 	private boolean isFilledOut()
 	{
 		boolean ready = true;
+		String errorMessage = "";
 		
-		if (itemNameR.getText().isEmpty()) {
+		if (itemNameR.getText().isEmpty()) 
+		{
 			ready = false;
-			JFrame frame = new JFrame("Add new item");
-			JOptionPane.showMessageDialog(frame, "An item name must be entered!!", "Error",
-					JOptionPane.ERROR_MESSAGE);
+			errorMessage = errorMessage + "An item name must be entered";
 		}
 		
-		if (itemDescriptionR.getText().isEmpty()) {
+		if (itemDescriptionR.getText().isEmpty()) 
+		{
 			ready = false;
-			JFrame frame = new JFrame("Add new item");
-			JOptionPane.showMessageDialog(frame, "An item description must be entered!!", "Error",
-					JOptionPane.ERROR_MESSAGE);
+			errorMessage = errorMessage + '\n' + "An item description must be entered";
 		}
 		
-		if (itemPriceR.getText().isEmpty()) {
+		if (itemPriceR.getText().isEmpty()) 
+		{
 			ready = false;
-			JFrame frame = new JFrame("Add new item");
-			JOptionPane.showMessageDialog(frame, "An item sale price must be entered!!", "Error",
-					JOptionPane.ERROR_MESSAGE);
+			errorMessage = errorMessage + '\n' + "An item sale price must be entered";
 		}
 		
-		if (itemUnitPriceR.getText().isEmpty()) {
+		if (itemUnitPriceR.getText().isEmpty()) 
+		{
 			ready = false;
+			errorMessage = errorMessage + '\n' + "An item unit cost must be entered";
+		}
+		
+		if(ready == false)
+		{
 			JFrame frame = new JFrame("Add new item");
-			JOptionPane.showMessageDialog(frame, "An item unit cost must be entered!!", "Error",
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(frame, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		return ready;
@@ -380,5 +401,43 @@ public class AddItemFrame extends JFrame {
 		Object[] array = new Object[input.size()];
 		array =  input.toArray(array);
 		return array;
+	}
+	
+	/**
+	 * Method that creates a file browsing frame to select the image for the item
+	 * @return Returns the JPanel
+	 */
+	private JPanel browseFiles()
+	{
+		JPanel browsePanel = new JPanel();
+		
+		JButton buttonBrowse = new JButton("Browse");
+		buttonBrowse.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				int returnValue = fileChooser.showOpenDialog(getContentPane());
+			}
+		});
+		
+		browsePanel.add(buttonBrowse);
+		
+		return browsePanel;
+	}
+	
+	private Item getResult()
+	{
+		Item item = new Item(itemNameR.getText(),                        //name
+					  		 itemDescriptionR.getText(),                 //description
+					         Float.parseFloat(itemPriceR.getText()),     //price
+					         Float.parseFloat(itemUnitPriceR.getText()), //cost
+					         0, 						     		     //initial stock
+					         imageLocation, 				          	 //image location
+					         false,						  	             //is Discontinued
+					         porouswareYesB.isSelected(),    		     //is Porouswareable
+					         (int) supplierR.getSelectedItem());         //supplier
+			
+		return item;
 	}
 }

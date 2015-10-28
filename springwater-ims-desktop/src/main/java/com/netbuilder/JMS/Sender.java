@@ -1,3 +1,7 @@
+/**
+ * @author jforster
+ * @date 27/10/15
+ */
 package com.netbuilder.JMS;
 
 import java.io.Serializable;
@@ -12,10 +16,19 @@ import javax.jms.Session;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 
-
+/**
+ * Class to create the JMS link and send a message containing any object
+ * @author jforster
+ *
+ */
 public class Sender{
 	
 	private final String boardName = "IMS.OUT";
+	
+	/**
+	 * Method to create the parameters for sending an object to the system Backend
+	 * @param toSend object that needs to be sent
+	 */
 	public void sendMessage(Object toSend) {
 		try {
             // Create a ConnectionFactory

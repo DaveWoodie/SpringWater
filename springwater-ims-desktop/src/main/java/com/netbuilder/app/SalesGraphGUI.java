@@ -11,22 +11,25 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
+import java.util.Calendar;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.CategoryLabelPositions;
+import org.jfree.chart.event.ChartChangeEvent;
+import org.jfree.chart.event.ChartChangeListener;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import com.netbuilder.app.GraphData;
@@ -46,13 +49,12 @@ public class SalesGraphGUI extends JPanel implements ActionListener
 	private PurchaseOrderLineLoader purchaseOrderLineLoader = new PurchaseOrderLineLoader();
 	
 	private DefaultCategoryDataset dataset;
-	private GraphData graphData;
-	private ArrayList<Object[]> dataList;
-	private String[] dayArray, monthArray, yearArray, durationArray;
+	private String[] durationArray;
 	private JButton buttonUpdate;
 	private JComboBox<String> comboDuration;
 	private ChartPanel chartPanelDays, chartPanelYears;
 	private JPanel graphPanel;
+	private LineAndShapeRenderer LASR;
 
 	public SalesGraphGUI(int itemID) 
 	{
@@ -91,26 +93,20 @@ public class SalesGraphGUI extends JPanel implements ActionListener
 	
 	public void makeDataset() 
 	{
-		//TODO pull date from purchase order 
+		//get purchase orders including specified item
 		ArrayList<PurchaseOrder> purchaseOrderList = purchaseOrderLoader.getPurchaseOrderListByItem(itemID);
-		
-		for(int i = 0; i < purchaseOrderList.size(); i++)
-		{
-			//go through each purchase order with the specified item inside and extract that purchase order line
-			ArrayList<PurchaseOrderLine> pOLine = purchaseOrderLineLoader.getPurchaseOrderLineByOrderAndProduct(purchaseOrderList.get(i).getIDPurchaseOrder(), itemID);
-			PurchaseOrderLine purchaseOrderLine = pOLine.get(0);
-			
-			//TODO create logic to add to dataset. might need to add if statement to only add date from orders which have the item within
-		}
-		
-		graphData = new GraphData();
-		dataList = graphData.getDataArray();
 		
 		dataset = new DefaultCategoryDataset();
 		
-		for(int i = 0; i < dataList.size(); i++)
-		{	
-			dataset.addValue((double) dataList.get(i)[0], (Comparable<?>) dataList.get(i)[1], (Comparable<?>) dataList.get(i)[2]);
+		for(int i = 0; i < purchaseOrderList.size(); i++)
+		{
+			//go through each purchase order containing the specified item and get the purchase order line
+			ArrayList<PurchaseOrderLine> pOLine = purchaseOrderLineLoader.getPurchaseOrderLineByOrderAndProduct(purchaseOrderList.get(i).getIDPurchaseOrder(), itemID);
+			PurchaseOrderLine purchaseOrderLine = pOLine.get(0);
+			
+			Integer j = purchaseOrderLine.getQuantity();
+			
+			dataset.addValue(j.doubleValue(), (Comparable<?>) "sales", (Comparable<?>) purchaseOrderList.get(i).getDatePlaced());
 		}
 	}
 	
@@ -122,9 +118,21 @@ public class SalesGraphGUI extends JPanel implements ActionListener
 	         "Number of Items sold",		 //Y Label
 	         dataset,						 //Data
 	         PlotOrientation.VERTICAL,
-	         true,							 //Include Legend
+	         false,							 //Include Legend
 	         true,false);
-	      
+
+		LASR = new LineAndShapeRenderer();
+		
+		lineChart.addChangeListener(new ChartChangeListener()
+		{
+			@Override
+			public void chartChanged(ChartChangeEvent arg0) 
+			{
+				repaint();
+				revalidate();
+			}
+		});
+	    LASR.setBaseShapesVisible(true);
 	      
 	    CategoryAxis axis = lineChart.getCategoryPlot().getDomainAxis();
 	    axis.setCategoryLabelPositions(CategoryLabelPositions.UP_45);
@@ -137,12 +145,57 @@ public class SalesGraphGUI extends JPanel implements ActionListener
 	private void drawChartYears()
 	{
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-		ArrayList<Integer[]> yearArray = graphData.getYearArray();
+		new SimpleDateFormat("yyyy-MM-dd");
+		Calendar calendar = Calendar.getInstance();
+		int Total = 0;
+		int oldYear = 0;
+		ArrayList<PurchaseOrderLine> purchaseOrderLineList;
+		ArrayList<Integer[]> yearArray = new ArrayList<Integer[]>();
 		
+		//get purchase orders including specified item
+		ArrayList<PurchaseOrder> purchaseOrderList = purchaseOrderLoader.getPurchaseOrderListByItem(itemID);
+		
+		//purchase orders are in ascending order so will always start with earliest date first
+		for(int i = 0; i < purchaseOrderList.size(); i++)
+		{
+			//get purchase order date by Year
+			calendar.setTime(purchaseOrderList.get(i).getDatePlaced());
+			int newYear = calendar.get(calendar.YEAR);
+			
+			purchaseOrderLineList = purchaseOrderLineLoader.getPurchaseOrderLineByOrderAndProduct(purchaseOrderList.get(i).getIDPurchaseOrder(), itemID);
+			
+			//if same year
+			if(oldYear == newYear)
+			{
+				Total = Total + purchaseOrderLineList.get(0).getQuantity();
+			}
+			else
+			{
+				Total = purchaseOrderLineList.get(0).getQuantity();
+				oldYear = newYear;
+			}
+			
+			//add to array
+			yearArray.add(new Integer[]{newYear, Total});
+			
+			//dataset.addValue(total, "Year", year);
+			
+			//if new year is not the same as old year then it means its moved over into a new year
+			
+		}
+		
+		//add array to dataset
 		for(int i = 0; i < yearArray.size(); i++)
 		{
 			dataset.addValue(yearArray.get(i)[1], "Year", yearArray.get(i)[0]);
 		}
+		
+		/*ArrayList<Integer[]> yearArray = graphData.getYearArray();
+		
+		for(int i = 0; i < yearArray.size(); i++)
+		{
+			dataset.addValue(yearArray.get(i)[1], "Year", yearArray.get(i)[0]);
+		}*/
 		
 		JFreeChart lineChart = ChartFactory.createLineChart(
 				 "Sales",						 //Chart title
@@ -150,7 +203,7 @@ public class SalesGraphGUI extends JPanel implements ActionListener
 		         "Number of Items sold",		 //Y Label
 		         dataset,						 //Data
 		         PlotOrientation.VERTICAL,
-		         true,							 //Include Legend
+		         false,							 //Include Legend
 		         true,false);
 		
 		CategoryAxis axis = lineChart.getCategoryPlot().getDomainAxis();

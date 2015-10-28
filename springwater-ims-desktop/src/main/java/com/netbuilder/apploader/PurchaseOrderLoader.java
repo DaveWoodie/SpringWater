@@ -28,6 +28,7 @@ public class PurchaseOrderLoader {
 	final String listQuery = "SELECT purchaseorder.*, purchaseorderstatus.*, supplier.*, employee.*, user.*, role.*";
 	final String tableJoins = " LEFT JOIN purchaseorderstatus ON purchaseorder.idPurchaseOrderStatus = purchaseorderstatus.idPurchaseOrderStatus LEFT JOIN supplier ON purchaseorder.idSupplier = supplier.idSupplier LEFT JOIN employee ON purchaseorder.idEmployee = employee.idEmployee LEFT JOIN user ON purchaseorder.idEmployee = user.idUser LEFT JOIN role ON employee.idRole = role.idRole";
 	final String orderBy = " ORDER BY purchaseorder.datePlaced DESC";
+	final String orderByAsc = " ORDER BY purchaseorder.dateplaced ASC";
 	private String sql;
 	private SQLDBConnector sqlDB = new SQLDBConnector();
 	ArrayList<PurchaseOrder> purchaseOrderList = new ArrayList<PurchaseOrder>();
@@ -127,7 +128,7 @@ public class PurchaseOrderLoader {
 				sql = sql + " OR idPurchaseOrder = " + purchaseOrderIDs.get(j);
 			}
 		}
-		sql = sql + orderBy;
+		sql = sql + orderByAsc;
 		constructResult();
 		return purchaseOrderList;
 	}

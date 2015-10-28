@@ -1,16 +1,47 @@
+/**
+ * @author jforster
+ * @date 27/10/15
+ */
+
 package com.netbuilder;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.apache.activemq.broker.BrokerService;
 
-@Configuration
-@ComponentScan
-@EnableAutoConfiguration
+import com.netbuilder.JMS.Listener;
+
+
+/**
+ * Class to run the JMS communication server hub
+ * @author jforster
+ *
+ */
 public class Application {
 	
+	/**
+	 * Method to run the broker server and start up the listeners for the IMS and the WebApp
+	 * @param args
+	 */
 	public static void main(String[] args){
-		SpringApplication.run(Application.class, args);
+		BrokerService broker = new BrokerService();
+		 
+		// configure the broker
+		try {
+			broker.addConnector("tcp://localhost:8081");
+			broker.start();
+			
+			//configure IMS listener
+			Listener listenerIMS = new Listener ("IMS.OUT");
+			listenerIMS.consumer.setMessageListener(listenerIMS);
+			
+			//configure WebApp listener
+			Listener listenerWeb = new Listener ("WEB.OUT");
+			listenerWeb.consumer.setMessageListener(listenerWeb);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
 }
