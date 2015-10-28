@@ -96,7 +96,7 @@ public class SupplierLoader {
 	 */
 	private int averageDelivery(int id) {
 		int avg = 0;
-		sql = "SELECT AVG(DATEDIFF(dateexpected,dateplaced)) FROM purchaseorder where idSupplier = " + id; 
+		sql =  "SELECT AVG(DATEDIFF(dateexpected,dateplaced)) FROM purchaseorder where idSupplier = " + id; 
 		sqlDB.openCon();
 		try {
 			ResultSet rs = sqlDB.queryDB(sql);
