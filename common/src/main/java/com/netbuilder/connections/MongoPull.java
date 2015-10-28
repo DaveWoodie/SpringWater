@@ -36,24 +36,32 @@ public class MongoPull {
 	private List<String> wishListSet = new ArrayList<String>();
 
 	
-	/*
-	public static void main(String[] args) {
-		
-		MongoPull pull = new MongoPull();
-		MongoPush push = new MongoPush();
-		ArrayList<Item> items = pull.getItemsBySupplier(1, false);
-		for(Item i : items) {
-			i.print();
-			System.out.println();
-		}
-		
-	}
-	*/
+	
+	
+//	public static void main(String[] args) {
+//		
+//		MongoPull pull = new MongoPull();
+//		MongoPush push = new MongoPush();
+//		ArrayList<Address> a = pull.getAllAddresses();
+//		for (Address b : a) {
+//			b.print();
+//			System.out.println();
+//		}
+//		
+//	}
+	
+	
 	
 	
 	public MongoPull() {
 		
 	}
+	
+
+	/*********************************************************************************/
+	// ADDRESSES ADDRESSES ADDRESSES ADDRESSES ADDRESSES ADDRESSES ADDRESSES ADDRESSES
+	/*********************************************************************************/
+	 
 	
 	/**
 	 * 
@@ -65,14 +73,11 @@ public class MongoPull {
 		//Connect to MongoDB
 		mdbc.mongoConnect();
 		
-		//Connect to the NBGardensn database
-		DB db = mdbc.getConnection().getDB(dataBase);
-		//Get Specfic Collection
-		DBCollection collection = db.getCollection(AddrCol);
+		DBCollection collection = this.getCollection(AddrCol);
 		
 		BasicDBObject addr = new BasicDBObject();
 		addr.put("idAddress", addressID);
-		DBObject addrObj = collection.findOne(addr);		
+		DBObject addrObj = collection.findOne(addr);
 		
 		Address address = makeAddressEntityFromMongoObject(addrObj);
 		
@@ -82,7 +87,53 @@ public class MongoPull {
 		return address;
 	}
 	
+	/**
+	 * returns all Addresses stored in the MongoDB database
+	 * @return ArrayList of Address entities
+	 */
+	public ArrayList<Address> getAllAddresses() {
+		ArrayList<Address> addresses = new ArrayList<Address>();
+		//Connect to MongoDB
+		mdbc.mongoConnect();
+		
+		DBCollection collection = this.getCollection(AddrCol);
+		
+		DBCursor cursor = collection.find();
+		while(cursor.hasNext()) {
+			DBObject addrObj =  cursor.next();
+			addresses.add(makeAddressEntityFromMongoObject(addrObj));
+		}		
+		//Disconnect from MongoDB
+		mdbc.mongoDisconnect();
+		
+		return addresses;
+	}
 	
+	/**
+	 * Returns an ArrayList of Address entities corresponding to the passed customerID
+	 * @param custID - the id of the customer for whom you want addresses
+	 * @return ArrayList of Address entities
+	 */
+	public ArrayList<Address> getAddressesByCustomerID(int custID) {
+		ArrayList<Address> addresses = new ArrayList<Address>();
+		//Connect to MongoDB
+		mdbc.mongoConnect();
+		
+		DBCollection collection = this.getCollection(AddrCol);
+		BasicDBObject searchObj = new BasicDBObject();
+		searchObj.put("idCustomer", custID);
+		
+		DBCursor cursor = collection.find(searchObj);
+		while(cursor.hasNext()) {
+			DBObject addrObj =  cursor.next();
+			addresses.add(makeAddressEntityFromMongoObject(addrObj));
+		}		
+		//Disconnect from MongoDB
+		mdbc.mongoDisconnect();
+		
+		return addresses;
+	}
+
 	/**
 	 * takes a Mongo address Object and converts it into a java Address entity
 	 * @param addrObj
@@ -128,6 +179,12 @@ public class MongoPull {
 				
 	}
 	
+
+	/******************************************************************************/
+	// ITEMS ITEMS ITEMS ITEMS ITEMS ITEMS ITEMS ITEMS ITEMS ITEMS ITEMS ITEMS ITEMS
+	/******************************************************************************/
+	
+	
 	/**
 	 * 
 	 * returns an Item entity based on idItem
@@ -138,10 +195,7 @@ public class MongoPull {
 		//Connect to MongoDB
 		mdbc.mongoConnect();
 		
-		//Connect to the NBGardens database
-		DB db = mdbc.getConnection().getDB(dataBase);
-		//Get Specific Collection
-		DBCollection collection = db.getCollection(itemCol);
+		DBCollection collection = this.getCollection(itemCol);
 		
 		BasicDBObject searchItem = new BasicDBObject();
 		searchItem.put("idItem", id);
@@ -168,10 +222,7 @@ public class MongoPull {
 
 		mdbc.mongoConnect();
 		
-		//Connect to the NBGardens database
-		DB db = mdbc.getConnection().getDB(dataBase);
-		//Get Specific Collection
-		DBCollection collection = db.getCollection(itemCol);
+		DBCollection collection = this.getCollection(itemCol);
 
 		BasicDBObject searchItem = new BasicDBObject();
 		searchItem.put("idSupplier", supplierID);
@@ -191,8 +242,63 @@ public class MongoPull {
 		
 		return items;
 		
+	}
+
+	/**
+	 * returns all items (both current and discontinued) from the mongoDB database
+	 * @return ArrayList of Item entities
+	 */
+	public ArrayList<Item> getAllItems() {
+		ArrayList<Item> items = new ArrayList<Item>();
+
+		mdbc.mongoConnect();
 		
+		DBCollection collection = this.getCollection(itemCol);
+		DBCursor cursor = collection.find();
+		while(cursor.hasNext()) {
+			DBObject itemObj = cursor.next();
+			items.add(makeItemEntityFromMongoObject(itemObj));
+		}
+		return items;
+	}
+	
+	/**
+	 * returns all Items from the MongoDB that are marked as discontinued
+	 * @return ArrayList of Item entities
+	 */
+	public ArrayList<Item> getAllDiscontinuedItems() {
+		return this.getAllItems(true);
+	}
+
+	/**
+	 * returns all Items from the MongoDB that are not marked as discontinued
+	 * @return ArrayList of Item entities
+	 */
+	public ArrayList<Item> getAllCurrentItems() {
+		return this.getAllItems(false);
+	}
+	
+	
+	/**
+	 * returns all Items from the MongoDB database depending on the passed discontinued boolean
+	 * @param discontinued
+	 * @return ArrayList of Item Entities
+	 */
+	private ArrayList<Item> getAllItems(boolean discontinued) {
+		ArrayList<Item> items = new ArrayList<Item>();
+
+		mdbc.mongoConnect();
 		
+		DBCollection collection = this.getCollection(itemCol);
+		BasicDBObject searchItem = new BasicDBObject();
+		searchItem.put("Discontinued", discontinued);
+		
+		DBCursor cursor = collection.find(searchItem);
+		while(cursor.hasNext()) {
+			DBObject itemObj = cursor.next();
+			items.add(makeItemEntityFromMongoObject(itemObj));
+		}
+		return items;
 	}
 	
 	private Item makeItemEntityFromMongoObject(DBObject itemObj) {
@@ -241,33 +347,22 @@ public class MongoPull {
 		return itemList;
 	}
 	
-	/**
-	 * method to evaluate the passed Mongo boolean field
-	 * @param fieldToEvaluate
-	 * @return
-	 */
-	private boolean handleMongoBoolean(Object fieldToEvaluate) {
-		return fieldToEvaluate.toString().equals("true");
-	}
+	
+
+	/**********************************************************************************/
+	// WISHLIST WISHLIST WISHLIST WISHLIST WISHLIST WISHLIST WISHLIST WISHLIST WISHLIST
+	/**********************************************************************************/
+	
 	
 	/**
-	 * 
-	 * Method to fetch the contents of a customers wish list
-	 * 
-	 * Order that information is returned 
-	 * 	> idItemX
-	 * 
-	 * @param id : Takes an int which is the idCustomer of a customer 
-	 * @return returns a List containing the items stored within a customers wish list 
+	 * Returns the WishList entity from the MongoDB database corresponding to the passed customerID
+	 * @param custID : Takes an int which is the idCustomer of a customer 
+	 * @return returns a List containing the items stored within a customer's wish list 
 	 */
 	public WishList getWishList(int custID) {
 		//Connect to MongoDB
 		mdbc.mongoConnect();
-		
-		//Connect to the NBGardensn database
-		DB db = mdbc.getConnection().getDB(dataBase);
-		//Get Specfic Collection
-		DBCollection collection = db.getCollection(wishListCol);
+		DBCollection collection = this.getCollection(wishListCol);
 		
 		BasicDBObject wL = new BasicDBObject();
 		wL.put("idCustomer", custID);
@@ -289,5 +384,34 @@ public class MongoPull {
 		mdbc.mongoDisconnect();
 		
 		return wish;
+	}
+	
+	
+
+	/**********************************************************************************/
+	// MISC MISC MISC MISC MISC MISC MISC MISC MISC MISC MISC MISC MISC MISC MISC MISC
+	/**********************************************************************************/
+	
+	
+	/**
+	 * returns a collection from the nbgardens database
+	 * @param collectionName - the name of the collection to be returned
+	 * @return collection
+	 */
+	private DBCollection getCollection(String collectionName) {
+		//Connect to the NBGardens database
+		DB db = mdbc.getConnection().getDB(dataBase);
+		//Get Specfic Collection
+		DBCollection collection = db.getCollection(collectionName);
+		return collection;
+	}
+
+	/**
+	 * method to evaluate the passed Mongo boolean field
+	 * @param fieldToEvaluate
+	 * @return
+	 */
+	private boolean handleMongoBoolean(Object fieldToEvaluate) {
+		return fieldToEvaluate.toString().equals("true");
 	}
 }

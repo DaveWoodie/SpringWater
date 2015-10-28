@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.netbuilder.entities.Supplier;
-import com.netbuilder.entityrepository.SupplierRepository;
+import entities.Supplier;
+import entityrepository.SupplierRepository;
 
 public class SupplierController {
 

@@ -16,18 +16,20 @@ import javax.swing.JOptionPane;
 
 
 
+
 import com.netbuilder.JMS.Sender;
-import com.netbuilder.connections.MongoPull;
-import com.netbuilder.apploader.ItemLoader;
-import com.netbuilder.apploader.PurchaseOrderLineLoader;
-import com.netbuilder.apploader.PurchaseOrderLoader;
-import com.netbuilder.apploader.PurchaseOrderStatusLoader;
-import com.netbuilder.apploader.SupplierLoader;
-import com.netbuilder.entities.Item;
-import com.netbuilder.entities.PurchaseOrder;
-import com.netbuilder.entities.PurchaseOrderLine;
-import com.netbuilder.entities.PurchaseOrderStatus;
-import com.netbuilder.entities.Supplier;
+import connections.MongoPull;
+import loaders.ItemLoader;
+import loaders.PurchaseOrderLineLoader;
+import loaders.PurchaseOrderLoader;
+import loaders.PurchaseOrderStatusLoader;
+import loaders.SupplierLoader;
+import entities.Item;
+import entities.MessageContent;
+import entities.PurchaseOrder;
+import entities.PurchaseOrderLine;
+import entities.PurchaseOrderStatus;
+import entities.Supplier;
 
 /**
  * Class to manage the logic and business rules for the application
@@ -153,8 +155,9 @@ public class PurchaseOrderLogic {
 		ArrayList<Object> messageList = new ArrayList<Object>();
 		messageList.add(item);
 		messageList.add(quantityAdd);
+		MessageContent messageContent = new MessageContent(messageList, "addItemToPurchaseOrder");
 		Sender sender = new Sender();
-		sender.sendMessage(messageList);
+		sender.sendMessage(messageContent);
 //		ArrayList<PurchaseOrder> itemPurchaseOrderList = new ArrayList<PurchaseOrder>();
 //		PurchaseOrderLineLoader pOLLoader = new PurchaseOrderLineLoader();
 //		itemPurchaseOrderList = pOLoader.getPurchaseOrderListByItemValid(item);
