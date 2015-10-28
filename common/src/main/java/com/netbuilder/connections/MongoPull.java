@@ -37,22 +37,19 @@ public class MongoPull {
 
 	
 	
-	/*
+	
 	public static void main(String[] args) {
 		
 		MongoPull pull = new MongoPull();
 		MongoPush push = new MongoPush();
-		Address addr = pull.getAddress(1);
-		addr.setCustomerID(4);
-		push.updateAddress(addr);
 		
-		ArrayList<Address> addresses = pull.getAddressesByCustomerID(3);
-		for(Address a : addresses) {
-			a.print();
-			System.out.println();
-		}
+//		ArrayList<Address> addresses = pull.getAllAddresses();
+//		for(Address a : addresses) {
+//			a.print();
+//			System.out.println();
+//		}
 	}
-	*/
+	
 	
 	
 	

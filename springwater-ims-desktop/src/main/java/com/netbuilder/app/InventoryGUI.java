@@ -230,7 +230,7 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		
 		scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.X_AXIS));
 		
-		//addPlaceholderItems();
+		addPlaceholderItems();
 		addAllItems();
 
 		setAbsoluteSize(scrollPane, WIDTH, HEIGHT-SEARCH_PANEL_HEIGHT);
