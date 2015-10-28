@@ -20,14 +20,24 @@
 	</bean>
 
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="${mail.server.host}" />
-		<property name="port" value="${mail.server.port}" />
-		<property name="protocol" value="${mail.server.protocol}" />
-		<property name="username" value="${mail.server.username}" />
-		<property name="password" value="${mail.server.password}" />
-		<property name="javaMailProperties">
-			<util:properties location="classpath:javamail.properties" />
-		</property>
+		<property name="port" value="465" />
+        <!-- <property name="username" value="xxxx@yyy.com" /> -->
+        <property name="username" value="chrisofski@gmail.com" />
+        <property name="password" value="Vibranium" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">stmp</prop>
+                <prop key="mail.smtp.host">smtp.gmail.com</prop>
+                <prop key="mail.smtps.auth">true</prop>
+                <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+                <prop key="mail.smtp.socketFactory.port">25</prop>
+                <prop key="mail.debug">true</prop>
+                <prop key="mail.smtp.ssl.enable">false</prop>
+                <prop key="mail.smtp.ssl.trust">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.smtp.socketFactory.fallback">true</prop>
+            </props>
+        </property>
 	</bean>
 
 	<!-- THYMELEAF: Template Resolver for email templates -->
@@ -66,4 +76,25 @@
 		<property name="templateEngine" ref="templateEngine" />
 		<property name="characterEncoding" value="UTF-8" />
 	</bean>
+	
+	<bean id="mailInfo" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="port" value="465" />
+        <!-- <property name="username" value="xxxx@yyy.com" /> -->
+        <property name="username" value="chrisofski@gmail.com" />
+        <property name="password" value="Vibranium" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">stmp</prop>
+                <prop key="mail.smtp.host">smtp.gmail.com</prop>
+                <prop key="mail.smtps.auth">true</prop>
+                <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+                <prop key="mail.smtp.socketFactory.port">25</prop>
+                <prop key="mail.debug">true</prop>
+                <prop key="mail.smtp.ssl.enable">false</prop>
+                <prop key="mail.smtp.ssl.trust">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.smtp.socketFactory.fallback">true</prop>
+            </props>
+        </property>
+    </bean>
 </beans>

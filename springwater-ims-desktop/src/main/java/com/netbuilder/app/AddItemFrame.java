@@ -67,7 +67,7 @@ public class AddItemFrame extends JFrame
 	private TextPrompt inp, idp, ispp, iucp ;
 	private boolean edit = false;
 	
-	private JFileChooser fileChooser = new JFileChooser();
+	private JFileChooser fileChooser;
 	private ItemLoader itemLoader = new ItemLoader();
 	private SupplierLoader supplierLoader = new SupplierLoader();
 	private String imageLocation;
@@ -445,7 +445,10 @@ public class AddItemFrame extends JFrame
 	{
 		JPanel browsePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		
-		//File chooser filter
+		//Set default directory for file chooser
+		fileChooser = new JFileChooser(System.getProperty("user.home"));
+		
+		//File extension filter
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Files .jpg, .png", "jpg", "png");
 		fileChooser.setFileFilter(filter);
 		
@@ -501,6 +504,7 @@ public class AddItemFrame extends JFrame
 	{
 		copyFile(new File(textBrowse.getText()));
 		
+
 		Item item = new Item(itemNameR.getText(),                       			    //name
 					  		 itemDescriptionR.getText(),                			    //description
 					         Float.parseFloat(itemPriceR.getText()),    			    //price
@@ -509,7 +513,7 @@ public class AddItemFrame extends JFrame
 					         imageLocation, 				          	 				//image location
 					         false,						  	             				//is Discontinued
 					         porouswareYesB.isSelected(),    		     				//is Porouswareable
-					         getSupplierID((String) supplierR.getSelectedItem()));      //supplier
+					         getSupplierID((String) supplierR.getSelectedItem()), 0, 0);      //supplier
 		
 		//TODO MongoDB doesn't add item
 		//add the item to MongoDB

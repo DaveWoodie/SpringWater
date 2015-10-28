@@ -42,7 +42,9 @@ public class PurchaseOrderLoader {
 			ResultSet rs = sqlDB.queryDB(sql);
 			while (rs.next()) {
 				PurchaseOrderStatus pOS = new PurchaseOrderStatus(rs.getString("purchaseorderstatus.status"));
+				pOS.setPurchOrderID(rs.getInt("purchaseorderstatus.idPurchaseOrderStatus"));
 				Supplier supplier = new Supplier(rs.getString("supplier.supplierName"), rs.getInt("supplier.idAddress"));
+				supplier.setSupplierID(rs.getInt("supplier.idSupplier"));
 				Role role = new Role(rs.getString("role.Role"));
 				User user = new User(rs.getString("user.password"), rs.getString("user.forename"), rs.getString("user.surname"), rs.getString("user.email"), rs.getBoolean("user.isEmployee"));
 				user.setUserID(rs.getInt("user.idUser"));
@@ -84,6 +86,7 @@ public class PurchaseOrderLoader {
 	public ArrayList<PurchaseOrder> getPurchaseOrderByID(int i) {
 		sql = listQuery + tableName + tableJoins + " WHERE idPurchaseOrder = " + i;
 		constructResult();
+		System.out.println(purchaseOrderList.get(0).getPurchaseOrderStatus().getStatusID());
 		return purchaseOrderList;
 	}
 	
@@ -155,9 +158,22 @@ public class PurchaseOrderLoader {
 	 * @param pO the purchase order object to be updated
 	 */
 	public void setPurchaseOrder(PurchaseOrder pO){
+		java.sql.Date dateExpected = null;
 		java.sql.Date datePlaced = new java.sql.Date(pO.getDatePlaced().getTime());
-		java.sql.Date dateExpected = new java.sql.Date(pO.getDateExpected().getTime());
-		sql = "UPDATE purchaseOrder SET datePlaced = '" + datePlaced + "', dateExpected = '" + dateExpected + "', idEmployee = " + pO.getEmployee().getUser().getUserID() + ", idPurchaseOrderStatus = " + pO.getPurchaseOrderStatus().getStatusID() + ", idSupplier = " + pO.getSupplier().getSupplierID() + "WHERE idPurchaseOrder = " + pO.getIDPurchaseOrder();
+		try {
+			dateExpected = new java.sql.Date(pO.getDateExpected().getTime());
+		}
+		catch (NullPointerException nPE) {
+			dateExpected = null;
+		}
+		String dateToPass;
+		if (dateExpected == null) {
+			dateToPass = "null";
+		}
+		else {
+			dateToPass = "'" + dateExpected + "'";
+		}
+		sql = "UPDATE purchaseOrder SET datePlaced = '" + datePlaced + "', dateExpected = " + dateToPass + ", idEmployee = " + pO.getEmployee().getUser().getUserID() + ", idPurchaseOrderStatus = " + pO.getPurchaseOrderStatus().getStatusID() + ", idSupplier = " + pO.getSupplier().getSupplierID() + " WHERE idPurchaseOrder = " + pO.getIDPurchaseOrder();
 		sqlDB.openCon();
 		try {
 			sqlDB.updateDB(sql);
