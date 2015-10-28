@@ -38,7 +38,7 @@ public class MongoPull {
 	
 	
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		
 		MongoPull pull = new MongoPull();
 		MongoPush push = new MongoPush();
@@ -68,7 +68,7 @@ public class MongoPull {
 //		i = pull.getItem(5);
 //		i.setImageLocation("jacuzzi01.png");
 //		push.updateItem(i);
-	}
+	}*/
 	
 	
 	
