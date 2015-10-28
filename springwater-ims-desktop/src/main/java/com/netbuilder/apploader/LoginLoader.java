@@ -9,7 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.netbuilder.DBConnector.SQLDBConnector;
+import com.netbuilder.connections.SQLDBConnector;
+
+
 
 /**
  * Class to load all the data affiliated with a user login from the SQL Database
