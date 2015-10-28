@@ -24,6 +24,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.netbuilder.logic.SupplierLogic;
+
 @SuppressWarnings("serial")
 public class AddSupplierFrame extends JFrame {
 	private JPanel base, main, buttonBar, addressP;
@@ -36,6 +38,7 @@ public class AddSupplierFrame extends JFrame {
 	private GridBagConstraints addressC;
 	private int noOfAL = 0;
 	private boolean edit =false;
+	private SupplierLogic sL = new SupplierLogic();
 
 //	public static void main(String[] args) {
 //		AddSupplierFrame a = new AddSupplierFrame(12);
@@ -159,8 +162,10 @@ public class AddSupplierFrame extends JFrame {
 						getResults();
 						//TODO update supplier
 					}else {
-						getResults();
-						//TODO send to database
+						sL.addNewSupplier(getResults());
+						JFrame frame = new JFrame("Add new supplier");
+						JOptionPane.showMessageDialog(frame, "Supplier has been added", "Warning",
+								JOptionPane.WARNING_MESSAGE);
 					}			
 				}			
 			}
@@ -355,12 +360,12 @@ public class AddSupplierFrame extends JFrame {
 	{
 		//TODO Validate inputs
 		ArrayList<String> input = new ArrayList<String>();
-		input.add(nameT.getText());
-		input.add(tPhoneT.getText());
-		input.add(eMialT.getText());
-		input.add(addressTT.getText());
-		input.add(addressCT.getText());
-		input.add(addressPCT.getText());
+		input.add(nameT.getText());			//0
+		input.add(tPhoneT.getText());		//1
+		input.add(eMialT.getText());		//2
+		input.add(addressTT.getText());		//3
+		input.add(addressCT.getText());		//4
+		input.add(addressPCT.getText());	//5
 		
 		for (JTextField al :addressLines) {
 			input.add(al.getText());

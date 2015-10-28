@@ -18,6 +18,6 @@ import entities.Supplier;
  *
  */
 
-public interface SupplierRepository {
+public interface SupplierRepository extends CrudRepository<Supplier, String> {
 	public Supplier findSupplierByName(String supplierName);
 }

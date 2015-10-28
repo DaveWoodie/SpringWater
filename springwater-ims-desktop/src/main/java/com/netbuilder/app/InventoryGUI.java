@@ -19,9 +19,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-import com.netbuilder.connections.MongoPull;
-import com.netbuilder.entities.Item;
-import com.netbuilder.loaders.ItemLoader;
+import connections.MongoPull;
+import entities.Item;
+import loaders.ItemLoader;
 
 /**
  * Searchable inventory list

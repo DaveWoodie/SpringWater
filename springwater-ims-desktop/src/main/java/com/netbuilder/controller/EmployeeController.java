@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.netbuilder.entities.Employee;
-import com.netbuilder.entityrepository.EmployeeRepository;
+import entities.Employee;
+import entityrepository.EmployeeRepository;
 
 public class EmployeeController 
 {
