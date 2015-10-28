@@ -1,6 +1,11 @@
+/**
+ * @author jforster
+ * @date 28/10/2015
+ */
 package com.netbuilder.logic;
 
 import java.util.ArrayList;
+
 
 
 
@@ -17,10 +22,17 @@ import com.netbuilder.loaders.PurchaseOrderLoader;
 import com.netbuilder.loaders.PurchaseOrderStatusLoader;
 import com.netbuilder.loaders.SupplierLoader;
 
+/**
+ * Class to apply the business logic to the backend entities
+ * @author jforster
+ *
+ */
 public class PurchaseOrderBackendLogic {
 
 	PurchaseOrderLoader pOLoader = new PurchaseOrderLoader();
+	PurchaseOrderLineLoader pOLLoader = new PurchaseOrderLineLoader();
 	ArrayList<PurchaseOrderLine> pOLList;
+	ArrayList<PurchaseOrder> pOList;
 	
 	/**
 	 * Method to add an item to a purchase order
@@ -29,7 +41,6 @@ public class PurchaseOrderBackendLogic {
 	 */
 	public void addItemToPurchaseOrder(Item item, int quantityAdd) {
 		ArrayList<PurchaseOrder> itemPurchaseOrderList = new ArrayList<PurchaseOrder>();
-		PurchaseOrderLineLoader pOLLoader = new PurchaseOrderLineLoader();
 		itemPurchaseOrderList = pOLoader.getPurchaseOrderListByItemValid(item);
 		//if no valid pending purchase order to attach item to
 		if (itemPurchaseOrderList.isEmpty()) {
@@ -67,9 +78,36 @@ public class PurchaseOrderBackendLogic {
 			}
 			//if item is already on the purchase order
 			else {
-				pOL.setQuantity((pOL.getQuantity() + quantityAdd));
+				pOL.setQuantity((quantityAdd));
 				pOLLoader.setPurchaseOrderLineStock(pOL);
 			}
+		}
+	}
+	
+	public void calculateOrderQuantity(Item item) {
+		//fetch total inbound stock from purchase orders
+		int inboundStock = 0;
+		pOList = pOLoader.getPurchaseOrderListByItem(item.getIdItem());
+		for (int i = 0; i < pOList.size(); i++) {
+			if (pOList.get(i).getPurchaseOrderStatus().getStatusID() == 2 || pOList.get(i).getPurchaseOrderStatus().getStatusID() == 3){
+				pOLList = pOLLoader.getPurchaseOrderLineByOrderAndProduct(pOList.get(i).getIDPurchaseOrder(), item.getIdItem());
+				for (int j = 0; j < pOLList.size(); j++) {
+					inboundStock = inboundStock + pOLList.get(j).getQuantity() - pOLList.get(j).getDamagedQuantity();
+				}
+			}
+		}
+		
+		int stockEstimate = (int) (item.getStock() + inboundStock - item.getSalesRate());
+		int stockTarget = item.getStock() * 3;
+		int stockOrder = 0;
+		if (stockEstimate < 0) {
+			stockOrder = (int)stockTarget;
+		}
+		else if (stockEstimate < item.getSalesRate()) {
+			stockOrder = (int)stockTarget - (int)stockEstimate;
+		}
+		if (stockOrder != 0) {
+			addItemToPurchaseOrder(item, stockOrder);
 		}
 	}
 }

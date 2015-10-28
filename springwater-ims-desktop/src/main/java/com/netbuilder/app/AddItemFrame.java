@@ -518,7 +518,7 @@ public class AddItemFrame extends JFrame
 					         imageLocation, 				          	 //image location
 					         false,						  	             //is Discontinued
 					         porouswareYesB.isSelected(),    		     //is Porouswareable
-					         (int) supplierR.getSelectedItem());         //supplier
+					         (int) supplierR.getSelectedItem(), 0, 0);         //supplier
 			
 		
 		//itemLoader.addItem(item);
