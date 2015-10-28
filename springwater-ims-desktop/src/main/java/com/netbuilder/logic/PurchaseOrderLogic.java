@@ -18,11 +18,11 @@ import javax.swing.JOptionPane;
 
 import com.netbuilder.JMS.Sender;
 import com.netbuilder.connections.MongoPull;
-import com.netbuilder.apploader.ItemLoader;
-import com.netbuilder.apploader.PurchaseOrderLineLoader;
-import com.netbuilder.apploader.PurchaseOrderLoader;
-import com.netbuilder.apploader.PurchaseOrderStatusLoader;
-import com.netbuilder.apploader.SupplierLoader;
+import com.netbuilder.loaders.ItemLoader;
+import com.netbuilder.loaders.PurchaseOrderLineLoader;
+import com.netbuilder.loaders.PurchaseOrderLoader;
+import com.netbuilder.loaders.PurchaseOrderStatusLoader;
+import com.netbuilder.loaders.SupplierLoader;
 import com.netbuilder.entities.Item;
 import com.netbuilder.entities.PurchaseOrder;
 import com.netbuilder.entities.PurchaseOrderLine;

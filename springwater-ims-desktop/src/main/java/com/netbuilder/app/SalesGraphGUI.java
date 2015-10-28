@@ -33,8 +33,8 @@ import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import com.netbuilder.app.GraphData;
-import com.netbuilder.apploader.PurchaseOrderLineLoader;
-import com.netbuilder.apploader.PurchaseOrderLoader;
+import com.netbuilder.loaders.PurchaseOrderLineLoader;
+import com.netbuilder.loaders.PurchaseOrderLoader;
 import com.netbuilder.entities.PurchaseOrder;
 import com.netbuilder.entities.PurchaseOrderLine;
 

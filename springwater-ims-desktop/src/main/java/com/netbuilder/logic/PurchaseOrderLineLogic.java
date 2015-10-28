@@ -9,7 +9,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import com.netbuilder.connections.MongoPull;
-import com.netbuilder.apploader.PurchaseOrderLineLoader;
+import com.netbuilder.loaders.PurchaseOrderLineLoader;
 import com.netbuilder.entities.Item;
 import com.netbuilder.entities.PurchaseOrderLine;
 
