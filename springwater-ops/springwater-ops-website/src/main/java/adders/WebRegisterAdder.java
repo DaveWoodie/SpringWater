@@ -7,6 +7,7 @@ import connections.SQLDBConnector;
 
 
 public class WebRegisterAdder {
+	
 	private SQLDBConnector SQL = new SQLDBConnector();
 	private ResultSet rSet;
 	
@@ -38,14 +39,15 @@ public class WebRegisterAdder {
 		
 	}
 	
-	public void addNewCustomer(String dob, int teleNumber) {
+	public void addNewCustomer(String email, String dob, String teleNumber) {
 		SQL.openCon();
 		//Might need to get the last used ID here but not sure
 		
 		try {
 		
-			SQL.addToDB("INSERT INTO customer (dateOfBirth, credit, phoneNumber, blacklistStrikes) "
-					+ "VALUES (SHA1('" + dob + "')," + 5000 + ",'"+ teleNumber + "',0)" );
+			SQL.addToDB("INSERT INTO customer (idUser, dateOfBirth, credit, phoneNumber, blacklistStrikes) "
+					+ "VALUES ((SELECT idUser FROM user WHERE email = '" + email + "'),'" + dob + "'," + 5000 + ",'"+ teleNumber + "',0)" );
+			
 			
 		}
 		catch(SQLException e) {
