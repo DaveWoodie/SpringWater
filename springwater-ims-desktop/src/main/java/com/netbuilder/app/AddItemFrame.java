@@ -112,7 +112,6 @@ public class AddItemFrame extends JFrame
 	 * configures the frame
 	 */	
 	private void configFrame() {
-		@SuppressWarnings("unused")
 		String titleS = "Add New Item";
 		if (edit) {
 			titleS = "Edit Item";
@@ -439,30 +438,6 @@ public class AddItemFrame extends JFrame
 	}
 	
 	/**
-	 * Method to collate the inputs from the GUI
-	 * @return array of objects representing the attributes of the item
-	 */
-	private Object[] getResults(){
-		ArrayList<Object> input = new ArrayList<Object>();
-		input.add(itemNameR.getText());
-		input.add(itemDescriptionR.getText());
-		input.add(itemPriceR.getText());
-		input.add(itemUnitPriceR.getText());
-		input.add(porouswareYesB.isSelected());
-		input.add(typeR.getSelectedItem());	
-		input.add(supplierR.getSelectedItem());
-		
-		for (int i = 0; i<noOfA;i++)
-		{
-			input.add(attributesNames.get(i).getText());
-			input.add(attributesDes.get(i).getText());
-		}
-		Object[] array = new Object[input.size()];
-		array =  input.toArray(array);
-		return array;
-	}
-	
-	/**
 	 * Method that creates a file browsing frame to select the image for the item
 	 * @return Returns the JPanel
 	 */
@@ -485,7 +460,6 @@ public class AddItemFrame extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				//TODO set image location to location in java project not local machine
 				imageLocation = null;
 				
 				//open file chooser
@@ -537,11 +511,12 @@ public class AddItemFrame extends JFrame
 					         porouswareYesB.isSelected(),    		     				//is Porouswareable
 					         getSupplierID((String) supplierR.getSelectedItem()));      //supplier
 		
+		//TODO MongoDB doesn't add item
 		//add the item to MongoDB
 		itemLoader.addItem(item);
 		
 		JOptionPane.showMessageDialog(null, "Item successfully added");
-		this.getContentPane().dispatchEvent(new WindowEvent((Window) this.getContentPane(), WindowEvent.WINDOW_CLOSING));
+		//this.getContentPane().dispatchEvent(new WindowEvent((Window) this.getContentPane(), WindowEvent.WINDOW_CLOSING));
 	}
 	
 	private int getSupplierID(String supplierName)
@@ -565,7 +540,7 @@ public class AddItemFrame extends JFrame
 	private void copyFile(File sourceFile)
 	{
 		File Source = sourceFile;
-		String Path = "src/main/resources/";
+		String Path = "src/main/resources/images/";
 		File Destination = new File(Path + Source.getName());
 		
 		//Copy from source to destination
@@ -579,7 +554,7 @@ public class AddItemFrame extends JFrame
 		}
 		
 		//set image location
-		imageLocation = Path + Source.getName();
+		imageLocation = Source.getName();
 	}
 	
 	/*public static void main(String[] args)
