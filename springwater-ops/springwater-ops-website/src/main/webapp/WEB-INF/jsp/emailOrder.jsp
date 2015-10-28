@@ -31,6 +31,9 @@
 
                 <div class="row">
                     <div class="col-md-8">
+
+                        <div id="moreThan10" style="display: none" class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span><strong> Something isn't quite right! </strong> If you would like to order more than 10 items, please register for an account <strong><a href="loginregister">here</a></strong></div>
+
                         <h1 id="productTitle"><small>Your Details</small></h1>
                         <form>
                             <div class="well">
@@ -107,7 +110,7 @@
                                 <div class="panel-heading">
                                     <h3 class="panel-title">Item on your Order</h3></div>
                                 <div id="itemsOnOrder" class="container">
-                             
+
                                 </div>
                             </div>
 
@@ -163,6 +166,8 @@
                                 <a id="email" onclick="mail()" class="btn btn-block btn-primary"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Send Your Order</a>
                             </div>
                         </div>
+
+                        <div class="alert alert-info" role="alert"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span><strong> Just so you know!</strong> If you would like to order more than 10 items, register for an account <strong><a href="loginregister">here</a></strong></div>
                     </div>
                 </div>
             </div>
