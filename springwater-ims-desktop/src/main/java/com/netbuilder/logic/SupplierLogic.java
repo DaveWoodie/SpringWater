@@ -6,13 +6,13 @@ package com.netbuilder.logic;
 
 import java.util.ArrayList;
 
-import com.netbuilder.connections.MongoPull;
-import com.netbuilder.connections.MongoPush;
-import com.netbuilder.entities.Address;
-import com.netbuilder.entities.Item;
-import com.netbuilder.entities.Supplier;
-import com.netbuilder.loaders.AddressLoader;
-import com.netbuilder.loaders.SupplierLoader;
+import connections.MongoPull;
+import connections.MongoPush;
+import entities.Address;
+import entities.Item;
+import entities.Supplier;
+import loaders.AddressLoader;
+import loaders.SupplierLoader;
 
 public class SupplierLogic {	
 	private Object[][] supplierList;

@@ -18,7 +18,7 @@ import entities.Supplier;
  *
  */
 
-public interface PurchaseOrderRepository {
+public interface PurchaseOrderRepository extends CrudRepository<PurchaseOrder, String> {
 	
 	public PurchaseOrder findbyPurchaseOrderID(int pOID);
 	
