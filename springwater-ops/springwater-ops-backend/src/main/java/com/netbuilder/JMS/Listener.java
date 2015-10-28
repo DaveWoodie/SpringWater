@@ -4,14 +4,21 @@
  */
 package com.netbuilder.JMS;
 
+import java.util.ArrayList;
+
 import javax.jms.Connection;
 import javax.jms.Destination;
+import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageConsumer;
 import javax.jms.MessageListener;
+import javax.jms.ObjectMessage;
 import javax.jms.Session;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
+
+import com.netbuilder.entities.Item;
+import com.netbuilder.logic.PurchaseOrderBackendLogic;
 
 /**
  * Class to generate listeners for the other components of the application
@@ -60,6 +67,19 @@ public class Listener implements MessageListener{
 	@Override
 	public void onMessage(Message message) {
 		// TODO handle message type
+		ObjectMessage objectMessage = (ObjectMessage) message;
+		try {
+			if (objectMessage.getObject() instanceof ArrayList<?>) {
+				ArrayList<Object> messageContents = (ArrayList<Object>) objectMessage.getObject();
+				if (messageContents.get(0) instanceof Item && messageContents.get(1) instanceof Integer) {
+					PurchaseOrderBackendLogic pOBL = new PurchaseOrderBackendLogic();
+					pOBL.addItemToPurchaseOrder((Item) messageContents.get(0), (Integer) messageContents.get(1));
+				}
+			}
+		} catch (JMSException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
