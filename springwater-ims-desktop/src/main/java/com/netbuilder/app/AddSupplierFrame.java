@@ -37,10 +37,10 @@ public class AddSupplierFrame extends JFrame {
 	private int noOfAL = 0;
 	private boolean edit =false;
 
-	public static void main(String[] args) {
-		AddSupplierFrame a = new AddSupplierFrame(12);
-		a.setVisible(true);
-	}
+//	public static void main(String[] args) {
+//		AddSupplierFrame a = new AddSupplierFrame(12);
+//		a.setVisible(true);
+//	}
 	
 	/**
 	 * constructor for adding a new supplier
