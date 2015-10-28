@@ -6,12 +6,13 @@ package com.netbuilder.logic;
 
 import java.util.ArrayList;
 
-import com.netbuilder.connections.MongoPull;
-import com.netbuilder.entities.Address;
-import com.netbuilder.entities.Item;
-import com.netbuilder.entities.Supplier;
-import com.netbuilder.loaders.AddressLoader;
-import com.netbuilder.loaders.SupplierLoader;
+import connections.MongoPull;
+import connections.MongoPush;
+import entities.Address;
+import entities.Item;
+import entities.Supplier;
+import loaders.AddressLoader;
+import loaders.SupplierLoader;
 
 public class SupplierLogic {	
 	private Object[][] supplierList;
@@ -20,6 +21,7 @@ public class SupplierLogic {
 	private ArrayList<Supplier> sList;
 	private AddressLoader aL = new AddressLoader();
 	private MongoPull mp = new MongoPull();
+	private MongoPush push = new MongoPush();
 
 	/**
 	 * Method to load and format the entities for the GUI for all Suppliers
@@ -112,6 +114,7 @@ public class SupplierLogic {
 	}
 	
 	/**
+	 * @author abutcher
 	 * Method to format the purchase order entities' data into a format for the GUI
 	 */
 	private void formatTable() {
@@ -125,6 +128,40 @@ public class SupplierLogic {
 			supplierList[i][5] = sList.get(i).getAverageDeliveryTime();
 			supplierList[i][6] = "placeholder.png";
 		}
+		
+	}
+
+	/**
+	 * @author abutcher
+	 * @param results
+	 */
+	public void addNewSupplier(String[] results) {
+		Supplier newSP;
+		Address address;
+		int addressID;
+		ArrayList <String> addressLines = new ArrayList<String>();
+		
+		//add new address
+		for (int i = 6 ; i < results.length; i++) {
+			addressLines.add(results[i]);
+		}
+		if (results[4].isEmpty()) {
+			address = new Address(addressLines, results[3], results[5]);
+		} else {
+			address = new Address(addressLines, results[3], results[4], results[5]);
+		}
+		addressID = push.addAddress(address);
+		
+		//add new supplier
+		newSP = new Supplier(results[0], addressID);
+		newSP.setAverageDeliveryTime(0);
+		if (!results[2].isEmpty()){
+			newSP.setEmail(results[2]);
+		}
+		if (!results[1].isEmpty()){
+			newSP.setTelephone(results[1]);
+		}
+		sLoader.newSupplier(newSP);
 		
 	}
 

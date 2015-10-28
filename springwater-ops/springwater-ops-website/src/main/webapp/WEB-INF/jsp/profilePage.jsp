@@ -19,8 +19,10 @@
     <!-- Load Javascript files -->
     <script src="js/avatars.js" type="text/javascript"></script>
     <script src="js/loginValidator.js" type="text/javascript"></script>
-    
-    
+    <script src="bootstrap/js/bootstrap.js" type="text/javascript"></script>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
+
 	<!-- Show welcome message to user -->
 	<script>
 		showWelcomeMessage();
@@ -110,7 +112,14 @@
 	                               </div>
 	                               <div class="col-lg-2">
 	                                   <div class="panel-body">
-	                                       123
+	                                   
+	                                       	<table>
+    											<tr th:each="user : ${profile}">
+											        <td th:text="${user.customerID}"></td>
+											        <td th:text="${user.username}">...</td>
+											    </tr>
+											</table>
+	                                       	
 	                                   </div>
 	                                   <div class="panel-body">
 	                                       gn0me0

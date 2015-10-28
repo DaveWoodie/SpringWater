@@ -18,18 +18,18 @@ import javax.swing.JOptionPane;
 
 
 import com.netbuilder.JMS.Sender;
-import com.netbuilder.connections.MongoPull;
-import com.netbuilder.loaders.ItemLoader;
-import com.netbuilder.loaders.PurchaseOrderLineLoader;
-import com.netbuilder.loaders.PurchaseOrderLoader;
-import com.netbuilder.loaders.PurchaseOrderStatusLoader;
-import com.netbuilder.loaders.SupplierLoader;
-import com.netbuilder.entities.Item;
-import com.netbuilder.entities.MessageContent;
-import com.netbuilder.entities.PurchaseOrder;
-import com.netbuilder.entities.PurchaseOrderLine;
-import com.netbuilder.entities.PurchaseOrderStatus;
-import com.netbuilder.entities.Supplier;
+import connections.MongoPull;
+import loaders.ItemLoader;
+import loaders.PurchaseOrderLineLoader;
+import loaders.PurchaseOrderLoader;
+import loaders.PurchaseOrderStatusLoader;
+import loaders.SupplierLoader;
+import entities.Item;
+import entities.MessageContent;
+import entities.PurchaseOrder;
+import entities.PurchaseOrderLine;
+import entities.PurchaseOrderStatus;
+import entities.Supplier;
 
 /**
  * Class to manage the logic and business rules for the application

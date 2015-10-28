@@ -39,6 +39,26 @@ public class WebRegisterAdder {
 	}
 	
 	public void addNewCustomer(String dob, int teleNumber) {
+		SQL.openCon();
+		//Might need to get the last used ID here but not sure
+		
+		try {
+		
+			SQL.addToDB("INSERT INTO customer (dateOfBirth, credit, phoneNumber, blacklistStrikes) "
+					+ "VALUES (SHA1('" + dob + "')," + 5000 + ",'"+ teleNumber + "',0)" );
+			
+		}
+		catch(SQLException e) {
+			System.out.println("Heyo.");
+			e.printStackTrace();
+		}
+		
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			SQL.closeCon();
+		}
 		
 	}
 }

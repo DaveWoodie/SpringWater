@@ -1,7 +1,7 @@
 package com.netbuilder.JMS.test;
 
-import com.netbuilder.connections.MongoPull;
-import com.netbuilder.entities.Item;
+import connections.MongoPull;
+import entities.Item;
 import com.netbuilder.logic.PurchaseOrderLogic;
 
 public class JMSTest {

@@ -8,10 +8,10 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
-import com.netbuilder.connections.MongoPull;
-import com.netbuilder.loaders.PurchaseOrderLineLoader;
-import com.netbuilder.entities.Item;
-import com.netbuilder.entities.PurchaseOrderLine;
+import connections.MongoPull;
+import loaders.PurchaseOrderLineLoader;
+import entities.Item;
+import entities.PurchaseOrderLine;
 
 /**
  * Class to manage the logic and business rules for the application
