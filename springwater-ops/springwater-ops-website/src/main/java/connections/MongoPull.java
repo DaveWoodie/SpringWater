@@ -16,6 +16,7 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+
 import entities.Address;
 import entities.Item;
 import entities.WishList;
@@ -37,41 +38,20 @@ public class MongoPull {
 
 	
 	
-	
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		
 		MongoPull pull = new MongoPull();
 		MongoPush push = new MongoPush();
-		ArrayList<Item> items = pull.getAllDiscontinuedItems();
+		
+		ArrayList<Item> items = pull.getAllItems();
 		for(Item i : items) {
 			i.print();
 			System.out.println();
 		}
-//		
-//		Item i = pull.getItem(1);
-//		i.setImageLocation("gnome.jpg");
-//		push.updateItem(i);
-//		
-//
-//		i = pull.getItem(2);
-//		i.setImageLocation("gnome02.jpg");
-//		push.updateItem(i);
-//
-//		i = pull.getItem(3);
-//		i.setImageLocation("gnome03.jpg");
-//		push.updateItem(i);
-//
-//		i = pull.getItem(4);
-//		i.setImageLocation("sundial.jpg");
-//		push.updateItem(i);
-//
-//		i = pull.getItem(5);
-//		i.setImageLocation("jacuzzi01.png");
-//		push.updateItem(i);
-	}*/
-	
-	
-	
+		
+		
+		
+	}
 	
 	public MongoPull() {
 		
@@ -321,6 +301,56 @@ public class MongoPull {
 		return items;
 	}
 	
+	
+	/**
+	 * returns all non-discontinued items with an attribute to match the name-value pair passed to the method
+	 * @param attributeName - the name of the attribute to search for
+	 * @param attributeVal - the corresponding string value of that attribute
+	 * @return ArrayList of Item entities
+	 */
+	public ArrayList<Item> getItemsByAttribute(String attributeName, String attributeVal) {
+		ArrayList<Item> items = new ArrayList<Item>();
+
+		mdbc.mongoConnect();
+		
+		DBCollection collection = this.getCollection(itemCol);
+		BasicDBObject searchObj = new BasicDBObject();
+		searchObj.put("Attributes."+attributeName,attributeVal);
+		
+		DBCursor cursor = collection.find(searchObj);
+		while(cursor.hasNext()) {
+			DBObject itemObj = cursor.next();
+			Item i = makeItemEntityFromMongoObject(itemObj);
+			if(!i.isDiscontinued()) {
+				items.add(i);
+			}
+		}
+		return items;
+	}
+	
+
+	/**
+	 * returns all non-discontinued items with an attribute to match the name-value pair passed to the method
+	 * @param attributeName - the name of the attribute to search for
+	 * @param attributeVal - the corresponding Integer value of that attribute
+	 * @return ArrayList of Item entities
+	 */
+	public ArrayList<Item> getItemsByAttribute(String attributeName, Integer attributeVal) {
+		return getItemsByAttribute(attributeName,((Double)attributeVal.doubleValue()).toString());
+		
+	}
+
+	/**
+	 * returns all non-discontinued items with an attribute to match the name-value pair passed to the method
+	 * @param attributeName - the name of the attribute to search for
+	 * @param attributeVal - the corresponding Double value of that attribute
+	 * @return ArrayList of Item entities
+	 */
+	public ArrayList<Item> getItemsByAttribute(String attributeName, Double attributeVal) {
+		return getItemsByAttribute(attributeName,attributeVal.toString());
+		
+	}
+	
 	private Item makeItemEntityFromMongoObject(DBObject itemObj) {
 
 		Item newItem;
@@ -331,13 +361,13 @@ public class MongoPull {
 		String itemPrice = itemObj.get("ItemPrice").toString();
 		String itemCost = itemObj.get("ItemCost").toString();
 		String imageLocation = itemObj.get("ImageLocation").toString();
-		itemInfs.add(itemObj.get("SalesRate").toString());
-		itemInfs.add(itemObj.get("PSalesRate").toString());
+		String salesRate = (itemObj.get("SalesRate").toString());
+		String pSalesRate = (itemObj.get("PSalesRate").toString());
 		boolean isPorousWare = handleMongoBoolean(itemObj.get("IsPorousware"));
 		boolean discontinued = handleMongoBoolean(itemObj.get("Discontinued"));
 		String idSupplier = itemObj.get("idSupplier").toString();
 		
-		newItem = new Item(itemName, itemDescription, Float.parseFloat(itemPrice), Float.parseFloat(itemCost), (int) Float.parseFloat(numberInStock), imageLocation, discontinued, isPorousWare, (int) Float.parseFloat(idSupplier));
+		newItem = new Item(itemName, itemDescription, Float.parseFloat(itemPrice), Float.parseFloat(itemCost), (int) Float.parseFloat(numberInStock), imageLocation, discontinued, isPorousWare, (int) Float.parseFloat(idSupplier), (int) Float.parseFloat(salesRate), (int) Float.parseFloat(pSalesRate));
 		newItem.setItemID((Integer) itemObj.get("idItem") );
 		
 		

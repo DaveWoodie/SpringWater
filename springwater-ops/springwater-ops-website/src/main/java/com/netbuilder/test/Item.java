@@ -1,6 +1,8 @@
 package com.netbuilder.test;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+
 /**
  * 
  * @author Chris Boucher
@@ -38,8 +40,12 @@ public class Item {
 		return itemName;
 	}
 
-	public String getPrice() {
-		return String.valueOf(price);
+	public float getPrice() {
+		return price;
+	}
+
+	public String formattedPrice() {
+		return String.format("%10.2f", price);
 	}
 
 	public String getImageLocation() {
@@ -73,7 +79,7 @@ public class Item {
 	public String getCategory() {
 		return category;
 	}
-	
+
 	public String getColour() {
 		return colour;
 	}

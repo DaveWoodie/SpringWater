@@ -104,9 +104,8 @@ public class SalesGraphGUI extends JPanel implements ActionListener
 			{
 				//go through each purchase order containing the specified item and get the purchase order line
 				ArrayList<PurchaseOrderLine> pOLine = purchaseOrderLineLoader.getPurchaseOrderLineByOrderAndProduct(purchaseOrderList.get(i).getIDPurchaseOrder(), itemID);
-				
-				if(pOLine.isEmpty() == false);
-				{
+	
+				if(pOLine.size() > 0) {
 					PurchaseOrderLine purchaseOrderLine = pOLine.get(0);
 					Integer j = purchaseOrderLine.getQuantity();
 					dataset.addValue(j.doubleValue(), (Comparable<?>) "sales", (Comparable<?>) purchaseOrderList.get(i).getDatePlaced());

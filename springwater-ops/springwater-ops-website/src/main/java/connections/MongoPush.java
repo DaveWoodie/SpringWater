@@ -345,12 +345,12 @@ public class MongoPush {
 			throw new Exception();
 		} else {
 			cursor.next();
-			maxInt =  ((Double) cursor.curr().get(columnName)).intValue();
+			maxInt =  (Integer) cursor.curr().get(columnName);
 		}
 		cursor.close();
 		return maxInt;
 	}
-	
+		
 	/**
 	 * Converts the passed WishList entity into a mongo object in order to upload it to the database
 	 * @param wish - the WishList to be converted

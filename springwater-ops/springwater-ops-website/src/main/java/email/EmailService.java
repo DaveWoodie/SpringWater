@@ -1,127 +1,79 @@
 package email;
 
+import java.security.Security;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Properties;
 
+import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamSource;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
+import org.thymeleaf.templateresolver.TemplateResolver;
+
+import com.sun.mail.smtp.SMTPTransport;
 
 @Service
 public class EmailService {
 
-    private JavaMailSender mailSender;
- 
-    private TemplateEngine templateEngine;
+	private JavaMailSender mailSender;
+	
+	private JavaMailSenderImpl jmsi = new JavaMailSenderImpl();
 
-    
+	private TemplateEngine templateEngine = new TemplateEngine();
 
-    /* 
-     * Send HTML mail (simple) 
-     */
-    public void sendSimpleMail(final String recipientName, final String recipientEmail, final Locale locale) throws MessagingException {
-        
-        // Prepare the evaluation context
-        final Context ctx = new Context(locale);
-        ctx.setVariable("name", recipientName);
-        ctx.setVariable("subscriptionDate", new Date());
-        ctx.setVariable("hobbies", Arrays.asList("Cinema", "Sports", "Music"));
-        
-        // Prepare message using a Spring helper
-        final MimeMessage mimeMessage = this.mailSender.createMimeMessage();
-        final MimeMessageHelper message = new MimeMessageHelper(mimeMessage, "UTF-8");
-        message.setSubject("Example HTML email (simple)");
-        message.setFrom("thymeleaf@example.com");
-        message.setTo(recipientEmail);
+	public EmailService() {
 
-        // Create the HTML body using Thymeleaf
-        final String htmlContent = this.templateEngine.process("email-simple.html", ctx);
-        message.setText(htmlContent, true /* isHtml */);
-        
-        // Send email
-        this.mailSender.send(mimeMessage);
-
-    }
+	}
 
 
-    /* 
-     * Send HTML mail with attachment. 
-     */
-    public void sendMailWithAttachment(
-            final String recipientName, final String recipientEmail, final String attachmentFileName, 
-            final byte[] attachmentBytes, final String attachmentContentType, final Locale locale) 
-            throws MessagingException {
-        
-        // Prepare the evaluation context
-        final Context ctx = new Context(locale);
-        ctx.setVariable("name", recipientName);
-        ctx.setVariable("subscriptionDate", new Date());
-        ctx.setVariable("hobbies", Arrays.asList("Cinema", "Sports", "Music"));
-        
-        // Prepare message using a Spring helper
-        final MimeMessage mimeMessage = this.mailSender.createMimeMessage();
-        final MimeMessageHelper message = 
-                new MimeMessageHelper(mimeMessage, true /* multipart */, "UTF-8");
-        message.setSubject("Example HTML email with attachment");
-        message.setFrom("thymeleaf@example.com");
-        message.setTo(recipientEmail);
+	/* 
+	 * Send HTML mail (simple) 
+	 */
+	public static void Send(final String username, final String password, String recipientEmail) throws AddressException, MessagingException {
 
-        // Create the HTML body using Thymeleaf
-        final String htmlContent = this.templateEngine.process("email-withattachment.html", ctx);
-        message.setText(htmlContent, true /* isHtml */);
-        
-        // Add the attachment
-        final InputStreamSource attachmentSource = new ByteArrayResource(attachmentBytes);
-        message.addAttachment(
-                attachmentFileName, attachmentSource, attachmentContentType);
-        
-        // Send mail
-        this.mailSender.send(mimeMessage);
-        
-    }
+        Properties props = new Properties();
+        props.put("mail.smtp.starttls.enable", "false");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "465");
 
-    
-    
-    /* 
-     * Send HTML mail with inline image
-     */
-    public void sendMailWithInline(
-            final String recipientName, final String recipientEmail, final String imageResourceName, 
-            final byte[] imageBytes, final String imageContentType, final Locale locale)
-            throws MessagingException {
-        
-        // Prepare the evaluation context
-        final Context ctx = new Context(locale);
-        ctx.setVariable("name", recipientName);
-        ctx.setVariable("subscriptionDate", new Date());
-        ctx.setVariable("hobbies", Arrays.asList("Cinema", "Sports", "Music"));
-        ctx.setVariable("imageResourceName", imageResourceName); // so that we can reference it from HTML
-        
-        // Prepare message using a Spring helper
-        final MimeMessage mimeMessage = this.mailSender.createMimeMessage();
-        final MimeMessageHelper message = 
-                new MimeMessageHelper(mimeMessage, true /* multipart */, "UTF-8");
-        message.setSubject("Example HTML email with inline image");
-        message.setFrom("thymeleaf@example.com");
-        message.setTo(recipientEmail);
+        Session session = Session.getInstance(props,
+          new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+          });
 
-        // Create the HTML body using Thymeleaf
-        final String htmlContent = this.templateEngine.process("email-inlineimage.html", ctx);
-        message.setText(htmlContent, true /* isHtml */);
-        
-        // Add the inline image, referenced from the HTML code as "cid:${imageResourceName}"
-        final InputStreamSource imageSource = new ByteArrayResource(imageBytes);
-        message.addInline(imageResourceName, imageSource, imageContentType);
-        
-        // Send mail
-        this.mailSender.send(mimeMessage);
+        try {
+
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("chrisofski@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO,
+                InternetAddress.parse("chrisofski@gmail.com"));
+            message.setSubject("Testing Message!");
+            message.setText("Test Message!");
+
+            Transport.send(message);
+
+            System.out.println("Done");
+
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
