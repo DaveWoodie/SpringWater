@@ -368,7 +368,11 @@ public class MongoPush {
 			throw new Exception();
 		} else {
 			cursor.next();
-			maxInt =  (Integer) cursor.curr().get(columnName);
+			try{
+				maxInt =  (Integer) cursor.curr().get(columnName);
+			} catch (Exception e) {
+				maxInt =  ((Double) cursor.curr().get(columnName)).intValue();
+			}
 		}
 		cursor.close();
 		return maxInt;
