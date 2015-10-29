@@ -1,6 +1,5 @@
 package adders;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import connections.SQLDBConnector;
@@ -9,7 +8,6 @@ import connections.SQLDBConnector;
 public class WebRegisterAdder {
 	
 	private SQLDBConnector SQL = new SQLDBConnector();
-	private ResultSet rSet;
 	
 	public WebRegisterAdder() {
 	}

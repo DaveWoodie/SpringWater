@@ -38,25 +38,30 @@ public class MongoPull {
 	private List<String> wishListSet = new ArrayList<String>();
 
 	
-	
+	/*
 	public static void main(String[] args) {
 		
 		MongoPull pull = new MongoPull();
 		MongoPush push = new MongoPush();
 		
 		
-		ArrayList<Item> items = pull.getAllItems();
-		for(Item it : items) {
-			it.print();
-			System.out.println();
-		}
+//		ArrayList<Item> items = pull.getAllItems();
+//		for(Item it : items) {
+//			it.print();
+//			System.out.println();
+//		}
 		
+		Item i = pull.getItem(16);
+		i.setSalesRate(12);
+		push.updateItem(i);
+		i.print();
 		
 	}
+	*/
 	
 	public MongoPull() {
 		
-	}
+	}	
 	
 
 	/*********************************************************************************/
