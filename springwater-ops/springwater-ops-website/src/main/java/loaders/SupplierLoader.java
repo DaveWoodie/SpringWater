@@ -165,8 +165,24 @@ public class SupplierLoader {
 	}
 
 	public void updateSupplier(Supplier upSP) {
+		if (!upSP.getEmail().isEmpty() && !upSP.getTelephone().isEmpty()) {
 		sql = update+ upSP.getSupplierName()+ "', telephoneNumber ='"+upSP.getTelephone() + "', email ='" + upSP.getEmail() + "' WHERE `idSupplier`='"+upSP.getSupplierID()+"';";
-		//TODO Set Supplier ID
+		} else if (!upSP.getEmail().isEmpty()) {
+			sql = update+ upSP.getSupplierName()+ "', email ='" + upSP.getEmail() + "' WHERE `idSupplier`='"+upSP.getSupplierID()+"';";
+		} else {
+			sql = update+ upSP.getSupplierName()+ "', telephoneNumber ='"+upSP.getTelephone() + "' WHERE `idSupplier`='"+upSP.getSupplierID()+"';";
+		}
+		sqlDB.openCon();
+		try {
+			sqlDB.updateDB(sql);
+		} 
+		catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		sqlDB.closeCon();
 	}
 
 }

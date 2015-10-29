@@ -4,17 +4,16 @@
  */
 package com.netbuilder.app;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.image.BufferedImage;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -47,9 +46,20 @@ public class SupplierFrame extends JFrame{
 	JScrollPane bottomPane;
 	JButton exit, edit, select;
 	int selectedID;
+	private SupplierLogic lD = new SupplierLogic();
+	private String imageLocation;
+	private String imageFolderLocation = "src/main/resources/images/";
+	private ImageIcon itemIcon;
+	private IconLoader iconLoader = new IconLoader();
+	private int IMAGE_SIZE = 50;
 	
 	public SupplierFrame(int supplierID, String supplierName) {
 		initUI(supplierID, supplierName);
+		setVisible(true);
+	}
+	public SupplierFrame(int supplierID) {
+		Object [][] gN = lD.fetchSupplierByID(supplierID);
+		initUI(supplierID, (String)gN[0][1]);
 		setVisible(true);
 	}
 	/**
@@ -68,22 +78,34 @@ public class SupplierFrame extends JFrame{
 		main.setLayout(new GridLayout(1, 2));
 		
 		//create left panel
-		LoadData lDD = new LoadData();
-		SupplierLogic lD = new SupplierLogic();
 		Object [][] products = lD.fetchProducts(selectedID);
 		Object [][] supplierDetails = lD.fetchSupplierByID(selectedID);
 		left = new JPanel();
-		left.setLayout(new BoxLayout(left, BoxLayout.Y_AXIS));
-		try{
-			String s = "src/main/resources/images/" + supplierDetails[0][6];
-//			System.out.println(s);
-			BufferedImage Logo = ImageIO.read(new File(s));
-			leftLogo = new JLabel(new ImageIcon(Logo));
+//		left.setLayout(new BoxLayout(left, BoxLayout.Y_AXIS));
+//		try{
+//			String s = "src/main/resources/images/" + supplierDetails[0][6];
+////			System.out.println(s);
+//			BufferedImage Logo = ImageIO.read(new File(s));
+//			leftLogo = new JLabel(new ImageIcon(Logo));
+//		}
+//		catch(IOException ex){
+//			System.out.println(ex);
+//		}
+		
+		imageLocation = ((String)supplierDetails[0][6]);
+		
+		left = new JPanel();
+//		 setFinalSize(left, this.WIDTH*2/6, HEIGHT);
+		left.setLayout(new GridBagLayout());
+//		makeOpaque(left);
+		if(this.imageLocation != null) {
+			itemIcon = iconLoader.createImageIcon(this.imageFolderLocation+this.imageLocation, IMAGE_SIZE, IMAGE_SIZE);
+		} else {
+			itemIcon = loadDefaultImage();
 		}
-		catch(IOException ex){
-			System.out.println(ex);
-		}
-		left.add(leftLogo);
+		JLabel lbl = new JLabel(itemIcon);
+		lbl.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, new Color(0,0,0)));
+		left.add(lbl);
 		
 		//create right panel
 		right = new JPanel();
@@ -175,5 +197,10 @@ public class SupplierFrame extends JFrame{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setMinimumSize(new Dimension(600, 800));
+	}
+	
+	private ImageIcon loadDefaultImage() {
+		ImageIcon icon = iconLoader.createImageIcon("src/main/resources/images/gnome.jpg", IMAGE_SIZE, IMAGE_SIZE);
+		return icon;
 	}
 }
