@@ -34,7 +34,7 @@ public class Receiver{
 		try {
 			 
             // Create a ConnectionFactory
-            ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://localhost:8081");
+            ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://10.50.15.25:8081");
 
             // Create a Connection
             Connection connection = connectionFactory.createConnection();
@@ -44,7 +44,7 @@ public class Receiver{
             Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
             // Create the destination (Topic or Queue)
-            Destination destination = session.createQueue(boardName);
+            Destination destination = session.createTopic(boardName);
 
             // Create a MessageConsumer from the Session to the Topic or Queue
             consumer = session.createConsumer(destination);

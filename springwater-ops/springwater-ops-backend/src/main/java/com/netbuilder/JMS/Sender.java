@@ -24,7 +24,7 @@ public class Sender {
 	public void sendMessage(MessageContent toSend) {
 		try {
             // Create a ConnectionFactory
-            ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://localhost:8081");
+            ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://10.50.15.25:8081");
 
             // Create a Connection
             Connection connection = connectionFactory.createConnection();
@@ -34,7 +34,7 @@ public class Sender {
             Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
             // Create the destination (Topic or Queue)
-            Destination destination = session.createQueue(boardName);
+            Destination destination = session.createTopic(boardName);
 
             // Create a MessageProducer from the Session to the Topic or Queue
             MessageProducer producer = session.createProducer(destination);
