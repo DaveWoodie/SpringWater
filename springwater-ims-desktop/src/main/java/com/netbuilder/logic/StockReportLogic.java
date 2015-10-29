@@ -1,7 +1,6 @@
 package com.netbuilder.logic;
 
 import java.util.ArrayList;
-import java.util.Stack;
 
 import connections.MongoPull;
 import entities.Item;
@@ -12,8 +11,6 @@ public class StockReportLogic {
 	private MongoPull pull = new MongoPull();
 	
 	
-	
-	
 	public Object[][] fetchStockList() {
 		
 		ArrayList<Item> items = this.getAllItems();
@@ -22,9 +19,9 @@ public class StockReportLogic {
 		return itemsObj;
 	}
 	
-	public Object[][] fetchLowStockList() {
+	public Object[][] fetchFastMovingList() {
 		
-		ArrayList<Item> items = this.getLowStockItems();
+		ArrayList<Item> items = this.getFastMovingItems();
 		Object[][] itemsObj = this.createObjectArrayFromItems(items);
 		
 		return itemsObj;
@@ -50,22 +47,18 @@ public class StockReportLogic {
 		return items;
 	}
 	
-	private ArrayList<Item> getLowStockItems() {
+	private ArrayList<Item> getFastMovingItems() {
 		ArrayList<Item> items = pull.getAllCurrentItems();
-		Stack<Integer> removeStack = new Stack<Integer>();
-		for(int i = 0; i < items.size(); i++) {
-			Item item = items.get(i);
-			if(item.getStock() > item.getSalesRate()) {
-				removeStack.push(i);
+		ArrayList<Item> fastMovingItems = new ArrayList<Item>();
+		
+		for(Item item : items) {
+			if(item.getSalesRate() - item.getpSalesRate() > item.getpSalesRate()/2 ||
+					item.getpSalesRate() - item.getSalesRate() > item.getpSalesRate()/2) {
+				fastMovingItems.add(item);
 			}
 		}
 		
-		while(!removeStack.isEmpty()) {
-			int i = removeStack.pop();
-			items.remove(i);
-		}
-		
-		return items;
+		return fastMovingItems;
 	}
 	
 	

@@ -42,7 +42,7 @@ public class DailyStockReportGUI {
 	public JPanel getStockReportPanel() {
 //		int numRows = 30;
 		String[] colHeadings = { "Item ID", "Item Name", "Stock Level","Sales Rate" };
-		final JLabel fastSellingLabel = new JLabel("Fast Selling Items", SwingConstants.CENTER);
+		final JLabel fastSellingLabel = new JLabel("Fluctuating Items", SwingConstants.CENTER);
 		final JLabel LowStockLabel = new JLabel("Current Stock", SwingConstants.CENTER);
 		JPanel pane = new JPanel();
 		JPanel lowStockPanel = new JPanel();
@@ -64,7 +64,7 @@ public class DailyStockReportGUI {
 		};
 		//lowStockModel.setColumnIdentifiers(colHeadings);
 		@SuppressWarnings("serial")
-		DefaultTableModel fastSellingkModel = new DefaultTableModel(logic.fetchLowStockList(), colHeadings){
+		DefaultTableModel fastSellingkModel = new DefaultTableModel(logic.fetchFastMovingList(), colHeadings){
 			@Override
 		    public boolean isCellEditable(int i, int i1) {
 		        return false; //To change body of generated methods, choose Tools | Templates.
