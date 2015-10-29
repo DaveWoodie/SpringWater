@@ -166,6 +166,7 @@ public class PurchaseOrderBackendLogic {
 			}
 			if (damagedGoods) {
 				System.out.println("Sending message to IMS");
+				System.out.println(damagedReport);
 				MessageContent messageContent = new MessageContent(damagedReport, "damagedStockReport");
 				Sender sender = new Sender ("IMS.IN");
 				sender.sendMessage(messageContent);

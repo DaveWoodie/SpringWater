@@ -303,6 +303,10 @@ public class MongoPush {
 		
 		BasicDBObject itemAttributes = createAttributesFromItem(item);
 		itemObject.put("Attributes",itemAttributes);
+		
+		BasicDBObject itemReviews = createReviewsFromItem(item);
+		
+
 		return itemObject;
 	}
 	
@@ -323,6 +327,11 @@ public class MongoPush {
 	    }
 		
 		return newAttributes;
+	}
+	
+	private BasicDBObject createReviewsFromItem(Item item) {
+		BasicDBObject reviews = new BasicDBObject();
+		return reviews;
 	}
 	
 	

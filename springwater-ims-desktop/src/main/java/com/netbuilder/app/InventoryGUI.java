@@ -1,5 +1,6 @@
 package com.netbuilder.app;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -40,14 +41,17 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 	private JScrollPane scrollPane;
 	private JPanel scrollPanel;
 	
+	
 	private JPanel searchPanel;
 	private JPanel searchFieldPanel;
 	private JPanel searchButtonPanel;
 	private JPanel addNewItemButtonPanel;
+	private JPanel refreshButtonPanel;
 	
 	private JTextField searchField;
 	private JButton searchButton;
 	private JButton addNewItemButton;
+	private JButton refreshButton;
 	
 	private ArrayList<InventoryItemFrame> items = new ArrayList<InventoryItemFrame>();
 	
@@ -102,8 +106,9 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		searchPanel.repaint();
 		searchPanel.revalidate();
 		setAbsoluteSize(searchFieldPanel, WIDTH*2/5, SEARCH_PANEL_HEIGHT);
-		setAbsoluteSize(searchButtonPanel, WIDTH*4/15, SEARCH_PANEL_HEIGHT);
-		setAbsoluteSize(addNewItemButtonPanel, WIDTH*4/15, SEARCH_PANEL_HEIGHT);
+		setAbsoluteSize(searchButtonPanel, WIDTH*2/15, SEARCH_PANEL_HEIGHT);
+		setAbsoluteSize(refreshButtonPanel, WIDTH*2/15, SEARCH_PANEL_HEIGHT);
+		setAbsoluteSize(addNewItemButtonPanel, WIDTH*3/15, SEARCH_PANEL_HEIGHT);
 
 		setAbsoluteSize(scrollPane, WIDTH, HEIGHT-SEARCH_PANEL_HEIGHT);
 		
@@ -151,11 +156,15 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		setBorder(searchPanel, new Color(0,0,0));
 		searchPanel.setLayout(new BoxLayout(searchPanel, BoxLayout.X_AXIS));
 		
+		
 		searchFieldPanel = new JPanel();
 		addSearchFieldPanel();
 		
 		searchButtonPanel = new JPanel();
 		addSearchButtonPanel();
+		
+		refreshButtonPanel = new JPanel();
+		addRefreshButtonPanel();
 		
 		addNewItemButtonPanel = new JPanel();
 		addAddNewItemButtonPanel();
@@ -165,6 +174,7 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		
 		
 	}
+	
 	
 	private void setBorder(JPanel panel ,Color c) {
 		panel.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, c));
@@ -201,7 +211,7 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 	}
 	
 	private void addSearchButtonPanel() {
-		setAbsoluteSize(searchButtonPanel, WIDTH*4/15, SEARCH_PANEL_HEIGHT);
+		setAbsoluteSize(searchButtonPanel, WIDTH*2/15, SEARCH_PANEL_HEIGHT);
 		searchButtonPanel.setLayout(new GridBagLayout());
 		
 		searchButton = new JButton("Search");
@@ -210,9 +220,20 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		
 		searchPanel.add(searchButtonPanel);
 	}
+	
+	private void addRefreshButtonPanel() {
+		setAbsoluteSize(refreshButtonPanel, WIDTH*2/15, SEARCH_PANEL_HEIGHT);
+		refreshButtonPanel.setLayout(new GridBagLayout());
+		
+		refreshButton = new JButton("Refresh");
+		refreshButton.addActionListener(this);
+		refreshButtonPanel.add(refreshButton);
+		
+		searchPanel.add(refreshButtonPanel);
+	}
 
 	private void addAddNewItemButtonPanel() {
-		setAbsoluteSize(addNewItemButtonPanel, WIDTH*4/15, SEARCH_PANEL_HEIGHT);
+		setAbsoluteSize(addNewItemButtonPanel, WIDTH*3/15, SEARCH_PANEL_HEIGHT);
 		addNewItemButtonPanel.setLayout(new GridBagLayout());
 		
 		addNewItemButton = new JButton("Add New Item");
@@ -295,6 +316,9 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		else if(e.getSource().equals(addNewItemButton)) {
 			AddItemFrame aif = new AddItemFrame();
 			aif.setVisible(true);
+		}
+		else if(e.getSource().equals(refreshButton)) {
+			refresh();
 		}
 	}
 
