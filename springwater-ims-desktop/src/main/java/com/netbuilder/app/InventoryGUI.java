@@ -230,7 +230,6 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		
 		scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.X_AXIS));
 		
-		//addPlaceholderItems();
 		addAllItems();
 
 		setAbsoluteSize(scrollPane, WIDTH, HEIGHT-SEARCH_PANEL_HEIGHT);
@@ -241,33 +240,18 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		scrollPanel.revalidate();
 	}
 	
-	/*
-	private void addPlaceholderItems() {
-		Object[][] itemArray = placeHolders.fetchInventoryList();
-		
-		String imageFolderLocation = "src/main/resources/images/";
-		
-		for(int j = 0; j < 3; j++) {
-			for(int i = 0; i < itemArray.length; i++) {
-				int itemID = (int) itemArray[i][0];
-				String name = (String) itemArray[i][1];
-				int quantity = (int) itemArray[i][2];
-				String imageLoc = imageFolderLocation.concat((String) itemArray[i][4]);
-				
-				InventoryItemFrame invItem = new InventoryItemFrame(this, WIDTH/2, itemID, name, quantity, false, imageLoc);
-				items.add(invItem);
-			}
-		}
-		
-		fillContentPanelsBasedOnSize();
-		
+	
+	public void refresh() {
+		currentlyDisplayedItems = items;
+		addAllItems();
 	}
-	*/
 	
 	private void addAllItems() {
-		ArrayList<Item> loadedItems = loader.loadAllCurrentItems();
+		items.clear();
+		ArrayList<Item> loadedItems = loader.loadAllItems();
 		for(Item i : loadedItems) {
-			items.add(new InventoryItemFrame(this, WIDTH/2, i));
+			items.add(new InventoryItemFrame(this, ITEM_WIDTH, i));
+			
 		}
 				
 		fillContentPanelsBasedOnSize();
@@ -304,7 +288,7 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 			if(!searchField.getText().equals("")) {
 				filterResults(searchField.getText());
 			} else {
-				currentlyDisplayedItems = items;
+				refresh();
 				fillContentPanelsBasedOnSize();
 			}
 		}
