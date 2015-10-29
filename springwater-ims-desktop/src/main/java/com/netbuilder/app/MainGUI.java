@@ -88,7 +88,8 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
             consumer = session.createConsumer(destination);
 		}
 		catch (Exception e) {
-			
+			JFrame popupFrame = new JFrame();
+			JOptionPane.showMessageDialog(popupFrame, "Cannot connect to system backend, some features will not be available.");
 		}
 	}
 	

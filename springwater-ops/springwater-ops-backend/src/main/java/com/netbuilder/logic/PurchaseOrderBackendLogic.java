@@ -143,6 +143,7 @@ public class PurchaseOrderBackendLogic {
 			//TODO get current employee and set on purchase order
 			PurchaseOrderStatus pOS = pOSLoader.getPurchaseOrderStatus(2);
 			pO.setPurchaseOrderStatus(pOS);
+			pO.setDatePlaced(new java.util.Date());
 			pOLoader.setPurchaseOrder(pO);
 		}
 	}
