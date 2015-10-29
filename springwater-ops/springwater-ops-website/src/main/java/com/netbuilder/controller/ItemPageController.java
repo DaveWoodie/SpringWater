@@ -35,10 +35,8 @@ public class ItemPageController {
 			ArrayList<Item> resultList = ItemDatabase.searchKeyword(result.getKeyword());
 			ArrayList<Item> relatedList = new ArrayList<Item>();
 			int deleteIndex = 0;
-			for(Item item : resultList)
-			{
-				if(item.getItemID().equals(result.getItemID()))
-				{
+			for(Item item : resultList)	{
+				if(item.getItemID().equals(result.getItemID()))	{
 					deleteIndex = resultList.indexOf(item);
 				}
 			}

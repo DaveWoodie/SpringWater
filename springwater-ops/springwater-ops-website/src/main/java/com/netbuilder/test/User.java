@@ -2,6 +2,8 @@ package com.netbuilder.test;
 
 import java.util.ArrayList;
 
+//import java.util.ArrayList;
+
 /**
  * 
  * @author ccooper
@@ -39,6 +41,7 @@ public class User {
 				this.customerCredit = customerCredit;
 				this.firstName = firstName;
 				this.lastName = lastName;
+				addressList = new ArrayList<Address>();
 			}
 	
 	// ACCESSORS ****
@@ -72,5 +75,13 @@ public class User {
 	
 	public double getCustomerCredit() {
 		return this.customerCredit;
+	}
+	
+	public void addAddress(Address address) {
+		addressList.add(address);
+	}
+	
+	public ArrayList<Address> getAddressList() {
+		return addressList;
 	}
 }
