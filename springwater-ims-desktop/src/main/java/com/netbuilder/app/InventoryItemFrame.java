@@ -22,6 +22,7 @@ public class InventoryItemFrame extends JPanel implements MouseListener {
 	private static final long serialVersionUID = 1L;
 	private static int HEIGHT = 70;
 	private int WIDTH;
+	private Item item;
 	
 	private int IMAGE_SIZE = 50;
 	
@@ -43,16 +44,9 @@ public class InventoryItemFrame extends JPanel implements MouseListener {
 	private Color backgroundColor = new Color(197,208,199);
 	private Color hoverBackgroundColor = new Color(157,166,159);
 	
-	public InventoryItemFrame(InventoryGUI src, int width, int productID, String productName, int quantity, boolean isPorousware, String imageLocation) {
-		this.productID = productID;
-		this.productName = productName;
-		this.quantity = quantity;
-		this.porousware = isPorousware;
-		this.imageLocation = imageLocation;
-		this.WIDTH = width;
-		initialSetup();
-		
-	}
+	private Color discontinuedBackgroundColor = new Color(234,139,139);
+	private Color discontinuedHoverBackgroundColor = new Color(187,111,111);
+	
 	
 	public InventoryItemFrame(InventoryGUI src, int width, Item item) {
 		this.productID = item.getIdItem();
@@ -60,6 +54,7 @@ public class InventoryItemFrame extends JPanel implements MouseListener {
 		this.quantity = item.getStock();
 		this.porousware = item.isPorousware();
 		this.imageLocation = item.getImageLocation();
+		this.item = item;
 		this.WIDTH = width;
 		initialSetup();
 	}
@@ -71,7 +66,7 @@ public class InventoryItemFrame extends JPanel implements MouseListener {
 		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		this.setFinalSize(this, this.WIDTH, HEIGHT);
 		this.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, new Color(0,0,0)));
-		this.setBackground(backgroundColor);
+		setNormalBackground();
 		
 		this.addMouseListener(this);
 		
@@ -158,6 +153,28 @@ public class InventoryItemFrame extends JPanel implements MouseListener {
 	public String getName() {
 		return productName;
 	}
+	
+	private void setHoverBackground() {
+		if(item.isDiscontinued()) {
+			setBackground(discontinuedHoverBackgroundColor);
+		} else {
+			setBackground(hoverBackgroundColor);
+		}
+		repaint();
+		revalidate();
+	}
+	
+
+	private void setNormalBackground() {
+		if(item.isDiscontinued()) {
+			setBackground(discontinuedBackgroundColor);
+		} else {
+			setBackground(backgroundColor);
+		}
+		repaint();
+		revalidate();
+	}
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		ItemGUI itemGUI = new ItemGUI(this.productID);
@@ -171,10 +188,11 @@ public class InventoryItemFrame extends JPanel implements MouseListener {
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		setBackground(hoverBackgroundColor);
+		setHoverBackground();
 	}
 	@Override
 	public void mouseExited(MouseEvent e) {
-		setBackground(backgroundColor);
+
+		setNormalBackground();
 	}
 }
