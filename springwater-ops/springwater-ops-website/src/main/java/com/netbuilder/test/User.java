@@ -1,6 +1,6 @@
 package com.netbuilder.test;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 /**
  * 
@@ -23,7 +23,7 @@ public class User {
 	private String dateOfBirth;
 	private String phoneNumber;
 	private double customerCredit;
-	private ArrayList<Address> addressList;
+//	private ArrayList<Address> addressList;
 	
 	// Class constructor
 	public User(int customerID, String username, String email, String dateOfBirth,

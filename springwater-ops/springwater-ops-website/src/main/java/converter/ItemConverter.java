@@ -39,6 +39,7 @@ public class ItemConverter {
 		String category = i.getAttribute("Category");
 		
 		String keyword = i.getAttribute("Keyword");
+		System.out.println(keyword);
 
 		String colour = i.getAttribute("Color");
 		

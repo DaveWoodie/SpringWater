@@ -1,6 +1,6 @@
 package connections;
 
-import entities.WishList;
+//import entities.WishList;
 
 public class MongoDataTest {
 

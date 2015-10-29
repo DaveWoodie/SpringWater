@@ -179,8 +179,8 @@ public class ItemDatabase {
 //				"Doesn't come with a rubber duck. 0/5");
 	}
 
-	static public Item searchID(String search) {
-		for (Item item : itemList) {
+	static public com.netbuilder.test.Item searchID(String search) {
+		for (com.netbuilder.test.Item item : itemList) {
 			if (item.getItemID().equals(search)) {
 				return item;
 			}
