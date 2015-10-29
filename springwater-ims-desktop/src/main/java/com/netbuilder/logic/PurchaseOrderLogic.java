@@ -4,6 +4,7 @@
  */
 package com.netbuilder.logic;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -17,7 +18,9 @@ import javax.swing.JOptionPane;
 
 
 
+
 import com.netbuilder.JMS.Sender;
+
 import connections.MongoPull;
 import loaders.ItemLoader;
 import loaders.PurchaseOrderLineLoader;
