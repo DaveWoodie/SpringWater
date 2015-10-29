@@ -37,7 +37,7 @@ public class MongoPull {
 	private List<String> itemInfs = new ArrayList<String>();
 	private List<String> wishListSet = new ArrayList<String>();
 
-	
+	/*
 	
 	public static void main(String[] args) {
 		
@@ -53,6 +53,7 @@ public class MongoPull {
 		
 		
 	}
+	*/
 	
 	public MongoPull() {
 		
