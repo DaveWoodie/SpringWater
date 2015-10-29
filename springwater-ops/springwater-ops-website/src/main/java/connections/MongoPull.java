@@ -37,12 +37,14 @@ public class MongoPull {
 	private List<String> itemInfs = new ArrayList<String>();
 	private List<String> wishListSet = new ArrayList<String>();
 
+	
+	/*
 	public static void main(String[] args) {
 		
 		MongoPull pull = new MongoPull();
 		MongoPush push = new MongoPush();
 		
-		
+		/*
 		ArrayList<Review> revs = new ArrayList<Review>();
 		revs.add(new Review(
 						"gn0m3luvv3r",
@@ -55,12 +57,12 @@ public class MongoPull {
 );revs.add(new Review("xXspearjacksonXx", 5,
 		"WOW. BRILLIANT. BEST SPADE EVER."));
 		Item newItem = new Item(
-						"Carbon Digging Spade",
-						"Forged from heat-treated carbon steel for extra strength. Epoxy-coated head for improved resistance to rust, scratches, humidity and alkalines in the soil. With soft-grip, forward tilt handle giving the ideal digging angle.",
-						(float)14.99,
-						(float)10.00,
-						1000,
-						"spearjackson.jpg",
+						"Neverbend Square Shovel",
+						"Square, open socket shovel. Hammer finish epoxy coated head for improved resistance to rust, scratches, humidity and alkalines in the soil. Weatherproofed hardwood shaft for greater durability. Supergrip handle - forward tilt gives the ideal digging angle. Treaded for more comfortable digging.",
+						(float)29.99,
+						(float)15.40,
+						85,
+						"neverbend.jpg",
 						false,
 						true,
 						1,
@@ -85,14 +87,20 @@ public class MongoPull {
 //		ArrayList<Review> revie
 		//push.updateItem(i);
 		
-		ArrayList<Item> items = pull.getAllItems();
-		for(Item it : items) {
-			it.print();
-			System.out.println();
+//		
+//		ArrayList<Item> items = pull.getAllItems();
+//		for(Item it : items) {
+//			it.print();
+//			System.out.println();
+//		}
+		
+		ArrayList<Address> addresses = pull.getAllAddresses();
+		for(Address a : addresses) {
+			push.updateAddress(a);
 		}
 		
 	}
-	
+	*/
 	public MongoPull() {
 		
 	}
