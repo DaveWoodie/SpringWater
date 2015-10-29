@@ -78,10 +78,10 @@ public class JSPController {
 		return "ordersPage";
 	}
 
-	@RequestMapping("orderconfirm")
-	public String orderConfirm(ModelAndView modelAndView) {
-		return "orderConfirm";
-	}
+//	@RequestMapping("orderconfirm")
+//	public String orderConfirm(ModelAndView modelAndView) {
+//		return "orderConfirm";
+//	}
 
 	@RequestMapping("profile")
 	public String profilePage(ModelAndView modelAndView) {
