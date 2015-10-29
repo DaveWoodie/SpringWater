@@ -81,18 +81,9 @@ public class SupplierFrame extends JFrame{
 		Object [][] products = lD.fetchProducts(selectedID);
 		Object [][] supplierDetails = lD.fetchSupplierByID(selectedID);
 		left = new JPanel();
-//		left.setLayout(new BoxLayout(left, BoxLayout.Y_AXIS));
-//		try{
-//			String s = "src/main/resources/images/" + supplierDetails[0][6];
-////			System.out.println(s);
-//			BufferedImage Logo = ImageIO.read(new File(s));
-//			leftLogo = new JLabel(new ImageIcon(Logo));
-//		}
-//		catch(IOException ex){
-//			System.out.println(ex);
-//		}
-		
+
 		imageLocation = ((String)supplierDetails[0][6]);
+//		System.out.println(imageLocation);
 		
 		left = new JPanel();
 //		 setFinalSize(left, this.WIDTH*2/6, HEIGHT);

@@ -296,7 +296,6 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		} else {
 			currentlyDisplayedItems = filteredItems;
 		}
-		System.out.println(currentlyDisplayedItems.size());
 		fillContentPanelsBasedOnSize();
 		
 		

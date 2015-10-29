@@ -112,7 +112,7 @@ public class ItemGUI extends JFrame
 		
 		//pulls item info from MongDB
 		itemList = itemLoader.loadItemByID(itemID);
-		System.out.println(itemList.size());
+//		System.out.println(itemList.size());
 		item = itemList.get(0);
 		
 		setUpTableModel();

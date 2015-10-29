@@ -91,34 +91,6 @@
                             </div>
                         </div>
                     </li>
-                    
-                    <!-- Filter Box -->
-                    <li>
-                        <div class="list-group panel">
-                            <a href="#Filter" class="list-group-item strong" data-toggle="collapse" data-parent="#FilterMenu">Filter results<i class="fa fa-caret-down"></i></a>
-                            <div class="collapse" id="Filter">
-                                <a href="#ColourMenu" class="list-group-item strong" data-toggle="collapse" data-parent="#ColourMenu">Colour<i class="fa fa-caret-down"></i></a>
-                                <div class="collapse list-group-submenu" id="ColourMenu">
-                                    <a href="#" class="list-group-item" data-parent="#ColourMenu">
-                                        <a th:href="@{/items(colour=Blue)}" class="btn btn-primary" type="button" id="BlueButton"></a>
-                                        <a th:href="@{/items(colour=Green)}" class="btn btn-success" type="button" id="GreenButton"></a>
-                                        <a th:href="@{/items(colour=Yellow)}" class="btn btn-warning" type="button" id="YellowButton"></a>
-                                        <a th:href="@{/items(colour=Red)}" class="btn btn-danger" type="button" id="RedButton"></a>
-                                        <a th:href="@{/items(colour=Grey)}" class="btn" style="background:gray" type="button" id="GreyButton"></a>
-                                        <a th:href="@{/items(colour=White)}" class="btn btn-default btn-outline" type="button" id="WhiteButton"></a>
-
-                                    </a>
-                                </div>
-                                <a href="#CategoryMenu" class="list-group-item strong" data-toggle="collapse" data-parent="#CategoryMenu">Category<i class="fa fa-caret-down"></i></a>
-                                <div class="collapse list-group-submenu" id="CategoryMenu">
-                                    <a th:href="@{/items(category=Gnome)}" class="list-group-item" data-parent="#CategoryMenu">Gnomes</a>
-                                    <a th:href="@{/items(category=Furniture)}" class="list-group-item" data-parent="#CategoryMenu">Furniture</a>
-                                    <a th:href="@{/items(category=Tool)}" class="list-group-item" data-parent="#CategoryMenu">Tools</a>
-                                    <a th:href="@{/items(category=Pottery)}" class="list-group-item" data-parent="#CategoryMenu">Pottery</a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
               	</ul>
   				</div>
   				
