@@ -47,4 +47,10 @@ public class ItemLoader
 	{
 		return mongoPull.getAllCurrentItems();
 	}
+
+	public ArrayList<Item> loadAllItems() 
+	{
+		return mongoPull.getAllItems();
+	}
+	
 }
