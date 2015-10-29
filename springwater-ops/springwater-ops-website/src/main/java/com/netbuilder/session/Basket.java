@@ -44,7 +44,11 @@ public class Basket {
 	}
 
 	public int getSize() {
-		return this.itemList.size();
+		int size = 0;
+		for(ItemLine itemLine : itemList) {
+			size += itemLine.getQuantity();
+		}
+		return size;
 	}
 
 	public void removeItemLine(ItemLine item) {

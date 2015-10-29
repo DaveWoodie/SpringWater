@@ -51,7 +51,7 @@ public class Sender{
             producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
 
             // Create a messages
-            ObjectMessage message = session.createObjectMessage((Serializable) toSend);
+            ObjectMessage message = session.createObjectMessage(toSend);
 
             // Tell the producer to send the message
             System.out.println("Sending Message...");

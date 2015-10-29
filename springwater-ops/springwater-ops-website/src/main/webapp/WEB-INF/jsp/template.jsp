@@ -69,17 +69,28 @@
                         </span>
                     </div>
                 </span>
-
+                
                 <form class="navbar-form navbar-right" role="search">
                     <a href="wishlist" class="btn btn-danger"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Wish List <span class="badge">0</span></a>
                     <a href="basket" class="btn btn-info"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Basket <span class="badge" id="basketCount"></span></a>
-                    <a href="loginregister" type="submit" class="btn btn-success"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login</a>
-                    <a href="loginregister" class="btn btn-primary"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Register</a>
-                    
-                    <script>
-                    	document.getElementById("basketCount").innerHTML = getCookies("itemCount");
-                    </script>
+                    <a href="loginregister" type="submit" class="btn btn-success" id="userButton"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span id="userName"></span></a>
+                    <a href="logout" type="submit" class="btn btn-warning" id ="logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span><span> Log out</span></a>
                 </form>
+                
+                <script th:inline="javascript">
+                    document.getElementById("basketCount").innerHTML = getCookies("itemCount");
+                    if(getCookies("userName") != null) {
+                        document.getElementById("userName").innerHTML = " " + getCookies("userName");
+                        document.getElementById("userButton").setAttribute("href","profile");
+                    }
+                    else
+                    {
+                        document.getElementById("userName").innerHTML = " Login/Register";
+                        document.getElementById("userButton").setAttribute("href","loginregister");
+                        document.getElementById("logout").style.display = 'none';
+                    }
+                </script>
+                
             </div>
             <!-- END OF COLLASPE AREA -->
         </div>
@@ -119,5 +130,4 @@
     </div>
     <!-- END OF FOOTER -->
 </body>
-
 </html>
