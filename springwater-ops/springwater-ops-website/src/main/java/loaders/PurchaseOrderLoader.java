@@ -192,6 +192,10 @@ public class PurchaseOrderLoader {
 	 * @param pO the purchase order object to be created
 	 */
 	public void createPurchaseOrder (PurchaseOrder pO) {
+		System.out.println("Reached create purchase order");
+		System.out.println(pO.getEmployee().getUser().getUserID());
+		System.out.println(pO.getPurchaseOrderStatus().getStatusID());
+		System.out.println(pO.getSupplier().getSupplierID());
 		sql = "INSERT INTO purchaseOrder (idEmployee, idPurchaseOrderStatus, idSupplier) VALUE (" + pO.getEmployee().getUser().getUserID() + ", " + pO.getPurchaseOrderStatus().getStatusID() + ", " + pO.getSupplier().getSupplierID() + ")";
 		sqlDB.openCon();
 		try {
