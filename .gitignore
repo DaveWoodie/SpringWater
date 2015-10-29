@@ -22,3 +22,5 @@ springwater-ims-desktop/.classpath
 springwater-ims-desktop/.DS_Store
 
 springwater-ims-desktop/target/
+
+springwater-ops\springwater-ops-backend\activemq-data

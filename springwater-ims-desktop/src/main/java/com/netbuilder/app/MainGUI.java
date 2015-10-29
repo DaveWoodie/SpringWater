@@ -11,10 +11,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
+import javax.jms.Connection;
+import javax.jms.Destination;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
+import javax.jms.Session;
+import javax.jms.MessageConsumer;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,6 +28,8 @@ import javax.swing.JPanel;
 import javax.swing.BoxLayout;
 import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
+
+import org.apache.activemq.ActiveMQConnectionFactory;
 
 import entities.MessageContent;
 import loaders.LoginLoader;
@@ -47,6 +53,8 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 	private String userID;
 	private LoginLoader loginLoader = new LoginLoader();
 	private String[] User = new String[1];
+	private String boardName = "IMS.IN";
+	public MessageConsumer consumer;
 	
 	/**
 	 * Method to call GUI initialisation
@@ -61,6 +69,27 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 		this.userID = userID;
 		User = loginLoader.getNameByID(userID);
 		initUI();
+		try {
+			 
+            // Create a ConnectionFactory
+            ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://10.50.15.25:8081");
+
+            // Create a Connection
+            Connection connection = connectionFactory.createConnection();
+            connection.start();
+
+            // Create a Session
+            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+
+            // Create the destination (Topic or Queue)
+            Destination destination = session.createQueue(boardName);
+
+            // Create a MessageConsumer from the Session to the Topic or Queue
+            consumer = session.createConsumer(destination);
+		}
+		catch (Exception e) {
+			
+		}
 	}
 	
 	/**
@@ -190,12 +219,15 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 	@Override
 	public void onMessage(Message message) {
 		// TODO Handle inbound message types
+		System.out.println("Received message");
 		ObjectMessage objectMessage = (ObjectMessage) message;
 		try {
 			if (objectMessage.getObject() instanceof MessageContent) {
 				MessageContent messageContent = (MessageContent) objectMessage.getObject();
 				if (messageContent.getMessage().equals("damagedStockReport")) {
+					System.out.println("Message stock damage report");
 					JFrame popupFrame = new JFrame();
+					System.out.println((String) messageContent.getContents());
 					JOptionPane.showMessageDialog(popupFrame, (String) messageContent.getContents());
 				}
 			}
