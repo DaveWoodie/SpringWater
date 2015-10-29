@@ -9,6 +9,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -28,7 +30,7 @@ import com.netbuilder.logic.LoginAuthentication;
 /**
  * Create a login JFrame
  */
-public class LoginGUI extends JPanel implements ActionListener{
+public class LoginGUI extends JPanel implements ActionListener, MouseListener{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -76,6 +78,7 @@ public class LoginGUI extends JPanel implements ActionListener{
 		{
 			BufferedImage Logo = ImageIO.read(new File("src/main/Resources/logo.png"));
 			JLabel labelLogo = new JLabel(new ImageIcon(Logo));
+			labelLogo.addMouseListener(this);
 			panelLogo.add(labelLogo);
 		}
 		catch(IOException ex)
@@ -149,5 +152,35 @@ public class LoginGUI extends JPanel implements ActionListener{
 				textPassword.setText("");
 			}
 		}
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		src.revertToMain("1");
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

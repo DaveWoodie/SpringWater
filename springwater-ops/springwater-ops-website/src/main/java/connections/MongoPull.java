@@ -49,8 +49,6 @@ public class MongoPull {
 			System.out.println();
 		}
 		
-		
-		
 	}
 	
 	public MongoPull() {
