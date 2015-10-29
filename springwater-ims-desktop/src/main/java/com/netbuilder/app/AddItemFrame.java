@@ -72,6 +72,7 @@ public class AddItemFrame extends JFrame
 	private SupplierLoader supplierLoader = new SupplierLoader();
 	private String imageLocation;
 	private ArrayList<String> supplierNames = new ArrayList<String>();
+	private ArrayList<String> categoryList = new ArrayList<String>();
 	private ArrayList<Supplier> supplierList;
 
 	/**
@@ -106,6 +107,9 @@ public class AddItemFrame extends JFrame
 		{
 			supplierNames.add(supplier.getSupplierName());
 		}
+		
+		//get category list from SQL
+		categoryList = itemLoader.getCategoryList();
 	}
 	
 	/**
@@ -243,11 +247,11 @@ public class AddItemFrame extends JFrame
 		c.gridy = 3;
 		main.add(itemUnitPriceR, c);
 		
-		typeR = new JComboBox();
-		//TODO get category list and add to combo box
-//		supplierR.setSelectedIndex(0);
+		typeR = new JComboBox(categoryList.toArray());
+		typeR.insertItemAt("Choose a category", 0);
+		typeR.setSelectedIndex(0);
 		typeR.setBorder(BorderFactory.createLineBorder(Color.black));
-		c.gridy =5;
+		c.gridy = 5;
 		main.add(typeR, c);
 		
 		//Supplier combo box
@@ -276,7 +280,6 @@ public class AddItemFrame extends JFrame
 		//ActionListeners
 		addIB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO add item
 				if(isFilledOut()){
 					getResult();
 				}				
@@ -505,21 +508,21 @@ public class AddItemFrame extends JFrame
 		copyFile(new File(textBrowse.getText()));
 		
 
-		Item item = new Item(itemNameR.getText(),                       			    //name
-					  		 itemDescriptionR.getText(),                			    //description
-					         Float.parseFloat(itemPriceR.getText()),    			    //price
-					         Float.parseFloat(itemUnitPriceR.getText()),				//cost
-					         0, 						     		     				//initial stock
-					         imageLocation, 				          	 				//image location
-					         false,						  	             				//is Discontinued
-					         porouswareYesB.isSelected(),    		     				//is Porouswareable
-					         getSupplierID((String) supplierR.getSelectedItem()), 0, 0);      //supplier
+		Item item = new Item(itemNameR.getText(),                       			    	//name
+					  		 itemDescriptionR.getText(),                			 	   //description
+					         Float.parseFloat(itemPriceR.getText()),    				    //price
+					         Float.parseFloat(itemUnitPriceR.getText()),					//cost
+					         0, 						     		     					//initial stock
+					         imageLocation, 				          	 					//image location
+					         false,						  	             					//is Discontinued
+					         porouswareYesB.isSelected(),    		     					//is Porouswareable
+					         getSupplierID((String) supplierR.getSelectedItem()), 0, 0);	//supplier
 		
-		//TODO MongoDB doesn't add item
 		//add the item to MongoDB
 		itemLoader.addItem(item);
 		
 		JOptionPane.showMessageDialog(null, "Item successfully added");
+		//TODO window doesn't close after item is added
 		//this.getContentPane().dispatchEvent(new WindowEvent((Window) this.getContentPane(), WindowEvent.WINDOW_CLOSING));
 	}
 	
@@ -561,9 +564,9 @@ public class AddItemFrame extends JFrame
 		imageLocation = Source.getName();
 	}
 	
-	/*public static void main(String[] args)
+	public static void main(String[] args)
 	{
 		AddItemFrame i = new AddItemFrame();
 		i.setVisible(true);
-	}*/
+	}
 }

@@ -28,4 +28,16 @@ public class Review {
 	public String getBody() {
 		return body;
 	}
+	
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+
+	public void setBody(String body) {
+		this.body = body;
+	}
 }

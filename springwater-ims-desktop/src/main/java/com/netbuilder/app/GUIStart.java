@@ -10,23 +10,16 @@ import java.awt.Dimension;
 import javax.jms.JMSException;
 import javax.swing.JFrame;
 
-import com.netbuilder.JMS.Receiver;
+
 
 @SuppressWarnings("serial")
 public class GUIStart extends JFrame {
 	private LoginGUI lFrame;
-	private static Receiver receiver = new Receiver();
 	private static MainGUI mFrame;
 
 	public static void main(String[] args) {
 		@SuppressWarnings("unused")
 		GUIStart gStar1t = new GUIStart();
-		try {
-			receiver.consumer.setMessageListener(mFrame);
-		} catch (JMSException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
  
 	/**
@@ -74,6 +67,12 @@ public class GUIStart extends JFrame {
 		setMinimumSize(new Dimension(600, 800));
 		setLocationRelativeTo(null);
 		setVisible(true);
+		try {
+			mFrame.consumer.setMessageListener(mFrame);
+		} catch (JMSException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
