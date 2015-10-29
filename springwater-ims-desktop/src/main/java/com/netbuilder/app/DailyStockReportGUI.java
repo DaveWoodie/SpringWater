@@ -24,9 +24,13 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import com.netbuilder.logic.StockReportLogic;
+
 public class DailyStockReportGUI {
 	int lowSelectedID;
 	int fastSelectedID;
+	
+	private StockReportLogic logic = new StockReportLogic();
 	
 	public DailyStockReportGUI() {
 	}
@@ -38,7 +42,7 @@ public class DailyStockReportGUI {
 	public JPanel getStockReportPanel() {
 //		int numRows = 30;
 		String[] colHeadings = { "Item ID", "Item Name", "Stock Level","Sales Rate" };
-		final JLabel fastSellingLabel = new JLabel("Fast Selling Items", SwingConstants.CENTER);
+		final JLabel fastSellingLabel = new JLabel("Fluctuating Items", SwingConstants.CENTER);
 		final JLabel LowStockLabel = new JLabel("Current Stock", SwingConstants.CENTER);
 		JPanel pane = new JPanel();
 		JPanel lowStockPanel = new JPanel();
@@ -51,7 +55,7 @@ public class DailyStockReportGUI {
 		// Create Table Models
 		LoadData lD = new LoadData();
 		@SuppressWarnings("serial")
-		DefaultTableModel lowStockModel = new DefaultTableModel(lD.fetchStockList(), colHeadings){
+		DefaultTableModel lowStockModel = new DefaultTableModel(logic.fetchStockList(), colHeadings){
 			@Override
 		    public boolean isCellEditable(int i, int i1) {
 		        return false; //To change body of generated methods, choose Tools | Templates.
@@ -60,7 +64,7 @@ public class DailyStockReportGUI {
 		};
 		//lowStockModel.setColumnIdentifiers(colHeadings);
 		@SuppressWarnings("serial")
-		DefaultTableModel fastSellingkModel = new DefaultTableModel(lD.fetchHighSaleList(), colHeadings){
+		DefaultTableModel fastSellingkModel = new DefaultTableModel(logic.fetchFastMovingList(), colHeadings){
 			@Override
 		    public boolean isCellEditable(int i, int i1) {
 		        return false; //To change body of generated methods, choose Tools | Templates.

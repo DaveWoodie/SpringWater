@@ -158,7 +158,6 @@ public class PurchaseOrdersGUI extends JPanel {
 				String input = searchField.getText();
 				switch (filterPurchaseOrder.getSelectedItem().toString()) {
 					case "Order ID":
-						System.out.println(input);
 						int i = Integer.parseInt(input);
 						update = lD.fetchPurchaseOrdersByID(i);
 						break;
@@ -175,7 +174,6 @@ public class PurchaseOrdersGUI extends JPanel {
 						SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
 						try {
 							Date date = formatter.parse(input);
-							System.out.println("Date populated: " + formatter.format(date));
 							update = lD.fetchPurchaseOrdersByDate(date);
 						} catch (ParseException e1) {
 							// TODO Auto-generated catch block
@@ -183,7 +181,6 @@ public class PurchaseOrdersGUI extends JPanel {
 							try {
 								formatter = new SimpleDateFormat("dd/MM/yyyy");
 								Date date = formatter.parse(input);
-								System.out.println("Date populated: " + formatter.format(date));
 								update = lD.fetchPurchaseOrdersByDate(date);
 							} catch (ParseException e2) {
 								// TODO Auto-generated catch block
