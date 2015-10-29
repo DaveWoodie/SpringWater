@@ -38,35 +38,22 @@ public class MongoPull {
 	private List<String> wishListSet = new ArrayList<String>();
 
 	
-	/*
+	
 	public static void main(String[] args) {
 		
 		MongoPull pull = new MongoPull();
 		MongoPush push = new MongoPush();
 		
 		
-//		ArrayList<Item> items = pull.getAllItems();
-//		for(Item it : items) {
-//			it.print();
-//			System.out.println();
-//		}
-		
-		Item i = pull.getItem(8);
-		try {
-			i.addAttribute("Category", "Tools");
-			i.addAttribute("Keyword", "Spade");
-			i.addAttribute("Color", "Grey");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		ArrayList<Item> items = pull.getAllItems();
+		for(Item it : items) {
+			it.print();
+			System.out.println();
 		}
-
-		push.updateItem(i);
 		
-		i=pull.getItem(8);
-		i.print();
+		
 	}
-	*/
+	
 	public MongoPull() {
 		
 	}
