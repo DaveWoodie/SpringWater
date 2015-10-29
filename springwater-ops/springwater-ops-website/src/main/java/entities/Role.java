@@ -43,4 +43,8 @@ public class Role implements Serializable{
 	public void setRole(String Role) {
 		this.Role = Role;
 	}
+	
+	public void setID(int id) {
+		this.ID = id;
+	}
 }

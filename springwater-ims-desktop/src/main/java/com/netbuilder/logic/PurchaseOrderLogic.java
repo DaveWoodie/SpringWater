@@ -142,7 +142,9 @@ public class PurchaseOrderLogic {
 				total = total + (pOLList.get(j).getQuantity() * itemPrice);
 			}
 			purchaseOrderList[i][0] = pOList.get(i).getIDPurchaseOrder();
-			purchaseOrderList[i][1] = df.format(pOList.get(i).getDatePlaced()); 
+			if (pOList.get(i).getDatePlaced() != null) {
+				purchaseOrderList[i][1] = df.format(pOList.get(i).getDatePlaced()); 
+			}
 			purchaseOrderList[i][2] = pOList.get(i).getPurchaseOrderStatus().getPurchOrderStatus(); 
 			purchaseOrderList[i][3] = pOList.get(i).getSupplier().getSupplierName();
 			purchaseOrderList[i][4] = "£" + formatter.format(total);

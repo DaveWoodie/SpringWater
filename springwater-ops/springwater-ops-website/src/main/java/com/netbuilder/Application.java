@@ -13,10 +13,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
-import com.netbuilder.test.BasketDatabase;
-import com.netbuilder.test.FaqDatabase;
-import com.netbuilder.test.ItemDatabase;
-import com.netbuilder.test.UserDatabase;
+import com.netbuilder.test.*;
 
 //@EnableMongoRepositories
 //@EnableJpaRepositories
@@ -28,6 +25,7 @@ public class Application  {
 		FaqDatabase.fillDatabase();
 		ItemDatabase.fillDatabase();
 		UserDatabase.fillDatabase();
+		WishlistDatabase.fillDatabase();
 		ApplicationContext ctx = SpringApplication.run(Application.class, args);
 		
 		listBeans(ctx);
