@@ -32,6 +32,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.netbuilder.logic.PurchaseOrderLogic;
 
+import connections.MongoPull;
 import loaders.PurchaseOrderLineLoader;
 import loaders.PurchaseOrderLoader;
 import loaders.SupplierLoader;
@@ -257,10 +258,13 @@ public class ItemGUI extends JFrame
 				{
 					//get item quantity
 					int Quantity = Integer.parseInt(textAdd.getText());
+					System.out.println(Quantity);
+					System.out.println(itemID);
 					
 					//get item from id
-					ArrayList<Item> itemList = itemLoader.loadItemByID(itemID);
-					Item item = itemList.get(0);
+//					ArrayList<Item> itemList = itemLoader.loadItemByID(itemID);
+					MongoPull mP = new MongoPull();
+					Item item = mP.getItem(itemID);
 					
 					//add to purchase order
 					purchaseOrderLogic.addItemToPurchaseOrder(item, Quantity);

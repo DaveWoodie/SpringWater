@@ -214,8 +214,11 @@ public class PurchaseOrdersGUI extends JPanel {
 					System.out.println("No Purchase Order selected!");
 				}
 				else {
+					String date = "";
 					String suppliername = purchaseOrderTable.getValueAt(purchaseOrderTable.getSelectedRow(), 3).toString();
-					String date = purchaseOrderTable.getValueAt(purchaseOrderTable.getSelectedRow(), 1).toString();
+					if (purchaseOrderTable.getValueAt(purchaseOrderTable.getSelectedRow(), 1) != null) {
+						date = purchaseOrderTable.getValueAt(purchaseOrderTable.getSelectedRow(), 1).toString();
+					}
 					String status = purchaseOrderTable.getValueAt(purchaseOrderTable.getSelectedRow(), 2).toString();
 					String total = purchaseOrderTable.getValueAt(purchaseOrderTable.getSelectedRow(), 4).toString();
 					IndividualPurchaseOrderViewFrame iPO = new IndividualPurchaseOrderViewFrame(currentlySelectedOrder, suppliername, date, status, total);
