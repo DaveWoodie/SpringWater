@@ -26,6 +26,8 @@ import javax.swing.JTextField;
 
 import com.netbuilder.logic.SupplierLogic;
 
+import entities.Address;
+
 @SuppressWarnings("serial")
 public class AddSupplierFrame extends JFrame {
 	private JPanel base, main, buttonBar, addressP;
@@ -39,6 +41,7 @@ public class AddSupplierFrame extends JFrame {
 	private int noOfAL = 0;
 	private boolean edit =false;
 	private SupplierLogic sL = new SupplierLogic();
+	private int selectedID, addressID ;
 
 //	public static void main(String[] args) {
 //		AddSupplierFrame a = new AddSupplierFrame(12);
@@ -62,6 +65,7 @@ public class AddSupplierFrame extends JFrame {
 		configFrame();
 		addContent();
 		setValues(id);
+		selectedID = id;
 	}
 	
 	/**
@@ -73,8 +77,7 @@ public class AddSupplierFrame extends JFrame {
 		if (edit) {
 			titleS = "Edit Supplier";
 		}
-		setTitle("titleS");
-//		setSize(600,800);
+		setTitle(titleS);
 		setSize(500, 210);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -136,8 +139,11 @@ public class AddSupplierFrame extends JFrame {
 		c.gridx = 1;
 		c.gridy = 2;
 		main.add(eMialT, c);
-			
-		addAddressPanel();
+		
+		if (!edit) {
+			addAddressPanel();
+		}
+		
 		
 		// Button Bar Panel
 		buttonBar = new JPanel();
@@ -159,13 +165,17 @@ public class AddSupplierFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {						
 				if(isFilledOut()) {
 					if (edit) {
-						getResults();
-						//TODO update supplier
+						sL.updateSupplier(getResults(), selectedID, addressID);
+						JFrame frame = new JFrame("Add new supplier");
+						JOptionPane.showMessageDialog(frame, "Supplier has been added", "Warning",
+								JOptionPane.WARNING_MESSAGE);
+						dispose();
 					}else {
 						sL.addNewSupplier(getResults());
 						JFrame frame = new JFrame("Add new supplier");
 						JOptionPane.showMessageDialog(frame, "Supplier has been added", "Warning",
 								JOptionPane.WARNING_MESSAGE);
+						dispose();
 					}			
 				}			
 			}
@@ -261,18 +271,105 @@ public class AddSupplierFrame extends JFrame {
 	}
 	
 	/**
+	 * Method that is called when editing a supplier
+	 * @param cont the content of the next address line
+	 */
+	private void addAddressPanel(String cont)
+	{	
+		addressC = new GridBagConstraints();
+		addressC.fill = GridBagConstraints.HORIZONTAL;
+		noOfAL++;
+		
+		setSize(getSize().width, getSize().height+20);
+		
+		if(noOfAL !=1)
+		{
+			addressP.removeAll();
+			addressP.revalidate();
+		}
+		
+		addressLineLabels.add(new JLabel("Address Line " + noOfAL + ":"));
+		addressLines.add(new JTextField());
+		addressLines.get(noOfAL-1).setText(cont);
+		addressLines.get(noOfAL-1).setColumns(30);
+		
+		addressPCL = new JLabel("Address Post Code:       ");
+		addressC.gridy = noOfAL+6;
+		addressP.add(addressPCL, addressC);
+		
+		for (int i = 0; i < noOfAL; i++){		
+			addressC.gridx = 0;
+			addressC.gridy = i +2;
+			addressP.add(addressLineLabels.get(i), addressC);
+							
+			addressC.gridx = 1;
+			addressC.gridy = i +2;
+			addressP.add(addressLines.get(i), addressC);
+		}
+		
+		addAddressLine = new JButton("+");  
+		addAddressLine.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				addAddressPanel();
+				
+			}
+		});
+		
+		addressC.gridwidth = 2;
+		addressC.gridx = 0;
+		addressC.gridy = noOfAL+3;
+		addressP.add(addAddressLine, addressC);
+
+		addressTL = new JLabel("Address Town / City:");
+		addressC.gridy = noOfAL+4;
+		addressP.add(addressTL, addressC);
+		
+		addressCL = new JLabel("Address County:");
+		addressC.gridy = noOfAL+5;
+		addressP.add(addressCL, addressC);
+			
+		addressTT = new JTextField();
+		addressTT.setColumns(30);
+		addressC.gridx = 1;
+		addressC.gridy = noOfAL+4;
+		addressP.add(addressTT, addressC);
+		
+		addressCT = new JTextField();
+		addressCT.setColumns(30);
+		addressC.weightx = 0.5;
+		addressC.gridy = noOfAL+5;
+		addressP.add(addressCT, addressC);
+		
+		addressPCT = new JTextField();
+		addressPCT.setColumns(30);
+		addressC.weightx = 0.5;
+		addressC.gridy = noOfAL+6;
+		addressP.add(addressPCT, addressC);
+		
+		addressP.repaint();
+		addressP.revalidate();		
+//		System.out.println("here add");
+	}
+	
+	/**
 	 * Method to set the values of the form to relate to the given id
 	 * @param id - the id of the supplier to edit
 	 */
 	private void setValues(int id) {
-		//TODO get supplier information
-		nameT.setText("");
-		tPhoneT.setText("");
-		eMialT.setText("");
-		addressCT.setText("");
-		addressPCT.setText("");
-		addressTT.setText("");
-		//TODO set text in address lines
+		Object[][] supplier = sL.fetchSupplierByID(id);
+		nameT.setText((String)supplier[0][1]);
+		tPhoneT.setText((String)supplier[0][2]);
+		eMialT.setText((String)supplier[0][3]);
+		Address a = sL.getAddressAsAddress((int)supplier[0][4]);
+		addressID = a.getAddressID();
+		for (String s : a.getAddressLines()) {
+			addAddressPanel(s);
+		}
+		addressCT.setText(a.getCounty());
+		addressPCT.setText(a.getPostCode());
+		addressTT.setText(a.getCity());
+		noOfAL = a.getAddressLines().size();
+		
 	}
 	
 	/**
