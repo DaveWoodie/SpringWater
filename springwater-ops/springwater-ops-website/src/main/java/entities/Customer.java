@@ -107,6 +107,9 @@ public class Customer implements Serializable{
 		return this.blackListStrikes;
 	}
 	
+	public void setCustomerID(int id){
+		customerID = id;
+	}
 	/**
 	 * Method is a mutator for blacklist strike
 	 * @param blackListStrikes
