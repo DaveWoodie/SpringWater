@@ -71,7 +71,7 @@
                 </span>
                 
                 <form class="navbar-form navbar-right" role="search">
-                    <a href="wishlist" class="btn btn-danger"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Wish List <span class="badge">0</span></a>
+                    <a href="wishlist" class="btn btn-danger" id="wishButton"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Wish List <span class="badge" id="wishlistCount"></span></a>
                     <a href="basket" class="btn btn-info"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Basket <span class="badge" id="basketCount"></span></a>
                     <a href="loginregister" type="submit" class="btn btn-success" id="userButton"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span id="userName"></span></a>
                     <a href="logout" type="submit" class="btn btn-warning" id ="logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span><span> Log out</span></a>
@@ -82,12 +82,16 @@
                     if(getCookies("userName") != null) {
                         document.getElementById("userName").innerHTML = " " + getCookies("userName");
                         document.getElementById("userButton").setAttribute("href","profile");
+                        document.getElementById("wishButton").setAttribute("href","wishlist");
+                        document.getElementById("wishlistCount").innerHTML = getCookies("wishCount");
                     }
                     else
                     {
                         document.getElementById("userName").innerHTML = " Login/Register";
                         document.getElementById("userButton").setAttribute("href","loginregister");
+                        document.getElementById("wishButton").setAttribute("href","loginregister");
                         document.getElementById("logout").style.display = 'none';
+                        document.getElementById("wishlistCount").innerHTML = "";
                     }
                 </script>
                 
