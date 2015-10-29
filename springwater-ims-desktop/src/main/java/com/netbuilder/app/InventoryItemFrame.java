@@ -132,7 +132,7 @@ public class InventoryItemFrame extends JPanel implements MouseListener {
 	}
 
 	private ImageIcon loadDefaultImage() {
-		ImageIcon icon = iconLoader.createImageIcon("src/main/resources/images/gnome.jpg", IMAGE_SIZE, IMAGE_SIZE);
+		ImageIcon icon = iconLoader.createImageIcon("src/main/resources/images/default.png", IMAGE_SIZE, IMAGE_SIZE);
 		return icon;
 	}
 	
