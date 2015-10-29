@@ -60,7 +60,7 @@
                                 <br />
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">Telephone Number</span>
-                                    <input type="text" class="form-control" placeholder="Telephone Number (Landline or mobile)" aria-describedby="basic-addon1" id="telephoneNumberInput" />
+                                    <input type="text" class="form-control" placeholder="Telephone Number (Landline or mobile)" aria-describedby="basic-addon1" id="telephoneNumberInput" name="telephoneNumberInput" />
                                 </div>
                             </div>
 
