@@ -44,23 +44,54 @@ public class MongoPull {
 		MongoPull pull = new MongoPull();
 		MongoPush push = new MongoPush();
 		
-//		ArrayList<Item> items = pull.getAllItems();
-//		for(Item i : items) {
-//			i.print();
-//			System.out.println();
-//		}
 		
-//		Item i = pull.getItem(1);
-//		i.print();
-//		
-//		Review r = new Review("Tom", 4, "Fooking love gnomes");
-//		i.removeReview(r);
-//		
-//		push.updateItem(i);
-//		
-//		System.out.println();
-//		i = pull.getItem(1);
-//		i.print();
+		ArrayList<Review> revs = new ArrayList<Review>();
+		revs.add(new Review(
+						"gn0m3luvv3r",
+						3,
+						"I was told that the Spear & Jackson Carbon Digging Spade would be microwave safe, but it turns out it does not fit in my microwave at all! Unless you have an industrial microwave, this may not be the spade for you")
+		);
+		revs.add(new Review(
+				"iGARDEN", 2,
+				"It's alright but at the end of the day it's just a spade really...")
+);revs.add(new Review("xXspearjacksonXx", 5,
+		"WOW. BRILLIANT. BEST SPADE EVER."));
+		Item newItem = new Item(
+						"Carbon Digging Spade",
+						"Forged from heat-treated carbon steel for extra strength. Epoxy-coated head for improved resistance to rust, scratches, humidity and alkalines in the soil. With soft-grip, forward tilt handle giving the ideal digging angle.",
+						(float)14.99,
+						(float)10.00,
+						1000,
+						"spearjackson.jpg",
+						false,
+						true,
+						1,
+						30,
+						30,
+						revs
+					);
+		
+		push.addItem(newItem);
+		
+		//String itemName,
+//		String itemDescription,
+//		float price,
+//		float cost,
+//		int stock,
+//		String imageLocation,
+//		boolean discontinued,
+//		boolean isPorousware,
+//		int idSupplier,
+//		int salesRate,
+//		int pSalesRate,
+//		ArrayList<Review> revie
+		//push.updateItem(i);
+		
+		ArrayList<Item> items = pull.getAllItems();
+		for(Item it : items) {
+			it.print();
+			System.out.println();
+		}
 		
 	}
 	

@@ -95,7 +95,15 @@ public class Item implements Serializable{
 		this.isPorousware = isPorousware;
 		this.idSupplier = idSupplier;
 		this.attributes = new HashMap<String, String>();
-		this.reviews = reviews;
+		this.reviews = copyReviews(reviews);
+	}
+	
+	private ArrayList<Review> copyReviews(ArrayList<Review> revs) {
+		ArrayList<Review> copy = new ArrayList<Review>();
+		for(Review r : revs) {
+			copy.add(r);
+		}
+		return copy;
 	}
 	
 	@Deprecated
