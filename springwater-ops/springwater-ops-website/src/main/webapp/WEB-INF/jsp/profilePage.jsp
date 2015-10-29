@@ -25,7 +25,7 @@
 
 	<!-- Show welcome message to user -->
 	<script>
-		showWelcomeMessage();
+		//showWelcomeMessage();
 	</script>
 
 </head>
@@ -144,7 +144,7 @@
 	                                   
 	                                    <!-- Script for calling cookie data  -->
     										<script>
-												document.getElementById("emailID").innerHTML = getCookies("email");
+												//document.getElementById("emailID").innerHTML = getCookies("email");
 											</script>
 	                                   </div>
 	                                   <div class="panel-body">

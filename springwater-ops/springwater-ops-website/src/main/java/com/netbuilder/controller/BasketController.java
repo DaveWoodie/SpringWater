@@ -1,5 +1,9 @@
 package com.netbuilder.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -88,6 +92,13 @@ public class BasketController {
 		if (session.getAttribute("basket") == null) {
 			return "errorPage";
 		}
+		
+		// create a order date
+		DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+		Date orderDateobj = new Date();
+		model.addAttribute("orderDate", df.format(orderDateobj));
+		
+		// Create a new basket
 		Basket basket = (Basket) session.getAttribute("basket");
 		model.addAttribute("basket", basket);
 		return "orderConfirm";
