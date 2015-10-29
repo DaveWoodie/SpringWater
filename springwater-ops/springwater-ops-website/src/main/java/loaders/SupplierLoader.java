@@ -145,7 +145,7 @@ public class SupplierLoader {
 	 * @param newSupplier to add to database
 	 */
 	public void newSupplier(Supplier newSupplier) {
-		System.out.println(newSupplier.getImageLocation());
+//		System.out.println(newSupplier.getImageLocation());
 //		if (!newSupplier.getEmail().isEmpty() && !newSupplier.getTelephone().isEmpty()) {
 //			sql = insertQuery + collumnsWTE + newSupplier.getSupplierName() +"', '"+ newSupplier.getTelephone() +"', '"+ newSupplier.getEmail()+"', '"+ newSupplier.getAddressID()+"', '"+newSupplier.getImageLocation() +"')";
 //		}else if(!newSupplier.getEmail().isEmpty()) {
