@@ -75,6 +75,7 @@ public class Listener implements MessageListener{
 			if (objectMessage.getObject() instanceof MessageContent) {
 				MessageContent messageContent = (MessageContent) objectMessage.getObject();
 				if (messageContent.getMessage().equals("addItemToPurchaseOrder")) {
+					System.out.println("received message");
 					ArrayList<Object> object = (ArrayList<Object>) messageContent.getContents();
 					PurchaseOrderBackendLogic pOBL = new PurchaseOrderBackendLogic();
 					pOBL.addItemToPurchaseOrder((Item) object.get(0), (Integer) object.get(1));
