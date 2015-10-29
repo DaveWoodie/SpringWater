@@ -6,7 +6,6 @@
 package com.netbuilder.app;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -27,12 +26,16 @@ import javax.swing.table.DefaultTableModel;
 import com.netbuilder.logic.StockReportLogic;
 
 public class DailyStockReportGUI {
-	int lowSelectedID;
-	int fastSelectedID;
+	private int lowSelectedID;
+	private int fastSelectedID;
+	private UneditableTableModel lowStockModel;
+	private UneditableTableModel fastSellingkModel;
+	private String[] colHeadings;
 	
 	private StockReportLogic logic = new StockReportLogic();
 	
 	public DailyStockReportGUI() {
+		colHeadings = new String[]{ "Item ID", "Item Name", "Stock Level","Sales Rate" };
 	}
 
 	/**
@@ -41,7 +44,6 @@ public class DailyStockReportGUI {
 	 */
 	public JPanel getStockReportPanel() {
 //		int numRows = 30;
-		String[] colHeadings = { "Item ID", "Item Name", "Stock Level","Sales Rate" };
 		final JLabel fastSellingLabel = new JLabel("Fluctuating Items", SwingConstants.CENTER);
 		final JLabel LowStockLabel = new JLabel("Current Stock", SwingConstants.CENTER);
 		JPanel pane = new JPanel();
@@ -53,23 +55,9 @@ public class DailyStockReportGUI {
 		GridLayout stockReportLayout = new GridLayout(1, 2);
 
 		// Create Table Models
-		LoadData lD = new LoadData();
-		@SuppressWarnings("serial")
-		DefaultTableModel lowStockModel = new DefaultTableModel(logic.fetchStockList(), colHeadings){
-			@Override
-		    public boolean isCellEditable(int i, int i1) {
-		        return false; //To change body of generated methods, choose Tools | Templates.
-		    }
-			
-		};
+		lowStockModel = new UneditableTableModel(logic.fetchStockList(), colHeadings);
 		//lowStockModel.setColumnIdentifiers(colHeadings);
-		@SuppressWarnings("serial")
-		DefaultTableModel fastSellingkModel = new DefaultTableModel(logic.fetchFastMovingList(), colHeadings){
-			@Override
-		    public boolean isCellEditable(int i, int i1) {
-		        return false; //To change body of generated methods, choose Tools | Templates.
-		    }
-		};
+		fastSellingkModel = new UneditableTableModel(logic.fetchFastMovingList(), colHeadings);
 		//fastSellingkModel.setColumnIdentifiers(colHeadings);
 
 //		// Fill tables with test data
@@ -181,6 +169,11 @@ public class DailyStockReportGUI {
 		mainPane.add(pane, BorderLayout.CENTER);
 		mainPane.add(bottomPanel, BorderLayout.SOUTH);
 		return mainPane;
+	}
+	
+	public void refresh() {
+		lowStockModel = new UneditableTableModel(logic.fetchStockList(), colHeadings);
+		fastSellingkModel = new UneditableTableModel(logic.fetchFastMovingList(), colHeadings);
 	}
 	
 	//fills the table with test data
