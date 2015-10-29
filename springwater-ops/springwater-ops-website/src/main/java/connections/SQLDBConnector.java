@@ -4,7 +4,7 @@ package connections;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
+//import java.util.List;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
@@ -12,8 +12,8 @@ import com.mysql.jdbc.Statement;
 
 public class SQLDBConnector {
 
-	private Object o;
-	private List<Object> l;
+//	private Object o;
+//	private List<Object> l;
 	
 	static final String IP = "10.50.15.18";
 	static final String databaseURL = "jdbc:mysql://" + IP + ":3306/nbgardensdata";

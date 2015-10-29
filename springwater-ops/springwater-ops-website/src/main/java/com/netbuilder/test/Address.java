@@ -57,6 +57,4 @@ public class Address implements Serializable{
 	public String getFirstLine() {
 		return addressLines.get(0);
 	}
-		
-	
 }
