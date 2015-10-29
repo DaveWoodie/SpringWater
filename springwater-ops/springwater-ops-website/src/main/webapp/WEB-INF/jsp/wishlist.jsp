@@ -18,6 +18,13 @@
 
 <body>
 <div th:fragment="content">
+    
+    <script th:inline="javascript">
+        var wishlistSize= /*[[${wishlistSize}]]*/ '0';
+        document.cookie = "wishCount = " + wishlistSize;
+        document.getElementById("wishlistCount").innerHTML = getCookies("wishCount");
+    </script>
+    
     <!-- Content Area -->
     <div class="jumbotron content">
         <div class="container">
@@ -95,7 +102,7 @@
                                 </td>
                                 <td><h2 th:text="'£' + ${item.price}"></h2></td>
                                 <td id="wishLine">
-                                    <button class="btn btn-block btn-warning"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Remove From Wish List</button>
+                                    <a th:href="@{/removewishline(itemid=${item.itemID})}" class="btn btn-block btn-warning"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Remove From Wish List</a>
                                 </td>
                             </tr>
 

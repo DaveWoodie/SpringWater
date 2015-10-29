@@ -32,6 +32,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.netbuilder.logic.PurchaseOrderLogic;
 
+import connections.MongoPull;
 import loaders.PurchaseOrderLineLoader;
 import loaders.PurchaseOrderLoader;
 import loaders.SupplierLoader;
@@ -259,13 +260,16 @@ public class ItemGUI extends JFrame
 					int Quantity = Integer.parseInt(textAdd.getText());
 					
 					//get item from id
-					ArrayList<Item> itemList = itemLoader.loadItemByID(itemID);
-					Item item = itemList.get(0);
+//					ArrayList<Item> itemList = itemLoader.loadItemByID(itemID);
+					MongoPull mP = new MongoPull();
+					Item item = mP.getItem(itemID);
 					
 					//add to purchase order
 					purchaseOrderLogic.addItemToPurchaseOrder(item, Quantity);
 					
 					JOptionPane.showMessageDialog(null, Quantity + " " + item.getItemName() + " added to purchase order");
+					
+					loadTable();
 				}
 			});
 			
@@ -362,11 +366,11 @@ public class ItemGUI extends JFrame
 	public void loadTable()
 	{
 		//clear table
-		if(tableModel.getRowCount() < 1)
+		if(tableModel.getRowCount() > 0)
 		{
-			for(int i = 0; i < tableModel.getRowCount(); i++)
+			for(int i = tableModel.getRowCount() - 1; i > -1; i--)
 			{
-				tableModel.removeRow(tableModel.getRowCount());
+				tableModel.removeRow(i);
 			}
 		}
 		
