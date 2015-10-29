@@ -86,7 +86,7 @@ public class PurchaseOrderLoader {
 	public ArrayList<PurchaseOrder> getPurchaseOrderByID(int i) {
 		sql = listQuery + tableName + tableJoins + " WHERE idPurchaseOrder = " + i;
 		constructResult();
-		System.out.println(purchaseOrderList.get(0).getPurchaseOrderStatus().getStatusID());
+//		System.out.println(purchaseOrderList.get(0).getPurchaseOrderStatus().getStatusID());
 		return purchaseOrderList;
 	}
 	
@@ -207,9 +207,9 @@ public class PurchaseOrderLoader {
 	 * @param pO the purchase order object to be created
 	 */
 	public Integer createPurchaseOrder (PurchaseOrder pO) {
-		System.out.println("Reached create purchase order");
-		System.out.println(pO.getPurchaseOrderStatus().getStatusID());
-		System.out.println(pO.getSupplier().getSupplierID());
+//		System.out.println("Reached create purchase order");
+//		System.out.println(pO.getPurchaseOrderStatus().getStatusID());
+//		System.out.println(pO.getSupplier().getSupplierID());
 		sql = "INSERT INTO purchaseOrder (idPurchaseOrderStatus, idSupplier) VALUE (" + pO.getPurchaseOrderStatus().getStatusID() + ", " + pO.getSupplier().getSupplierID() + ")";
 		sqlDB.openCon();
 		Integer newID = null;

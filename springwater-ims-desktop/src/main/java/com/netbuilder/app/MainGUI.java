@@ -220,7 +220,6 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 	@Override
 	public void onMessage(Message message) {
 		// TODO Handle inbound message types
-		System.out.println("Received message");
 		ObjectMessage objectMessage = (ObjectMessage) message;
 		try {
 			if (objectMessage.getObject() instanceof MessageContent) {

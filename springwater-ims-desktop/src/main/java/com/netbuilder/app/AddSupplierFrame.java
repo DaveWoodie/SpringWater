@@ -14,6 +14,8 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -155,15 +157,23 @@ public class AddSupplierFrame extends JFrame {
 			textBrowse.setEditable(false);
 			c.gridx =2;
 			c.gridy =3;
-			main.add(textBrowse, c);
-
+			
+			if (!edit){
+				main.add(textBrowse, c);
+			}
+		
 			c.gridx =1;
-			main.add(buttonBrowse, c);
+			
+			if (!edit){
+				main.add(buttonBrowse, c);
+			}
 			
 			browseL = new JLabel("Image :");
 			c.gridx = 0;
 			c.gridy = 3;
-			main.add(browseL, c);
+			if (!edit){
+				main.add(browseL, c);
+			}
 			
 		nameL = new JLabel("Name:");
 		c.gridx = 0;
@@ -482,7 +492,7 @@ public class AddSupplierFrame extends JFrame {
 				   }
 		}
 		
-		if (imageLocation.isEmpty()) {
+		if (imageLocation.isEmpty() && !edit) {
 			ready = false;
 			s = s + "A logo must be selected!!\n";
 		}
@@ -523,6 +533,7 @@ public class AddSupplierFrame extends JFrame {
 	 */
 	private String[] getResults()
 	{
+		copyFile(new File(textBrowse.getText()));
 		//TODO Validate inputs
 		ArrayList<String> input = new ArrayList<String>();
 		input.add(nameT.getText());			//0
@@ -541,5 +552,28 @@ public class AddSupplierFrame extends JFrame {
 		String[] array = new String[input.size()];
 		array =  input.toArray(array);
 		return array;
+	}
+	
+	/**
+	 * Method to copy an image file into the java project
+	 */
+	private void copyFile(File sourceFile)
+	{
+		File Source = sourceFile;
+		String Path = "src/main/resources/images/";
+		File Destination = new File(Path + Source.getName());
+		
+		//Copy from source to destination
+		try 
+		{
+			Files.copy(Source.toPath(), Destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
+		}
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+		
+		//set image location
+		imageLocation = Source.getName();
 	}
 } 
