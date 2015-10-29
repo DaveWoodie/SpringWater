@@ -14,9 +14,7 @@ import java.util.Map.Entry;
 
 
 public class Item implements Serializable{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	//Item attributes
 	private int idItem;
@@ -34,7 +32,7 @@ public class Item implements Serializable{
 	
 	private HashMap<String, String> attributes;
 	private ArrayList<Review> reviews;
-	
+
 	private int idSupplier;
 	
 	/**
