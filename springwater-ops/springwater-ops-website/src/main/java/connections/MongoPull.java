@@ -19,6 +19,7 @@ import com.mongodb.DBObject;
 
 import entities.Address;
 import entities.Item;
+import entities.Review;
 import entities.WishList;
 
 public class MongoPull {
@@ -37,20 +38,69 @@ public class MongoPull {
 	private List<String> wishListSet = new ArrayList<String>();
 
 	
-	
+	/*
 	public static void main(String[] args) {
 		
 		MongoPull pull = new MongoPull();
 		MongoPush push = new MongoPush();
 		
-		ArrayList<Item> items = pull.getAllItems();
-		for(Item i : items) {
-			i.print();
-			System.out.println();
+		/*
+		ArrayList<Review> revs = new ArrayList<Review>();
+		revs.add(new Review(
+						"gn0m3luvv3r",
+						3,
+						"I was told that the Spear & Jackson Carbon Digging Spade would be microwave safe, but it turns out it does not fit in my microwave at all! Unless you have an industrial microwave, this may not be the spade for you")
+		);
+		revs.add(new Review(
+				"iGARDEN", 2,
+				"It's alright but at the end of the day it's just a spade really...")
+);revs.add(new Review("xXspearjacksonXx", 5,
+		"WOW. BRILLIANT. BEST SPADE EVER."));
+		Item newItem = new Item(
+						"Neverbend Square Shovel",
+						"Square, open socket shovel. Hammer finish epoxy coated head for improved resistance to rust, scratches, humidity and alkalines in the soil. Weatherproofed hardwood shaft for greater durability. Supergrip handle - forward tilt gives the ideal digging angle. Treaded for more comfortable digging.",
+						(float)29.99,
+						(float)15.40,
+						85,
+						"neverbend.jpg",
+						false,
+						true,
+						1,
+						30,
+						30,
+						revs
+					);
+		
+		push.addItem(newItem);
+		
+		//String itemName,
+//		String itemDescription,
+//		float price,
+//		float cost,
+//		int stock,
+//		String imageLocation,
+//		boolean discontinued,
+//		boolean isPorousware,
+//		int idSupplier,
+//		int salesRate,
+//		int pSalesRate,
+//		ArrayList<Review> revie
+		//push.updateItem(i);
+		
+//		
+//		ArrayList<Item> items = pull.getAllItems();
+//		for(Item it : items) {
+//			it.print();
+//			System.out.println();
+//		}
+		
+		ArrayList<Address> addresses = pull.getAllAddresses();
+		for(Address a : addresses) {
+			push.updateAddress(a);
 		}
 		
 	}
-	
+	*/
 	public MongoPull() {
 		
 	}
@@ -381,7 +431,32 @@ public class MongoPull {
 			}
 		}
 		
+		ArrayList<Review> reviews = getReviewsFromMongoItem(itemObj);
+		for(Review r : reviews) {
+			newItem.addReview(r);
+		}
+		
+		
+		
 		return newItem;
+	}
+	
+	private ArrayList<Review> getReviewsFromMongoItem(DBObject itemObj) {
+		ArrayList<Review> revs = new ArrayList<Review>();
+		BSONObject bsobj = (BSONObject) itemObj.get("Reviews");
+		if(bsobj != null) {
+			Set<String> keys = bsobj.keySet();
+			for(String key : keys) {
+				DBObject rev = (DBObject) bsobj.get(key);
+				String auth = rev.get("reviewAuthor").toString();
+				int rating = (Integer) rev.get("reviewRating");
+				String body = rev.get("reviewBody").toString();
+				Review newRev = new Review(auth, rating, body);
+				revs.add(newRev);
+				
+			}
+		}
+		return revs;
 	}
 	
 	/**

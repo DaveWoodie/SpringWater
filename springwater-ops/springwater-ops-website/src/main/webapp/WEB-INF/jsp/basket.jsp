@@ -15,8 +15,9 @@
 <div th:fragment="content">
     
     <script th:inline="javascript">
-        var basketSize= /*[[${basket.itemList.size()}]]*/ '0';
+        var basketSize= /*[[${basket.getSize()}]]*/ '0';
         document.cookie = "itemCount = " + basketSize;
+        document.getElementById("basketCount").innerHTML = getCookies("itemCount");
     </script>
     
     <!-- Page Content -->

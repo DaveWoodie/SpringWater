@@ -2,6 +2,8 @@ package com.netbuilder.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.netbuilder.test.Item;
 import com.netbuilder.test.ItemDatabase;
+import com.netbuilder.test.User;
 /**
  * 
  * @author Chris Boucher
@@ -20,7 +23,7 @@ import com.netbuilder.test.ItemDatabase;
 public class IndexController {
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String home(Model model) {
+	public String home(Model model, HttpSession session) {
 		ArrayList<Item> featured = new ArrayList<Item>();
 		ArrayList<Item> mostPopular = new ArrayList<Item>();
 		ArrayList<Item> mostPopular1 = new ArrayList<Item>();
@@ -48,6 +51,9 @@ public class IndexController {
 		wishlist2.add(wishlist.get(3));
 		wishlist3.add(wishlist.get(4));
 		wishlist3.add(wishlist.get(5));
+		if(session.getAttribute("user") != null) {
+			model.addAttribute("user", (User) session.getAttribute("user"));
+		}
 		model.addAttribute("featured", featured);
 		model.addAttribute("mostpopular1", mostPopular1);
 		model.addAttribute("mostpopular2", mostPopular2);

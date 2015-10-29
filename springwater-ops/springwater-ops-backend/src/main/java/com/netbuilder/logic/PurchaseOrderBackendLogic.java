@@ -17,9 +17,11 @@ import java.util.ArrayList;
 
 
 
+
 import com.netbuilder.JMS.Sender;
 
 import connections.MongoPull;
+import connections.MongoPush;
 import entities.Item;
 import entities.MessageContent;
 import entities.PurchaseOrder;
@@ -50,6 +52,7 @@ public class PurchaseOrderBackendLogic {
 	 * @param quantityAdd quantity to add to the purchase order
 	 */
 	public void addItemToPurchaseOrder(Item item, int quantityAdd) {
+		System.out.println("Reached backend method");
 		ArrayList<PurchaseOrder> itemPurchaseOrderList = new ArrayList<PurchaseOrder>();
 		itemPurchaseOrderList = pOLoader.getPurchaseOrderListByItemValid(item);
 		//if no valid pending purchase order to attach item to
@@ -142,14 +145,10 @@ public class PurchaseOrderBackendLogic {
 	
 	public void receivePurchaseOrder(PurchaseOrder pO, Integer employeeID) {
 		PurchaseOrderStatusLoader pOSLoader = new PurchaseOrderStatusLoader();
-		System.out.println("Checking purchase order status");
-		System.out.println(pO.getPurchaseOrderStatus().getStatusID());
 		if (pO.getPurchaseOrderStatus().getStatusID() == 2) {
 			//TODO get current employee and set on purchase order
-			System.out.println("Correct status determined");
 			PurchaseOrderStatus pOS = pOSLoader.getPurchaseOrderStatus(3);
 			pO.setPurchaseOrderStatus(pOS);
-			System.out.println("Set purchase order");
 			pOLoader.setPurchaseOrder(pO);
 			String damagedReport = "<html>Damaged Stock Report<br>Purchaseorder: " + pO.getIDPurchaseOrder();
 			boolean damagedGoods = false;
@@ -157,7 +156,6 @@ public class PurchaseOrderBackendLogic {
 			ArrayList<PurchaseOrderLine> pOLList = pOLLoader.getPurchaseOrderLineByOrderID(pO.getIDPurchaseOrder());
 			for (int i = 0; i < pOLList.size(); i++) {
 				if (pOLList.get(i).getDamagedQuantity() > 0) {
-					System.out.println("Damaged item detected");
 					damagedGoods = true;
 					MongoPull mP = new MongoPull();
 					Item item = mP.getItem(pOLList.get(i).getItemID());
@@ -165,8 +163,6 @@ public class PurchaseOrderBackendLogic {
 				}
 			}
 			if (damagedGoods) {
-				System.out.println("Sending message to IMS");
-				System.out.println(damagedReport);
 				MessageContent messageContent = new MessageContent(damagedReport, "damagedStockReport");
 				Sender sender = new Sender ("IMS.IN");
 				sender.sendMessage(messageContent);
@@ -182,6 +178,21 @@ public class PurchaseOrderBackendLogic {
 			PurchaseOrderStatus pOS = pOSLoader.getPurchaseOrderStatus(4);
 			pO.setPurchaseOrderStatus(pOS);
 			pOLoader.setPurchaseOrder(pO);
+			String newStockReport = "<html>New Stock Report<br>Purchaseorder: " + pO.getIDPurchaseOrder();
+			PurchaseOrderLineLoader pOLLoader = new PurchaseOrderLineLoader();
+			ArrayList<PurchaseOrderLine> pOLList = pOLLoader.getPurchaseOrderLineByOrderID(pO.getIDPurchaseOrder());
+			for (int i = 0; i < pOLList.size(); i++) {
+				MongoPull mP = new MongoPull();
+				Item item = mP.getItem(pOLList.get(i).getItemID());
+				item.setStock((item.getStock() + pOLList.get(i).getQuantity() - pOLList.get(i).getDamagedQuantity()));
+				MongoPush mPush = new MongoPush();
+				mPush.updateItem(item);
+				newStockReport = newStockReport + "<br>Item ID: " + item.getIdItem() + " Item Name: " + item.getItemName() + " Number Added: " + (pOLList.get(i).getQuantity() - pOLList.get(i).getDamagedQuantity());
+			}
+			MessageContent messageContent = new MessageContent(newStockReport, "newStockReport");
+			Sender sender = new Sender ("IMS.IN");
+			sender.sendMessage(messageContent);
 		}
 	}
+	
 }
