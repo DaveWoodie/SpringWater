@@ -144,14 +144,10 @@ public class PurchaseOrderBackendLogic {
 	
 	public void receivePurchaseOrder(PurchaseOrder pO, Integer employeeID) {
 		PurchaseOrderStatusLoader pOSLoader = new PurchaseOrderStatusLoader();
-		System.out.println("Checking purchase order status");
-		System.out.println(pO.getPurchaseOrderStatus().getStatusID());
 		if (pO.getPurchaseOrderStatus().getStatusID() == 2) {
 			//TODO get current employee and set on purchase order
-			System.out.println("Correct status determined");
 			PurchaseOrderStatus pOS = pOSLoader.getPurchaseOrderStatus(3);
 			pO.setPurchaseOrderStatus(pOS);
-			System.out.println("Set purchase order");
 			pOLoader.setPurchaseOrder(pO);
 			String damagedReport = "<html>Damaged Stock Report<br>Purchaseorder: " + pO.getIDPurchaseOrder();
 			boolean damagedGoods = false;
@@ -159,7 +155,6 @@ public class PurchaseOrderBackendLogic {
 			ArrayList<PurchaseOrderLine> pOLList = pOLLoader.getPurchaseOrderLineByOrderID(pO.getIDPurchaseOrder());
 			for (int i = 0; i < pOLList.size(); i++) {
 				if (pOLList.get(i).getDamagedQuantity() > 0) {
-					System.out.println("Damaged item detected");
 					damagedGoods = true;
 					MongoPull mP = new MongoPull();
 					Item item = mP.getItem(pOLList.get(i).getItemID());
@@ -167,8 +162,6 @@ public class PurchaseOrderBackendLogic {
 				}
 			}
 			if (damagedGoods) {
-				System.out.println("Sending message to IMS");
-				System.out.println(damagedReport);
 				MessageContent messageContent = new MessageContent(damagedReport, "damagedStockReport");
 				Sender sender = new Sender ("IMS.IN");
 				sender.sendMessage(messageContent);

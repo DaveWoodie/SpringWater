@@ -24,7 +24,6 @@ public class JMSTest {
 		toSend.add(2);
 		Sender sender = new Sender();
 		MessageContent messageContent = new MessageContent(toSend, "completePurchaseOrder");
-		System.out.println(pO.getPurchaseOrderStatus().getStatusID());
 		sender.sendMessage(messageContent);
 	}
 }
