@@ -109,7 +109,7 @@
     <div class="jumbotron" id="searchBar">
         <div class="container">
             <div class="row">
-                <div class="col-md-3"></div>
+                <div class="col-md-2"></div>
                 <div class="col-md-2 whiteText">
                     <p><a href="aboutus" class="whiteText"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> About</a></p>
                 </div>
@@ -119,7 +119,10 @@
                 <div class="col-md-2 whiteText">
                     <p><a href="faq" class="whiteText"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> FAQ</a></p>
                 </div>
-                <div class="col-md-3"></div>
+                <div class="col-md-2 whiteText">
+                    <p><a href="emailOrder" class="whiteText"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Email Order</a></p>
+                </div>
+                <div class="col-md-2"></div>
             </div>
             <div class="row">
                 <div class="col-md-3"></div>
