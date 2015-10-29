@@ -13,9 +13,9 @@ package com.netbuilder.test;
 public class User {
 	
 	// User attributes
-	public String firstName;
-	public String lastName;
-	private String customerID;
+	private String firstName;
+	private String lastName;
+	private int customerID;
 	private String username;
 	private String email;
 	private String dateOfBirth;
@@ -23,7 +23,7 @@ public class User {
 	private double customerCredit;
 	
 	// Class constructor
-	public User(String customerID, String username, String email, String dateOfBirth,
+	public User(int customerID, String username, String email, String dateOfBirth,
 			String phoneNumber, double customerCredit, 
 			String firstName, String lastName) {
 				
@@ -39,15 +39,15 @@ public class User {
 			}
 	
 	// ACCESSORS ****
-	public String getCustomerFistName() {
+	public String getFirstName() {
 		return this.firstName;
 	}
 	
-	public String getCustomerLastName() {
+	public String getLastName() {
 		return this.lastName;
 	}
 	
-	public String getCustomerID() {
+	public int getCustomerID() {
 		return this.customerID;
 	}
 	

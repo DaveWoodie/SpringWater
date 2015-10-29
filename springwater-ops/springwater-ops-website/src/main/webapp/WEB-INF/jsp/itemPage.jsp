@@ -153,7 +153,7 @@
                                 <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                             </p>
                             <p>
-                                <a th:href="'itempage+' + ${item.itemID}" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span> Go to Item</a>
+                                <a th:href="@{/itempage(itemid=${item.itemID})}" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span> Go to Item</a>
                                 <a thhref="'#' + ${item.itemID}" class="btn btn-success" role="button"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Quick Look</a>
                             </p>
                         </div>
