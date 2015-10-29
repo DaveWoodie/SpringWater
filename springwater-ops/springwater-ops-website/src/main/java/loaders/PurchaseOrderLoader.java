@@ -159,7 +159,13 @@ public class PurchaseOrderLoader {
 	 */
 	public void setPurchaseOrder(PurchaseOrder pO){
 		java.sql.Date dateExpected = null;
-		java.sql.Date datePlaced = new java.sql.Date(pO.getDatePlaced().getTime());
+		java.sql.Date datePlaced = null;
+		try {
+			datePlaced = new java.sql.Date(pO.getDatePlaced().getTime());
+		}
+		catch (NullPointerException nPE) {
+			datePlaced = null;
+		}
 		try {
 			dateExpected = new java.sql.Date(pO.getDateExpected().getTime());
 		}
@@ -173,7 +179,16 @@ public class PurchaseOrderLoader {
 		else {
 			dateToPass = "'" + dateExpected + "'";
 		}
-		sql = "UPDATE purchaseOrder SET datePlaced = '" + datePlaced + "', dateExpected = " + dateToPass + ", idEmployee = " + pO.getEmployee().getUser().getUserID() + ", idPurchaseOrderStatus = " + pO.getPurchaseOrderStatus().getStatusID() + ", idSupplier = " + pO.getSupplier().getSupplierID() + " WHERE idPurchaseOrder = " + pO.getIDPurchaseOrder();
+		
+		String datePlacedString;
+		if (datePlaced == null) {
+			datePlacedString = "null";
+		}
+		else {
+			datePlacedString = "'" + datePlaced + "'";
+		}
+		
+		sql = "UPDATE purchaseOrder SET datePlaced = " + datePlacedString + ", dateExpected = " + dateToPass + ", idEmployee = " + pO.getEmployee().getUser().getUserID() + ", idPurchaseOrderStatus = " + pO.getPurchaseOrderStatus().getStatusID() + ", idSupplier = " + pO.getSupplier().getSupplierID() + " WHERE idPurchaseOrder = " + pO.getIDPurchaseOrder();
 		sqlDB.openCon();
 		try {
 			sqlDB.updateDB(sql);

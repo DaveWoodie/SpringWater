@@ -82,4 +82,14 @@ public class BasketController {
 		session.setAttribute("basket", basket);
 		return "redirect:basket";
 	}
+	
+	@RequestMapping("/orderconfirm")
+	public String editBasket(Model model, HttpSession session) {
+		if (session.getAttribute("basket") == null) {
+			return "errorPage";
+		}
+		Basket basket = (Basket) session.getAttribute("basket");
+		model.addAttribute("basket", basket);
+		return "orderConfirm";
+	}
 }

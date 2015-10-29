@@ -57,21 +57,24 @@
                         <div class="col-md-3">
                             <h3>Arriving Sat, 15 Aug - Wed, 19 Aug</h3>
                             <p><b>Dispatched</b></p>
-                            <img id="orderImage" src="img/gnome.jpg" />
                         </div>
-
-                        <div class="col-md-3">
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <a href="#">Happy Gnome</a>
-                            <p>Quantity: 3</p>
-                            <p>&#163;2.99</p>
+                        <div th:each="itemLine : ${basket.itemList}" class="row">
+                            <div class="col-lg-3">
+                                <img id="orderImage" th:src="${itemLine.item.imageLocation}" />
+                            </div>
+                            <div class="col-md-3">
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <a th:text="${itemLine.item.itemName}"></a>
+                                <p th:text="'Quantity: ' + ${itemLine.quantity}"></p>
+                                <p th:text="'£'+${itemLine.formattedTotalPrice()}"></p>
+                            </div>
                         </div>
 
                     </div>
