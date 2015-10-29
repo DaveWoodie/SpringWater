@@ -26,6 +26,15 @@ public class UserDatabase {
 		userList.add(new User(
 				1, "CallumCooper", "callum.cooper@netbuilder.com",
 						"12/05/1993", "07917800649", 100.00, "Callum", "Cooper"));
+		ArrayList<String> addressLines = new ArrayList<String>();
+		addressLines.add("101 Big Road");
+		addressLines.add("Roadman Way");
+		userList.get(0).addAddress(new Address(0, userList.get(0).getCustomerID(), addressLines, "Salford", "Lancs", "M43 0YG"));
+		addressLines = new ArrayList<String>();
+		addressLines.add("202 Street Road");
+		addressLines.add("The Estate");
+		userList.get(0).addAddress(new Address(1, userList.get(0).getCustomerID(), addressLines, "Salford", "Lancs", "M43 54K"));
+		
 	}
 	
 	// return the user database
