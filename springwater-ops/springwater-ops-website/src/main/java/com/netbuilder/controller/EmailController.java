@@ -27,15 +27,9 @@ public class EmailController {
 
     @RequestMapping(value = "sendMailSimple", method = RequestMethod.POST)
     public String sendSimpleMail(@RequestParam("firstNameInput") final String recipientName, @RequestParam("emailInput") final String recipientEmail, final Locale locale) throws MessagingException {
+
+    	EmailService.Send("chrisjwwalker@gmail.com","ThePhotographer");
     	
-//    	System.out.println(recipientName);
-//    	System.out.println(recipientEmail);
-//    	System.out.println(locale);
-    	
-    	//emailService.sendSimpleMail(recipientName, recipientEmail, locale);
-    	EmailService.Send("chrisofski@gmail.com", "Vibranium", "chrisofski@gmail.com");
-    	
-        //emailService.sendSimpleMail(recipientName, recipientEmail, locale);
         return "redirect:/aboutus";     
     }
 }
