@@ -26,6 +26,4 @@ public class FaqController {
 		model.addAttribute("faqList",faqList);
 		return "faq";
 	}
-	
-
 }
