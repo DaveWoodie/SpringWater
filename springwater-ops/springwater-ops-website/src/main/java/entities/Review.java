@@ -1,4 +1,4 @@
-package com.netbuilder.test;
+package entities;
 /**
  * 
  * @author Chris Boucher
