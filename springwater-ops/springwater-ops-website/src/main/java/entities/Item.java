@@ -6,6 +6,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -13,9 +14,7 @@ import java.util.Map.Entry;
 
 
 public class Item implements Serializable{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	//Item attributes
 	private int idItem;
@@ -32,7 +31,8 @@ public class Item implements Serializable{
 	private boolean isPorousware;
 	
 	private HashMap<String, String> attributes;
-	
+	private ArrayList<Review> reviews;
+
 	private int idSupplier;
 	
 	/**
@@ -63,6 +63,47 @@ public class Item implements Serializable{
 		this.isPorousware = isPorousware;
 		this.idSupplier = idSupplier;
 		this.attributes = new HashMap<String, String>();
+		this.reviews = new ArrayList<Review>();
+	}
+	
+
+	/**
+	 * Constructor to build an instance of Item, not null variables are itemName, price, stock, imageLocation, discontinued, isPorousware and reviews
+	 * 
+	 * @author chrisjwwalker
+	 * @param itemName : String; name of the item
+	 * @param price : float; price of the item
+	 * @param stock: int; how many of said item are in stock
+	 * @param imageLocation: String; path to the image
+	 * @param discontinued: boolean; is the item discontinued? Don't order more if true
+	 * @param salesRate: int; how many of said item has been sold in this sales period
+	 * @param pSalesRate: int; how many of said item have been sold in the last sales period
+	 * @param isPorousware: boolean; can said item have porousware applied to it?
+	 * @param idSupplier: Supplier: relates to the supplier information that this item can be purchased from
+	 * @param attributes: HashMap of Srting to String detailing all of the procuct attributes
+	 */
+	public Item(String itemName, String itemDescription, float price, float cost, int stock, String imageLocation, boolean discontinued, boolean isPorousware, int idSupplier, int salesRate, int pSalesRate, ArrayList<Review> reviews) {
+		this.itemName = itemName;
+		this.itemDescription = itemDescription;
+		this.price = price;
+		this.cost = cost;
+		this.stock = stock;
+		this.imageLocation = imageLocation;
+		this.discontinued = discontinued;
+		this.salesRate = salesRate;
+		this.pSalesRate = pSalesRate;
+		this.isPorousware = isPorousware;
+		this.idSupplier = idSupplier;
+		this.attributes = new HashMap<String, String>();
+		this.reviews = copyReviews(reviews);
+	}
+	
+	private ArrayList<Review> copyReviews(ArrayList<Review> revs) {
+		ArrayList<Review> copy = new ArrayList<Review>();
+		for(Review r : revs) {
+			copy.add(r);
+		}
+		return copy;
 	}
 	
 	@Deprecated
@@ -176,6 +217,11 @@ public class Item implements Serializable{
 	public String getAttribute(String attributeName) {
 		return attributes.get(attributeName);
 	}
+	
+	public ArrayList<Review> getReviews() {
+		return reviews;
+	}
+	
     //Setters
     
 	
@@ -293,6 +339,19 @@ public class Item implements Serializable{
 		attributes.remove(attributeName);
 	}
 	
+	public void addReview(Review r) {
+		reviews.add(r);
+	}
+	
+	public void removeReview(Review r) {
+		String reviewer = r.getAuthor();
+		for(int i = 0; i < reviews.size(); i++) {
+			if(reviews.get(i).getAuthor().equals(reviewer)) {
+				reviews.remove(i);
+			}
+		}
+	}
+	
 	/**
 	 * prints out the item's deets to the console. Used in testing
 	 */
@@ -316,6 +375,11 @@ public class Item implements Serializable{
 			Map.Entry<String,String> pair = (Map.Entry<String, String>)it.next();
 	        System.out.println(pair.getKey()+" - "+pair.getValue());
 	        it.remove(); // avoids a ConcurrentModificationException
+	    }
+	    
+	    System.out.println("REVIEWS:");
+	    for(Review r : reviews) {
+	    	r.print();
 	    }
 		
 	}

@@ -54,7 +54,7 @@ public class Listener implements MessageListener{
             Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
             // Create the destination (Topic or Queue)
-            Destination destination = session.createQueue(boardName);
+            Destination destination = session.createTopic(boardName);
 
             // Create a MessageConsumer from the Session to the Topic or Queue
             consumer = session.createConsumer(destination);
@@ -75,6 +75,7 @@ public class Listener implements MessageListener{
 			if (objectMessage.getObject() instanceof MessageContent) {
 				MessageContent messageContent = (MessageContent) objectMessage.getObject();
 				if (messageContent.getMessage().equals("addItemToPurchaseOrder")) {
+					System.out.println("received message");
 					ArrayList<Object> object = (ArrayList<Object>) messageContent.getContents();
 					PurchaseOrderBackendLogic pOBL = new PurchaseOrderBackendLogic();
 					pOBL.addItemToPurchaseOrder((Item) object.get(0), (Integer) object.get(1));
