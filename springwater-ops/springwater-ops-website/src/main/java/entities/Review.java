@@ -40,4 +40,10 @@ public class Review {
 	public void setBody(String body) {
 		this.body = body;
 	}
+	
+	public void print() {
+		System.out.println("Author: "+author);
+		System.out.println("Rating: "+rating);
+		System.out.println("Body: "+body);
+	}
 }

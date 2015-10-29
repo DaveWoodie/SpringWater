@@ -11,8 +11,10 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+
 import entities.Address;
 import entities.Item;
+import entities.Review;
 import entities.WishList;
 
 /**
@@ -305,6 +307,7 @@ public class MongoPush {
 		itemObject.put("Attributes",itemAttributes);
 		
 		BasicDBObject itemReviews = createReviewsFromItem(item);
+		itemObject.put("Reviews",itemReviews);
 		
 
 		return itemObject;
@@ -331,6 +334,17 @@ public class MongoPush {
 	
 	private BasicDBObject createReviewsFromItem(Item item) {
 		BasicDBObject reviews = new BasicDBObject();
+		int i = 1;
+		for(Review r : item.getReviews()) {
+			BasicDBObject rev = new BasicDBObject();
+			rev.put("reviewAuthor", r.getAuthor());
+			rev.put("reviewRating", r.getRating());
+			rev.put("reviewBody", r.getBody());
+			String revName = "Review"+i;
+			reviews.put(revName, rev);
+			i++;
+			
+		}
 		return reviews;
 	}
 	

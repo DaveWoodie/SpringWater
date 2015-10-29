@@ -52,6 +52,7 @@ public class PurchaseOrderBackendLogic {
 	 * @param quantityAdd quantity to add to the purchase order
 	 */
 	public void addItemToPurchaseOrder(Item item, int quantityAdd) {
+		System.out.println("Reached backend method");
 		ArrayList<PurchaseOrder> itemPurchaseOrderList = new ArrayList<PurchaseOrder>();
 		itemPurchaseOrderList = pOLoader.getPurchaseOrderListByItemValid(item);
 		//if no valid pending purchase order to attach item to
