@@ -106,7 +106,10 @@ public class SupplierLogic {
 		}
 		
 		address.add(a.getCity());
-		if(a.getCounty().isEmpty()) {
+		
+		
+		
+		if(a.getCounty() == null) {
 			address.add(a.getCounty());
 		}
 		address.add(a.getPostCode());
@@ -170,7 +173,7 @@ public class SupplierLogic {
 		}else {
 			newSP.setTelephone("");
 		}
-		
+		newSP.setImageLocation(results[6]);
 		sLoader.newSupplier(newSP);
 		
 		

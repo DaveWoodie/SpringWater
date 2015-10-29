@@ -51,7 +51,7 @@ public class SupplierFrame extends JFrame{
 	private String imageFolderLocation = "src/main/resources/images/";
 	private ImageIcon itemIcon;
 	private IconLoader iconLoader = new IconLoader();
-	private int IMAGE_SIZE = 50;
+	private int IMAGE_SIZE = 250;
 	
 	public SupplierFrame(int supplierID, String supplierName) {
 		initUI(supplierID, supplierName);
@@ -200,7 +200,7 @@ public class SupplierFrame extends JFrame{
 	}
 	
 	private ImageIcon loadDefaultImage() {
-		ImageIcon icon = iconLoader.createImageIcon("src/main/resources/images/gnome.jpg", IMAGE_SIZE, IMAGE_SIZE);
+		ImageIcon icon = iconLoader.createImageIcon("src/main/resources/images/logo.png", IMAGE_SIZE, IMAGE_SIZE);
 		return icon;
 	}
 }

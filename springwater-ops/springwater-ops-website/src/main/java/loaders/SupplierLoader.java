@@ -8,6 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import connections.MongoPush;
 import connections.SQLDBConnector;
 import entities.Item;
@@ -22,9 +25,9 @@ public class SupplierLoader {
 	final String tableName = " FROM supplier";
 	final String listQuery = "SELECT *";
 	final String insertQuery = "INSERT INTO `nbgardensdata`.`supplier` (`";
-	final String collumnsWTE = "supplierName`, `telephoneNumber`, `email`, `idAddress`) VALUES ('";
-	final String collumnsWT = "supplierName`, `telephoneNumber`, `idAddress`) VALUES ('";
-	final String collumnsWE = "supplierName`, `email`, `idAddress`) VALUES ('";
+	final String collumnsWTE = "supplierName`, `telephoneNumber`, `email`, `idAddress`, 'image') VALUES ('";
+	final String collumnsWT = "supplierName`, `telephoneNumber`, `idAddress`, `image`) VALUES ('";
+	final String collumnsWE = "supplierName`, `email`, `idAddress`, 'image') VALUES ('";
 	final String update = "UPDATE `nbgardensdata`.`supplier` SET `supplierName`='";
 	ArrayList<Supplier> supplierList = new ArrayList<Supplier>();
 	String sql;
@@ -142,35 +145,43 @@ public class SupplierLoader {
 	 * @param newSupplier to add to database
 	 */
 	public void newSupplier(Supplier newSupplier) {
-		if (!newSupplier.getEmail().isEmpty() && !newSupplier.getTelephone().isEmpty()) {
-			sql = insertQuery + collumnsWTE + newSupplier.getSupplierName() +"', '"+ newSupplier.getTelephone() +"', '"+ newSupplier.getEmail()+"', '"+ newSupplier.getAddressID()+"')";
-		}else if(!newSupplier.getEmail().isEmpty()) {
-			sql = insertQuery + collumnsWE + newSupplier.getSupplierName() +"', '"+ newSupplier.getEmail()+"', '"+ newSupplier.getAddressID()+"')";
-		}else {
-			sql = insertQuery + collumnsWT + newSupplier.getSupplierName() +"', '"+ newSupplier.getTelephone() +"', '"+ newSupplier.getAddressID()+"')";
-		}
-		sqlDB.openCon();
-		try {
-			sqlDB.updateDB(sql);
-		} 
-		catch (SQLException sqle) {
-			sqle.printStackTrace();
-			push.deleteAddressByID(newSupplier.getAddressID());
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			push.deleteAddressByID(newSupplier.getAddressID());
-		}
-		sqlDB.closeCon();
+		System.out.println(newSupplier.getImageLocation());
+//		if (!newSupplier.getEmail().isEmpty() && !newSupplier.getTelephone().isEmpty()) {
+//			sql = insertQuery + collumnsWTE + newSupplier.getSupplierName() +"', '"+ newSupplier.getTelephone() +"', '"+ newSupplier.getEmail()+"', '"+ newSupplier.getAddressID()+"', '"+newSupplier.getImageLocation() +"')";
+//		}else if(!newSupplier.getEmail().isEmpty()) {
+//			sql = insertQuery + collumnsWE + newSupplier.getSupplierName() +"', '"+ newSupplier.getEmail()+"', '"+ newSupplier.getAddressID()+"', '"+newSupplier.getImageLocation() +"')";
+//		}else {
+//			sql = insertQuery + collumnsWT + newSupplier.getSupplierName() +"', '"+ newSupplier.getTelephone() +"', '"+ newSupplier.getAddressID()+"', '"+newSupplier.getImageLocation() +"')";
+//		}
+//		sqlDB.openCon();
+//		try {
+//			sqlDB.updateDB(sql);
+//		} 
+//		catch (SQLException sqle) {
+//			sqle.printStackTrace();
+//			push.deleteAddressByID(newSupplier.getAddressID());
+//			JFrame frame = new JFrame("Could not add supplier");
+//			JOptionPane.showMessageDialog(frame, "Supplier has been updated \n SQL Error", "Warning",
+//					JOptionPane.ERROR_MESSAGE);
+//		}
+//		catch (Exception e) {
+//			e.printStackTrace();
+//			push.deleteAddressByID(newSupplier.getAddressID());
+//			JFrame frame = new JFrame("Could not add supplier");
+//			JOptionPane.showMessageDialog(frame, "Supplier has been updated", "Warning",
+//					JOptionPane.ERROR_MESSAGE);
+//		}
+//		sqlDB.closeCon();
+		push.deleteAddressByID(newSupplier.getAddressID());
 	}
 
 	public void updateSupplier(Supplier upSP) {
 		if (!upSP.getEmail().isEmpty() && !upSP.getTelephone().isEmpty()) {
-		sql = update+ upSP.getSupplierName()+ "', telephoneNumber ='"+upSP.getTelephone() + "', email ='" + upSP.getEmail() + "' WHERE `idSupplier`='"+upSP.getSupplierID()+"';";
+		sql = update+ upSP.getSupplierName()+ "', telephoneNumber ='"+upSP.getTelephone() + "', email ='" + upSP.getEmail() +"', image ='"+upSP.getImageLocation() + "' WHERE `idSupplier`='"+upSP.getSupplierID()+"';";
 		} else if (!upSP.getEmail().isEmpty()) {
-			sql = update+ upSP.getSupplierName()+ "', email ='" + upSP.getEmail() + "' WHERE `idSupplier`='"+upSP.getSupplierID()+"';";
+			sql = update+ upSP.getSupplierName()+ "', email ='" + upSP.getEmail() +"', image ='"+upSP.getImageLocation() + "' WHERE `idSupplier`='"+upSP.getSupplierID()+"';";
 		} else {
-			sql = update+ upSP.getSupplierName()+ "', telephoneNumber ='"+upSP.getTelephone() + "' WHERE `idSupplier`='"+upSP.getSupplierID()+"';";
+			sql = update+ upSP.getSupplierName()+ "', telephoneNumber ='"+upSP.getTelephone() + "', image ='"+upSP.getImageLocation() + "' WHERE `idSupplier`='"+upSP.getSupplierID()+"';";
 		}
 		sqlDB.openCon();
 		try {
