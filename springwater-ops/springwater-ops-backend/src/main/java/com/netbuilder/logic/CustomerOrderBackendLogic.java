@@ -1,5 +1,10 @@
 package com.netbuilder.logic;
 
-public class CustomerOrderBackendLogic {
+import entities.CustomerOrder;
 
+public class CustomerOrderBackendLogic {
+	
+	public void customerOrderPlaced(CustomerOrder cO) {
+		
+	}
 }

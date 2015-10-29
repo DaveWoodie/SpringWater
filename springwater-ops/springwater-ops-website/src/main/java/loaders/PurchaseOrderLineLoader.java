@@ -99,7 +99,7 @@ public class PurchaseOrderLineLoader {
 	 * @param pOL the purchase order line object to be updated
 	 */
 	public void setPurchaseOrderLineStock(PurchaseOrderLine pOL){
-		sql = "UPDATE purchaseorderline SET quantityDamaged = " + pOL.getDamagedQuantity() + ", quantity = " + pOL.getQuantity() + "WHERE idItem = " + pOL.getItemID() + " AND idPurchaseOrder = " + pOL.getPurchaseOrder().getIDPurchaseOrder();
+		sql = "UPDATE purchaseorderline SET quantityDamaged = " + pOL.getDamagedQuantity() + ", quantity = " + pOL.getQuantity() + " WHERE idItem = " + pOL.getItemID() + " AND idPurchaseOrder = " + pOL.getPurchaseOrder().getIDPurchaseOrder();
 		sqlDB.openCon();
 		try {
 			sqlDB.updateDB(sql);

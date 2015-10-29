@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.netbuilder.test.Item;
 import com.netbuilder.test.ItemDatabase;
 import com.netbuilder.test.User;
+import com.netbuilder.test.WishlistDatabase;
+
 /**
  * 
  * @author Chris Boucher
@@ -51,8 +53,11 @@ public class IndexController {
 		wishlist2.add(wishlist.get(3));
 		wishlist3.add(wishlist.get(4));
 		wishlist3.add(wishlist.get(5));
-		if(session.getAttribute("user") != null) {
+		if (session.getAttribute("user") != null) {
 			model.addAttribute("user", (User) session.getAttribute("user"));
+			model.addAttribute("wishlistSize", WishlistDatabase
+					.getUserWishlistItems((User) session.getAttribute("user"))
+					.size());
 		}
 		model.addAttribute("featured", featured);
 		model.addAttribute("mostpopular1", mostPopular1);

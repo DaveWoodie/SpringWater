@@ -86,7 +86,7 @@
 
                     <p th:text="${item.description}"></p>
 
-                    <a class="btn btn-danger btn-lg" href=""><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Add to Wish List</a>
+                    <a class="btn btn-danger btn-lg" th:href="@{/addwishline(itemid=${item.itemID})}"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Add to Wish List</a>
                     <a class="btn btn-warning btn-lg" href="#reviews"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Reviews</a>
                     <a class="btn btn-info btn-lg" th:href="@{/addtobasket(itemid=${item.itemID})}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add to Basket</a>
                 </div>

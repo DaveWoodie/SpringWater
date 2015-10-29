@@ -29,23 +29,29 @@
         
         <script th:inline="javascript">
             var user = /*[[${user}]]*/ null;
+            var wishlistSize = /*[[${wishlistSize}]]*/ null;
             if(user != null) {
                 document.cookie = "userName = " + user.firstName;
+                document.cookie = "wishCount = " + wishlistSize;
             }
             else {
                 deleteCookie("userName");
+                deleteCookie("wishCount");
             }
             document.getElementById("basketCount").innerHTML = getCookies("itemCount");
             if(getCookies("userName") != null) {
                 document.getElementById("userName").innerHTML = " " + getCookies("userName");
                 document.getElementById("userButton").setAttribute("href","profile");
                 document.getElementById("logout").style.display = "";
+                document.getElementById("wishButton").setAttribute("href","wishlist");
+                document.getElementById("wishlistCount").innerHTML = getCookies("wishCount");
             }
             else
             {
                 document.getElementById("userName").innerHTML = " Login/Register";
                 document.getElementById("userButton").setAttribute("href","loginregister");
                 document.getElementById("logout").style.display = 'none';
+                document.getElementById("wishButton").setAttribute("href","loginregister");
             }
         </script>
         

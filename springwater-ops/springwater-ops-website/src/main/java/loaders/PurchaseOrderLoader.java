@@ -191,15 +191,18 @@ public class PurchaseOrderLoader {
 	 * Method to construct the sql query to create a purchase order entry in the database and execute it
 	 * @param pO the purchase order object to be created
 	 */
-	public void createPurchaseOrder (PurchaseOrder pO) {
+	public Integer createPurchaseOrder (PurchaseOrder pO) {
 		System.out.println("Reached create purchase order");
-		System.out.println(pO.getEmployee().getUser().getUserID());
 		System.out.println(pO.getPurchaseOrderStatus().getStatusID());
 		System.out.println(pO.getSupplier().getSupplierID());
-		sql = "INSERT INTO purchaseOrder (idEmployee, idPurchaseOrderStatus, idSupplier) VALUE (" + pO.getEmployee().getUser().getUserID() + ", " + pO.getPurchaseOrderStatus().getStatusID() + ", " + pO.getSupplier().getSupplierID() + ")";
+		sql = "INSERT INTO purchaseOrder (idPurchaseOrderStatus, idSupplier) VALUE (" + pO.getPurchaseOrderStatus().getStatusID() + ", " + pO.getSupplier().getSupplierID() + ")";
 		sqlDB.openCon();
+		Integer newID = null;
 		try {
 			sqlDB.updateDB(sql);
+			ResultSet rs = sqlDB.queryDB("SELECT MAX(idPurchaseOrder) AS ID FROM purchaseorder");
+			rs.next();
+			newID = rs.getInt("ID");
 		} 
 		catch (SQLException sqle) {
 			sqle.printStackTrace();
@@ -207,7 +210,10 @@ public class PurchaseOrderLoader {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+		finally {
 		sqlDB.closeCon();
+		}
+		return newID;
 	}
 }
 
