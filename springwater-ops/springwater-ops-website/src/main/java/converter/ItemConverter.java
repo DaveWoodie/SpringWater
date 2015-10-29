@@ -7,17 +7,17 @@
 
 package converter;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.Random;
 
-import entities.Review;
+//import entities.Review;
 
 public class ItemConverter {
 	
 	private com.netbuilder.test.Item webItem;
-	private entities.Item entItem;
+//	private entities.Item entItem;
 	
-	private Random r;
+	private Random r = new Random();
 	
 	public ItemConverter() {
 	
@@ -28,7 +28,7 @@ public class ItemConverter {
 		String name = i.getItemName();
 		float price = i.getPrice();
 		
-		String imageLoc = i.getImageLocation();
+		String imageLoc = "img/" + i.getImageLocation();
 		
 		int starRating = 1 + r.nextInt(4);
 		

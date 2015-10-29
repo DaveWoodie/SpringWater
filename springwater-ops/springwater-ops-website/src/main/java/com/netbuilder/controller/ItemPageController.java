@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.netbuilder.test.*;
+
+import entities.Review;
 /**
  * 
  * @author Chris Boucher
@@ -33,10 +35,8 @@ public class ItemPageController {
 			ArrayList<Item> resultList = ItemDatabase.searchKeyword(result.getKeyword());
 			ArrayList<Item> relatedList = new ArrayList<Item>();
 			int deleteIndex = 0;
-			for(Item item : resultList)
-			{
-				if(item.getItemID().equals(result.getItemID()))
-				{
+			for(Item item : resultList)	{
+				if(item.getItemID().equals(result.getItemID()))	{
 					deleteIndex = resultList.indexOf(item);
 				}
 			}
