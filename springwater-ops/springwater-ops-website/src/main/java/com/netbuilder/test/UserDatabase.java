@@ -24,7 +24,7 @@ public class UserDatabase {
 		
 		// Add items to the list
 		userList.add(new User(
-				"01", "CallumCooper", "callum.cooper@netbuilder.com",
+				1, "CallumCooper", "callum.cooper@netbuilder.com",
 						"12/05/1993", "07917800649", 100.00, "Callum", "Cooper"));
 	}
 	
@@ -38,5 +38,23 @@ public class UserDatabase {
 		users.add(userList.get(0));
 		
 		return users;
+	}
+	
+	static public User searchEmail(String email) {
+		for(User user : userList) {
+			if(user.getEmail().toLowerCase().equals(email.toLowerCase())) {
+				return user;
+			}
+		}
+		return null;
+	}
+	
+	static public User searchID(int userID) {
+		for(User user : userList) {
+			if(user.getCustomerID() == userID) {
+				return user;
+			}
+		}
+		return null;
 	}
 }

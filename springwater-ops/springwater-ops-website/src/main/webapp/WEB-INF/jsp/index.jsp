@@ -27,6 +27,28 @@
     <!-- Page Content -->
     <div class="jumbotron content">
         
+        <script th:inline="javascript">
+            var user = /*[[${user}]]*/ null;
+            if(user != null) {
+                document.cookie = "userName = " + user.firstName;
+            }
+            else {
+                deleteCookie("userName");
+            }
+            document.getElementById("basketCount").innerHTML = getCookies("itemCount");
+            if(getCookies("userName") != null) {
+                document.getElementById("userName").innerHTML = " " + getCookies("userName");
+                document.getElementById("userButton").setAttribute("href","profile");
+                document.getElementById("logout").style.display = "";
+            }
+            else
+            {
+                document.getElementById("userName").innerHTML = " Login/Register";
+                document.getElementById("userButton").setAttribute("href","loginregister");
+                document.getElementById("logout").style.display = 'none';
+            }
+        </script>
+        
         <!-- ******************************* Carousel Gnome Featured ************************************* -->        
         <div class="container-fluid">
                 <div class="row">

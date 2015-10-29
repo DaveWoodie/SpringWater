@@ -38,20 +38,20 @@ public class MongoPull {
 
 	
 	
-	public static void main(String[] args) {
-		
-		MongoPull pull = new MongoPull();
-		MongoPush push = new MongoPush();
-		
-		ArrayList<Item> items = pull.getAllItems();
-		for(Item i : items) {
-			i.print();
-			System.out.println();
-		}
-		
-		
-		
-	}
+//	public static void main(String[] args) {
+//		
+//		MongoPull pull = new MongoPull();
+//		MongoPush push = new MongoPush();
+//		
+//		ArrayList<Item> items = pull.getAllItems();
+//		for(Item i : items) {
+//			i.print();
+//			System.out.println();
+//		}
+//		
+//		
+//		
+//	}
 	
 	public MongoPull() {
 		
