@@ -25,7 +25,6 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-import com.netbuilder.logic.PurchaseOrderLogic;
 import com.netbuilder.logic.SupplierLogic;
 
 @SuppressWarnings("serial")
@@ -112,7 +111,7 @@ public class SuppliersGUI extends JPanel{
 				String input = searchTerm.getText();
 				switch (categories.getSelectedItem().toString()) {
 					case "Supplier ID":
-						System.out.println(input);
+//						System.out.println(input);
 						int i = Integer.parseInt(input);
 						update = lD.fetchSupplierByID(i);
 						break;

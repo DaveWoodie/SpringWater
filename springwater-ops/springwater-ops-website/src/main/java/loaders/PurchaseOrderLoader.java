@@ -86,7 +86,7 @@ public class PurchaseOrderLoader {
 	public ArrayList<PurchaseOrder> getPurchaseOrderByID(int i) {
 		sql = listQuery + tableName + tableJoins + " WHERE idPurchaseOrder = " + i;
 		constructResult();
-		System.out.println(purchaseOrderList.get(0).getPurchaseOrderStatus().getStatusID());
+//		System.out.println(purchaseOrderList.get(0).getPurchaseOrderStatus().getStatusID());
 		return purchaseOrderList;
 	}
 	
@@ -159,7 +159,13 @@ public class PurchaseOrderLoader {
 	 */
 	public void setPurchaseOrder(PurchaseOrder pO){
 		java.sql.Date dateExpected = null;
-		java.sql.Date datePlaced = new java.sql.Date(pO.getDatePlaced().getTime());
+		java.sql.Date datePlaced = null;
+		try {
+			datePlaced = new java.sql.Date(pO.getDatePlaced().getTime());
+		}
+		catch (NullPointerException nPE) {
+			datePlaced = null;
+		}
 		try {
 			dateExpected = new java.sql.Date(pO.getDateExpected().getTime());
 		}
@@ -173,7 +179,16 @@ public class PurchaseOrderLoader {
 		else {
 			dateToPass = "'" + dateExpected + "'";
 		}
-		sql = "UPDATE purchaseOrder SET datePlaced = '" + datePlaced + "', dateExpected = " + dateToPass + ", idEmployee = " + pO.getEmployee().getUser().getUserID() + ", idPurchaseOrderStatus = " + pO.getPurchaseOrderStatus().getStatusID() + ", idSupplier = " + pO.getSupplier().getSupplierID() + " WHERE idPurchaseOrder = " + pO.getIDPurchaseOrder();
+		
+		String datePlacedString;
+		if (datePlaced == null) {
+			datePlacedString = "null";
+		}
+		else {
+			datePlacedString = "'" + datePlaced + "'";
+		}
+		
+		sql = "UPDATE purchaseOrder SET datePlaced = " + datePlacedString + ", dateExpected = " + dateToPass + ", idEmployee = " + pO.getEmployee().getUser().getUserID() + ", idPurchaseOrderStatus = " + pO.getPurchaseOrderStatus().getStatusID() + ", idSupplier = " + pO.getSupplier().getSupplierID() + " WHERE idPurchaseOrder = " + pO.getIDPurchaseOrder();
 		sqlDB.openCon();
 		try {
 			sqlDB.updateDB(sql);
@@ -192,9 +207,9 @@ public class PurchaseOrderLoader {
 	 * @param pO the purchase order object to be created
 	 */
 	public Integer createPurchaseOrder (PurchaseOrder pO) {
-		System.out.println("Reached create purchase order");
-		System.out.println(pO.getPurchaseOrderStatus().getStatusID());
-		System.out.println(pO.getSupplier().getSupplierID());
+//		System.out.println("Reached create purchase order");
+//		System.out.println(pO.getPurchaseOrderStatus().getStatusID());
+//		System.out.println(pO.getSupplier().getSupplierID());
 		sql = "INSERT INTO purchaseOrder (idPurchaseOrderStatus, idSupplier) VALUE (" + pO.getPurchaseOrderStatus().getStatusID() + ", " + pO.getSupplier().getSupplierID() + ")";
 		sqlDB.openCon();
 		Integer newID = null;

@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 public class EmailService {
 
 	public EmailService() {
-
+		
 	}
 
 

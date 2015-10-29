@@ -71,8 +71,10 @@ public class GUIStart extends JFrame {
 			mFrame.consumer.setMessageListener(mFrame);
 		} catch (JMSException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (NullPointerException npe) {
+			
 		}
+		
 	}
 
 	/**

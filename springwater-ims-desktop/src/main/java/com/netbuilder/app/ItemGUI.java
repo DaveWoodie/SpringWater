@@ -112,7 +112,7 @@ public class ItemGUI extends JFrame
 		
 		//pulls item info from MongDB
 		itemList = itemLoader.loadItemByID(itemID);
-		System.out.println(itemList.size());
+//		System.out.println(itemList.size());
 		item = itemList.get(0);
 		
 		setUpTableModel();
@@ -258,8 +258,6 @@ public class ItemGUI extends JFrame
 				{
 					//get item quantity
 					int Quantity = Integer.parseInt(textAdd.getText());
-					System.out.println(Quantity);
-					System.out.println(itemID);
 					
 					//get item from id
 //					ArrayList<Item> itemList = itemLoader.loadItemByID(itemID);
@@ -270,6 +268,8 @@ public class ItemGUI extends JFrame
 					purchaseOrderLogic.addItemToPurchaseOrder(item, Quantity);
 					
 					JOptionPane.showMessageDialog(null, Quantity + " " + item.getItemName() + " added to purchase order");
+					
+					loadTable();
 				}
 			});
 			
@@ -366,11 +366,11 @@ public class ItemGUI extends JFrame
 	public void loadTable()
 	{
 		//clear table
-		if(tableModel.getRowCount() < 1)
+		if(tableModel.getRowCount() > 0)
 		{
-			for(int i = 0; i < tableModel.getRowCount(); i++)
+			for(int i = tableModel.getRowCount() - 1; i > -1; i--)
 			{
-				tableModel.removeRow(tableModel.getRowCount());
+				tableModel.removeRow(i);
 			}
 		}
 		
