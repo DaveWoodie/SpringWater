@@ -95,7 +95,15 @@ public class Item implements Serializable{
 		this.isPorousware = isPorousware;
 		this.idSupplier = idSupplier;
 		this.attributes = new HashMap<String, String>();
-		this.reviews = reviews;
+		this.reviews = copyReviews(reviews);
+	}
+	
+	private ArrayList<Review> copyReviews(ArrayList<Review> revs) {
+		ArrayList<Review> copy = new ArrayList<Review>();
+		for(Review r : revs) {
+			copy.add(r);
+		}
+		return copy;
 	}
 	
 	@Deprecated
@@ -335,6 +343,15 @@ public class Item implements Serializable{
 		reviews.add(r);
 	}
 	
+	public void removeReview(Review r) {
+		String reviewer = r.getAuthor();
+		for(int i = 0; i < reviews.size(); i++) {
+			if(reviews.get(i).getAuthor().equals(reviewer)) {
+				reviews.remove(i);
+			}
+		}
+	}
+	
 	/**
 	 * prints out the item's deets to the console. Used in testing
 	 */
@@ -358,6 +375,11 @@ public class Item implements Serializable{
 			Map.Entry<String,String> pair = (Map.Entry<String, String>)it.next();
 	        System.out.println(pair.getKey()+" - "+pair.getValue());
 	        it.remove(); // avoids a ConcurrentModificationException
+	    }
+	    
+	    System.out.println("REVIEWS:");
+	    for(Review r : reviews) {
+	    	r.print();
 	    }
 		
 	}

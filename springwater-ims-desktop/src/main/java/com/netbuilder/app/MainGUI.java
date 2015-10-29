@@ -230,6 +230,10 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 					System.out.println((String) messageContent.getContents());
 					JOptionPane.showMessageDialog(popupFrame, (String) messageContent.getContents());
 				}
+				else if (messageContent.getMessage().equals("newStockReport")) {
+					JFrame popupFrame = new JFrame();
+					JOptionPane.showMessageDialog(popupFrame, (String) messageContent.getContents());
+				}
 			}
 		}
 		catch (JMSException e) {
