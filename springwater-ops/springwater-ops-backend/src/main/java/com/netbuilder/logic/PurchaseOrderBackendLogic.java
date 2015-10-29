@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 
 
+
 import com.netbuilder.JMS.Sender;
 
 import connections.MongoPull;
@@ -28,6 +29,7 @@ import entities.PurchaseOrder;
 import entities.PurchaseOrderLine;
 import entities.PurchaseOrderStatus;
 import entities.Supplier;
+import loaders.EmployeeLoader;
 import loaders.PurchaseOrderLineLoader;
 import loaders.PurchaseOrderLoader;
 import loaders.PurchaseOrderStatusLoader;
@@ -69,7 +71,9 @@ public class PurchaseOrderBackendLogic {
 				supplier = null;
 			}
 			PurchaseOrder pO = new PurchaseOrder(pOSLoader.getPurchaseOrderStatus(1), supplier);
-			pOLoader.createPurchaseOrder(pO);
+			int newID = pOLoader.createPurchaseOrder(pO);
+			pO.setIDPurchaseOrder(newID);
+			EmployeeLoader eLoader = new EmployeeLoader();
 			PurchaseOrderLine pOL = new PurchaseOrderLine(quantityAdd, item.getIdItem(), pO);
 			pOLLoader.createPurchaseOrderLine(pOL);
 		}
@@ -139,6 +143,7 @@ public class PurchaseOrderBackendLogic {
 			//TODO get current employee and set on purchase order
 			PurchaseOrderStatus pOS = pOSLoader.getPurchaseOrderStatus(2);
 			pO.setPurchaseOrderStatus(pOS);
+			pO.setDatePlaced(new java.util.Date());
 			pOLoader.setPurchaseOrder(pO);
 		}
 	}

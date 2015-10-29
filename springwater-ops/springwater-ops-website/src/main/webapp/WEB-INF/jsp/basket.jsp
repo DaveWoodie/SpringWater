@@ -114,7 +114,7 @@
                                 <div class="list-group panel">
                                     <a href="#AddressMenu" class="list-group-item strong" data-toggle="collapse" data-parent="#AddressMenu" id="selectAddress">Select Address<i class="fa fa-caret-down"></i></a>
                                     <div class="collapse" id="AddressMenu">
-                                        <a href="#" class="list-group-item" data-parent="#AddressMenu" id="option">STREET NAME 1</a>
+                                        <a th:each="address : ${user.address}" href="#" class="list-group-item" data-parent="#AddressMenu" id="option">STREET NAME 1</a>
                                         <a href="#" class="list-group-item" data-parent="#AddressMenu" id="option">STREET NAME 2</a>
                                     </div>
                                 </div>
