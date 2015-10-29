@@ -39,12 +39,17 @@ public class SalesForecast
 		//get purchase order lists containing item ID
 		ArrayList<PurchaseOrderLine> pOLineList = pOLineLoader.getPurchaseOrderLineByProductID(itemID);
 		
-		//Observation o = new Observation(600.0);
+		ArrayList<Observation> observationList = new ArrayList<Observation>();
 		
 		for(int i = 0; i < pOLineList.size(); i++)
 		{
-			dataSet.add(new Observation(pOLineList.get(i).getQuantity()));
-			System.out.println(data);
+			//get purchase order line date
+			
+			
+			observationList.add(new Observation(pOLineList.get(i).getQuantity()));
+			//observationList.get(i).setIndependentValue("Date", );
+			
+			
 		}
 	}
 	
