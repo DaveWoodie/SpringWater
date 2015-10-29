@@ -27,8 +27,6 @@ public class EmailController {
     		@RequestParam("emailInput") final String email,
     		@RequestParam("telephoneNumberInput") final String phone) throws MessagingException {
 
-    	
-    	
     	EmailService.Send("chrisjwwalker@gmail.com","ThePhotographer", firstName, lastName, email, phone);
     	
         return "redirect:/aboutus";     
