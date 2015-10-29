@@ -1,10 +1,7 @@
 package com.netbuilder.test;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-
-import org.springframework.data.annotation.Id;
 
 /**
  * Class to hold all of the details for an address. Used for both customer addresses and supplier addresses
@@ -60,6 +57,4 @@ public class Address implements Serializable{
 	public String getFirstLine() {
 		return addressLines.get(0);
 	}
-		
-	
 }

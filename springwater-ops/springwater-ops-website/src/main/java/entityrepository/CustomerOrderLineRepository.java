@@ -2,11 +2,11 @@ package entityrepository;
 
 import java.util.List;
 
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+//import org.springframework.data.repository.CrudRepository;
+//import org.springframework.stereotype.Repository;
 
 import entities.CustomerOrder;
-import entities.CustomerOrderLine;
+//import entities.CustomerOrderLine;
 
 /**
  * Interface to hold the find methods for customer order line
