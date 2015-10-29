@@ -37,6 +37,10 @@ public class Application {
 			Listener listenerWeb = new Listener ("WEB.OUT");
 			listenerWeb.consumer.setMessageListener(listenerWeb);
 			
+			//configure WOTS listener
+			Listener listenerWOTS = new Listener ("WOTS.OUT");
+			listenerWOTS.consumer.setMessageListener(listenerWOTS);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

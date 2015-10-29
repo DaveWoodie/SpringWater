@@ -144,7 +144,8 @@ public class SupplierFrame extends JFrame{
 		edit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				
+				AddSupplierFrame aSF = new AddSupplierFrame(selectedID);
+				aSF.setVisible(true);
 			}
 		});
 		
@@ -157,6 +158,7 @@ public class SupplierFrame extends JFrame{
 			
 		});
 		bottomOptions.add(select);
+		bottomOptions.add(edit);
 		bottomOptions.add(exit);
 		
 		

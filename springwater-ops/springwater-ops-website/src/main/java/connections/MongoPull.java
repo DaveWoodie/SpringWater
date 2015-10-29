@@ -361,13 +361,13 @@ public class MongoPull {
 		String itemPrice = itemObj.get("ItemPrice").toString();
 		String itemCost = itemObj.get("ItemCost").toString();
 		String imageLocation = itemObj.get("ImageLocation").toString();
-		itemInfs.add(itemObj.get("SalesRate").toString());
-		itemInfs.add(itemObj.get("PSalesRate").toString());
+		String salesRate = (itemObj.get("SalesRate").toString());
+		String pSalesRate = (itemObj.get("PSalesRate").toString());
 		boolean isPorousWare = handleMongoBoolean(itemObj.get("IsPorousware"));
 		boolean discontinued = handleMongoBoolean(itemObj.get("Discontinued"));
 		String idSupplier = itemObj.get("idSupplier").toString();
 		
-		newItem = new Item(itemName, itemDescription, Float.parseFloat(itemPrice), Float.parseFloat(itemCost), (int) Float.parseFloat(numberInStock), imageLocation, discontinued, isPorousWare, (int) Float.parseFloat(idSupplier));
+		newItem = new Item(itemName, itemDescription, Float.parseFloat(itemPrice), Float.parseFloat(itemCost), (int) Float.parseFloat(numberInStock), imageLocation, discontinued, isPorousWare, (int) Float.parseFloat(idSupplier), (int) Float.parseFloat(salesRate), (int) Float.parseFloat(pSalesRate));
 		newItem.setItemID((Integer) itemObj.get("idItem") );
 		
 		

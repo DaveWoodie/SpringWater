@@ -27,8 +27,8 @@ public class Item implements Serializable{
 	private String imageLocation;
 	private boolean discontinued;
 	//Might need these rates to be float
-	private double salesRate;
-	private double pSalesRate;
+	private int salesRate;
+	private int pSalesRate;
 	private boolean isPorousware;
 	
 	private HashMap<String, String> attributes;
@@ -50,7 +50,7 @@ public class Item implements Serializable{
 	 * @param idSupplier: Supplier: relates to the supplier information that this item can be purchased from
 	 * @param attributes: HashMap of Srting to String detailing all of the procuct attributes
 	 */
-	public Item(String itemName, String itemDescription, float price, float cost, int stock, String imageLocation, boolean discontinued, boolean isPorousware, int idSupplier) {
+	public Item(String itemName, String itemDescription, float price, float cost, int stock, String imageLocation, boolean discontinued, boolean isPorousware, int idSupplier, int salesRate, int pSalesRate) {
 		this.itemName = itemName;
 		this.itemDescription = itemDescription;
 		this.price = price;
@@ -58,8 +58,8 @@ public class Item implements Serializable{
 		this.stock = stock;
 		this.imageLocation = imageLocation;
 		this.discontinued = discontinued;
-//		this.salesRate = salesRate;
-//		this.pSalesRate = pSalesRate;
+		this.salesRate = salesRate;
+		this.pSalesRate = pSalesRate;
 		this.isPorousware = isPorousware;
 		this.idSupplier = idSupplier;
 		this.attributes = new HashMap<String, String>();

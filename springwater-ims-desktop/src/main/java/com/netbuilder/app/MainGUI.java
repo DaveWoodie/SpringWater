@@ -11,14 +11,21 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.MessageListener;
+import javax.jms.ObjectMessage;
 import javax.swing.Box;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.BoxLayout;
 import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
 
+import entities.MessageContent;
 import loaders.LoginLoader;
 
 /**
@@ -26,7 +33,7 @@ import loaders.LoginLoader;
  */
 
 @SuppressWarnings("serial")
-public class MainGUI extends JPanel implements ComponentListener , ActionListener{
+public class MainGUI extends JPanel implements ComponentListener , ActionListener, MessageListener{
 	
 	JPanel base, panel1, panel2, panel3, panel4, bottom;
 	JTabbedPane pane;
@@ -176,6 +183,27 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 			src.revertToLogin();
 		}
 	}
-
+	
+	/**
+	 * Listener to receive messages from the IMS inbox
+	 */
+	@Override
+	public void onMessage(Message message) {
+		// TODO Handle inbound message types
+		ObjectMessage objectMessage = (ObjectMessage) message;
+		try {
+			if (objectMessage.getObject() instanceof MessageContent) {
+				MessageContent messageContent = (MessageContent) objectMessage.getObject();
+				if (messageContent.getMessage().equals("damagedStockReport")) {
+					JFrame popupFrame = new JFrame();
+					JOptionPane.showMessageDialog(popupFrame, (String) messageContent.getContents());
+				}
+			}
+		}
+		catch (JMSException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }

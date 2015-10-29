@@ -1,7 +1,7 @@
 <!--     Chris Boucher  -->
 <!--     basket.jsp -->
 <!--     Page for viewing the customer's basket -->
-<!--     Last Modified by: Callum Cooper -->
+<!--     Last Modified by: Chris Boucher -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
@@ -13,6 +13,12 @@
 
 <body>
 <div th:fragment="content">
+    
+    <script th:inline="javascript">
+        var basketSize= /*[[${basket.itemList.size()}]]*/ '0';
+        document.cookie = "itemCount = " + basketSize;
+    </script>
+    
     <!-- Page Content -->
     <div class="jumbotron content">
         <div class="container">
@@ -47,15 +53,15 @@
                                         <!-- Item Row -->
                                         <!-- NOTE ******* th:each is same as a foreach loop, that loops through the items
                                         					in the basket!!!! **** -->
-                                        <tr th:each="item : ${basket}">
-                                            <td><a th:href="@{/itempage(itemid=${item.itemID})}" th:text="${item.itemName}"></a></td>
-                                            <td th:text="${item.price}">&pound;</td>
-                                            <td>3</td>
-                                            <td th:text="${item.price}">&pound;</td>
+                                        <tr th:each="itemLine : ${basket.itemList}">
+                                            <td><a th:href="@{/itempage(itemid=${itemLine.item.itemID})}" th:text="${itemLine.item.itemName}" style="color:black"></a></td>
+                                            <td th:text="'£'+${itemLine.item.formattedPrice()}"></td>
+                                            <td th:text="${itemLine.quantity}"></td>
+                                            <td th:text="'£'+${itemLine.formattedTotalPrice()}"></td>
                                             <td>
-                                                <button class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-                                                <button class="btn btn-info"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
-                                                <button class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                                <a th:href="@{/editquantity(itemid=${itemLine.item.itemID},quantity='1')}" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+                                                <a th:href="@{/editquantity(itemid=${itemLine.item.itemID},quantity='-1')}" class="btn btn-info"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a>
+                                                <a th:href="@{/removeitem(itemid=${itemLine.item.itemID})}" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                                             </td>
                                         </tr>
 
@@ -81,19 +87,19 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-sm-6 panel-body" id="panelLeft">Subtotal:</div>
-                                        <div class="col-sm-6 panel-body">&pound;8.97</div>
+                                        <div class="col-sm-6 panel-body" th:text="'£'+${basket.formattedGrandTotal()}"></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6 panel-body" id="panelLeft">VAT (20%):</div>
-                                        <div class="col-sm-6 panel-body">&pound;1.79</div>
+                                        <div class="col-sm-6 panel-body" th:text="'£'+${basket.formattedVAT()}"></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6 panel-body" id="panelLeft">Postage:</div>
-                                        <div class="col-sm-6 panel-body">&pound;3.99</div>
+                                        <div class="col-sm-6 panel-body" th:text="'£'+${basket.formattedPostage()}"></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6 panel-body" id="panelLeft">Total Price:</div>
-                                        <div class="col-sm-6 panel-body">&pound;14.75</div>
+                                        <div class="col-sm-6 panel-body" th:text="'£'+${basket.formattedFullTotal()}"></div>
                                     </div>
                                 </div>
                             </div>
@@ -123,7 +129,6 @@
                             <div class="panel" style="background:none" id="paymentDiv">
                                 <a href="orderconfirm" class="btn btn-block btn-primary"><img src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom-white.svg" style="width:40%;height:auto" /></a>
                             </div>
-
                         </div>
                     </div>
                 </div>
