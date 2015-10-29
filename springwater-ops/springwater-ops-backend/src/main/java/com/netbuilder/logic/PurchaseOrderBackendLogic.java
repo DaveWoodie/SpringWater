@@ -17,9 +17,11 @@ import java.util.ArrayList;
 
 
 
+
 import com.netbuilder.JMS.Sender;
 
 import connections.MongoPull;
+import connections.MongoPush;
 import entities.Item;
 import entities.MessageContent;
 import entities.PurchaseOrder;
@@ -182,6 +184,21 @@ public class PurchaseOrderBackendLogic {
 			PurchaseOrderStatus pOS = pOSLoader.getPurchaseOrderStatus(4);
 			pO.setPurchaseOrderStatus(pOS);
 			pOLoader.setPurchaseOrder(pO);
+			String newStockReport = "<html>New Stock Report<br>Purchaseorder: " + pO.getIDPurchaseOrder();
+			PurchaseOrderLineLoader pOLLoader = new PurchaseOrderLineLoader();
+			ArrayList<PurchaseOrderLine> pOLList = pOLLoader.getPurchaseOrderLineByOrderID(pO.getIDPurchaseOrder());
+			for (int i = 0; i < pOLList.size(); i++) {
+				MongoPull mP = new MongoPull();
+				Item item = mP.getItem(pOLList.get(i).getItemID());
+				item.setStock((item.getStock() + pOLList.get(i).getQuantity() - pOLList.get(i).getDamagedQuantity()));
+				MongoPush mPush = new MongoPush();
+				mPush.updateItem(item);
+				newStockReport = newStockReport + "<br>Item ID: " + item.getIdItem() + " Item Name: " + item.getItemName() + " Number Added: " + (pOLList.get(i).getQuantity() - pOLList.get(i).getDamagedQuantity());
+			}
+			MessageContent messageContent = new MessageContent(newStockReport, "newStockReport");
+			Sender sender = new Sender ("IMS.IN");
+			sender.sendMessage(messageContent);
 		}
 	}
+	
 }
