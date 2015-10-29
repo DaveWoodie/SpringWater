@@ -37,6 +37,12 @@ public class ItemLoader
 		mongoPush.addItem(itemToAdd);
 	}
 	
+	public ArrayList<String> getCategory()
+	{
+		return null;
+		
+	}
+	
 	public ArrayList<Item> loadAllCurrentItems() 
 	{
 		return mongoPull.getAllCurrentItems();

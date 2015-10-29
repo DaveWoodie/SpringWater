@@ -505,15 +505,15 @@ public class AddItemFrame extends JFrame
 		copyFile(new File(textBrowse.getText()));
 		
 
-		Item item = new Item(itemNameR.getText(),                       			    //name
-					  		 itemDescriptionR.getText(),                			    //description
-					         Float.parseFloat(itemPriceR.getText()),    			    //price
-					         Float.parseFloat(itemUnitPriceR.getText()),				//cost
-					         0, 						     		     				//initial stock
-					         imageLocation, 				          	 				//image location
-					         false,						  	             				//is Discontinued
-					         porouswareYesB.isSelected(),    		     				//is Porouswareable
-					         getSupplierID((String) supplierR.getSelectedItem()), 0, 0);      //supplier
+		Item item = new Item(itemNameR.getText(),                       			    	//name
+					  		 itemDescriptionR.getText(),                			 	   //description
+					         Float.parseFloat(itemPriceR.getText()),    				    //price
+					         Float.parseFloat(itemUnitPriceR.getText()),					//cost
+					         0, 						     		     					//initial stock
+					         imageLocation, 				          	 					//image location
+					         false,						  	             					//is Discontinued
+					         porouswareYesB.isSelected(),    		     					//is Porouswareable
+					         getSupplierID((String) supplierR.getSelectedItem()), 0, 0);	//supplier
 		
 		//TODO MongoDB doesn't add item
 		//add the item to MongoDB
