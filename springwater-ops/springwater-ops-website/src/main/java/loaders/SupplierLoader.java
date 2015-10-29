@@ -146,37 +146,7 @@ public class SupplierLoader {
 	 * @param newSupplier to add to database
 	 */
 	public void newSupplier(Supplier newSupplier) {
-
 //		System.out.println(newSupplier.getImageLocation());
-//		if (!newSupplier.getEmail().isEmpty() && !newSupplier.getTelephone().isEmpty()) {
-//			sql = insertQuery + collumnsWTE + newSupplier.getSupplierName() +"', '"+ newSupplier.getTelephone() +"', '"+ newSupplier.getEmail()+"', '"+ newSupplier.getAddressID()+"', '"+newSupplier.getImageLocation() +"')";
-//		}else if(!newSupplier.getEmail().isEmpty()) {
-//			sql = insertQuery + collumnsWE + newSupplier.getSupplierName() +"', '"+ newSupplier.getEmail()+"', '"+ newSupplier.getAddressID()+"', '"+newSupplier.getImageLocation() +"')";
-//		}else {
-//			sql = insertQuery + collumnsWT + newSupplier.getSupplierName() +"', '"+ newSupplier.getTelephone() +"', '"+ newSupplier.getAddressID()+"', '"+newSupplier.getImageLocation() +"')";
-//		}
-//		sqlDB.openCon();
-//		try {
-//			sqlDB.updateDB(sql);
-//		} 
-//		catch (SQLException sqle) {
-//			sqle.printStackTrace();
-//			push.deleteAddressByID(newSupplier.getAddressID());
-//			JFrame frame = new JFrame("Could not add supplier");
-//			JOptionPane.showMessageDialog(frame, "Supplier has been updated \n SQL Error", "Warning",
-//					JOptionPane.ERROR_MESSAGE);
-//		}
-//		catch (Exception e) {
-//			e.printStackTrace();
-//			push.deleteAddressByID(newSupplier.getAddressID());
-//			JFrame frame = new JFrame("Could not add supplier");
-//			JOptionPane.showMessageDialog(frame, "Supplier has been updated", "Warning",
-//					JOptionPane.ERROR_MESSAGE);
-//		}
-//		sqlDB.closeCon();
-		push.deleteAddressByID(newSupplier.getAddressID());
-
-		System.out.println(newSupplier.getImageLocation());
 		if (!newSupplier.getEmail().isEmpty() && !newSupplier.getTelephone().isEmpty()) {
 			sql = insertQuery + collumnsWTE + newSupplier.getSupplierName() +"', '"+ newSupplier.getTelephone() +"', '"+ newSupplier.getEmail()+"', '"+ newSupplier.getAddressID()+"', '"+newSupplier.getImageLocation() +"')";
 		}else if(!newSupplier.getEmail().isEmpty()) {
@@ -203,7 +173,6 @@ public class SupplierLoader {
 					JOptionPane.ERROR_MESSAGE);
 		}
 		sqlDB.closeCon();
->>>>>>> 26b1032909d095dbc35f73064d8318587192bcb1
 	}
 
 	public void updateSupplier(Supplier upSP) {
