@@ -75,7 +75,7 @@ public class GUIStart extends JFrame {
 	 */
 	public void revertToMain(String userID) {
 		mainGUISetup(userID);
-//		createListener();
+		createListener();
 	}
 	
 	/**
