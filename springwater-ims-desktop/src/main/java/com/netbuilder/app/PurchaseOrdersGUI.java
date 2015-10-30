@@ -44,6 +44,7 @@ public class PurchaseOrdersGUI extends JPanel {
 	JComboBox<String> filterPurchaseOrder;
 	JButton filter, select, reset, add, refresh;
 	JLabel searchFieldLabel, filterFieldLabel;
+	Object[][] update;
 	
 	int currentlySelectedOrder = 0;
 	private PurchaseOrderLogic lD;
@@ -92,7 +93,7 @@ public class PurchaseOrdersGUI extends JPanel {
 		search.add(searchField);
 		
 		controller.add(select);
-		controller.add(refresh);
+//		controller.add(refresh);
 		controller.add(filter);
 		controller.add(reset);
 		
@@ -156,7 +157,7 @@ public class PurchaseOrdersGUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO set filter of table results
 				//Should apply the filters selected to the table.
-				Object[][] update;
+				
 				String input = searchField.getText();
 				switch (filterPurchaseOrder.getSelectedItem().toString()) {
 					case "Order ID":
@@ -263,15 +264,16 @@ public class PurchaseOrdersGUI extends JPanel {
 	}
 
 	public void refresh() {
-
-		purchaseListTable = new DefaultTableModel(lD.fetchPurchaseOrders(), columns){
+		purchaseListTable =  new DefaultTableModel(update, columns){
 			@Override
 		    public boolean isCellEditable(int i, int i1) {
 		        return false; //To change body of generated methods, choose Tools | Templates.
 		    }
-		
 		};
+		purchaseOrderTable.setModel(purchaseListTable);
+	}
+
+
 	}
 	
-}
 
