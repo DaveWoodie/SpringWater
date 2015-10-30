@@ -38,13 +38,17 @@
                         </div>
                         <div class="col-md-3">
                             <h3 class="panel-title">Total</h3>
-                            <p class="panel-title">&#163;14.75</p>
+                            	<p class="panel-title" th:text="'&#163;'+${basket.formattedFullTotal()}"></p>
                         </div>
 
                         <div class="col-md-3">
                             <h3 class="panel-title">Dispatch To</h3>
-                            <p class="panel-title">Joe Bloggs</p>
+                           		<h3 id="user"></h3>
                         </div>
+                        
+                         <script th:inline="javascript">
+                         	document.getElementById("user").innerHTML = " " + getCookies("userName");
+                         </script>
 
                         <div class="col-md-3">
                             <h3 class="panel-title">ORDER # 202-7084221-9000355</h3>
@@ -83,7 +87,6 @@
                 </div>
             </div>
         </div>
-        
     </div>
     <!-- END OF CONTENT -->
 </div>

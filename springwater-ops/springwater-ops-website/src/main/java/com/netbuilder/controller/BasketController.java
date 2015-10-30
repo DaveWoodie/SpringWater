@@ -110,7 +110,7 @@ public class BasketController {
 		
 		// create a arrival date
 		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.DATE, +7);
+		cal.add(Calendar.DATE, +3);
 		Date todate1 = cal.getTime();
 		String fromdate = orderDateDF.format(todate1);
 		model.addAttribute("arrivalDate", fromdate);
