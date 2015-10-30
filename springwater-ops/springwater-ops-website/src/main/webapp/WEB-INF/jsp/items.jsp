@@ -59,9 +59,9 @@
                             <label for="category">Category:</label>
                             <select class="form-control" id="category">
                                 <option value=""></option>
-                                <option value="Gnome">Gnome</option>
+                                <option value="Gnomes">Gnomes</option>
                                 <option value="Furniture">Furniture</option>
-                                <option value="Tool">Tool</option>
+                                <option value="Tools">Tools</option>
                                 <option value="Pottery">Pottery</option>
                             </select>
                         </div>
