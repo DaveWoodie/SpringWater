@@ -26,7 +26,7 @@ public class Application {
 		 
 		// configure the broker
 		try {
-			broker.addConnector("tcp://localhost:8081");
+			broker.addConnector("tcp://10.50.15.30:8081");
 			broker.start();
 			
 			//configure IMS listener
