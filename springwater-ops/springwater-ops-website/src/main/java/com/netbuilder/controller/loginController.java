@@ -34,8 +34,7 @@ public class loginController {
  		System.out.println(passwd);
  		
  		int userID = webLoginLoader.getUserId(email);
- 		User user = UserDatabase.searchID(userID);
- 		user = UserDatabase.userList.get(0);
+ 		User user = UserDatabase.searchEmail(email);
  
  		String[] s = new String[2];
 	
