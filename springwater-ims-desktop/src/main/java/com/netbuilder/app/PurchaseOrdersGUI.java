@@ -42,7 +42,7 @@ public class PurchaseOrdersGUI extends JPanel {
 	JScrollPane paneAlph, paneBeta;
 	JTextField searchField;
 	JComboBox<String> filterPurchaseOrder;
-	JButton filter, select, reset, add;
+	JButton filter, select, reset, add, refresh;
 	JLabel searchFieldLabel, filterFieldLabel;
 	
 	int currentlySelectedOrder = 0;
@@ -91,6 +91,7 @@ public class PurchaseOrdersGUI extends JPanel {
 		search.add(searchField);
 		
 		controller.add(select);
+		controller.add(refresh);
 		controller.add(filter);
 		controller.add(reset);
 		
@@ -221,6 +222,20 @@ public class PurchaseOrdersGUI extends JPanel {
 					IndividualPurchaseOrderViewFrame iPO = new IndividualPurchaseOrderViewFrame(currentlySelectedOrder, suppliername, date, status, total);
 					iPO.setVisible(true);
 				}
+			}
+		});
+		
+		refresh = new JButton("Refresh Data");
+		refresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				final PurchaseOrderLogic lD = new PurchaseOrderLogic();
+				purchaseListTable = new DefaultTableModel(lD.fetchPurchaseOrders(), columns){
+					@Override
+				    public boolean isCellEditable(int i, int i1) {
+				        return false; //To change body of generated methods, choose Tools | Templates.
+				    }
+				};
+				purchaseOrderTable.setModel(purchaseListTable);				
 			}
 		});
 		
