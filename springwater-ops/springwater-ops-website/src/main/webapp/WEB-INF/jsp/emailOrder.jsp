@@ -40,7 +40,7 @@
                     <div class="col-md-8">
 
                         <div id="moreThan10" style="display: none" class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span><strong> Something isn't quite right! </strong> If you would like to order more than 10 items, please register for an account <strong><a href="loginregister">here</a></strong></div>
-                        <form th:action="@{/sendMailSimple}" method="post">
+                        <form>
                             <div class="well">
                                 <p><small>Contact Details</small></p>
                                 <div class="input-group">
@@ -104,7 +104,7 @@
                                 </div>
                                 <br />
                                 <a id="addItem" onclick="addItem()" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Item</a>
-                                <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Send Your Order</button>
+                                <button onclick="mail()" class="btn btn-success" type="submit"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Send Your Order</button>
                             </div>
                         </form>
                     </div>
