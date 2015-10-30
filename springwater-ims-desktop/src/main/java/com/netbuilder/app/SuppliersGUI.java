@@ -28,7 +28,7 @@ import javax.swing.table.TableModel;
 import com.netbuilder.logic.SupplierLogic;
 
 @SuppressWarnings("serial")
-public class SuppliersGUI extends JPanel{
+public class SuppliersGUI extends JPanel {
 	
 	private String [] columns = {"Supplier ID", "Supplier Name"};
 	private String [] supplierCategories = {"Supplier ID", "Supplier Name", "Product ID"};
@@ -215,6 +215,15 @@ public class SuppliersGUI extends JPanel{
 		add(south, BorderLayout.SOUTH);
 		
 		return this;
+	}
+	
+	public void refresh() {
+		supplierListModel = new DefaultTableModel(lD.fetchSuppliers(), columns){
+			@Override
+		    public boolean isCellEditable(int i, int i1) {
+		        return false; //To change body of generated methods, choose Tools | Templates.
+		    }
+		};
 	}
 
 

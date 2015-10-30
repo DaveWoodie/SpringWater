@@ -46,6 +46,7 @@ public class PurchaseOrdersGUI extends JPanel {
 	JLabel searchFieldLabel, filterFieldLabel;
 	
 	int currentlySelectedOrder = 0;
+	private PurchaseOrderLogic lD;
 	
 	public JPanel initUI() {
 		
@@ -109,7 +110,7 @@ public class PurchaseOrdersGUI extends JPanel {
 		
 		filterPurchaseOrder = new JComboBox<String>(purchaseOrderCategories);
 		
-		final PurchaseOrderLogic lD = new PurchaseOrderLogic();
+		lD = new PurchaseOrderLogic();
 		purchaseListTable = new DefaultTableModel(lD.fetchPurchaseOrders(), columns){
 			@Override
 		    public boolean isCellEditable(int i, int i1) {
@@ -260,5 +261,17 @@ public class PurchaseOrdersGUI extends JPanel {
 //			}
 //		});
 	}
+
+	public void refresh() {
+
+		purchaseListTable = new DefaultTableModel(lD.fetchPurchaseOrders(), columns){
+			@Override
+		    public boolean isCellEditable(int i, int i1) {
+		        return false; //To change body of generated methods, choose Tools | Templates.
+		    }
+		
+		};
+	}
+	
 }
 
