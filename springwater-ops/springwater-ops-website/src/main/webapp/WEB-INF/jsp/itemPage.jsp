@@ -35,7 +35,7 @@
                     <div class="page-header">
                         <!-- Rating If Statement -->
                         <p th:if="${item.rating} == 0" style="text-align:center">
-                            <h1 id="desc" th:text="'£' + ${item.price}"></h1>
+                            <h1 id="desc" th:text="'£' + ${item.formattedPrice()}"></h1>
                             <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
@@ -43,7 +43,7 @@
                             <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
                         </p>
                         <p th:if="${item.rating} == 1" style="text-align:center">
-                            <h1 id="desc" th:text="'£' + ${item.price}"></h1>
+                            <h1 id="desc" th:text="'£' + ${item.formattedPrice()}"></h1>
                             <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
@@ -51,7 +51,7 @@
                             <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
                         </p>
                         <p th:if="${item.rating} == 2" style="text-align:center">
-                            <h1 id="desc" th:text="'£' + ${item.price}"></h1>
+                            <h1 id="desc" th:text="'£' + ${item.formattedPrice()}"></h1>
                             <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
@@ -59,7 +59,7 @@
                             <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
                         </p>
                         <p th:if="${item.rating} == 3" style="text-align:center">
-                            <h1 id="desc" th:text="'£' + ${item.price}"></h1>
+                            <h1 id="desc" th:text="'£' + ${item.formattedPrice()}"></h1>
                             <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
@@ -67,7 +67,7 @@
                             <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
                         </p>
                         <p th:if="${item.rating} == 4" style="text-align:center">
-                            <h1 id="desc" th:text="'£' + ${item.price}"></h1>
+                            <h1 id="desc" th:text="'£' + ${item.formattedPrice()}"></h1>
                             <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
@@ -75,7 +75,7 @@
                             <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
                         </p>
                         <p th:if="${item.rating} == 5" style="text-align:center">
-                            <h1 id="desc" th:text="'£' + ${item.price}"></h1>
+                            <h1 id="desc" th:text="'£' + ${item.formattedPrice()}"></h1>
                             <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-star ratings" aria-hidden="true"></span>
@@ -108,7 +108,7 @@
                         <a th:href="@{/itempage(itemid=${item.itemID})}"><img th:src="${item.imageLocation}" alt="..." /></a>
                         <div class="caption">
                             <h3 style="text-align:center" th:text="${item.itemName}"></h3>
-                            <p style="text-align:center" th:text="'£' + ${item.price}"></p>
+                            <p style="text-align:center" th:text="'£' + ${item.formattedPrice()}"></p>
                             <!-- Rating If Statement -->
                             <p th:if="${item.rating} == 0" style="text-align:center">
                                 <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>

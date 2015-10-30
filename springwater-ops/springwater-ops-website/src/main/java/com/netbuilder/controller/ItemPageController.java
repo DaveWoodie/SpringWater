@@ -46,14 +46,13 @@ public class ItemPageController {
 			resultList.remove(deleteIndex);
 			Random rand = new Random();
 			if (resultList.size() != 0) {
-				int index = rand.nextInt(resultList.size());
-				relatedList.add(resultList.get(index));
-				index = rand.nextInt(resultList.size());
-				relatedList.add(resultList.get(index));
-				index = rand.nextInt(resultList.size());
-				relatedList.add(resultList.get(index));
-				index = rand.nextInt(resultList.size());
-				relatedList.add(resultList.get(index));
+				for(int i = 0; i < 4; i++) {
+					if(resultList.size() > 0) {
+						int index = rand.nextInt(resultList.size());
+						relatedList.add(resultList.get(index));
+						resultList.remove(index);
+					}
+				}
 			}
 
 			// Get the reviews for the item
