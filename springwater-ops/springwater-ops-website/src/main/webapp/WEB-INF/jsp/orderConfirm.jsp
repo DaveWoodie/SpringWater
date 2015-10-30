@@ -27,7 +27,7 @@
         
         <!-- Order container -->
         <div class="container">
-            <div style="text-align:right;padding-bottom:20px;padding-top:20px"><a href="home" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Continue</a></div>
+            <div style="text-align:right;padding-bottom:20px;padding-top:20px"><a href="/" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Continue</a></div>
             <!-- Order panel -->
             <div class="panel panel-default">
                 <div class="panel-heading">
