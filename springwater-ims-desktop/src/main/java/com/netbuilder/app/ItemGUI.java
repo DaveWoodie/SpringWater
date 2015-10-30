@@ -356,7 +356,7 @@ public class ItemGUI extends JFrame
 	 */
 	public void predictedSalesPanel()
 	{
-		JPanel panelPredictedSales = new JPanel();
+		JPanel panelPredictedSales = new PredictedSalesPanel(itemID);
 		tabbedPane.add("Predicted Sales", panelPredictedSales);
 	}
 	
