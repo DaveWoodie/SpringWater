@@ -1,11 +1,13 @@
 package com.netbuilder.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.netbuilder.test.UserDatabase;
+import com.netbuilder.test.User;
 
 /**
  * 
@@ -21,9 +23,12 @@ import com.netbuilder.test.UserDatabase;
 public class ProfileController {
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public String getProfileUsers(Model model) {
-		String userID = "01";
-		model.addAttribute("profile", UserDatabase.users(userID));
-		return "profilePage";
+	public String getProfileUsers(Model model, HttpSession session) {
+		if(session.getAttribute("user") != null) {
+			User user = (User) session.getAttribute("user");
+			model.addAttribute("user", user);
+			return "profilePage";
+		}
+		return "redirect:loginregister";
 	}
 }

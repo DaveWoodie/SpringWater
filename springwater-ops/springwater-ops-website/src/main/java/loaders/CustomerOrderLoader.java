@@ -1,3 +1,7 @@
+/**
+ * @author jforster
+ * @date 30/10/2015
+ */
 package loaders;
 
 import java.sql.ResultSet;
@@ -11,6 +15,11 @@ import entities.Employee;
 import entities.Role;
 import entities.User;
 
+/**
+ * Class to load customer orders from database
+ * @author jforster
+ *
+ */
 public class CustomerOrderLoader {
 	final String tableName = " FROM customerorder";
 	final String listQuery = "SELECT customerorder.*, customerorderstatus.*, customer.*, employee.*, user.*, role.*";
@@ -19,6 +28,11 @@ public class CustomerOrderLoader {
 	private SQLDBConnector sqlDB = new SQLDBConnector();
 	private CustomerOrder customerOrder;
 	
+	/**
+	 * Method to load a specific order from it's order ID from the database
+	 * @param id id of the customer order to search for
+	 * @return the customer order found by the search
+	 */
 	public CustomerOrder getCustomerOrderByID(int id) {
 		sql = listQuery + tableName + tableJoins + " WHERE customerorder.idCustomerOrder = " + id;
 		sqlDB.openCon();

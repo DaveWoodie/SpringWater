@@ -264,7 +264,7 @@ public class PurchaseOrdersGUI extends JPanel {
 	}
 
 	public void refresh() {
-		purchaseListTable =  new DefaultTableModel(update, columns){
+		purchaseListTable = new DefaultTableModel(lD.fetchPurchaseOrders(), columns){
 			@Override
 		    public boolean isCellEditable(int i, int i1) {
 		        return false; //To change body of generated methods, choose Tools | Templates.

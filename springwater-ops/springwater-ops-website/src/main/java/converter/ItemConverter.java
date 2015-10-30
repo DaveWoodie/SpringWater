@@ -7,8 +7,11 @@
 
 package converter;
 
+import java.util.ArrayList;
 //import java.util.ArrayList;
 import java.util.Random;
+
+import entities.Review;
 
 //import entities.Review;
 
@@ -43,7 +46,13 @@ public class ItemConverter {
 
 		String colour = i.getAttribute("Color");
 		
+		
 		webItem = new com.netbuilder.test.Item(id, name, price, imageLoc, starRating, description, category, keyword, colour);
+		
+		ArrayList<Review> revs = i.getReviews();
+		for(Review r : revs) {
+			webItem.addReview(r.getAuthor(), r.getRating(), r.getBody());
+		}
 		return webItem;
 	}
 	

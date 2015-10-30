@@ -62,6 +62,8 @@ public class SalesGraphGUI extends JPanel implements ActionListener
 		
 		makeDataset();
 		createUI();
+		drawChartDays();
+		comboDuration.setVisible(false);
 	}
 	
 	public void createUI()
@@ -175,7 +177,7 @@ public class SalesGraphGUI extends JPanel implements ActionListener
 				//year check
 				if(oldYear == newYear)
 				{
-			
+					
 				}
 				else
 				{

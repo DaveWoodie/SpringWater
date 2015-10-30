@@ -28,20 +28,69 @@ public class MongoPush {
 	private MongoDBConnector mdbc = new MongoDBConnector();
 	private final String dataBase = "nbgardensdata";
 	
-	/*
+
 	public static void main(String[] args) {
 		
 		MongoPush push = new MongoPush();
 		MongoPull pull = new MongoPull();
-		ArrayList<Address> addresses = pull.getAllAddresses();
-		for(Address a : addresses) {
-			a.print();
-			System.out.println();
+		
+		pull.getItem(18).print();
+		
+		/*
+		// item details
+		String itemName = "Garden Lounger";
+		String itemDescription = "The foldable sun lounger made of acacia wood with comfortable footrest and adjustable backrest offers you a great seating comfort. The footrest of the chair is removable. So you can conveniently transform your sun lounger into a chair.";
+		Float price = (float) 54.99;
+		Float cost = (float) 8.25;
+		int stock = 751;
+		String imageLocation = "woodchair.jpg";
+		boolean discontinued = false;
+		boolean isPorousware = false;
+		int idSupplier = 1; // 1 or 2 only
+		int salesRate = 124;
+		int pSalesRate = 138;
+
+//		tem Name: Garden Lounger
+//		Item Description: The foldable sun lounger made of acacia wood with comfortable footrest and adjustable backrest offers you a great seating comfort. The footrest of the chair is removable. So you can conveniently transform your sun lounger into a chair.
+//		Image location: woodchair.jpg
+//		Category: Furniture
+//		Colour: Red
+//		Price:​ £54.99
+		
+		ArrayList<Review> reviews = new ArrayList<Review>();
+		String reviewAuthor = "CarefreeSoul";
+		int reviewRating = 4; // 0-5
+		String reviewBody = "My child loves it! She plays with it every day with her one remaining arm.";
+		Review r = new Review(reviewAuthor, reviewRating, reviewBody);
+		
+		//reviews.add(r);
+		
+		Item item = new Item(
+					itemName, itemDescription,
+					price, cost, stock,
+					imageLocation,
+					discontinued, isPorousware,
+					idSupplier,
+					salesRate, pSalesRate,
+					reviews
+				);
+		try {
+			item.addAttribute("Category", "Furniture");
+			item.addAttribute("Keyword", "Lounger");
+			item.addAttribute("Color", "Red");
+		} catch (Exception e) {
+			throw new Error(e);
 		}
+		int newItemID = push.addItem(item);
+		pull.getItem(newItemID).print();
+		
+		
+		*/
+		
 		
 		
 	}
-	*/	
+
 	
 
 	/******************************************************************************/

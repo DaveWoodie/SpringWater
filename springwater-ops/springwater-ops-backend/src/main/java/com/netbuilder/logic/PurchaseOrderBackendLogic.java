@@ -19,10 +19,12 @@ import java.util.ArrayList;
 
 
 
+
 import com.netbuilder.JMS.Sender;
 
 import connections.MongoPull;
 import connections.MongoPush;
+import entities.Employee;
 import entities.Item;
 import entities.MessageContent;
 import entities.PurchaseOrder;
@@ -140,7 +142,9 @@ public class PurchaseOrderBackendLogic {
 		PurchaseOrderStatusLoader pOSLoader = new PurchaseOrderStatusLoader();
 		//update order from pending to sent
 		if (pO.getPurchaseOrderStatus().getStatusID() == 1) {
-			//TODO get current employee and set on purchase order
+			EmployeeLoader eLoader = new EmployeeLoader();
+			Employee employee = eLoader.getEmployeeByID(employeeID);
+			pO.setEmployee(employee);
 			PurchaseOrderStatus pOS = pOSLoader.getPurchaseOrderStatus(2);
 			pO.setPurchaseOrderStatus(pOS);
 			pO.setDatePlaced(new java.util.Date());
@@ -148,10 +152,17 @@ public class PurchaseOrderBackendLogic {
 		}
 	}
 	
+	/**
+	 * Method to update a purchase order when received by warehouse and inform IMS if damaged items are found
+	 * @param pO purchase order that has arrived
+	 * @param employeeID id of the employee who received the purchase order
+	 */
 	public void receivePurchaseOrder(PurchaseOrder pO, Integer employeeID) {
 		PurchaseOrderStatusLoader pOSLoader = new PurchaseOrderStatusLoader();
 		if (pO.getPurchaseOrderStatus().getStatusID() == 2) {
-			//TODO get current employee and set on purchase order
+			EmployeeLoader eLoader = new EmployeeLoader();
+			Employee employee = eLoader.getEmployeeByID(employeeID);
+			pO.setEmployee(employee);
 			PurchaseOrderStatus pOS = pOSLoader.getPurchaseOrderStatus(3);
 			pO.setPurchaseOrderStatus(pOS);
 			pOLoader.setPurchaseOrder(pO);
@@ -172,13 +183,20 @@ public class PurchaseOrderBackendLogic {
 				Sender sender = new Sender ("IMS.IN");
 				sender.sendMessage(messageContent);
 			}
-		}
-		
+		}	
 	}
 	
+	/**
+	 * Method to update a purchase order when the warehouse has stored the stock and update stock levels based on this
+	 * @param pO purchase order that has been completed
+	 * @param employeeID id of the employee who put away the stock
+	 */
 	public void completePurchaseOrder(PurchaseOrder pO, Integer employeeID) {
 		PurchaseOrderStatusLoader pOSLoader = new PurchaseOrderStatusLoader();
 		if (pO.getPurchaseOrderStatus().getStatusID() == 3) {
+			EmployeeLoader eLoader = new EmployeeLoader();
+			Employee employee = eLoader.getEmployeeByID(employeeID);
+			pO.setEmployee(employee);
 			PurchaseOrderStatus pOS = pOSLoader.getPurchaseOrderStatus(4);
 			pO.setPurchaseOrderStatus(pOS);
 			pOLoader.setPurchaseOrder(pO);
