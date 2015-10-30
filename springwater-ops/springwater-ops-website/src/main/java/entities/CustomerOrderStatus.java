@@ -41,4 +41,8 @@ public class CustomerOrderStatus implements Serializable{
 	public String getCustOrderStatus() {
 		return status;
 	}
+	
+	public void setCustomerOrderID (int id) {
+		statusID = id;
+	}
 }
