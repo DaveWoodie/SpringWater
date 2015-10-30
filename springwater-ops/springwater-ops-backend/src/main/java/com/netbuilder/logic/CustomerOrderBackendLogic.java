@@ -22,6 +22,10 @@ public class CustomerOrderBackendLogic {
 			item = mPull.getItem(cOLList.get(i).getItemID());
 			item.setStock(item.getStock() - cOLList.get(i).getQuantity());
 			mPush.updateItem(item);
+			//Once order is placed update purchase orders
+			PurchaseOrderBackendLogic pOBL = new PurchaseOrderBackendLogic();
+			pOBL.calculateOrderQuantity(item);
 		}
+		
 	}
 }
