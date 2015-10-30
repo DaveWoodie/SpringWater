@@ -39,11 +39,11 @@ public class DailyStockReportGUI {
 	}
 
 	/**
-	 * method to get the daily stock report pain
+	 * method to get the daily stock report pane
 	 * @return a JPanel containing the stock report
 	 */
 	public JPanel getStockReportPanel() {
-//		int numRows = 30;
+		
 		final JLabel fastSellingLabel = new JLabel("Fluctuating Items", SwingConstants.CENTER);
 		final JLabel LowStockLabel = new JLabel("Current Stock", SwingConstants.CENTER);
 		JPanel pane = new JPanel();
@@ -56,13 +56,8 @@ public class DailyStockReportGUI {
 
 		// Create Table Models
 		lowStockModel = new UneditableTableModel(logic.fetchStockList(), colHeadings);
-		//lowStockModel.setColumnIdentifiers(colHeadings);
 		fastSellingkModel = new UneditableTableModel(logic.fetchFastMovingList(), colHeadings);
-		//fastSellingkModel.setColumnIdentifiers(colHeadings);
 
-//		// Fill tables with test data
-//		lowStockModel = fillTable(numRows, lowStockModel);
-//		fastSellingkModel = fillTable(numRows, fastSellingkModel);
 		
 		//Create Tables
 		final JTable lowStockTable = new JTable(lowStockModel);
@@ -129,30 +124,13 @@ public class DailyStockReportGUI {
 		fastSellingPanel.setLayout(fastSellingBoxLayout);
 
 		// Formatting
-//		fastSellingLabel.setForeground(Color.GREEN);
-//		LowStockLabel.setForeground(Color.RED);
-//		fastSellingPanel.setBackground(Color.WHITE);
-//		lowStockPanel.setBackground(Color.WHITE);
-//		fastSellingTable.getTableHeader().setBackground(Color.WHITE);
-//		lowStockTable.getTableHeader().setBackground(Color.WHITE);
-//		fastSellingPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-//		lowStockPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
-		// Add components to low stock panel
-//		lowStockTable.setPreferredScrollableViewportSize(lowStockTable.getPreferredSize());
-//		lowStockTable.setFillsViewportHeight(true);
 		LowStockLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-//		lowStockPanel.add(LowStockLabel);
 		lowStockPanel.add(new JScrollPane(lowStockTable));
-//		lowStockPanel.add(lowStockSelect);
 
 		// Add components to fast selling panel
-//		fastSellingTable.setPreferredScrollableViewportSize(fastSellingTable.getPreferredSize());
-//		fastSellingTable.setFillsViewportHeight(true);
 		fastSellingLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-//		fastSellingPanel.add(fastSellingLabel);
 		fastSellingPanel.add(new JScrollPane(fastSellingTable));
-//		fastSellingPanel.add(fastSellingSelect);
 
 		// set up and add pane
 		pane.setLayout(stockReportLayout);
