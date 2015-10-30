@@ -44,7 +44,7 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 	JPanel base, panel1, panel2, panel3, panel4, bottom;
 	JTabbedPane pane;
 	JLabel loginDetails;
-	JButton logout, quit;
+	JButton logout, quit, refresh;
 	DailyStockReportGUI dSRF;
 	SuppliersGUI sF;
 	PurchaseOrdersGUI pO;
@@ -88,7 +88,8 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
             consumer = session.createConsumer(destination);
 		}
 		catch (Exception e) {
-			
+			JFrame popupFrame = new JFrame();
+			JOptionPane.showMessageDialog(popupFrame, "Cannot connect to system backend, some features will not be available.");
 		}
 	}
 	
@@ -135,6 +136,10 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 		//PlaceHolder for actual Login details.
 		loginDetails = new JLabel("<html>Employee ID: " + userID + "<br>Employee Name: " + User[0] + " " + User[1]);
 		
+		//Refresh Button
+		refresh = new JButton("Refresh");
+		refresh.addActionListener(this);
+		
 		//create logout button
 		logout = new JButton("Logout");
 		logout.addActionListener(this);
@@ -152,6 +157,8 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 		//construct bottom panel
 		bottom.add(Box.createRigidArea(new Dimension(10,0)));
 		bottom.add(loginDetails);
+		bottom.add(Box.createRigidArea(new Dimension(10,0)));
+//		bottom.add(refresh);
 		bottom.add(Box.createRigidArea(new Dimension(10,0)));
 		bottom.add(logout);
 		bottom.add(Box.createRigidArea(new Dimension(10,0)));
@@ -219,7 +226,6 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 	@Override
 	public void onMessage(Message message) {
 		// TODO Handle inbound message types
-		System.out.println("Received message");
 		ObjectMessage objectMessage = (ObjectMessage) message;
 		try {
 			if (objectMessage.getObject() instanceof MessageContent) {
@@ -240,4 +246,8 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 		}
 	}
 
+	private void refresh() {
+		removeAll();
+		initUI();;
+	}
 }

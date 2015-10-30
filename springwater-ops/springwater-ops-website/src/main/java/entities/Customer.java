@@ -3,15 +3,6 @@ package entities;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
-
 /**
  * 
  * @author ccooper
@@ -25,7 +16,7 @@ public class Customer implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	// Customer attributes
-	private int customerID;
+//	private int customerID;
 	private User user;
 	
 	private Date dob;
@@ -107,6 +98,9 @@ public class Customer implements Serializable{
 		return this.blackListStrikes;
 	}
 	
+	public void setCustomerID(int id){
+		customerID = id;
+	}
 	/**
 	 * Method is a mutator for blacklist strike
 	 * @param blackListStrikes

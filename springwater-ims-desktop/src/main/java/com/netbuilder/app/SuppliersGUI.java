@@ -38,7 +38,7 @@ public class SuppliersGUI extends JPanel{
 	JScrollPane pane, pane2;
 	JTextArea searchTerm;
 	JComboBox<String> categories;
-	JButton filter, select, reset, add;
+	JButton filter, select, reset,refresh, add;
 	JLabel searchLabel, filterLabel;
 	private int selectedOrder;
 	private String selectedName;
@@ -148,6 +148,20 @@ public class SuppliersGUI extends JPanel{
 			
 		});
 		
+		refresh =new JButton("Refresh Data");
+		refresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				final SupplierLogic lD = new SupplierLogic();
+				supplierListModel = new DefaultTableModel(lD.fetchSuppliers(), columns){
+					@Override
+				    public boolean isCellEditable(int i, int i1) {
+				        return false; //To change body of generated methods, choose Tools | Templates.
+				    }
+				};		
+				suppliers.setModel(supplierListModel);
+			}
+		});
+		
 		reset = new JButton("Reset Filters");
 		reset.addActionListener(new ActionListener(){
 
@@ -164,6 +178,7 @@ public class SuppliersGUI extends JPanel{
 			}
 			
 		});
+		
 		
 		add = new JButton("New Supplier");
 		add.addActionListener(new ActionListener(){
@@ -188,6 +203,7 @@ public class SuppliersGUI extends JPanel{
 		search.add(pane2);
 		
 		controller.add(select);
+		controller.add(refresh);
 		controller.add(filter);
 		controller.add(reset);
 		controller.add(add);

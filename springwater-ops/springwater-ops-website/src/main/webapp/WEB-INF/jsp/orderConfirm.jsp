@@ -1,7 +1,7 @@
 <!--     Chris Boucher  -->
 <!--     orderConfirm.jsp -->
 <!--     Page confirming order has been accepted  -->
-<!--     Last Modified by: Chris Boucher -->
+<!--     Last Modified by: Callum Cooper -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
@@ -34,9 +34,8 @@
                     <div class="row">
                         <div class="col-md-3">
                             <h3 class="panel-title">Orders Placed</h3>
-                            <p class="panel-title">11th October 2015</p>
+                            <p class="panel-title" th:text="${orderDate}"></p>
                         </div>
-
                         <div class="col-md-3">
                             <h3 class="panel-title">Total</h3>
                             <p class="panel-title">&#163;14.75</p>
@@ -54,26 +53,32 @@
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <h3>Arriving Sat, 15 Aug - Wed, 19 Aug</h3>
                             <p><b>Dispatched</b></p>
-                            <img id="orderImage" src="img/gnome.jpg" />
                         </div>
-
-                        <div class="col-md-3">
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <a href="#">Happy Gnome</a>
-                            <p>Quantity: 3</p>
-                            <p>&#163;2.99</p>
+                        <br /><br />
+                        <br />
+	                    <br />
+	                    <br />
+                        <br />
+	                    <br />
+	                    <br />
+                       <div class="row">
+	                        <div th:each="itemLine : ${basket.itemList}" class="row">
+	                            <div class="col-lg-6">
+	                                <center><img id="orderImage" th:src="${itemLine.item.imageLocation}" /></center>
+	                            </div>
+	                            <div class="col-md-6">
+	                                <br />
+	                                <br />
+	                                <br />
+	                                <center><a th:text="${itemLine.item.itemName}"></a></center>
+	                                <center><p th:text="'Quantity: ' + ${itemLine.quantity}"></p></center>
+	                                <center><p th:text="'£'+${itemLine.formattedTotalPrice()}"></p></center>
+	                            </div>
+	                        </div>
                         </div>
-
                     </div>
                 </div>
             </div>

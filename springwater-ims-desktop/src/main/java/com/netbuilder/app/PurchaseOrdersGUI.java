@@ -42,7 +42,7 @@ public class PurchaseOrdersGUI extends JPanel {
 	JScrollPane paneAlph, paneBeta;
 	JTextField searchField;
 	JComboBox<String> filterPurchaseOrder;
-	JButton filter, select, reset, add;
+	JButton filter, select, reset, add, refresh;
 	JLabel searchFieldLabel, filterFieldLabel;
 	
 	int currentlySelectedOrder = 0;
@@ -91,6 +91,7 @@ public class PurchaseOrdersGUI extends JPanel {
 		search.add(searchField);
 		
 		controller.add(select);
+		controller.add(refresh);
 		controller.add(filter);
 		controller.add(reset);
 		
@@ -158,7 +159,6 @@ public class PurchaseOrdersGUI extends JPanel {
 				String input = searchField.getText();
 				switch (filterPurchaseOrder.getSelectedItem().toString()) {
 					case "Order ID":
-						System.out.println(input);
 						int i = Integer.parseInt(input);
 						update = lD.fetchPurchaseOrdersByID(i);
 						break;
@@ -175,7 +175,6 @@ public class PurchaseOrdersGUI extends JPanel {
 						SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
 						try {
 							Date date = formatter.parse(input);
-							System.out.println("Date populated: " + formatter.format(date));
 							update = lD.fetchPurchaseOrdersByDate(date);
 						} catch (ParseException e1) {
 							// TODO Auto-generated catch block
@@ -183,7 +182,6 @@ public class PurchaseOrdersGUI extends JPanel {
 							try {
 								formatter = new SimpleDateFormat("dd/MM/yyyy");
 								Date date = formatter.parse(input);
-								System.out.println("Date populated: " + formatter.format(date));
 								update = lD.fetchPurchaseOrdersByDate(date);
 							} catch (ParseException e2) {
 								// TODO Auto-generated catch block
@@ -224,6 +222,20 @@ public class PurchaseOrdersGUI extends JPanel {
 					IndividualPurchaseOrderViewFrame iPO = new IndividualPurchaseOrderViewFrame(currentlySelectedOrder, suppliername, date, status, total);
 					iPO.setVisible(true);
 				}
+			}
+		});
+		
+		refresh = new JButton("Refresh Data");
+		refresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				final PurchaseOrderLogic lD = new PurchaseOrderLogic();
+				purchaseListTable = new DefaultTableModel(lD.fetchPurchaseOrders(), columns){
+					@Override
+				    public boolean isCellEditable(int i, int i1) {
+				        return false; //To change body of generated methods, choose Tools | Templates.
+				    }
+				};
+				purchaseOrderTable.setModel(purchaseListTable);				
 			}
 		});
 		
