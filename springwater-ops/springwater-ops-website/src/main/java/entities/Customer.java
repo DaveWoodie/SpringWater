@@ -16,7 +16,7 @@ public class Customer implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	// Customer attributes
-//	private int customerID;
+	private int customerID;
 	private User user;
 	
 	private Date dob;
