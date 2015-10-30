@@ -54,7 +54,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <h3>Arriving Sat, 15 Aug - Wed, 19 Aug</h3>
+                            <h3>Arriving</h3><h3 th:text="${arrivalDate}"></h3>
                             <p><b>Dispatched</b></p>
                         </div>
                         <br /><br />

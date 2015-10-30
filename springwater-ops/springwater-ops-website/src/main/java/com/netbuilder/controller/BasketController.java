@@ -2,6 +2,7 @@ package com.netbuilder.controller;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.servlet.http.HttpSession;
@@ -103,10 +104,17 @@ public class BasketController {
 		}
 		
 		// create a order date
-		DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+		DateFormat orderDateDF = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
 		Date orderDateobj = new Date();
-		model.addAttribute("orderDate", df.format(orderDateobj));
+		model.addAttribute("orderDate", orderDateDF.format(orderDateobj));
 		
+		// create a arrival date
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DATE, +7);
+		Date todate1 = cal.getTime();
+		String fromdate = orderDateDF.format(todate1);
+		model.addAttribute("arrivalDate", fromdate);
+
 		// Create a new basket
 		Basket basket = (Basket) session.getAttribute("basket");
 		model.addAttribute("basket", basket);
