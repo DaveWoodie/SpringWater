@@ -23,11 +23,6 @@
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet" />
     <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
 
-	<!-- Show welcome message to user -->
-	<script>
-		//showWelcomeMessage();
-	</script>
-
 </head>
 
 <body>
@@ -117,11 +112,7 @@
 	                                   	<table>
 	                                       		<td th:text="${user.email}"></td>
 										</table>
-	                                   
-	                                    <!-- Script for calling cookie data  -->
-    										<script>
-												//document.getElementById("emailID").innerHTML = getCookies("email");
-											</script>
+	  
 	                                   </div>
 	                                   <div class="panel-body">
 	                                       <table>

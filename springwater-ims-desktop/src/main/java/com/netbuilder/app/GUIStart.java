@@ -67,14 +67,7 @@ public class GUIStart extends JFrame {
 		setMinimumSize(new Dimension(600, 800));
 		setLocationRelativeTo(null);
 		setVisible(true);
-		try {
-			mFrame.consumer.setMessageListener(mFrame);
-		} catch (JMSException e) {
-			// TODO Auto-generated catch block
-		} catch (NullPointerException npe) {
-			
-		}
-		
+
 	}
 
 	/**
@@ -82,13 +75,31 @@ public class GUIStart extends JFrame {
 	 */
 	public void revertToMain(String userID) {
 		mainGUISetup(userID);
+		createListener();
 	}
 	
 	/**
 	 * calls the settings for login
 	 */
 	public void revertToLogin() {
+		try {
+			mFrame.connection.close();
+		} catch (JMSException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		loginSetup();
+	}
+	
+	public void createListener() {
+		mFrame.createBackendConnection();
+		try {
+			mFrame.consumer.setMessageListener(mFrame);
+		} catch (JMSException e) {
+			// TODO Auto-generated catch block
+		} catch (NullPointerException npe) {
+			
+		}
 	}
 
 }
