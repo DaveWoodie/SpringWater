@@ -17,10 +17,12 @@ import javax.jms.Session;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
+import entities.CustomerOrder;
 import entities.Item;
 import entities.MessageContent;
 import entities.PurchaseOrder;
 
+import com.netbuilder.logic.CustomerOrderBackendLogic;
 import com.netbuilder.logic.PurchaseOrderBackendLogic;
 
 /**
@@ -100,6 +102,11 @@ public class Listener implements MessageListener{
 					ArrayList<Object> object = (ArrayList<Object>) messageContent.getContents();
 					PurchaseOrderBackendLogic pOBL = new PurchaseOrderBackendLogic();
 					pOBL.completePurchaseOrder((PurchaseOrder) object.get(0), (Integer) object.get(1));
+				}
+				else if (messageContent.getMessage().equals("customerOrderPlaced")) {
+					CustomerOrder cO = (CustomerOrder) messageContent.getContents();
+					CustomerOrderBackendLogic cOBL = new CustomerOrderBackendLogic();
+					cOBL.customerOrderPlaced(cO);
 				}
 			}
 		} catch (JMSException e) {

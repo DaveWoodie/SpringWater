@@ -1,12 +1,7 @@
-<!--     Callum Cooper  -->
-    
-<!--     openOrdersPage.jps -->
-
-<!--     14/10/2015 -->
-
-<!--     Template for the cancelled orders page -->
-
-<!--     Last Modified by: Callum Cooper -->
+<!-- Callum Cooper -->
+<!-- openOrdersPage.jps -->
+<!-- 14/10/2015 -->
+<!-- Last Modified by: Callum Cooper -->
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"

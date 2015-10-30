@@ -45,6 +45,7 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 	JTabbedPane pane;
 	JLabel loginDetails;
 	JButton logout, quit, refresh;
+	InventoryGUI iGUI;
 	DailyStockReportGUI dSRF;
 	SuppliersGUI sF;
 	PurchaseOrdersGUI pO;
@@ -54,6 +55,9 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 	private LoginLoader loginLoader = new LoginLoader();
 	private String[] User = new String[1];
 	private String boardName = "IMS.IN";
+	private Boolean failedConnect = false;
+	private Boolean initialStartup = true;
+	Connection connection;
 	public MessageConsumer consumer;
 	
 	/**
@@ -69,13 +73,16 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 		this.userID = userID;
 		User = loginLoader.getNameByID(userID);
 		initUI();
+	}
+	
+	public void createBackendConnection() {
 		try {
 			 
             // Create a ConnectionFactory
             ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://localhost:8081");
 
             // Create a Connection
-            Connection connection = connectionFactory.createConnection();
+            connection = connectionFactory.createConnection();
             connection.start();
 
             // Create a Session
@@ -86,10 +93,16 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 
             // Create a MessageConsumer from the Session to the Topic or Queue
             consumer = session.createConsumer(destination);
+            
+            initialStartup = false;
 		}
 		catch (Exception e) {
-			JFrame popupFrame = new JFrame();
-			JOptionPane.showMessageDialog(popupFrame, "Cannot connect to system backend, some features will not be available.");
+			if (!failedConnect && initialStartup) {
+				failedConnect = true;
+				JFrame popupFrame = new JFrame();
+				JOptionPane.showMessageDialog(popupFrame, "Cannot connect to system backend, some features will not be available.");
+				initialStartup = false;
+			}
 		}
 	}
 	
@@ -107,7 +120,7 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 		
 		panel2 = new JPanel();
 		panel2.setLayout(new BorderLayout());
-		InventoryGUI iGUI = new InventoryGUI();
+		iGUI = new InventoryGUI();
 		panel2.add(iGUI);
 		pane.addTab("Inventory", null, panel2, "Inventory");
 		
@@ -137,7 +150,7 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 		loginDetails = new JLabel("<html>Employee ID: " + userID + "<br>Employee Name: " + User[0] + " " + User[1]);
 		
 		//Refresh Button
-		refresh = new JButton("Refresh");
+		refresh = new JButton("Refresh All");
 		refresh.addActionListener(this);
 		
 		//create logout button
@@ -158,7 +171,7 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 		bottom.add(Box.createRigidArea(new Dimension(10,0)));
 		bottom.add(loginDetails);
 		bottom.add(Box.createRigidArea(new Dimension(10,0)));
-//		bottom.add(refresh);
+		bottom.add(refresh);
 		bottom.add(Box.createRigidArea(new Dimension(10,0)));
 		bottom.add(logout);
 		bottom.add(Box.createRigidArea(new Dimension(10,0)));
@@ -218,6 +231,16 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 		if (e.getSource().equals(logout)) {
 			src.revertToLogin();
 		}
+		if (e.getSource().equals(refresh)) {
+			iGUI.refresh();
+			//DailyStockReportGUI 
+			dSRF.refresh();
+			//SuppliersGUI
+			sF.refresh();
+			// PurchaseOrdersGUI
+			pO.refresh();
+		}
+		
 	}
 	
 	/**
@@ -246,8 +269,10 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 		}
 	}
 
+
 	private void refresh() {
 		removeAll();
-		initUI();;
+		initUI();
 	}
+
 }
