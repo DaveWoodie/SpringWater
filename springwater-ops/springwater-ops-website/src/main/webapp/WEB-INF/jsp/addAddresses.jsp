@@ -1,13 +1,4 @@
-<!--     Chris J W Walker  -->
-    
-<!--     addAddresses.html -->
 
-<!--     13/10/2015 -->
-
-<!--     Page for customers to manage their addresses.  -->
-<!--     View, add and delete addresses. -->
-
-<!--     Last Modified by: chrisjwwalker -->
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
