@@ -172,8 +172,7 @@ public class PurchaseOrderBackendLogic {
 				Sender sender = new Sender ("IMS.IN");
 				sender.sendMessage(messageContent);
 			}
-		}
-		
+		}	
 	}
 	
 	public void completePurchaseOrder(PurchaseOrder pO, Integer employeeID) {
