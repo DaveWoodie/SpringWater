@@ -28,20 +28,60 @@ public class MongoPush {
 	private MongoDBConnector mdbc = new MongoDBConnector();
 	private final String dataBase = "nbgardensdata";
 	
-	/*
+
 	public static void main(String[] args) {
 		
 		MongoPush push = new MongoPush();
 		MongoPull pull = new MongoPull();
-		ArrayList<Address> addresses = pull.getAllAddresses();
-		for(Address a : addresses) {
-			a.print();
-			System.out.println();
-		}
+		Item i = pull.getItem(1);
+		i.print();
+		
+		// item details
+		String itemName = "Child Safe Axe";
+		String itemDescription = "This axe is perfect for small children due to the safe ergonomic grip on the handle.";
+		Float price = (float) 5.99;
+		Float cost = (float) 1.50;
+		int stock = 103;
+		String imageLocation = "plasticaxe.jpg";
+		boolean discontinued = false;
+		boolean isPorousware = false;
+		int idSupplier = 1; // 1 or 2 only
+		int salesRate = 123;
+		int pSalesRate = 95;
+		
+		
+		HashMap<String,String> attributes = new HashMap<String, String>();
+		attributes.put("Category", "Tools");
+		attributes.put("Keyword", "Axe");
+		attributes.put("Color", "Grey");
+		
+		ArrayList<Review> reviews = new ArrayList<Review>();
+		String reviewAuthor = "Author";
+		int reviewRating = 4; // 0-5
+		String reviewBody = "Body";
+		Review r = new Review(reviewAuthor, reviewRating, reviewBody);
+		
+		//reviews.add(r);
+		
+		Item item = new Item(
+					itemName, itemDescription,
+					price, cost, stock,
+					imageLocation,
+					discontinued, isPorousware,
+					idSupplier,
+					salesRate, pSalesRate,
+					reviews
+				);
+		
+		int newItemID = push.addItem(item);
+		pull.getItem(newItemID).print();
+		
+
+		
 		
 		
 	}
-	*/	
+	
 	
 
 	/******************************************************************************/
