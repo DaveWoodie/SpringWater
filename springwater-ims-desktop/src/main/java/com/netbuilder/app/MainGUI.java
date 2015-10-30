@@ -54,6 +54,9 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 	private LoginLoader loginLoader = new LoginLoader();
 	private String[] User = new String[1];
 	private String boardName = "IMS.IN";
+	private Boolean failedConnect = false;
+	private Boolean initialStartup = true;
+	Connection connection;
 	public MessageConsumer consumer;
 	
 	/**
@@ -69,13 +72,16 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 		this.userID = userID;
 		User = loginLoader.getNameByID(userID);
 		initUI();
+	}
+	
+	public void createBackendConnection() {
 		try {
 			 
             // Create a ConnectionFactory
-            ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://localhost:8081");
+            ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("failover:tcp://localhost:8081");
 
             // Create a Connection
-            Connection connection = connectionFactory.createConnection();
+            connection = connectionFactory.createConnection();
             connection.start();
 
             // Create a Session
@@ -86,10 +92,16 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 
             // Create a MessageConsumer from the Session to the Topic or Queue
             consumer = session.createConsumer(destination);
+            
+            initialStartup = false;
 		}
 		catch (Exception e) {
-			JFrame popupFrame = new JFrame();
-			JOptionPane.showMessageDialog(popupFrame, "Cannot connect to system backend, some features will not be available.");
+			if (!failedConnect && initialStartup) {
+				failedConnect = true;
+				JFrame popupFrame = new JFrame();
+				JOptionPane.showMessageDialog(popupFrame, "Cannot connect to system backend, some features will not be available.");
+				initialStartup = false;
+			}
 		}
 	}
 	
@@ -248,6 +260,7 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 
 	private void refresh() {
 		removeAll();
-		initUI();;
+		initUI();
+		src.createListener();
 	}
 }
