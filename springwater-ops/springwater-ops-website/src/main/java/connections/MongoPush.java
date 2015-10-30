@@ -33,32 +33,34 @@ public class MongoPush {
 		
 		MongoPush push = new MongoPush();
 		MongoPull pull = new MongoPull();
-		Item i = pull.getItem(1);
-		i.print();
 		
+		pull.getItem(18).print();
+		
+		/*
 		// item details
-		String itemName = "Child Safe Axe";
-		String itemDescription = "This axe is perfect for small children due to the safe ergonomic grip on the handle.";
-		Float price = (float) 5.99;
-		Float cost = (float) 1.50;
-		int stock = 103;
-		String imageLocation = "plasticaxe.jpg";
+		String itemName = "Garden Lounger";
+		String itemDescription = "The foldable sun lounger made of acacia wood with comfortable footrest and adjustable backrest offers you a great seating comfort. The footrest of the chair is removable. So you can conveniently transform your sun lounger into a chair.";
+		Float price = (float) 54.99;
+		Float cost = (float) 8.25;
+		int stock = 751;
+		String imageLocation = "woodchair.jpg";
 		boolean discontinued = false;
 		boolean isPorousware = false;
 		int idSupplier = 1; // 1 or 2 only
-		int salesRate = 123;
-		int pSalesRate = 95;
-		
-		
-		HashMap<String,String> attributes = new HashMap<String, String>();
-		attributes.put("Category", "Tools");
-		attributes.put("Keyword", "Axe");
-		attributes.put("Color", "Grey");
+		int salesRate = 124;
+		int pSalesRate = 138;
+
+//		tem Name: Garden Lounger
+//		Item Description: The foldable sun lounger made of acacia wood with comfortable footrest and adjustable backrest offers you a great seating comfort. The footrest of the chair is removable. So you can conveniently transform your sun lounger into a chair.
+//		Image location: woodchair.jpg
+//		Category: Furniture
+//		Colour: Red
+//		Price:​ £54.99
 		
 		ArrayList<Review> reviews = new ArrayList<Review>();
-		String reviewAuthor = "Author";
+		String reviewAuthor = "CarefreeSoul";
 		int reviewRating = 4; // 0-5
-		String reviewBody = "Body";
+		String reviewBody = "My child loves it! She plays with it every day with her one remaining arm.";
 		Review r = new Review(reviewAuthor, reviewRating, reviewBody);
 		
 		//reviews.add(r);
@@ -72,16 +74,23 @@ public class MongoPush {
 					salesRate, pSalesRate,
 					reviews
 				);
-		
+		try {
+			item.addAttribute("Category", "Furniture");
+			item.addAttribute("Keyword", "Lounger");
+			item.addAttribute("Color", "Red");
+		} catch (Exception e) {
+			throw new Error(e);
+		}
 		int newItemID = push.addItem(item);
 		pull.getItem(newItemID).print();
 		
-
+		
+		*/
 		
 		
 		
 	}
-	
+
 	
 
 	/******************************************************************************/
