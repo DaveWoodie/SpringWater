@@ -138,7 +138,7 @@ public class MainGUI extends JPanel implements ComponentListener , ActionListene
 		loginDetails = new JLabel("<html>Employee ID: " + userID + "<br>Employee Name: " + User[0] + " " + User[1]);
 		
 		//Refresh Button
-		refresh = new JButton("Refresh");
+		refresh = new JButton("Refresh All");
 		refresh.addActionListener(this);
 		
 		//create logout button

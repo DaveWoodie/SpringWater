@@ -203,7 +203,7 @@ public class SuppliersGUI extends JPanel {
 		search.add(pane2);
 		
 		controller.add(select);
-		controller.add(refresh);
+//		controller.add(refresh);
 		controller.add(filter);
 		controller.add(reset);
 		controller.add(add);
@@ -218,12 +218,15 @@ public class SuppliersGUI extends JPanel {
 	}
 	
 	public void refresh() {
+		final SupplierLogic lD = new SupplierLogic();
 		supplierListModel = new DefaultTableModel(lD.fetchSuppliers(), columns){
 			@Override
 		    public boolean isCellEditable(int i, int i1) {
 		        return false; //To change body of generated methods, choose Tools | Templates.
 		    }
 		};
+		suppliers.setModel(supplierListModel);
+		revalidate();
 	}
 
 
