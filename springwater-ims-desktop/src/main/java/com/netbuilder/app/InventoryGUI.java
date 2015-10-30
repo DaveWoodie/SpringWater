@@ -164,7 +164,7 @@ public class InventoryGUI extends JPanel implements ActionListener, ComponentLis
 		addSearchButtonPanel();
 		
 		refreshButtonPanel = new JPanel();
-		addRefreshButtonPanel();
+//		addRefreshButtonPanel();
 		
 		addNewItemButtonPanel = new JPanel();
 		addAddNewItemButtonPanel();

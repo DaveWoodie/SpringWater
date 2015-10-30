@@ -533,7 +533,9 @@ public class AddSupplierFrame extends JFrame {
 	 */
 	private String[] getResults()
 	{
-		copyFile(new File(textBrowse.getText()));
+		if(!edit){
+			copyFile(new File(textBrowse.getText()));
+		}	
 		//TODO Validate inputs
 		ArrayList<String> input = new ArrayList<String>();
 		input.add(nameT.getText());			//0

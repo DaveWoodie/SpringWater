@@ -181,14 +181,12 @@ public class PurchaseOrderLogic {
 //		PurchaseOrderStatusLoader pOSLoader = new PurchaseOrderStatusLoader();
 //		//update order from pending to sent
 //		if (pO.getPurchaseOrderStatus().getStatusID() == 1) {
-//			//TODO get current employee and set on purchase order
 //			PurchaseOrderStatus pOS = pOSLoader.getPurchaseOrderStatus(2);
 //			pO.setPurchaseOrderStatus(pOS);
 //			
 //		}
 //		//update order from sent to received
 //		else if (pO.getPurchaseOrderStatus().getStatusID() == 2) {
-//			//TODO get current employee and set on purchase order
 //			PurchaseOrderLineLoader pOLLoader = new PurchaseOrderLineLoader();
 //			ItemLoader iLoader = new ItemLoader();
 //			ArrayList<PurchaseOrderLine> pOLList = pOLLoader.getPurchaseOrderLineByOrderID(pO.getIDPurchaseOrder());
@@ -209,7 +207,6 @@ public class PurchaseOrderLogic {
 //		}
 //		//update order from received to stored
 //		else if (pO.getPurchaseOrderStatus().getStatusID() == 3) {
-//			//TODO get current employee and set on purchase order
 //			PurchaseOrderLineLoader pOLLoader = new PurchaseOrderLineLoader();
 //			ItemLoader iLoader = new ItemLoader();
 //			ArrayList<PurchaseOrderLine> pOLList = pOLLoader.getPurchaseOrderLineByOrderID(pO.getIDPurchaseOrder());
@@ -217,13 +214,11 @@ public class PurchaseOrderLogic {
 //				ArrayList<Item> itemList = iLoader.loadItemByID(pOLList.get(i).getItemID());
 //				int newStock = itemList.get(0).getStock() + pOLList.get(i).getQuantity() - pOLList.get(i).getDamagedQuantity();
 //				itemList.get(0).setStock(newStock);
-//				//TODO write updated item to MongoDB
 //			}
 //			PurchaseOrderStatus pOS = pOSLoader.getPurchaseOrderStatus(4);
 //			pO.setPurchaseOrderStatus(pOS);
 //		}
 //		else {
-//			//TODO manage case where status cannot be updated further
 //		}
 //		pOLoader.setPurchaseOrder(pO);
 	}
