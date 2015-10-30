@@ -111,7 +111,7 @@
                         <img class="img-responsive" th:src="${item.imageLocation}" id="itemThumb" alt="" />
                         </a>
                         <h4 style="text-align:center" id="supersubtitle"><p id="itemName" th:text="${item.itemName}"/></h4>
-                        <h4 style="text-align:center" id="supersubtitle"><p id="itemPrice" th:text="'£' + ${item.price}" /></h4>
+                        <h4 style="text-align:center" id="supersubtitle"><p id="itemPrice" th:text="'£' + ${item.formattedPrice()}" /></h4>
                         <!-- Rating If Statement -->
                         <p th:if="${item.rating} == 0" style="text-align:center">
                             <span class="glyphicon glyphicon-star-empty ratingsEmpty" aria-hidden="true"></span>
