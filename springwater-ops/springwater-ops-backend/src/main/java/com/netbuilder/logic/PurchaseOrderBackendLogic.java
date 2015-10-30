@@ -179,7 +179,6 @@ public class PurchaseOrderBackendLogic {
 	public void completePurchaseOrder(PurchaseOrder pO, Integer employeeID) {
 		PurchaseOrderStatusLoader pOSLoader = new PurchaseOrderStatusLoader();
 		if (pO.getPurchaseOrderStatus().getStatusID() == 3) {
-			//TODO get current employee and set on purchase order
 			PurchaseOrderStatus pOS = pOSLoader.getPurchaseOrderStatus(4);
 			pO.setPurchaseOrderStatus(pOS);
 			pOLoader.setPurchaseOrder(pO);
