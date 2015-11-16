@@ -1,0 +1,16 @@
+com.netbuilder
+com.netbuilder.JMS.test
+com.netbuilder.annotations
+com.netbuilder.app
+com.netbuilder.app.test
+com.netbuilder.connections
+com.netbuilder.controller
+com.netbuilder.entities
+com.netbuilder.entityrepository
+com.netbuilder.jms
+com.netbuilder.loaders
+com.netbuilder.logic
+com.netbuilder.repository
+com.netbuilder.service
+com.netbuilder.session
+com.netbuilder.test
