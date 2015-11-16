@@ -6,8 +6,7 @@
 package com.netbuilder;
 
 import org.apache.activemq.broker.BrokerService;
-
-import com.netbuilder.JMS.Listener;
+import com.netbuilder.jms.Listener;
 
 
 /**

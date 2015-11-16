@@ -1,14 +1,12 @@
 package com.netbuilder.JMS.test;
 
 import java.util.ArrayList;
-
 import loaders.PurchaseOrderLoader;
 import connections.MongoPull;
 import entities.Item;
 import entities.MessageContent;
 import entities.PurchaseOrder;
-
-import com.netbuilder.JMS.Sender;
+import com.netbuilder.jms.Sender;
 import com.netbuilder.logic.PurchaseOrderLogic;
 
 public class JMSTest {

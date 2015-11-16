@@ -1,8 +1,7 @@
 package com.netbuilder.test;
 
 import java.util.ArrayList;
-
-import entities.Review;
+import com.netbuilder.entities.Review;
 
 /**
  * 

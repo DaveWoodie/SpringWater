@@ -20,8 +20,7 @@ import java.util.ArrayList;
 
 
 
-import com.netbuilder.JMS.Sender;
-
+import com.netbuilder.jms.Sender;
 import connections.MongoPull;
 import connections.MongoPush;
 import entities.Employee;

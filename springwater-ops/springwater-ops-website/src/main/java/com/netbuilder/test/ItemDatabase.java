@@ -1,9 +1,8 @@
 package com.netbuilder.test;
 
 import java.util.ArrayList;
-
-import connections.MongoPull;
-import converter.ItemConverter;
+import com.netbuilder.connections.MongoPull;
+import com.netbuilder.service.ItemConverter;
 /**
  * 
  * @author Chris Boucher
@@ -13,7 +12,7 @@ import converter.ItemConverter;
 public class ItemDatabase {
 
 	static public ArrayList<com.netbuilder.test.Item> itemList;
-	static private ArrayList<entities.Item> dbItemList;
+	static private ArrayList<com.netbuilder.entities.Item> dbItemList;
 	static private MongoPull mp = new MongoPull();
 	static private ItemConverter icNothing = new ItemConverter();
 

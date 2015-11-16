@@ -11,7 +11,6 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -19,8 +18,7 @@ import javax.swing.JOptionPane;
 
 
 
-import com.netbuilder.JMS.Sender;
-
+import com.netbuilder.jms.Sender;
 import connections.MongoPull;
 import loaders.ItemLoader;
 import loaders.PurchaseOrderLineLoader;

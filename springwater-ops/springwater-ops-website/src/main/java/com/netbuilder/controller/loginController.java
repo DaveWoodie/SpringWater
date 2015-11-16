@@ -3,17 +3,13 @@ package com.netbuilder.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import loaders.WebLoginLoader;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import com.netbuilder.loaders.WebLoginLoader;
+import com.netbuilder.service.EncryptPassword;
 import com.netbuilder.test.User;
 import com.netbuilder.test.UserDatabase;
-
-import encryption.EncryptPassword;
 
 @Controller
 public class loginController {

@@ -5,13 +5,11 @@
 package com.netbuilder.controller;
 
 import javax.mail.MessagingException;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import email.EmailService;
+import com.netbuilder.service.EmailService;
 
 
 @Controller
