@@ -564,9 +564,9 @@ public class AddItemFrame extends JFrame
 		imageLocation = Source.getName();
 	}
 	
-	public static void main(String[] args)
+	/*public static void main(String[] args)
 	{
 		AddItemFrame i = new AddItemFrame();
 		i.setVisible(true);
-	}
+	}*/
 }

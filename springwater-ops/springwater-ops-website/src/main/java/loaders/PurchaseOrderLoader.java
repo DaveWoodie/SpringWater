@@ -28,6 +28,7 @@ public class PurchaseOrderLoader {
 	final String listQuery = "SELECT purchaseorder.*, purchaseorderstatus.*, supplier.*, employee.*, user.*, role.*";
 	final String tableJoins = " LEFT JOIN purchaseorderstatus ON purchaseorder.idPurchaseOrderStatus = purchaseorderstatus.idPurchaseOrderStatus LEFT JOIN supplier ON purchaseorder.idSupplier = supplier.idSupplier LEFT JOIN employee ON purchaseorder.idEmployee = employee.idEmployee LEFT JOIN user ON purchaseorder.idEmployee = user.idUser LEFT JOIN role ON employee.idRole = role.idRole";
 	final String orderBy = " ORDER BY purchaseorder.datePlaced DESC";
+	final String orderByAsc = " ORDER BY purchaseorder.datePlaced ASC";
 	private String sql;
 	private SQLDBConnector sqlDB = new SQLDBConnector();
 	ArrayList<PurchaseOrder> purchaseOrderList = new ArrayList<PurchaseOrder>();
@@ -86,7 +87,7 @@ public class PurchaseOrderLoader {
 	public ArrayList<PurchaseOrder> getPurchaseOrderByID(int i) {
 		sql = listQuery + tableName + tableJoins + " WHERE idPurchaseOrder = " + i;
 		constructResult();
-		System.out.println(purchaseOrderList.get(0).getPurchaseOrderStatus().getStatusID());
+//		System.out.println(purchaseOrderList.get(0).getPurchaseOrderStatus().getStatusID());
 		return purchaseOrderList;
 	}
 	
@@ -130,7 +131,7 @@ public class PurchaseOrderLoader {
 				sql = sql + " OR idPurchaseOrder = " + purchaseOrderIDs.get(j);
 			}
 		}
-		sql = sql + orderBy;
+		sql = sql + orderByAsc;
 		constructResult();
 		return purchaseOrderList;
 	}
@@ -159,7 +160,13 @@ public class PurchaseOrderLoader {
 	 */
 	public void setPurchaseOrder(PurchaseOrder pO){
 		java.sql.Date dateExpected = null;
-		java.sql.Date datePlaced = new java.sql.Date(pO.getDatePlaced().getTime());
+		java.sql.Date datePlaced = null;
+		try {
+			datePlaced = new java.sql.Date(pO.getDatePlaced().getTime());
+		}
+		catch (NullPointerException nPE) {
+			datePlaced = null;
+		}
 		try {
 			dateExpected = new java.sql.Date(pO.getDateExpected().getTime());
 		}
@@ -173,7 +180,16 @@ public class PurchaseOrderLoader {
 		else {
 			dateToPass = "'" + dateExpected + "'";
 		}
-		sql = "UPDATE purchaseOrder SET datePlaced = '" + datePlaced + "', dateExpected = " + dateToPass + ", idEmployee = " + pO.getEmployee().getUser().getUserID() + ", idPurchaseOrderStatus = " + pO.getPurchaseOrderStatus().getStatusID() + ", idSupplier = " + pO.getSupplier().getSupplierID() + " WHERE idPurchaseOrder = " + pO.getIDPurchaseOrder();
+		
+		String datePlacedString;
+		if (datePlaced == null) {
+			datePlacedString = "null";
+		}
+		else {
+			datePlacedString = "'" + datePlaced + "'";
+		}
+		
+		sql = "UPDATE purchaseOrder SET datePlaced = " + datePlacedString + ", dateExpected = " + dateToPass + ", idEmployee = " + pO.getEmployee().getUser().getUserID() + ", idPurchaseOrderStatus = " + pO.getPurchaseOrderStatus().getStatusID() + ", idSupplier = " + pO.getSupplier().getSupplierID() + " WHERE idPurchaseOrder = " + pO.getIDPurchaseOrder();
 		sqlDB.openCon();
 		try {
 			sqlDB.updateDB(sql);
@@ -191,11 +207,18 @@ public class PurchaseOrderLoader {
 	 * Method to construct the sql query to create a purchase order entry in the database and execute it
 	 * @param pO the purchase order object to be created
 	 */
-	public void createPurchaseOrder (PurchaseOrder pO) {
-		sql = "INSERT INTO purchaseOrder (idEmployee, idPurchaseOrderStatus, idSupplier) VALUE (" + pO.getEmployee().getUser().getUserID() + ", " + pO.getPurchaseOrderStatus().getStatusID() + ", " + pO.getSupplier().getSupplierID() + ")";
+	public Integer createPurchaseOrder (PurchaseOrder pO) {
+//		System.out.println("Reached create purchase order");
+//		System.out.println(pO.getPurchaseOrderStatus().getStatusID());
+//		System.out.println(pO.getSupplier().getSupplierID());
+		sql = "INSERT INTO purchaseOrder (idPurchaseOrderStatus, idSupplier) VALUE (" + pO.getPurchaseOrderStatus().getStatusID() + ", " + pO.getSupplier().getSupplierID() + ")";
 		sqlDB.openCon();
+		Integer newID = null;
 		try {
 			sqlDB.updateDB(sql);
+			ResultSet rs = sqlDB.queryDB("SELECT MAX(idPurchaseOrder) AS ID FROM purchaseorder");
+			rs.next();
+			newID = rs.getInt("ID");
 		} 
 		catch (SQLException sqle) {
 			sqle.printStackTrace();
@@ -203,7 +226,10 @@ public class PurchaseOrderLoader {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+		finally {
 		sqlDB.closeCon();
+		}
+		return newID;
 	}
 }
 

@@ -30,12 +30,16 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import com.netbuilder.logic.PurchaseOrderLogic;
+
+import connections.MongoPull;
 import loaders.PurchaseOrderLineLoader;
 import loaders.PurchaseOrderLoader;
 import loaders.SupplierLoader;
 import entities.Item;
 import entities.PurchaseOrder;
 import entities.PurchaseOrderLine;
+import entities.PurchaseOrderStatus;
 import entities.Supplier;
 import loaders.ItemLoader;
 
@@ -51,17 +55,13 @@ public class ItemGUI extends JFrame
 	private PurchaseOrderLoader purchaseOrderLoader = new PurchaseOrderLoader();
 	private PurchaseOrderLineLoader purchaseOrderLineLoader = new PurchaseOrderLineLoader();
 	
+	private PurchaseOrderLogic purchaseOrderLogic = new PurchaseOrderLogic();
+	
 	private int itemID = 1;
 	private Image img;
 	private JTabbedPane tabbedPane;
 	private JTable tableItem;
 	private JButton buttonDiscontinue, buttonAddToPO;
-	
-	//------test data----------------------
-	private LoadData Data = new LoadData();
-	private Object[][] Inventory;
-	//-------------------------------------
-	
 	
 	private JLabel textName, textPrice, textStock, labelImage, textSupplier;
 	private JTextField textAdd;
@@ -112,13 +112,8 @@ public class ItemGUI extends JFrame
 		
 		//pulls item info from MongDB
 		itemList = itemLoader.loadItemByID(itemID);
-		System.out.println(itemList.size());
+//		System.out.println(itemList.size());
 		item = itemList.get(0);
-	
-		//-------------Testing--------------
-		//TODO fetch dummy data - needed for item images for now
-		Inventory = Data.fetchInventoryList();
-		//----------------------------------
 		
 		setUpTableModel();
 	}
@@ -256,13 +251,25 @@ public class ItemGUI extends JFrame
 			addToPO.add(textAdd);
 			addToPO.add(buttonAddToPO);
 			
-			//testing button functionality with dummy data
 			buttonAddToPO.addActionListener(new ActionListener()
 			{
 				@Override
 				public void actionPerformed(ActionEvent e) 
 				{
+					//get item quantity
+					int Quantity = Integer.parseInt(textAdd.getText());
 					
+					//get item from id
+//					ArrayList<Item> itemList = itemLoader.loadItemByID(itemID);
+					MongoPull mP = new MongoPull();
+					Item item = mP.getItem(itemID);
+					
+					//add to purchase order
+					purchaseOrderLogic.addItemToPurchaseOrder(item, Quantity);
+					
+					JOptionPane.showMessageDialog(null, Quantity + " " + item.getItemName() + " added to purchase order");
+					
+					loadTable();
 				}
 			});
 			
@@ -349,7 +356,7 @@ public class ItemGUI extends JFrame
 	 */
 	public void predictedSalesPanel()
 	{
-		JPanel panelPredictedSales = new JPanel();
+		JPanel panelPredictedSales = new PredictedSalesPanel(itemID);
 		tabbedPane.add("Predicted Sales", panelPredictedSales);
 	}
 	
@@ -358,6 +365,15 @@ public class ItemGUI extends JFrame
 	 */
 	public void loadTable()
 	{
+		//clear table
+		if(tableModel.getRowCount() > 0)
+		{
+			for(int i = tableModel.getRowCount() - 1; i > -1; i--)
+			{
+				tableModel.removeRow(i);
+			}
+		}
+		
 		ArrayList<PurchaseOrder> purchaseOrderList = purchaseOrderLoader.getPurchaseOrderListByItem(itemID);
 		ArrayList<PurchaseOrderLine> purchaseOrderLineList;
 		
@@ -438,8 +454,8 @@ public class ItemGUI extends JFrame
 		}
 	}
 	
-//	public static void main(String[] args)
-//	{
-//		ItemGUI i = new ItemGUI();
-//	}
+	public static void main(String[] args)
+	{
+		ItemGUI i = new ItemGUI();
+	}
 }

@@ -94,12 +94,35 @@ public class PurchaseOrderLineLoader {
 		return purchaseOrderIDs;
 	}
 	
+	public ArrayList<PurchaseOrderLine> getPurchaseOrderLineByProductID(int itemID)
+	{
+		sql = "SELECT * FROM purchaseorderline WHERE idItem = " + itemID;
+		try
+		{
+			sqlDB.openCon();
+			ResultSet rs = sqlDB.queryDB(sql);
+			
+			while(rs.next())
+			{
+				PurchaseOrderLine pOL = new PurchaseOrderLine(rs.getInt("quantity"), rs.getInt("idItem"), purchaseOrder);
+				pOL.setDamagedQuantity(rs.getInt("quantityDamaged"));
+				purchaseOrderItemList.add(pOL);
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlDB.closeCon();
+		}
+		return purchaseOrderItemList;
+	}
+	
 	/**
 	 * Method to construct the sql query to update a purchase order line entry in the database and execute it
 	 * @param pOL the purchase order line object to be updated
 	 */
 	public void setPurchaseOrderLineStock(PurchaseOrderLine pOL){
-		sql = "UPDATE purchaseorderline SET quantityDamaged = " + pOL.getDamagedQuantity() + ", quantity = " + pOL.getQuantity() + "WHERE idItem = " + pOL.getItemID() + " AND idPurchaseOrder = " + pOL.getPurchaseOrder().getIDPurchaseOrder();
+		sql = "UPDATE purchaseorderline SET quantityDamaged = " + pOL.getDamagedQuantity() + ", quantity = " + pOL.getQuantity() + " WHERE idItem = " + pOL.getItemID() + " AND idPurchaseOrder = " + pOL.getPurchaseOrder().getIDPurchaseOrder();
 		sqlDB.openCon();
 		try {
 			sqlDB.updateDB(sql);

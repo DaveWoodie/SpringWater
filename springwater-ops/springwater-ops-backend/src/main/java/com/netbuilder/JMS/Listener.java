@@ -17,10 +17,12 @@ import javax.jms.Session;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
+import entities.CustomerOrder;
 import entities.Item;
 import entities.MessageContent;
 import entities.PurchaseOrder;
 
+import com.netbuilder.logic.CustomerOrderBackendLogic;
 import com.netbuilder.logic.PurchaseOrderBackendLogic;
 
 /**
@@ -44,7 +46,7 @@ public class Listener implements MessageListener{
 		try {
 			 
             // Create a ConnectionFactory
-            ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://localhost:8081");
+            ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://10.50.15.30:8081");
 
             // Create a Connection
             Connection connection = connectionFactory.createConnection();
@@ -75,6 +77,7 @@ public class Listener implements MessageListener{
 			if (objectMessage.getObject() instanceof MessageContent) {
 				MessageContent messageContent = (MessageContent) objectMessage.getObject();
 				if (messageContent.getMessage().equals("addItemToPurchaseOrder")) {
+					System.out.println("received message");
 					ArrayList<Object> object = (ArrayList<Object>) messageContent.getContents();
 					PurchaseOrderBackendLogic pOBL = new PurchaseOrderBackendLogic();
 					pOBL.addItemToPurchaseOrder((Item) object.get(0), (Integer) object.get(1));
@@ -99,6 +102,11 @@ public class Listener implements MessageListener{
 					ArrayList<Object> object = (ArrayList<Object>) messageContent.getContents();
 					PurchaseOrderBackendLogic pOBL = new PurchaseOrderBackendLogic();
 					pOBL.completePurchaseOrder((PurchaseOrder) object.get(0), (Integer) object.get(1));
+				}
+				else if (messageContent.getMessage().equals("customerOrderPlaced")) {
+					CustomerOrder cO = (CustomerOrder) messageContent.getContents();
+					CustomerOrderBackendLogic cOBL = new CustomerOrderBackendLogic();
+					cOBL.customerOrderPlaced(cO);
 				}
 			}
 		} catch (JMSException e) {

@@ -15,8 +15,9 @@
 <div th:fragment="content">
     
     <script th:inline="javascript">
-        var basketSize= /*[[${basket.itemList.size()}]]*/ '0';
+        var basketSize= /*[[${basket.getSize()}]]*/ '0';
         document.cookie = "itemCount = " + basketSize;
+        document.getElementById("basketCount").innerHTML = getCookies("itemCount");
     </script>
     
     <!-- Page Content -->
@@ -105,20 +106,18 @@
                             </div>
 
                             <!-- Address Section -->
-                            <!-- Address Panel -->
-                            <div class="nav nav-stacked panel panel-success" id="sidebar">
-                                <div class="panel-heading">Address Options</div>
-
-                                <!-- Dropdown -->
-                                <div class="list-group panel">
-                                    <a href="#AddressMenu" class="list-group-item strong" data-toggle="collapse" data-parent="#AddressMenu" id="selectAddress">Select Address<i class="fa fa-caret-down"></i></a>
-                                    <div class="collapse" id="AddressMenu">
-                                        <a href="#" class="list-group-item" data-parent="#AddressMenu" id="option">STREET NAME 1</a>
-                                        <a href="#" class="list-group-item" data-parent="#AddressMenu" id="option">STREET NAME 2</a>
-                                    </div>
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Address</h3>
                                 </div>
                             </div>
-
+                            <!-- Address Panel -->
+                            <div class="form-group">
+                                <select class="form-control" id="address">
+                                    <option th:each="address : ${user.addressList}" th:value="${address.getFirstLine()}" th:text="${address.getFirstLine()}"></option>
+                                </select>
+                            </div>
+                            
                             <!-- Address Options -->
                             <div class="panel" style="background:none">
                                 <a href="addaddresses" class="btn btn-block btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Address</a>

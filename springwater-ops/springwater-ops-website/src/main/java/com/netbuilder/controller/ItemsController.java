@@ -2,8 +2,11 @@ package com.netbuilder.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import com.netbuilder.test.Item;
 import com.netbuilder.test.ItemDatabase;
+import com.netbuilder.test.User;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,11 +32,13 @@ public class ItemsController {
 			@RequestParam(value = "featured", required = false) String featured,
 			@RequestParam(value = "mostpopular", required = false) String mostPopular,
 			@RequestParam(value = "wishlist", required = false) String wishlist,
-			Model model) {
+			Model model, HttpSession session) {
 		ArrayList<Item> resultList = new ArrayList<Item>();
-		
+		User user = null;
 		//Change this once database connection exists
-		String userID = "001";
+		if(session.getAttribute("user") != null) {
+			user = (User) session.getAttribute("user");
+		}
 		boolean searchCategory = false;
 		boolean searchNameKey = false;
 		boolean searchColour = false;
@@ -55,7 +60,7 @@ public class ItemsController {
 			resultList = ItemDatabase.mostPopular();
 		}
 		if (wishlist != null) {
-			resultList = ItemDatabase.wishlist(userID);
+			resultList = ItemDatabase.wishlist(user);
 		}
 		model.addAttribute("itemList", resultList);
 		return "items";

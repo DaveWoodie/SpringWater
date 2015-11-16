@@ -106,7 +106,10 @@ public class SupplierLogic {
 		}
 		
 		address.add(a.getCity());
-		if(a.getCounty().isEmpty()) {
+		
+		
+		
+		if(a.getCounty() == null) {
 			address.add(a.getCounty());
 		}
 		address.add(a.getPostCode());
@@ -131,7 +134,7 @@ public class SupplierLogic {
 			supplierList[i][3] = sList.get(i).getEmail();
 			supplierList[i][4] = sList.get(i).getAddressID();
 			supplierList[i][5] = sList.get(i).getAverageDeliveryTime();
-			supplierList[i][6] = "placeholder.png";
+			supplierList[i][6] = sList.get(i).getImageLocation();
 		}
 		
 	}
@@ -147,7 +150,7 @@ public class SupplierLogic {
 		ArrayList <String> addressLines = new ArrayList<String>();
 		
 		//add new address
-		for (int i = 6 ; i < results.length; i++) {
+		for (int i = 7 ; i < results.length; i++) {
 			addressLines.add(results[i]);
 		}
 		if (results[4].isEmpty()) {
@@ -170,6 +173,7 @@ public class SupplierLogic {
 		}else {
 			newSP.setTelephone("");
 		}
+		newSP.setImageLocation(results[6]);
 		sLoader.newSupplier(newSP);
 		
 		
@@ -181,7 +185,7 @@ public class SupplierLogic {
 		ArrayList <String> addressLines = new ArrayList<String>();
 		
 		//add new address
-		for (int i = 6 ; i < results.length; i++) {
+		for (int i = 7 ; i < results.length; i++) {
 			addressLines.add(results[i]);
 		}
 		if (results[4].isEmpty()) {
@@ -194,6 +198,7 @@ public class SupplierLogic {
 		
 		//add new supplier
 		newSP = new Supplier(results[0], addressID);
+		newSP.setSupplierID(selectedID);
 		newSP.setAverageDeliveryTime(0);
 		if (!results[2].isEmpty()){
 			newSP.setEmail(results[2]);
@@ -205,6 +210,7 @@ public class SupplierLogic {
 		}else {
 			newSP.setTelephone("");
 		}
+		newSP.setImageLocation(results[6]);
 		sLoader.updateSupplier(newSP);
 		
 		

@@ -62,6 +62,8 @@ public class SalesGraphGUI extends JPanel implements ActionListener
 		
 		makeDataset();
 		createUI();
+		drawChartDays();
+		comboDuration.setVisible(false);
 	}
 	
 	public void createUI()
@@ -74,7 +76,7 @@ public class SalesGraphGUI extends JPanel implements ActionListener
 		panelOptions.setBorder(BorderFactory.createLineBorder(Color.gray));
 		
 		//combo boxes
-		durationArray = new String[]{"Days", "Months", "Years"};
+		durationArray = new String[]{"Days", "Quartely", "Years"};
 		comboDuration = new JComboBox<String>(durationArray);
 		buttonUpdate = new JButton("Update");
 		buttonUpdate.addActionListener(this);
@@ -105,7 +107,7 @@ public class SalesGraphGUI extends JPanel implements ActionListener
 				//go through each purchase order containing the specified item and get the purchase order line
 				ArrayList<PurchaseOrderLine> pOLine = purchaseOrderLineLoader.getPurchaseOrderLineByOrderAndProduct(purchaseOrderList.get(i).getIDPurchaseOrder(), itemID);
 	
-				if(pOLine.size() > 0) {
+				if(pOLine.size() > 0 && purchaseOrderList.get(i).getDatePlaced() != null) {
 					PurchaseOrderLine purchaseOrderLine = pOLine.get(0);
 					Integer j = purchaseOrderLine.getQuantity();
 					dataset.addValue(j.doubleValue(), (Comparable<?>) "sales", (Comparable<?>) purchaseOrderList.get(i).getDatePlaced());
@@ -146,6 +148,58 @@ public class SalesGraphGUI extends JPanel implements ActionListener
 	    graphPanel.add(chartPanelDays);
 	}
 	
+	private void drawChartQuarter()
+	{
+		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+		new SimpleDateFormat("yyyy-MM-dd");
+		Calendar calendar = Calendar.getInstance();
+		int Total = 0;
+		int oldMonth = 0;
+		int oldYear = 0;
+		ArrayList<PurchaseOrderLine> pOLineList;
+		ArrayList<Integer[]> quarterArray = new ArrayList<Integer[]>();
+		
+		//get purchase orders including item
+		ArrayList<PurchaseOrder> purchaseOrderList = purchaseOrderLoader.getPurchaseOrderListByItem(itemID);
+		
+		//purchase orders are in ascending order so will start at earliest date
+		for(int i = 0; i < purchaseOrderList.size(); i++)
+		{
+			if(purchaseOrderList.get(i).getDatePlaced() != null)
+			{
+				//get purchase order by month
+				calendar.setTime(purchaseOrderList.get(i).getDatePlaced());
+				int newYear = calendar.get(calendar.YEAR);
+				int newMonth = calendar.get(calendar.MONTH);
+				
+				pOLineList = purchaseOrderLineLoader.getPurchaseOrderLineByOrderAndProduct(purchaseOrderList.get(i).getIDPurchaseOrder(), itemID);
+				
+				//year check
+				if(oldYear == newYear)
+				{
+					
+				}
+				else
+				{
+					oldYear = newYear;
+				}
+				
+				if(oldMonth == newMonth)
+				{
+					
+				}
+				else
+				{
+					oldMonth = newMonth;
+				}
+				
+				//if same quarter
+				
+				
+			}
+		}
+	}
+	
 	private void drawChartYears()
 	{
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -162,30 +216,32 @@ public class SalesGraphGUI extends JPanel implements ActionListener
 		//purchase orders are in ascending order so will always start with earliest date first
 		for(int i = 0; i < purchaseOrderList.size(); i++)
 		{
-			//get purchase order date by Year
-			calendar.setTime(purchaseOrderList.get(i).getDatePlaced());
-			int newYear = calendar.get(calendar.YEAR);
-			
-			purchaseOrderLineList = purchaseOrderLineLoader.getPurchaseOrderLineByOrderAndProduct(purchaseOrderList.get(i).getIDPurchaseOrder(), itemID);
-			
-			//if same year
-			if(oldYear == newYear)
+			if(purchaseOrderList.get(i).getDatePlaced() != null)
 			{
-				Total = Total + purchaseOrderLineList.get(0).getQuantity();
+				//get purchase order date by Year
+				calendar.setTime(purchaseOrderList.get(i).getDatePlaced());
+				int newYear = calendar.get(calendar.YEAR);
+				
+				purchaseOrderLineList = purchaseOrderLineLoader.getPurchaseOrderLineByOrderAndProduct(purchaseOrderList.get(i).getIDPurchaseOrder(), itemID);
+				
+				//if same year
+				if(oldYear == newYear)
+				{
+					Total = Total + purchaseOrderLineList.get(0).getQuantity();
+				}
+				else
+				{
+					Total = purchaseOrderLineList.get(0).getQuantity();
+					oldYear = newYear;
+				}
+				
+				//add to array
+				yearArray.add(new Integer[]{newYear, Total});
+				
+				//dataset.addValue(total, "Year", year);
+				
+				//if new year is not the same as old year then it means its moved over into a new year
 			}
-			else
-			{
-				Total = purchaseOrderLineList.get(0).getQuantity();
-				oldYear = newYear;
-			}
-			
-			//add to array
-			yearArray.add(new Integer[]{newYear, Total});
-			
-			//dataset.addValue(total, "Year", year);
-			
-			//if new year is not the same as old year then it means its moved over into a new year
-			
 		}
 		
 		//add array to dataset
@@ -247,17 +303,17 @@ public class SalesGraphGUI extends JPanel implements ActionListener
 		}
 	}
 	
-//	public static void main(String[] args)
-//	{
-//		JFrame j = new JFrame();
-//		int i = 1;
-//		SalesGraphGUI sg = new SalesGraphGUI(i);
-//		
-//		j.setVisible(true);
-//		j.add(sg);
-//		j.setSize(650, 450);
-//		j.setLocationRelativeTo(null);
-//	}
+	public static void main(String[] args)
+	{
+		JFrame j = new JFrame();
+		int i = 1;
+		SalesGraphGUI sg = new SalesGraphGUI(i);
+		
+		j.setVisible(true);
+		j.add(sg);
+		j.setSize(650, 450);
+		j.setLocationRelativeTo(null);
+	}
 
 }
 

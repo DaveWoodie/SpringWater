@@ -24,7 +24,11 @@ public class JMSTest {
 		toSend.add(2);
 		Sender sender = new Sender();
 		MessageContent messageContent = new MessageContent(toSend, "receivePurchaseOrder");
-		System.out.println(pO.getPurchaseOrderStatus().getStatusID());
 		sender.sendMessage(messageContent);
+		
+//		MongoPull mP = new MongoPull();
+//		Item item = mP.getItem(1);
+//		PurchaseOrderLogic purchaseOrderLogic = new PurchaseOrderLogic();
+//		purchaseOrderLogic.addItemToPurchaseOrder(item, 5);
 	}
 }

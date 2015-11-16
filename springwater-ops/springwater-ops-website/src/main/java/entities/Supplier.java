@@ -2,12 +2,6 @@ package entities;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 /**
  * Class to hold all of the details for one Supplier
  * @author tstacey
@@ -24,6 +18,8 @@ public class Supplier implements Serializable{
 	private String supplierName;
 	private String telephone;
 	private String email;
+
+	private String imageLocation;
 	private int addressID;
 	private int averageDeliveryTime;
 	
@@ -91,4 +87,13 @@ public class Supplier implements Serializable{
 	public int getAverageDeliveryTime() {
 		return this.averageDeliveryTime;
 	}
+	
+	public String getImageLocation() {
+		return imageLocation;
+	}
+
+	public void setImageLocation(String imageLocation) {
+		this.imageLocation = imageLocation;
+	}
+
 }

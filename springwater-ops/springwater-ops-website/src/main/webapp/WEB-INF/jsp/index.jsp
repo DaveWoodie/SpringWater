@@ -27,6 +27,34 @@
     <!-- Page Content -->
     <div class="jumbotron content">
         
+        <script th:inline="javascript">
+            var user = /*[[${user}]]*/ null;
+            var wishlistSize = /*[[${wishlistSize}]]*/ null;
+            if(user != null) {
+                document.cookie = "userName = " + user.firstName;
+                document.cookie = "wishCount = " + wishlistSize;
+            }
+            else {
+                deleteCookie("userName");
+                deleteCookie("wishCount");
+            }
+            document.getElementById("basketCount").innerHTML = getCookies("itemCount");
+            if(getCookies("userName") != null) {
+                document.getElementById("userName").innerHTML = " " + getCookies("userName");
+                document.getElementById("userButton").setAttribute("href","profile");
+                document.getElementById("logout").style.display = "";
+                document.getElementById("wishButton").setAttribute("href","wishlist");
+                document.getElementById("wishlistCount").innerHTML = getCookies("wishCount");
+            }
+            else
+            {
+                document.getElementById("userName").innerHTML = " Login/Register";
+                document.getElementById("userButton").setAttribute("href","loginregister");
+                document.getElementById("logout").style.display = 'none';
+                document.getElementById("wishButton").setAttribute("href","loginregister");
+            }
+        </script>
+        
         <!-- ******************************* Carousel Gnome Featured ************************************* -->        
         <div class="container-fluid">
                 <div class="row">
@@ -141,6 +169,14 @@
                                             <a class="thumbnail" id="carouselThumb" th:href="@{/itempage(itemid=${item.itemID})}"><img class="img-responsive" th:src="${item.imageLocation}" /></a> 
                                         </div>
                                         
+                                        <div th:if="${wishlist1.size()} == 0">
+                                            <div class="col-lg-6">
+                                                <a class="thumbnail" id="carouselThumb" href="#"><img class="img-responsive" src="img/empty.png" /></a> 
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <a class="thumbnail" id="carouselThumb" href="#"><img class="img-responsive" src="img/empty.png" /></a> 
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -152,6 +188,15 @@
                                         <div th:each="item : ${wishlist2}" class="col-lg-6">
                                             <a class="thumbnail" id="carouselThumb" th:href="@{/itempage(itemid=${item.itemID})}"><img class="img-responsive" th:src="${item.imageLocation}" /></a> 
                                         </div>
+                                        
+                                        <div th:if="${wishlist2.size()} == 0">
+                                            <div class="col-lg-6">
+                                                <a class="thumbnail" id="carouselThumb" href="#"><img class="img-responsive" src="img/empty.png" /></a> 
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <a class="thumbnail" id="carouselThumb" href="#"><img class="img-responsive" src="img/empty.png" /></a> 
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -162,6 +207,14 @@
                                     <div class="row">
                                         <div th:each="item : ${wishlist3}" class="col-lg-6">
                                             <a class="thumbnail" id="carouselThumb" th:href="@{/itempage(itemid=${item.itemID})}"><img class="img-responsive" th:src="${item.imageLocation}" /></a> 
+                                        </div>
+                                        <div th:if="${wishlist3.size()} == 0">
+                                            <div class="col-lg-6">
+                                                <a class="thumbnail" id="carouselThumb" href="#"><img class="img-responsive" src="img/empty.png" /></a> 
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <a class="thumbnail" id="carouselThumb" href="#"><img class="img-responsive" src="img/empty.png" /></a> 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

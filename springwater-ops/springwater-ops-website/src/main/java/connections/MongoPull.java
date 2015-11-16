@@ -19,6 +19,7 @@ import com.mongodb.DBObject;
 
 import entities.Address;
 import entities.Item;
+import entities.Review;
 import entities.WishList;
 
 public class MongoPull {
@@ -37,23 +38,30 @@ public class MongoPull {
 	private List<String> wishListSet = new ArrayList<String>();
 
 	
-	
+	/*
 	public static void main(String[] args) {
 		
 		MongoPull pull = new MongoPull();
 		MongoPush push = new MongoPush();
 		
-		ArrayList<Item> items = pull.getAllItems();
-		for(Item i : items) {
-			i.print();
-			System.out.println();
-		}
+		
+//		ArrayList<Item> items = pull.getAllItems();
+//		for(Item it : items) {
+//			it.print();
+//			System.out.println();
+//		}
+		
+		Item i = pull.getItem(16);
+		i.setSalesRate(12);
+		push.updateItem(i);
+		i.print();
 		
 	}
+	*/
 	
 	public MongoPull() {
 		
-	}
+	}	
 	
 
 	/*********************************************************************************/
@@ -381,7 +389,32 @@ public class MongoPull {
 			}
 		}
 		
+		ArrayList<Review> reviews = getReviewsFromMongoItem(itemObj);
+		for(Review r : reviews) {
+			newItem.addReview(r);
+		}
+		
+		
+		
 		return newItem;
+	}
+	
+	private ArrayList<Review> getReviewsFromMongoItem(DBObject itemObj) {
+		ArrayList<Review> revs = new ArrayList<Review>();
+		BSONObject bsobj = (BSONObject) itemObj.get("Reviews");
+		if(bsobj != null) {
+			Set<String> keys = bsobj.keySet();
+			for(String key : keys) {
+				DBObject rev = (DBObject) bsobj.get(key);
+				String auth = rev.get("reviewAuthor").toString();
+				int rating = (Integer) rev.get("reviewRating");
+				String body = rev.get("reviewBody").toString();
+				Review newRev = new Review(auth, rating, body);
+				revs.add(newRev);
+				
+			}
+		}
+		return revs;
 	}
 	
 	/**

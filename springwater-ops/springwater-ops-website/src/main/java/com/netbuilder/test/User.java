@@ -1,5 +1,9 @@
 package com.netbuilder.test;
 
+import java.util.ArrayList;
+
+//import java.util.ArrayList;
+
 /**
  * 
  * @author ccooper
@@ -13,17 +17,18 @@ package com.netbuilder.test;
 public class User {
 	
 	// User attributes
-	public String firstName;
-	public String lastName;
-	private String customerID;
+	private String firstName;
+	private String lastName;
+	private int customerID;
 	private String username;
 	private String email;
 	private String dateOfBirth;
 	private String phoneNumber;
 	private double customerCredit;
+	private ArrayList<Address> addressList;
 	
 	// Class constructor
-	public User(String customerID, String username, String email, String dateOfBirth,
+	public User(int customerID, String username, String email, String dateOfBirth,
 			String phoneNumber, double customerCredit, 
 			String firstName, String lastName) {
 				
@@ -36,18 +41,19 @@ public class User {
 				this.customerCredit = customerCredit;
 				this.firstName = firstName;
 				this.lastName = lastName;
+				addressList = new ArrayList<Address>();
 			}
 	
 	// ACCESSORS ****
-	public String getCustomerFistName() {
+	public String getFirstName() {
 		return this.firstName;
 	}
 	
-	public String getCustomerLastName() {
+	public String getLastName() {
 		return this.lastName;
 	}
 	
-	public String getCustomerID() {
+	public int getCustomerID() {
 		return this.customerID;
 	}
 	
@@ -69,5 +75,13 @@ public class User {
 	
 	public double getCustomerCredit() {
 		return this.customerCredit;
+	}
+	
+	public void addAddress(Address address) {
+		addressList.add(address);
+	}
+	
+	public ArrayList<Address> getAddressList() {
+		return addressList;
 	}
 }

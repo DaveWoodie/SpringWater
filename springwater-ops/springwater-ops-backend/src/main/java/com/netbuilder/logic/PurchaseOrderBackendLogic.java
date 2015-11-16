@@ -17,15 +17,21 @@ import java.util.ArrayList;
 
 
 
+
+
+
 import com.netbuilder.JMS.Sender;
 
 import connections.MongoPull;
+import connections.MongoPush;
+import entities.Employee;
 import entities.Item;
 import entities.MessageContent;
 import entities.PurchaseOrder;
 import entities.PurchaseOrderLine;
 import entities.PurchaseOrderStatus;
 import entities.Supplier;
+import loaders.EmployeeLoader;
 import loaders.PurchaseOrderLineLoader;
 import loaders.PurchaseOrderLoader;
 import loaders.PurchaseOrderStatusLoader;
@@ -50,6 +56,7 @@ public class PurchaseOrderBackendLogic {
 	 * @param quantityAdd quantity to add to the purchase order
 	 */
 	public void addItemToPurchaseOrder(Item item, int quantityAdd) {
+		System.out.println("Reached backend method");
 		ArrayList<PurchaseOrder> itemPurchaseOrderList = new ArrayList<PurchaseOrder>();
 		itemPurchaseOrderList = pOLoader.getPurchaseOrderListByItemValid(item);
 		//if no valid pending purchase order to attach item to
@@ -66,7 +73,9 @@ public class PurchaseOrderBackendLogic {
 				supplier = null;
 			}
 			PurchaseOrder pO = new PurchaseOrder(pOSLoader.getPurchaseOrderStatus(1), supplier);
-			pOLoader.createPurchaseOrder(pO);
+			int newID = pOLoader.createPurchaseOrder(pO);
+			pO.setIDPurchaseOrder(newID);
+			EmployeeLoader eLoader = new EmployeeLoader();
 			PurchaseOrderLine pOL = new PurchaseOrderLine(quantityAdd, item.getIdItem(), pO);
 			pOLLoader.createPurchaseOrderLine(pOL);
 		}
@@ -133,23 +142,29 @@ public class PurchaseOrderBackendLogic {
 		PurchaseOrderStatusLoader pOSLoader = new PurchaseOrderStatusLoader();
 		//update order from pending to sent
 		if (pO.getPurchaseOrderStatus().getStatusID() == 1) {
-			//TODO get current employee and set on purchase order
+			EmployeeLoader eLoader = new EmployeeLoader();
+			Employee employee = eLoader.getEmployeeByID(employeeID);
+			pO.setEmployee(employee);
 			PurchaseOrderStatus pOS = pOSLoader.getPurchaseOrderStatus(2);
 			pO.setPurchaseOrderStatus(pOS);
+			pO.setDatePlaced(new java.util.Date());
 			pOLoader.setPurchaseOrder(pO);
 		}
 	}
 	
+	/**
+	 * Method to update a purchase order when received by warehouse and inform IMS if damaged items are found
+	 * @param pO purchase order that has arrived
+	 * @param employeeID id of the employee who received the purchase order
+	 */
 	public void receivePurchaseOrder(PurchaseOrder pO, Integer employeeID) {
 		PurchaseOrderStatusLoader pOSLoader = new PurchaseOrderStatusLoader();
-		System.out.println("Checking purchase order status");
-		System.out.println(pO.getPurchaseOrderStatus().getStatusID());
 		if (pO.getPurchaseOrderStatus().getStatusID() == 2) {
-			//TODO get current employee and set on purchase order
-			System.out.println("Correct status determined");
+			EmployeeLoader eLoader = new EmployeeLoader();
+			Employee employee = eLoader.getEmployeeByID(employeeID);
+			pO.setEmployee(employee);
 			PurchaseOrderStatus pOS = pOSLoader.getPurchaseOrderStatus(3);
 			pO.setPurchaseOrderStatus(pOS);
-			System.out.println("Set purchase order");
 			pOLoader.setPurchaseOrder(pO);
 			String damagedReport = "<html>Damaged Stock Report<br>Purchaseorder: " + pO.getIDPurchaseOrder();
 			boolean damagedGoods = false;
@@ -157,7 +172,6 @@ public class PurchaseOrderBackendLogic {
 			ArrayList<PurchaseOrderLine> pOLList = pOLLoader.getPurchaseOrderLineByOrderID(pO.getIDPurchaseOrder());
 			for (int i = 0; i < pOLList.size(); i++) {
 				if (pOLList.get(i).getDamagedQuantity() > 0) {
-					System.out.println("Damaged item detected");
 					damagedGoods = true;
 					MongoPull mP = new MongoPull();
 					Item item = mP.getItem(pOLList.get(i).getItemID());
@@ -165,23 +179,42 @@ public class PurchaseOrderBackendLogic {
 				}
 			}
 			if (damagedGoods) {
-				System.out.println("Sending message to IMS");
-				System.out.println(damagedReport);
 				MessageContent messageContent = new MessageContent(damagedReport, "damagedStockReport");
 				Sender sender = new Sender ("IMS.IN");
 				sender.sendMessage(messageContent);
 			}
-		}
-		
+		}	
 	}
 	
+	/**
+	 * Method to update a purchase order when the warehouse has stored the stock and update stock levels based on this
+	 * @param pO purchase order that has been completed
+	 * @param employeeID id of the employee who put away the stock
+	 */
 	public void completePurchaseOrder(PurchaseOrder pO, Integer employeeID) {
 		PurchaseOrderStatusLoader pOSLoader = new PurchaseOrderStatusLoader();
 		if (pO.getPurchaseOrderStatus().getStatusID() == 3) {
-			//TODO get current employee and set on purchase order
+			EmployeeLoader eLoader = new EmployeeLoader();
+			Employee employee = eLoader.getEmployeeByID(employeeID);
+			pO.setEmployee(employee);
 			PurchaseOrderStatus pOS = pOSLoader.getPurchaseOrderStatus(4);
 			pO.setPurchaseOrderStatus(pOS);
 			pOLoader.setPurchaseOrder(pO);
+			String newStockReport = "<html>New Stock Report<br>Purchaseorder: " + pO.getIDPurchaseOrder();
+			PurchaseOrderLineLoader pOLLoader = new PurchaseOrderLineLoader();
+			ArrayList<PurchaseOrderLine> pOLList = pOLLoader.getPurchaseOrderLineByOrderID(pO.getIDPurchaseOrder());
+			for (int i = 0; i < pOLList.size(); i++) {
+				MongoPull mP = new MongoPull();
+				Item item = mP.getItem(pOLList.get(i).getItemID());
+				item.setStock((item.getStock() + pOLList.get(i).getQuantity() - pOLList.get(i).getDamagedQuantity()));
+				MongoPush mPush = new MongoPush();
+				mPush.updateItem(item);
+				newStockReport = newStockReport + "<br>Item ID: " + item.getIdItem() + " Item Name: " + item.getItemName() + " Number Added: " + (pOLList.get(i).getQuantity() - pOLList.get(i).getDamagedQuantity());
+			}
+			MessageContent messageContent = new MessageContent(newStockReport, "newStockReport");
+			Sender sender = new Sender ("IMS.IN");
+			sender.sendMessage(messageContent);
 		}
 	}
+	
 }

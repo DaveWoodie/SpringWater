@@ -25,11 +25,10 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-import com.netbuilder.logic.PurchaseOrderLogic;
 import com.netbuilder.logic.SupplierLogic;
 
 @SuppressWarnings("serial")
-public class SuppliersGUI extends JPanel{
+public class SuppliersGUI extends JPanel {
 	
 	private String [] columns = {"Supplier ID", "Supplier Name"};
 	private String [] supplierCategories = {"Supplier ID", "Supplier Name", "Product ID"};
@@ -39,7 +38,7 @@ public class SuppliersGUI extends JPanel{
 	JScrollPane pane, pane2;
 	JTextArea searchTerm;
 	JComboBox<String> categories;
-	JButton filter, select, reset, add;
+	JButton filter, select, reset,refresh, add;
 	JLabel searchLabel, filterLabel;
 	private int selectedOrder;
 	private String selectedName;
@@ -112,7 +111,7 @@ public class SuppliersGUI extends JPanel{
 				String input = searchTerm.getText();
 				switch (categories.getSelectedItem().toString()) {
 					case "Supplier ID":
-						System.out.println(input);
+//						System.out.println(input);
 						int i = Integer.parseInt(input);
 						update = lD.fetchSupplierByID(i);
 						break;
@@ -149,6 +148,20 @@ public class SuppliersGUI extends JPanel{
 			
 		});
 		
+		refresh =new JButton("Refresh Data");
+		refresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				final SupplierLogic lD = new SupplierLogic();
+				supplierListModel = new DefaultTableModel(lD.fetchSuppliers(), columns){
+					@Override
+				    public boolean isCellEditable(int i, int i1) {
+				        return false; //To change body of generated methods, choose Tools | Templates.
+				    }
+				};		
+				suppliers.setModel(supplierListModel);
+			}
+		});
+		
 		reset = new JButton("Reset Filters");
 		reset.addActionListener(new ActionListener(){
 
@@ -165,6 +178,7 @@ public class SuppliersGUI extends JPanel{
 			}
 			
 		});
+		
 		
 		add = new JButton("New Supplier");
 		add.addActionListener(new ActionListener(){
@@ -189,6 +203,7 @@ public class SuppliersGUI extends JPanel{
 		search.add(pane2);
 		
 		controller.add(select);
+//		controller.add(refresh);
 		controller.add(filter);
 		controller.add(reset);
 		controller.add(add);
@@ -200,6 +215,18 @@ public class SuppliersGUI extends JPanel{
 		add(south, BorderLayout.SOUTH);
 		
 		return this;
+	}
+	
+	public void refresh() {
+		final SupplierLogic lD = new SupplierLogic();
+		supplierListModel = new DefaultTableModel(lD.fetchSuppliers(), columns){
+			@Override
+		    public boolean isCellEditable(int i, int i1) {
+		        return false; //To change body of generated methods, choose Tools | Templates.
+		    }
+		};
+		suppliers.setModel(supplierListModel);
+		revalidate();
 	}
 
 

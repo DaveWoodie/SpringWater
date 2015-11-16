@@ -34,7 +34,7 @@ public class Sender{
 	public void sendMessage(MessageContent toSend) {
 		try {
             // Create a ConnectionFactory
-            ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://localhost:8081");
+            ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://10.50.15.30:8081");
 
             // Create a Connection
             Connection connection = connectionFactory.createConnection();
@@ -51,7 +51,7 @@ public class Sender{
             producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
 
             // Create a messages
-            ObjectMessage message = session.createObjectMessage((Serializable) toSend);
+            ObjectMessage message = session.createObjectMessage(toSend);
 
             // Tell the producer to send the message
             System.out.println("Sending Message...");

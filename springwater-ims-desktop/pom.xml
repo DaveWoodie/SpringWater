@@ -111,7 +111,11 @@
 			<artifactId>jfreechart</artifactId>
 			<version>1.0.19</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>com.github.lbordowitz.openforecast</groupId>
+			<artifactId>openforecast</artifactId>
+			<version>0.5.0</version>
+		</dependency>
 		
 		
 <!-- 		<dependency> -->

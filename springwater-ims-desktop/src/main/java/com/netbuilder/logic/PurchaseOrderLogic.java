@@ -4,6 +4,7 @@
  */
 package com.netbuilder.logic;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -17,7 +18,9 @@ import javax.swing.JOptionPane;
 
 
 
+
 import com.netbuilder.JMS.Sender;
+
 import connections.MongoPull;
 import loaders.ItemLoader;
 import loaders.PurchaseOrderLineLoader;
@@ -139,7 +142,9 @@ public class PurchaseOrderLogic {
 				total = total + (pOLList.get(j).getQuantity() * itemPrice);
 			}
 			purchaseOrderList[i][0] = pOList.get(i).getIDPurchaseOrder();
-			purchaseOrderList[i][1] = df.format(pOList.get(i).getDatePlaced()); 
+			if (pOList.get(i).getDatePlaced() != null) {
+				purchaseOrderList[i][1] = df.format(pOList.get(i).getDatePlaced()); 
+			}
 			purchaseOrderList[i][2] = pOList.get(i).getPurchaseOrderStatus().getPurchOrderStatus(); 
 			purchaseOrderList[i][3] = pOList.get(i).getSupplier().getSupplierName();
 			purchaseOrderList[i][4] = "£" + formatter.format(total);
@@ -176,14 +181,12 @@ public class PurchaseOrderLogic {
 //		PurchaseOrderStatusLoader pOSLoader = new PurchaseOrderStatusLoader();
 //		//update order from pending to sent
 //		if (pO.getPurchaseOrderStatus().getStatusID() == 1) {
-//			//TODO get current employee and set on purchase order
 //			PurchaseOrderStatus pOS = pOSLoader.getPurchaseOrderStatus(2);
 //			pO.setPurchaseOrderStatus(pOS);
 //			
 //		}
 //		//update order from sent to received
 //		else if (pO.getPurchaseOrderStatus().getStatusID() == 2) {
-//			//TODO get current employee and set on purchase order
 //			PurchaseOrderLineLoader pOLLoader = new PurchaseOrderLineLoader();
 //			ItemLoader iLoader = new ItemLoader();
 //			ArrayList<PurchaseOrderLine> pOLList = pOLLoader.getPurchaseOrderLineByOrderID(pO.getIDPurchaseOrder());
@@ -204,7 +207,6 @@ public class PurchaseOrderLogic {
 //		}
 //		//update order from received to stored
 //		else if (pO.getPurchaseOrderStatus().getStatusID() == 3) {
-//			//TODO get current employee and set on purchase order
 //			PurchaseOrderLineLoader pOLLoader = new PurchaseOrderLineLoader();
 //			ItemLoader iLoader = new ItemLoader();
 //			ArrayList<PurchaseOrderLine> pOLList = pOLLoader.getPurchaseOrderLineByOrderID(pO.getIDPurchaseOrder());
@@ -212,13 +214,11 @@ public class PurchaseOrderLogic {
 //				ArrayList<Item> itemList = iLoader.loadItemByID(pOLList.get(i).getItemID());
 //				int newStock = itemList.get(0).getStock() + pOLList.get(i).getQuantity() - pOLList.get(i).getDamagedQuantity();
 //				itemList.get(0).setStock(newStock);
-//				//TODO write updated item to MongoDB
 //			}
 //			PurchaseOrderStatus pOS = pOSLoader.getPurchaseOrderStatus(4);
 //			pO.setPurchaseOrderStatus(pOS);
 //		}
 //		else {
-//			//TODO manage case where status cannot be updated further
 //		}
 //		pOLoader.setPurchaseOrder(pO);
 	}

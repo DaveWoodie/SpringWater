@@ -42,10 +42,12 @@ public class PurchaseOrdersGUI extends JPanel {
 	JScrollPane paneAlph, paneBeta;
 	JTextField searchField;
 	JComboBox<String> filterPurchaseOrder;
-	JButton filter, select, reset, add;
+	JButton filter, select, reset, add, refresh;
 	JLabel searchFieldLabel, filterFieldLabel;
+	Object[][] update;
 	
 	int currentlySelectedOrder = 0;
+	private PurchaseOrderLogic lD;
 	
 	public JPanel initUI() {
 		
@@ -91,6 +93,7 @@ public class PurchaseOrdersGUI extends JPanel {
 		search.add(searchField);
 		
 		controller.add(select);
+//		controller.add(refresh);
 		controller.add(filter);
 		controller.add(reset);
 		
@@ -108,7 +111,7 @@ public class PurchaseOrdersGUI extends JPanel {
 		
 		filterPurchaseOrder = new JComboBox<String>(purchaseOrderCategories);
 		
-		final PurchaseOrderLogic lD = new PurchaseOrderLogic();
+		lD = new PurchaseOrderLogic();
 		purchaseListTable = new DefaultTableModel(lD.fetchPurchaseOrders(), columns){
 			@Override
 		    public boolean isCellEditable(int i, int i1) {
@@ -154,11 +157,10 @@ public class PurchaseOrdersGUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO set filter of table results
 				//Should apply the filters selected to the table.
-				Object[][] update;
+				
 				String input = searchField.getText();
 				switch (filterPurchaseOrder.getSelectedItem().toString()) {
 					case "Order ID":
-						System.out.println(input);
 						int i = Integer.parseInt(input);
 						update = lD.fetchPurchaseOrdersByID(i);
 						break;
@@ -175,7 +177,6 @@ public class PurchaseOrdersGUI extends JPanel {
 						SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
 						try {
 							Date date = formatter.parse(input);
-							System.out.println("Date populated: " + formatter.format(date));
 							update = lD.fetchPurchaseOrdersByDate(date);
 						} catch (ParseException e1) {
 							// TODO Auto-generated catch block
@@ -183,7 +184,6 @@ public class PurchaseOrdersGUI extends JPanel {
 							try {
 								formatter = new SimpleDateFormat("dd/MM/yyyy");
 								Date date = formatter.parse(input);
-								System.out.println("Date populated: " + formatter.format(date));
 								update = lD.fetchPurchaseOrdersByDate(date);
 							} catch (ParseException e2) {
 								// TODO Auto-generated catch block
@@ -214,13 +214,30 @@ public class PurchaseOrdersGUI extends JPanel {
 					System.out.println("No Purchase Order selected!");
 				}
 				else {
+					String date = "";
 					String suppliername = purchaseOrderTable.getValueAt(purchaseOrderTable.getSelectedRow(), 3).toString();
-					String date = purchaseOrderTable.getValueAt(purchaseOrderTable.getSelectedRow(), 1).toString();
+					if (purchaseOrderTable.getValueAt(purchaseOrderTable.getSelectedRow(), 1) != null) {
+						date = purchaseOrderTable.getValueAt(purchaseOrderTable.getSelectedRow(), 1).toString();
+					}
 					String status = purchaseOrderTable.getValueAt(purchaseOrderTable.getSelectedRow(), 2).toString();
 					String total = purchaseOrderTable.getValueAt(purchaseOrderTable.getSelectedRow(), 4).toString();
 					IndividualPurchaseOrderViewFrame iPO = new IndividualPurchaseOrderViewFrame(currentlySelectedOrder, suppliername, date, status, total);
 					iPO.setVisible(true);
 				}
+			}
+		});
+		
+		refresh = new JButton("Refresh Data");
+		refresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				final PurchaseOrderLogic lD = new PurchaseOrderLogic();
+				purchaseListTable = new DefaultTableModel(lD.fetchPurchaseOrders(), columns){
+					@Override
+				    public boolean isCellEditable(int i, int i1) {
+				        return false; //To change body of generated methods, choose Tools | Templates.
+				    }
+				};
+				purchaseOrderTable.setModel(purchaseListTable);				
 			}
 		});
 		
@@ -245,5 +262,18 @@ public class PurchaseOrdersGUI extends JPanel {
 //			}
 //		});
 	}
-}
+
+	public void refresh() {
+		purchaseListTable = new DefaultTableModel(lD.fetchPurchaseOrders(), columns){
+			@Override
+		    public boolean isCellEditable(int i, int i1) {
+		        return false; //To change body of generated methods, choose Tools | Templates.
+		    }
+		};
+		purchaseOrderTable.setModel(purchaseListTable);
+	}
+
+
+	}
+	
 

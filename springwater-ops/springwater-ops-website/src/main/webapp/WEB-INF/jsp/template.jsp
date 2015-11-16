@@ -48,9 +48,9 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Categories<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a th:href="@{/items(category=Gnome)}">Gnomes</a></li>
+                            <li><a th:href="@{/items(category=Gnomes)}">Gnomes</a></li>
                             <li><a th:href="@{/items(category=Furniture)}">Furniture</a></li>
-                            <li><a th:href="@{/items(category=Tool)}">Tools</a></li>
+                            <li><a th:href="@{/items(category=Tools)}">Tools</a></li>
                             <li><a th:href="@{/items(category=Pottery)}">Pottery</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a th:href="@{/items(featured=true)}">Featured</a></li>
@@ -69,17 +69,32 @@
                         </span>
                     </div>
                 </span>
-
+                
                 <form class="navbar-form navbar-right" role="search">
-                    <a href="wishlist" class="btn btn-danger"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Wish List <span class="badge">0</span></a>
+                    <a href="wishlist" class="btn btn-danger" id="wishButton"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Wish List <span class="badge" id="wishlistCount"></span></a>
                     <a href="basket" class="btn btn-info"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Basket <span class="badge" id="basketCount"></span></a>
-                    <a href="loginregister" type="submit" class="btn btn-success"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login</a>
-                    <a href="loginregister" class="btn btn-primary"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Register</a>
-                    
-                    <script>
-                    	document.getElementById("basketCount").innerHTML = getCookies("itemCount");
-                    </script>
+                    <a href="loginregister" type="submit" class="btn btn-success" id="userButton"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span id="userName"></span></a>
+                    <a href="logout" type="submit" class="btn btn-warning" id ="logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span><span> Log out</span></a>
                 </form>
+                
+                <script th:inline="javascript">
+                    document.getElementById("basketCount").innerHTML = getCookies("itemCount");
+                    if(getCookies("userName") != null) {
+                        document.getElementById("userName").innerHTML = " " + getCookies("userName");
+                        document.getElementById("userButton").setAttribute("href","profile");
+                        document.getElementById("wishButton").setAttribute("href","wishlist");
+                        document.getElementById("wishlistCount").innerHTML = getCookies("wishCount");
+                    }
+                    else
+                    {
+                        document.getElementById("userName").innerHTML = " Login/Register";
+                        document.getElementById("userButton").setAttribute("href","loginregister");
+                        document.getElementById("wishButton").setAttribute("href","loginregister");
+                        document.getElementById("logout").style.display = 'none';
+                        document.getElementById("wishlistCount").innerHTML = "";
+                    }
+                </script>
+                
             </div>
             <!-- END OF COLLASPE AREA -->
         </div>
@@ -94,7 +109,7 @@
     <div class="jumbotron" id="searchBar">
         <div class="container">
             <div class="row">
-                <div class="col-md-3"></div>
+                <div class="col-md-2"></div>
                 <div class="col-md-2 whiteText">
                     <p><a href="aboutus" class="whiteText"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> About</a></p>
                 </div>
@@ -104,7 +119,10 @@
                 <div class="col-md-2 whiteText">
                     <p><a href="faq" class="whiteText"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> FAQ</a></p>
                 </div>
-                <div class="col-md-3"></div>
+                <div class="col-md-2 whiteText">
+                    <p><a href="emailOrder" class="whiteText"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Email Order</a></p>
+                </div>
+                <div class="col-md-2"></div>
             </div>
             <div class="row">
                 <div class="col-md-3"></div>
@@ -119,5 +137,4 @@
     </div>
     <!-- END OF FOOTER -->
 </body>
-
 </html>

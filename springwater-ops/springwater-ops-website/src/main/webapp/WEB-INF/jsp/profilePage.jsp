@@ -23,11 +23,6 @@
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet" />
     <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
 
-	<!-- Show welcome message to user -->
-	<script>
-		showWelcomeMessage();
-	</script>
-
 </head>
 
 <body>
@@ -53,10 +48,8 @@
 		            <div class="col-lg-6">
 		                <div class="list-group">
 			                <ul>
-			                    <li class="list-group-item active">
-			                        First Name: <br /></li>
-			                    <li class="list-group-item active">
-			                        Last Name: </li>
+			                    <li class="list-group-item active">First Name:</li>
+			                    <li class="list-group-item active">Last Name:</li>
 			                </ul>
 		                </div>
 		                <hr />
@@ -68,17 +61,13 @@
 			                <ul>
 			                    <li class="list-group-item">
 			                       <table>
-    									<tr th:each="user : ${profile}">
 											<td th:text="${user.firstName}"></td>
-										</tr>
 									</table>
 			                    </li>
 			                    
 			                    <li class="list-group-item">
 			                        <table>
-    									<tr th:each="user : ${profile}">
 											<td th:text="${user.lastName}"></td>
-										</tr>
 									</table>
 			                    </li>
 			                </ul>
@@ -99,73 +88,45 @@
 	                       <div class="well">
 	                           <div class="container">
 	                               <div class="col-lg-2">
-	                                   <div class="panel-body">
-	                                       CustomerID:
-	                                   </div>
-	                                   <div class="panel-body">
-	                                       Username:
-	                                   </div>
-	                                   <div class="panel-body">
-	                                       Email:
-	                                   </div>
-	                                   <div class="panel-body">
-	                                       Date of Birth:
-	                                   </div>
-	                                   <div class="panel-body">
-	                                       Phone Number:
-	                                   </div>
-	                                   <div class="panel-body">
-	                                       Customer Credit:
-	                                   </div>
+	                                   <div class="panel-body">CustomerID:</div>
+	                                   <div class="panel-body">Username:</div>
+	                                   <div class="panel-body">Email:</div>
+	                                   <div class="panel-body">Date of Birth:</div>
+	                                   <div class="panel-body">Phone Number:</div>
+	                                   <div class="panel-body">Customer Credit:</div>
 	                               </div>
 	                               <div class="col-lg-2">
 	                                   <div class="panel-body">
 	                                   
 	                                       	<table>
-    											<tr th:each="user : ${profile}">
 											        <td th:text="${user.customerID}"></td>
-											    </tr>
 											</table>
 	                                       	
 	                                   </div>
 	                                   <div class="panel-body">
 	                                   <table>
-    										<tr th:each="user : ${profile}">
-	                                       		<td th:text="${user.username}">...</td>
-	                                       	</tr>
+	                                       		<td th:text="${user.username}"></td>
 										</table>
 	                                   </div>
 	                                   <div class="panel-body">
 	                                   	<table>
-    										<tr th:each="user : ${profile}">
-	                                       		<td th:text="${user.email}">...</td>
-	                                       	</tr>
+	                                       		<td th:text="${user.email}"></td>
 										</table>
-	                                   
-	                                    <!-- Script for calling cookie data  -->
-    										<script>
-												document.getElementById("emailID").innerHTML = getCookies("email");
-											</script>
+	  
 	                                   </div>
 	                                   <div class="panel-body">
 	                                       <table>
-    										<tr th:each="user : ${profile}">
-	                                       		<td th:text="${user.dateOfBirth}">...</td>
-	                                       	</tr>
+	                                       		<td th:text="${user.dateOfBirth}"></td>
 										</table>
 	                                   </div>
 	                                   <div class="panel-body">
 	                                        <table>
-    										<tr th:each="user : ${profile}">
-	                                       		<td th:text="${user.phoneNumber}">...</td>
-	                                       	</tr>
+	                                       		<td th:text="${user.phoneNumber}"></td>
 										</table>
 	                                   </div>
 	                                   <div class="panel-body">
 	                                       <table>
-    										<tr th:each="user : ${profile}">
 	                                       		<td th:text="${user.customerCredit}"></td>
-	                                       	</tr>
 										</table>
 	                                   </div>
 	                               </div>

@@ -6,6 +6,7 @@ var item3 = ["Jacuzzi", "399.95"];
 
 var subTotals = [];
 var sublength = subTotals.length;
+var orderLine = [];
 
 var increment = 0;
 
@@ -48,6 +49,11 @@ function addItem() {
         var itemInf = selector.options[selector.selectedIndex].text;
 
         subTotals[increment] = price;
+        var temp = "%0A" + itemInf + "%20@%20£" + price + "%0A"; 
+        var replace = temp.replace(" ", "%20");
+        orderLine[increment] = replace;
+        console.log(orderLine[increment]);
+        console.log(orderLine.length);
 
         item = '<div id="item' + increment + '" class="row"> <div class="col-sm-5 panel-body" id="panelLeft">' + itemInf + '</div> <div class="col-sm-2 panel-body">' + price + '</div> <div class="col-sm-5 panel-body text-center"><button onclick="removeItem(' + increment + ')" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Remove</button></div> </div>';
 
@@ -144,14 +150,35 @@ function checkArray() {
 }
 
 function mail() {
-
-    var name = document.getElementById('firstNameInput').value + " " + document.getElementById('lastNameInput').value;
-
+    var name = document.getElementById('firstNameInput').value + "%20" + document.getElementById('lastNameInput').value;
     var email = document.getElementById('emailInput').value;
-
     var phone = document.getElementById('telephoneNumberInput').value;
-
-    var addr = document.getElementById('0').value + ", " + document.getElementById('1').value + ", " + document.getElementById('2').value + ", " + document.getElementById('3').value + ", " + document.getElementById('4').value;
-
-    //window.open('mailto:Chris.Walker@netbuilder.com?subject=Order_from' + name + '&body=' + name + email + phone + ');
+    var addr = document.getElementById('0').value + "%0A" + document.getElementById('1').value + "%0A" + document.getElementById('2').value + "%0A" + document.getElementById('3').value + "%0A" + document.getElementById('4').value;
+    
+    var orderInf = "%0A%0AOrder%20Information:%0A";
+    var ol;
+    for(var i = 0; i < orderLine.length; i++) {
+        ol = orderInf.concat(orderLine[i]);
     }
+    
+    var body = "Contact Details:%0AEmail:%20" + email + "%0APhone:%20" + phone + "%0AAddress:%0A" + addr + ol;
+
+    window.open('mailto:Chris.Walker@qa.com?subject=Order%20from%20' + name + '&body=' + body);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

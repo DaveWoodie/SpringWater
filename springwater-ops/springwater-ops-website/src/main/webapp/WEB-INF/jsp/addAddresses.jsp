@@ -1,13 +1,4 @@
-<!--     Chris J W Walker  -->
-    
-<!--     addAddresses.html -->
 
-<!--     13/10/2015 -->
-
-<!--     Page for customers to manage their addresses.  -->
-<!--     View, add and delete addresses. -->
-
-<!--     Last Modified by: chrisjwwalker -->
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -70,57 +61,21 @@
                         <h1 id="productTitle"><small>See Your Addresses</small></h1>
                     </div>
 
-                    <div class="panel panel-success">
+                    <div th:each="address : ${user.addressList}" class="panel panel-success">
                         <div class="panel-heading">
-                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home
+                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Address
                         </div>
 
                         <div class="panel-body">
-                            <p>
-                                62 Bentley Road
-                                <br /> Uttoxeter
-                                <br /> Staffordshire
-                                <br /> ST14 7EN
-                            </p>
+                            <p th:each="addressline : ${address.addressLines}" th:text="${addressline}"></p>
+                            <p th:text="${address.city}"></p>
+                            <p th:text="${address.county}"></p>
+                            <p th:text="${address.postCode}"></p>
                             <button class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit Address</button>
                             <button class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete Address</button>
                         </div>
                     </div>
 
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Work
-                        </div>
-
-                        <div class="panel-body">
-                            <p>
-                                NETBuilder LTD
-                                <br /> Floor 5
-                                <br /> Anchorage Quay
-                                <br /> Salford Quays
-                                <br /> M50 3YJ
-                            </p>
-                            <button class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit Address</button>
-                            <button class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete Address</button>
-                        </div>
-                    </div>
-
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Uni
-                        </div>
-
-                        <div class="panel-body">
-                            <p>
-                                Flat 4 Phoenix Nights
-                                <br /> Phoenix Street
-                                <br /> Lancaster
-                                <br /> LA1 1DD
-                            </p>
-                            <button class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit Address</button>
-                            <button class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete Address</button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

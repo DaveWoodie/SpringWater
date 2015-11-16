@@ -6,7 +6,6 @@
 package com.netbuilder.app;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -24,21 +23,28 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import com.netbuilder.logic.StockReportLogic;
+
 public class DailyStockReportGUI {
-	int lowSelectedID;
-	int fastSelectedID;
+	private int lowSelectedID;
+	private int fastSelectedID;
+	private UneditableTableModel lowStockModel;
+	private UneditableTableModel fastSellingkModel;
+	private String[] colHeadings;
+	
+	private StockReportLogic logic = new StockReportLogic();
 	
 	public DailyStockReportGUI() {
+		colHeadings = new String[]{ "Item ID", "Item Name", "Stock Level","Sales Rate" };
 	}
 
 	/**
-	 * method to get the daily stock report pain
+	 * method to get the daily stock report pane
 	 * @return a JPanel containing the stock report
 	 */
 	public JPanel getStockReportPanel() {
-//		int numRows = 30;
-		String[] colHeadings = { "Item ID", "Item Name", "Stock Level","Sales Rate" };
-		final JLabel fastSellingLabel = new JLabel("Fast Selling Items", SwingConstants.CENTER);
+		
+		final JLabel fastSellingLabel = new JLabel("Fluctuating Items", SwingConstants.CENTER);
 		final JLabel LowStockLabel = new JLabel("Current Stock", SwingConstants.CENTER);
 		JPanel pane = new JPanel();
 		JPanel lowStockPanel = new JPanel();
@@ -49,28 +55,9 @@ public class DailyStockReportGUI {
 		GridLayout stockReportLayout = new GridLayout(1, 2);
 
 		// Create Table Models
-		LoadData lD = new LoadData();
-		@SuppressWarnings("serial")
-		DefaultTableModel lowStockModel = new DefaultTableModel(lD.fetchStockList(), colHeadings){
-			@Override
-		    public boolean isCellEditable(int i, int i1) {
-		        return false; //To change body of generated methods, choose Tools | Templates.
-		    }
-			
-		};
-		//lowStockModel.setColumnIdentifiers(colHeadings);
-		@SuppressWarnings("serial")
-		DefaultTableModel fastSellingkModel = new DefaultTableModel(lD.fetchHighSaleList(), colHeadings){
-			@Override
-		    public boolean isCellEditable(int i, int i1) {
-		        return false; //To change body of generated methods, choose Tools | Templates.
-		    }
-		};
-		//fastSellingkModel.setColumnIdentifiers(colHeadings);
+		lowStockModel = new UneditableTableModel(logic.fetchStockList(), colHeadings);
+		fastSellingkModel = new UneditableTableModel(logic.fetchFastMovingList(), colHeadings);
 
-//		// Fill tables with test data
-//		lowStockModel = fillTable(numRows, lowStockModel);
-//		fastSellingkModel = fillTable(numRows, fastSellingkModel);
 		
 		//Create Tables
 		final JTable lowStockTable = new JTable(lowStockModel);
@@ -137,30 +124,13 @@ public class DailyStockReportGUI {
 		fastSellingPanel.setLayout(fastSellingBoxLayout);
 
 		// Formatting
-//		fastSellingLabel.setForeground(Color.GREEN);
-//		LowStockLabel.setForeground(Color.RED);
-//		fastSellingPanel.setBackground(Color.WHITE);
-//		lowStockPanel.setBackground(Color.WHITE);
-//		fastSellingTable.getTableHeader().setBackground(Color.WHITE);
-//		lowStockTable.getTableHeader().setBackground(Color.WHITE);
-//		fastSellingPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-//		lowStockPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
-		// Add components to low stock panel
-//		lowStockTable.setPreferredScrollableViewportSize(lowStockTable.getPreferredSize());
-//		lowStockTable.setFillsViewportHeight(true);
 		LowStockLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-//		lowStockPanel.add(LowStockLabel);
 		lowStockPanel.add(new JScrollPane(lowStockTable));
-//		lowStockPanel.add(lowStockSelect);
 
 		// Add components to fast selling panel
-//		fastSellingTable.setPreferredScrollableViewportSize(fastSellingTable.getPreferredSize());
-//		fastSellingTable.setFillsViewportHeight(true);
 		fastSellingLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-//		fastSellingPanel.add(fastSellingLabel);
 		fastSellingPanel.add(new JScrollPane(fastSellingTable));
-//		fastSellingPanel.add(fastSellingSelect);
 
 		// set up and add pane
 		pane.setLayout(stockReportLayout);
@@ -177,6 +147,11 @@ public class DailyStockReportGUI {
 		mainPane.add(pane, BorderLayout.CENTER);
 		mainPane.add(bottomPanel, BorderLayout.SOUTH);
 		return mainPane;
+	}
+	
+	public void refresh() {
+		lowStockModel = new UneditableTableModel(logic.fetchStockList(), colHeadings);
+		fastSellingkModel = new UneditableTableModel(logic.fetchFastMovingList(), colHeadings);
 	}
 	
 	//fills the table with test data

@@ -34,7 +34,7 @@ public class Receiver{
 		try {
 			 
             // Create a ConnectionFactory
-            ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://localhost:8081");
+            ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://10.50.15.30:8081");
 
             // Create a Connection
             Connection connection = connectionFactory.createConnection();

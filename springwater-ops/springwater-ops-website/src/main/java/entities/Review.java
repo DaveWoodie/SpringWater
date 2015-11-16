@@ -1,12 +1,19 @@
 package entities;
+
+import java.io.Serializable;
+
 /**
  * 
  * @author Chris Boucher
  * @date 23/10/2015
  *
  */
-public class Review {
+public class Review implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String author;
 	private int rating;
 	private String body;
@@ -39,5 +46,11 @@ public class Review {
 
 	public void setBody(String body) {
 		this.body = body;
+	}
+	
+	public void print() {
+		System.out.println("Author: "+author);
+		System.out.println("Rating: "+rating);
+		System.out.println("Body: "+body);
 	}
 }
